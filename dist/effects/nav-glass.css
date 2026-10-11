@@ -1,0 +1,25 @@
+/* ZIPLAN · 상단 내비게이션 유리 패널 (liquid-glass-js 연결용 스타일)
+   페이지에 들어가는 유일한 효과. 라이브러리 파일(vendor/)은 손대지 않고 여기서만 덮어씁니다.
+   WebGL 패널이 살아 있을 때만 nav에 .lg-on이 붙고, 그 전·실패 시에는 원래 CSS 블러 글래스가 그대로 보입니다. */
+nav{position:sticky}
+nav .in{position:relative;z-index:1}
+nav .pop{z-index:2}
+nav.lg-on{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.nav-glass{
+  position:absolute;inset:0;
+  z-index:0;
+  display:block !important;   /* glass.css의 .glass-container flex/padding/gap 무시 */
+  padding:0 !important;
+  gap:0 !important;
+  border-radius:0 !important;
+  pointer-events:none;
+  overflow:hidden;
+}
+.nav-glass canvas{
+  border-radius:0 !important;
+  box-shadow:none !important;  /* 라이브러리 기본 그림자(0 25px 50px) 제거 — 바에는 맞지 않음 */
+}

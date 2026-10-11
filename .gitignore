@@ -1,0 +1,9 @@
+.impeccable/
+.claude/
+.agents/
+skills-lock.json
+crit_v1.html
+crit_v6_before_glass.html
+vendor/pdfjs/
+effects/_unused/
+__pycache__/

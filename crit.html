@@ -1,0 +1,1452 @@
+<meta charset="utf-8">
+<title>ZIPLAN</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<!-- 효과: liquid-glass-js (상단 내비게이션 유리 패널 1개) -->
+<link rel="stylesheet" href="vendor/liquid-glass/glass.css">
+<link rel="stylesheet" href="effects/nav-glass.css">
+<style>
+/* Layout: Apple-style storefront for ZIPLAN. Sticky nav of rooms, hash-routed room pages,
+   each a scroll story (sticky stage + steps) followed by that room's tool. One shared project. */
+:root{
+  --bg:#ffffff; --bg-alt:#f5f5f7; --fg:#1d1d1f; --fg-2:#6e6e73; --line:#d2d2d7;
+  --accent:#0a58ca; --accent-fg:#ffffff; --card:#ffffff; --card-line:#e5e5ea;
+  --ok:#1d8a4b; --warn:#c9790b; --bad:#d0373b;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro KR","SF Pro Text","Helvetica Neue","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+  --brand:"Archivo Black","Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#000000; --bg-alt:#161617; --fg:#f5f5f7; --fg-2:#a1a1a6; --line:#424245;
+  --accent:#2997ff; --accent-fg:#000000; --card:#1d1d1f; --card-line:#3a3a3c; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#000000; --bg-alt:#161617; --fg:#f5f5f7; --fg-2:#a1a1a6; --line:#424245;
+  --accent:#2997ff; --accent-fg:#000000; --card:#1d1d1f; --card-line:#3a3a3c; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.47;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-0.015em}
+[hidden]{display:none!important}
+.brand{font-family:var(--brand);letter-spacing:-0.04em;font-weight:400}
+.pz{color:var(--accent)}
+.mark{display:inline-block;vertical-align:middle}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:48px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+nav .in{max-width:1100px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:24px;font-size:13px}
+nav .logo{display:flex;align-items:center;gap:8px;color:var(--fg);font-size:17px}
+nav .logo:hover{text-decoration:none}
+nav a.nl{color:var(--fg);opacity:.8;padding:2px 0;border-bottom:1.5px solid transparent;white-space:nowrap}
+nav a.nl:hover{text-decoration:none;opacity:1}
+nav a.nl[aria-current="page"]{opacity:1;border-bottom-color:var(--fg)}
+nav .sp{flex:1}
+.userchip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-size:12px;background:var(--card);cursor:pointer;color:var(--fg)}
+.userchip img{width:22px;height:22px;border-radius:50%;background:var(--bg-alt)}
+.userchip.signin{background:var(--fg);color:var(--bg);border-color:transparent;padding:5px 12px}
+.pop{position:absolute;right:16px;top:54px;width:min(320px,calc(100vw - 32px));background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px;box-shadow:0 16px 48px rgba(0,0,0,.18);font-size:13px;z-index:30}
+.pop h4{margin:0 0 6px;font-size:14px}
+.pop p{margin:0 0 10px;color:var(--fg-2)}
+@media (max-width:820px){ nav a.nl{display:none} nav .in{gap:14px} }
+
+/* opening: scroll-driven build */
+.build{height:720vh;position:relative}
+.bstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
+.bstage svg{width:min(100%,1180px);height:auto;max-height:100vh;display:block;margin-left:auto}
+.bcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);max-width:400px;opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s;pointer-events:none}
+.bcap.on{opacity:1;transform:none}
+.bcap .n{font-size:12px;letter-spacing:.1em;color:var(--fg-2);margin-bottom:8px}
+.bcap h2{font-size:clamp(56px,8vw,112px);font-weight:900;line-height:1;letter-spacing:-.04em}
+.bcap .n{font-family:var(--brand);font-size:13px;letter-spacing:.14em;color:var(--accent)}
+.bcap p{font-size:clamp(15px,1.6vw,19px);color:var(--fg-2);margin:10px 0 0;max-width:36ch}
+.bhint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--fg-2);letter-spacing:.06em;transition:opacity .3s}
+@media (max-width:860px){ .build{height:560vh} .bstage{align-items:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 100px)} .bcap{max-width:calc(100% - 32px)} }
+@media (prefers-reduced-motion:reduce){ .build{height:auto} .bstage{position:static;height:auto;padding:80px 16px 40px} .bcap{position:static;opacity:1;transform:none;margin-top:16px} .bcap:not([data-i="6"]){display:none} .bhint{display:none} }
+
+/* blocks */
+.view{min-height:60vh}
+.hero{padding:72px 16px 40px;text-align:center}
+.hero h1{font-size:clamp(52px,9vw,96px);line-height:1;letter-spacing:-0.045em}
+.hero .tag{font-size:clamp(22px,3.4vw,34px);font-weight:500;margin-top:14px}
+.hero .sub{font-size:19px;color:var(--fg-2);margin-top:8px;max-width:640px;margin-inline:auto}
+.links{display:flex;gap:28px;justify-content:center;margin-top:18px;font-size:19px;flex-wrap:wrap}
+.links a::after{content:" ›"}
+.heromark{display:flex;justify-content:center;margin-bottom:22px}
+.rotline .rot{display:inline-block;min-width:2.2em;text-align:left;color:var(--accent);transition:opacity .3s,transform .3s}
+.rotline .rot.out{opacity:0;transform:translateY(8px)}
+.keys{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.keys a{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--fg);background:var(--card)}
+.keys a:hover{text-decoration:none;border-color:var(--fg)}
+.intro{max-width:680px;margin:0 auto;padding:24px 16px 56px;font-size:19px;line-height:1.6;color:var(--fg-2)}
+.intro .lead{color:var(--fg);font-size:clamp(22px,2.8vw,28px);font-weight:600;line-height:1.35;letter-spacing:-0.01em}
+.intro p{margin:0 0 18px}
+.trio{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:clamp(20px,2.6vw,26px);font-weight:700;color:var(--fg);letter-spacing:-0.02em;margin-top:28px}
+.trio span:not(:last-child)::after{content:" ·";color:var(--line);margin-left:22px}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes up{from{transform:translateY(22px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .heromark .p{animation:up .55s cubic-bezier(.2,.8,.2,1) both}
+  .heromark .p1{animation-delay:0s}.heromark .p2{animation-delay:.1s}.heromark .p3{animation-delay:.2s}.heromark .p4{animation-delay:.34s}.heromark .p5{animation-delay:.44s}.heromark .p6{animation-delay:.54s}.heromark .p7{animation-delay:.7s}
+}
+.addr{margin:26px auto 0;width:min(560px,100%);height:58px;border:2px solid var(--fg);border-radius:999px;display:flex;align-items:center;padding:0 8px 0 22px;gap:10px;background:var(--card)}
+.addr input{flex:1;min-width:0;border:0;background:transparent;font-size:16px;outline:none}
+.addr button{border:0;background:var(--accent);color:var(--accent-fg);border-radius:999px;padding:11px 20px;font-size:15px;font-weight:600;cursor:pointer}
+.mod{padding:72px 16px;text-align:center}
+.mod.alt{background:var(--bg-alt)}
+.mod h2{font-size:clamp(34px,5.6vw,56px);font-weight:700;line-height:1.08}
+.mod .tag{font-size:clamp(19px,2.6vw,26px);color:var(--fg-2);margin-top:8px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1100px;margin:36px auto 0}
+@media (max-width:1100px){ .tiles{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:860px){ .tiles{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:560px){ .tiles{grid-template-columns:1fr} }
+.tile{background:var(--card);border:1px solid var(--card-line);border-radius:22px;padding:30px 24px 0;text-align:center;color:var(--fg);display:flex;flex-direction:column;gap:6px;overflow:hidden;min-height:330px}
+.tile:hover{text-decoration:none}
+.tile h3{font-size:26px;font-weight:700}
+.tile p{margin:0;color:var(--fg-2);font-size:15px}
+.tile .go{color:var(--accent);font-size:15px}
+.tile .go::after{content:" ›"}
+.tile .art{margin:18px -24px 0;flex:1;background:var(--bg-alt);display:flex;align-items:flex-end;justify-content:center;padding:16px 24px 0;min-height:150px}
+.tile .art svg{width:100%;max-width:260px;height:auto;display:block}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1024px;margin:36px auto 0;text-align:left}
+@media (max-width:860px){ .plans{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:500px){ .plans{grid-template-columns:1fr} }
+.plan{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.plan.hi{border:2px solid var(--fg)}
+.plan .n{font-size:13px;color:var(--fg-2)}
+.plan .pr{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.plan ul{margin:8px 0 0;padding-left:18px;font-size:14px;color:var(--fg-2);line-height:1.6}
+
+/* scroll story */
+.story{max-width:1100px;margin:0 auto;padding:40px 16px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.story .stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);min-height:min(78vh,760px);display:flex;align-items:center;justify-content:center}
+.story .stage > *{width:100%}
+.story .steps{display:flex;flex-direction:column}
+.story .step{min-height:72vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transition:opacity .45s}
+.story .step.on{opacity:1}
+.story .step h3{font-size:clamp(26px,3.4vw,40px);font-weight:700;line-height:1.1}
+.story .step p{font-size:19px;color:var(--fg-2);margin:12px 0 0;max-width:34ch}
+.story .step .n{font-size:12px;letter-spacing:.1em;color:var(--fg-2);margin-bottom:10px}
+@media (max-width:860px){
+  .story{grid-template-columns:1fr;gap:0}
+  .story .stage{top:calc(env(safe-area-inset-top,0px) + 56px);min-height:46vh;z-index:1;background:var(--bg);padding:8px 0}
+  .story .step{min-height:46vh}
+  .story .step p{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){ .story .step{opacity:1} html{scroll-behavior:auto} }
+
+/* sheet (paper stays paper) */
+.sheet{width:100%;aspect-ratio:594/841;max-width:100%;background:#ffffff;border:1px solid #e5e5ea;box-shadow:0 12px 40px rgba(0,0,0,.16);position:relative;overflow:hidden;color:#1d1d1f;container-type:inline-size}
+.stage .sheet{width:min(100%,calc((78vh - 40px) * 594 / 841));margin:0 auto}
+.sheet .s{position:absolute;overflow:hidden}
+@media (prefers-reduced-motion:no-preference){ .sheet .s{transition:left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1),width .55s cubic-bezier(.4,0,.2,1),height .55s cubic-bezier(.4,0,.2,1),opacity .4s} }
+.sheet .img{background:#f0f0f3}
+.sheet .img img,.sheet .img svg{width:100%;height:100%;object-fit:cover;display:block}
+.sheet .img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.6cqw;color:#8e8e93;letter-spacing:.04em;text-transform:uppercase}
+.sheet .cap{position:absolute;left:0;right:0;bottom:0;padding:.6cqw .9cqw;font-size:1.25cqw;background:rgba(255,255,255,.85);color:#1d1d1f;line-height:1.3}
+.sheet .ttl{display:flex;flex-direction:column;justify-content:flex-end}
+.sheet .ttl .pn{font-size:1.5cqw;color:#6e6e73;letter-spacing:.08em;text-transform:uppercase}
+.sheet .ttl .t{font-size:5.2cqw;font-weight:900;letter-spacing:-.03em;line-height:1.02}
+.sheet .ttl .st{font-size:2cqw;color:#424245;margin-top:.6cqw}
+.sheet .ttl.bar{flex-direction:row;align-items:center;gap:2cqw;border-top:.25cqw solid #1d1d1f;padding-top:1cqw}
+.sheet .ttl.bar .t{font-size:3.4cqw}
+.sheet .ttl.bar .st{margin:0;font-size:1.6cqw;flex:1}
+.sheet .txt{font-size:1.55cqw;line-height:1.5;color:#1d1d1f}
+.sheet .txt h4{margin:0 0 .6cqw;font-size:1.55cqw;letter-spacing:.06em;text-transform:uppercase;color:#6e6e73}
+.sheet .txt p{margin:0 0 1cqw}
+.sheet .txt ul{margin:0;padding-left:1.8cqw}
+.sheet .tbl{font-size:1.35cqw}
+.sheet .tbl table{width:100%;border-collapse:collapse}
+.sheet .tbl td{padding:.35cqw 0;border-bottom:.12cqw solid #d2d2d7;font-variant-numeric:tabular-nums}
+.sheet .tbl td:last-child{text-align:right}
+.sheet .tbl th{text-align:left;font-weight:500;color:#6e6e73;padding-bottom:.5cqw;font-size:1.25cqw;letter-spacing:.06em;text-transform:uppercase}
+
+/* boards */
+.board{background:#ffffff;border:1px solid #e5e5ea;border-radius:14px;padding:16px;overflow:hidden;color:#1d1d1f}
+.board svg{display:block;width:100%;height:auto;max-height:640px;margin:0 auto}
+.stage .board svg{max-height:calc(78vh - 72px)}
+.z,.zl,.zt{transition:opacity .5s}
+[data-stage="1"] .z,[data-stage="1"] .zt,[data-stage="1"] .zl{opacity:0}
+[data-stage="2"] .zl{opacity:0}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--fg-2);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* workbench */
+.wb{padding:64px 16px 96px}
+.wb .in{max-width:1180px;margin:0 auto}
+.wb h2{font-size:clamp(28px,4.4vw,40px);font-weight:700;text-align:center}
+.wb .tag{text-align:center;color:var(--fg-2);font-size:17px;margin-top:6px}
+.banner{max-width:1180px;margin:20px auto 0;padding:12px 16px;border-radius:12px;background:var(--bg-alt);color:var(--fg-2);font-size:14px}
+.banner b{color:var(--fg)}
+.two{display:grid;grid-template-columns:380px minmax(0,1fr);gap:28px;align-items:start;margin-top:28px}
+@media (max-width:860px){ .two{grid-template-columns:1fr} }
+.card{background:var(--bg-alt);border-radius:18px;padding:22px;min-width:0}
+.card h3{font-size:15px;font-weight:700;margin-bottom:12px}
+label{display:block;font-size:12px;color:var(--fg-2);margin:12px 0 4px;letter-spacing:.02em}
+input[type=text],input[type=number],textarea,select{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 11px;font-size:14px}
+textarea{min-height:96px;resize:vertical;line-height:1.5}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row > *{flex:1;min-width:0}
+.btn{border:0;background:var(--accent);color:var(--accent-fg);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;flex:0 0 auto}
+.btn.sec{background:var(--card);color:var(--fg);border:1px solid var(--line)}
+.btn.dark{background:var(--fg);color:var(--bg)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hint{font-size:12px;color:var(--fg-2);margin-top:8px;line-height:1.5}
+.status{font-size:13px;color:var(--fg-2);min-height:18px;margin-top:10px}
+.status.err{color:var(--bad)}
+.drop{border:1.5px dashed var(--line);border-radius:12px;padding:16px;text-align:center;color:var(--fg-2);font-size:13px;cursor:pointer;background:var(--card)}
+.drop.over{border-color:var(--accent);color:var(--accent)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:10px}
+.thumb{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;font-size:11px}
+.thumb img,.thumb .svgwrap{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;background:#f0f0f3;display:block;overflow:hidden}
+.thumb .svgwrap svg{width:100%;height:100%}
+.thumb select{padding:3px 4px;font-size:11px;border-radius:6px;margin-top:4px}
+.thumb button{border:0;background:transparent;color:var(--fg-2);font-size:11px;cursor:pointer;padding:2px 0;margin-top:2px}
+.concepts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){ .concepts{grid-template-columns:repeat(2,1fr)} }
+.concept{border:1.5px solid var(--line);border-radius:12px;background:var(--card);padding:8px;cursor:pointer;text-align:center;font-size:11px;color:var(--fg-2)}
+.concept[aria-pressed="true"]{border-color:var(--accent);color:var(--fg)}
+.concept svg{display:block;width:100%;height:auto;margin-bottom:6px}
+.concept b{display:block;font-weight:600}
+.sheet-wrap{position:sticky;top:64px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi .l{font-size:12px;color:var(--fg-2)}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:2px}
+.kpi .d{font-size:12px;margin-top:2px}
+.kpi.ok .d{color:var(--ok)} .kpi.warn .d{color:var(--warn)} .kpi.bad .d{color:var(--bad)}
+.floors{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+.floors th{text-align:left;font-weight:500;color:var(--fg-2);padding:4px 6px;font-size:12px}
+.floors td{padding:3px 4px}
+.floors input,.floors select{padding:6px 8px;border-radius:8px;font-size:13px}
+.floors td:last-child{width:34px;text-align:center}
+.floors td:last-child button{border:0;background:transparent;color:var(--fg-2);cursor:pointer;font-size:16px}
+.bar{height:8px;background:var(--bg-alt);border-radius:4px;overflow:hidden;display:flex;margin-top:14px}
+.bar i{display:block;height:100%}
+.out{background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:18px;min-height:220px;white-space:pre-wrap;font-size:15px;line-height:1.6}
+.modes{display:flex;gap:6px;flex-wrap:wrap}
+.modes button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--fg-2)}
+.modes button[aria-pressed="true"]{border-color:var(--accent);color:var(--fg)}
+.textstage{background:var(--card);border:1px solid var(--card-line);border-radius:22px;padding:28px;min-height:360px;font-size:17px;line-height:1.6;white-space:pre-wrap}
+.textstage .k{font-size:12px;letter-spacing:.1em;color:var(--fg-2);text-transform:uppercase;margin-bottom:12px}
+.textstage .body{transition:opacity .35s}
+.textstage.fade .body{opacity:0}
+
+/* concept cards, case cards */
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){ .cards3{grid-template-columns:1fr} }
+.ccard{background:var(--card);border:1.5px solid var(--card-line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ccard[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
+.ccard .m{background:var(--bg-alt);border-radius:12px;padding:10px}
+.ccard .m svg{display:block;width:100%;height:auto}
+.ccard h4{margin:0;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.ccard .line{font-size:14px;color:var(--fg);line-height:1.5}
+.ccard .why{font-size:12px;color:var(--fg-2);line-height:1.5}
+.ccard ul{margin:0;padding-left:16px;font-size:13px;line-height:1.55}
+.ccard .refs{font-size:12px;color:var(--fg-2);border-top:1px solid var(--card-line);padding-top:8px;line-height:1.5}
+.ccard .pick{margin-top:auto}
+.cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:20px}
+.case{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.case b{font-size:15px}
+.case .meta{color:var(--fg-2);font-size:12px}
+.case .tags{display:flex;gap:4px;flex-wrap:wrap}
+.case .tags span{background:var(--bg-alt);border-radius:999px;padding:2px 8px;font-size:11px;color:var(--fg-2)}
+.case button{align-self:flex-start;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer;margin-top:4px}
+.case button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+/* 포트폴리오 방 */
+.pfto{display:flex;gap:6px;flex-wrap:wrap}
+.pfto button{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.pfto button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pfread .pat{font-size:13px;line-height:1.55;color:var(--fg)}
+.pfread ul{margin:4px 0 0;padding-left:16px;font-size:12.5px;line-height:1.5}
+.pfread .avoid{font-size:12.5px;line-height:1.5;color:var(--bad);margin-top:2px}
+.pfread .who{font-size:11.5px;color:var(--fg-2);line-height:1.4}
+.pfread a.src{font-size:12px;margin-top:auto;padding-top:6px}
+.pfjobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:20px}
+.pfjob{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px;font-size:13px;display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.pfjob b{font-size:15px}
+.pfjob .k{color:var(--fg-2);font-size:11px;letter-spacing:.04em}
+.pfjob .fmt{font-weight:600}
+.pfjob .tip{background:var(--bg-alt);border-radius:10px;padding:8px 10px;font-size:12.5px}
+.pfjob .asof{font-size:11.5px;color:var(--fg-2);margin-top:auto;padding-top:6px}
+.pftips{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:20px}
+.pftips button{text-align:left;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.pftips button .t{font-size:11px;color:var(--fg-2);letter-spacing:.04em}
+.pftips button[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,88,202,.2)}
+.pfpages{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pfpages img{width:64px;height:88px;object-fit:cover;border:1px solid var(--line);border-radius:6px;background:#fff}
+@media (max-width:720px){ .pfjobs{grid-template-columns:1fr} }
+/* 광장 익명·게이트 */
+.gate{background:var(--bg-alt);border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.5;margin-top:10px}
+.post.locked img,.post.locked .noimg{filter:blur(14px);opacity:.55}
+.post.locked{position:relative}
+.post.locked::after{content:"한 장 올리면 열립니다";position:absolute;top:12px;left:12px;background:var(--fg);color:var(--bg);font-size:12px;padding:5px 10px;border-radius:999px}
+/* 자료실 */
+.lbhow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:20px}
+.lbhow .fact .v{font-size:15px;line-height:1.45;font-weight:600}
+.lbitem .lic{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;border-radius:999px;padding:3px 9px;background:var(--bg-alt);color:var(--fg)}
+.lbitem .lic.ok{background:rgba(46,158,91,.14);color:#1d7a43}
+.lbitem .lic.attr{background:rgba(10,88,202,.12);color:var(--accent)}
+.lbitem .lic.no{background:rgba(214,60,60,.12);color:var(--bad)}
+.lbitem .uses{display:flex;gap:4px;flex-wrap:wrap;font-size:11px}
+.lbitem .uses span{border-radius:6px;padding:2px 7px;background:var(--bg-alt);color:var(--fg-2)}
+.lbitem .uses span.y{color:#1d7a43}.lbitem .uses span.a{color:var(--accent)}.lbitem .uses span.n{color:var(--bad);text-decoration:line-through}
+.lbitem .how{font-size:12.5px;color:var(--fg-2);line-height:1.5}
+.lbitem .caution{font-size:12px;color:var(--bad);line-height:1.45}
+.lbitem a.src{margin-top:auto;padding-top:6px;font-size:12px}
+.filters select{width:auto}
+
+/* zipcode result */
+.zc{display:grid;grid-template-columns:380px minmax(0,1fr);gap:28px;align-items:start;margin-top:28px}
+@media (max-width:860px){ .zc{grid-template-columns:1fr} }
+.zcres{display:flex;flex-direction:column;gap:14px}
+.zcres .big{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:22px}
+.zcres .big h3{font-size:24px;font-weight:700;letter-spacing:-.02em}
+.zcres .big p{margin:6px 0 0;color:var(--fg-2);font-size:15px;line-height:1.55}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.fact .l{font-size:11px;color:var(--fg-2)}
+.fact .v{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.checks{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px 18px}
+.checks ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7}
+.checks li b{font-weight:600}
+
+/* plaza */
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:14px}
+.post{background:var(--card);border:1px solid var(--card-line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;font-size:13px;min-width:0}
+.post img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--bg-alt);display:block}
+.post .noimg{width:100%;aspect-ratio:4/3;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;color:var(--fg-2);font-size:12px}
+.post .pb{padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.post b{font-size:15px}
+.post .meta{color:var(--fg-2);font-size:12px}
+.post .txt{white-space:pre-wrap;line-height:1.5}
+.post .acts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.post .acts button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 10px;font-size:12px;cursor:pointer}
+.post .acts button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.post .cmts{border-top:1px solid var(--card-line);padding-top:8px;display:flex;flex-direction:column;gap:4px;font-size:12px}
+.post .cmts .c{color:var(--fg)} .post .cmts .c span{color:var(--fg-2)}
+.post form{display:flex;gap:6px;margin-top:6px}
+.post form input{flex:1;min-width:0;padding:6px 10px;font-size:12px}
+.post form button{border:0;background:var(--accent);color:var(--accent-fg);border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer}
+
+/* studio */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
+@media (max-width:760px){ .grid2{grid-template-columns:1fr} }
+.scard{background:var(--card);border:1px solid var(--card-line);border-radius:18px;padding:20px;font-size:14px;min-width:0}
+.scard h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.scard .muted{color:var(--fg-2)}
+.scard svg{display:block;width:100%;height:auto;max-height:200px}
+
+/* guide */
+.guide{max-width:720px;margin:0 auto;padding:0 16px 80px;font-size:17px}
+.guide h2{font-size:28px;margin:44px 0 10px}
+.guide ol{padding-left:22px}
+.guide li{margin:8px 0}
+.guide p{color:var(--fg-2)}
+.morelinks{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;padding:48px 16px 72px;font-size:17px;background:var(--bg-alt)}
+.morelinks a::after{content:" ›"}
+footer{padding:28px 16px 40px;background:var(--bg-alt);color:var(--fg-2);font-size:12px}
+footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+
+<nav>
+  <div class="in">
+    <a class="logo" href="#home"><span class="mark" data-mark="26"></span><span class="brand">ZI<span class="pz">P</span>LAN</span></a>
+    <a class="nl" href="#zipcode">내집코드</a><a class="nl" href="#learn">사례</a><a class="nl" href="#site">대지</a><a class="nl" href="#concept">컨셉</a><a class="nl" href="#drawing">도면</a><a class="nl" href="#model">모형</a><a class="nl" href="#panel">패널</a><a class="nl" href="#plaza">광장</a><a class="nl" href="#portfolio">포트폴리오</a><a class="nl" href="#library">자료실</a><a class="nl" href="#studio">작업실</a>
+    <span class="sp"></span>
+    <button class="userchip signin" id="userChip">로그인</button>
+  </div>
+  <div class="pop" id="userPop" hidden></div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<section class="view" id="view-home">
+  <div class="build" id="build">
+    <div class="bstage">
+      <svg id="buildSvg" viewBox="0 0 800 600" role="img" aria-label="대지 평면이 그려지고 마당과 층이 쌓여 집이 되는 장면"></svg>
+      <div class="bcap" data-i="0"><div class="n">LINE</div><h2>선</h2><p>건축은 한 선에서 시작한다. 땅의 경계, 길, 북쪽.</p></div>
+      <div class="bcap" data-i="1"><div class="n">SITE</div><h2>대지</h2><p>15 × 20m. 남쪽에 길, 북쪽에 낮은 산. 해는 남쪽에서 들어와 서쪽으로 지고, 바람은 북서에서 온다.</p></div>
+      <div class="bcap" data-i="2"><div class="n">PLAN</div><h2>평면</h2><p>거실과 부엌은 해를 보고, 침실은 조용한 서쪽으로. 가운데를 마당에 내준다.</p></div>
+      <div class="bcap" data-i="3"><div class="n">RISE</div><h2>입체</h2><p>선이 일어선다. 1층은 ㄱ자, 2층은 작은 상자 하나. 상자 옆이 마당 위 테라스가 된다.</p></div>
+      <div class="bcap" data-i="4"><div class="n">LIGHT</div><h2>빛</h2><p>해가 지나가며 그림자가 돈다. 남쪽 벽에 창을 낸다.</p></div>
+      <div class="bcap" data-i="5"><div class="n">SECTION</div><h2>단면</h2><p>잘라서 본다. 층고, 바닥, 사람의 키. 도면은 결국 몸의 크기다.</p></div>
+      <div class="bcap" data-i="6"><div class="n">HOME</div><h2>집</h2><p>마당을 안은 집. 사례, 대지, 컨셉, 도면, 모형, 패널. 당신의 첫 집도 이 순서로.</p></div>
+      <div class="bhint">내리면서 보세요 ↓</div>
+    </div>
+  </div>
+
+  <div class="hero" id="introHero">
+    <div class="heromark" id="heroMark"></div>
+    <h1 class="brand">ZI<span class="pz">P</span>LAN</h1>
+    <div class="tag rotline">모두의 <span class="rot" id="rotWord">건축</span></div>
+    <div class="sub">계획은 당신이, 표현은 ZIP이. 컨셉부터 패널까지, 대안을 보고 고르는 건축 작업대.</div>
+    <form class="addr" id="homeAddr"><input type="text" id="homeAddrIn" placeholder="주소를 넣으면 이 땅에 뭘 지을 수 있는지 알려드려요" aria-label="주소"><button type="submit">읽어 보기</button></form>
+    <div class="keys" aria-label="키워드"><a href="#concept">컨셉</a><a href="#drawing">조닝</a><a href="#drawing">단면</a><a href="#model">매스</a><a href="#model">용적률</a><a href="#panel">패널</a><a href="#panel">크리틱</a><a href="#learn">사례</a><a href="#zipcode">법규</a><a href="#site">대지</a><a href="#plaza">광장</a></div>
+    <div class="links"><a href="#concept">컨셉부터 시작</a><a href="#guide">어떻게 쓰나</a></div>
+  </div>
+
+  <div class="intro">
+    <p class="lead">건축은 어렵습니다. 땅을 읽는 법, 법규의 숫자, 도면의 선, 패널 한 장. 배워야 할 것이 많고 시간은 늘 모자랍니다.</p>
+    <p>ZIPLAN은 그 시간을 돌려주는 작업대입니다. 표현과 정보와 시각자료는 AI가 압도적으로 빠릅니다. 그 부분을 AI에 맡기고, 사람은 보고, 고르고, 결정합니다.</p>
+    <p>좋은 건축가는 많은 건물을 보고 배웁니다. ZIPLAN은 하나의 답 대신 세 개의 대안을 내고, 당신이 고른 것을 기억합니다. 고를수록 당신을 닮아 갑니다.</p>
+    <div class="trio"><span>모두의 건축</span><span>모두의 설계</span><span>모두의 집</span><span>모두의 도면</span><span>모두의 패널</span></div>
+  </div>
+
+  <div class="mod">
+    <h2>한 줄에서 세 개의 집이 나온다.</h2>
+    <div class="tag">AI는 설계하지 않습니다. 대안을 냅니다. 고르는 건 당신입니다.</div>
+  </div>
+  <div class="story" id="homeStory">
+    <div class="stage"><div class="board" id="homeStage"></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">01 · 컨셉</div><h3>대지와 한 줄을 넣는다.</h3><p>주소, 용도, 키워드 세 개. 그것만으로 방향이 세 갈래로 갈라집니다.</p></div>
+      <div class="step"><div class="n">02 · 대안</div><h3>세 개의 매스가 나온다.</h3><p>같은 땅, 다른 세 가지 답. 각각 왜 그런지 한 줄 이유와 참고 건물이 붙습니다.</p></div>
+      <div class="step"><div class="n">03 · 선택</div><h3>하나를 고른다.</h3><p>고른 것이 스타일 프로필에 쌓입니다. 다음 대안은 점점 당신을 닮습니다.</p></div>
+      <div class="step"><div class="n">04 · 패널</div><h3>패널까지 이어진다.</h3><p>고른 컨셉이 도면이 되고, 모형이 되고, A1 한 장이 됩니다.</p></div>
+    </div>
+  </div>
+
+  <div class="mod alt" style="margin-top:40px">
+    <h2>여덟 개의 방, 하나의 순서.</h2>
+    <div class="tag">사례 조사 → 대지 분석 → 컨셉 → 도면 → 모형 → 패널 → 광장. 하나의 프로젝트가 방을 건너며 자랍니다.</div>
+    <div class="tiles">
+      <a class="tile" href="#zipcode"><h3>내집코드</h3><p>주소 하나로 지을 수 있는 것. 무료.</p><span class="go">읽어 보기</span><div class="art" id="tileZip"></div></a>
+      <a class="tile" href="#site"><h3>대지 분석</h3><p>해·바람·길·조망. 땅이 먼저 말합니다.</p><span class="go">자세히 보기</span><div class="art" id="tileSite"></div></a>
+      <a class="tile" href="#concept"><h3>컨셉 잡기</h3><p>한 줄에서 세 개의 방향.</p><span class="go">자세히 보기</span><div class="art" id="tileConcept"></div></a>
+      <a class="tile" href="#drawing"><h3>도면 짜기</h3><p>실 구성표가 조닝과 단면이 됩니다.</p><span class="go">자세히 보기</span><div class="art" id="tileDrawing"></div></a>
+      <a class="tile" href="#model"><h3>모형 보기</h3><p>평면이 일어서서 3D 매스가 됩니다.</p><span class="go">자세히 보기</span><div class="art" id="tileModel"></div></a>
+      <a class="tile" href="#panel"><h3>패널 만들기</h3><p>컨셉 하나 고르면 A1 한 장.</p><span class="go">자세히 보기</span><div class="art" id="tilePanel"></div></a>
+      <a class="tile" href="#learn"><h3>사례 배우기</h3><p>좋은 건축가는 많이 봅니다.</p><span class="go">자세히 보기</span><div class="art" id="tileLearn"></div></a>
+      <a class="tile" href="#portfolio"><h3>포트폴리오</h3><p>보여주는 법과 공고가 요구하는 것.</p><span class="go">자세히 보기</span><div class="art" id="tilePortfolio"></div></a>
+      <a class="tile" href="#library"><h3>자료실</h3><p>핀터레스트 대신. 써도 되는 자료만.</p><span class="go">자세히 보기</span><div class="art" id="tileLibrary"></div></a>
+      <a class="tile" href="#plaza"><h3>광장</h3><p>올리고, 묻고, 서로의 사례가 됩니다.</p><span class="go">들어가 보기</span><div class="art" id="tilePlaza"></div></a>
+    </div>
+  </div>
+
+  <div class="mod">
+    <h2>고를수록 당신을 닮는다.</h2>
+    <div class="tag">좋아요 한 사례와 고른 대안이 스타일 프로필이 됩니다. 결정은 늘 당신 것입니다.</div>
+    <div class="links"><a href="#learn">사례 보러 가기</a><a href="#studio">내 작업실</a></div>
+  </div>
+
+  <div class="mod alt" id="pricing">
+    <h2>무료로 시작, 필요할 때 올리기.</h2>
+    <div class="tag">금액은 가정입니다. 첫 테스트 뒤에 정합니다.</div>
+    <div class="plans">
+      <div class="plan"><div class="n">무료</div><div class="pr">0원</div><ul><li>내집코드 무제한</li><li>프로젝트 1개</li><li>AI 대안 월 10회</li><li>PNG 작은 크기</li></ul></div>
+      <div class="plan hi"><div class="n">스튜디오 · 학생</div><div class="pr">월 9,900원</div><ul><li>프로젝트 무제한</li><li>AI 대안 월 300회</li><li>SVG · DXF · PDF</li><li>크리틱 · 스타일 프로필</li></ul></div>
+      <div class="plan"><div class="n">프로</div><div class="pr">월 29,000원</div><ul><li>스튜디오 전부</li><li>매스 3D · 렌더 톤</li><li>팀 공유 3인</li><li>법규 한도 자동 조회</li></ul></div>
+      <div class="plan"><div class="n">학교</div><div class="pr">연 계약</div><ul><li>한 반 전체 스튜디오</li><li>교수 비교 뷰</li><li>크리틱 기록</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 내집코드 ============ -->
+<section class="view" id="view-zipcode" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">내집코드</h1><div class="tag">모든 땅에는 코드가 있다.</div><div class="sub">주소 하나로 이 땅에 지을 수 있는 크기·층수·용도를 쉬운 말로. 로그인 없이, 무료.</div></div>
+  <div class="wb" data-wb="zipcode" style="padding-top:8px"><div class="in">
+    <div class="banner" id="aiBanner" hidden><b>AI 준비 중</b> claude.ai 안에서 열면 AI 버튼이 켜집니다. 계산과 배치는 지금도 됩니다.</div>
+    <div class="zc">
+      <div class="card">
+        <h3>땅</h3>
+        <label for="zcAddr">주소</label><input type="text" id="zcAddr">
+        <div class="row"><div><label for="zcArea">대지면적 ㎡</label><input type="number" id="zcArea"></div><div><label for="zcZone">용도지역</label><select id="zcZone"></select></div></div>
+        <div class="row"><div><label for="zcBcr">건폐율 한도 %</label><input type="number" id="zcBcr"></div><div><label for="zcFar">용적률 한도 %</label><input type="number" id="zcFar"></div></div>
+        <div class="row"><div><label for="zcW">대지 폭 m</label><input type="number" id="zcW"></div><div><label for="zcD">대지 깊이 m</label><input type="number" id="zcD"></div></div>
+        <label for="zcWant">하고 싶은 것 (한 줄)</label><input type="text" id="zcWant">
+        <div class="actions"><button class="btn" id="zcExplain">쉬운 말로 설명</button><button class="btn sec" id="zcBrief">건축가 브리프</button><button class="btn sec" id="zcToConcept">컨셉 잡기로</button></div>
+        <div class="status" id="zcStatus"></div>
+        <div class="hint">한도는 국토계획법의 법정 상한 예시입니다. 실제 값은 지자체 조례와 지구단위계획에 따라 다르니 토지이음에서 확인하세요. 정식 서비스에서는 주소만 넣으면 자동으로 채워집니다.</div>
+      </div>
+      <div class="zcres">
+        <div class="big"><h3 id="zcHead">—</h3><p id="zcLead">—</p></div>
+        <div class="facts" id="zcFacts"></div>
+        <div class="board" id="zcMass"></div>
+        <div class="checks"><b style="font-size:13px;color:var(--fg-2);letter-spacing:.06em">다음 단계</b><ol id="zcSteps"></ol></div>
+        <div class="out" id="zcOut" style="min-height:90px;font-size:14px;color:var(--fg-2)">"쉬운 말로 설명"을 누르면 이 땅의 코드를 사람 말로 풀어 줍니다. "건축가 브리프"는 바라는 것을 한 장으로 정리합니다.</div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ============ 대지 분석 ============ -->
+<section class="view" id="view-site" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">대지 분석</h1><div class="tag">땅이 먼저 말한다.</div><div class="sub">해·바람·길·소음·조망·주변 높이. 설계 전에 땅을 읽고, 읽은 것을 컨셉으로 넘깁니다.</div></div>
+  <div class="wb" data-wb="site" style="padding-top:8px"><div class="in">
+    <div class="two">
+      <div class="card">
+        <h3>조건</h3>
+        <label>도로가 닿는 쪽</label><div class="modes" id="sRoad"><button data-v="N">북</button><button data-v="E">동</button><button data-v="S" aria-pressed="true">남</button><button data-v="W">서</button></div>
+        <label>소음이 오는 쪽</label><div class="modes" id="sNoise"><button data-v="N">북</button><button data-v="E">동</button><button data-v="S" aria-pressed="true">남</button><button data-v="W">서</button></div>
+        <label>열고 싶은 조망</label><div class="modes" id="sView"><button data-v="N" aria-pressed="true">북</button><button data-v="E">동</button><button data-v="S">남</button><button data-v="W">서</button></div>
+        <label>주변 건물 높이 (층) · 북 / 동 / 남 / 서</label>
+        <div class="row"><input type="number" id="sHN" value="2" aria-label="북쪽 높이"><input type="number" id="sHE" value="3" aria-label="동쪽 높이"><input type="number" id="sHS" value="0" aria-label="남쪽 높이"><input type="number" id="sHW" value="2" aria-label="서쪽 높이"></div>
+        <div class="row"><div><label for="sSlope">경사</label><select id="sSlope"><option value="flat">평지</option><option value="s">남쪽이 낮음</option><option value="n">북쪽이 낮음</option></select></div><div><label for="sWind">겨울 바람</label><select id="sWind"><option value="NW">북서</option><option value="N">북</option><option value="W">서</option></select></div></div>
+        <div class="actions"><button class="btn" id="sAi">AI 대지 읽기</button><button class="btn sec" id="sSvg">SVG</button><button class="btn sec" id="sToPanel">패널에 넣기</button><button class="btn sec" id="sToConcept">컨셉 잡기로</button></div>
+        <div class="status" id="sStatus"></div>
+      </div>
+      <div>
+        <div class="board" id="siteBox"></div>
+        <div class="checks" style="margin-top:14px"><b style="font-size:13px;color:var(--fg-2);letter-spacing:.06em">땅이 말하는 것 (규칙 기반)</b><ol id="siteRead"></ol></div>
+        <div class="out" id="sOut" style="margin-top:14px;min-height:80px;font-size:14px;color:var(--fg-2)">AI 대지 읽기를 누르면 이 조건에서 마당·주 진입·열 방향·채광을 어디에 둘지 짧게 제안합니다.</div>
+      </div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#learn">사례 배우기</a><a href="#concept">컨셉 잡기</a></div>
+</section>
+
+<!-- ============ 광장 ============ -->
+<section class="view" id="view-plaza" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">광장</h1><div class="tag">만든 것을 올리고, 서로의 사례가 된다.</div><div class="sub">패널·도면·모형·사진을 자유롭게 올리는 공용 공간. 올린 작품은 사례 배우기에 실제 사례로 들어갑니다.</div></div>
+  <div class="wb" data-wb="plaza" style="padding-top:8px"><div class="in">
+    <div class="two">
+      <div class="card">
+        <h3>올리기</h3>
+        <label for="plTitle">제목</label><input type="text" id="plTitle" placeholder="예: 마당집 · 2층 주택 계획">
+        <div class="row"><div><label for="plKind">종류</label><select id="plKind"><option>주택</option><option>근생·상가</option><option>학생 작품</option><option>리모델링</option><option>공공·문화</option><option>질문·토론</option></select></div><div><label for="plTags">태그 (쉼표)</label><input type="text" id="plTags" placeholder="마당, 목구조, 경사지"></div></div>
+        <div class="row"><div><label for="plSchool">학교 (선택)</label><input type="text" id="plSchool" placeholder="예: ○○대" maxlength="20"></div><div><label for="plYear">학년</label><select id="plYear"><option value="">선택 안 함</option><option>1학년</option><option>2학년</option><option>3학년</option><option>4학년</option><option>5학년</option><option>대학원</option><option>실무</option></select></div></div>
+        <div class="row"><div><label for="plCourse">과목·스튜디오 (선택)</label><input type="text" id="plCourse" placeholder="예: 건축설계3" maxlength="24"></div><div><label for="plStudio">스튜디오 코드 (선택)</label><input type="text" id="plStudio" placeholder="같은 반끼리 정한 코드" maxlength="16"></div></div>
+        <label for="plText">설명</label><textarea id="plText" placeholder="어떤 땅에, 왜 이렇게. 고민한 점과 묻고 싶은 것."></textarea>
+        <div class="drop" id="plDrop">이미지 한 장 (패널·도면·사진)</div><input type="file" id="plFile" accept="image/*" hidden>
+        <div id="plPreview" style="margin-top:8px"></div>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:12px"><input type="checkbox" id="plAnon" checked style="width:auto"> 익명으로 올리기 (이름 대신 "익명 · 학교 학년"으로 표시)</label>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:6px"><input type="checkbox" id="plCase" checked style="width:auto"> 사례 배우기에 실제 사례로 쓰기 (CC BY, 참고용)</label>
+        <div class="hint" style="margin-top:8px">이미지 속 이름·학번·학교 로고는 지우고 올려 주세요. 익명이어도 글은 나만 지울 수 있습니다.</div>
+        <div class="actions"><button class="btn" id="plPost">올리기</button><button class="btn sec" id="plFromPanel">내 패널 올리기</button></div>
+        <div class="status" id="plStatus"></div>
+        <div class="hint">로그인된 claude.ai 안에서만 올릴 수 있고, 내 글은 나만 고치거나 지울 수 있습니다. 이미지는 1,000px 이하로 줄여 저장됩니다.</div>
+      </div>
+      <div>
+        <div class="filters" style="margin-top:0"><select id="plFilter"><option value="">전체</option><option>주택</option><option>근생·상가</option><option>학생 작품</option><option>리모델링</option><option>공공·문화</option><option>질문·토론</option></select><select id="plYearF"><option value="">학년 전체</option><option>1학년</option><option>2학년</option><option>3학년</option><option>4학년</option><option>5학년</option><option>대학원</option><option>실무</option></select><input type="text" id="plStudioF" placeholder="스튜디오 코드" style="width:140px" maxlength="16"><button class="btn sec" id="plRefresh">새로 고침</button></div>
+        <div class="gate" id="plGate" hidden><b>같은 학년 패널은 한 장 올리면 열립니다.</b> 올린 사람만 보는 공간이라 올리는 사람이 생깁니다. 익명이고, 이미지 하나면 됩니다.</div>
+        <div class="posts" id="posts"><div class="hint">불러오는 중…</div></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#learn">사례 배우기</a><a href="#panel">패널 만들기</a></div>
+</section>
+
+<!-- ============ 컨셉 잡기 ============ -->
+<section class="view" id="view-concept" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">컨셉 잡기</h1><div class="tag">한 줄에서 세 개의 방향.</div><div class="links"><a href="#concept" data-wb="concept">바로 해 보기</a></div></div>
+  <div class="story">
+    <div class="stage"><div class="board" id="conceptStage"></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>대지가 읽힌다.</h3><p>내집코드의 대지 카드가 그대로 넘어옵니다. 향, 접근, 주변 높이, 한도.</p></div>
+      <div class="step"><div class="n">02</div><h3>키워드 세 개.</h3><p>공원, 틈, 테라스. 당신이 떠올린 단어가 방향의 씨앗입니다.</p></div>
+      <div class="step"><div class="n">03</div><h3>세 갈래가 나온다.</h3><p>각각 한 줄 문장, 매스 스케치, 핵심 수 세 개, 참고 건물 둘. 왜 이 땅에 맞는지까지.</p></div>
+      <div class="step"><div class="n">04</div><h3>고르면 컨셉 보드.</h3><p>고른 안이 도면·모형·패널의 출발점이 되고, 스타일 프로필에 기록됩니다.</p></div>
+    </div>
+  </div>
+  <div class="wb" data-wb="concept"><div class="in">
+    <h2>컨셉 작업대</h2><div class="tag">재료를 넣고, 세 안을 받고, 하나를 고르세요.</div>
+    <div class="two">
+      <div class="card">
+        <h3>재료</h3>
+        <label for="cTitle">프로젝트명</label><input type="text" id="cTitle">
+        <label for="cSite">대지 (내집코드에서 가져옴)</label><input type="text" id="cSite">
+        <div class="row"><div><label for="cUse">용도</label><input type="text" id="cUse"></div><div><label for="cScale">규모</label><input type="text" id="cScale"></div></div>
+        <label for="cKeys">키워드 3개 (쉼표)</label><input type="text" id="cKeys">
+        <label for="cNotes">메모 · 대지에서 본 것</label><textarea id="cNotes"></textarea>
+        <div class="actions"><button class="btn" id="cAi">대안 3안 받기</button><button class="btn sec" id="cMore">다른 방향으로</button></div>
+        <div class="status" id="cStatus"></div>
+        <div class="hint">고른 안은 패널의 제목·컨셉 문장이 되고, 매스는 모형 보기의 출발점이 됩니다. 스타일 프로필: <span id="cStyle">아직 없음</span></div>
+      </div>
+      <div>
+        <div class="cards3" id="cCards"></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#drawing">도면 짜기</a><a href="#model">모형 보기</a><a href="#panel">패널 만들기</a></div>
+</section>
+
+<!-- ============ 도면 짜기 ============ -->
+<section class="view" id="view-drawing" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">도면 짜기</h1><div class="tag">실 구성표가 조닝이 되고, 층고가 단면이 됩니다.</div><div class="links"><a href="#drawing" data-wb="drawing">바로 해 보기</a></div></div>
+  <div class="story">
+    <div class="stage"><div class="board" id="zoneStage" data-stage="1"></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>실을 적는다.</h3><p>실명, 면적, 구분, 인접. 한 줄에 하나. 엑셀에서 붙여 넣어도 됩니다.</p></div>
+      <div class="step"><div class="n">02</div><h3>블록이 깔린다.</h3><p>대지 안에 면적만큼의 블록. 공용은 공원 쪽, 전용은 도로 쪽.</p></div>
+      <div class="step"><div class="n">03</div><h3>인접이 이어진다.</h3><p>붙어야 하는 실끼리 선으로. AI 조닝은 이 관계를 읽어 위치를 다시 정합니다.</p></div>
+      <div class="step"><div class="n">04</div><h3>단면이 따라온다.</h3><p>층고만 넣으면 단면 다이어그램. SVG로 CAD에서 이어 그립니다.</p></div>
+    </div>
+  </div>
+  <div class="wb" data-wb="drawing"><div class="in">
+    <h2>도면 작업대</h2><div class="tag">조닝 · 동선 · 단면 다이어그램을 만들고 패널로 보냅니다.</div>
+    <div class="two">
+      <div>
+        <div class="card">
+          <h3>실 구성표</h3>
+          <label for="zFloor">층 이름</label><input type="text" id="zFloor">
+          <label for="zRooms">한 줄에 하나: 실명, 면적㎡, 구분(public/private/service/outdoor/core), 인접 실</label>
+          <textarea id="zRooms" style="min-height:200px;font-family:var(--mono);font-size:12.5px"></textarea>
+          <div class="actions"><button class="btn sec" id="zLocal">바로 배치</button><button class="btn" id="zAi">AI로 조닝</button><button class="btn sec" id="zSvg">SVG</button><button class="btn sec" id="zToPanel">패널에 넣기</button></div>
+          <div class="status" id="zStatus"></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <h3>단면 · 층고</h3>
+          <label for="secHeights">층별 층고 m (아래층부터, 쉼표)</label><input type="text" id="secHeights">
+          <div class="actions"><button class="btn sec" id="secDraw">단면 그리기</button><button class="btn sec" id="secSvg">SVG</button><button class="btn sec" id="secToPanel">패널에 넣기</button></div>
+          <div class="hint">층별 면적은 모형 보기의 층 목록을 씁니다. 단면은 대지 깊이 방향으로 자른 개념도입니다.</div>
+        </div>
+      </div>
+      <div>
+        <div class="board" id="zBox"></div>
+        <div class="legend"><span><i style="background:#ff9f0a"></i>공용·근생</span><span><i style="background:#5e5ce6"></i>전용·숙박</span><span><i style="background:#8e8e93"></i>서비스·코어</span><span><i style="background:#30d158"></i>외부</span></div>
+        <div class="board" id="secBox" style="margin-top:14px"></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#concept">컨셉 잡기</a><a href="#model">모형 보기</a><a href="#panel">패널 만들기</a></div>
+</section>
+
+<!-- ============ 모형 보기 ============ -->
+<section class="view" id="view-model" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">모형 보기</h1><div class="tag">평면이 일어서서 매스가 됩니다.</div><div class="links"><a href="#model" data-wb="model">바로 해 보기</a></div></div>
+  <div class="story">
+    <div class="stage"><div class="board" id="modelStage"></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>층별 면적을 쌓는다.</h3><p>층마다 바닥면적과 용도. 건물이 옆에서 본 모양으로 쌓입니다.</p></div>
+      <div class="step"><div class="n">02</div><h3>연면적과 한도.</h3><p>건폐율·용적률을 한도에 대고 남은 면적을 알려줍니다. 초과면 빨간색.</p></div>
+      <div class="step"><div class="n">03</div><h3>매스가 일어선다.</h3><p>면적이 덩어리가 되어 네 방향에서 돌려 봅니다. 테라스가 어디서 물러나는지 보입니다.</p></div>
+      <div class="step"><div class="n">04</div><h3>대안을 나란히.</h3><p>같은 연면적, 다른 세 덩어리. 고르면 도면과 패널이 따라갑니다.</p></div>
+    </div>
+  </div>
+  <div class="wb" data-wb="model"><div class="in">
+    <h2>모형 작업대</h2><div class="tag">층별 면적 → 연면적·용적률 → 3D 매스. 세부 규정은 적용하지 않는 개략 검토입니다.</div>
+    <div class="two">
+      <div class="card">
+        <h3>조건</h3>
+        <div class="row"><div><label for="aSite">대지면적 ㎡</label><input type="number" id="aSite"></div><div><label for="aBcr">건폐율 한도 %</label><input type="number" id="aBcr"></div><div><label for="aFar">용적률 한도 %</label><input type="number" id="aFar"></div></div>
+        <h3 style="margin-top:20px">층별 면적</h3>
+        <table class="floors"><thead><tr><th>층</th><th>바닥면적 ㎡</th><th>용도</th><th></th></tr></thead><tbody id="floorRows"></tbody></table>
+        <div class="actions"><button class="btn sec" id="addFloor">층 추가</button><button class="btn sec" id="aToPanel">면적표를 패널에</button><button class="btn" id="aAi">AI 검토</button></div>
+        <div class="status" id="aStatus"></div>
+      </div>
+      <div>
+        <div class="kpis" id="kpis"></div>
+        <div class="bar" id="useBar"></div>
+        <div class="legend" id="useLegend"></div>
+        <div class="board" id="massBox" style="margin-top:14px"></div>
+        <div class="actions" style="margin-top:10px"><button class="btn sec" data-rot="0">남서</button><button class="btn sec" data-rot="1">남동</button><button class="btn sec" data-rot="2">북동</button><button class="btn sec" data-rot="3">북서</button><button class="btn sec" id="massSvg">SVG</button><button class="btn sec" id="massToPanel">패널에 넣기</button></div>
+        <div class="out" id="aOut" style="margin-top:14px;min-height:80px;font-size:14px;color:var(--fg-2)">AI 검토를 누르면 한도 대비 여유와 조정 제안을 짧게 받습니다.</div>
+      </div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#drawing">도면 짜기</a><a href="#panel">패널 만들기</a><a href="#learn">사례 배우기</a></div>
+</section>
+
+<!-- ============ 패널 만들기 ============ -->
+<section class="view" id="view-panel" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">패널 만들기</h1><div class="tag">컨셉 하나 고르면, A1 한 장이 잡힙니다.</div><div class="links"><a href="#panel" data-wb="panel">바로 만들기</a></div></div>
+  <div class="story">
+    <div class="stage"><div class="sheet" id="panelStageSheet"></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">01 · 히어로형</div><h3>투시도 한 장이 말한다.</h3><p>상단 60%를 대표 이미지에 내주고, 도면은 아래 띠로 받칩니다.</p></div>
+      <div class="step"><div class="n">02 · 단면 띠형</div><h3>단면이 바닥을 깐다.</h3><p>긴 단면이 하단을 가로지르고, 같은 축척의 평면이 위에 정렬됩니다.</p></div>
+      <div class="step"><div class="n">03 · 프로세스형</div><h3>다이어그램이 순서를 만든다.</h3><p>형태 생성 논리를 네 컷으로 먼저, 그다음 도면.</p></div>
+      <div class="step"><div class="n">04 · 그리드형</div><h3>정보가 많을 땐 그리드.</h3><p>6×5 균등 그리드와 하단 타이틀 바.</p></div>
+    </div>
+  </div>
+  <div class="wb" data-wb="panel"><div class="in">
+    <h2>패널 작업대</h2><div class="tag">A1 세로 594 × 841 mm. 프로젝트의 도면·다이어그램·매스가 자동으로 모입니다.</div>
+    <div class="two">
+      <div>
+        <div class="card">
+          <h3>글</h3>
+          <label for="pNotes">핵심 메모 (AI가 문장으로 다듬습니다)</label><textarea id="pNotes"></textarea>
+          <label>형식</label>
+          <div class="modes" id="modes">
+            <button aria-pressed="true" data-mode="statement">패널 컨셉 문장</button>
+            <button aria-pressed="false" data-mode="desc">층별 설명</button>
+            <button aria-pressed="false" data-mode="script">3분 발표</button>
+            <button aria-pressed="false" data-mode="crit">예상 질문 5</button>
+          </div>
+          <div class="actions"><button class="btn" id="tAi">다듬기</button><button class="btn sec" id="tStop" disabled>멈춤</button><button class="btn sec" id="tToPanel">패널에 넣기</button></div>
+          <div class="out" id="tOut" style="min-height:120px;margin-top:12px;font-size:14px">결과가 여기에 나타납니다.</div>
+          <div class="status" id="tStatus"></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <h3>이미지</h3>
+          <div class="drop" id="drop">투시도·사진을 끌어다 놓거나 눌러서 선택</div>
+          <input type="file" id="fileIn" accept="image/*" multiple hidden>
+          <div class="thumbs" id="thumbs"></div>
+          <div class="hint">조닝·단면·매스는 각 방에서 "패널에 넣기"를 누르면 여기로 옵니다.</div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <h3>컨셉 · 내보내기 · 크리틱</h3>
+          <div class="concepts" id="concepts"></div>
+          <div class="actions"><button class="btn" id="aiFill">AI로 채우기</button><button class="btn dark" id="critBtn">AI 크리틱</button><button class="btn sec" id="exSvg">SVG</button><button class="btn sec" id="exPng">PNG</button></div>
+          <div class="status" id="pStatus"></div>
+          <div class="out" id="critOut" hidden style="min-height:60px;margin-top:12px;font-size:14px"></div>
+        </div>
+      </div>
+      <div class="sheet-wrap"><div class="sheet" id="sheet" aria-label="A1 패널 미리보기"></div></div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#concept">컨셉 잡기</a><a href="#drawing">도면 짜기</a><a href="#model">모형 보기</a></div>
+</section>
+
+<!-- ============ 사례 배우기 ============ -->
+<section class="view" id="view-learn" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">사례 배우기</h1><div class="tag">좋은 건축가는 많이 본다.</div><div class="sub">유형·규모·재료로 찾고, 좋아요를 누르면 스타일 프로필이 됩니다.</div></div>
+  <div class="wb" data-wb="learn" style="padding-top:8px"><div class="in">
+    <div class="filters"><select id="lfType"><option value="">유형 전체</option></select><select id="lfMat"><option value="">재료 전체</option></select><select id="lfScale"><option value="">규모 전체</option></select><button class="btn sec" id="lfLike">좋아요만</button></div>
+    <div class="cases" id="cases"></div>
+    <div class="scard" style="margin-top:24px"><h3>케이스 스터디 — 내 프로젝트와 비교</h3><div class="hint" style="margin:0 0 10px">카드의 "비교에 넣기"로 사례를 최대 3개 고르고 누르면, 내 땅·용도와 견주어 가져올 수법을 정리합니다.</div><div class="chips" id="csPicked"><span style="color:var(--fg-2)">아직 고른 사례 없음</span></div><div class="actions"><button class="btn" id="csAi">비교하기</button><button class="btn sec" id="csToConcept">컨셉 메모에 넣기</button></div><div class="out" id="csOut" style="min-height:70px;margin-top:10px;font-size:14px;color:var(--fg-2)">결과가 여기에 나타납니다.</div><div class="status" id="csStatus"></div></div>
+    <div class="scard" style="margin-top:14px"><h3>내 스타일 보드</h3><div class="chips" id="styleChips"></div><div class="hint">좋아요한 사례의 태그가 모입니다. 컨셉 잡기의 대안이 이 태그를 참고합니다.</div></div>
+    <div class="scard" style="margin-top:14px"><h3>용어 사전</h3><div id="terms" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;font-size:13px;line-height:1.5"></div></div>
+  </div></div>
+  <div class="morelinks"><a href="#concept">컨셉 잡기</a><a href="#studio">내 작업실</a></div>
+</section>
+
+<!-- ============ 포트폴리오 ============ -->
+<section class="view" id="view-portfolio" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">포트폴리오</h1><div class="sub">공개된 포트폴리오와 채용 공고를 읽어 패턴으로 정리합니다. 내 포트폴리오를 올리면 지원처 기준으로 크릿을 받습니다.</div></div>
+  <div class="wb" data-wb="portfolio" style="padding-top:8px"><div class="in">
+    <div class="filters" style="align-items:center"><span style="font-size:13px;color:var(--fg-2)">지원처</span><div class="pfto" id="pfTo"><button data-to="" aria-pressed="true">전체</button><button data-to="atelier">아뜰리에</button><button data-to="big">대형 사무소</button><button data-to="public">공기업·건설사</button><button data-to="abroad">해외·유학</button></div><span class="sp" style="flex:1"></span><span style="font-size:12px;color:var(--fg-2)" id="pfUpdated"></span></div>
+
+    <h2 style="margin-top:28px">포트폴리오 읽기</h2>
+    <div class="tag">공개 사례와 심사자의 말을 "따라 할 것 3 · 피할 것 1"로 압축했습니다. 이미지는 싣지 않고 링크로 갑니다.</div>
+    <div class="cases" id="pfReads"></div>
+
+    <h2 style="margin-top:48px">취업 사례 — 공고가 요구하는 것</h2>
+    <div class="tag">쪽수·용량·형식·전형·시기. 공고는 해마다 바뀌니 "기준" 날짜를 보고 그해 공고를 확인하세요.</div>
+    <div class="pfjobs" id="pfJobs"></div>
+
+    <h2 style="margin-top:48px">꿀팁 카드</h2>
+    <div class="tag">눌러서 모으면 아래 크릿이 그 기준으로 봐 줍니다.</div>
+    <div class="pftips" id="pfTips"></div>
+
+    <div class="grid2" style="margin-top:48px">
+      <div class="scard"><h3>내 포트폴리오 크릿</h3>
+        <div class="hint" style="margin:0 0 10px">PDF 또는 쪽 이미지(JPG·PNG)를 올리면 앞쪽부터 최대 <span id="pfMax">8</span>쪽을 봅니다. 지원처를 위에서 고르면 그 양식(쪽수·용량·블라인드)으로 점검합니다.</div>
+        <div class="drop" id="pfDrop">여기에 PDF나 이미지를 끌어다 놓거나 눌러서 고르기</div>
+        <input type="file" id="pfFile" accept="application/pdf,image/*" multiple hidden>
+        <div class="pfpages" id="pfPages"></div>
+        <div class="actions" style="margin-top:10px"><button class="btn" id="pfCrit">크릿 받기</button><button class="btn sec" id="pfClear">비우기</button></div>
+        <div class="status" id="pfStatus"></div>
+      </div>
+      <div class="scard"><h3>결과</h3><div class="out" id="pfOut" style="min-height:260px;font-size:14px;color:var(--fg-2)">강점 3 · 고칠 점 3 · 구성안 3안이 여기에 나옵니다.</div>
+        <div class="actions" style="margin-top:10px"><button class="btn sec" id="pfToPlaza">첫 쪽을 익명으로 광장에 올리기</button></div><div class="hint" style="margin-top:10px">올린 파일은 크릿에만 쓰이고 저장되지 않습니다. 고친 레이아웃은 <a href="#panel">패널 만들기</a>에서 A1·A4로 뽑을 수 있습니다.</div></div>
+    </div>
+  </div></div>
+  <div class="morelinks"><a href="#plaza">광장에 올리고 의견 듣기</a><a href="#panel">패널 만들기</a><a href="#learn">사례 배우기</a></div>
+</section>
+
+<!-- ============ 자료실 ============ -->
+<section class="view" id="view-library" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">자료실</h1><div class="sub">핀터레스트 대신. 패널·포트폴리오·공모전에 그대로 써도 되는 사진·텍스처·3D·지도·도면 자료원을 라이선스와 함께 모았습니다.</div></div>
+  <div class="wb" data-wb="library" style="padding-top:8px"><div class="in">
+    <div class="filters" style="align-items:center;gap:10px"><div class="pfto" id="lbCat"><button data-cat="" aria-pressed="true">전체</button></div><span class="sp" style="flex:1"></span><label style="font-size:13px;color:var(--fg-2);display:flex;gap:6px;align-items:center">쓸 곳 <select id="lbUse" style="width:auto"><option value="">전부</option><option value="panel">학교 패널</option><option value="portfolio">포트폴리오</option><option value="commercial">공모전·실무·상업</option></select></label><span style="font-size:12px;color:var(--fg-2)" id="lbChecked"></span></div>
+    <div class="lbhow" id="lbHow"></div>
+    <div class="cases" id="lbItems"></div>
+    <div class="scard" style="margin-top:28px"><h3>출처 표기 틀 — 복사해서 캡션에</h3><div id="lbAttr" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;font-size:13px;line-height:1.5"></div><div class="hint" style="margin-top:10px">이 페이지는 법률 자문이 아닙니다. 자료 페이지의 라이선스 줄이 항상 우선합니다.</div></div>
+  </div></div>
+  <div class="morelinks"><a href="#panel">패널 만들기</a><a href="#site">대지 분석</a><a href="#learn">사례 배우기</a></div>
+</section>
+
+<!-- ============ 내 작업실 ============ -->
+<section class="view" id="view-studio" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">내 작업실</h1><div class="tag">하나의 프로젝트, 여섯 개의 방.</div><div class="sub">지금 프로젝트의 상태입니다. 로그인하면 계정에 저장됩니다.</div></div>
+  <div class="wb" style="padding-top:8px"><div class="in">
+    <div class="grid2" id="studioGrid"></div>
+    <div class="actions" style="justify-content:center;margin-top:24px"><button class="btn" id="stSave">저장</button><button class="btn sec" id="stLoad">불러오기</button><button class="btn sec" id="stReset">예시로 되돌리기</button></div>
+    <div class="status" id="stStatus" style="text-align:center"></div>
+  </div></div>
+</section>
+
+<!-- ============ GUIDE ============ -->
+<section class="view" id="view-guide" hidden>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">사용법</h1><div class="tag">재료를 넣고, 세 안을 받고, 하나를 고른다.</div></div>
+  <div class="guide">
+    <h2>흐름</h2>
+    <ol>
+      <li><b>내집코드</b>에 주소와 대지 조건을 넣습니다. 지을 수 있는 크기와 층수가 나옵니다.</li>
+      <li><b>컨셉 잡기</b>에서 키워드 세 개를 넣고 대안 3안을 받아 하나를 고릅니다.</li>
+      <li><b>도면 짜기</b>에서 실 구성표로 조닝을, 층고로 단면을 만듭니다.</li>
+      <li><b>모형 보기</b>에서 층별 면적을 넣으면 연면적·용적률과 3D 매스가 나옵니다.</li>
+      <li><b>패널 만들기</b>에서 컨셉을 고르고 AI로 채운 뒤 PNG·SVG로 내보냅니다. AI 크리틱으로 예상 질문을 받습니다.</li>
+      <li><b>사례 배우기</b>에서 좋아요를 누르면 스타일 프로필이 쌓이고, 다음 대안이 그것을 따릅니다.</li>
+    </ol>
+    <h2>로그인과 저장</h2>
+    <p>claude.ai 안에서 열면 그 계정으로 자동 로그인됩니다. 내 작업실에서 저장·불러오기. 올린 사진은 용량 때문에 이 브라우저에만 남습니다. 정식 서비스에서는 이메일 로그인과 결제가 들어갑니다.</p>
+    <h2>AI가 하는 것, 하지 않는 것</h2>
+    <p>AI는 대안을 내고, 문장을 다듬고, 블록을 놓고, 면적을 검토합니다. 설계를 대신하지 않고 법규를 단정하지 않습니다. 결과는 언제나 사람이 고칩니다.</p>
+  </div>
+</section>
+
+<footer><div class="in"><span><span class="mark" data-mark="14"></span> ZIPLAN — 모두의 건축 (프로토타입)</span><span>예시 프로젝트: HOUSE PARK H3 · 내보내기: PNG · SVG</span></div></footer>
+
+<script src="data/portfolio.js"></script>
+<script src="data/library.js"></script><!-- 자료실 데이터 --><!-- 포트폴리오 방 데이터 (주기적으로 갱신) -->
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>Math.round(n).toLocaleString('ko-KR');
+
+/* ---------- Brand mark: Z · I · P laid out as the Hangul block 집 (P as the 받침, reads like ㅍ: 짚 = 집) ---------- */
+function markSVG(size,color,anim,pColor){ color=color||'currentColor'; pColor=pColor||'var(--accent)'; const c=i=>anim?` class="p p${i}"`:''; return `<svg viewBox="-2 -2 104 104" width="${size}" height="${size}" aria-hidden="true"><g fill="${pColor}"><rect${c(1)} x="4" y="78" width="92" height="10"/><rect${c(2)} x="4" y="54" width="12" height="44"/><rect${c(2)} x="84" y="54" width="12" height="34"/><rect${c(3)} x="4" y="54" width="92" height="10"/></g><g fill="${color}"><rect${c(4)} x="4" y="36" width="46" height="12"/><polygon${c(5)} points="38,6 50,6 16,48 4,48"/><rect${c(6)} x="4" y="6" width="46" height="12"/><rect${c(7)} x="76" y="6" width="12" height="42"/></g></svg>`; }
+$$('[data-mark]').forEach(el=>el.innerHTML=markSVG(+el.dataset.mark));
+$('#heroMark').innerHTML=`<div style="width:132px;height:132px;background:var(--fg);border-radius:30px;display:flex;align-items:center;justify-content:center">${markSVG(92,'var(--bg)',true,'#2997ff')}</div>`;
+
+/* ---------- Example project (HOUSE PARK H3) ---------- */
+const EXAMPLE={
+  title:'HOUSE PARK', concept:'두 담 사이, 오르는 공원',
+  site:'대구 중구 공평동 16-11 · 1,125㎡ · 중심상업지역', use:'근린생활시설 + 숙박', scale:'지상 10층 · 연면적 5,435㎡',
+  keys:'공원, 틈, 테라스',
+  notes:'남·북이 막힌 틈을 두 개의 담으로 세우고, 가운데를 공원에 내준다. 공원이 서쪽에서 3·4·5층 테라스로 올라와 21m 하늘 공원에 닿고, 동성로 쪽 액자(6~8층 비움)로 빠져나간다. 북쪽 담 10층, 남쪽 담은 9→8→6층으로 낮아져 남측 채광. 공원 쪽은 석재·목재·초록, 동성로 쪽은 테라코타·브론즈·유리.',
+  layout:'hero', ai:{title:'',subtitle:'',statement:'',captions:{},highlights:[]},
+  zc:{addr:'대구 중구 공평동 16-11',area:1125,zone:'central',bcr:80,far:800,w:29,d:38.8,want:'1층은 카페, 위는 작은 호텔. 공원 쪽으로 열린 건물.'},
+  zFloor:'1F · 열린 공용층', zW:29, zH:38.8,
+  zRooms:`공원 카페, 76, public, 공원 라운지|관통길 · 중정
+공원 라운지, 76, public, 공원 카페|관통길 · 중정
+편의점, 82, public, 관통길 · 중정|팝업 스토어
+팝업 스토어, 82, public, 편의점|브랜드 스토어
+브랜드 스토어, 76, public, 팝업 스토어|게스트 로비
+게스트 로비, 28, private, 브랜드 스토어|게스트 코어
+짐 보관, 18, service, 게스트 로비
+공용 화장실, 28, service, 근생 코어
+근생 코어, 30, core, 공원 카페
+게스트 코어, 30, core, 게스트 로비
+관통길 · 중정, 112, outdoor, 공원 카페|편의점`,
+  secHeights:'5.0, 4.0, 4.0, 4.0, 4.0, 3.3, 3.3, 3.3, 3.3, 3.3',
+  floors:[['1F',900,'근생'],['2F',900,'근생'],['3F',560,'근생'],['4F',560,'근생'],['5F',480,'근생'],['6F',400,'숙박'],['7F',360,'숙박'],['8F',360,'숙박'],['9F',360,'숙박'],['10F',150,'숙박']],
+  conceptPick:null, concepts:[], likes:[], tMode:'statement', tOut:''
+};
+const state=JSON.parse(JSON.stringify(EXAMPLE)); state.images=[]; state.areas=null; state.zones=null; state.rot=0;
+let floors=state.floors;
+const IMG_TYPES=[['render','투시도'],['plan','평면'],['section','단면'],['diagram','다이어그램']];
+const typeName=t=>(IMG_TYPES.find(x=>x[0]===t)||[t,t])[1];
+
+/* ---------- Router ---------- */
+const VIEWS=['home','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide'];
+let pendingScroll=null;
+function route(){
+  let h=(location.hash||'#home').slice(1); if(!VIEWS.includes(h)) h='home';
+  $$('.view').forEach(v=>v.hidden=v.id!=='view-'+h);
+  $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='studio') renderStudio(); if(h==='site') drawSite(); if(h==='plaza') loadPosts(); if(h==='portfolio') renderPortfolio(); if(h==='library') renderLibrary();
+  if(pendingScroll){ const el=document.querySelector(`.wb[data-wb="${pendingScroll}"]`); pendingScroll=null; if(el){ el.scrollIntoView({block:'start'}); return; } }
+  window.scrollTo({top:0,behavior:'auto'});
+}
+window.addEventListener('hashchange',route);
+document.addEventListener('click',e=>{ const a=e.target.closest('a[data-wb]'); if(!a) return; pendingScroll=a.dataset.wb; if(location.hash==='#'+a.dataset.wb){ e.preventDefault(); route(); } });
+function go(view,toWb){ pendingScroll=toWb?view:null; if(location.hash==='#'+view) route(); else location.hash=view; }
+
+/* ---------- Panel layouts (A1 594x841 mm) ---------- */
+const M=20, W=594, H=841;
+const LAYOUTS={
+  hero:{name:'히어로형',desc:'대표 투시도 중심',slots:[{k:'title',x:M,y:M,w:554,h:70},{k:'img',t:'render',x:M,y:100,w:554,h:400},{k:'text',x:M,y:512,w:262,h:112},{k:'table',x:300,y:512,w:274,h:112},{k:'img',t:'plan',x:M,y:636,w:180,h:185},{k:'img',t:'section',x:207,y:636,w:180,h:185},{k:'img',t:'diagram',x:394,y:636,w:180,h:185}]},
+  band:{name:'단면 띠형',desc:'긴 단면 + 정렬된 평면',slots:[{k:'title',x:M,y:M,w:554,h:60},{k:'img',t:'plan',x:M,y:92,w:270,h:240},{k:'img',t:'plan',x:304,y:92,w:270,h:240},{k:'img',t:'render',x:M,y:344,w:354,h:230},{k:'text',x:388,y:344,w:186,h:128},{k:'table',x:388,y:482,w:186,h:92},{k:'img',t:'section',x:M,y:586,w:554,h:235}]},
+  process:{name:'프로세스형',desc:'다이어그램 연속 서사',slots:[{k:'title',x:M,y:M,w:554,h:60},{k:'img',t:'diagram',x:M,y:92,w:131,h:131},{k:'img',t:'diagram',x:161,y:92,w:131,h:131},{k:'img',t:'diagram',x:302,y:92,w:131,h:131},{k:'img',t:'diagram',x:443,y:92,w:131,h:131},{k:'img',t:'render',x:M,y:235,w:554,h:280},{k:'img',t:'plan',x:M,y:527,w:270,h:294},{k:'img',t:'section',x:304,y:527,w:270,h:150},{k:'text',x:304,y:689,w:270,h:72},{k:'table',x:304,y:767,w:270,h:54}]},
+  grid:{name:'그리드형',desc:'6×5 균등 그리드, 하단 타이틀 바',slots:[{k:'img',t:'render',x:M,y:M,w:369,h:250},{k:'text',x:401,y:M,w:173,h:122},{k:'table',x:401,y:150,w:173,h:120},{k:'img',t:'plan',x:M,y:282,w:270,h:230},{k:'img',t:'diagram',x:302,y:282,w:272,h:230},{k:'img',t:'section',x:M,y:524,w:554,h:240},{k:'title',bar:true,x:M,y:776,w:554,h:45}]}
+};
+function assignImages(layout){ const used={}, out=[]; for(const s of layout.slots){ if(s.k!=='img'){out.push(null);continue} const list=state.images.filter(i=>i.type===s.t); const n=used[s.t]||0; out.push(list[n]||null); used[s.t]=n+1; } return out; }
+function areaRows(){ const a=state.areas; if(!a) return [['연면적',state.scale.replace(/.*연면적\s*/,'')||'—']]; const r=[['대지면적',fmt(a.site)+' ㎡'],['연면적',fmt(a.gfa)+' ㎡'],['건축면적',fmt(a.footprint)+' ㎡'],['건폐율',a.bcr.toFixed(1)+' %'],['용적률',a.far.toFixed(1)+' %']]; for(const [u,v] of Object.entries(a.byUse)) r.push([u, fmt(v)+' ㎡ · '+(a.gfa?(v/a.gfa*100).toFixed(1):'0')+'%']); return r; }
+function renderSheet(el,layoutKey){
+  if(!el) return; const L=LAYOUTS[layoutKey||state.layout], imgs=assignImages(L); const prev=Array.from(el.children);
+  const title=state.ai.title||state.title, sub=state.ai.subtitle||(state.conceptPick?state.conceptPick.line:state.concept);
+  L.slots.forEach((s,i)=>{
+    const pos={left:s.x/W*100+'%',top:s.y/H*100+'%',width:s.w/W*100+'%',height:s.h/H*100+'%'};
+    const cls='s '+(s.k==='title'?'ttl'+(s.bar?' bar':''):s.k==='img'?'img':s.k==='text'?'txt':'tbl'); let inner='';
+    if(s.k==='title') inner=`<div class="pn">${esc(state.use)} · ${esc(state.site)}</div><div class="t">${esc(title)}</div><div class="st">${esc(sub)}</div>`;
+    else if(s.k==='img'){ const im=imgs[i], cap=im?(state.ai.captions[s.t]||''):''; inner=(im?(im.svg?im.svg:`<img src="${im.url}" alt="${esc(im.name)}">`):`<div class="ph">${typeName(s.t)}</div>`)+(cap?`<div class="cap">${esc(cap)}</div>`:''); }
+    else if(s.k==='text'){ const hl=state.ai.highlights||[]; inner=`<h4>Concept</h4><p>${esc(state.ai.statement||(state.conceptPick?state.conceptPick.why:state.notes))}</p>${hl.length?'<ul>'+hl.map(h=>`<li>${esc(h)}</li>`).join('')+'</ul>':''}`; }
+    else inner=`<table><tr><th colspan="2">Area</th></tr>${areaRows().map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>`;
+    let d=prev[i]; if(!d){ d=document.createElement('div'); el.appendChild(d); }
+    if(d.className!==cls) d.className=cls; if(d.innerHTML!==inner) d.innerHTML=inner; Object.assign(d.style,pos);
+  });
+  while(el.children.length>L.slots.length) el.lastChild.remove();
+}
+let panelStageLayout='hero';
+function redraw(){ renderSheet($('#sheet')); renderSheet($('#panelStageSheet'),panelStageLayout); }
+function wrapText(str,maxChars){const out=[];let line='';for(const w of String(str).split(/\s+/)){if((line+' '+w).trim().length>maxChars){out.push(line.trim());line=w}else line+=' '+w}if(line.trim())out.push(line.trim());return out}
+function sheetSVG(){
+  const L=LAYOUTS[state.layout], imgs=assignImages(L); const F='font-family="Helvetica Neue, Arial, Noto Sans KR, Apple SD Gothic Neo, sans-serif"'; const title=state.ai.title||state.title, sub=state.ai.subtitle||(state.conceptPick?state.conceptPick.line:state.concept);
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}mm" height="${H}mm" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#ffffff"/>`;
+  L.slots.forEach((sl,i)=>{
+    if(sl.k==='title'){ if(sl.bar) s+=`<line x1="${sl.x}" y1="${sl.y}" x2="${sl.x+sl.w}" y2="${sl.y}" stroke="#1d1d1f" stroke-width="1.5"/><text x="${sl.x}" y="${sl.y+28}" font-size="20" font-weight="700" ${F} fill="#1d1d1f">${esc(title)}</text><text x="${sl.x+sl.w}" y="${sl.y+28}" text-anchor="end" font-size="9" ${F} fill="#424245">${esc(sub)} · ${esc(state.use)} · ${esc(state.site)}</text>`;
+      else s+=`<text x="${sl.x}" y="${sl.y+10}" font-size="7" letter-spacing="1" ${F} fill="#6e6e73">${esc((state.use+' · '+state.site).toUpperCase())}</text><text x="${sl.x}" y="${sl.y+sl.h-18}" font-size="30" font-weight="700" ${F} fill="#1d1d1f">${esc(title)}</text><text x="${sl.x}" y="${sl.y+sl.h-3}" font-size="11" ${F} fill="#424245">${esc(sub)}</text>`;
+    }else if(sl.k==='img'){ const im=imgs[i]; s+=`<rect x="${sl.x}" y="${sl.y}" width="${sl.w}" height="${sl.h}" fill="#f0f0f3"/>`;
+      if(im&&im.svg) s+=im.svg.replace(/^<svg /,`<svg x="${sl.x}" y="${sl.y}" width="${sl.w}" height="${sl.h}" `);
+      else if(im) s+=`<image x="${sl.x}" y="${sl.y}" width="${sl.w}" height="${sl.h}" preserveAspectRatio="xMidYMid slice" xlink:href="${im.url}" href="${im.url}"/>`;
+      else s+=`<text x="${sl.x+sl.w/2}" y="${sl.y+sl.h/2}" text-anchor="middle" font-size="8" ${F} fill="#8e8e93">${esc(typeName(sl.t).toUpperCase())}</text>`;
+      const cap=im?state.ai.captions[sl.t]:''; if(cap) s+=`<rect x="${sl.x}" y="${sl.y+sl.h-11}" width="${sl.w}" height="11" fill="#ffffff" fill-opacity=".85"/><text x="${sl.x+4}" y="${sl.y+sl.h-3.5}" font-size="6.5" ${F} fill="#1d1d1f">${esc(cap)}</text>`;
+    }else if(sl.k==='text'){ const lines=wrapText(state.ai.statement||(state.conceptPick?state.conceptPick.why:state.notes), Math.floor(sl.w/5.2)); let y=sl.y+9; s+=`<text x="${sl.x}" y="${y}" font-size="7" letter-spacing="1" ${F} fill="#6e6e73">CONCEPT</text>`; y+=12;
+      for(const ln of lines){ if(y>sl.y+sl.h-4) break; s+=`<text x="${sl.x}" y="${y}" font-size="8.5" ${F} fill="#1d1d1f">${esc(ln)}</text>`; y+=12; }
+      for(const h of (state.ai.highlights||[])){ if(y>sl.y+sl.h-4) break; s+=`<text x="${sl.x}" y="${y}" font-size="8" ${F} fill="#1d1d1f">• ${esc(h)}</text>`; y+=11; }
+    }else{ let y=sl.y+9; s+=`<text x="${sl.x}" y="${y}" font-size="7" letter-spacing="1" ${F} fill="#6e6e73">AREA</text>`; y+=11;
+      for(const r of areaRows()){ if(y>sl.y+sl.h-2) break; s+=`<text x="${sl.x}" y="${y}" font-size="7.5" ${F} fill="#1d1d1f">${esc(r[0])}</text><text x="${sl.x+sl.w}" y="${y}" text-anchor="end" font-size="7.5" ${F} fill="#1d1d1f">${esc(r[1])}</text><line x1="${sl.x}" y1="${y+3}" x2="${sl.x+sl.w}" y2="${y+3}" stroke="#d2d2d7" stroke-width=".4"/>`; y+=10.5; } }
+  });
+  return s+'</svg>';
+}
+function conceptThumb(key,sc){ sc=sc||0.16; const L=LAYOUTS[key]; let g=`<rect width="${W*sc}" height="${H*sc}" fill="#fff" stroke="#d2d2d7" stroke-width=".6"/>`; for(const s of L.slots){ const f={title:'#1d1d1f',img:'#c7c7cc',text:'#8e8e93',table:'#aeaeb2'}[s.k]; const h=s.k==='title'?(s.bar?s.h:s.h*0.45):s.h, y=s.k==='title'&&!s.bar?s.y+s.h-h:s.y; g+=`<rect x="${s.x*sc}" y="${y*sc}" width="${s.w*sc}" height="${h*sc}" fill="${f}" rx=".6"/>`; } return `<svg viewBox="0 0 ${W*sc} ${H*sc}" aria-hidden="true">${g}</svg>`; }
+$('#concepts').innerHTML=Object.entries(LAYOUTS).map(([k,L])=>`<button class="concept" data-layout="${k}" aria-pressed="${k===state.layout}">${conceptThumb(k)}<b>${L.name}</b>${L.desc}</button>`).join('');
+$('#concepts').addEventListener('click',e=>{const b=e.target.closest('.concept'); if(!b)return; state.layout=b.dataset.layout; syncConcepts(); redraw();});
+function syncConcepts(){ $$('.concept').forEach(x=>x.setAttribute('aria-pressed',x.dataset.layout===state.layout)); }
+
+/* ---------- Inputs ---------- */
+const bound=[['#cTitle','title'],['#cSite','site'],['#cUse','use'],['#cScale','scale'],['#cKeys','keys'],['#cNotes','notes'],['#pNotes','notes']];
+for(const [id,key] of bound){ $(id).addEventListener('input',()=>{state[key]=$(id).value; if(key==='notes'){ $('#cNotes').value=state.notes; $('#pNotes').value=state.notes; } redraw();}); }
+let tMode='statement', tCtl=null;
+function fillInputs(){ for(const [id,key] of bound) $(id).value=state[key]; $('#zFloor').value=state.zFloor; $('#zRooms').value=state.zRooms; $('#secHeights').value=state.secHeights; $('#aSite').value=state.zc.area; $('#aBcr').value=state.zc.bcr; $('#aFar').value=state.zc.far; $('#tOut').textContent=state.tOut||'결과가 여기에 나타납니다.'; tMode=state.tMode||'statement'; $$('#modes button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===tMode)); syncConcepts(); renderThumbs(); fillZc(); }
+
+/* images */
+const drop=$('#drop'), fileIn=$('#fileIn');
+drop.addEventListener('click',()=>fileIn.click());
+drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('over')});
+drop.addEventListener('dragleave',()=>drop.classList.remove('over'));
+drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('over');addFiles(e.dataTransfer.files)});
+fileIn.addEventListener('change',()=>{addFiles(fileIn.files);fileIn.value=''});
+function guessType(name){ name=name.toLowerCase(); if(/sec|단면/.test(name))return'section'; if(/plan|평면|1f|2f/.test(name))return'plan'; if(/dia|diagram|다이어/.test(name))return'diagram'; return'render'; }
+function addFiles(files){ for(const f of files){ if(!f.type.startsWith('image/'))continue; const r=new FileReader(); r.onload=()=>{state.images.push({name:f.name,url:r.result,type:guessType(f.name)}); renderThumbs(); redraw();}; r.readAsDataURL(f);} }
+function renderThumbs(){ $('#thumbs').innerHTML=state.images.map((im,i)=>`<div class="thumb">${im.svg?`<div class="svgwrap">${im.svg}</div>`:`<img src="${im.url}" alt="">`}<select data-i="${i}">${IMG_TYPES.map(t=>`<option value="${t[0]}"${t[0]===im.type?' selected':''}>${t[1]}</option>`).join('')}</select><button data-del="${i}">지우기</button></div>`).join(''); }
+$('#thumbs').addEventListener('change',e=>{const s=e.target.closest('select'); if(!s)return; state.images[+s.dataset.i].type=s.value; redraw();});
+$('#thumbs').addEventListener('click',e=>{const b=e.target.closest('[data-del]'); if(!b)return; state.images.splice(+b.dataset.del,1); renderThumbs(); redraw();});
+function addSvgImage(name,type,svg){ const i=state.images.findIndex(x=>x.svg&&x.name===name); const im={name,type,svg,url:''}; if(i>=0) state.images[i]=im; else state.images.push(im); renderThumbs(); redraw(); }
+
+/* ---------- Capabilities ---------- */
+let sample=null, downloads=null, user=null, db=null, me=null, canImages=false;
+const aiButtons=['#aiFill','#zAi','#aAi','#tAi','#cAi','#cMore','#zcExplain','#zcBrief','#critBtn','#pfCrit'];
+let imgMax=0;
+(async()=>{
+  try{ sample=await window.claude?.use?.('sample'); }catch(e){ sample=null; }
+  if(!sample){ $('#aiBanner').hidden=false; aiButtons.forEach(s=>{const b=$(s); if(b){b.disabled=true;b.title='claude.ai에서 열면 켜집니다'}}); }
+  else { try{ const lim=await sample.limits(); canImages=!!(lim&&lim.images); imgMax=(lim&&lim.images&&lim.images.maxCount)||1; }catch(e){ canImages=false; } }
+  try{ downloads=await window.claude?.use?.('downloads'); }catch(e){ downloads=null; }
+  try{ user=await window.claude?.use?.('user'); }catch(e){ user=null; }
+  try{ db=await window.claude?.use?.('db'); }catch(e){ db=null; }
+  if(user){ try{ me=await user.me(); }catch(e){ me=null; } }
+  renderUser();
+  if(db) loadPosts();
+  if(me&&me.id&&db){ try{ const snap=await db.collection('data/users/'+me.id).doc('ziplan').get(); if(snap.exists){ applySaved(snap.data()); $('#stStatus').textContent='저장된 프로젝트를 불러왔습니다.'; } }catch(e){} }
+})();
+const errCopy=c=>({not_granted:'AI 사용이 허용되지 않았습니다.',rate_limited:'요청이 많습니다. 잠시 뒤 다시 눌러 주세요.',invalid_json:'형식이 맞지 않게 돌아왔습니다. 다시 눌러 주세요.',refused:'이 내용은 처리할 수 없다고 합니다. 내용을 바꿔 보세요.',cancelled:''}[c]||'잠시 문제가 생겼습니다. 다시 눌러 주세요.');
+async function save(filename,data,statusEl){ if(!downloads){ statusEl.textContent='저장은 claude.ai 안에서 열었을 때 됩니다.'; return; } try{ await downloads.save({filename,data}); statusEl.textContent=filename+' 저장됨'; }catch(e){ statusEl.textContent=e.code==='cancelled'?'':'저장하지 못했습니다.'; } }
+function renderUser(){ const chip=$('#userChip'); if(me&&me.id){ chip.className='userchip'; chip.innerHTML=`<img src="${me.avatarUrl}" alt="">${esc(me.name||'내 계정')}`; } else { chip.className='userchip signin'; chip.textContent='로그인'; } }
+$('#userChip').addEventListener('click',()=>{ const pop=$('#userPop'); if(!pop.hidden){ pop.hidden=true; return; }
+  if(me&&me.id) pop.innerHTML=`<h4>${esc(me.name||'내 계정')}</h4><p>프로젝트 "${esc(state.title)}"는 내 작업실에서 저장·불러오기 합니다. 올린 사진은 제외됩니다.</p><div class="actions"><a class="btn" href="#studio">내 작업실</a></div>`;
+  else pop.innerHTML=`<h4>로그인</h4><p>claude.ai 안에서 이 페이지를 열면 그 계정으로 자동 로그인되어 프로젝트가 계정에 저장됩니다.</p><p>정식 서비스에서는 이메일 로그인과 플랜 구독이 제공됩니다.</p><div class="actions"><a class="btn sec" href="#pricing">요금제 보기</a></div>`;
+  pop.hidden=false; });
+document.addEventListener('click',e=>{ if(!e.target.closest('#userPop')&&!e.target.closest('#userChip')) $('#userPop').hidden=true; });
+function snapshot(){ return {v:2,title:state.title,concept:state.concept,site:state.site,use:state.use,scale:state.scale,keys:state.keys,notes:state.notes,layout:state.layout,ai:state.ai,zc:readZc(),zFloor:$('#zFloor').value,zRooms:$('#zRooms').value,zones:state.zones,secHeights:$('#secHeights').value,floors:floors,tMode:tMode,tOut:$('#tOut').textContent,conceptPick:state.conceptPick,concepts:state.concepts,likes:state.likes,svgImages:state.images.filter(i=>i.svg).map(i=>({name:i.name,type:i.type,svg:i.svg})),savedAt:Date.now()}; }
+function applySaved(d){ if(!d||typeof d!=='object') return; for(const k of ['title','concept','site','use','scale','keys','notes','layout','zFloor','zRooms','secHeights','tMode','tOut','conceptPick']) if(d[k]!=null) state[k]=d[k]; if(!LAYOUTS[state.layout]) state.layout='hero'; if(d.ai&&typeof d.ai==='object') state.ai=Object.assign({title:'',subtitle:'',statement:'',captions:{},highlights:[]},d.ai); if(d.zc&&typeof d.zc==='object') state.zc=Object.assign({},EXAMPLE.zc,d.zc); if(Array.isArray(d.floors)&&d.floors.length){ floors=d.floors.map(f=>[String(f[0]),+f[1]||0,String(f[2])]); state.floors=floors; } state.zones=Array.isArray(d.zones)&&d.zones.length?d.zones:null; state.concepts=Array.isArray(d.concepts)?d.concepts:[]; state.likes=Array.isArray(d.likes)?d.likes:[]; state.images=state.images.filter(i=>!i.svg).concat((Array.isArray(d.svgImages)?d.svgImages:[]).map(i=>({name:String(i.name||''),type:String(i.type||'diagram'),svg:String(i.svg||''),url:''}))); fillInputs(); renderFloors(); if(!state.zones) state.zones=localLayout(parseRooms()); drawZones(); drawSection(); renderConceptCards(); redraw(); }
+function resetExample(){ const ex=JSON.parse(JSON.stringify(EXAMPLE)); Object.assign(state,ex); state.images=[]; floors=state.floors; state.zones=null; fillInputs(); renderFloors(); state.zones=localLayout(parseRooms()); drawZones(); drawSection(); renderConceptCards(); redraw(); }
+async function stSaveLoad(which){ const st=$('#stStatus'); if(!db||!me||!me.id){ st.textContent='로그인된 claude.ai 안에서만 저장됩니다.'; return; }
+  try{ if(which==='save'){ await db.collection('data/users/'+me.id).doc('ziplan').set(snapshot()); st.textContent='저장했습니다.'; } else { const snap=await db.collection('data/users/'+me.id).doc('ziplan').get(); if(snap.exists){ applySaved(snap.data()); st.textContent='불러왔습니다.'; } else st.textContent='저장된 프로젝트가 없습니다.'; } renderStudio(); }
+  catch(err){ st.textContent='저장소에 닿지 못했습니다. 잠시 뒤 다시 눌러 주세요.'; } }
+$('#stSave').addEventListener('click',()=>stSaveLoad('save')); $('#stLoad').addEventListener('click',()=>stSaveLoad('load')); $('#stReset').addEventListener('click',()=>{ resetExample(); renderStudio(); $('#stStatus').textContent='예시 프로젝트로 되돌렸습니다.'; });
+
+/* ---------- 포트폴리오 ---------- */
+const PF=window.PORTFOLIO_DATA||{updated:'',reads:[],jobs:[],tips:[]};
+const PF_TO={atelier:'아뜰리에',big:'대형 사무소',public:'공기업·건설사',abroad:'해외·유학'};
+let pfTo='', pfPages=[], pfLiked=new Set(); try{ pfLiked=new Set(JSON.parse(localStorage.getItem('zip_pf_tips')||'[]')); }catch(e){}
+function pfSaveLikes(){ try{ localStorage.setItem('zip_pf_tips',JSON.stringify([...pfLiked])); }catch(e){} }
+function renderPortfolio(){
+  $('#pfUpdated').textContent=PF.updated?'분석 기준 '+PF.updated+' · 매주 갱신':'';
+  const reads=PF.reads.filter(r=>!pfTo||r.to.includes(pfTo));
+  $('#pfReads').innerHTML=reads.length?reads.map(r=>`<div class="case pfread"><b>${esc(r.title)}</b><div class="meta">${esc(r.kind)} · ${r.to.map(t=>PF_TO[t]||t).join(' · ')}</div><div class="who">${esc(r.who)}</div><div class="pat">${esc(r.pattern)}</div><ul>${r.doList.map(d=>`<li>${esc(d)}</li>`).join('')}</ul><div class="avoid">피할 것 — ${esc(r.avoid)}</div><a class="src" href="${esc(r.url)}" target="_blank" rel="noopener">출처 보기 ↗</a></div>`).join(''):`<div class="hint">이 지원처의 사례는 아직 없습니다.</div>`;
+  const jobs=PF.jobs.filter(j=>!pfTo||j.type===pfTo);
+  $('#pfJobs').innerHTML=jobs.length?jobs.map(j=>`<div class="pfjob"><b>${esc(j.org)}</b><div class="k">${esc(j.typeName)}</div><div><span class="k">형식 </span><span class="fmt">${esc(j.format)}</span></div><div><span class="k">규칙 </span>${esc(j.rule)}</div><div><span class="k">전형 </span>${esc(j.process)}</div><div><span class="k">시기 </span>${esc(j.when)}</div><div class="tip">${esc(j.tip)}</div><div class="asof">${esc(j.asOf)} · <a href="${esc(j.url)}" target="_blank" rel="noopener">공고 ↗</a></div></div>`).join(''):`<div class="hint">이 지원처의 공고 사례는 아직 없습니다.</div>`;
+  $('#pfTips').innerHTML=PF.tips.map(t=>`<button data-tip="${t.id}" aria-pressed="${pfLiked.has(t.id)}"><span class="t">${esc(t.tag)}</span>${esc(t.text)}</button>`).join('');
+  $('#pfMax').textContent=Math.min(8,Math.max(1,imgMax||8));
+}
+$('#pfTo').addEventListener('click',e=>{ const b=e.target.closest('button[data-to]'); if(!b) return; pfTo=b.dataset.to; $$('#pfTo button').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderPortfolio(); });
+$('#pfTips').addEventListener('click',e=>{ const b=e.target.closest('button[data-tip]'); if(!b) return; const id=b.dataset.tip; if(pfLiked.has(id)) pfLiked.delete(id); else pfLiked.add(id); b.setAttribute('aria-pressed',pfLiked.has(id)); pfSaveLikes(); });
+/* 파일 올리기: 이미지는 그대로, PDF는 vendor/pdfjs로 앞 N쪽을 그림으로 */
+const pfDrop=$('#pfDrop'), pfFile=$('#pfFile');
+pfDrop.addEventListener('click',()=>pfFile.click());
+pfDrop.addEventListener('dragover',e=>{e.preventDefault();pfDrop.classList.add('over')}); pfDrop.addEventListener('dragleave',()=>pfDrop.classList.remove('over'));
+pfDrop.addEventListener('drop',e=>{e.preventDefault();pfDrop.classList.remove('over');pfAdd(e.dataTransfer.files)});
+pfFile.addEventListener('change',()=>{pfAdd(pfFile.files);pfFile.value=''});
+const pfLimit=()=>Math.min(8,Math.max(1,imgMax||8));
+async function pfAdd(files){ const st=$('#pfStatus'); st.className='status'; for(const f of files){ if(pfPages.length>=pfLimit()) break;
+    if(f.type==='application/pdf'||/\.pdf$/i.test(f.name)){ st.textContent='PDF 쪽을 그림으로 바꾸는 중…'; try{ await pfFromPdf(f); }catch(err){ st.className='status err'; st.textContent='PDF를 읽지 못했습니다. 쪽을 이미지로 내보내 올려 주세요.'; console.warn('[pf] pdf',err); } }
+    else if(/^image\//.test(f.type)){ pfPages.push({blob:f,url:URL.createObjectURL(f)}); }
+  }
+  pfRenderPages(); if(st.className==='status') st.textContent=pfPages.length?pfPages.length+'쪽 준비됨':''; }
+async function pfFromPdf(file){ const base=new URL('vendor/pdfjs/',location.href); const pdfjs=await import(base+'pdf.min.mjs'); pdfjs.GlobalWorkerOptions.workerSrc=base+'pdf.worker.min.mjs';
+  const doc=await pdfjs.getDocument({data:await file.arrayBuffer()}).promise; const n=Math.min(doc.numPages,pfLimit()-pfPages.length);
+  for(let i=1;i<=n;i++){ const page=await doc.getPage(i); const v0=page.getViewport({scale:1}); const sc=Math.min(1.6,1200/Math.max(v0.width,v0.height)); const vp=page.getViewport({scale:sc}); const c=document.createElement('canvas'); c.width=Math.round(vp.width); c.height=Math.round(vp.height); const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height); await page.render({canvasContext:g,viewport:vp}).promise; const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',0.82)); pfPages.push({blob,url:URL.createObjectURL(blob)}); pfRenderPages(); } }
+function pfRenderPages(){ $('#pfPages').innerHTML=pfPages.map((p,i)=>`<img src="${p.url}" alt="${i+1}쪽" title="${i+1}쪽">`).join(''); }
+$('#pfClear').addEventListener('click',()=>{ pfPages.forEach(p=>URL.revokeObjectURL(p.url)); pfPages=[]; pfRenderPages(); $('#pfStatus').textContent=''; $('#pfOut').textContent='강점 3 · 고칠 점 3 · 구성안 3안이 여기에 나옵니다.'; $('#pfOut').style.color='var(--fg-2)'; });
+$('#pfCrit').addEventListener('click',async()=>{ const st=$('#pfStatus'); st.className='status'; const out=$('#pfOut');
+  if(!pfPages.length){ st.className='status err'; st.textContent='먼저 PDF나 쪽 이미지를 올려 주세요.'; return; }
+  if(!canImages){ st.className='status err'; st.textContent='이 화면에선 이미지를 보낼 수 없습니다. claude.ai 안에서 열어 주세요.'; return; }
+  st.textContent='쪽을 보고 있는 중…'; out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#pfCrit').disabled=true;
+  const target=pfTo?PF_TO[pfTo]:'미정'; const rules=PF.jobs.filter(j=>!pfTo||j.type===pfTo).slice(0,3).map(j=>`${j.org}: ${j.format} / ${j.rule}`).join('\n');
+  const liked=PF.tips.filter(t=>pfLiked.has(t.id)).map(t=>'- '+t.text).join('\n');
+  const prompt=`당신은 건축설계사무소의 채용 담당자이자 포트폴리오 심사자입니다. 지원자의 포트폴리오 앞쪽 ${pfPages.length}쪽을 첨부합니다(1쪽부터 순서대로). 한국어, 평문, 구체적으로 쪽 번호를 지목해 말하세요. 칭찬보다 고칠 점이 쓸모 있습니다.
+지원처: ${target}
+이 지원처의 공고 양식(참고):
+${rules||'(없음)'}
+지원자가 중요하게 여기는 원칙:
+${liked||'(선택 없음)'}
+심사 기준: 첫 장에서 무엇이 읽히는가, 킬링 이미지가 있는가, 프로젝트 순서, 내 역할 표기, 글 양, 도면 크기와 선 위계, 세로 판형과 화면 가독성, 양식(쪽수·블라인드) 준수.
+형식:
+1) 한 줄 총평
+2) 강점 3 (쪽 번호)
+3) 고칠 점 3 (쪽 번호 + 어떻게)
+4) 구성안 3안 — 각각 이름 한 줄 + 프로젝트/쪽 순서 한 줄 (예: "두괄식 요약본 15쪽: 표지→이력서→A 4쪽→B 4쪽→C 3쪽→과정 2쪽")
+5) 양식 체크 한 줄 (쪽수·용량·블라인드)
+총 700자 이내.`;
+  try{ const r=await sample(prompt,{modelTier:'default',cache:false,images:pfPages.map(p=>p.blob),onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; }
+  catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=e.code==='images_unavailable'?'이미지를 보낼 수 없는 화면입니다. claude.ai 안에서 열어 주세요.':e.code==='image_rejected'?'읽을 수 없는 이미지가 있습니다. JPG·PNG로 다시 올려 주세요.':errCopy(e.code); }
+  finally{ $('#pfCrit').disabled=false; } });
+$('#pfToPlaza').addEventListener('click',async()=>{ if(!pfPages.length){ $('#pfStatus').className='status err'; $('#pfStatus').textContent='먼저 쪽을 올려 주세요.'; return; } try{ plImg=await shrinkImage(pfPages[0].url); $('#plPreview').innerHTML=`<img src="${plImg}" alt="" style="width:100%;border-radius:10px">`; $('#plKind').value='학생 작품'; $('#plAnon').checked=true; if(!$('#plTitle').value) $('#plTitle').value='포트폴리오 첫 쪽 — 의견 부탁'; $('#plText').value=$('#plText').value||'지원처: '+(pfTo?PF_TO[pfTo]:'미정')+'. 첫 장에서 무엇이 읽히는지 알려 주세요.'; go('plaza',true); }catch(e){ $('#pfStatus').className='status err'; $('#pfStatus').textContent='이미지를 옮기지 못했습니다.'; } });
+$('#tilePortfolio').innerHTML=`<svg viewBox="0 0 280 120" aria-hidden="true"><g fill="var(--card)" stroke="var(--fg)" stroke-width="1.2"><rect x="30" y="14" width="64" height="90" rx="4"/><rect x="108" y="8" width="64" height="96" rx="4"/><rect x="186" y="14" width="64" height="90" rx="4"/></g><g fill="var(--fg)" opacity=".85"><rect x="38" y="22" width="48" height="34" rx="2"/><rect x="116" y="16" width="48" height="52" rx="2"/><rect x="194" y="22" width="48" height="34" rx="2"/></g><g fill="var(--fg-2)" opacity=".5"><rect x="38" y="62" width="36" height="3"/><rect x="38" y="69" width="28" height="3"/><rect x="116" y="74" width="40" height="3"/><rect x="116" y="81" width="30" height="3"/><rect x="194" y="62" width="36" height="3"/><rect x="194" y="69" width="24" height="3"/></g><rect x="116" y="90" width="20" height="4" fill="var(--accent)"/></svg>`;
+
+/* ---------- 자료실 ---------- */
+const LB=window.LIBRARY_DATA||{checked:'',licenses:{},cats:[],items:[]};
+let lbCat='';
+$('#lbCat').insertAdjacentHTML('beforeend',LB.cats.map(c=>`<button data-cat="${c[0]}">${c[1]}</button>`).join(''));
+$('#lbCat').addEventListener('click',e=>{ const b=e.target.closest('button[data-cat]'); if(!b) return; lbCat=b.dataset.cat; $$('#lbCat button').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderLibrary(); });
+$('#lbUse').addEventListener('change',renderLibrary);
+function lbUseTag(v,label){ return `<span class="${v===true?'y':v==='attr'?'a':'n'}">${label}${v==='attr'?'·출처':''}</span>`; }
+function renderLibrary(){
+  $('#lbChecked').textContent=LB.checked?'라이선스 확인 '+LB.checked:'';
+  $('#lbHow').innerHTML=[['1. 라이선스 줄 찾기','자료 페이지에서 CC0 · 퍼블릭 도메인 · 공공누리 1유형 · CC BY 중 하나를 찾는다. 없으면 쓰지 않는다.'],['2. 쓸 곳에 맞추기','학교 패널은 대부분 OK. 포트폴리오·공모전·실무는 "상업 가능"인 것만. NC(비상업)·ND(변경 금지) 표시를 조심.'],['3. 출처 적기','CC BY·공공누리는 캡션에 출처. CC0·PD도 적어 두면 심사자가 믿는다. 아래 틀을 복사.']].map(f=>`<div class="fact"><div class="l">${f[0]}</div><div class="v">${f[1]}</div></div>`).join('');
+  const use=$('#lbUse').value;
+  const items=LB.items.filter(i=>(!lbCat||i.cat===lbCat)&&(!use||i.use[use]));
+  $('#lbItems').innerHTML=items.length?items.map(i=>{ const L=LB.licenses[i.lic]; const cls=i.lic==='none'?'no':(L&&L.attr?'attr':'ok'); const cat=(LB.cats.find(c=>c[0]===i.cat)||[])[1]||'';
+    return `<div class="case lbitem"><b>${esc(i.name)}</b><div class="meta">${esc(cat)}</div><span class="lic ${cls}">${esc(L?L.name:'라이선스 없음 — 보기만')}</span><div>${esc(i.what)}</div>${i.how?`<div class="how">${esc(i.how)}</div>`:''}<div class="uses">${lbUseTag(i.use.panel,'학교 패널')}${lbUseTag(i.use.portfolio,'포트폴리오')}${lbUseTag(i.use.commercial,'공모전·실무')}</div>${i.caution?`<div class="caution">주의 — ${esc(i.caution)}</div>`:''}<a class="src" href="${esc(i.url)}" ${i.url.startsWith('#')?'':'target="_blank" rel="noopener"'}>열기 ↗</a></div>`; }).join(''):`<div class="hint">조건에 맞는 자료원이 없습니다. 쓸 곳을 바꿔 보세요.</div>`;
+  $('#lbAttr').innerHTML=[['CC BY 사진','사진: 작가명, "제목", CC BY 4.0, commons.wikimedia.org/…'],['공공누리 1유형','출처: 국가유산청 국가유산포털 (공공누리 제1유형)'],['CC0 · 퍼블릭 도메인','출처: Smithsonian Open Access (CC0)'],['OpenStreetMap','지도: © OpenStreetMap contributors (ODbL)'],['Unsplash·Pexels','사진: 작가명 / Unsplash'],['광장 사례','패널: ZIPLAN 광장 · 익명 (○○대 3학년, 2026)']].map(a=>`<div class="fact"><div class="l">${a[0]}</div><div class="v" style="font-size:12.5px;font-weight:500;user-select:all">${esc(a[1])}</div></div>`).join('');
+}
+$('#tileLibrary').innerHTML=`<svg viewBox="0 0 280 120" aria-hidden="true"><g fill="var(--card)" stroke="var(--fg)" stroke-width="1.2"><rect x="24" y="20" width="70" height="52" rx="4"/><rect x="104" y="20" width="70" height="52" rx="4"/><rect x="184" y="20" width="70" height="52" rx="4"/></g><g fill="var(--fg)" opacity=".8"><polygon points="34,62 54,40 68,52 78,44 86,62"/><circle cx="139" cy="46" r="13"/><rect x="194" y="30" width="50" height="32" rx="2" fill="none" stroke="var(--fg)" stroke-width="1"/><line x1="194" y1="46" x2="244" y2="46" stroke="var(--fg)" stroke-width="1"/><line x1="219" y1="30" x2="219" y2="62" stroke="var(--fg)" stroke-width="1"/></g><g font-size="9" fill="var(--accent)" font-weight="700"><text x="24" y="92">CC0</text><text x="104" y="92">공공누리 1</text><text x="184" y="92">PD</text></g></svg>`;
+
+/* ---------- 내집코드 ---------- */
+const ZONES=[['r1','제1종일반주거지역',60,200],['r2','제2종일반주거지역',60,250],['r3','제3종일반주거지역',50,300],['semi','준주거지역',70,500],['central','중심상업지역',90,1500],['general','일반상업지역',80,1300],['nbhd','근린상업지역',70,900],['semiind','준공업지역',70,400],['plan','계획관리지역',40,100],['farm','농림·생산관리지역',20,80]];
+$('#zcZone').innerHTML=ZONES.map(z=>`<option value="${z[0]}">${z[1]}</option>`).join('');
+$('#zcZone').addEventListener('change',()=>{ const z=ZONES.find(x=>x[0]===$('#zcZone').value); if(z){ $('#zcBcr').value=z[2]; $('#zcFar').value=z[3]; } zcCalc(); });
+['#zcAddr','#zcArea','#zcBcr','#zcFar','#zcW','#zcD','#zcWant'].forEach(s=>$(s).addEventListener('input',zcCalc));
+function fillZc(){ const z=state.zc; $('#zcAddr').value=z.addr; $('#zcArea').value=z.area; $('#zcZone').value=z.zone; $('#zcBcr').value=z.bcr; $('#zcFar').value=z.far; $('#zcW').value=z.w; $('#zcD').value=z.d; $('#zcWant').value=z.want; }
+function readZc(){ return {addr:$('#zcAddr').value,area:parseFloat($('#zcArea').value)||0,zone:$('#zcZone').value,bcr:parseFloat($('#zcBcr').value)||0,far:parseFloat($('#zcFar').value)||0,w:parseFloat($('#zcW').value)||0,d:parseFloat($('#zcD').value)||0,want:$('#zcWant').value}; }
+function zcCalc(){ const z=readZc(); state.zc=z; const zone=ZONES.find(x=>x[0]===z.zone)||ZONES[0]; const foot=z.area*z.bcr/100, gfa=z.area*z.far/100, fl=foot?Math.max(1,Math.round(gfa/foot)):0, flLow=foot?Math.max(1,Math.floor(gfa/(foot*0.85))):0;
+  $('#zcHead').textContent=z.addr?`${z.addr}에는, 한 층 ${fmt(foot)}㎡로 약 ${fl}층까지.`:'주소를 넣어 주세요.';
+  $('#zcLead').textContent=`${zone[1]}. 땅 ${fmt(z.area)}㎡의 ${z.bcr}%까지 바닥을 깔 수 있고(건축면적 ${fmt(foot)}㎡), 층을 다 합쳐 ${z.far}%(연면적 ${fmt(gfa)}㎡)까지 지을 수 있습니다. 바닥을 꽉 채우면 ${fl}층, 테라스를 두어 바닥을 줄이면 ${flLow}층 안팎. 높이 제한·일조·주차는 따로 확인이 필요합니다.`;
+  $('#zcFacts').innerHTML=[['건축면적 최대',fmt(foot)+' ㎡'],['연면적 최대',fmt(gfa)+' ㎡'],['층수 (바닥 꽉 채울 때)',fl+'층'],['주차 (개략 · 150㎡당 1대)',Math.ceil(gfa/150)+'대'],['공사비 (개략 · 평당 700~900만)',fmt(gfa/3.3058*700/10000)+'~'+fmt(gfa/3.3058*900/10000)+' 억'],['대지 폭 × 깊이',z.w+' × '+z.d+' m']].map(f=>`<div class="fact"><div class="l">${f[0]}</div><div class="v">${f[1]}</div></div>`).join('');
+  $('#zcMass').innerHTML=zcMassSVG(z,foot,fl);
+  $('#zcSteps').innerHTML=['토지이음에서 용도지역·지구단위계획·조례 한도 확인','건축물대장으로 기존 건물·주차 확인','바라는 것을 한 줄로 정리 → 건축가 브리프','건축사사무소 2~3곳 상담 (컨셉 잡기 결과를 가져가면 빠름)','가설계 → 인허가 → 착공'].map((s,i)=>`<li>${s}</li>`).join('');
+}
+function zcMassSVG(z,foot,fl){ const w=z.w||30,d=z.d||30; const fw=Math.min(1,Math.sqrt((foot||1)/(w*d))); const bw=w*fw, bd=d*fw; const ca=Math.cos(Math.PI/6), sa=Math.sin(Math.PI/6); const n=Math.min(fl,40); const fhm=Math.min(3.5,Math.max(1.2,60/Math.max(n,1))); const totalH=n*fhm;
+  const sc=Math.min(360/((w+d)*ca), 250/((w+d)*sa+totalH)); const fh=fhm*sc; const baseY=36+totalH*sc; const cx=200-((w-d)/2)*ca*sc;
+  const P=(x,y,zz)=>[cx+(x-y)*ca*sc,baseY+(x+y)*sa*sc-zz]; const poly=(pts,f,o)=>`<polygon points="${pts.map(p=>p.join(',')).join(' ')}" fill="${f}" fill-opacity="${o||1}" stroke="#1d1d1f" stroke-width=".6"/>`;
+  let s=`<svg viewBox="0 0 400 300" font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif"><text x="14" y="22" font-size="11" fill="#6e6e73">지을 수 있는 덩어리 (개략)</text>`;
+  s+=poly([P(0,0,0),P(w,0,0),P(w,d,0),P(0,d,0)],'#f0f0f3');
+  const ox=(w-bw)/2, oy=(d-bd)/2; for(let i=0;i<n;i++){ const z0=i*fh, z1=(i+1)*fh; s+=poly([P(ox,oy+bd,z0),P(ox+bw,oy+bd,z0),P(ox+bw,oy+bd,z1),P(ox,oy+bd,z1)],'#8fb6f0')+poly([P(ox+bw,oy,z0),P(ox+bw,oy+bd,z0),P(ox+bw,oy+bd,z1),P(ox+bw,oy,z1)],'#5a8fe0')+poly([P(ox,oy,z1),P(ox+bw,oy,z1),P(ox+bw,oy+bd,z1),P(ox,oy+bd,z1)],'#cfe0fb'); }
+  s+=`<text x="386" y="288" text-anchor="end" font-size="10" fill="#6e6e73">${fl}층 · 바닥 ${fmt(foot)}㎡ · 대지 ${w}×${d}m</text></svg>`; return s; }
+$('#zcExplain').addEventListener('click',async()=>{ const st=$('#zcStatus'); st.className='status'; st.textContent='설명 쓰는 중…'; const out=$('#zcOut'); out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#zcExplain').disabled=true; const z=readZc(); const zone=ZONES.find(x=>x[0]===z.zone)||ZONES[0];
+  const prompt=`건축을 전혀 모르는 사람에게 이 땅에 뭘 지을 수 있는지 설명합니다. 한국어, 쉬운 말, 전문용어는 괄호로 풀기, 6문장 이내, 법규를 단정하지 말고 "조례 확인 필요"를 한 번 넣기.
+주소 ${z.addr}, 대지 ${z.area}㎡ (${z.w}×${z.d}m), 용도지역 ${zone[1]}, 건폐율 한도 ${z.bcr}%, 용적률 한도 ${z.far}%.
+계산: 건축면적 최대 ${fmt(z.area*z.bcr/100)}㎡, 연면적 최대 ${fmt(z.area*z.far/100)}㎡.
+하고 싶은 것: ${z.want}
+이 바람이 이 땅에서 되는지, 어떤 모양이 자연스러운지, 처음 할 일 하나를 말해 주세요.`;
+  try{ const r=await sample(prompt,{modelTier:'quick',onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; }catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#zcExplain').disabled=false; } });
+$('#zcBrief').addEventListener('click',async()=>{ const st=$('#zcStatus'); st.className='status'; st.textContent='브리프 쓰는 중…'; const out=$('#zcOut'); out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#zcBrief').disabled=true; const z=readZc(); const zone=ZONES.find(x=>x[0]===z.zone)||ZONES[0];
+  const prompt=`건축주가 건축가에게 처음 건네는 브리프 한 장을 씁니다. 한국어, 항목별 짧은 문장, 300자 이내.
+땅: ${z.addr}, ${z.area}㎡, ${zone[1]}, 건폐율 ${z.bcr}% / 용적률 ${z.far}%.
+바라는 것: ${z.want}
+항목: 1) 목적 한 줄 2) 꼭 있어야 할 것 3개 3) 있으면 좋은 것 2개 4) 예산·일정에서 정할 것 5) 건축가에게 물어볼 질문 3개. 모르는 것은 [확인 필요]로.`;
+  try{ const r=await sample(prompt,{modelTier:'quick',onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; }catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#zcBrief').disabled=false; } });
+$('#zcToConcept').addEventListener('click',()=>{ const z=readZc(); const zone=ZONES.find(x=>x[0]===z.zone)||ZONES[0]; state.site=`${z.addr} · ${fmt(z.area)}㎡ · ${zone[1]}`; $('#cSite').value=state.site; $('#aSite').value=z.area; $('#aBcr').value=z.bcr; $('#aFar').value=z.far; calcArea(); go('concept',true); });
+$('#homeAddr').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#homeAddrIn').value.trim(); if(v){ $('#zcAddr').value=v; } go('zipcode',true); });
+
+/* ---------- 컨셉 잡기 ---------- */
+const MASS={bar:'긴 바',court:'중정형',tower:'탑',step:'계단형',split:'두 동',frame:'액자형'};
+function massIcon(type){ const f='#1d1d1f', g='#c7c7cc'; const base=`<rect x="6" y="70" width="108" height="6" fill="${g}"/>`; const m={
+  bar:`<rect x="14" y="40" width="92" height="30" fill="${f}"/>`,
+  court:`<rect x="14" y="30" width="92" height="40" fill="${f}"/><rect x="40" y="42" width="40" height="28" fill="#fff"/>`,
+  tower:`<rect x="44" y="8" width="32" height="62" fill="${f}"/><rect x="14" y="56" width="92" height="14" fill="${f}"/>`,
+  step:`<rect x="14" y="56" width="92" height="14" fill="${f}"/><rect x="34" y="42" width="72" height="14" fill="${f}"/><rect x="54" y="28" width="52" height="14" fill="${f}"/><rect x="74" y="14" width="32" height="14" fill="${f}"/>`,
+  split:`<rect x="14" y="22" width="30" height="48" fill="${f}"/><rect x="76" y="30" width="30" height="40" fill="${f}"/><rect x="44" y="60" width="32" height="10" fill="${g}"/>`,
+  frame:`<rect x="14" y="14" width="92" height="56" fill="${f}"/><rect x="30" y="28" width="60" height="42" fill="#fff"/>`}[type]||`<rect x="14" y="40" width="92" height="30" fill="${f}"/>`; return `<svg viewBox="0 0 120 80" aria-hidden="true">${base}${m}</svg>`; }
+const DEFAULT_CONCEPTS=[
+  {name:'두 담 사이, 오르는 공원',line:'막힌 남북을 두 개의 담으로 세우고, 그 틈을 공원에 내준다.',why:'서쪽 공원이 테라스를 타고 올라와 거리로 빠져나간다. 틈이 곧 건물의 얼굴.',mass:'split',moves:['남·북 두 동, 가운데 11m 틈','3·4·5층 테라스가 공원에서 올라옴','동성로 쪽 6~8층을 비운 액자'],refs:[{name:'Tietgen Dormitory',arch:'Lundgaard & Tranberg',note:'둘러싸되 열린 중심'},{name:'대학로 샘터사옥',arch:'김수근',note:'벽돌 담과 틈의 거리성'}]},
+  {name:'계단 위의 거리',line:'건물 전체를 공원에서 거리로 내려오는 큰 계단으로 만든다.',why:'모든 층이 테라스를 갖고, 지붕이 곧 길이 된다. 남측 채광이 자연히 확보된다.',mass:'step',moves:['서쪽 10층에서 동쪽 4층으로 내려오는 계단형','각 층 테라스를 외부 계단이 잇는다','하부 2개 층은 거리에 열린 상가'],refs:[{name:'Mountain Dwellings',arch:'BIG',note:'주차장 위에 얹힌 테라스 주거'},{name:'Habitat 67',arch:'Moshe Safdie',note:'물러나며 쌓인 집들'}]},
+  {name:'공원을 안은 상자',line:'외곽은 단단한 상자, 안쪽은 공원이 들어온 중정.',why:'소음과 양옆 건물로부터 등을 돌리고 안으로 연다. 상업은 바깥, 숙박은 안쪽.',mass:'court',moves:['도로 쪽 벽돌 상자, 안쪽 유리 중정','1층 관통 통로로 공원과 거리 연결','숙박 복도가 중정을 돈다'],refs:[{name:'Kolumba Museum',arch:'Peter Zumthor',note:'두꺼운 외피, 조용한 안'},{name:'쌈지길',arch:'최문규',note:'중정을 도는 길'}]}
+];
+function conceptCard(c,i){ const picked=state.conceptPick&&state.conceptPick.name===c.name; return `<div class="ccard" aria-pressed="${picked}"><div class="m">${massIcon(c.mass)}</div><h4>${esc(c.name)}</h4><div class="line">${esc(c.line)}</div><div class="why">${esc(c.why)}</div><ul>${(c.moves||[]).map(m=>`<li>${esc(m)}</li>`).join('')}</ul><div class="refs">${(c.refs||[]).map(r=>`${esc(r.name)} — ${esc(r.arch)}${r.note?' · '+esc(r.note):''}`).join('<br>')}</div><button class="btn ${picked?'dark':'sec'} pick" data-pick="${i}">${picked?'고른 안':'이 안으로'}</button></div>`; }
+function renderConceptCards(){ const list=state.concepts.length?state.concepts:DEFAULT_CONCEPTS; $('#cCards').innerHTML=list.map(conceptCard).join(''); $('#cStyle').textContent=styleSummary(); }
+$('#cCards').addEventListener('click',e=>{ const b=e.target.closest('[data-pick]'); if(!b) return; const list=state.concepts.length?state.concepts:DEFAULT_CONCEPTS; const c=list[+b.dataset.pick]; state.conceptPick=c; state.concept=c.name; state.ai.subtitle=''; state.ai.statement=''; renderConceptCards(); drawConceptStage(); redraw(); $('#cStatus').textContent=`"${c.name}"을 골랐습니다. 패널 제목·컨셉 문장과 모형의 출발점이 됩니다.`; });
+function styleSummary(){ const tags={}; for(const id of state.likes){ const c=allCases().find(x=>x.id===id); if(c) for(const t of c.tags) tags[t]=(tags[t]||0)+1; } if(state.conceptPick) tags[MASS[state.conceptPick.mass]||state.conceptPick.mass]=(tags[MASS[state.conceptPick.mass]]||0)+1; const top=Object.entries(tags).sort((a,b)=>b[1]-a[1]).slice(0,6).map(x=>x[0]); return top.length?top.join(' · '):'아직 없음'; }
+async function askConcepts(different){ const st=$('#cStatus'); st.className='status'; st.textContent='세 갈래를 생각하는 중…'; $('#cAi').disabled=true; $('#cMore').disabled=true;
+  const prev=state.concepts.length?state.concepts:DEFAULT_CONCEPTS;
+  const prompt=`당신은 건축 설계 스튜디오의 선배입니다. 아래 대지와 재료로 서로 다른 컨셉 3안을 냅니다. 설계를 확정하지 말고 "방향"을 제시하세요. 한국어.
+프로젝트: ${state.title} / 용도: ${state.use} / 규모: ${state.scale}
+대지: ${state.site}
+키워드: ${state.keys}
+메모: ${state.notes}
+스타일 프로필(사용자가 좋아한 것): ${styleSummary()}
+${different?'아래 기존 안과는 다른 방향으로:\n'+prev.map(c=>'- '+c.name).join('\n'):''}
+JSON 배열만, 정확히 3개: [{"name": 제목 12자 이내, "line": 한 줄 컨셉 40자 이내, "why": 이 땅에 맞는 이유 2문장, "mass": "bar"|"court"|"tower"|"step"|"split"|"frame" 중 하나, "moves": [핵심 조작 3개, 각 20자 이내], "refs": [{"name": 실제 건물명, "arch": 건축가, "note": 참고할 점 15자}, 2개]}] 실제로 존재하는 건물만.`;
+  try{ const r=await sample.json(prompt,{modelTier:'default',cache:false}); const arr=Array.isArray(r)?r:(r&&Array.isArray(r.concepts)?r.concepts:null); if(!arr||arr.length<3) throw {code:'invalid_json'}; state.concepts=arr.slice(0,3).map(c=>({name:String(c.name||''),line:String(c.line||''),why:String(c.why||''),mass:MASS[c.mass]?c.mass:'bar',moves:Array.isArray(c.moves)?c.moves.slice(0,3).map(String):[],refs:Array.isArray(c.refs)?c.refs.slice(0,2).map(x=>({name:String(x.name||''),arch:String(x.arch||''),note:String(x.note||'')})):[]})); renderConceptCards(); drawConceptStage(); st.textContent='세 안이 나왔습니다. 하나를 고르거나 "다른 방향으로"를 눌러 보세요.'; }
+  catch(e){ st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#cAi').disabled=false; $('#cMore').disabled=false; } }
+$('#cAi').addEventListener('click',()=>askConcepts(false)); $('#cMore').addEventListener('click',()=>askConcepts(true));
+let conceptStageN=1;
+function conceptStageSVG(n){ const list=state.concepts.length?state.concepts:DEFAULT_CONCEPTS; const F='font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif"';
+  let s=`<svg viewBox="0 0 400 300" ${F}>`;
+  if(n===1){ s+=`<rect x="40" y="60" width="320" height="180" fill="none" stroke="#1d1d1f" stroke-width="1" stroke-dasharray="4 3"/><text x="200" y="40" text-anchor="middle" font-size="12" fill="#6e6e73">${esc(state.site)}</text><text x="30" y="155" text-anchor="end" font-size="11" fill="#1d8a4b">공원 · 서</text><text x="370" y="155" font-size="11" fill="#6e6e73">도로 · 동</text><text x="200" y="56" text-anchor="middle" font-size="10" fill="#8e8e93">옆 건물</text><text x="200" y="256" text-anchor="middle" font-size="10" fill="#8e8e93">옆 건물</text><text x="200" y="155" text-anchor="middle" font-size="22" font-weight="700" fill="#1d1d1f">${esc(state.zc.w)} × ${esc(state.zc.d)} m</text>`; }
+  else if(n===2){ const ks=state.keys.split(',').map(x=>x.trim()).filter(Boolean); ks.forEach((k,i)=>{ s+=`<rect x="${50+i*105}" y="110" width="95" height="70" rx="16" fill="#f5f5f7"/><text x="${97+i*105}" y="152" text-anchor="middle" font-size="18" font-weight="700" fill="#1d1d1f">${esc(k)}</text>`; }); s+=`<text x="200" y="230" text-anchor="middle" font-size="12" fill="#6e6e73">키워드 ${ks.length}개 → 방향 3갈래</text>`; }
+  else { list.forEach((c,i)=>{ const picked=n===4&&state.conceptPick&&state.conceptPick.name===c.name; const dim=n===4&&state.conceptPick&&!picked; s+=`<g opacity="${dim?0.3:1}" transform="translate(${20+i*125},40)"><rect width="110" height="220" rx="12" fill="${picked?'#e6f1fb':'#fff'}" stroke="${picked?'#0a58ca':'#d2d2d7'}" stroke-width="${picked?2:1}"/><g transform="translate(8,14) scale(0.78)">${massIcon(c.mass).replace(/<svg[^>]*>|<\/svg>/g,'')}</g><text x="55" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1d1f">${esc(c.name.length>10?c.name.slice(0,10)+'…':c.name)}</text>${wrapText(c.line,12).slice(0,5).map((ln,j)=>`<text x="55" y="${132+j*15}" text-anchor="middle" font-size="9.5" fill="#424245">${esc(ln)}</text>`).join('')}</g>`; }); if(n===4&&!state.conceptPick) s+=`<text x="200" y="285" text-anchor="middle" font-size="11" fill="#6e6e73">작업대에서 하나를 고르면 여기 표시됩니다</text>`; }
+  return s+'</svg>'; }
+function drawConceptStage(){ const el=$('#conceptStage'); if(el) el.innerHTML=conceptStageSVG(conceptStageN); }
+
+/* ---------- 도면: zoning + section ---------- */
+const GROUP_COLOR={public:'#ff9f0a',private:'#5e5ce6',service:'#8e8e93',core:'#8e8e93',outdoor:'#30d158'};
+function parseRooms(){ return $('#zRooms').value.split('\n').map(l=>l.split(',').map(s=>s.trim())).filter(p=>p[0]).map(p=>({name:p[0],area:parseFloat(p[1])||20,group:(p[2]||'public').toLowerCase(),adj:(p[3]||'').split('|').map(s=>s.trim()).filter(Boolean)})); }
+function localLayout(rooms){ const total=rooms.reduce((a,r)=>a+r.area,0)||1; const order=['public','outdoor','private','service','core']; const sorted=[...rooms].sort((a,b)=>order.indexOf(a.group)-order.indexOf(b.group)); const out=[]; let x=0; const perCol=total/3; let colArea=0, col=[];
+  const flush=()=>{ if(!col.length)return; const ca=col.reduce((a,r)=>a+r.area,0); const w=100*ca/total; let y=0; for(const r of col){ const h=100*r.area/ca; out.push({...r,x,y,w,h}); y+=h; } x+=w; col=[]; colArea=0; };
+  for(const r of sorted){ col.push(r); colArea+=r.area; if(colArea>=perCol*0.95) flush(); } flush(); return out; }
+function zoneSVG(zs){ const w=state.zc.w||29, h=state.zc.d||38.8; const ar=h/w; const VH=100*ar; const idx=Object.fromEntries(zs.map((z,i)=>[z.name,i]));
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 108 ${VH+16}" font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif"><rect x="0" y="0" width="100" height="${VH}" fill="none" stroke="#1d1d1f" stroke-width=".5" stroke-dasharray="2 1.5"/>`;
+  for(const z of zs){ const X=z.x,Y=z.y*ar,Wd=z.w,Ht=z.h*ar; const c=GROUP_COLOR[z.group]||'#8e8e93'; s+=`<rect class="z" x="${X+.6}" y="${Y+.6}" width="${Math.max(Wd-1.2,0)}" height="${Math.max(Ht-1.2,0)}" rx="1.2" fill="${c}" fill-opacity=".22" stroke="${c}" stroke-width=".5"/>`;
+    const fs=Math.min(3.2,Wd/Math.max(z.name.length,3)*1.6,Ht/2.2); s+=`<text class="zt" x="${X+Wd/2}" y="${Y+Ht/2}" text-anchor="middle" dominant-baseline="central" font-size="${fs.toFixed(1)}" fill="#1d1d1f">${esc(z.name)}</text>`;
+    if(Ht>fs*2.6) s+=`<text class="zt" x="${X+Wd/2}" y="${Y+Ht/2+fs*1.1}" text-anchor="middle" dominant-baseline="central" font-size="${(fs*.7).toFixed(1)}" fill="#6e6e73">${z.area}㎡</text>`; }
+  const drawn=new Set(); for(const z of zs) for(const a of (z.adj||[])){ const j=idx[a]; if(j==null)continue; const k=[z.name,a].sort().join('|'); if(drawn.has(k))continue; drawn.add(k); const o=zs[j]; s+=`<line class="zl" x1="${z.x+z.w/2}" y1="${(z.y+z.h/2)*ar}" x2="${o.x+o.w/2}" y2="${(o.y+o.h/2)*ar}" stroke="#1d1d1f" stroke-width=".3" stroke-opacity=".45" stroke-dasharray="1 1"/>`; }
+  s+=`<text x="0" y="${VH+6}" font-size="3" fill="#6e6e73">${esc($('#zFloor').value)} · ${w}m × ${h}m · 조닝 다이어그램</text><text x="100" y="${VH+6}" text-anchor="end" font-size="2.6" fill="#6e6e73">N ↑</text>`;
+  return s+'</svg>'; }
+function drawZones(){ if(!state.zones)return; $('#zBox').innerHTML=zoneSVG(state.zones); drawZoneStage(); }
+function drawZoneStage(){ const el=$('#zoneStage'); if(el&&state.zones) el.innerHTML=zoneSVG(state.zones); }
+$('#zLocal').addEventListener('click',()=>{ state.zones=localLayout(parseRooms()); drawZones(); $('#zStatus').textContent='면적 비율로 배치했습니다. 블록을 CAD에서 옮겨 다듬으세요.'; });
+$('#zAi').addEventListener('click',async()=>{ const st=$('#zStatus'); st.className='status'; st.textContent='조닝 생각하는 중…'; $('#zAi').disabled=true; const rooms=parseRooms(); const w=state.zc.w,h=state.zc.d;
+  const prompt=`건축 조닝 다이어그램을 만듭니다. 대지는 폭 ${w}m, 깊이 ${h}m 직사각형이고 좌표계는 0~100 정규화(x 오른쪽=동, y 아래=남)입니다. 서쪽(x=0)은 공원·보행로, 동쪽(x=100)은 도로입니다. 아래 실들을 겹치지 않는 직사각형 블록으로 배치하세요. 면적 비율을 지키고, 인접으로 적힌 실끼리 붙이고, core는 남북 가장자리 중간에, outdoor는 통로로 쓰세요. 블록들은 대지 안을 거의 채워야 합니다.
+${state.conceptPick?'컨셉: '+state.conceptPick.name+' — '+state.conceptPick.line:''}
+실 목록(이름, 면적㎡, 구분, 인접):
+${rooms.map(r=>`${r.name}, ${r.area}, ${r.group}, ${r.adj.join('|')}`).join('\n')}
+JSON 객체 하나만: {"zones":[{"name":실명 그대로,"x":0~100,"y":0~100,"w":폭,"h":높이}]} 실명은 입력과 똑같이.`;
+  try{ const r=await sample.json(prompt,{modelTier:'default',cache:false}); const by=Object.fromEntries(rooms.map(x=>[x.name,x])); const zs=((r&&r.zones)||[]).filter(z=>by[z.name]).map(z=>({...by[z.name],x:+z.x||0,y:+z.y||0,w:Math.max(+z.w||5,3),h:Math.max(+z.h||5,3)})); if(!zs.length) throw {code:'invalid_json'}; state.zones=zs; drawZones(); st.textContent='AI가 인접 관계를 읽어 배치했습니다. 다시 누르면 새로 짭니다.'; }
+  catch(e){ st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#zAi').disabled=false; } });
+$('#zSvg').addEventListener('click',()=>{ if(!state.zones){$('#zStatus').textContent='먼저 배치하세요.';return} save('zoning_'+$('#zFloor').value.replace(/[^\w가-힣]+/g,'_')+'.svg',zoneSVG(state.zones),$('#zStatus')); });
+$('#zToPanel').addEventListener('click',()=>{ if(!state.zones){$('#zStatus').textContent='먼저 배치하세요.';return} addSvgImage('조닝 '+$('#zFloor').value,'plan',zoneSVG(state.zones)); go('panel',true); $('#pStatus').textContent='조닝 다이어그램이 패널에 들어갔습니다.'; });
+function sectionSVG(){ const hs=$('#secHeights').value.split(',').map(x=>parseFloat(x)).filter(x=>x>0); const n=Math.max(floors.length,1); const d=state.zc.d||38.8; const maxA=Math.max(1,...floors.map(f=>f[1])); const totalH=floors.reduce((a,f,i)=>a+(hs[i]||3.3),0); const sc=Math.min(300/d,200/Math.max(totalH,1)); const ox=50, base=250; let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 290" font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif"><line x1="20" y1="${base}" x2="380" y2="${base}" stroke="#1d1d1f" stroke-width="1.2"/>`; let y=base;
+  floors.forEach((f,i)=>{ const h=(hs[i]||3.3)*sc; const w=d*sc*Math.min(1,f[1]/maxA); const x=ox+(d*sc-w); y-=h; s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${USE_COLOR[f[2]]||'#c7c7cc'}" fill-opacity=".35" stroke="#1d1d1f" stroke-width=".8"/><text x="${ox-6}" y="${y+h/2}" text-anchor="end" dominant-baseline="central" font-size="8" fill="#6e6e73">${esc(f[0])}</text><text x="${x+w+5}" y="${y+h/2}" dominant-baseline="central" font-size="7.5" fill="#1d1d1f">${(hs[i]||3.3).toFixed(1)}m</text>`; });
+  s+=`<text x="${ox}" y="${base+16}" font-size="8" fill="#6e6e73">서 · 공원</text><text x="${ox+d*sc}" y="${base+16}" text-anchor="end" font-size="8" fill="#6e6e73">동 · 도로</text><text x="380" y="30" text-anchor="end" font-size="9" fill="#6e6e73">단면 개념도 · 총 높이 ${totalH.toFixed(1)}m</text><line x1="${ox+d*sc+30}" y1="${y}" x2="${ox+d*sc+30}" y2="${base}" stroke="#0a58ca" stroke-width=".6"/><text x="${ox+d*sc+34}" y="${(y+base)/2}" font-size="7.5" fill="#0a58ca">${totalH.toFixed(1)}</text></svg>`; return s; }
+function drawSection(){ const el=$('#secBox'); if(el) el.innerHTML=sectionSVG(); }
+$('#secDraw').addEventListener('click',drawSection); $('#secHeights').addEventListener('input',()=>{state.secHeights=$('#secHeights').value; drawSection();});
+$('#secSvg').addEventListener('click',()=>save('section.svg',sectionSVG(),$('#zStatus')));
+$('#secToPanel').addEventListener('click',()=>{ addSvgImage('단면 개념도','section',sectionSVG()); go('panel',true); $('#pStatus').textContent='단면이 패널에 들어갔습니다.'; });
+
+/* ---------- 모형: area + mass ---------- */
+const USES=['근생','숙박','주거','업무','공용','기타'];
+const USE_COLOR={'근생':'#ff9f0a','숙박':'#5e5ce6','주거':'#30d158','업무':'#64d2ff','공용':'#8e8e93','기타':'#c7c7cc'};
+function renderFloors(){ $('#floorRows').innerHTML=floors.map((f,i)=>`<tr><td><input type="text" value="${esc(f[0])}" data-i="${i}" data-k="0" aria-label="층"></td><td><input type="number" value="${f[1]}" data-i="${i}" data-k="1" aria-label="면적"></td><td><select data-i="${i}" data-k="2" aria-label="용도">${USES.map(u=>`<option${u===f[2]?' selected':''}>${u}</option>`).join('')}</select></td><td><button data-rm="${i}" aria-label="삭제">×</button></td></tr>`).join(''); calcArea(); }
+$('#floorRows').addEventListener('input',e=>{const t=e.target; if(t.dataset.i==null)return; floors[+t.dataset.i][+t.dataset.k]=t.dataset.k==='1'?parseFloat(t.value)||0:t.value; calcArea();});
+$('#floorRows').addEventListener('click',e=>{const b=e.target.closest('[data-rm]'); if(!b)return; floors.splice(+b.dataset.rm,1); renderFloors();});
+$('#addFloor').addEventListener('click',()=>{floors.push([(floors.length+1)+'F',300,'근생']); renderFloors();});
+['#aSite','#aBcr','#aFar'].forEach(s=>$(s).addEventListener('input',calcArea));
+function calcArea(){
+  const site=parseFloat($('#aSite').value)||1, bcrL=parseFloat($('#aBcr').value)||0, farL=parseFloat($('#aFar').value)||0;
+  const gfa=floors.reduce((a,f)=>a+f[1],0)||0; const footprint=Math.max(0,...floors.map(f=>f[1])); const bcr=footprint/site*100, far=gfa/site*100; const byUse={}; for(const f of floors){byUse[f[2]]=(byUse[f[2]]||0)+f[1];}
+  state.areas={site,gfa,footprint,bcr,far,byUse,bcrL,farL}; const cls=(v,l)=>v>l?'bad':(v>l*0.95?'warn':'ok'); const pc=v=>gfa?(v/gfa*100).toFixed(1):'0.0';
+  $('#kpis').innerHTML=`<div class="kpi"><div class="l">연면적</div><div class="v">${fmt(gfa)}<small> ㎡</small></div><div class="d">${floors.length}개 층</div></div><div class="kpi"><div class="l">건축면적 (최대 층)</div><div class="v">${fmt(footprint)}<small> ㎡</small></div><div class="d">대지 ${fmt(site)} ㎡</div></div><div class="kpi ${cls(bcr,bcrL)}"><div class="l">건폐율</div><div class="v">${bcr.toFixed(1)}<small> %</small></div><div class="d">한도 ${bcrL}% · ${bcr>bcrL?'초과 '+(bcr-bcrL).toFixed(1):'여유 '+(bcrL-bcr).toFixed(1)}%p</div></div><div class="kpi ${cls(far,farL)}"><div class="l">용적률</div><div class="v">${far.toFixed(1)}<small> %</small></div><div class="d">한도 ${farL}% · ${far>farL?'초과 '+(far-farL).toFixed(1):'여유 '+(farL-far).toFixed(1)}%p · 남은 ${fmt(Math.max(0,site*farL/100-gfa))} ㎡</div></div>`;
+  $('#useBar').innerHTML=Object.entries(byUse).map(([u,v])=>`<i style="width:${pc(v)}%;background:${USE_COLOR[u]||'#c7c7cc'}" title="${u}"></i>`).join('');
+  $('#useLegend').innerHTML=Object.entries(byUse).map(([u,v])=>`<span><i style="background:${USE_COLOR[u]||'#c7c7cc'}"></i>${u} ${fmt(v)} ㎡ · ${pc(v)}%</span>`).join('');
+  drawModelStage(); drawMass(); drawSection(); redraw();
+}
+function massSVG(rot,opts){ opts=opts||{}; const w=state.zc.w||29, d=state.zc.d||38.8; const maxA=Math.max(1,...floors.map(f=>f[1])); const full=w*d; const hs=(state.secHeights||'').split(',').map(x=>parseFloat(x)).filter(x=>x>0);
+  const ca=Math.cos(Math.PI/6), sa=Math.sin(Math.PI/6); const r=rot||0; const totalH=floors.reduce((a,f,i)=>a+(hs[i]||3.3),0)*0.9;
+  const sc=Math.min(360/((w+d)*ca), 250/((w+d)*sa+totalH)); const baseY=36+totalH*sc; const cx=200-((w-d)/2)*ca*sc;
+  const R=(x,y)=>{ let X=x,Y=y; for(let i=0;i<r;i++){ const t=X; X=Y; Y=w-t; } return [X,Y]; };
+  const P=(x,y,z)=>{ const [X,Y]=R(x,y); return [cx+(X-Y)*ca*sc,baseY+(X+Y)*sa*sc-z]; };
+  const poly=(pts,f,o)=>`<polygon points="${pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="${f}" fill-opacity="${o||1}" stroke="#1d1d1f" stroke-width=".6" stroke-linejoin="round"/>`;
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif">`;
+  s+=poly([P(0,0,0),P(w,0,0),P(w,d,0),P(0,d,0)],'#f0f0f3');
+  let z=0; floors.forEach((f,i)=>{ const h=(hs[i]||3.3)*sc*0.9; const ratio=Math.min(1,f[1]/full); const bw=w, bd=d*ratio; const ox=0, oy=0; const col=USE_COLOR[f[2]]||'#c7c7cc'; const z0=z, z1=z+h;
+    const sides=[{pts:[P(ox,oy+bd,z0),P(ox+bw,oy+bd,z0),P(ox+bw,oy+bd,z1),P(ox,oy+bd,z1)],c:[ox+bw/2,oy+bd],o:.55},{pts:[P(ox+bw,oy,z0),P(ox+bw,oy+bd,z0),P(ox+bw,oy+bd,z1),P(ox+bw,oy,z1)],c:[ox+bw,oy+bd/2],o:.8},{pts:[P(ox,oy,z0),P(ox,oy+bd,z0),P(ox,oy+bd,z1),P(ox,oy,z1)],c:[ox,oy+bd/2],o:.8},{pts:[P(ox,oy,z0),P(ox+bw,oy,z0),P(ox+bw,oy,z1),P(ox,oy,z1)],c:[ox+bw/2,oy],o:.55}];
+    const depth=f=>{ const [X,Y]=R(f.c[0],f.c[1]); return X+Y; }; sides.sort((p,q)=>depth(p)-depth(q)); for(const f of sides) s+=poly(f.pts,col,f.o); s+=poly([P(ox,oy,z1),P(ox+bw,oy,z1),P(ox+bw,oy+bd,z1),P(ox,oy+bd,z1)],col,.3); z=z1; });
+  if(!opts.bare){ s+=`<text x="14" y="22" font-size="11" fill="#6e6e73">매스 · ${['남서','남동','북동','북서'].at(r)}에서</text><text x="386" y="288" text-anchor="end" font-size="10" fill="#6e6e73">${floors.length}층 · 연면적 ${fmt(state.areas?state.areas.gfa:0)}㎡ · 뒤로 물러나는 면적 = 테라스</text>`; }
+  return s+'</svg>'; }
+function drawMass(){ const el=$('#massBox'); if(el) el.innerHTML=massSVG(state.rot); }
+$$('[data-rot]').forEach(b=>b.addEventListener('click',()=>{ state.rot=+b.dataset.rot; drawMass(); }));
+$('#massSvg').addEventListener('click',()=>save('mass.svg',massSVG(state.rot),$('#aStatus')));
+$('#massToPanel').addEventListener('click',()=>{ addSvgImage('매스 모형','render',massSVG(state.rot,{bare:true})); go('panel',true); $('#pStatus').textContent='매스가 패널의 투시도 자리에 들어갔습니다.'; });
+let modelStageN=1;
+function drawModelStage(){ const el=$('#modelStage'); const a=state.areas; if(!el||!a) return; const n=modelStageN; if(n>=3){ el.innerHTML=massSVG(n===4?1:0); return; } const maxA=Math.max(1,...floors.map(f=>f[1])); const fh=Math.min(22,300/Math.max(floors.length,1)); const base=330; const F='font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif"'; const pc=v=>a.gfa?(v/a.gfa*100).toFixed(1):'0.0';
+  let s=`<svg viewBox="0 0 400 400" ${F}><line x1="20" y1="${base}" x2="380" y2="${base}" stroke="#1d1d1f" stroke-width="1"/>`;
+  floors.forEach((f,i)=>{ const w=260*f[1]/maxA; const y=base-(i+1)*fh; const x=200-w/2; s+=`<g><rect x="${x}" y="${y}" width="${w}" height="${fh-2}" fill="${USE_COLOR[f[2]]||'#c7c7cc'}" fill-opacity=".8"/><text x="${x-6}" y="${y+fh/2}" text-anchor="end" dominant-baseline="central" font-size="9" fill="#6e6e73">${esc(f[0])}</text>${n>=2?`<text x="${x+w+6}" y="${y+fh/2}" dominant-baseline="central" font-size="9" fill="#1d1d1f">${fmt(f[1])}</text>`:''}</g>`; });
+  if(n>=2){ s+=`<text x="20" y="28" font-size="11" fill="#6e6e73">연면적</text><text x="20" y="52" font-size="24" font-weight="700" fill="#1d1d1f">${fmt(a.gfa)} ㎡</text>`+Object.entries(a.byUse).map(([u,v],i)=>`<text x="20" y="${72+i*14}" font-size="10" fill="#1d1d1f"><tspan fill="${USE_COLOR[u]||'#c7c7cc'}">■</tspan> ${esc(u)} ${pc(v)}%</text>`).join(''); const g=(label,v,l,y)=>{ const pct=Math.min(1,v/Math.max(l,1)); const col=v>l?'#d0373b':(v>l*.95?'#c9790b':'#1d8a4b'); return `<text x="380" y="${y}" text-anchor="end" font-size="10" fill="#6e6e73">${label} ${v.toFixed(1)}% / 한도 ${l}%</text><rect x="240" y="${y+6}" width="140" height="6" rx="3" fill="#e5e5ea"/><rect x="240" y="${y+6}" width="${140*pct}" height="6" rx="3" fill="${col}"/>`; }; s+=g('건폐율',a.bcr,a.bcrL,22)+g('용적률',a.far,a.farL,50); }
+  el.innerHTML=s+'</svg>'; }
+$('#aToPanel').addEventListener('click',()=>{ calcArea(); go('panel',true); $('#pStatus').textContent='면적표가 패널에 반영됐습니다.'; });
+$('#aAi').addEventListener('click',async()=>{ const st=$('#aStatus'); st.className='status'; st.textContent='검토 중…'; const out=$('#aOut'); out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#aAi').disabled=true; const a=state.areas;
+  const prompt=`건축 면적 개략 검토입니다. 한국 기준으로, 법규 세부 조항을 단정하지 말고 "확인 필요"로 표시하세요. 5문장 이내, 한국어, 평문.
+대지 ${fmt(a.site)}㎡, 건폐율 한도 ${a.bcrL}%, 용적률 한도 ${a.farL}%.
+층별: ${floors.map(f=>`${f[0]} ${f[1]}㎡ ${f[2]}`).join(', ')}.
+결과: 연면적 ${fmt(a.gfa)}㎡, 건축면적 ${fmt(a.footprint)}㎡, 건폐율 ${a.bcr.toFixed(1)}%, 용적률 ${a.far.toFixed(1)}%, 용도별 ${Object.entries(a.byUse).map(([u,v])=>u+' '+(a.gfa?(v/a.gfa*100).toFixed(1):'0')+'%').join(', ')}.
+${state.conceptPick?'컨셉: '+state.conceptPick.name+'. 이 컨셉과 면적 배분이 맞는지도 한 문장.':''}
+한도 대비 여유, 용도 비율에서 눈에 띄는 점, 조정한다면 어느 층을 얼마나 바꿀지 제안하세요.`;
+  try{ const r=await sample(prompt,{modelTier:'quick',onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; } catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#aAi').disabled=false; } });
+
+/* ---------- 패널: AI fill, export, crit, text ---------- */
+$('#aiFill').addEventListener('click',async()=>{ const st=$('#pStatus'); st.className='status'; st.textContent='생각하는 중…'; $('#aiFill').disabled=true; const L=LAYOUTS[state.layout];
+  const prompt=`당신은 건축 패널 편집자입니다. 아래 설계 개요를 읽고 A1 패널(${L.name}: ${L.desc})에 들어갈 글을 씁니다. 설계 내용을 새로 만들지 말고 주어진 사실만 다듬으세요. 한국어.
+프로젝트명: ${state.title}
+컨셉: ${state.conceptPick?state.conceptPick.name+' — '+state.conceptPick.line+' / '+state.conceptPick.why:state.concept}
+대지: ${state.site} / 용도: ${state.use} / 규모: ${state.scale}
+메모: ${state.notes}
+${state.areas?'면적: 연면적 '+fmt(state.areas.gfa)+'㎡, 건폐율 '+state.areas.bcr.toFixed(1)+'%, 용적률 '+state.areas.far.toFixed(1)+'%':''}
+JSON 객체 하나만: {"title": 패널 제목(프로젝트명 기반, 12자 이내), "subtitle": 부제(컨셉 한 줄, 25자 이내), "statement": 컨셉 문장(2~3문장, 120자 이내), "highlights": [핵심 3개, 각 20자 이내], "captions": {"render": 투시도 캡션, "plan": 평면 캡션, "section": 단면 캡션, "diagram": 다이어그램 캡션} 각 30자 이내}`;
+  try{ const r=await sample.json(prompt,{modelTier:'quick',cache:false}); if(r&&typeof r==='object'){ state.ai={title:r.title||'',subtitle:r.subtitle||'',statement:r.statement||'',highlights:Array.isArray(r.highlights)?r.highlights.slice(0,3):[],captions:r.captions&&typeof r.captions==='object'?r.captions:{}}; redraw(); st.textContent='채웠습니다. 문장은 글 상자에서 다듬어 바꿀 수 있습니다.'; } }
+  catch(e){ st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#aiFill').disabled=false; } });
+$('#exSvg').addEventListener('click',()=>save((state.title||'panel').replace(/\s+/g,'_')+'_A1.svg',sheetSVG(),$('#pStatus')));
+async function sheetPNG(px){ const url=URL.createObjectURL(new Blob([sheetSVG()],{type:'image/svg+xml'})); const img=new Image(); await new Promise((ok,no)=>{img.onload=ok;img.onerror=no;img.src=url;}); const c=document.createElement('canvas'); c.width=W*px; c.height=H*px; const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height); g.drawImage(img,0,0,c.width,c.height); URL.revokeObjectURL(url); return await new Promise(r=>c.toBlob(r,'image/png')); }
+$('#exPng').addEventListener('click',async()=>{ const st=$('#pStatus'); st.textContent='PNG 만드는 중…'; try{ const blob=await sheetPNG(3); await save((state.title||'panel').replace(/\s+/g,'_')+'_A1.png',blob,st); }catch(e){ st.textContent='PNG를 만들지 못했습니다. SVG로 저장해 보세요.'; } });
+$('#critBtn').addEventListener('click',async()=>{ const st=$('#pStatus'); st.className='status'; st.textContent='크리틱 중…'; const out=$('#critOut'); out.hidden=false; out.textContent='패널을 보고 있는 중…'; $('#critBtn').disabled=true; const L=LAYOUTS[state.layout]; const imgs=assignImages(L); const filled=imgs.filter(Boolean).length, slots=imgs.filter((x,i)=>L.slots[i].k==='img').length;
+  const prompt=`당신은 건축학과 크리틱의 외부 심사위원입니다. 학생의 A1 패널을 평가합니다. 날카롭지만 건설적으로, 한국어, 평문.
+패널 컨셉: ${L.name} (${L.desc}). 이미지 슬롯 ${slots}개 중 ${filled}개 채워짐.
+프로젝트: ${state.title} / ${state.conceptPick?state.conceptPick.name+' — '+state.conceptPick.line:state.concept}
+컨셉 문장: ${state.ai.statement||state.notes}
+${state.areas?'면적: 연면적 '+fmt(state.areas.gfa)+'㎡, 용적률 '+state.areas.far.toFixed(1)+'% (한도 '+state.areas.farL+'%)':''}
+${canImages?'첨부한 이미지는 패널 전체입니다. 위계(6ft에서 읽히는가), 정렬, 여백, 단면 크기, 컨셉 문장과 도면의 일치를 보세요.':'이미지는 없으니 구성 정보로만 판단하세요.'}
+형식: 1) 한 줄 총평 2) 잘한 점 2개 3) 고칠 점 3개(구체적으로 어디를 어떻게) 4) 크리틱에서 나올 질문 5개. 총 400자 이내.`;
+  try{ const opts={modelTier:'default',cache:false,onText:({text})=>{out.textContent=text}}; if(canImages){ try{ opts.images=await sheetPNG(1); }catch(e){} } const r=await sample(prompt,opts); out.textContent=r.text; st.textContent=''; }
+  catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#critBtn').disabled=false; } });
+$('#modes').addEventListener('click',e=>{const b=e.target.closest('[data-mode]'); if(!b)return; tMode=b.dataset.mode; $$('#modes button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
+const MODE_PROMPT={statement:'패널에 들어갈 컨셉 문장으로 다듬으세요. 60자 이내 한 문장, 그다음 줄에 보조 문장 하나(80자 이내). 꾸밈말보다 공간의 조작을 말하세요.',desc:'영역(또는 층)별 설명으로 정리하세요. 항목마다 "이름 — 두 문장". 각 문장 40자 이내. 원문에 없는 사실은 넣지 마세요.',script:'3분 발표 스크립트로 쓰세요. 대지 읽기 → 컨셉 → 형태·동선 → 재료 순서, 약 600자, 구어체, 첫 문장은 대지에서 본 한 장면으로.',crit:'크리틱에서 교수가 물을 법한 날카로운 질문 5개와, 원문 근거로 답할 수 있는 한 줄 답변을 각각 쓰세요. 답할 수 없는 질문은 "보완 필요"로 표시.'};
+$('#tAi').addEventListener('click',async()=>{ const st=$('#tStatus'); st.className='status'; st.textContent=''; const out=$('#tOut'); out.textContent='생각하는 중…'; tCtl=new AbortController(); $('#tStop').disabled=false; $('#tAi').disabled=true;
+  const prompt=`당신은 건축 설계 스튜디오의 편집자입니다. 프로젝트: ${state.title} — ${state.conceptPick?state.conceptPick.name+' / '+state.conceptPick.line:state.concept} (${state.use}, ${state.site}).\n${MODE_PROMPT[tMode]||MODE_PROMPT.statement}\n한국어로, 제목·머리말 없이 본문만.\n\n원문:\n${$('#pNotes').value}`;
+  try{ const r=await sample(prompt,{cache:false,signal:tCtl.signal,onText:({text})=>{out.textContent=text}}); out.textContent=r.text; if(r.truncated) st.textContent='길이 제한으로 잘렸습니다. 원문을 줄여 보세요.'; }
+  catch(e){ out.textContent=e.text||(e.code==='cancelled'?out.textContent.replace('생각하는 중…',''):''); if(e.code!=='cancelled'){st.className='status err';st.textContent=errCopy(e.code);} } finally{ $('#tStop').disabled=true; $('#tAi').disabled=false; } });
+$('#tStop').addEventListener('click',()=>tCtl?.abort());
+$('#tToPanel').addEventListener('click',()=>{ const t=$('#tOut').textContent.trim(); if(!t||t==='결과가 여기에 나타납니다.'){$('#tStatus').textContent='먼저 다듬으세요.';return} if(tMode==='statement'){ const [a,...b]=t.split('\n'); state.ai.subtitle=a; state.ai.statement=b.join(' ').trim()||a; } else state.ai.statement=t.slice(0,300); redraw(); $('#pStatus').textContent='글이 패널에 들어갔습니다.'; });
+
+/* ---------- 사례 배우기 ---------- */
+const CASES=[
+  {id:'tietgen',name:'Tietgen Dormitory',arch:'Lundgaard & Tranberg',city:'코펜하겐 · 2006',type:'기숙사',mat:'콘크리트·목재',scale:'중',tags:['중정','원형','테라스'],note:'원형 중정을 돌며 방들이 바깥으로 튀어나온다. 공용은 안쪽, 개인은 바깥쪽.'},
+  {id:'mountain',name:'Mountain Dwellings',arch:'BIG',city:'코펜하겐 · 2008',type:'공동주택',mat:'콘크리트·목재',scale:'대',tags:['계단형','테라스','주차장 위'],note:'주차장 경사 위에 테라스 주거를 얹었다. 모든 집이 남향 정원을 갖는다.'},
+  {id:'habitat',name:'Habitat 67',arch:'Moshe Safdie',city:'몬트리올 · 1967',type:'공동주택',mat:'프리캐스트 콘크리트',scale:'대',tags:['모듈','계단형','테라스'],note:'박스 유닛이 물러나며 쌓여 아래 집의 지붕이 위 집의 정원이 된다.'},
+  {id:'kolumba',name:'Kolumba Museum',arch:'Peter Zumthor',city:'쾰른 · 2007',type:'미술관',mat:'벽돌',scale:'중',tags:['두꺼운 외피','빛','폐허 위'],note:'폐허 위에 회색 벽돌을 쌓았다. 틈새로 들어오는 빛이 전시실이 된다.'},
+  {id:'ssamziegil',name:'쌈지길',arch:'최문규',city:'서울 인사동 · 2004',type:'상업',mat:'콘크리트·금속',scale:'중',tags:['중정','경사로','골목'],note:'경사로가 중정을 돌며 올라가 4층이 하나의 골목이 된다.'},
+  {id:'space',name:'공간 사옥',arch:'김수근',city:'서울 · 1971',type:'사무',mat:'벽돌',scale:'소',tags:['벽돌','스킵플로어','작은 창'],note:'검은 벽돌과 반 층씩 어긋난 바닥. 작은 건물이 깊어지는 법.'},
+  {id:'sendai',name:'Sendai Mediatheque',arch:'Toyo Ito',city:'센다이 · 2001',type:'도서관',mat:'유리·강재',scale:'대',tags:['튜브 기둥','투명','열린 평면'],note:'열세 개의 강재 튜브가 기둥이자 코어다. 바닥은 완전히 열린다.'},
+  {id:'therme',name:'Therme Vals',arch:'Peter Zumthor',city:'발스 · 1996',type:'온천',mat:'석재',scale:'중',tags:['석재','동굴','빛'],note:'지역 편마암을 쌓아 산속 동굴 같은 욕장을 만들었다.'},
+  {id:'unite',name:'Unité d\'Habitation',arch:'Le Corbusier',city:'마르세유 · 1952',type:'공동주택',mat:'콘크리트',scale:'대',tags:['거리 in 하늘','필로티','옥상 정원'],note:'한 건물 안에 거리·상점·학교. 옥상이 공원이다.'},
+  {id:'seattle',name:'Seattle Central Library',arch:'OMA',city:'시애틀 · 2004',type:'도서관',mat:'유리·강재',scale:'대',tags:['플랫폼','경사 서가','액자'],note:'기능별 플랫폼을 어긋나게 쌓고 사이를 유리로 감쌌다.'},
+  {id:'naoshima',name:'지중미술관',arch:'안도 다다오',city:'나오시마 · 2004',type:'미술관',mat:'콘크리트',scale:'중',tags:['땅속','중정','빛'],note:'건물을 땅에 묻고 중정으로만 빛을 들인다.'},
+  {id:'dongdaemun',name:'아모레퍼시픽 사옥',arch:'David Chipperfield',city:'서울 용산 · 2017',type:'사무',mat:'알루미늄 루버',scale:'대',tags:['상자','세 개의 중정','루버'],note:'하나의 상자에 세 개의 공중 정원을 파냈다.'}
+];
+function renderCases(){ const t=$('#lfType').value,m=$('#lfMat').value,s=$('#lfScale').value, onlyLike=$('#lfLike').getAttribute('aria-pressed')==='true';
+  const list=allCases().filter(c=>(!t||c.type===t)&&(!m||c.mat===m)&&(!s||c.scale===s)&&(!onlyLike||state.likes.includes(c.id)));
+  $('#cases').innerHTML=list.map(c=>`<div class="case">${c.img?`<img src="${c.img}" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px">`:''}<b>${esc(c.name)}</b><div class="meta">${esc(c.arch)} · ${esc(c.city)}</div><div>${esc(c.note)}</div><div class="tags">${c.tags.map(x=>`<span>${esc(x)}</span>`).join('')}<span>${esc(c.type)}</span>${c.community?'<span style="background:var(--accent);color:var(--accent-fg)">광장 사례</span>':`<span>${esc(c.mat)}</span>`}</div><div style="display:flex;gap:6px;flex-wrap:wrap"><button data-like="${c.id}" aria-pressed="${state.likes.includes(c.id)}">${state.likes.includes(c.id)?'좋아요 ✓':'좋아요'}</button><button data-cs="${c.id}" aria-pressed="${CS.has(c.id)}">${CS.has(c.id)?'비교에 담김':'비교에 넣기'}</button></div></div>`).join('')||'<div class="hint">조건에 맞는 사례가 없습니다.</div>';
+  $('#styleChips').innerHTML=styleSummary()==='아직 없음'?'<span style="color:var(--fg-2)">아직 없음 — 좋아요를 눌러 보세요</span>':styleSummary().split(' · ').map(x=>`<span>${esc(x)}</span>`).join(''); $('#cStyle').textContent=styleSummary(); renderCsPicked(); }
+(function initLearn(){ const uniq=k=>[...new Set(CASES.map(c=>c[k]))]; $('#lfType').innerHTML+=uniq('type').map(x=>`<option>${x}</option>`).join(''); $('#lfMat').innerHTML+=uniq('mat').map(x=>`<option>${x}</option>`).join(''); $('#lfScale').innerHTML+=['소','중','대'].map(x=>`<option>${x}</option>`).join(''); ['#lfType','#lfMat','#lfScale'].forEach(s=>$(s).addEventListener('change',renderCases)); $('#lfLike').setAttribute('aria-pressed','false'); $('#lfLike').addEventListener('click',()=>{ const b=$('#lfLike'); b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'); b.classList.toggle('dark'); renderCases(); });
+  $('#cases').addEventListener('click',e=>{ const cs=e.target.closest('[data-cs]'); if(cs){ const id=cs.dataset.cs; if(CS.has(id)) CS.delete(id); else if(CS.size<3) CS.add(id); renderCases(); return; } const b=e.target.closest('[data-like]'); if(!b) return; const id=b.dataset.like; const i=state.likes.indexOf(id); if(i>=0) state.likes.splice(i,1); else state.likes.push(id); renderCases(); });
+  const TERMS=[['건폐율','대지면적 대비 건축면적(1층 바닥)의 비율. 땅을 얼마나 덮는가.'],['용적률','대지면적 대비 연면적(모든 층 합)의 비율. 얼마나 높이·많이 짓는가.'],['연면적','각 층 바닥면적의 합. 공사비와 용적률의 기준.'],['조닝','실을 성격별로 묶어 자리를 정하는 일. 평면의 첫 단계.'],['코어','계단·엘리베이터·설비가 모인 수직 덩어리. 평면의 뼈대.'],['매스','건물의 덩어리. 창·재료 전에 형태만 본 것.'],['단면','건물을 세로로 자른 그림. 층고와 빛, 공간의 높낮이가 보인다.'],['입면','건물을 밖에서 정면으로 본 그림. 창의 리듬과 재료.'],['크리틱','설계 발표와 심사. 패널을 벽에 핀업하고 질문을 받는다.'],['1:200','도면 축척. 실제 200mm가 도면 1mm. 패널에서 가장 흔한 축척.']];
+  $('#terms').innerHTML=TERMS.map(t=>`<div><b>${t[0]}</b><br><span style="color:var(--fg-2)">${t[1]}</span></div>`).join(''); })();
+
+/* ---------- 내 작업실 ---------- */
+function renderStudio(){ const a=state.areas||{gfa:0,far:0,bcr:0}; const imgs=state.images.length; const c=state.conceptPick;
+  $('#studioGrid').innerHTML=`
+  <div class="scard"><h3>${esc(state.title)}</h3><div class="muted">${esc(state.site)}</div><div>${esc(state.use)} · ${esc(state.scale)}</div><div class="muted" style="margin-top:8px">${me&&me.id?'계정에 저장 가능':'로그인하면 계정에 저장됩니다'}</div></div>
+  <div class="scard"><h3>컨셉</h3>${c?`<div><b>${esc(c.name)}</b></div><div class="muted">${esc(c.line)}</div><div class="chips" style="margin-top:8px"><span>${esc(MASS[c.mass]||c.mass)}</span></div>`:'<div class="muted">아직 고르지 않음 → <a href="#concept">컨셉 잡기</a></div>'}</div>
+  <div class="scard"><h3>도면</h3>${state.zones?zoneSVG(state.zones):'<div class="muted">조닝 없음</div>'}<div class="muted" style="margin-top:6px">${esc(state.zFloor)} · 실 ${parseRooms().length}개</div></div>
+  <div class="scard"><h3>모형</h3>${massSVG(state.rot,{bare:true})}<div class="muted" style="margin-top:6px">연면적 ${fmt(a.gfa)}㎡ · 용적률 ${a.far.toFixed(1)}% · 건폐율 ${a.bcr.toFixed(1)}%</div></div>
+  <div class="scard"><h3>패널</h3><div class="muted">${LAYOUTS[state.layout].name} · 이미지 ${imgs}개 · ${state.ai.title?'AI 문장 있음':'AI 문장 없음'}</div><div style="margin-top:8px"><a href="#panel">패널 작업대 ›</a></div></div>
+  <div class="scard"><h3>스타일 프로필</h3><div class="chips">${styleSummary()==='아직 없음'?'<span style="color:var(--fg-2)">아직 없음</span>':styleSummary().split(' · ').map(x=>`<span>${esc(x)}</span>`).join('')}</div><div class="muted" style="margin-top:8px">좋아요 ${state.likes.length}개 · 고른 대안 ${c?1:0}개</div></div>`; }
+
+
+/* ---------- 대지 분석 ---------- */
+const SITE={road:'S',noise:'S',view:'N'};
+['sRoad','sNoise','sView'].forEach(id=>{ $('#'+id).addEventListener('click',e=>{ const b=e.target.closest('[data-v]'); if(!b) return; $$('#'+id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b)); SITE[id==='sRoad'?'road':(id==='sNoise'?'noise':'view')]=b.dataset.v; drawSite(); }); });
+['#sHN','#sHE','#sHS','#sHW','#sSlope','#sWind'].forEach(q=>$(q).addEventListener('input',drawSite));
+const DIRN={N:'북',E:'동',S:'남',W:'서'};
+function siteRead(){ const h={N:+$('#sHN').value||0,E:+$('#sHE').value||0,S:+$('#sHS').value||0,W:+$('#sHW').value||0}; const r=[];
+  r.push(`주 진입은 ${DIRN[SITE.road]}쪽 도로에서. 현관과 주차는 ${DIRN[SITE.road]}쪽에 모읍니다.`);
+  if(SITE.noise===SITE.road) r.push(`소음도 ${DIRN[SITE.noise]}쪽에서 오므로, 그쪽은 창을 작게 하거나 완충 공간(현관·계단·창고)을 둡니다.`); else r.push(`소음은 ${DIRN[SITE.noise]}쪽. 침실은 반대쪽인 ${DIRN[{N:'S',S:'N',E:'W',W:'E'}[SITE.noise]]}쪽으로.`);
+  if(h.S>=3) r.push(`남쪽 건물이 ${h.S}층이라 겨울 햇빛이 가립니다. 거실을 2층에 올리거나 마당을 남쪽에 두어 띄웁니다.`); else r.push(`남쪽이 열려 있어(${h.S}층) 거실·마당은 남향이 자연스럽습니다.`);
+  r.push(`조망은 ${DIRN[SITE.view]}쪽. 그쪽으로 큰 창 하나를 내고 나머지는 절제합니다.`);
+  const sl=$('#sSlope').value; if(sl!=='flat') r.push(`${sl==='s'?'남':'북'}쪽이 낮은 경사. 낮은 쪽에서 반 층 내려가는 입구나 필로티를 생각할 수 있습니다.`);
+  r.push(`겨울 바람은 ${{NW:'북서',N:'북',W:'서'}[$('#sWind').value]}. 그쪽 벽은 두껍게, 창은 작게.`);
+  return r; }
+function siteSVG(){ const h={N:+$('#sHN').value||0,E:+$('#sHE').value||0,S:+$('#sHS').value||0,W:+$('#sHW').value||0}; const W=parseFloat($('#zcW').value)||20, D=parseFloat($('#zcD').value)||30; const F='font-family="Helvetica Neue, Arial, Noto Sans KR, sans-serif"'; const cx=200,cy=200; const sc=Math.min(150/W,150/D); const w=W*sc, d=D*sc; const x0=cx-w/2,y0=cy-d/2;
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" ${F}><rect x="${x0}" y="${y0}" width="${w}" height="${d}" fill="#f5f5f7" stroke="#1d1d1f" stroke-width="1" stroke-dasharray="4 3"/>`;
+  const nb=(dir,n)=>{ if(!n) return ''; const t=`${n}층`; const g='#d2d2d7'; if(dir==='N') return `<rect x="${x0}" y="${y0-14-n*4}" width="${w}" height="${10+n*4}" fill="${g}"/><text x="${cx}" y="${y0-18-n*4}" text-anchor="middle" font-size="9" fill="#6e6e73">북 ${t}</text>`; if(dir==='S') return `<rect x="${x0}" y="${y0+d+4}" width="${w}" height="${10+n*4}" fill="${g}"/><text x="${cx}" y="${y0+d+26+n*4}" text-anchor="middle" font-size="9" fill="#6e6e73">남 ${t}</text>`; if(dir==='E') return `<rect x="${x0+w+4}" y="${y0}" width="${10+n*4}" height="${d}" fill="${g}"/><text x="${x0+w+20+n*4}" y="${cy}" font-size="9" fill="#6e6e73">동 ${t}</text>`; return `<rect x="${x0-14-n*4}" y="${y0}" width="${10+n*4}" height="${d}" fill="${g}"/><text x="${x0-18-n*4}" y="${cy}" text-anchor="end" font-size="9" fill="#6e6e73">서 ${t}</text>`; };
+  s+=nb('N',h.N)+nb('E',h.E)+nb('S',h.S)+nb('W',h.W);
+  const edge=dir=>({N:[cx,y0],S:[cx,y0+d],E:[x0+w,cy],W:[x0,cy]})[dir];
+  const out=dir=>({N:[cx,y0-60],S:[cx,y0+d+60],E:[x0+w+60,cy],W:[x0-60,cy]})[dir];
+  const arrow=(from,to,col,label,dash,atFrom)=>{ const lp=atFrom?from:to; return `<line x1="${from[0]}" y1="${from[1]}" x2="${to[0]}" y2="${to[1]}" stroke="${col}" stroke-width="2" ${dash?'stroke-dasharray="5 4"':''} marker-end="url(#ah)"/><text x="${lp[0]}" y="${lp[1]-8}" text-anchor="middle" font-size="9" fill="${col}">${label}</text>`; };
+  s+=`<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>`;
+  s+=arrow(out(SITE.road),edge(SITE.road),'#1d1d1f','도로 · 진입',false,true);
+  s+=arrow([out(SITE.noise)[0]+(SITE.noise==='N'||SITE.noise==='S'?40:0),out(SITE.noise)[1]+(SITE.noise==='E'||SITE.noise==='W'?40:0)],[edge(SITE.noise)[0]+(SITE.noise==='N'||SITE.noise==='S'?40:0),edge(SITE.noise)[1]+(SITE.noise==='E'||SITE.noise==='W'?40:0)],'#d0373b','소음',true,true);
+  s+=arrow(edge(SITE.view),out(SITE.view),'#0a58ca','조망');
+  const wd=$('#sWind').value; const wf={NW:[x0-70,y0-70],N:[cx-40,y0-80],W:[x0-80,cy-40]}[wd]; s+=arrow(wf,[wf[0]+40,wf[1]+40],'#5e5ce6','겨울 바람',true,true);
+  s+=`<path d="M${x0+w+44} ${cy} Q ${cx} ${y0+d+130} ${x0-44} ${cy}" fill="none" stroke="#ffb300" stroke-width="1.2" stroke-dasharray="4 4"/><circle cx="${cx}" cy="${y0+d+65}" r="7" fill="#ffb300"/><text x="${cx+12}" y="${y0+d+69}" font-size="9" fill="#6e6e73">정오 · 남</text><text x="${x0+w+30}" y="${cy-6}" font-size="9" fill="#6e6e73">해 뜸</text><text x="${x0-30}" y="${cy-6}" text-anchor="end" font-size="9" fill="#6e6e73">해 짐</text>`;
+  s+=`<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="12" fill="#1d1d1f">${W} × ${D} m</text><text x="384" y="20" text-anchor="end" font-size="10" fill="#6e6e73">N ↑ · 대지 분석</text></svg>`; return s; }
+function drawSite(){ const el=$('#siteBox'); if(!el) return; el.innerHTML=siteSVG(); $('#siteRead').innerHTML=siteRead().map(r=>`<li>${esc(r)}</li>`).join(''); }
+$('#sSvg').addEventListener('click',()=>save('site_analysis.svg',siteSVG(),$('#sStatus')));
+$('#sToPanel').addEventListener('click',()=>{ addSvgImage('대지 분석','diagram',siteSVG()); go('panel',true); $('#pStatus').textContent='대지 분석 다이어그램이 패널에 들어갔습니다.'; });
+$('#sToConcept').addEventListener('click',()=>{ const add='\n[대지 분석] '+siteRead().join(' '); if(!state.notes.includes('[대지 분석]')) state.notes=(state.notes+add).trim(); $('#cNotes').value=state.notes; $('#pNotes').value=state.notes; go('concept',true); $('#cStatus').textContent='대지 분석이 메모에 들어갔습니다.'; });
+$('#sAi').addEventListener('click',async()=>{ const st=$('#sStatus'); st.className='status'; st.textContent='땅을 읽는 중…'; const out=$('#sOut'); out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#sAi').disabled=true;
+  const prompt=`건축 대지 분석입니다. 아래 조건으로 설계 초기에 정할 네 가지(마당·외부공간 위치, 주 진입, 큰 창을 여는 방향, 침실 등 조용한 실의 위치)를 각각 한 문장으로, 그리고 이 땅에서 피해야 할 것 하나. 한국어, 평문, 6문장 이내.
+대지: ${state.site} (${$('#zcW').value}×${$('#zcD').value}m), 용도: ${state.use}
+도로: ${DIRN[SITE.road]} / 소음: ${DIRN[SITE.noise]} / 조망: ${DIRN[SITE.view]} / 주변 높이 북${$('#sHN').value} 동${$('#sHE').value} 남${$('#sHS').value} 서${$('#sHW').value}층 / 경사: ${$('#sSlope').selectedOptions[0].textContent} / 겨울 바람: ${$('#sWind').selectedOptions[0].textContent}
+규칙 기반 메모: ${siteRead().join(' ')}`;
+  try{ const r=await sample(prompt,{modelTier:'quick',onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; }catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#sAi').disabled=false; } });
+
+/* ---------- 케이스 스터디 ---------- */
+const CS=new Set();
+function renderCsPicked(){ const el=$('#csPicked'); const list=[...CS].map(id=>allCases().find(c=>c.id===id)).filter(Boolean); el.innerHTML=list.length?list.map(c=>`<span>${esc(c.name)}</span>`).join(''):'<span style="color:var(--fg-2)">아직 고른 사례 없음</span>'; }
+$('#csAi').addEventListener('click',async()=>{ const st=$('#csStatus'); st.className='status'; const out=$('#csOut'); const list=[...CS].map(id=>allCases().find(c=>c.id===id)).filter(Boolean); if(!list.length){ st.textContent='카드에서 "비교에 넣기"를 먼저 눌러 주세요.'; return; } st.textContent='비교하는 중…'; out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#csAi').disabled=true;
+  const prompt=`건축 케이스 스터디입니다. 아래 사례들을 내 프로젝트와 견주어, 사례마다 "가져올 수법 1개(한 문장)"와 "그대로 쓰면 안 되는 이유 1개(한 문장)"를 쓰고, 마지막에 세 사례를 합쳐 내 프로젝트에 맞는 방향 한 줄. 한국어, 평문, 사례 이름을 머리에.
+내 프로젝트: ${state.title} / ${state.use} / ${state.site} / 키워드: ${state.keys}
+사례:
+${list.map(c=>`- ${c.name} (${c.arch}, ${c.city}): ${c.note} 태그: ${c.tags.join(', ')}`).join('\n')}`;
+  try{ const r=await sample(prompt,{modelTier:'default',onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; }catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=errCopy(e.code); } finally{ $('#csAi').disabled=false; } });
+$('#csToConcept').addEventListener('click',()=>{ const t=$('#csOut').textContent.trim(); if(!t||t==='결과가 여기에 나타납니다.'){ $('#csStatus').textContent='먼저 비교하세요.'; return; } state.notes=(state.notes+'\n[케이스 스터디] '+t.slice(0,400)).trim(); $('#cNotes').value=state.notes; $('#pNotes').value=state.notes; go('concept',true); });
+
+/* ---------- 광장 (community board, shared db) ---------- */
+let POSTS=[], LIKES={}, COMMENTS={}, PROFILES={}; let plImg='';
+function allCases(){ const community=POSTS.filter(p=>p.useAsCase).map(p=>({id:'post:'+p.id,name:p.title,arch:postWho(p),city:p.kind+' · 광장',type:p.kind,mat:'—',scale:'—',tags:p.tags||[],note:(p.text||'').slice(0,90),img:p.img||'',community:true})); return CASES.concat(community); }
+function postWho(p){ if(p.anon){ const parts=[p.school,p.year].filter(Boolean).join(' '); return '익명'+(parts?' · '+parts:'')+(p.course?' · '+p.course:''); } return (PROFILES[p.author]||'회원')+(p.year?' · '+p.year:''); }
+function plGated(){ return !(me&&me.id&&POSTS.some(p=>p.author===me.id)); }
+function postCard(p){ const liked=!!(me&&LIKES[me.id]&&LIKES[me.id].includes(p.id)); const likeN=Object.values(LIKES).filter(a=>a.includes(p.id)).length; const locked=plGated()&&!!$('#plYearF').value&&!(me&&me.id===p.author); const cm=[]; for(const [uid,list] of Object.entries(COMMENTS)) for(const c of list) if(c.postId===p.id) cm.push({uid,...c}); cm.sort((a,b)=>a.at-b.at); const mine=me&&me.id===p.author;
+  return `<div class="post${locked?' locked':''}" data-id="${p.id}">${p.img?`<img src="${p.img}" alt="${esc(p.title)}">`:`<div class="noimg">이미지 없음</div>`}<div class="pb"><b>${esc(p.title)}</b><div class="meta">${esc(postWho(p))} · ${esc(p.kind)}${p.studio?' · 코드 '+esc(p.studio):''} · ${new Date(p.at).toLocaleDateString('ko-KR')}${p.useAsCase?' · 사례':''}</div><div class="txt">${esc(p.text)}</div><div class="tags" style="display:flex;gap:4px;flex-wrap:wrap">${(p.tags||[]).map(t=>`<span style="background:var(--bg-alt);border-radius:999px;padding:2px 8px;font-size:11px;color:var(--fg-2)">${esc(t)}</span>`).join('')}</div><div class="acts"><button data-like="${p.id}" aria-pressed="${liked}">좋아요 ${likeN}</button><button data-cs="post:${p.id}">비교에 넣기</button>${mine?`<button data-del="${p.id}">지우기</button>`:''}</div><div class="cmts">${cm.map(c=>`<div class="c"><span>${esc(PROFILES[c.uid]||'회원')}</span> ${esc(c.text)}</div>`).join('')}<form data-cform="${p.id}"><input type="text" placeholder="댓글" aria-label="댓글"><button type="submit">남기기</button></form></div></div></div>`; }
+function renderPosts(){ const f=$('#plFilter').value, yf=$('#plYearF').value, sf=$('#plStudioF').value.trim().toLowerCase(); $('#plGate').hidden=!(yf&&plGated()); const list=POSTS.filter(p=>(!f||p.kind===f)&&(!yf||p.year===yf)&&(!sf||(p.studio||'').toLowerCase()===sf)).sort((a,b)=>b.at-a.at); $('#posts').innerHTML=list.length?list.map(postCard).join(''):`<div class="hint">아직 올라온 글이 없습니다. 첫 작품을 올려 보세요.</div>`; $('#tilePlaza').innerHTML=`<div style="width:100%;max-width:260px;font-size:12px;color:var(--fg-2);text-align:left">${list.slice(0,3).map(p=>`<div style="background:var(--card);border-radius:10px;padding:8px 10px;margin-bottom:6px"><b style="color:var(--fg)">${esc(p.title)}</b><br>${esc(p.kind)} · ${esc(PROFILES[p.author]||'회원')}</div>`).join('')||'<div style="background:var(--card);border-radius:10px;padding:8px 10px">첫 글을 올려 보세요</div>'}</div>`; }
+async function loadPosts(){ if(!db){ $('#posts').innerHTML='<div class="hint">광장은 claude.ai 안에서 열면 보입니다. (공용 저장소 연결 필요)</div>'; return; }
+  try{ const ps=await db.collection('posts').get(); POSTS=[]; for(const d of ps.docs){ const v=d.data(); for(const it of (v.items||[])) POSTS.push({...it,author:it.author||d.id}); }
+    const ls=await db.collection('likes').get(); LIKES={}; for(const d of ls.docs){ LIKES[d.id]=(d.data().postIds||[]); }
+    const cs=await db.collection('comments').get(); COMMENTS={}; for(const d of cs.docs){ COMMENTS[d.id]=(d.data().list||[]); }
+    const ids=[...new Set([...POSTS.map(p=>p.author),...Object.keys(COMMENTS)])]; if(user&&ids.length){ try{ const pr=await user.profiles(ids); for(const id of ids) PROFILES[id]=(pr[id]&&pr[id].name)||''; }catch(e){} }
+    renderPosts(); renderCases(); }
+  catch(e){ $('#posts').innerHTML='<div class="hint">글을 불러오지 못했습니다. 잠시 뒤 새로 고침을 눌러 주세요.</div>'; } }
+$('#plRefresh').addEventListener('click',loadPosts); $('#plFilter').addEventListener('change',renderPosts); $('#plYearF').addEventListener('change',renderPosts); $('#plStudioF').addEventListener('input',renderPosts);
+$('#plDrop').addEventListener('click',()=>$('#plFile').click());
+$('#plFile').addEventListener('change',()=>{ const f=$('#plFile').files[0]; if(!f) return; shrinkImage(f).then(url=>{ plImg=url; $('#plPreview').innerHTML=`<img src="${url}" alt="" style="width:100%;border-radius:10px">`; }); $('#plFile').value=''; });
+function shrinkImage(src){ return new Promise(res=>{ const img=new Image(); img.onload=()=>{ const m=1000; const r=Math.min(1,m/Math.max(img.width,img.height)); const c=document.createElement('canvas'); c.width=Math.round(img.width*r); c.height=Math.round(img.height*r); c.getContext('2d').drawImage(img,0,0,c.width,c.height); res(c.toDataURL('image/jpeg',0.78)); }; if(typeof src==='string') img.src=src; else { const rd=new FileReader(); rd.onload=()=>{img.src=rd.result}; rd.readAsDataURL(src); } }); }
+$('#plFromPanel').addEventListener('click',async()=>{ try{ const blob=await sheetPNG(1); const url=await shrinkImage(URL.createObjectURL(blob)); plImg=url; $('#plPreview').innerHTML=`<img src="${url}" alt="" style="width:100%;border-radius:10px">`; if(!$('#plTitle').value) $('#plTitle').value=state.title+' · '+(state.conceptPick?state.conceptPick.name:state.concept); if(!$('#plText').value) $('#plText').value=(state.ai.statement||state.notes).slice(0,300); $('#plStatus').textContent='내 패널을 이미지로 붙였습니다.'; }catch(e){ $('#plStatus').textContent='패널 이미지를 만들지 못했습니다.'; } });
+async function myDoc(col){ return db.collection(col).doc(me.id); }
+$('#plPost').addEventListener('click',async()=>{ const st=$('#plStatus'); st.className='status'; if(!db||!me||!me.id){ st.textContent='로그인된 claude.ai 안에서만 올릴 수 있습니다.'; return; } const title=$('#plTitle').value.trim(); if(!title){ st.textContent='제목을 넣어 주세요.'; return; } st.textContent='올리는 중…';
+  try{ const ref=await myDoc('posts'); const snap=await ref.get(); const items=(snap.exists&&snap.data().items)||[]; items.unshift({id:'p'+Date.now().toString(36),title,kind:$('#plKind').value,tags:$('#plTags').value.split(',').map(x=>x.trim()).filter(Boolean),text:$('#plText').value.trim(),img:plImg,useAsCase:$('#plCase').checked,anon:$('#plAnon').checked,school:$('#plSchool').value.trim().slice(0,20),year:$('#plYear').value,course:$('#plCourse').value.trim().slice(0,24),studio:$('#plStudio').value.trim().slice(0,16),author:me.id,at:Date.now()}); await ref.set({items:items.slice(0,30)}); $('#plTitle').value=''; $('#plText').value=''; $('#plTags').value=''; plImg=''; $('#plPreview').innerHTML=''; st.textContent='올렸습니다.'; await loadPosts(); }
+  catch(e){ st.className='status err'; st.textContent='올리지 못했습니다. 이미지가 너무 크거나 권한이 없습니다.'; } });
+$('#posts').addEventListener('click',async e=>{ const like=e.target.closest('[data-like]'), del=e.target.closest('[data-del]'), cs=e.target.closest('[data-cs]'); const st=$('#plStatus');
+  if(cs){ const id=cs.dataset.cs; if(CS.has(id)) CS.delete(id); else { if(CS.size>=3){ st.textContent='비교는 3개까지입니다.'; return; } CS.add(id); } renderCsPicked(); st.textContent=`케이스 스터디에 ${CS.size}개 담김 → 사례 배우기에서 비교하기`; return; }
+  if(!db||!me||!me.id){ st.textContent='로그인된 claude.ai 안에서만 됩니다.'; return; }
+  try{ if(like){ const id=like.dataset.like; const ref=await myDoc('likes'); const cur=LIKES[me.id]||[]; const next=cur.includes(id)?cur.filter(x=>x!==id):cur.concat(id); await ref.set({postIds:next}); LIKES[me.id]=next; renderPosts(); }
+    if(del){ const id=del.dataset.del; const ref=await myDoc('posts'); const snap=await ref.get(); const items=((snap.exists&&snap.data().items)||[]).filter(x=>x.id!==id); await ref.set({items}); await loadPosts(); } }
+  catch(err){ st.className='status err'; st.textContent='저장소에 닿지 못했습니다.'; } });
+$('#posts').addEventListener('submit',async e=>{ const f=e.target.closest('[data-cform]'); if(!f) return; e.preventDefault(); const st=$('#plStatus'); if(!db||!me||!me.id){ st.textContent='로그인된 claude.ai 안에서만 됩니다.'; return; } const inp=f.querySelector('input'); const text=inp.value.trim(); if(!text) return;
+  try{ const ref=await myDoc('comments'); const cur=COMMENTS[me.id]||[]; const next=cur.concat({postId:f.dataset.cform,text,at:Date.now()}).slice(-200); await ref.set({list:next}); COMMENTS[me.id]=next; inp.value=''; renderPosts(); }catch(err){ st.className='status err'; st.textContent='댓글을 남기지 못했습니다.'; } });
+
+/* ---------- Scroll stories ---------- */
+function initStory(root,onStep){ if(!root) return; const steps=Array.from(root.querySelectorAll('.step')); if(!steps.length) return; let cur=-1; const set=i=>{ if(i===cur) return; cur=i; steps.forEach((s,j)=>s.classList.toggle('on',j===i)); onStep(i+1); };
+  const io=new IntersectionObserver(es=>{ for(const e of es) if(e.isIntersecting) set(steps.indexOf(e.target)); },{rootMargin:'-40% 0px -45% 0px',threshold:0}); steps.forEach(s=>io.observe(s)); set(0); }
+let homeStageN=1;
+function drawHomeStage(){ const el=$('#homeStage'); if(!el) return; const n=homeStageN; if(n<=3){ el.innerHTML=conceptStageSVG(n===1?2:(n===2?3:4)); } else { el.innerHTML=''; const sh=document.createElement('div'); sh.className='sheet'; el.appendChild(sh); renderSheet(sh,'hero'); } }
+initStory($('#homeStory'),n=>{ homeStageN=n; drawHomeStage(); });
+initStory($('#view-concept .story'),n=>{ conceptStageN=n; drawConceptStage(); });
+initStory($('#view-drawing .story'),n=>{ const z=$('#zoneStage'); if(n<=3){ z.dataset.stage=n; drawZoneStage(); } else { z.dataset.stage=3; z.innerHTML=sectionSVG(); } });
+initStory($('#view-model .story'),n=>{ modelStageN=n; drawModelStage(); });
+initStory($('#view-panel .story'),n=>{ panelStageLayout=['hero','band','process','grid'][n-1]; renderSheet($('#panelStageSheet'),panelStageLayout); });
+
+/* ---------- Opening scene: plan → zoning → floors → building, driven by scroll ---------- */
+const BUILD=(function(){
+  /* 표지 장면 — 한 선(단선)으로 시작해 대지 → 평면 → 입체 → 빛 → 단면 → 집. 스크롤 진행 p(0~1)에 따라 그린다. */
+  const D=20, Wd=15; // 대지: x 서→동 20m, y 북→남 15m. 남쪽 도로, 북쪽 낮은 산.
+  const FLOORS=[ // 층별 상자 [x0,x1,y0,y1,kind]
+    [[2,13,1,6.5,'wall'],[2,6.5,6.5,13.5,'wall'],[6.5,18,6.5,13.5,'gap']],
+    [[2,8.5,1,6.5,'wall'],[8.5,13,1,6.5,'gap']]
+  ];
+  const ZONES=[[2,8.5,1,6.5,'거실'],[8.5,13,1,6.5,'부엌'],[2,6.5,6.5,13.5,'침실'],[6.5,18,6.5,13.5,'마당'],[13,18,1,6.5,'현관']];
+  const FH=52, M=16; // 층고 px, 1m=16px(등각)
+  const ca=Math.cos(Math.PI/6), sa=Math.sin(Math.PI/6);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; const st=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+  function P(x,y,z,t){ x=D-x; const sp=18, si=M; const px=500+(x-D/2)*sp, py=280+(y-Wd/2)*sp; const ix=500+(x-y)*ca*si-((D-Wd)/2)*ca*si, iy=300+(x+y)*sa*si-((D+Wd)/2)*sa*si+150-z; return [px+(ix-px)*t, py+(iy-py)*t]; }
+  const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  const pathOf=a=>'M'+a.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
+  // 한 붓으로 그리는 선: pathLength=1, dashoffset=1-k
+  const pen=(d,k,col,w,extra='')=>k<=0?'':`<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:${(1-k).toFixed(3)}" ${extra}/>`;
+  function scene(p){
+    const ink='var(--fg)', faint='var(--line)', acc='var(--accent)', dim='var(--fg-2)';
+    const line=st(p,0,0.10), site=st(p,0.09,0.22), plan=st(p,0.22,0.38), zone=st(p,0.27,0.40);
+    const t=ease(st(p,0.40,0.52)), fillIn=st(p,0.58,0.66), light=st(p,0.64,0.78), win=st(p,0.66,0.74);
+    const secIn=st(p,0.78,0.86), secOut=st(p,0.92,0.96), sec=Math.min(secIn,1-secOut), home=st(p,0.92,1);
+    const zoneOut=1-st(p,0.46,0.56), planOut=1-st(p,0.44,0.50);
+    let s='';
+    /* 0. 한 선: 대지 경계 + 도로 + 북 화살표를 한 붓으로 */
+    const site4=[P(0,0,0,t),P(D,0,0,t),P(D,Wd,0,t),P(0,Wd,0,t)];
+    s+=`<polygon points="${pts(site4)}" fill="var(--bg-alt)" opacity="${(site*0.9).toFixed(2)}"/>`;
+    { const sw=P(0,Wd,0,t), se=P(D,Wd,0,t); const one=pathOf([P(0,Wd,0,t),P(0,0,0,t),P(D,0,0,t),P(D,Wd,0,t),P(0,Wd,0,t),[sw[0],sw[1]+14*(1-t)+6*t],[se[0],se[1]+14*(1-t)+6*t]]);
+      s+=pen(one,line,ink,1.3); }
+    /* 1. 대지 읽기: 치수·해·산·바람 (평면에서만) */
+    const o=site*(1-t); if(o>0.01){ const a=P(0,-1.6,0,0), b=P(D,-1.6,0,0), c=P(D+1.6,0,0,0), d=P(D+1.6,Wd,0,0); const sw=P(0,Wd,0,0), se=P(D,Wd,0,0), nw=P(0,0,0,0);
+      s+=`<g opacity="${o.toFixed(2)}" font-family="inherit" font-size="12" fill="${dim}">`;
+      s+=pen(`M${a[0]} ${a[1]} L${b[0]} ${b[1]}`,site,acc,.8)+`<text x="500" y="${a[1]-6}" text-anchor="middle" fill="${acc}" opacity="${st(site,.5,1)}">20 m</text>`;
+      s+=pen(`M${c[0]} ${c[1]} L${d[0]} ${d[1]}`,site,acc,.8)+`<text x="${c[0]+8}" y="284" fill="${acc}" opacity="${st(site,.5,1)}">15 m</text>`;
+      s+=`<text x="500" y="${sw[1]+27}" text-anchor="middle" font-size="11" opacity="${st(site,.3,.8)}">도로 · 남 — 주 진입</text>`;
+      s+=pen(`M${nw[0]-40} ${nw[1]-30} q ${(se[0]-sw[0])/2+40} -46 ${se[0]-sw[0]+80} 0`,st(site,.2,.9),faint,1)+`<text x="500" y="${nw[1]-58}" text-anchor="middle" font-size="11" opacity="${st(site,.6,1)}">낮은 산 · 북 — 조망, 겨울바람 막음</text>`;
+      const sun=[]; for(let k=0;k<=24;k++){ const ang=(k/24)*Math.PI; const r=330; sun.push([500+Math.cos(ang)*r, 285+Math.sin(ang)*r*0.46]); }
+      s+=pen(pathOf(sun),st(site,.3,1),'#ffb300',1.2,'stroke-dasharray="4 4"'); const sk=sun[Math.round(18*st(site,.3,1))]; s+=`<circle cx="${sk[0]}" cy="${sk[1]}" r="${9*st(site,.3,.6)}" fill="#ffb300"/><text x="${sk[0]+14}" y="${sk[1]+4}" font-size="11" opacity="${st(site,.8,1)}">해 · 남서로 진다</text>`;
+      // 바람: 북서에서 오는 화살표 셋
+      for(let k=0;k<3;k++){ const w0=P(-3+k*1.2,-2.5+k*1.8,0,0), w1=P(0.5+k*1.2,0.5+k*1.8,0,0); s+=pen(`M${w0[0]} ${w0[1]} L${w1[0]} ${w1[1]} m-6 -2 l6 2 l-5 4`,st(site,.5+k*.1,.9+k*.1),dim,.8); }
+      s+=`</g>`; }
+    /* 2. 평면: 방 벽을 한 붓씩, 영역 색은 살짝 */
+    const planBoxes=FLOORS[0].concat([[13,18,1,6.5,'porch']]);
+    if(plan>0.01&&planOut>0.01){ planBoxes.forEach((b,i)=>{ const k=st(plan*planBoxes.length-i,0,1); if(k<=0) return; const q=[P(b[0],b[2],0,t),P(b[1],b[2],0,t),P(b[1],b[3],0,t),P(b[0],b[3],0,t),P(b[0],b[2],0,t)]; s+=`<g opacity="${planOut.toFixed(2)}">${pen(pathOf(q),k,ink,b[4]==='wall'?1.6:.8,b[4]==='wall'?'':'stroke-dasharray="3 3"')}</g>`; }); }
+    const zo=zone*zoneOut; if(zo>0.01){ ZONES.forEach((z,i)=>{ const k=st(zone*ZONES.length-i,0,1); const q=[P(z[0],z[2],0,t),P(z[1],z[2],0,t),P(z[1],z[3],0,t),P(z[0],z[3],0,t)]; const col=z[4]==='마당'?'#30d158':(z[4]==='침실'?'#5e5ce6':(z[4]==='현관'?'#8e8e93':'#ff9f0a')); const m=P((z[0]+z[1])/2,(z[2]+z[3])/2,0,t); s+=`<g opacity="${(k*zo).toFixed(2)}"><polygon points="${pts(q)}" fill="${col}" fill-opacity=".22"/><text x="${m[0]}" y="${m[1]+4}" text-anchor="middle" font-size="12" font-family="inherit" fill="${ink}">${z[4]}</text></g>`; }); }
+    /* 4. 빛: 해의 위치 → 그림자 (건물 전에 바닥에) */
+    const theta=Math.PI*(0.15+0.7*light); const sx=-Math.cos(theta)*0.9, sy=-0.55; // 그림자는 북쪽으로, 해 반대편으로
+    const shadowOf=(x0,x1,y0,y1,z0,h)=>{ const hm=(z0+h)/M; return [P(x0,y0,0,t),P(x1,y0,0,t),P(x1+sx*hm,y0+sy*hm,0,t),P(x0+sx*hm,y0+sy*hm,0,t)]; };
+    if(t>0.01&&light>0.01){ FLOORS.forEach((boxes,i)=>{ const v=st(p,0.46+i*0.08,0.58+i*0.08); if(v<=0) return; for(const b of boxes){ if(b[4]==='gap') continue; const hm=(i*FH+FH*v)/M; const q=[P(b[0],b[2],0,t),P(b[1],b[2],0,t),P(b[1]+sx*hm,b[2]+sy*hm,0,t),P(b[0]+sx*hm,b[2]+sy*hm,0,t)]; const q2=[P(b[0],b[2],0,t),P(b[0],b[3],0,t),P(b[0]+sx*hm,b[3]+sy*hm,0,t),P(b[0]+sx*hm,b[2]+sy*hm,0,t)]; s+=`<polygon points="${pts(q)}" fill="${ink}" fill-opacity="${(0.10*light).toFixed(3)}"/><polygon points="${pts(q2)}" fill="${ink}" fill-opacity="${(0.10*light).toFixed(3)}"/>`; } }); }
+    /* 3. 입체: 선으로 세우고(와이어) → 면이 채워진다 */
+    const xc=D-(2+13*secIn); // 단면 절단면 x (동→서로 쓸고 지나감)
+    if(t>0.01){ FLOORS.forEach((boxes,i)=>{ const v=st(p,0.46+i*0.08,0.58+i*0.08); if(v<=0) return; const z0=i*FH*t, hh=FH*v*t; const sorted=[...boxes].sort((a,b)=>((D-a[1])+a[2])-((D-b[1])+b[2]));
+        for(const b of sorted){ const [x0,x1,y0,y1,kind]=b; const h=kind==='gap'?Math.min(4,FH*v*t*0.12):hh;
+          const cut=sec>0.01&&kind!=='wall'?false:(sec>0.01&&x0<xc&&x1>xc); const ghost=sec>0.01&&x0>=xc&&kind==='wall';
+          const lit=0.5+0.5*Math.cos(theta); // 남면 밝기
+          const top=kind==='gap'?'#d9f2e0':'#ffffff', side=kind==='gap'?'#bfe3cb':`rgb(${Math.round(226+18*lit)},${Math.round(226+18*lit)},${Math.round(230+16*lit)})`, side2=kind==='gap'?'#a9d6b8':`rgb(${Math.round(236-26*lit)},${Math.round(236-26*lit)},${Math.round(240-24*lit)})`;
+          const fo=(fillIn*(ghost?0.12:1)).toFixed(2), so=ghost?0.25:1;
+          const X1=cut?xc:x1;
+          const E=[P(x0,y0,z0,t),P(x0,y1,z0,t),P(x0,y1,z0+h,t),P(x0,y0,z0+h,t)], S=[P(x0,y1,z0,t),P(X1,y1,z0,t),P(X1,y1,z0+h,t),P(x0,y1,z0+h,t)], T=[P(x0,y0,z0+h,t),P(X1,y0,z0+h,t),P(X1,y1,z0+h,t),P(x0,y1,z0+h,t)];
+          s+=`<g opacity="${so}"><polygon points="${pts(S)}" fill="${side}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/><polygon points="${pts(E)}" fill="${side2}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/><polygon points="${pts(T)}" fill="${top}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
+          // 창: 남면에 세로 창 (빛 단계부터)
+          if(kind==='wall'&&win>0.01&&!ghost){ const n=Math.max(1,Math.round((X1-x0)/3)); for(let k=0;k<n;k++){ const wx0=x0+(X1-x0)*(k+0.3)/n, wx1=x0+(X1-x0)*(k+0.7)/n; if(wx1>X1) continue; const W=[P(wx0,y1,z0+h*0.25,t),P(wx1,y1,z0+h*0.25,t),P(wx1,y1,z0+h*0.8,t),P(wx0,y1,z0+h*0.8,t)]; s+=`<polygon points="${pts(W)}" fill="#9fc5ff" fill-opacity="${(0.55*win*fillIn).toFixed(2)}" stroke="${ink}" stroke-width=".6" opacity="${win.toFixed(2)}"/>`; } }
+          // 단면: 절단면의 포셰(두꺼운 선 + 빗금), 바닥 슬래브선, 사람
+          if(cut){ const C=[P(xc,y0,z0,t),P(xc,y1,z0,t),P(xc,y1,z0+h,t),P(xc,y0,z0+h,t)]; s+=`<polygon points="${pts(C)}" fill="var(--bg)" stroke="${acc}" stroke-width="2.2" stroke-linejoin="round" opacity="${sec.toFixed(2)}"/>`; const sl0=P(xc,y0,z0+3,t), sl1=P(xc,y1,z0+3,t); s+=`<line x1="${sl0[0]}" y1="${sl0[1]}" x2="${sl1[0]}" y2="${sl1[1]}" stroke="${acc}" stroke-width="3" opacity="${sec.toFixed(2)}"/>`;
+            if(i===0){ const f=P(xc,(y0+y1)/2,z0,t); const hp=1.7*M*t; s+=`<g opacity="${sec.toFixed(2)}" stroke="${ink}" stroke-width="1" fill="none"><line x1="${f[0]}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.75}"/><circle cx="${f[0]}" cy="${f[1]-hp*0.88}" r="${hp*0.12}"/><line x1="${f[0]-4}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.4}"/><line x1="${f[0]+4}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.4}"/></g>`; } }
+          s+=`</g>`; }
+        }); }
+    if(sec>0.01){ const a=P(xc,-1.5,0,t), b=P(xc,Wd+1.5,0,t); s+=`<g opacity="${sec.toFixed(2)}"><line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${acc}" stroke-width="1" stroke-dasharray="6 4"/><text x="${b[0]+8}" y="${b[1]+4}" font-size="12" font-family="inherit" fill="${acc}">A — A' 단면</text></g>`; }
+    /* 6. 집: 나무, 벤치, 재료 해칭, 이름표 */
+    if(home>0.01){ const trees=[[10,10.5,9],[15.5,9,7],[12.5,12.3,5]]; for(const tr of trees){ const c=P(tr[0],tr[1],0,t); s+=`<line x1="${c[0]}" y1="${c[1]}" x2="${c[0]}" y2="${c[1]-14*home}" stroke="${ink}" stroke-width=".8"/><circle cx="${c[0]}" cy="${c[1]-14*home}" r="${(tr[2]*home).toFixed(1)}" fill="#30d158" fill-opacity=".85" stroke="${ink}" stroke-width=".6"/>`; }
+      const b0=P(8,12.5,0,t), b1=P(10.5,12.5,0,t); s+=`<line x1="${b0[0]}" y1="${b0[1]-6*home}" x2="${b1[0]}" y2="${b1[1]-6*home}" stroke="${ink}" stroke-width="2" opacity="${home}"/>`;
+      // 남면 벽돌 해칭 (가로 줄눈)
+      for(let k=1;k<6;k++){ const z=FH*k/6; const a=P(2,6.5,z,t), b=P(6.5,6.5,z,t); s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${ink}" stroke-width=".4" opacity="${(0.5*home).toFixed(2)}"/>`; }
+      const lp=P(-1,Wd+1,0,t); s+=`<g opacity="${home}" font-family="inherit"><text x="${lp[0]+10}" y="${lp[1]+16}" font-size="12" fill="${dim}">마당집 · 지상 2층 · 연면적 128㎡ · 예시</text></g>`; }
+    return s;
+  }
+  const capIndex=p=>p<0.09?0:(p<0.22?1:(p<0.40?2:(p<0.62?3:(p<0.78?4:(p<0.92?5:6)))));
+  return {scene,capIndex};
+})();
+(function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('.bhint'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false;
+  function paint(p){ svg.innerHTML=BUILD.scene(p); const i=BUILD.capIndex(p); caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=p>0.05?0:1; }
+  function tick(){ ticking=false; if($('#view-home').hidden) return; const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
+  if(rm){ paint(1); return; } paint(0); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
+
+/* rotating word in the hero */
+(function(){ const el=$('#rotWord'); const words=['건축','설계','집','도면','모형','패널','크리틱']; let i=0; if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; setInterval(()=>{ el.classList.add('out'); setTimeout(()=>{ i=(i+1)%words.length; el.textContent=words[i]; el.classList.remove('out'); },300); },2200); })();
+
+/* tile art */
+$('#tilePanel').innerHTML=conceptThumb('hero',0.3);
+$('#tileConcept').innerHTML=`<div style="display:flex;gap:10px;width:100%;max-width:280px">${['split','step','court'].map(m=>`<div style="flex:1;background:var(--card);border-radius:10px;padding:6px">${massIcon(m)}</div>`).join('')}</div>`;
+$('#tileLearn').innerHTML=`<svg viewBox="0 0 280 120" aria-hidden="true"><g font-family="inherit" fill="var(--fg)"><rect x="0" y="0" width="86" height="110" rx="10" fill="var(--card)"/><rect x="97" y="0" width="86" height="110" rx="10" fill="var(--card)"/><rect x="194" y="0" width="86" height="110" rx="10" fill="var(--card)"/><text x="12" y="28" font-size="11" font-weight="700">Tietgen</text><text x="12" y="46" font-size="9" opacity=".6">중정 · 원형</text><text x="109" y="28" font-size="11" font-weight="700">Habitat 67</text><text x="109" y="46" font-size="9" opacity=".6">모듈 · 계단형</text><text x="206" y="28" font-size="11" font-weight="700">쌈지길</text><text x="206" y="46" font-size="9" opacity=".6">중정 · 경사로</text><text x="12" y="96" font-size="10" fill="var(--accent)">좋아요 ✓</text><text x="206" y="96" font-size="10" fill="var(--accent)">좋아요 ✓</text></g></svg>`;
+
+/* ---------- Boot ---------- */
+fillInputs(); renderFloors(); state.zones=localLayout(parseRooms()); drawZones(); drawSection(); renderConceptCards(); drawConceptStage(); zcCalc();
+$('#tileZip').innerHTML=zcMassSVG(state.zc,state.zc.area*state.zc.bcr/100,Math.round(state.zc.far/state.zc.bcr)); $('#tileDrawing').innerHTML=zoneSVG(state.zones); $('#tileModel').innerHTML=massSVG(0,{bare:true});
+drawSite(); $('#tileSite').innerHTML=siteSVG(); drawHomeStage(); redraw(); renderCases(); renderPosts(); route();
+})();
+</script>
+<!-- 효과: liquid-glass-js — README 순서(html2canvas → container.js → button.js) 그대로, 그다음 연결 코드 -->
+<script src="vendor/html2canvas.min.js"></script><!-- README의 jsdelivr html2canvas@1.4.1과 같은 파일, 로컬 복사본 -->
+<script>if(typeof html2canvas!=='function'){document.write('<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"><\/script>')}</script>
+<script src="vendor/liquid-glass/container.js"></script>
+<script src="vendor/liquid-glass/button.js"></script>
+<script src="effects/nav-glass.js"></script>
