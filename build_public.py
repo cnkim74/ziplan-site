@@ -20,6 +20,7 @@ head = '''<!doctype html>
 <meta property="og:title" content="ZIPLAN 집플랜 — 모두의 건축">
 <meta property="og:description" content="계획은 당신이, 표현은 ZIP이. 컨셉부터 패널까지, 대안을 보고 고르는 건축 작업대.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="img/house-dusk.jpg">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 '''
@@ -52,7 +53,7 @@ s = s.replace('(프로토타입)', '(베타)')
 (dist / 'favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 104 104"><rect x="-2" y="-2" width="104" height="104" rx="22" fill="#111"/><g fill="#fff"><rect x="4" y="6" width="46" height="12"/><polygon points="38,6 50,6 16,48 4,48"/><rect x="4" y="36" width="46" height="12"/><rect x="76" y="6" width="12" height="42"/></g><g fill="#2997ff"><rect x="4" y="54" width="92" height="10"/><rect x="4" y="54" width="12" height="44"/><rect x="84" y="54" width="12" height="34"/><rect x="4" y="78" width="92" height="10"/></g></svg>', encoding='utf-8')
 
 # 지원 파일
-for rel in ['vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','data/portfolio.js','data/library.js']:
+for rel in ['vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/house-dusk-960.jpg']:
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(root / rel, dist / rel)
 
