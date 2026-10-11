@@ -55,9 +55,11 @@ nav .sp{flex:1}
 /* opening 1: 애플식 표지 — 불 꺼진 집 → 스크롤하며 불이 켜지고 → 선이 그려지며 → 현관으로 들어간다 */
 .photo{height:460vh;position:relative;background:#0b0e14} /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
 .pstage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0b0e14}
-.pzoom{position:absolute;inset:0;transform-origin:46.4% 66%;will-change:transform}   /* 현관(문) 위치가 확대 중심 */
-.pidle{position:absolute;inset:0;transform-origin:50% 58%;animation:pidle 46s ease-in-out infinite alternate}
-@keyframes pidle{from{transform:scale(1)}to{transform:scale(1.045) translate(-0.6%,-0.4%)}}
+.pl{position:absolute;inset:0;transform-origin:46.4% 66%;will-change:transform}   /* 세 겹: 배경·집·앞풀. 확대 중심은 현관 */
+.pdrift{position:absolute;inset:0;transform-origin:50% 58%;animation:pdrift 52s ease-in-out infinite alternate}
+.pl-mid .pdrift{animation-duration:44s;animation-delay:-10s}
+.pl-fg .pdrift{animation-duration:36s;animation-delay:-20s}
+@keyframes pdrift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.035) translate(-0.5%,-0.35%)}}
 .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .pimg.on{opacity:0}
 .pshade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,8,14,.58) 0%,rgba(6,8,14,.18) 40%,rgba(6,8,14,0) 62%,rgba(6,8,14,.3) 100%);pointer-events:none}
@@ -76,17 +78,17 @@ nav .sp{flex:1}
 .plinks{display:flex;gap:28px;justify-content:center;margin-top:22px;font-size:clamp(16px,1.5vw,20px)}
 .plinks a{color:#2997ff}.plinks a:hover{text-decoration:underline}.plinks a span{display:inline-block;transition:transform .2s}.plinks a:hover span{transform:translateX(3px)}
 @keyframes pheadIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.pcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);max-width:520px;color:#fff;opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s;pointer-events:none;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.pcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);color:#fff;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;pointer-events:none;text-shadow:0 2px 28px rgba(0,0,0,.5)}
 .pcap.on{opacity:1;transform:none}
-.pcap .n{font-family:var(--brand);font-size:13px;letter-spacing:.14em;color:#9fc5ff;margin-bottom:8px}
-.pcap h2{font-family:'Gowun Batang',serif;font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.1;letter-spacing:-.01em}
-.pcap.ink{color:var(--fg);text-shadow:none}.pcap.ink .n{color:var(--accent)}
+.pcap .w{font-family:var(--brand);font-size:clamp(56px,8.5vw,120px);line-height:.95;letter-spacing:-.045em}
+.pcap .k{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(13px,1.1vw,16px);letter-spacing:.3em;margin-top:12px;color:rgba(255,255,255,.78);padding-left:.3em}
+.pcap.ink{color:var(--fg);text-shadow:none}.pcap.ink .k{color:var(--fg-2)}
 .pbhint{color:rgba(255,255,255,.7)}
 nav.on-dark{--fg:#fff;--bg:#111;--fg-2:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.14)}
 nav.on-dark .pz{color:#9fc5ff}
 nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 @media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
-@media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pzoom,.pidle{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
+@media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pl,.pdrift{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
 .build{height:720vh;position:relative}
 .bstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
@@ -403,14 +405,16 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
 <section class="view" id="view-home">
   <div class="photo" id="photo">
     <div class="pstage">
-      <div class="pzoom"><div class="pidle">
-        <img class="pimg off" src="img/house-off.jpg" srcset="img/house-off-960.jpg 960w, img/house-off.jpg 1672w" sizes="100vw" alt="불이 꺼진 숲속 주택, 해질녘" decoding="async" fetchpriority="high">
-        <img class="pimg on" src="img/house-dusk.jpg" srcset="img/house-dusk-960.jpg 960w, img/house-dusk.jpg 1672w" sizes="100vw" alt="" decoding="async">
-        <svg class="ptrace" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g stroke="#fff"><path id="ptraceW" d="M0 330 C300 262 700 200 1000 172 S1500 140 1672 172 M65 380 L545 380 L545 545 L65 545 Z M65 545 L660 545 M180 560 L545 560 L545 700 L180 700 Z M545 400 L815 400 L815 560 M725 410 L725 345 L805 345 L805 410 M725 560 L725 700 M815 560 L815 700 M750 600 L800 600 L800 700 M975 395 L1470 395 L1470 545 L975 545 Z M975 545 L1620 545 M975 560 L1620 560 L1620 700 L975 700 Z M65 705 L1620 705 M655 725 L1005 725 M645 745 L1015 745 M635 765 L1025 765" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></g>
-          <g stroke="#111"><use href="#ptraceW" id="ptraceK"/></g>
-        </svg>
-      </div></div>
+      <div class="pl pl-bg" aria-hidden="true"><div class="pdrift"><img class="pimg off" src="img/l-bg-off.webp" srcset="img/l-bg-off-960.webp 960w, img/l-bg-off.webp 1672w" sizes="100vw" alt="" decoding="async" fetchpriority="high"><img class="pimg on" src="img/l-bg-on.webp" srcset="img/l-bg-on-960.webp 960w, img/l-bg-on.webp 1672w" sizes="100vw" alt="" decoding="async">
+        </div></div>
+      <div class="pl pl-mid" aria-hidden="true"><div class="pdrift"><img class="pimg off" src="img/l-mid-off.webp" srcset="img/l-mid-off-960.webp 960w, img/l-mid-off.webp 1672w" sizes="100vw" alt="" decoding="async"><img class="pimg on" src="img/l-mid-on.webp" srcset="img/l-mid-on-960.webp 960w, img/l-mid-on.webp 1672w" sizes="100vw" alt="" decoding="async">
+          <svg class="ptrace" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g stroke="#fff"><path id="ptraceW" d="M0 330 C300 262 700 200 1000 172 S1500 140 1672 172 M65 380 L545 380 L545 545 L65 545 Z M65 545 L660 545 M180 560 L545 560 L545 700 L180 700 Z M545 400 L815 400 L815 560 M725 410 L725 345 L805 345 L805 410 M725 560 L725 700 M815 560 L815 700 M750 600 L800 600 L800 700 M975 395 L1470 395 L1470 545 L975 545 Z M975 545 L1620 545 M975 560 L1620 560 L1620 700 L975 700 Z M65 705 L1620 705 M655 725 L1005 725 M645 745 L1015 745 M635 765 L1025 765" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></g>
+            <g stroke="#111"><use href="#ptraceW" id="ptraceK"/></g>
+          </svg>
+        </div></div>
+      <div class="pl pl-fg" aria-hidden="true"><div class="pdrift"><img class="pimg off" src="img/l-fg-off.webp" srcset="img/l-fg-off-960.webp 960w, img/l-fg-off.webp 1672w" sizes="100vw" alt="" decoding="async"><img class="pimg on" src="img/l-fg-on.webp" srcset="img/l-fg-on-960.webp 960w, img/l-fg-on.webp 1672w" sizes="100vw" alt="" decoding="async">
+        </div></div>
       <div class="pveil"></div>
       <div class="pshade"></div>
       <div class="phead" id="phead">
@@ -419,9 +423,9 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
         <p class="slogan">생각이 집이 되는 곳.</p>
         <div class="plinks"><a href="#concept">시작하기 <span>›</span></a><a href="#guide">어떻게 쓰나 <span>›</span></a></div>
       </div>
-      <div class="pcap" data-i="1"><div class="n">LIGHT</div><h2>불이 켜진다.</h2></div>
-      <div class="pcap" data-i="2"><div class="n">LINE</div><h2>선이 그려진다.</h2></div>
-      <div class="pcap" data-i="3"><div class="n">ENTER</div><h2>안으로.</h2></div>
+      <div class="pcap" data-i="1"><div class="w">LIGHT</div><div class="k">빛</div></div>
+      <div class="pcap" data-i="2"><div class="w">LINE</div><div class="k">선</div></div>
+      <div class="pcap" data-i="3"><div class="w">INSIDE</div><div class="k">안으로</div></div>
       <div class="bhint pbhint">내리면서 보세요 ↓</div>
     </div>
   </div>
@@ -1485,22 +1489,26 @@ const BUILD=(function(){
   return {scene,capIndex};
 })();
 /* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
-(function(){ const sec=$('#photo'); if(!sec) return; const zoom=$('.pzoom'), lit=$('.pimg.on'), veil=$('.pveil'), tw=$('#ptraceW'), tk=$('#ptraceK'), head=$('#phead'), caps=$$('.pcap'), hint=$('.pbhint'), nav=$('nav'); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; let last=-1, ticking=false;
+(function(){ const sec=$('#photo'); if(!sec) return; const L={bg:$('.pl-bg'),mid:$('.pl-mid'),fg:$('.pl-fg')}, lits=$$('.pimg.on'), veil=$('.pveil'), tw=$('#ptraceW'), tk=$('#ptraceK'), head=$('#phead'), caps=$$('.pcap'), hint=$('.pbhint'), nav=$('nav'); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; let last=-1, ticking=false, target=0, cur=0, raf=0;
   head.addEventListener('animationend',()=>{ head.style.animation='none'; last=-1; tick(); },{once:true});
-  const termP=$('#termP'), termLan=$('#termLan'), termLanIn=$('#termLanIn'), termGloss=$('#termGloss'); let lanW=0; const measure=()=>{ lanW=termLanIn.getBoundingClientRect().width; }; measure(); window.addEventListener('resize',measure); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ measure(); last=-1; tick(); });
+  const termP=$('#termP'), termLan=$('#termLan'), termLanIn=$('#termLanIn'), termGloss=$('#termGloss'); let lanW=0; const measure=()=>{ lanW=termLanIn.getBoundingClientRect().width; }; measure(); window.addEventListener('resize',measure); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ measure(); paint(cur); });
   const mix=(a,b,t)=>Math.round(a+(b-a)*t);
   function paint(p){
     const m=ease(st(p,0.05,0.26));                                                     // 불이 켜지며 ZIP → ZIPLAN
-    lit.style.opacity=m.toFixed(3);
+    lits.forEach(el=>{ el.style.opacity=m.toFixed(3); });
     termLan.style.width=(lanW*m).toFixed(1)+'px'; termLan.style.opacity=Math.min(1,m*1.6).toFixed(3);
     termP.style.color=`rgb(${mix(255,41,m)},${mix(255,151,m)},${mix(255,255,m)})`;   // 흰 P → 로고 파랑 #2997ff
     termGloss.style.opacity=m.toFixed(3); termGloss.style.transform=`translateY(${(6*(1-m)).toFixed(1)}px)`;
     const h=1-st(p,0.30,0.42); head.style.opacity=h.toFixed(3); head.style.transform=`translateY(${(-40*(1-h)).toFixed(1)}px)`; head.style.pointerEvents=h>0.3?'auto':'none';
     const d=st(p,0.42,0.66); tw.style.strokeDashoffset=(1-d).toFixed(3); tk.style.strokeDashoffset=(1-d).toFixed(3);   // 선이 그려진다
     const go=ease(st(p,0.64,1.0)); const v=st(p,0.82,0.985); veil.style.opacity=(v*0.97).toFixed(3); tw.style.opacity=(1-v).toFixed(2); tk.style.opacity=v.toFixed(2);   // 안으로
-    zoom.style.transform=`scale(${(1+0.06*st(p,0,0.64)+1.9*go).toFixed(4)})`;
+    const p0=st(p,0,0.64);  // 세 겹이 다른 속도로 커지며 현관으로 — 앞풀이 가장 빨리 지나가고 배경은 천천히
+    L.bg.style.transform=`scale(${(1+0.04*p0+0.55*go).toFixed(4)})`;
+    L.mid.style.transform=`scale(${(1+0.07*p0+1.5*go).toFixed(4)})`;
+    L.fg.style.transform=`scale(${(1+0.12*p0+2.8*go).toFixed(4)}) translateY(${(3*go).toFixed(2)}%)`;
     const i=p<0.06?0:(p<0.42?1:(p<0.66?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); c.classList.toggle('ink',v>0.5); }); if(hint) hint.style.opacity=p>0.03?0:1; }
-  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=r.top<=56&&r.bottom>56; nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
+  let tPrev=0; function animate(ts){ raf=0; const dt=tPrev?Math.min(80,ts-tPrev):16; tPrev=ts; const diff=target-cur; if(Math.abs(diff)<0.0006){ cur=target; tPrev=0; paint(cur); return; } cur+=diff*(1-Math.exp(-dt/110)); paint(cur); raf=requestAnimationFrame(animate); }   // 시간 기준 감쇠: 어떤 화면 주사율에서도 약 0.4초 안에 따라붙는다   // 스크롤 관성: 영상처럼 부드럽게 따라온다
+  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=r.top<=56&&r.bottom>56; nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
   if(rm){ nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',r.top<=56&&r.bottom>56&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
 (function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false;
   function paint(p){ svg.innerHTML=BUILD.scene(p); const i=BUILD.capIndex(p); caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=p>0.05?0:1; }
