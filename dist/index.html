@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>ZIPLAN</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&family=Inter+Tight:wght@300;500&family=Gowun+Batang:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&family=Gothic+A1:wght@800;900&family=Gowun+Batang:wght@400&display=swap">
 <!-- 효과: liquid-glass-js (상단 내비게이션 유리 패널 1개) -->
 <link rel="stylesheet" href="vendor/liquid-glass/glass.css">
 <link rel="stylesheet" href="effects/nav-glass.css">
@@ -78,9 +78,12 @@ nav .sp{flex:1}
 /* 제목 블록: 상단 중앙. 용어는 가늘고 넓게, 슬로건은 명조로 */
 .phead{position:absolute;left:0;right:0;top:calc(48px + 9vh);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;animation:pheadIn 1.2s cubic-bezier(.2,.7,.2,1) both .2s}
 .phead .eyebrow{font-family:var(--brand);font-size:13px;letter-spacing:.16em;color:rgba(255,255,255,.62);margin-bottom:18px}
-.phead .term{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:clamp(64px,9vw,128px);line-height:.95;letter-spacing:.04em;margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
-.phead .term .gloss{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(12px,1vw,14px);letter-spacing:.3em;color:rgba(255,255,255,.7);padding-left:.3em}
-.phead .slogan{font-family:'Gowun Batang','Nanum Myeongjo',serif;font-weight:400;font-size:clamp(20px,2.4vw,30px);color:rgba(255,255,255,.92);margin:22px 0 0;letter-spacing:-.005em}
+.phead .term{font-family:var(--brand);font-weight:400;font-size:clamp(72px,10vw,150px);line-height:.95;letter-spacing:-.045em;margin:0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.phead .word{display:inline-flex;align-items:baseline;white-space:nowrap}
+.phead .lan{display:inline-block;overflow:hidden;width:0;opacity:0;vertical-align:baseline}
+.phead .lan>span{display:inline-block}
+.phead .gloss{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(12px,1vw,14px);letter-spacing:.24em;color:rgba(255,255,255,.72);padding-left:.24em;opacity:0;transform:translateY(6px);word-break:keep-all;line-height:1.8;max-width:92vw}
+.phead .slogan{font-family:'Gothic A1','Noto Sans KR',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,34px);color:rgba(255,255,255,.95);margin:20px 0 0;letter-spacing:-.02em}
 .plinks{display:flex;gap:28px;justify-content:center;margin-top:22px;font-size:clamp(16px,1.5vw,20px)}
 .plinks a{color:#2997ff}.plinks a:hover{text-decoration:underline}.plinks a span{display:inline-block;transition:transform .2s}.plinks a:hover span{transform:translateX(3px)}
 @keyframes pheadIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -93,7 +96,7 @@ nav .sp{flex:1}
 nav.on-dark{--fg:#fff;--bg:#111;--fg-2:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.14)}
 nav.on-dark .pz{color:#9fc5ff}
 nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
-@media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
+@media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pzoom,.pidle{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
 .build{height:720vh;position:relative}
@@ -425,7 +428,7 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
       <div class="pshade"></div>
       <div class="phead" id="phead">
         <div class="eyebrow">ZIPLAN 집플랜</div>
-        <h1 class="term">PLAN<span class="gloss">평면 · 계획</span></h1>
+        <h1 class="term" aria-label="ZIPLAN"><span class="word"><span class="t">ZI</span><span class="t pz2" id="termP">P</span><span class="lan" id="termLan"><span id="termLanIn">LAN</span></span></span><span class="gloss" id="termGloss">대지 · 컨셉 · 평면 · 단면 · 모형 · 패널 · 포트폴리오</span></h1>
         <p class="slogan">생각이 집이 되는 곳.</p>
         <div class="plinks"><a href="#concept">시작하기 <span>›</span></a><a href="#guide">어떻게 쓰나 <span>›</span></a></div>
       </div>
@@ -1497,12 +1500,19 @@ const BUILD=(function(){
 /* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
 (function(){ const sec=$('#photo'); if(!sec) return; const zoom=$('.pzoom'), lit=$('.pimg.on'), veil=$('.pveil'), tw=$('#ptraceW'), tk=$('#ptraceK'), head=$('#phead'), caps=$$('.pcap'), hint=$('.pbhint'), nav=$('nav'); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; let last=-1, ticking=false;
   head.addEventListener('animationend',()=>{ head.style.animation='none'; last=-1; tick(); },{once:true});
-  function paint(p){ const h=1-st(p,0.03,0.18); head.style.opacity=h.toFixed(3); head.style.transform=`translateY(${(-40*(1-h)).toFixed(1)}px)`; head.style.pointerEvents=h>0.3?'auto':'none';
-    const light=ease(st(p,0.10,0.34)); lit.style.opacity=light.toFixed(3);                       // 불이 켜진다
-    const d=st(p,0.36,0.62); tw.style.strokeDashoffset=(1-d).toFixed(3); tk.style.strokeDashoffset=(1-d).toFixed(3);   // 선이 그려진다
-    const go=ease(st(p,0.60,1.0)); const v=st(p,0.80,0.985); veil.style.opacity=(v*0.97).toFixed(3); tw.style.opacity=(1-v).toFixed(2); tk.style.opacity=v.toFixed(2);   // 안으로
-    zoom.style.transform=`scale(${(1+0.06*st(p,0,0.6)+1.9*go).toFixed(4)})`;
-    const i=p<0.10?0:(p<0.36?1:(p<0.62?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); c.classList.toggle('ink',v>0.5); }); if(hint) hint.style.opacity=p>0.03?0:1; }
+  const termP=$('#termP'), termLan=$('#termLan'), termLanIn=$('#termLanIn'), termGloss=$('#termGloss'); let lanW=0; const measure=()=>{ lanW=termLanIn.getBoundingClientRect().width; }; measure(); window.addEventListener('resize',measure); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ measure(); last=-1; tick(); });
+  const mix=(a,b,t)=>Math.round(a+(b-a)*t);
+  function paint(p){
+    const m=ease(st(p,0.05,0.26));                                                     // 불이 켜지며 ZIP → ZIPLAN
+    lit.style.opacity=m.toFixed(3);
+    termLan.style.width=(lanW*m).toFixed(1)+'px'; termLan.style.opacity=Math.min(1,m*1.6).toFixed(3);
+    termP.style.color=`rgb(${mix(255,41,m)},${mix(255,151,m)},${mix(255,255,m)})`;   // 흰 P → 로고 파랑 #2997ff
+    termGloss.style.opacity=m.toFixed(3); termGloss.style.transform=`translateY(${(6*(1-m)).toFixed(1)}px)`;
+    const h=1-st(p,0.30,0.42); head.style.opacity=h.toFixed(3); head.style.transform=`translateY(${(-40*(1-h)).toFixed(1)}px)`; head.style.pointerEvents=h>0.3?'auto':'none';
+    const d=st(p,0.42,0.66); tw.style.strokeDashoffset=(1-d).toFixed(3); tk.style.strokeDashoffset=(1-d).toFixed(3);   // 선이 그려진다
+    const go=ease(st(p,0.64,1.0)); const v=st(p,0.82,0.985); veil.style.opacity=(v*0.97).toFixed(3); tw.style.opacity=(1-v).toFixed(2); tk.style.opacity=v.toFixed(2);   // 안으로
+    zoom.style.transform=`scale(${(1+0.06*st(p,0,0.64)+1.9*go).toFixed(4)})`;
+    const i=p<0.06?0:(p<0.42?1:(p<0.66?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); c.classList.toggle('ink',v>0.5); }); if(hint) hint.style.opacity=p>0.03?0:1; }
   function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=r.top<=56&&r.bottom>56; nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
   if(rm){ nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',r.top<=56&&r.bottom>56&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
 (function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false;
