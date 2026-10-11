@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>ZIPLAN</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&family=Inter+Tight:wght@300;500&family=Gowun+Batang:wght@400;700&display=swap">
 <!-- 효과: liquid-glass-js (상단 내비게이션 유리 패널 1개) -->
 <link rel="stylesheet" href="vendor/liquid-glass/glass.css">
 <link rel="stylesheet" href="effects/nav-glass.css">
@@ -63,37 +63,38 @@ nav .sp{flex:1}
 .pop p{margin:0 0 10px;color:var(--fg-2)}
 @media (max-width:820px){ nav a.nl{display:none} nav .in{gap:14px} }
 
-/* opening 1: 애플식 표지 — 움직이는 사진 + 상단 중앙 제목 → 스크롤하면 제목이 비켜나고 사진이 다가오며 윤곽선이 그려진다 */
-.photo{height:420vh;position:relative;background:#0b0e14} /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
+/* opening 1: 애플식 표지 — 불 꺼진 집 → 스크롤하며 불이 켜지고 → 선이 그려지며 → 현관으로 들어간다 */
+.photo{height:460vh;position:relative;background:#0b0e14} /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
 .pstage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0b0e14}
-.pmedia{position:absolute;inset:0;transform-origin:52% 58%;will-change:transform}
-.pimg,.pvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
-.pvid{opacity:0;transition:opacity 1.2s ease}
-.pstage.vid-on .pvid{opacity:1}
-.pshade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,8,14,.62) 0%,rgba(6,8,14,.22) 38%,rgba(6,8,14,0) 60%,rgba(6,8,14,.35) 100%);pointer-events:none}
+.pzoom{position:absolute;inset:0;transform-origin:46.4% 66%;will-change:transform}   /* 현관(문) 위치가 확대 중심 */
+.pidle{position:absolute;inset:0;transform-origin:50% 58%;animation:pidle 46s ease-in-out infinite alternate}
+@keyframes pidle{from{transform:scale(1)}to{transform:scale(1.045) translate(-0.6%,-0.4%)}}
+.pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.pimg.on{opacity:0}
+.pshade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,8,14,.58) 0%,rgba(6,8,14,.18) 40%,rgba(6,8,14,0) 62%,rgba(6,8,14,.3) 100%);pointer-events:none}
 .ptrace{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .ptrace path,.ptrace use{stroke-dasharray:1;stroke-dashoffset:1}
 .pveil{position:absolute;inset:0;background:var(--bg);opacity:0;pointer-events:none}
-/* 애플식 제목 블록: 상단 중앙, 짧게 */
-.phead{position:absolute;left:0;right:0;top:calc(48px + 9vh);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;animation:pheadIn 1.1s cubic-bezier(.2,.7,.2,1) both .15s}
-.phead .eyebrow{font-family:var(--brand);font-size:14px;letter-spacing:.14em;color:rgba(255,255,255,.72);margin-bottom:14px}
-.phead h1{font-size:clamp(44px,6.2vw,80px);font-weight:700;line-height:1.04;letter-spacing:-.03em;margin:0}
-.phead p{font-size:clamp(19px,2.3vw,28px);font-weight:400;color:rgba(255,255,255,.88);margin:14px 0 0;letter-spacing:-.01em}
-.plinks{display:flex;gap:28px;justify-content:center;margin-top:20px;font-size:clamp(17px,1.6vw,21px)}
+/* 제목 블록: 상단 중앙. 용어는 가늘고 넓게, 슬로건은 명조로 */
+.phead{position:absolute;left:0;right:0;top:calc(48px + 9vh);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;animation:pheadIn 1.2s cubic-bezier(.2,.7,.2,1) both .2s}
+.phead .eyebrow{font-family:var(--brand);font-size:13px;letter-spacing:.16em;color:rgba(255,255,255,.62);margin-bottom:18px}
+.phead .term{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:clamp(64px,9vw,128px);line-height:.95;letter-spacing:.04em;margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.phead .term .gloss{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(12px,1vw,14px);letter-spacing:.3em;color:rgba(255,255,255,.7);padding-left:.3em}
+.phead .slogan{font-family:'Gowun Batang','Nanum Myeongjo',serif;font-weight:400;font-size:clamp(20px,2.4vw,30px);color:rgba(255,255,255,.92);margin:22px 0 0;letter-spacing:-.005em}
+.plinks{display:flex;gap:28px;justify-content:center;margin-top:22px;font-size:clamp(16px,1.5vw,20px)}
 .plinks a{color:#2997ff}.plinks a:hover{text-decoration:underline}.plinks a span{display:inline-block;transition:transform .2s}.plinks a:hover span{transform:translateX(3px)}
 @keyframes pheadIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .pcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);max-width:520px;color:#fff;opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s;pointer-events:none;text-shadow:0 2px 24px rgba(0,0,0,.45)}
 .pcap.on{opacity:1;transform:none}
 .pcap .n{font-family:var(--brand);font-size:13px;letter-spacing:.14em;color:#9fc5ff;margin-bottom:8px}
-.pcap h2{font-size:clamp(44px,7vw,96px);font-weight:900;line-height:1.02;letter-spacing:-.04em}
-.pcap p{font-size:clamp(15px,1.6vw,19px);color:rgba(255,255,255,.82);margin:12px 0 0;max-width:38ch}
-.pcap.ink{color:var(--fg);text-shadow:none}.pcap.ink p{color:var(--fg-2)}.pcap.ink .n{color:var(--accent)}
+.pcap h2{font-family:'Gowun Batang',serif;font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.1;letter-spacing:-.01em}
+.pcap.ink{color:var(--fg);text-shadow:none}.pcap.ink .n{color:var(--accent)}
 .pbhint{color:rgba(255,255,255,.7)}
 nav.on-dark{--fg:#fff;--bg:#111;--fg-2:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.14)}
 nav.on-dark .pz{color:#9fc5ff}
 nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
-@media (max-width:860px){ .photo{height:330vh} .phead{top:calc(48px + 7vh)} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
-@media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pmedia{transform:none !important} .pvid{display:none} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
+@media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
+@media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pzoom,.pidle{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
 .build{height:720vh;position:relative}
 .bstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
@@ -412,24 +413,25 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
 <section class="view" id="view-home">
   <div class="photo" id="photo">
     <div class="pstage">
-      <div class="pmedia">
-        <img class="pimg" src="img/house-dusk.jpg" srcset="img/house-dusk-960.jpg 960w, img/house-dusk.jpg 1672w" sizes="100vw" alt="숲 앞 해질녘의 주택 — 돌벽과 검은 외장, 유리창에 따뜻한 빛" decoding="async" fetchpriority="high">
-        <video class="pvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-      </div>
-      <svg class="ptrace" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="#fff"><path id="ptraceW" d="M0 330 C300 262 700 200 1000 172 S1500 140 1672 172 M65 380 L545 380 L545 545 L65 545 Z M65 545 L660 545 M180 560 L545 560 L545 700 L180 700 Z M545 400 L815 400 L815 560 M725 410 L725 345 L805 345 L805 410 M725 560 L725 700 M815 560 L815 700 M750 600 L800 600 L800 700 M975 395 L1470 395 L1470 545 L975 545 Z M975 545 L1620 545 M975 560 L1620 560 L1620 700 L975 700 Z M65 705 L1620 705 M655 725 L1005 725 M645 745 L1015 745 M635 765 L1025 765" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></g>
-        <g stroke="#111"><use href="#ptraceW" id="ptraceK"/></g>
-      </svg>
+      <div class="pzoom"><div class="pidle">
+        <img class="pimg off" src="img/house-off.jpg" srcset="img/house-off-960.jpg 960w, img/house-off.jpg 1672w" sizes="100vw" alt="불이 꺼진 숲속 주택, 해질녘" decoding="async" fetchpriority="high">
+        <img class="pimg on" src="img/house-dusk.jpg" srcset="img/house-dusk-960.jpg 960w, img/house-dusk.jpg 1672w" sizes="100vw" alt="" decoding="async">
+        <svg class="ptrace" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff"><path id="ptraceW" d="M0 330 C300 262 700 200 1000 172 S1500 140 1672 172 M65 380 L545 380 L545 545 L65 545 Z M65 545 L660 545 M180 560 L545 560 L545 700 L180 700 Z M545 400 L815 400 L815 560 M725 410 L725 345 L805 345 L805 410 M725 560 L725 700 M815 560 L815 700 M750 600 L800 600 L800 700 M975 395 L1470 395 L1470 545 L975 545 Z M975 545 L1620 545 M975 560 L1620 560 L1620 700 L975 700 Z M65 705 L1620 705 M655 725 L1005 725 M645 745 L1015 745 M635 765 L1025 765" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></g>
+          <g stroke="#111"><use href="#ptraceW" id="ptraceK"/></g>
+        </svg>
+      </div></div>
       <div class="pveil"></div>
       <div class="pshade"></div>
       <div class="phead" id="phead">
         <div class="eyebrow">ZIPLAN 집플랜</div>
-        <h1>모두의 건축</h1>
-        <p>계획은 당신이, 표현은 ZIP이.</p>
+        <h1 class="term">PLAN<span class="gloss">평면 · 계획</span></h1>
+        <p class="slogan">생각이 집이 되는 곳.</p>
         <div class="plinks"><a href="#concept">시작하기 <span>›</span></a><a href="#guide">어떻게 쓰나 <span>›</span></a></div>
       </div>
-      <div class="pcap" data-i="1"><div class="n">SEE</div><h2>많이 보고,<br>고른다.</h2><p>하나의 답 대신 세 개의 대안. 고를수록 당신을 닮아 가는 작업대.</p></div>
-      <div class="pcap" data-i="2"><div class="n">TRACE</div><h2>사진 한 장이<br>선이 되고</h2><p>선이 도면이 되고, 도면이 집이 된다.</p></div>
+      <div class="pcap" data-i="1"><div class="n">LIGHT</div><h2>불이 켜진다.</h2></div>
+      <div class="pcap" data-i="2"><div class="n">LINE</div><h2>선이 그려진다.</h2></div>
+      <div class="pcap" data-i="3"><div class="n">ENTER</div><h2>안으로.</h2></div>
       <div class="bhint pbhint">내리면서 보세요 ↓</div>
     </div>
   </div>
@@ -1492,13 +1494,16 @@ const BUILD=(function(){
   const capIndex=p=>p<0.09?0:(p<0.22?1:(p<0.40?2:(p<0.62?3:(p<0.78?4:(p<0.92?5:6)))));
   return {scene,capIndex};
 })();
-/* 표지: 움직이는 사진(영상 루프) + 애플식 제목. 스크롤로 제목이 비켜나고, 사진이 다가가며, 윤곽이 선으로 따라 그려지고 하얘진다 */
-(function(){ const sec=$('#photo'); if(!sec) return; const stage=$('.pstage'), media=$('.pmedia'), vid=$('.pvid'), veil=$('.pveil'), tw=$('#ptraceW'), tk=$('#ptraceK'), head=$('#phead'), caps=$$('.pcap'), hint=$('.pbhint'), nav=$('nav'); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); let last=-1, ticking=false;
+/* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
+(function(){ const sec=$('#photo'); if(!sec) return; const zoom=$('.pzoom'), lit=$('.pimg.on'), veil=$('.pveil'), tw=$('#ptraceW'), tk=$('#ptraceK'), head=$('#phead'), caps=$$('.pcap'), hint=$('.pbhint'), nav=$('nav'); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; let last=-1, ticking=false;
   head.addEventListener('animationend',()=>{ head.style.animation='none'; last=-1; tick(); },{once:true});
-  // 영상: 움직임 줄이기·데이터 절약이 아니면 화면 폭에 맞는 루프를 늦게 불러와 포스터 위에 겹친다
-  if(!rm && !(navigator.connection&&navigator.connection.saveData)){ const base=window.innerWidth<=820?'img/hero-768':'img/hero-1280'; const src=base+(vid.canPlayType('video/mp4; codecs="avc1.42E01E"')?'.mp4':'.webm'); const start=()=>{ vid.src=src; vid.load(); const p=vid.play(); if(p&&p.catch) p.catch(()=>{}); }; vid.addEventListener('playing',()=>stage.classList.add('vid-on'),{once:true}); if(document.readyState==='complete') setTimeout(start,300); else window.addEventListener('load',()=>setTimeout(start,300)); document.addEventListener('visibilitychange',()=>{ if(document.hidden) vid.pause(); else if(!$('#view-home').hidden){ const p=vid.play(); if(p&&p.catch) p.catch(()=>{}); } }); }
-  function paint(p){ media.style.transform=`scale(${(1+0.14*p).toFixed(4)}) translate(${(-1.5*p).toFixed(2)}%, ${(-1*p).toFixed(2)}%)`; const h=1-st(p,0.04,0.22); head.style.opacity=h.toFixed(3); head.style.transform=`translateY(${(-48*(1-h)).toFixed(1)}px)`; head.style.pointerEvents=h>0.3?'auto':'none'; const v=st(p,0.7,0.98); veil.style.opacity=(v*0.96).toFixed(3); const d=st(p,0.52,0.9); tw.style.strokeDashoffset=(1-d).toFixed(3); tw.style.opacity=(1-v).toFixed(2); tk.style.strokeDashoffset=(1-d).toFixed(3); tk.style.opacity=v.toFixed(2); const i=p<0.28?0:(p<0.54?1:2); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i); c.classList.toggle('ink',v>0.5); }); if(hint) hint.style.opacity=p>0.04?0:1; }
-  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); vid.pause(); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=r.top<=56&&r.bottom>56; nav.classList.toggle('on-dark',under&&!rm); if(r.bottom<0){ if(!vid.paused) vid.pause(); } else if(vid.paused&&vid.src&&!rm){ const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); } if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
+  function paint(p){ const h=1-st(p,0.03,0.18); head.style.opacity=h.toFixed(3); head.style.transform=`translateY(${(-40*(1-h)).toFixed(1)}px)`; head.style.pointerEvents=h>0.3?'auto':'none';
+    const light=ease(st(p,0.10,0.34)); lit.style.opacity=light.toFixed(3);                       // 불이 켜진다
+    const d=st(p,0.36,0.62); tw.style.strokeDashoffset=(1-d).toFixed(3); tk.style.strokeDashoffset=(1-d).toFixed(3);   // 선이 그려진다
+    const go=ease(st(p,0.60,1.0)); const v=st(p,0.80,0.985); veil.style.opacity=(v*0.97).toFixed(3); tw.style.opacity=(1-v).toFixed(2); tk.style.opacity=v.toFixed(2);   // 안으로
+    zoom.style.transform=`scale(${(1+0.06*st(p,0,0.6)+1.9*go).toFixed(4)})`;
+    const i=p<0.10?0:(p<0.36?1:(p<0.62?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); c.classList.toggle('ink',v>0.5); }); if(hint) hint.style.opacity=p>0.03?0:1; }
+  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=r.top<=56&&r.bottom>56; nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
   if(rm){ nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',r.top<=56&&r.bottom>56&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
 (function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false;
   function paint(p){ svg.innerHTML=BUILD.scene(p); const i=BUILD.capIndex(p); caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=p>0.05?0:1; }
