@@ -181,13 +181,72 @@ nav.on-dark .userchip.signin{background:#fff;color:#0b0c10}
 /* blocks */
 .view{min-height:60vh}
 .hero{padding:72px 16px 40px;text-align:center}
-#introHero{position:relative;overflow:hidden;isolation:isolate;padding-top:96px;padding-bottom:64px}
+#introHero{position:relative;overflow:hidden;isolation:isolate;margin-top:-28px;padding-top:124px;padding-bottom:64px;--hr:0px} /* 위 어두운 장면과 겹쳐 두어 시차 이동 중에도 틈이 안 보이게 */
+/* 어둠에서 밝은 원이 열리며 히어로가 드러난다 (shadergradient.co 의 섹션 전환) */
+#introHero .heroveil{position:absolute;inset:0;background:#0b0c10;z-index:1;pointer-events:none;-webkit-mask:radial-gradient(circle at 50% 40%,transparent var(--hr),#000 calc(var(--hr) + 1px));mask:radial-gradient(circle at 50% 40%,transparent var(--hr),#000 calc(var(--hr) + 1px))}
+#introHero > *:not(.sgbg):not(.heroveil){position:relative;z-index:2}
+@media (prefers-reduced-motion:reduce){ #introHero .heroveil{display:none} }
 .sgbg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
 #introHero .sgbg{-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,#000 40%,transparent 100%);opacity:.9}
-.mod.gradband{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:150px 16px}
-.mod.gradband .tag{color:rgba(255,255,255,.78)}
+/* 글자가 한 자씩 솟아오르는 제목(word-scroll-appear) · 문단은 단어가 차례로 밝아진다 — 스크롤 위치(--p)로 */
+.lt{--p:0}.lt .w{display:inline-block;white-space:nowrap}.lt .w>span{display:inline-block;--k:clamp(0,calc((var(--p)*(var(--n) + 5) - var(--i))/5),1);opacity:var(--k);transform:translateY(calc((1 - var(--k))*.55em)) rotate(calc((1 - var(--k))*4deg));transform-origin:0 100%}
+.wd{--p:0}.wd>span{--k:clamp(0,calc((var(--p)*(var(--n) + 4) - var(--i))/4),1);opacity:calc(.22 + .78*var(--k));transition:none}
+@media (prefers-reduced-motion:reduce){ .lt .w>span{opacity:1;transform:none} .wd>span{opacity:1} }
+/* 같은 땅, 세 개의 답 — 대지 사진 + 세 대안 렌더 */
+.alts{max-width:1100px;margin:8px auto 0;padding:0 16px 24px}
+.alts .ahead{text-align:center;margin-bottom:28px}
+.alts h2{font-size:clamp(30px,4vw,48px);margin:0 0 10px;letter-spacing:-.03em}
+.alts .tag{color:var(--fg-2);font-size:clamp(15px,1.4vw,19px);max-width:640px;margin:0 auto}
+.agrid{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px;align-items:stretch}
+.acard{margin:0;position:relative;--r:0;cursor:pointer;border-radius:18px;outline:0}
+.acard .aimg{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--bg-alt);clip-path:inset(calc((1 - var(--r))*100%) 0 0 0 round 18px);box-shadow:0 20px 50px -24px rgba(0,0,0,.4);position:relative}
+.acard .aimg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(calc(1.08 - .08*var(--r)));transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.acard:hover .aimg img{transform:scale(1.04)}
+.acard .aimg::after{content:'';position:absolute;inset:0;border-radius:18px;box-shadow:inset 0 0 0 0 var(--accent);transition:box-shadow .3s;pointer-events:none}
+.acard.pick .aimg::after{box-shadow:inset 0 0 0 3px var(--accent)}
+.acard .ab{position:absolute;left:12px;top:12px;font-family:var(--brand);font-size:13px;letter-spacing:.08em;color:#fff;background:rgba(10,12,18,.55);backdrop-filter:blur(8px);padding:4px 9px;border-radius:999px}
+.acard .achk{position:absolute;right:12px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:14px;opacity:0;transform:scale(.6);transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.4,1)}
+.acard.pick .achk{opacity:1;transform:scale(1)}
+.acard figcaption{padding:12px 4px 0;opacity:calc(var(--r)*1.4 - .3);transform:translateY(calc((1 - var(--r))*10px))}
+.acard b{display:block;font-size:17px;letter-spacing:-.02em;margin-bottom:4px}
+.acard p{margin:0;color:var(--fg-2);font-size:13.5px;line-height:1.55;word-break:keep-all}
+.acard.site{cursor:default}.acard.site .aimg{box-shadow:0 20px 50px -24px rgba(0,0,0,.25)}
+.anote{text-align:center;color:var(--fg-2);font-size:14px;margin-top:22px;min-height:1.6em}
+.anote b{color:var(--fg)}
+@media (max-width:900px){ .agrid{grid-template-columns:1fr 1fr;gap:12px} }
+@media (max-width:520px){ .agrid{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ .acard{--r:1} .acard .aimg img{transform:none} }
+/* 과정 사진 띠 */
+.pstrip{max-width:1100px;margin:60px auto 0;padding:0 16px}
+.pstrip .phead2{text-align:center;margin-bottom:34px}
+.pstrip h2{font-size:clamp(30px,4vw,48px);margin:0 0 10px;letter-spacing:-.03em}
+.pstrip .tag{color:var(--fg-2);font-size:clamp(15px,1.4vw,19px);max-width:620px;margin:0 auto}
+.pcs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pc{margin:0;--r:0;--py:0}
+.pcimg{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--bg-alt);clip-path:inset(calc((1 - var(--r))*100%) 0 0 0 round 18px);box-shadow:0 20px 50px -24px rgba(0,0,0,.35)}
+.pcimg img{width:100%;height:112%;object-fit:cover;display:block;transform:translateY(calc(var(--py)*-10%)) scale(1.02);will-change:transform}
+.pc figcaption{padding:14px 4px 0;opacity:calc(var(--r)*1.4 - .3);transform:translateY(calc((1 - var(--r))*10px))}
+.pc .n{display:block;font-size:12px;letter-spacing:.12em;color:var(--fg-2);margin-bottom:6px}
+.pc b{display:block;font-size:19px;letter-spacing:-.02em;margin-bottom:6px}
+.pc p{margin:0;color:var(--fg-2);font-size:14px;line-height:1.6;word-break:keep-all}
+.pc:nth-child(2){transition-delay:.08s}.pc:nth-child(3){transition-delay:.16s}
+@media (max-width:820px){ .pcs{grid-template-columns:1fr;gap:26px} .pstrip{margin-top:40px} }
+@media (prefers-reduced-motion:reduce){ .pc{--r:1} .pcimg img{transform:none} }
+.likewrap{height:280vh;background:#0b0c10}
+.mod.gradband{position:sticky;top:0;height:100vh;box-sizing:border-box;overflow:hidden;isolation:isolate;color:#fff;padding:0 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#0b0c10}
+.mod.gradband .tag{color:rgba(255,255,255,.78);max-width:560px;margin-top:22px;font-size:clamp(16px,1.6vw,20px)}
+.mod.gradband .links{margin-top:18px}
 .mod.gradband .links a{color:#fff;text-decoration-color:rgba(255,255,255,.5)}
 .mod.gradband .sgbg{opacity:1}
+.likeline{display:flex;align-items:center;justify-content:center;gap:.35em;font-size:clamp(34px,6vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.05;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.lk-words{position:relative;height:1.2em;min-width:3.2em;overflow:hidden;text-align:center;-webkit-mask:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.lk-words .lkw{position:absolute;left:0;right:0;top:0;height:1.2em;line-height:1.2em;color:#fff;opacity:.22;transform:translateY(calc((var(--j) - var(--cur,0))*1.2em));transition:transform .55s cubic-bezier(.25,1.2,.35,1),opacity .4s,filter .4s;filter:blur(calc(min(1,abs(var(--j) - var(--cur,0)))*3px))}
+.lk-words .lkw.on{opacity:1;filter:none}
+.lk-b{white-space:nowrap}
+.lkbar{position:absolute;left:50%;bottom:28px;width:min(240px,60vw);height:2px;background:rgba(255,255,255,.18);transform:translateX(-50%);border-radius:1px;overflow:hidden}
+.lkbar i{position:absolute;left:0;top:0;bottom:0;width:100%;background:#fff;transform-origin:0 50%;transform:scaleX(var(--p,0))}
+@media (max-width:720px){ .likeline{flex-direction:column;gap:.1em} .lk-words{min-width:4em} .likewrap{height:220vh} }
+@media (prefers-reduced-motion:reduce){ .likewrap{height:auto} .mod.gradband{position:relative;height:auto;padding:120px 16px} .lk-words .lkw{transition:none} .lkbar{display:none} }
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) #introHero .sgbg{display:none} }
 .hero h1{font-size:clamp(52px,9vw,96px);line-height:1;letter-spacing:-0.045em}
 .hero .tag{font-size:clamp(22px,3.4vw,34px);font-weight:500;margin-top:14px}
@@ -577,6 +636,7 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
   </div>
 
   <div class="hero" id="introHero">
+    <div class="heroveil" aria-hidden="true"></div>
     <div class="heromark" id="heroMark"></div>
     <h1 class="brand"><span class="zl">ZI</span><span class="pz">P</span><span class="zr">LAN</span></h1>
     <div class="tag rotline">모두의 <span class="rot" id="rotWord">건축</span></div>
@@ -608,6 +668,28 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
   </div>
   </div>
 
+  <!-- 같은 땅, 세 개의 답: 대지 한 장 + 대안 셋(렌더). 하나를 고르면 스타일 프로필에 쌓이는 흐름을 미리 보여 준다 -->
+  <div class="alts" id="alts">
+    <div class="ahead"><h2>같은 땅, 세 개의 답.</h2><div class="tag">같은 한 줄 — "숲 앞 경사지, 4인 가족, 돌과 유리" — 에서 나온 세 집입니다. 하나를 골라 보세요.</div></div>
+    <div class="agrid">
+      <figure class="acard site"><div class="aimg"><img src="img/alt-site.webp" alt="숲 앞 경사지의 빈 대지, 남쪽으로 길" loading="lazy" decoding="async"><span class="ab">SITE</span></div><figcaption><b>대지 — 숲 앞 경사지</b><p>북쪽은 숲, 남쪽은 길. 내집코드가 읽어 준 땅 위에 한 줄을 올립니다.</p></figcaption></figure>
+      <figure class="acard" data-alt="A" tabindex="0"><div class="aimg"><img src="img/alt-a.webp" alt="대안 A: 길게 낮게 펼친 단층집" loading="lazy" decoding="async"><span class="ab">A</span><span class="achk">✓</span></div><figcaption><b>A · 길게 낮게</b><p>경사를 따라 길게 눕히고, 골짜기 쪽을 전면 유리로. <em>조망</em>이 먼저인 집.</p></figcaption></figure>
+      <figure class="acard" data-alt="B" tabindex="0"><div class="aimg"><img src="img/alt-b.webp" alt="대안 B: 두 동 사이 마당과 유리 연결" loading="lazy" decoding="async"><span class="ab">B</span><span class="achk">✓</span></div><figcaption><b>B · 두 동과 마당</b><p>두 덩어리 사이에 마당을 두고 유리로 잇습니다. <em>프라이버시</em>가 먼저인 집.</p></figcaption></figure>
+      <figure class="acard" data-alt="C" tabindex="0"><div class="aimg"><img src="img/alt-c.webp" alt="대안 C: ㄱ자로 안마당을 감싼 집" loading="lazy" decoding="async"><span class="ab">C</span><span class="achk">✓</span></div><figcaption><b>C · ㄱ자 안마당</b><p>ㄱ자로 안마당을 감싸 바람을 막고, 안쪽만 엽니다. <em>바람막이</em>가 먼저인 집.</p></figcaption></figure>
+    </div>
+    <div class="anote" id="altNote">세 집 모두 같은 재료 — 돌, 유리, 어두운 나무. 다른 건 <b>땅을 읽는 방식</b>입니다.</div>
+  </div>
+
+  <!-- 손에서 벽까지: 과정 사진 셋 — 스크롤에 맞춰 아래서 드러나고, 사진은 천천히 떠오른다 -->
+  <div class="pstrip" id="pstrip">
+    <div class="phead2"><h2>손에서 벽까지.</h2><div class="tag">ZIPLAN은 화면 안에서 끝나지 않습니다. 스케치로 시작해, 모형으로 확인하고, 벽에 걸어 말합니다.</div></div>
+    <div class="pcs">
+      <figure class="pc"><div class="pcimg"><img src="img/p-sketch.webp" alt="트레이싱지 위 펠트펜 스케치" loading="lazy" decoding="async"></div><figcaption><span class="n">01 · 스케치</span><b>손으로 시작한다.</b><p>한 줄과 지도 위 몇 개의 선. 내집코드가 읽어 준 땅 위에 첫 생각을 올립니다.</p></figcaption></figure>
+      <figure class="pc"><div class="pcimg"><img src="img/p-model.webp" alt="흰 스터디 모형" loading="lazy" decoding="async"></div><figcaption><span class="n">02 · 모형</span><b>손으로 확인한다.</b><p>세 개의 매스 중 하나를 고르면 도면이 됩니다. 도면은 손으로 들어 볼 때 비로소 집이 됩니다.</p></figcaption></figure>
+      <figure class="pc"><div class="pcimg"><img src="img/p-crit.webp" alt="벽에 걸린 A1 패널들" loading="lazy" decoding="async"></div><figcaption><span class="n">03 · 크릿</span><b>벽에 걸고 말한다.</b><p>A1 한 장에 과정이 담깁니다. 광장에 올리면 다른 사람의 눈이 더해집니다.</p></figcaption></figure>
+    </div>
+  </div>
+
   <div class="mod alt" id="map" style="margin-top:40px">
     <h2>한눈에 보는 ZIPLAN.</h2>
     <div class="tag">네 묶음, 열한 개의 방. 위에서 아래로 가면 프로젝트 하나가 끝납니다.</div>
@@ -635,10 +717,13 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
     </div>
   </div>
 
+  <div class="likewrap" id="likeWrap">
   <div class="mod gradband" id="likeBand">
-    <h2>고를수록 당신을 닮는다.</h2>
-    <div class="tag">좋아요 한 사례와 고른 대안이 스타일 프로필이 됩니다. 결정은 늘 당신 것입니다.</div>
+    <h2 class="likeline" aria-label="고를수록 당신을 닮는다"><span class="lk-a">고를수록</span><span class="lk-words" id="lkWords" aria-hidden="true"><span class="lkw" style="--j:0">사례</span><span class="lkw" style="--j:1">대안</span><span class="lkw" style="--j:2">재료</span><span class="lkw" style="--j:3">창</span><span class="lkw" style="--j:4">마당</span><span class="lkw" style="--j:5">지붕</span></span><span class="lk-b">당신을 닮는다.</span></h2>
+    <div class="tag">좋아요 한 사례, 고른 대안, 바꾼 재료 하나까지 — 전부 스타일 프로필에 쌓입니다. 다음 대안은 그만큼 당신을 닮아 갑니다. 결정은 늘 당신 것입니다.</div>
     <div class="links"><a href="#learn">사례 보러 가기</a><a href="#studio">내 작업실</a></div>
+    <div class="lkbar" aria-hidden="true"><i></i></div>
+  </div>
   </div>
 
   <div class="mod alt" id="pricing">
@@ -989,7 +1074,7 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
   </div>
 </section>
 
-<footer><div class="in"><span><span class="mark" data-mark="14"></span> ZIPLAN — 모두의 건축 (베타)</span><span>예시 프로젝트: 두 상자 집(작업실) · 숲의 집(표지) · 내보내기: PNG · SVG</span></div></footer>
+<footer><div class="in"><span><span class="mark" data-mark="14"></span> ZIPLAN — 모두의 건축 (베타) · 움직이는 그라데이션: <a href="https://github.com/ruucm/shadergradient" target="_blank" rel="noopener">ShaderGradient</a>(MIT) 포팅</span><span>예시 프로젝트: 두 상자 집(작업실) · 숲의 집(표지) · 내보내기: PNG · SVG</span></div></footer>
 
 <script src="data/portfolio.js"></script>
 <script src="data/library.js"></script><!-- 자료실 데이터 --><!-- 포트폴리오 방 데이터 (주기적으로 갱신) -->
@@ -1720,8 +1805,8 @@ const BUILD=(function(){
     if(vig) vig.style.opacity=(1-0.6*p0).toFixed(3);
     const i=p<0.06?0:(p<0.42?1:(p<0.66?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); }); if(hint) hint.style.opacity=p>0.03?0:1; }
   let tPrev=0; function animate(ts){ raf=0; const dt=tPrev?Math.min(80,ts-tPrev):16; tPrev=ts; const diff=target-cur; if(Math.abs(diff)<0.0006){ cur=target; tPrev=0; paint(cur); return; } cur+=diff*(1-Math.exp(-dt/110)); paint(cur); raf=requestAnimationFrame(animate); }   // 시간 기준 감쇠: 어떤 화면 주사율에서도 약 0.4초 안에 따라붙는다   // 스크롤 관성: 영상처럼 부드럽게 따라온다
-  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; }); nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
-  if(rm){ nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; })&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
+  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=[sec,$('#build'),$('#panels'),$('#likeBand')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; }); nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
+  if(rm){ nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',[sec,$('#build'),$('#panels'),$('#likeBand')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; })&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
 let pnApi=null;   // 패널 구동부가 채운다(아래)
 (function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'), pnv=$('#build .pnview'), pnh=$('#build .pnhead'), pnf=$('#build .pnfoot'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
   // 한 섹션 안에서: 0~0.56 집이 되는 과정(끝에 사진이 보드 자리로 줄어듦) · 0.50~1 패널 여섯 장
@@ -1995,6 +2080,8 @@ const HOMESTORY=(function(){
   const hero=$('#introHero'); if(hero){ hero.classList.add('px','fx'); const zl=hero.querySelector('.zl'), pz=hero.querySelector('.pz'), zr=hero.querySelector('.zr'), mark=hero.querySelector('.heromark'), tag=hero.querySelector('.tag'), sub=hero.querySelector('.sub'), addr=hero.querySelector('.addr'), keys=Array.from(hero.querySelectorAll('.keys a')), links=hero.querySelector('.links');
     const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; const eo=t=>1-Math.pow(1-t,3); let lastK=-1;
     function paint(k){ const e=ease(k); const wl=zl.offsetWidth, wr=zr.offsetWidth;
+      // 0) 어둠 속 작은 원이 커지며 밝은 히어로가 열린다
+      const hr=ease(st(k,0,.64)); hero.style.setProperty('--hr',(hr*Math.hypot(hero.offsetWidth,hero.offsetHeight)*0.66).toFixed(0)+'px');
       // 1) 마크가 먼저, 그 아래 P 하나  2) P 양옆으로 ZI · LAN  3) 설명글 · 검색창 · 키워드
       const mk=eo(st(k,0,.28)); mark.style.transform=`scale(${(0.6+0.4*mk).toFixed(3)}) rotate(${(-10*(1-mk)).toFixed(1)}deg)`; mark.style.opacity=mk.toFixed(2);
       const ps=1+0.4*(1-eo(st(k,.34,.62))); pz.style.transform=`scale(${ps.toFixed(3)})`; pz.style.opacity=st(k,.08,.22).toFixed(2); pz.style.textShadow=`0 0 ${(46*Math.sin(Math.PI*st(k,.08,.7))).toFixed(0)}px rgba(41,151,255,${(0.95*Math.sin(Math.PI*st(k,.08,.7))).toFixed(2)})`;
@@ -2005,6 +2092,32 @@ const HOMESTORY=(function(){
     function tick(){ if($('#view-home').hidden) return; const r=hero.getBoundingClientRect(); const vh=innerHeight; const k=st(vh*0.98-r.top,0,vh*0.82); const par=(vh-r.top)/(vh+r.height); hero.style.transform=`translateY(${((0.5-Math.max(0,Math.min(1,par)))*40).toFixed(1)}px)`; if(Math.abs(k-lastK)<0.003) return; lastK=k; paint(k); }
     let tk=false; window.addEventListener('scroll',()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{ tk=false; tick(); }); },{passive:true}); window.addEventListener('resize',()=>{ lastK=-1; tick(); }); window.addEventListener('hashchange',()=>{ lastK=-1; setTimeout(tick,60); }); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ lastK=-1; tick(); }); tick(); }
 })();
+
+/* 제목은 글자가 한 자씩 솟고(--p), 서문은 단어가 차례로 밝아진다 — 전부 스크롤 위치로 (shadergradient.co 의 word-scroll-appear) */
+(function(){ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
+  const heads=$$('#view-home .mod > h2, #view-home .pstrip h2, #view-home .alts h2'); const paras=$$('#view-home .intro p');
+  heads.forEach(h=>{ if(h.classList.contains('lt')||h.classList.contains('likeline')) return; const words=h.textContent.split(/(\s+)/); h.textContent=''; let i=0; words.forEach(w=>{ if(!w.trim()){ h.appendChild(document.createTextNode(w)); return; } const g=document.createElement('span'); g.className='w'; Array.from(w).forEach(ch=>{ const sp=document.createElement('span'); sp.textContent=ch; sp.style.setProperty('--i',i++); g.appendChild(sp); }); h.appendChild(g); }); h.style.setProperty('--n',i); h.classList.add('lt'); });
+  paras.forEach(pg=>{ if(pg.classList.contains('wd')) return; const words=pg.textContent.split(/(\s+)/); pg.textContent=''; let n=0; words.forEach(w=>{ if(!w.trim()){ pg.appendChild(document.createTextNode(w)); return; } const sp=document.createElement('span'); sp.textContent=w; sp.style.setProperty('--i',n++); pg.appendChild(sp); }); pg.style.setProperty('--n',n); pg.classList.add('wd'); });
+  if(rm){ heads.forEach(h=>h.style.setProperty('--p',1)); paras.forEach(pg=>pg.style.setProperty('--p',1)); return; }
+  let tk=false; function tick(){ tk=false; if($('#view-home').hidden) return; const vh=innerHeight;
+    heads.forEach(h=>{ const r=h.getBoundingClientRect(); if(r.bottom<-200||r.top>vh*1.5) return; h.style.setProperty('--p',st(vh*0.92-r.top,0,vh*0.38).toFixed(3)); });
+    paras.forEach(pg=>{ const r=pg.getBoundingClientRect(); if(r.bottom<-200||r.top>vh*1.5) return; pg.style.setProperty('--p',st(vh*0.88-r.top,0,vh*0.42+r.height*0.6).toFixed(3)); }); }
+  addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
+
+/* 같은 땅, 세 개의 답: 카드는 아래서 드러나고(--r), 고르면 선택 표시 + 스타일 프로필 한 줄 */
+(function(){ const cards=$$('#alts .acard'); if(!cards.length) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const eo=t=>1-Math.pow(1-t,3);
+  const note=$('#altNote'); const base=note.innerHTML; const NOTE={A:'<b>A</b>를 골랐습니다 — 스타일 프로필에 <b>수평성 · 개방감 · 조망 우선</b>이 쌓입니다. 다음 대안은 더 낮고 길어집니다.',B:'<b>B</b>를 골랐습니다 — 스타일 프로필에 <b>분절 · 마당 · 프라이버시</b>가 쌓입니다. 다음 대안은 덩어리를 나누는 쪽으로 기웁니다.',C:'<b>C</b>를 골랐습니다 — 스타일 프로필에 <b>위요 · 바람막이 · 안으로 열림</b>이 쌓입니다. 다음 대안은 안마당을 먼저 그립니다.'};
+  cards.forEach(c=>{ if(!c.dataset.alt) return; const pick=()=>{ const on=!c.classList.contains('pick'); cards.forEach(x=>x.classList.remove('pick')); if(on){ c.classList.add('pick'); note.innerHTML=NOTE[c.dataset.alt]; } else note.innerHTML=base; }; c.addEventListener('click',pick); c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } }); });
+  if(rm){ cards.forEach(c=>c.style.setProperty('--r',1)); return; }
+  let tk=false; function tick(){ tk=false; if($('#view-home').hidden) return; const vh=innerHeight; cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.bottom<-vh||r.top>vh*2) return; c.style.setProperty('--r',eo(st(vh-r.top-i*50,30,vh*0.5)).toFixed(3)); }); }
+  addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
+
+/* 고를수록 [ ] 당신을 닮는다: 고정 화면 안에서 단어가 한 줄씩 넘어가고, 뒤의 3D 면은 천천히 돈다 (shadergradient.co 'Simply change …' 장면) */
+(function(){ const wrap=$('#likeWrap'), words=$$('#lkWords .lkw'), bar=$('#likeBand .lkbar'); if(!wrap||!words.length) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
+  let cur=-1; function setCur(i){ if(i===cur) return; cur=i; $('#lkWords').style.setProperty('--cur',i); words.forEach((w,j)=>w.classList.toggle('on',j===i)); }
+  if(rm){ setCur(1); return; }
+  let tk=false; function tick(){ tk=false; if($('#view-home').hidden) return; const r=wrap.getBoundingClientRect(); const vh=innerHeight; if(r.bottom<0||r.top>vh) return; const p=st(-r.top,0,r.height-vh); window.__likeP=p; setCur(Math.min(words.length-1,Math.floor(p*words.length))); if(bar) bar.style.setProperty('--p',p.toFixed(3)); }
+  addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
 
 /* rotating word in the hero */
 (function(){ const el=$('#rotWord'); const words=['건축','설계','집','도면','모형','패널','크리틱']; let i=0; if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; setInterval(()=>{ el.classList.add('fade'); setTimeout(()=>{ i=(i+1)%words.length; el.textContent=words[i]; el.classList.remove('fade'); },300); },2200); })();
@@ -2046,7 +2159,24 @@ drawSite(); $('#tileSite').innerHTML=siteSVG(); redraw(); renderCases(); renderP
 <script src="effects/nav-glass.js"></script>
 <script src="effects/shader-gradient.js"></script>
 <script>/* 움직이는 그라데이션 배경: 히어로(파스텔) · "닮는다" 띠(깊은 남색) */
-(function(){ if(!window.ShaderGradient) return; var go=function(){ var hero=document.getElementById('introHero'); if(hero) ShaderGradient.mount(hero,{colors:['#f6f8ff','#d9e7ff','#e8dcff'],speed:.18,strength:.8,density:.8,frequency:.55,amplitude:1,grain:.03,tilt:.5,light:.5,sat:1.05}); var band=document.getElementById('likeBand'); if(band) ShaderGradient.mount(band,{colors:['#070b1f','#1d3a9c','#8ab8ff'],speed:.22,strength:1.1,density:.85,frequency:.7,amplitude:1,grain:.06,tilt:.6,light:.9,sat:1.1}); }; if(document.readyState==='complete') go(); else window.addEventListener('load',go); })();</script>
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+/* 과정 사진 띠: 보이는 정도(--r)와 시차(--py)를 스크롤로 */
+(function(){ const cards=$$('#pstrip .pc'); if(!cards.length) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; if(rm){ cards.forEach(c=>c.style.setProperty('--r',1)); return; }
+  const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const eo=t=>1-Math.pow(1-t,3); let tk=false;
+  function tick(){ tk=false; if($('#view-home').hidden) return; const vh=innerHeight; cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.bottom<-vh||r.top>vh*2) return; const reveal=eo(st(vh-r.top-i*40,40,vh*0.55)); const py=st(vh-r.top,0,vh+r.height); c.style.setProperty('--r',reveal.toFixed(3)); c.style.setProperty('--py',py.toFixed(3)); }); }
+  addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
+/* ShaderGradient(ruucm, MIT) 포팅판 — 두 곳에 깔고, 스크롤에 따라 카메라·색이 천천히 바뀐다 (shadergradient.co 홈의 전환 느낌) */
+(function(){ if(!window.ShaderGradient) return; var SG=window.ShaderGradient; var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HERO_A={type:'waterPlane',color1:'#dfe8ff',color2:'#f5f6fb',color3:'#b9d4ff',cDistance:2.6,cPolarAngle:85,cAzimuthAngle:180,positionX:0,positionY:0,positionZ:0,rotationX:50,rotationY:0,rotationZ:-60,uDensity:1.5,uStrength:1.5,uSpeed:.22,brightness:1.2,grain:'off',maxWidth:1280};
+  var HERO_B={cDistance:3,cPolarAngle:100,rotationX:30,rotationZ:-45,uStrength:2,color3:'#c9c4ff'};
+  var BAND_A={type:'waterPlane',color1:'#0e1a44',color2:'#2f5fd6',color3:'#0a0b12',cDistance:3.4,cPolarAngle:78,cAzimuthAngle:168,positionX:0,positionY:0,positionZ:0,rotationX:50,rotationY:0,rotationZ:-60,uDensity:1.4,uStrength:1.8,uSpeed:.25,brightness:1.1,grain:.06,grainMix:1,maxWidth:1280,background:'transparent'};
+  var BAND_B={cDistance:4.2,cPolarAngle:96,cAzimuthAngle:196,rotationX:34,rotationZ:-20,color1:'#1a2f7a',color2:'#8ab8ff',color3:'#0a0b12'};
+  var go=function(){ var hero=document.getElementById('introHero'), band=document.getElementById('likeBand'); var gh=hero?SG.mount(hero,HERO_A):null, gb=band?SG.mount(band,BAND_A):null; if(rm) return;
+    var st=function(p,a,b){ return Math.max(0,Math.min(1,(p-a)/(b-a))); }, eo=function(t){ return 1-Math.pow(1-t,3); }; var lh=-1, lb=-1, tk=false;
+    function tick(){ tk=false; var vh=innerHeight; if(gh&&gh.ok){ var r=hero.getBoundingClientRect(); if(r.bottom>0&&r.top<vh){ var k=Math.round(eo(st(vh-r.top,0,vh+r.height))*100)/100; if(k!==lh){ lh=k; gh.set(SG.lerp(HERO_A,HERO_B,k)); } } }
+      if(gb&&gb.ok){ var q=band.getBoundingClientRect(); if(q.bottom>0&&q.top<vh){ var m=Math.round((window.__likeP!==undefined?window.__likeP:st(vh-q.top,0,vh+q.height))*100)/100; if(m!==lb){ lb=m; gb.set(SG.lerp(BAND_A,BAND_B,eo(m))); } } } }
+    addEventListener('scroll',function(){ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); tick(); };
+  if(document.readyState==='complete') go(); else window.addEventListener('load',go); })();</script>
 
 </body>
 </html>
