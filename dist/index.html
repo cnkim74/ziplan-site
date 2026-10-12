@@ -46,33 +46,60 @@ h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-0.015em}
 .pz{color:var(--accent)}
 .mark{display:inline-block;vertical-align:middle}
 
-/* nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:48px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
-nav .in{max-width:1100px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:24px;font-size:13px}
-nav .logo{display:flex;align-items:center;gap:8px;color:var(--fg);font-size:17px}
+/* nav — 떠 있는 유리 알약(pill). 바 자체는 투명해서 페이지와 바로 이어지고, 커서를 올리면 액체처럼 흐르는 하이라이트가 항목을 따라다닌다 */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:64px;padding:8px 12px 0;pointer-events:none}
+nav::before{content:'';position:absolute;inset:0 0 -28px;background:linear-gradient(to bottom,color-mix(in srgb,var(--bg) 82%,transparent) 0%,color-mix(in srgb,var(--bg) 40%,transparent) 55%,transparent 100%);pointer-events:none;z-index:-1}
+nav .in{position:relative;max-width:1100px;margin:0 auto;padding:0 6px 0 6px;height:48px;display:flex;align-items:center;gap:6px;font-size:13px;pointer-events:auto;border-radius:24px;
+  background:color-mix(in srgb,var(--bg) 64%,transparent);
+  -webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);
+  border:1px solid color-mix(in srgb,var(--fg) 9%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 color-mix(in srgb,var(--fg) 4%,transparent),0 10px 36px -8px rgba(0,0,0,.16),0 1px 2px rgba(0,0,0,.05);
+  transition:background .35s,border-color .35s,box-shadow .35s}
+/* 유리 알약 위를 지나는 얇은 빛(스펙큘러) — 커서 x를 따라간다 */
+nav .in::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(42% 120% at var(--mx,50%) -20%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);opacity:0;transition:opacity .4s}
+nav .in:hover::after{opacity:1}
+nav .logo{position:relative;z-index:1;display:flex;align-items:center;gap:8px;color:var(--fg);font-size:17px;padding:0 12px 0 6px;height:36px;border-radius:18px;white-space:nowrap}
 nav .logo:hover{text-decoration:none}
-nav a.nl{color:var(--fg);opacity:.8;padding:2px 0;border-bottom:1.5px solid transparent;white-space:nowrap}
-nav a.nl:hover{text-decoration:none;opacity:1}
-nav a.nl[aria-current="page"]{opacity:1;border-bottom-color:var(--fg)}
+nav .nlinks{position:relative;z-index:1;display:flex;align-items:center;margin-left:4px}
+nav .ng{display:flex;align-items:center}
+nav .ng+.ng::before{content:'';width:1px;height:14px;margin:0 7px;background:color-mix(in srgb,var(--fg) 16%,transparent);border-radius:1px}
+nav a.nl{position:relative;z-index:1;color:var(--fg);opacity:.72;padding:0 11px;height:34px;display:inline-flex;align-items:center;border-radius:17px;white-space:nowrap;transition:opacity .2s,transform .35s cubic-bezier(.3,1.4,.4,1);letter-spacing:-.005em}
+nav a.nl:hover{text-decoration:none;opacity:1;transform:translateY(-.5px)}
+nav a.nl[aria-current="page"]{opacity:1;font-weight:500}
+nav a.nl[aria-current="page"]::after{content:'';position:absolute;left:50%;bottom:5px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--fg);opacity:.55}
+/* 흐르는 하이라이트: 하나의 유리 방울이 로고·메뉴 사이를 미끄러진다 */
+.nhl{position:absolute;left:0;top:0;width:0;height:0;border-radius:999px;opacity:0;pointer-events:none;z-index:0;will-change:transform,width;
+  transition:transform .5s cubic-bezier(.25,1.35,.35,1),width .5s cubic-bezier(.25,1.35,.35,1),height .35s cubic-bezier(.25,1.35,.35,1),opacity .28s}
+.nhl::before{content:'';position:absolute;inset:0;border-radius:inherit;transform-origin:50% 50%;transition:transform .32s cubic-bezier(.3,1.5,.4,1),background .3s,box-shadow .3s;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--fg) 9%,transparent),color-mix(in srgb,var(--fg) 5%,transparent));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 color-mix(in srgb,var(--fg) 5%,transparent),0 2px 6px -2px color-mix(in srgb,var(--fg) 18%,transparent)}
+.nhl::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(55% 70% at var(--hx,50%) 0%,rgba(255,255,255,.8),rgba(255,255,255,0) 70%);mix-blend-mode:screen;opacity:.9}
+.nhl.on{opacity:1}
+.nhl.soft{opacity:.55}
+.nhl.jump{transition:opacity .28s}            /* 숨어 있다 처음 나타날 땐 미끄러지지 않고 그 자리에서 */
+.nhl.stretch::before{transform:scale(1.07,.9)} /* 이동 중엔 물방울처럼 살짝 눌린다 */
 nav .sp{flex:1}
-.userchip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-size:12px;background:var(--card);cursor:pointer;color:var(--fg)}
+.userchip{position:relative;z-index:1;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-size:12px;background:var(--card);cursor:pointer;color:var(--fg)}
 .userchip img{width:22px;height:22px;border-radius:50%;background:var(--bg-alt)}
-.userchip.signin{background:var(--fg);color:var(--bg);border-color:transparent;padding:5px 12px}
-.pop{position:absolute;right:16px;top:54px;width:min(320px,calc(100vw - 32px));background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px;box-shadow:0 16px 48px rgba(0,0,0,.18);font-size:13px;z-index:30}
+.userchip.signin{background:var(--fg);color:var(--bg);border-color:transparent;padding:7px 14px;transition:transform .35s cubic-bezier(.3,1.4,.4,1),box-shadow .3s}
+.userchip.signin:hover{transform:translateY(-1px);box-shadow:0 6px 16px -6px color-mix(in srgb,var(--fg) 50%,transparent)}
+.pop{position:absolute;right:16px;top:62px;width:min(320px,calc(100vw - 32px));background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px;box-shadow:0 16px 48px rgba(0,0,0,.18);font-size:13px;z-index:30;pointer-events:auto}
 .pop h4{margin:0 0 6px;font-size:14px}
 .pop p{margin:0 0 10px;color:var(--fg-2)}
-.menubtn{display:none;width:34px;height:34px;border:0;background:none;padding:6px;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;margin-left:-4px}
+.menubtn{position:relative;z-index:1;display:none;width:36px;height:36px;border:0;background:none;padding:7px;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;border-radius:18px}
 .menubtn span{display:block;height:1.6px;background:var(--fg);border-radius:2px;transition:transform .25s,opacity .25s}
 .menubtn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.6px) rotate(45deg)} .menubtn[aria-expanded="true"] span:nth-child(2){opacity:0} .menubtn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
-.menu{position:fixed;top:calc(env(safe-area-inset-top,0px) + 48px);left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:6px 20px 18px;z-index:19;display:grid;grid-template-columns:repeat(2,1fr);gap:2px 16px;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.menu{position:fixed;top:calc(env(safe-area-inset-top,0px) + 62px);left:12px;right:12px;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid color-mix(in srgb,var(--fg) 9%,transparent);border-radius:22px;padding:6px 20px 18px;z-index:19;display:grid;grid-template-columns:repeat(2,1fr);gap:2px 16px;box-shadow:0 24px 60px -10px rgba(0,0,0,.25);pointer-events:auto}
 .menu h4{grid-column:1/-1;margin:14px 0 2px;font-size:11px;color:var(--fg-2);letter-spacing:.1em;font-weight:500}
 .menu a{color:var(--fg);font-size:16px;padding:7px 0;border-bottom:1px solid var(--card-line)}
 .menu a:hover{text-decoration:none}
-@media (max-width:820px){ nav a.nl{display:none} nav .in{gap:14px} .menubtn{display:flex} }
+@media (max-width:1040px){ nav .in{font-size:12.5px} nav a.nl{padding:0 8px} nav .ng+.ng::before{margin:0 4px} nav .logo{padding-right:8px} }
+@media (max-width:820px){ nav{padding:8px 10px 0} nav .nlinks{display:none} nav .in{gap:8px} .menubtn{display:flex} }
 @media (min-width:821px){ .menu{display:none!important} }
+@media (prefers-reduced-motion:reduce){ .nhl,.nhl::before,nav a.nl{transition:none} }
 
 /* opening 1: 애플식 표지 — 불 꺼진 집 → 스크롤하며 불이 켜지고 → 선이 그려지며 → 현관으로 들어간다 */
-.photo{height:460vh;position:relative;background:#0b0e14} /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
+.photo{height:460vh;position:relative;background:#0b0e14;margin-top:-64px} /* 표지가 떠 있는 바 아래까지 올라와 바와 페이지가 한 장면이 된다 */ /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
 .pstage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0b0e14}
 .pl{position:absolute;inset:0;transform-origin:46.4% 66%;will-change:transform}   /* 세 겹: 배경·집·앞풀. 확대 중심은 현관 */
 .pdrift{position:absolute;inset:0;transform-origin:50% 58%;animation:pdrift 52s ease-in-out infinite alternate}
@@ -88,7 +115,7 @@ nav .sp{flex:1}
 .pvig{position:absolute;inset:0;background:radial-gradient(ellipse 52% 50% at 50% 54%,rgba(11,12,16,0) 48%,rgba(11,12,16,.5) 78%,rgba(11,12,16,.97) 100%);pointer-events:none}
 .pstage{background:#0b0c10}
 /* 제목 블록: 상단 중앙. 용어는 가늘고 넓게, 슬로건은 명조로 */
-.phead{position:absolute;left:0;right:0;top:calc(48px + 9vh);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;animation:pheadIn 1.2s cubic-bezier(.2,.7,.2,1) both .2s}
+.phead{position:absolute;left:0;right:0;top:calc(64px + 9vh);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;animation:pheadIn 1.2s cubic-bezier(.2,.7,.2,1) both .2s}
 .phead .eyebrow{font-family:var(--brand);font-size:13px;letter-spacing:.16em;color:rgba(255,255,255,.62);margin-bottom:18px}
 .phead .term{font-family:var(--brand);font-weight:400;font-size:clamp(72px,10vw,150px);line-height:.95;letter-spacing:-.045em;margin:0;display:flex;flex-direction:column;align-items:center;gap:14px}
 .phead .word{display:inline-flex;align-items:baseline;white-space:nowrap}
@@ -105,10 +132,15 @@ nav .sp{flex:1}
 .pcap .k{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(13px,1.1vw,16px);letter-spacing:.3em;margin-top:12px;color:rgba(255,255,255,.78);padding-left:.3em}
 .pcap.ink{color:var(--fg);text-shadow:none}.pcap.ink .k{color:var(--fg-2)}
 .pbhint{color:rgba(255,255,255,.7)}
-nav.on-dark{--fg:#fff;--bg:#111;--fg-2:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.14)}
+nav.on-dark{--fg:#fff;--bg:#0b0c10;--fg-2:rgba(255,255,255,.7);--line:rgba(255,255,255,.18);--card:rgba(255,255,255,.08)}
 nav.on-dark .pz{color:#9fc5ff}
-nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
-@media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
+nav.on-dark::before{background:linear-gradient(to bottom,rgba(6,8,14,.55) 0%,rgba(6,8,14,.25) 55%,transparent 100%)}
+nav.on-dark:not(.lg-on) .in{background:rgba(16,18,26,.42);border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.25),0 12px 40px -8px rgba(0,0,0,.6)}
+nav.on-dark .in::after{background:radial-gradient(42% 120% at var(--mx,50%) -20%,rgba(255,255,255,.28),rgba(255,255,255,0) 70%)}
+nav.on-dark .nhl::before{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.09));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.2),0 4px 10px -3px rgba(0,0,0,.5)}
+nav.on-dark .nhl::after{opacity:.45}
+nav.on-dark .userchip.signin{background:#fff;color:#0b0c10}
+@media (max-width:860px){ .photo{height:360vh} .phead{top:calc(64px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pl,.pdrift{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
 .build{height:1500vh;position:relative;background:#0b0c10;--card:#fff;--card-line:#e5e5ea;--fg:#1d1d1f;--fg-2:#6e6e73;--line:#d2d2d7;--bg-alt:#f5f5f7;--bg:#fff;--accent:#0a58ca}
@@ -123,7 +155,7 @@ nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 @media (prefers-reduced-motion:reduce){ .build{height:auto} .bstage{position:static;height:auto;padding:80px 16px 40px} .bcap{position:static;opacity:1;transform:none;margin-top:16px} .bcap:not([data-i="4"]){display:none} .bhint{display:none} }
 
 /* opening 3: 패널 — 빈 보드 다섯 장이 가로로 흐르며 채워진다 */
-.pnhead{position:absolute;top:calc(48px + 5vh);left:max(16px,calc(50% - 600px));max-width:380px;z-index:2;pointer-events:none;opacity:0}
+.pnhead{position:absolute;top:calc(64px + 5vh);left:max(16px,calc(50% - 600px));max-width:380px;z-index:2;pointer-events:none;opacity:0}
 .pnhead .w{font-family:var(--brand);font-size:clamp(40px,5.5vw,76px);line-height:.95;letter-spacing:-.045em;color:#fff}
 .pnhead .k{font-family:'Noto Sans KR',sans-serif;font-size:clamp(13px,1.1vw,15px);color:rgba(255,255,255,.7);margin-top:10px;letter-spacing:.04em;line-height:1.6}
 .pnview{position:absolute;inset:0;padding:100px 0 72px;display:flex;align-items:center;opacity:0;z-index:1}
@@ -481,8 +513,13 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
 <body>
 <nav>
   <div class="in">
-    <a class="logo" href="#home"><span class="mark" data-mark="26"></span><span class="brand">ZI<span class="pz">P</span>LAN</span></a>
-    <a class="nl" href="#zipcode">내집코드</a><a class="nl" href="#learn">사례</a><a class="nl" href="#site">대지</a><a class="nl" href="#concept">컨셉</a><a class="nl" href="#drawing">도면</a><a class="nl" href="#model">모형</a><a class="nl" href="#panel">패널</a><a class="nl" href="#plaza">광장</a><a class="nl" href="#portfolio">포트폴리오</a><a class="nl" href="#library">자료실</a><a class="nl" href="#studio">작업실</a>
+    <a class="logo" href="#home" data-hl><span class="mark" data-mark="26"></span><span class="brand">ZI<span class="pz">P</span>LAN</span></a>
+    <div class="nlinks">
+      <span class="ng"><a class="nl" href="#zipcode" data-hl>내집코드</a><a class="nl" href="#learn" data-hl>사례</a><a class="nl" href="#library" data-hl>자료실</a></span>
+      <span class="ng"><a class="nl" href="#site" data-hl>대지</a><a class="nl" href="#concept" data-hl>컨셉</a><a class="nl" href="#drawing" data-hl>도면</a><a class="nl" href="#model" data-hl>모형</a></span>
+      <span class="ng"><a class="nl" href="#panel" data-hl>패널</a><a class="nl" href="#portfolio" data-hl>포트폴리오</a></span>
+      <span class="ng"><a class="nl" href="#plaza" data-hl>광장</a><a class="nl" href="#studio" data-hl>작업실</a></span>
+    </div>
     <span class="sp"></span>
     <button class="userchip signin" id="userChip">로그인</button>
     <button class="menubtn" id="menuBtn" aria-label="메뉴" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
@@ -1001,6 +1038,7 @@ function route(){
   let h=(location.hash||'#home').slice(1); if(!VIEWS.includes(h)) h='home';
   $$('.view').forEach(v=>v.hidden=v.id!=='view-'+h);
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
   if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='studio') renderStudio(); if(h==='site') drawSite(); if(h==='plaza') loadPosts(); if(h==='portfolio') renderPortfolio(); if(h==='library') renderLibrary();
   if(pendingScroll){ const el=document.querySelector(`.wb[data-wb="${pendingScroll}"]`); pendingScroll=null; if(el){ el.scrollIntoView({block:'start'}); return; } }
   window.scrollTo({top:0,behavior:'auto'});
@@ -1682,8 +1720,8 @@ const BUILD=(function(){
     if(vig) vig.style.opacity=(1-0.6*p0).toFixed(3);
     const i=p<0.06?0:(p<0.42?1:(p<0.66?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); }); if(hint) hint.style.opacity=p>0.03?0:1; }
   let tPrev=0; function animate(ts){ raf=0; const dt=tPrev?Math.min(80,ts-tPrev):16; tPrev=ts; const diff=target-cur; if(Math.abs(diff)<0.0006){ cur=target; tPrev=0; paint(cur); return; } cur+=diff*(1-Math.exp(-dt/110)); paint(cur); raf=requestAnimationFrame(animate); }   // 시간 기준 감쇠: 어떤 화면 주사율에서도 약 0.4초 안에 따라붙는다   // 스크롤 관성: 영상처럼 부드럽게 따라온다
-  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=56&&q.bottom>56; }); nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
-  if(rm){ nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=56&&q.bottom>56; })&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
+  function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; }); nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
+  if(rm){ nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; })&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
 let pnApi=null;   // 패널 구동부가 채운다(아래)
 (function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'), pnv=$('#build .pnview'), pnh=$('#build .pnhead'), pnf=$('#build .pnfoot'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
   // 한 섹션 안에서: 0~0.56 집이 되는 과정(끝에 사진이 보드 자리로 줄어듦) · 0.50~1 패널 여섯 장
@@ -1978,6 +2016,21 @@ $('#tileLearn').innerHTML=`<svg viewBox="0 0 280 120" aria-hidden="true"><g font
 
 /* 모바일 메뉴: 상단 ☰ — 네 묶음으로 보여주고, 고르면 닫힌다 */
 (function(){ const btn=$('#menuBtn'), menu=$('#navMenu'); if(!btn||!menu) return; const set=o=>{ menu.hidden=!o; btn.setAttribute('aria-expanded',o?'true':'false'); }; btn.addEventListener('click',()=>set(menu.hidden)); menu.addEventListener('click',e=>{ if(e.target.closest('a')) set(false); }); window.addEventListener('hashchange',()=>set(false)); document.addEventListener('keydown',e=>{ if(e.key==='Escape') set(false); }); })();
+/* 상단바 액체 하이라이트: 커서가 올라간 항목(로고·메뉴)으로 유리 방울 하나가 미끄러져 가고, 떠나면 현재 방 위에 은은하게 가라앉는다 */
+(function(){ const bar=$('nav .in'); if(!bar) return; const hl=document.createElement('span'); hl.className='nhl'; hl.setAttribute('aria-hidden','true'); bar.insertBefore(hl,bar.firstChild);
+  const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let shown=false, stretchT=0, hideT=0, hover=null, lastX=null;
+  const items=()=>$$('nav .in [data-hl]').filter(el=>el.offsetParent!==null);
+  function place(el,soft){ const b=bar.getBoundingClientRect(), r=el.getBoundingClientRect(); const x=r.left-b.left-1, y=r.top-b.top-1; clearTimeout(hideT);
+    if(!shown){ hl.classList.add('jump'); hl.style.transform=`translate(${x}px,${y}px)`; hl.style.width=r.width+'px'; hl.style.height=r.height+'px'; void hl.offsetWidth; hl.classList.remove('jump'); shown=true; }
+    else { if(!rm&&lastX!==null&&Math.abs(lastX-x)>4){ hl.classList.add('stretch'); clearTimeout(stretchT); stretchT=setTimeout(()=>hl.classList.remove('stretch'),260); } hl.style.transform=`translate(${x}px,${y}px)`; hl.style.width=r.width+'px'; hl.style.height=r.height+'px'; }
+    lastX=x; hl.classList.toggle('soft',!!soft); hl.classList.add('on'); }
+  function settle(){ hover=null; const cur=bar.querySelector('a.nl[aria-current="page"]'); if(cur&&cur.offsetParent!==null) place(cur,true); else { hl.classList.remove('on'); hideT=setTimeout(()=>{ shown=false; },320); } }
+  bar.addEventListener('pointermove',e=>{ const b=bar.getBoundingClientRect(); bar.style.setProperty('--mx',((e.clientX-b.left)/b.width*100).toFixed(1)+'%'); const el=e.target.closest('[data-hl]'); if(el&&bar.contains(el)){ if(el!==hover){ hover=el; place(el,false); } const r=el.getBoundingClientRect(); hl.style.setProperty('--hx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%'); } else if(hover){ settle(); } });
+  bar.addEventListener('pointerleave',settle);
+  bar.addEventListener('focusin',e=>{ const el=e.target.closest('[data-hl]'); if(el) { hover=el; place(el,false); } });
+  bar.addEventListener('focusout',()=>{ setTimeout(()=>{ if(!bar.contains(document.activeElement)) settle(); },0); });
+  window.addEventListener('hashchange',()=>setTimeout(settle,30)); window.addEventListener('resize',()=>{ if(hover) place(hover,false); else settle(); });
+  setTimeout(settle,400); })();
 
 /* ---------- Boot ---------- */
 fillInputs(); renderFloors(); state.zones=localLayout(parseRooms()); drawZones(); drawSection(); renderConceptCards(); drawConceptStage(); zcCalc();

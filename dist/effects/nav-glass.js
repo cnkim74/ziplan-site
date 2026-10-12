@@ -107,10 +107,10 @@
   var glass = null;
   function create() {
     if (glass) return;
-    glass = new NavGlass({ type: 'rounded', borderRadius: 1, tintOpacity: 0.3 });
+    glass = new NavGlass({ type: 'pill', borderRadius: 24, tintOpacity: 0.3 });
     glass.element.classList.add('nav-glass');
     glass.element.setAttribute('aria-hidden', 'true');
-    nav.insertBefore(glass.element, nav.firstChild);
+    var host = nav.querySelector('.in') || nav; host.insertBefore(glass.element, host.firstChild);
     glass.updateSizeFromDOM();
 
     // 화면(해시)이 바뀌면 그 화면을 다시 캡처 — 라우터가 뷰를 바꾸고 scrollTo를 끝낸 뒤
