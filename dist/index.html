@@ -1048,6 +1048,41 @@ html.is-student .plan .stl .ok{display:inline}
 .zc-ask .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.zc-ask textarea{min-height:150px;resize:vertical}
 @media(max-width:600px){.zc-fab em{display:none}.zc-fab{padding:0 16px;height:52px}.zc-panel{position:fixed;left:10px;right:10px;bottom:76px;width:auto;height:min(70vh,560px)}}
 @media print{#zchat{display:none}}
+
+/* ===== 흰색 블록 · 법규 볼륨 · 콘타 ===== */
+.wmbox{cursor:grab;touch-action:pan-y;user-select:none}.wmbox:active{cursor:grabbing}
+.wm{display:block;width:100%;height:auto}
+.wm .wm-plate{fill:#e8e4dc;stroke:#cfc8bb;stroke-width:.05}
+.wm .wm-sh{fill:rgba(40,40,60,.16)}
+.wm .wm-b polygon{stroke:rgba(60,60,80,.28);stroke-width:.04;stroke-linejoin:round}
+.dnr-wm{margin-top:16px;display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:center;background:radial-gradient(120% 90% at 30% 20%,#f7f5f0,#e9e6df);border-radius:28px;padding:28px;color:#1d1d1f}
+.dnr-wm .wmbox{max-width:560px;width:100%;margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.12))}
+.dnr-wmc h4{font-size:13px;font-weight:800;letter-spacing:.04em;color:#6e6e73;margin:0 0 10px}.dnr-wmc p{font-size:15px;line-height:1.7;margin:0 0 14px}
+.dnr-wmc .modes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.dnr-wmc .modes button{border:1px solid #cfc8bb;background:#fff;color:#1d1d1f;border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer}.dnr-wmc .modes button[aria-pressed="true"]{background:#1d1d1f;color:#fff;border-color:#1d1d1f}
+.dnr-wmc .btn.sec{background:#fff;color:#1d1d1f;border-color:#cfc8bb}
+.lawlab{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+.lawv{background:radial-gradient(120% 90% at 30% 20%,#f7f5f0,#e9e6df);border-radius:24px;padding:24px;display:grid;place-items:center;min-height:400px}
+.lawv svg{max-height:520px}
+.lawv .lw-pl{fill:rgba(208,55,59,.07);stroke:#d0373b;stroke-width:.05;stroke-dasharray:.25 .16}
+.lawv .lw-bcr{fill:rgba(10,88,202,.07);stroke:#0a58ca;stroke-width:.05;stroke-dasharray:.3 .2}
+.lawv .lw-n{font-size:.55px;font-weight:800;fill:#d0373b;text-anchor:middle;font-family:var(--font)}
+.lawc{background:var(--card);border:1px solid var(--card-line);border-radius:24px;padding:22px}
+.lw-z{font-size:13px;color:var(--fg-2);margin-bottom:12px}
+.lw-r{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--card-line)}
+.lw-r i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:14px;background:#dcfce7;color:#166534}.lw-r.no i{background:#fee2e2;color:#b91c1c}
+.lw-r b{display:block;font-size:15px}.lw-r span{display:block;font-size:14px;font-variant-numeric:tabular-nums}.lw-r em{display:block;font-style:normal;font-size:12px;color:var(--fg-2);margin-top:2px;line-height:1.5}
+.lw-note{font-size:12px;color:var(--fg-2);line-height:1.6;margin:12px 0 0}
+.ctlab{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+.ctv{position:relative;background:radial-gradient(120% 90% at 30% 20%,#f7f5f0,#e6e2d9);border-radius:24px;padding:20px;min-height:420px;display:grid;place-items:center}
+.ctv #ctSvg{width:100%}.ctv #ctSvg svg{width:100%;max-height:520px;display:block}
+.ct-base{fill:#d9cdb5;stroke:#a8987a;stroke-width:.03}.ct-side{fill:#bfae8d}.ct-side.r{fill:#a99876}
+.ct-edge{fill:#b9a684}.ct-l{fill:hsl(calc(38 - var(--k)*1.2),calc(32% + var(--k)*0.4%),calc(78% + var(--k)*0.35%));stroke:#9c8a68;stroke-width:.03}
+.ctplan{position:absolute;right:16px;bottom:16px;width:min(150px,28%);background:#fff;border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.ctplan svg{display:block;width:100%}.cp-b{fill:none;stroke:#c7c7cc;stroke-width:.3}.cp-l{fill:none;stroke:#8a7a5c;stroke-width:.22}.cp-l.m{stroke:#5a4a2c;stroke-width:.4}.cp-n{font-size:2.6px;text-anchor:end;fill:#1d1d1f;font-weight:700;font-family:var(--font)}
+.ctc{background:var(--card);border:1px solid var(--card-line);border-radius:24px;padding:22px}
+.ctc>label{display:block;font-size:13px;color:var(--fg-2);margin:12px 0 6px}.ctc .row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ctc .row label{font-size:12px;color:var(--fg-2)}
+.ctinfo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.ctinfo b{display:block;font-size:22px;font-weight:800}.ctinfo span{font-size:12px;color:var(--fg-2)}
+@media(max-width:900px){.dnr-wm,.lawlab,.ctlab{grid-template-columns:1fr}.dnr-wm{padding:18px}.ctv,.lawv{min-height:300px}}
 </style>
 
 </head>
@@ -2199,7 +2234,7 @@ const CTHUMB=(function(){ const ca=0.866, sa=0.5;
       g+=`<g stroke="rgba(40,40,48,.35)" stroke-width=".05" stroke-linejoin="round"><polygon points="${P([[b.x,y1,b.z],[x1,y1,b.z],[x1,y1,z1],[b.x,y1,z1]])}" fill="${c[1]}"/><polygon points="${P([[x1,b.y,b.z],[x1,y1,b.z],[x1,y1,z1],[x1,b.y,z1]])}" fill="${c[2]}"/><polygon points="${P([[b.x,b.y,z1],[x1,b.y,z1],[x1,y1,z1],[b.x,y1,z1]])}" fill="${c[0]}"/></g>`; }
     if(FIX){ mnx=-13.2; mxx=13.2; mny=-10.5; mxy=14; } const pad=1.2, w=mxx-mnx+pad*2, h=mxy-mny+pad*2; return `<svg viewBox="${(mnx-pad).toFixed(2)} ${(mny-pad).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${g}</svg>`; }
   const HUE={'콘크리트·목재':'#eef1f6','프리캐스트 콘크리트':'#eff0f3','벽돌':'#f6ece6','콘크리트·금속':'#eceff3','유리·강재':'#e8f0fb','석재':'#f2efe8','콘크리트':'#f1f1f3','알루미늄 루버':'#eceef2'};
-  return {svg,bg:c=>HUE[c.mat]||'#f1f2f5',kind:(k,fix)=>svg({_k:SHAPES[k]?k:'box',id:'',tags:[],_fix:!!fix})};
+  return {svg,bg:c=>HUE[c.mat]||'#f1f2f5',kind:(k,fix)=>svg({_k:SHAPES[k]?k:'box',id:'',tags:[],_fix:!!fix}),boxes:k=>SHAPES[k]?SHAPES[k]():[]};
 })();
 
 /* 조회수 · 좋아요 수 · 저장 — 정식 사이트(Supabase)면 모두의 숫자, 아니면 이 브라우저 기준 */
@@ -2403,6 +2438,7 @@ function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'
     <div class="dnr-l"><div class="dnk">나의 설계 DNA · ${esc(r.code)}</div><h2>${esc(dnaPersona(r))}</h2><p class="dnr-s">${dnaSentence(r)}</p>
       <div class="dnr-act"><button class="btn big" id="dnToConcept">이 방향으로 컨셉 3안 만들기</button><button class="btn ghost" id="dnSave">작업실에 담기</button><button class="btn ghost" id="dnShare">결과 복사</button></div></div>
     <div class="dnr-r"><div class="dnr-iso">${CTHUMB.kind(A.shape)}</div><div class="dnr-name"><b>${esc(A.name)}</b><em>${A.pct}% 맞음</em></div></div></div>
+  <div class="dnr-wm zrv"><div class="wmbox" id="dnWm"></div><div class="dnr-wmc"><h4>흰색 블록으로 보기</h4><p>고른 단어로 정한 방향을 스터디 모형처럼 흰 블록으로 세웠습니다. 끌어서 돌려 보세요.${r.vec.v>0.2?' 수직 취향이 강해 조금 높게 세웠어요.':r.vec.v<-0.2?' 수평 취향이 강해 낮게 깔았어요.':''}</p><div class="modes" id="dnWmPick">${r.arch.slice(0,3).map((a,i)=>`<button data-wk="${a.shape}" aria-pressed="${i===0}">${esc(a.name)}</button>`).join('')}</div><div class="actions"><a class="btn sec" href="#model">모형에서 법규 확인</a><a class="btn sec" href="#site">콘타 위에 올려 보기</a></div></div></div>
   <div class="dnr-grid">
     <div class="dnr-card zrv"><h4>세 갈래</h4>${r.arch.slice(0,3).map((a,i)=>`<div class="dnr-alt"><div class="ico">${CTHUMB.kind(a.shape)}</div><div><b>${i+1}. ${esc(a.name)}</b><p>${esc(dnaLine(a,state.dna))}</p><span class="bar"><i style="width:${a.pct}%"></i></span></div></div>`).join('')}</div>
     <div class="dnr-card zrv"><h4>이렇게 시작하세요</h4><ol class="dnr-moves">${A.moves.map(m=>`<li>${esc(m)}</li>`).join('')}</ol>${r.tens.length?`<div class="dnr-tens"><b>부딪히는 취향</b>${r.tens.map(t=>`<p>${esc(t.text)}</p>`).join('')}</div>`:''}</div>
@@ -2411,7 +2447,7 @@ function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'
   </div>
   ${cases.length?`<div class="dnr-cases zrv"><div class="dnr-ch"><h4>내 취향과 가까운 사례</h4><a href="#learn">사례 더 보기 ›</a></div><div class="dnr-cgrid">${cases.map(({c})=>`<a class="dnr-case" href="#learn" data-case="${esc(c.id)}"><div class="th" style="background:${CTHUMB.bg(c)}">${CTHUMB.svg(c)}</div><b>${esc(c.name)}</b><span>${esc(c.arch)}</span></a>`).join('')}</div></div>`:''}
   <div class="dnr-sugg zrv"><h4>이 단어도 어울려요</h4><div class="dnchips">${r.sugg.map(k=>`<button type="button" class="dk" data-k="${esc(k)}">+ ${esc(k)}</button>`).join('')}</div></div>`;
-  if(keepSg) $('#dnrSg').replaceWith(keepSg); dnaReveal(); sgPaint($('#dnrSg'),r,{uSpeed:0.12,uStrength:2.2,uDensity:1.3,cDistance:3.4,positionX:0.8,rotationZ:-20}); }
+  if(keepSg) $('#dnrSg').replaceWith(keepSg); wmMount($('#dnWm'),A.shape,Math.max(0.75,Math.min(1.45,1+0.45*r.vec.v))); dnaReveal(); sgPaint($('#dnrSg'),r,{uSpeed:0.12,uStrength:2.2,uDensity:1.3,cDistance:3.4,positionX:0.8,rotationZ:-20}); }
 function dnaPalette(r){ const P={court:['#e9d8c4','#9a7b5f','#f5efe6'],terrace:['#a8c69a','#4f7d5b','#e8f0d8'],pilotis:['#d9dde4','#7f8ea3','#f4f5f7'],village:['#f0c9a0','#c7754c','#fbeee0'],buried:['#4b5a4f','#1f2a24','#93a58c'],thickwall:['#b86f4f','#5a3326','#e2c0a7'],glass:['#bfe0ff','#5b8fd9','#eef6ff'],split:['#c9b2e8','#6c4fb0','#f1eafa'],stack:['#9fd3ff','#3a5fd0','#ffd18a'],roof:['#e0b878','#7a5a33','#f6ead2'],frame:['#9cc7c2','#2f5f63','#eaf3f1'],skin:['#c6ccd4','#3e4652','#f0f1f3']}; return (r.arch[0]&&P[r.arch[0].id])||['#cfd8e6','#5b6b86','#f3f5f9']; }
 const dnaIO='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); dnaIO.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px'}):null;
 function dnaReveal(){ $$('.zrv:not(.in)').forEach(el=>{ if(dnaIO) dnaIO.observe(el); else el.classList.add('in'); }); }
@@ -2695,7 +2731,7 @@ document.addEventListener('input',e=>{ if(e.target.id==='sunT'){ SUNL.t=+e.targe
 document.addEventListener('change',e=>{ if(e.target.id==='sWind') drawSunLab(); });
 /* 모형: 화면에 들어오면 층이 스스로 펼쳐진다 */
 (function(){ if(!('IntersectionObserver' in window)) return; let done=false; const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting&&!done){ done=true; const t0=performance.now(); const from=0, to=0.55; const st=now=>{ const k=Math.min(1,(now-t0)/1100); ML.ex=from+(to-from)*(1-Math.pow(1-k,3)); drawModelLab(); if(k<1) requestAnimationFrame(st); }; ML.ex=0; requestAnimationFrame(st); } }),{threshold:.35}); setTimeout(()=>{ const el=$('#mlSvg'); if(el) io.observe(el); },200); })();
-function roomLabs(h){ if(h==='site') drawSunLab(); if(h==='concept'){ drawConceptLab(); clAuto(true); } else clAuto(false); if(h==='drawing') bubbleInit(); if(h==='model') drawModelLab(); }
+function roomLabs(h){ if(h==='site'){ drawSunLab(); ctSync(); } if(h==='model') drawLawLab(); if(h==='concept'){ drawConceptLab(); clAuto(true); } else clAuto(false); if(h==='drawing') bubbleInit(); if(h==='model') drawModelLab(); }
 
 /* ---------- 열린 자료: 가입 없이 바로 쓰는 것들 (자료실 맨 위) ---------- */
 const OPEN=[
@@ -2736,6 +2772,10 @@ const KB=[
   ['중정 마당','중정형은 밖으로 닫고 가운데 마당으로 여는 집이에요. 작은 땅에서도 하늘과 바람을 온전히 가집니다.','#concept','매스 조작 도감'],
   ['필로티','필로티는 1층을 기둥만 남기고 비워 바람과 사람이 지나가게 하는 방식이에요. 르 코르뷔지에의 빌라 사보아가 대표적입니다.','#concept','매스 조작 도감'],
   ['스킵플로어','스킵플로어는 바닥을 반 층씩 어긋나게 쌓아 벽 없이 공간을 나누는 방식이에요. 김수근의 공간 사옥이 좋은 예입니다.','#concept','매스 조작 도감'],
+  ['일조 사선 정북 북쪽 이격','전용·일반주거지역에서는 정북 방향 인접대지 경계에서 높이 10m 이하 부분은 1.5m 이상, 10m를 넘는 부분은 그 높이의 1/2 이상 띄워야 해요(건축법 시행령 86조, 조례 확인). 모형 페이지의 “법규 볼륨”에서 사선을 겹쳐 볼 수 있어요.','#model','법규 볼륨 보기'],
+  ['콘타 등고선 지형 모형 레이저','대지 페이지의 “콘타 만들기”에서 경사·언덕·구릉·골짜기와 높이차, 등고 간격, 축척을 고르면 등고선 모형이 쌓이고, 레이저 커팅용 레이어 SVG와 등고선 평면 SVG를 내려받을 수 있어요.','#site','콘타 만들기'],
+  ['법규 건축법 한도 볼륨','모형 페이지의 “법규 볼륨”에서 건폐율·용적률·정북 일조 사선을 한 번에 확인할 수 있어요. 개략 검토라 조례·지구단위계획은 따로 확인이 필요합니다.','#model','법규 볼륨 보기'],
+  ['흰색 블록 모형 매스','취향 랩 결과에서 고른 방향을 흰색 스터디 모형 블록으로 세워 볼 수 있어요. 끌어서 돌려 보세요.','#dna','취향 랩'],
   ['캔틸레버','캔틸레버는 한쪽만 지지된 채 허공으로 내민 구조예요. 들어 올린 매스나 깊은 처마를 만들 때 씁니다.','#concept','매스 조작 도감']
 ];
 const zcTok=s=>String(s||'').toLowerCase().replace(/[?!.,~·]/g,' ').split(/\s+/).filter(w=>w.length>0);
@@ -2770,6 +2810,111 @@ document.addEventListener('submit',async e=>{ if(e.target.id==='zcForm'){ e.prev
     catch(err){ const q=lsGet('zip_inq',[]); q.push({...rec,at:Date.now()}); lsSet('zip_inq',q); st.className='status err'; st.textContent=err&&err.local?'지금 화면에서는 서버에 닿지 않아 이 브라우저에 보관했어요. 정식 사이트에서 다시 보내 주세요.':'보내지 못했습니다. 잠시 뒤 다시 눌러 주세요.'; }
     finally{ $('#zaGo').disabled=false; } } });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&ZC.open) zcOpen(false); });
+
+
+/* ---------- 흰색 스터디 모형 — 임의 각도로 돌아가는 등각 블록 ---------- */
+const WM_WHITE=['#ffffff','#eeeef2','#dcdce2'];
+function wmRender(boxes,o){ o=o||{}; const th=o.th||0, cx=o.cx||6, cy=o.cy||6, vs=o.vs||1; const c=Math.cos(th), s=Math.sin(th);
+  const R=(x,y)=>[cx+(x-cx)*c-(y-cy)*s, cy+(x-cx)*s+(y-cy)*c]; const P=(x,y,z)=>{ const q=R(x,y); return [(q[0]-q[1])*0.866,(q[0]+q[1])*0.5-z]; };
+  let mnx=1e9,mxx=-1e9,mny=1e9,mxy=-1e9; const pts=a=>a.map(p=>{ const q=P(...p); mnx=Math.min(mnx,q[0]); mxx=Math.max(mxx,q[0]); mny=Math.min(mny,q[1]); mxy=Math.max(mxy,q[1]); return q[0].toFixed(2)+','+q[1].toFixed(2); }).join(' ');
+  const plate=o.plate||[-1.5,-1.5,15,15]; let g=`<polygon class="wm-plate" points="${pts([[plate[0],plate[1],0],[plate[0]+plate[2],plate[1],0],[plate[0]+plate[2],plate[1]+plate[3],0],[plate[0],plate[1]+plate[3],0]])}"/>`;
+  const bs=boxes.map(b=>({...b,z:b.z*vs,h:b.h*vs})).map(b=>{ const C=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.d],[b.x,b.y+b.d]].map(([x,y])=>R(x,y)); const m=C.reduce((a,p)=>[a[0]+p[0]/4,a[1]+p[1]/4],[0,0]); return {...b,C,dep:m[0]+m[1]}; });
+  // 그림자: 왼쪽 위에서 오는 빛
+  const sh=(o.shadow!==false); if(sh){ for(const b of bs){ if(b.h<0.3||b.z>0.01&&b.z+b.h<0.5) continue; const L=(b.z+b.h)*0.55; const S=b.C.map(([x,y])=>[x+L*0.9,y+L*0.35]); const all=[...b.C,...S]; const hl=hull(all); g+=`<polygon class="wm-sh" points="${hl.map(([x,y])=>{ const q=[(x-y)*0.866,(x+y)*0.5]; return q[0].toFixed(2)+','+q[1].toFixed(2); }).join(' ')}"/>`; } }
+  bs.sort((a,b)=>(a.dep-b.dep)||(a.z-b.z));
+  for(const b of bs){ const col=o.color?o.color(b):WM_WHITE; const z0=b.z, z1=b.z+b.h; const C=b.C; const Q=(x,y,z)=>{ const q=[(x-y)*0.866,(x+y)*0.5-z]; mnx=Math.min(mnx,q[0]); mxx=Math.max(mxx,q[0]); mny=Math.min(mny,q[1]); mxy=Math.max(mxy,q[1]); return q[0].toFixed(2)+','+q[1].toFixed(2); };
+    let f=''; for(let i=0;i<4;i++){ const a=C[i], bb=C[(i+1)%4]; const ex=bb[0]-a[0], ey=bb[1]-a[1]; const nx=ey, ny=-ex; // 바깥 법선(시계 반대 순서 기준)
+      if(nx+ny<=0.0001) continue; const shade=(nx-ny)/(Math.hypot(nx,ny)||1); f+=`<polygon points="${Q(a[0],a[1],z0)} ${Q(bb[0],bb[1],z0)} ${Q(bb[0],bb[1],z1)} ${Q(a[0],a[1],z1)}" fill="${shade>0?col[1]:col[2]}"/>`; }
+    f+=`<polygon points="${C.map(p=>Q(p[0],p[1],z1)).join(' ')}" fill="${col[0]}"/>`; g+=`<g class="wm-b">${f}</g>`; }
+  if(o.bpts) pts(o.bpts); if(o.extra) g+=o.extra(P);
+  const pad=o.pad||1.2; return `<svg viewBox="${(mnx-pad).toFixed(2)} ${(mny-pad).toFixed(2)} ${(mxx-mnx+pad*2).toFixed(2)} ${(mxy-mny+pad*2).toFixed(2)}" class="wm" role="img" aria-label="${esc(o.label||'흰색 스터디 모형')}">${g}</svg>`; }
+function wmBoxes(kind){ return (CTHUMB.boxes(kind)||[]).filter(b=>!((b.m==='green'||b.m==='ground')&&b.h<1)); }
+const WM={th:-0.25,spin:true,drag:null,raf:0,last:0};
+function wmMount(el,kind,vs){ if(!el) return; el.dataset.k=kind; el.dataset.vs=vs||1; wmPaint(el); if(!WM.raf) WM.raf=requestAnimationFrame(wmTick); }
+function wmPaint(el){ el.innerHTML=wmRender(wmBoxes(el.dataset.k),{th:WM.th,vs:+el.dataset.vs||1,label:'흰색 블록 모형'}); }
+function wmTick(now){ WM.raf=0; const els=$$('.view:not([hidden]) .wmbox'); if(!els.length) return; const dt=WM.last?Math.min(50,now-WM.last):16; WM.last=now; if(WM.spin&&!WM.drag) WM.th+=dt*0.00028; els.forEach(wmPaint); WM.raf=requestAnimationFrame(wmTick); }
+(function(){ let x0=0,t0=0; document.addEventListener('pointerdown',e=>{ const b=e.target.closest('.wmbox'); if(!b) return; WM.drag=b; x0=e.clientX; t0=WM.th; b.setPointerCapture&&b.setPointerCapture(e.pointerId); });
+  document.addEventListener('pointermove',e=>{ if(!WM.drag) return; WM.th=t0+(e.clientX-x0)*0.012; if(!WM.raf) WM.raf=requestAnimationFrame(wmTick); });
+  document.addEventListener('pointerup',()=>{ WM.drag=null; }); })();
+
+/* ---------- 법규 볼륨 — 건폐율·용적률·정북 일조 사선 (개략) ---------- */
+function lawCheck(){ const z=(()=>{ try{ return readZc(); }catch(e){ return state.zc; } })(); const W=Math.max(6,z.w||20), D=Math.max(6,z.d||20), A=z.area||W*D;
+  const fs=floors.length?floors:[['1F',100,'']]; const hs=(state.secHeights||'').split(',').map(parseFloat).filter(x=>x>0); const fh=i=>hs[i]||3.2;
+  const foot=Math.max(...fs.map(f=>f[1]||0)); const gfa=fs.reduce((s,f)=>s+(f[1]||0),0); const H=fs.reduce((s,f,i)=>s+fh(i),0);
+  const bw=Math.min(W-1,Math.sqrt(foot*W/D)), bd=Math.min(D-1,foot/bw); const res=['r1','r2','r3'].includes(z.zone)||/주거/.test((ZONES.find(x=>x[0]===z.zone)||[])[1]||'')&&!/준주거/.test((ZONES.find(x=>x[0]===z.zone)||[])[1]||'');
+  const dN=(D-bd)/2; const maxAt=d=>d<1.5?0:Math.max(10,2*d); const need=H<=10?1.5:H/2;
+  const bcr=foot/A*100, far=gfa/A*100; const out=[
+    {k:'건폐율',ok:bcr<=z.bcr+0.01,v:`${bcr.toFixed(1)}% / 한도 ${z.bcr}%`,t:'가장 넓은 층 바닥 ÷ 대지면적'},
+    {k:'용적률',ok:far<=z.far+0.01,v:`${far.toFixed(1)}% / 한도 ${z.far}%`,t:'모든 층 바닥 합 ÷ 대지면적 (지하·일부 필로티 제외)'},
+    res?{k:'정북 일조 사선',ok:dN>=need,v:`북쪽 경계에서 ${dN.toFixed(1)}m / 필요 ${need.toFixed(1)}m`,t:'높이 10m 이하는 1.5m, 10m 초과 부분은 높이의 1/2만큼 북쪽 경계에서 띄움'}:{k:'정북 일조 사선',ok:true,v:'이 용도지역은 해당 없음',t:'전용·일반주거지역에서만 적용'},
+    {k:'높이',ok:true,v:`약 ${H.toFixed(1)}m · ${fs.length}층`,t:'층고 합. 지구단위계획·고도지구가 있으면 따로 확인'}];
+  return {W,D,A,bw,bd,H,fs,fh,res,maxAt,need,dN,out,zone:(ZONES.find(x=>x[0]===z.zone)||['','용도지역'])[1]}; }
+function drawLawLab(){ const el=$('#lawSvg'); if(!el) return; const L=lawCheck(); const sc=12/Math.max(L.W,L.D); const W=L.W*sc, D=L.D*sc;
+  const boxes=[]; let z=0; L.fs.forEach((f,i)=>{ const a=Math.max(5,f[1]||5); const w=Math.min(L.W*0.95,Math.sqrt(a*L.bw/L.bd))*sc, d=a*sc*sc/w; boxes.push({x:(W-w)/2,y:(D-d)/2,z:z*sc,w,d,h:L.fh(i)*sc,m:'concrete'}); z+=L.fh(i); });
+  const Hc=Math.max(L.H+3,12), Ym=Math.min(L.D,Hc/2); const bpts=L.res?[[0,0,Hc*sc],[W,0,Hc*sc],[W,Ym*sc,Hc*sc],[0,Ym*sc,Hc*sc]]:null;
+  const extra=P=>{ let s=''; if(L.res){ const F=a=>a.map(([x,y,z])=>P(x*sc,y*sc,z*sc).map(n=>n.toFixed(2)).join(',')).join(' '); const Wm=L.W, y1=Math.min(1.5,L.D), y2=Math.min(5,L.D);
+      s+=`<polygon class="lw-pl" points="${F([[0,y1,0],[Wm,y1,0],[Wm,y1,10],[0,y1,10]])}"/><polygon class="lw-pl" points="${F([[0,y1,10],[Wm,y1,10],[Wm,y2,10],[0,y2,10]])}"/>${Ym>y2?`<polygon class="lw-pl" points="${F([[0,y2,10],[Wm,y2,10],[Wm,Ym,2*Ym],[0,Ym,2*Ym]])}"/>`:''}`;
+      const n1=P(W/2,0,0); s+=`<text class="lw-n" x="${n1[0].toFixed(2)}" y="${(n1[1]-0.5).toFixed(2)}">N 정북</text>`; }
+    const f=Math.sqrt(L.A*(+(readZc().bcr)||60)/100/(L.W*L.D)); const fw=W*f, fd=D*f; const c=[[W/2-fw/2,D/2-fd/2],[W/2+fw/2,D/2-fd/2],[W/2+fw/2,D/2+fd/2],[W/2-fw/2,D/2+fd/2]]; s+=`<polygon class="lw-bcr" points="${c.map(([x,y])=>P(x,y,0.02).map(n=>n.toFixed(2)).join(',')).join(' ')}"/>`; return s; };
+  el.innerHTML=wmRender(boxes,{th:0,cx:W/2,cy:D/2,plate:[0,0,W,D],shadow:false,extra,bpts,label:'법규 볼륨',color:b=>WM_WHITE});
+  $('#lawList').innerHTML=`<div class="lw-z">${esc(L.zone)} · 대지 ${fmt(L.A)}㎡ (${L.W}×${L.D}m)</div>`+L.out.map(r=>`<div class="lw-r ${r.ok?'ok':'no'}"><i>${r.ok?'✓':'!'}</i><div><b>${r.k}</b><span>${r.v}</span><em>${r.t}</em></div></div>`).join('')+`<p class="lw-note">개략 검토입니다. 실제 한도는 조례·지구단위계획·도로 사선·주차·대지 안의 공지 등에 따라 달라지니 토지이음과 허가권자 확인이 필요합니다.</p>`; }
+
+/* ---------- 콘타(등고선 지형 모형) 만들기 ---------- */
+const CT={type:'slope',dir:'S',drop:6,step:1,seed:3,thick:2,scale:200,N:44};
+function ctField(){ const N=CT.N, H=[]; const r=(i=>()=>{ i=(i*16807)%2147483647; return i/2147483647; })(CT.seed*7919+11); const hills=[]; const nh=CT.type==='hill'?1:CT.type==='rolling'?4:0;
+  for(let k=0;k<nh;k++) hills.push({x:CT.type==='hill'?0.5:0.15+r()*0.7,y:CT.type==='hill'?0.5:0.15+r()*0.7,s:CT.type==='hill'?0.32:0.12+r()*0.14,a:(CT.type==='hill'?1:0.35+r()*0.5)});
+  const dv={N:[0,-1],S:[0,1],E:[1,0],W:[-1,0]}[CT.dir]||[0,1];
+  for(let j=0;j<=N;j++){ const row=[]; for(let i=0;i<=N;i++){ const u=i/N, v=j/N; let h=0; if(CT.type==='slope'||CT.type==='rolling'||CT.type==='valley') h+=(0.5-((u-0.5)*dv[0]+(v-0.5)*dv[1]))*CT.drop*(CT.type==='slope'?1:CT.type==='valley'?0.35:0.6); if(CT.type==='valley') h+=Math.abs((u-0.5)*dv[1]-(v-0.5)*dv[0])*CT.drop*1.3;
+      for(const p of hills) h+=p.a*CT.drop*Math.exp(-((u-p.x)**2+(v-p.y)**2)/(2*p.s*p.s));
+      h+=(Math.sin(u*9.1+CT.seed)*Math.cos(v*7.3-CT.seed))*CT.drop*0.04; row.push(h); } H.push(row); }
+  let mn=1e9,mx=-1e9; for(const row of H) for(const h of row){ mn=Math.min(mn,h); mx=Math.max(mx,h); } for(const row of H) for(let i=0;i<row.length;i++) row[i]-=mn; return {H,max:mx-mn}; }
+function ctLoops(H,lev){ const N=H.length-1; const g=(i,j)=>(i<0||j<0||i>N||j>N)?-1e9:H[j][i]; const segs=[]; const P=(i,j,a,b)=>{ const va=g(...a), vb=g(...b); const t=(lev-va)/((vb-va)||1e-9); return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]; };
+  for(let j=-1;j<=N;j++) for(let i=-1;i<=N;i++){ const c=[[i,j],[i+1,j],[i+1,j+1],[i,j+1]]; const idx=c.reduce((s,p,k)=>s|((g(...p)>=lev?1:0)<<k),0); if(idx===0||idx===15) continue;
+    const e=[[c[0],c[1]],[c[1],c[2]],[c[2],c[3]],[c[3],c[0]]].map(([a,b])=>((g(...a)>=lev)!==(g(...b)>=lev))?P(i,j,a,b):null); const pts=e.map((p,k)=>p?k:-1).filter(k=>k>=0);
+    if(pts.length===2) segs.push([e[pts[0]],e[pts[1]]]); else if(pts.length===4){ segs.push([e[0],e[1]]); segs.push([e[2],e[3]]); } }
+  const key=p=>p[0].toFixed(3)+','+p[1].toFixed(3); const map=new Map(); segs.forEach((s,k)=>{ for(const p of s){ const kk=key(p); if(!map.has(kk)) map.set(kk,[]); map.get(kk).push(k); } });
+  const used=new Set(), loops=[]; for(let k=0;k<segs.length;k++){ if(used.has(k)) continue; used.add(k); const loop=[segs[k][0],segs[k][1]]; let cur=segs[k][1];
+    for(let guard=0;guard<5000;guard++){ const nb=(map.get(key(cur))||[]).find(x=>!used.has(x)); if(nb==null) break; used.add(nb); const s=segs[nb]; const nx=key(s[0])===key(cur)?s[1]:s[0]; loop.push(nx); cur=nx; } loops.push(loop); }
+  return loops.map(l=>l.map(([x,y])=>[Math.max(0,Math.min(N,x)),Math.max(0,Math.min(N,y))])); }
+function ctBuild(){ const {H,max}=ctField(); const levels=[]; for(let h=CT.step;h<max;h+=CT.step) levels.push(h); return {H,max,levels,loops:levels.map(l=>ctLoops(H,l))}; }
+let CTD=null;
+function drawContour(){ const el=$('#ctSvg'); if(!el) return; CTD=ctBuild(); const N=CT.N, s=12/N, ex=0.18*(CT.thick/2)+0.12; const P=(x,y,z)=>[(x*s-y*s)*0.866,(x*s+y*s)*0.5-z]; const F=a=>a.map(([x,y,z])=>P(x,y,z).map(n=>n.toFixed(2)).join(',')).join(' ');
+  let g=`<polygon class="ct-base" points="${F([[0,0,0],[N,0,0],[N,N,0],[0,N,0]])}"/><polygon class="ct-side" points="${F([[0,N,0],[N,N,0],[N,N,-ex],[0,N,-ex]])}"/><polygon class="ct-side r" points="${F([[N,0,0],[N,N,0],[N,N,-ex],[N,0,-ex]])}"/>`;
+  CTD.loops.forEach((ls,k)=>{ const z=(k+1)*ex; for(const l of ls){ if(l.length<3) continue; g+=`<polygon class="ct-edge" points="${F(l.map(([x,y])=>[x+0.35,y+0.35,z-ex]))}"/><polygon class="ct-l" style="--k:${k}" points="${F(l.map(([x,y])=>[x,y,z]))}"/>`; } });
+  // 집 블록: 가운데에 올리기
+  const hc=CTD.H[Math.round(N/2)][Math.round(N/2)]; const lv=Math.floor(hc/CT.step); const bz=lv*ex; const fl=(floors.length||2)*0.9; const bw=N*0.22, bd=N*0.16;
+  const BX=[[N/2-bw/2,N/2-bd/2],[N/2+bw/2,N/2-bd/2],[N/2+bw/2,N/2+bd/2],[N/2-bw/2,N/2+bd/2]];
+  g+=`<g class="ct-b"><polygon points="${F([[BX[3][0],BX[3][1],bz],[BX[2][0],BX[2][1],bz],[BX[2][0],BX[2][1],bz+fl],[BX[3][0],BX[3][1],bz+fl]])}" fill="#eeeef2"/><polygon points="${F([[BX[1][0],BX[1][1],bz],[BX[2][0],BX[2][1],bz],[BX[2][0],BX[2][1],bz+fl],[BX[1][0],BX[1][1],bz+fl]])}" fill="#dcdce2"/><polygon points="${F(BX.map(([x,y])=>[x,y,bz+fl]))}" fill="#fff"/></g>`;
+  const top=CTD.levels.length*ex+fl+bz*0+1.2; el.innerHTML=`<svg viewBox="-11.2 ${(-top).toFixed(2)} 22.4 ${(top+13).toFixed(2)}" role="img" aria-label="등고선 지형 모형">${g}</svg>`;
+  const plan=$('#ctPlan'); if(plan){ let p=`<rect x="0" y="0" width="${N}" height="${N}" class="cp-b"/>`; CTD.loops.forEach((ls,k)=>{ for(const l of ls) p+=`<polyline class="cp-l${(k+1)%5===0?' m':''}" points="${l.map(([x,y])=>x.toFixed(2)+','+y.toFixed(2)).join(' ')}"/>`; }); plan.innerHTML=`<svg viewBox="-1 -1 ${N+2} ${N+2}" role="img" aria-label="등고선 평면">${p}<text x="${N-1}" y="2.4" class="cp-n">N↑</text></svg>`; }
+  const z=(()=>{ try{ return readZc(); }catch(e){ return state.zc; } })(); const sizeM=Math.max(z.w||30,z.d||30)*1.6; const mm=sizeM*1000/CT.scale;
+  $('#ctInfo').innerHTML=`<div><b>${CTD.levels.length}</b><span>장 (등고 ${CT.step}m)</span></div><div><b>${CTD.max.toFixed(1)}m</b><span>최고 높이차</span></div><div><b>${Math.round(mm)}mm</b><span>모형 크기 1:${CT.scale}</span></div><div><b>${CT.thick}mm</b><span>판 두께</span></div>`; }
+function ctExport(kind){ if(!CTD) CTD=ctBuild(); const z=(()=>{ try{ return readZc(); }catch(e){ return state.zc; } })(); const sizeM=Math.max(z.w||30,z.d||30)*1.6; const mm=sizeM*1000/CT.scale; const N=CT.N, k=mm/N;
+  let svg; if(kind==='plan'){ let p=''; CTD.loops.forEach((ls,i)=>{ for(const l of ls) p+=`<polyline fill="none" stroke="#000" stroke-width="${(i+1)%5===0?0.35:0.18}" points="${l.map(([x,y])=>(x*k).toFixed(2)+','+(y*k).toFixed(2)).join(' ')}"/>`; });
+    svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${mm.toFixed(1)}mm" height="${mm.toFixed(1)}mm" viewBox="0 0 ${mm.toFixed(2)} ${mm.toFixed(2)}"><rect width="${mm.toFixed(2)}" height="${mm.toFixed(2)}" fill="none" stroke="#000" stroke-width="0.2"/>${p}</svg>`; }
+  else { const cols=Math.ceil(Math.sqrt(CTD.levels.length+1)), gap=8, cell=mm+gap; let p=`<g><rect x="0" y="0" width="${mm.toFixed(2)}" height="${mm.toFixed(2)}" fill="none" stroke="#f00" stroke-width="0.1"/><text x="2" y="6" font-size="4" fill="#00f">0 바닥판</text></g>`;
+    CTD.loops.forEach((ls,i)=>{ const n=i+1, ox=(n%cols)*cell, oy=Math.floor(n/cols)*cell; p+=`<g transform="translate(${ox.toFixed(2)} ${oy.toFixed(2)})">`+ls.map(l=>`<polygon fill="none" stroke="#f00" stroke-width="0.1" points="${l.map(([x,y])=>(x*k).toFixed(2)+','+(y*k).toFixed(2)).join(' ')}"/>`).join('')+(i+1<CTD.loops.length?CTD.loops[i+1].map(l=>`<polyline fill="none" stroke="#00f" stroke-width="0.1" points="${l.map(([x,y])=>(x*k).toFixed(2)+','+(y*k).toFixed(2)).join(' ')}"/>`).join(''):'')+`<text x="2" y="6" font-size="4" fill="#00f">${n} · +${(n*CT.step).toFixed(1)}m</text></g>`; });
+    const rows=Math.ceil((CTD.levels.length+1)/cols); svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${(cols*cell).toFixed(1)}mm" height="${(rows*cell).toFixed(1)}mm" viewBox="0 0 ${(cols*cell).toFixed(2)} ${(rows*cell).toFixed(2)}"><!-- 빨강: 자르기 / 파랑: 윗장 자리 표시(새기기) -->${p}</svg>`; }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})); a.download=kind==='plan'?'ziplan-contour-plan.svg':'ziplan-contour-laser.svg'; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); }
+
+/* 마크업 */
+(function(){ const site=$('#view-site .lab'); if(site){ const d=document.createElement('section'); d.className='lab'; d.innerHTML=`<div class="lab-h"><span class="lab-k">LAB · 콘타 만들기</span><h2>땅의 높이를, 한 장씩 잘라서.</h2><p>경사·언덕·골짜기와 높이차를 고르면 등고선 지형 모형(콘타)이 쌓이고, 레이저 커팅용 레이어 SVG로 바로 내려받습니다.</p></div>
+  <div class="ctlab"><div class="ctv"><div id="ctSvg"></div><div class="ctplan" id="ctPlan"></div></div><div class="ctc">
+   <label>지형</label><div class="modes" id="ctType">${[['slope','한쪽 경사'],['hill','언덕'],['rolling','구릉'],['valley','골짜기']].map(([k,n])=>`<button data-t="${k}">${n}</button>`).join('')}</div>
+   <label>낮은 쪽</label><div class="modes" id="ctDir">${[['N','북'],['E','동'],['S','남'],['W','서']].map(([k,n])=>`<button data-d="${k}">${n}</button>`).join('')}</div>
+   <label class="sunt"><span>높이차 <b id="ctDropL">6m</b></span><input type="range" id="ctDrop" min="1" max="20" step="0.5" value="6"></label>
+   <div class="row"><div><label for="ctStep">등고 간격</label><select id="ctStep"><option value="0.5">0.5m</option><option value="1" selected>1m</option><option value="2">2m</option><option value="5">5m</option></select></div><div><label for="ctScale">축척</label><select id="ctScale"><option value="100">1:100</option><option value="200" selected>1:200</option><option value="300">1:300</option><option value="500">1:500</option></select></div><div><label for="ctThick">판 두께</label><select id="ctThick"><option value="1">1mm</option><option value="2" selected>2mm</option><option value="3">3mm</option><option value="5">5mm</option></select></div></div>
+   <div class="ctinfo" id="ctInfo"></div>
+   <div class="actions"><button class="btn" id="ctLaser">레이저 커팅 SVG</button><button class="btn sec" id="ctPlanDl">등고선 평면 SVG</button><button class="btn sec" id="ctSeed">다른 지형</button></div>
+   <p class="muted" style="font-size:12px;line-height:1.6">빨간 선은 자르기, 파란 선은 윗장이 놓일 자리(새기기)입니다. 실제 대지 지형은 국토지리정보원 수치지형도(등고선)로 확인해 주세요.</p></div></div>`; site.after(d); }
+  const m=$('#view-model .lab'); if(m){ const d=document.createElement('section'); d.className='lab'; d.innerHTML=`<div class="lab-h"><span class="lab-k">LAB · 법규 볼륨</span><h2>지을 수 있는 그릇 안에 들어가나.</h2><p>내집코드의 용도지역·건폐율·용적률과 모형의 층별 면적·층고로, 정북 일조 사선과 한도를 겹쳐 봅니다.</p></div>
+  <div class="lawlab"><div class="lawv" id="lawSvg"></div><div class="lawc" id="lawList"></div></div>`; m.after(d); }
+})();
+document.addEventListener('click',e=>{ const wk=e.target.closest('#dnWmPick [data-wk]'); if(wk){ $$('#dnWmPick button').forEach(b=>b.setAttribute('aria-pressed',b===wk)); const el=$('#dnWm'); el.dataset.k=wk.dataset.wk; wmPaint(el); return; } const t=e.target.closest('#ctType [data-t]'); if(t){ CT.type=t.dataset.t; ctSync(); return; } const d=e.target.closest('#ctDir [data-d]'); if(d){ CT.dir=d.dataset.d; ctSync(); return; }
+  if(e.target.closest('#ctSeed')){ CT.seed=(CT.seed*31+7)%997; ctSync(); return; } if(e.target.closest('#ctLaser')){ ctExport('laser'); return; } if(e.target.closest('#ctPlanDl')){ ctExport('plan'); return; } });
+document.addEventListener('input',e=>{ if(e.target.id==='ctDrop'){ CT.drop=+e.target.value; ctSync(); } });
+document.addEventListener('change',e=>{ if(e.target.id==='ctStep'){ CT.step=+e.target.value; ctSync(); } if(e.target.id==='ctScale'){ CT.scale=+e.target.value; ctSync(); } if(e.target.id==='ctThick'){ CT.thick=+e.target.value; ctSync(); } if(e.target.closest&&(e.target.closest('#view-zipcode')||e.target.closest('#floorRows')||e.target.id==='secHeights')) setTimeout(drawLawLab,40); });
+function ctSync(){ $$('#ctType button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===CT.type)); $$('#ctDir button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.d===CT.dir)); const l=$('#ctDropL'); if(l) l.textContent=CT.drop+'m'; drawContour(); }
 
 /* ---------- 관리자 페이지 (#admin) — 숫자는 서버 함수 admin_stats()가 관리자일 때만 돌려준다 ---------- */
 let ADM=null;
