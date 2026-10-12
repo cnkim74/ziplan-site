@@ -20,7 +20,8 @@
 - 마지막 `<script>`: 필름 드라이버, 학생 띠 셰이더, 가로 리본(.ribbonx)
 
 ## 회원 (Supabase)
-- 프로젝트: `ziplan` (ref `ycvikhmfcxgggutdvued`, 서울 ap-northeast-2), 조직 cnkim74@me.com's Org
+- 프로젝트: ref `zxxcpbzlwxfqgzqcealg` (사용자 본인 Supabase 계정, Claude의 Supabase 커넥터 계정과 다름 → MCP로 접근 불가, 대시보드 작업은 사용자가 직접)
+- (예전에 만든 `ycvikhmfcxgggutdvued`는 cnkim74@me.com 조직 소속, 사용 안 함)
 - crit.html의 `window.ZIPLAN_AUTH={url,key}`에 URL과 publishable 키가 들어가 있음(공개용 키)
 - `authMode()`: 'claude'(claude.ai 안) / 'server'(Supabase, supabase-js@2.45.4 UMD를 jsdelivr에서 지연 로드) / 'local'(체험, localStorage)
 - 스키마: `supabase/schema.sql` — profiles(+가입 트리거), case_saves, case_likes(본인만), case_views + `bump_case_view` RPC, `case_stats` 뷰
@@ -29,7 +30,7 @@
 ### 남은 할 일 (2026-10-12 기준)
 1. **schema.sql 미적용** — Supabase SQL Editor에서 실행 필요 (MCP apply_migration이 이전 세션에서 취소됨). 확인: public 테이블이 비어 있으면 아직 안 된 것
 2. Authentication → URL Configuration: Site URL `https://ziplan-site-dist.vercel.app`, Redirect URLs에 같은 주소
-3. Google 로그인: Google Cloud OAuth 클라이언트(웹), 리디렉션 URI `https://ycvikhmfcxgggutdvued.supabase.co/auth/v1/callback`, Client ID/Secret을 Supabase Providers → Google에 입력
+3. Google 로그인: Google Cloud OAuth 클라이언트(웹), 리디렉션 URI `https://zxxcpbzlwxfqgzqcealg.supabase.co/auth/v1/callback`, Client ID/Secret을 Supabase Providers → Google에 입력
 4. 기본 메일은 시간당 발송 제한 — 가입자 늘면 커스텀 SMTP
 
 ## 작업 습관
