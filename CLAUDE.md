@@ -29,10 +29,8 @@
 - 학생 판별: `SCHOOL_RE` = ac.kr / edu / edu.xx / ac.xx 메일
 
 ### 남은 할 일 (2026-10-12 기준)
-0. **admin.sql** — schema.sql 다음에 SQL Editor에서 실행 (사용자가 직접)
-1. **schema.sql 미적용** — Supabase SQL Editor에서 실행 필요 (MCP apply_migration이 이전 세션에서 취소됨). 확인: public 테이블이 비어 있으면 아직 안 된 것
-2. Authentication → URL Configuration: Site URL `https://ziplan-site-dist.vercel.app`, Redirect URLs에 같은 주소
-3. Google 로그인: Google Cloud OAuth 클라이언트(웹), 리디렉션 URI `https://zxxcpbzlwxfqgzqcealg.supabase.co/auth/v1/callback`, Client ID/Secret을 Supabase Providers → Google에 입력
+- ✅ 2026-10-13: schema.sql + admin.sql 적용, Google 로그인 작동, killerzoz0728@gmail.com = super_admin, 관리자 페이지 확인됨
+- 주의: GitHub 웹훅 자동 배포가 늦게/옛 커밋으로 덮어쓰는 일이 있었음 → 배포 후 `list_deployments`로 최신 sha가 production인지 확인
 4. 기본 메일은 시간당 발송 제한 — 가입자 늘면 커스텀 SMTP
 
 ## 작업 습관
