@@ -30,6 +30,8 @@
     capture(refresh) {
       var self = this;
       var ps = pageSize();
+      // 아주 긴 화면(홈: 스크롤 장면들)은 캡처 비용이 커서 CSS 글래스로 둔다 — 짧은 방에서만 WebGL 패널
+      if (ps.h > 9000) { Container.isCapturing = false; nav.classList.remove('lg-on'); return; }
       var scale = Math.min(1, MAX_TEX / ps.h, MAX_TEX / ps.w);
       this.cssSize = { w: ps.w, h: ps.h };
       var seq = ++NavGlass.seq;
