@@ -98,24 +98,22 @@ nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 @media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pl,.pdrift{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
-.build{height:900vh;position:relative;background:#0b0c10}
+.build{height:1500vh;position:relative;background:#0b0c10;--card:#fff;--card-line:#e5e5ea;--fg:#1d1d1f;--fg-2:#6e6e73;--line:#d2d2d7;--bg-alt:#f5f5f7;--bg:#fff;--accent:#0a58ca}
 .bstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0b0c10}
-.bstage svg{width:min(100%,1180px);height:auto;max-height:100vh;display:block;margin-left:auto}
+.bstage svg{width:min(100%,1180px);height:auto;max-height:100vh;display:block;margin-left:auto;position:relative;z-index:3;pointer-events:none}
 .bcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);max-width:400px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;pointer-events:none}
 .bcap.on{opacity:1;transform:none}
 .bcap .w{font-family:var(--brand);font-size:clamp(56px,8.5vw,120px);line-height:.95;letter-spacing:-.045em;color:#fff}
 .bcap .k{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(13px,1.15vw,16px);letter-spacing:.06em;margin-top:12px;color:rgba(255,255,255,.7);line-height:1.6}
 .bhint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.06em;transition:opacity .3s}
-@media (max-width:860px){ .build{height:660vh} .bstage{align-items:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 100px)} .bcap{max-width:calc(100% - 32px)} }
-@media (prefers-reduced-motion:reduce){ .build{height:auto} .bstage{position:static;height:auto;padding:80px 16px 40px} .bcap{position:static;opacity:1;transform:none;margin-top:16px} .bcap:not([data-i="5"]){display:none} .bhint{display:none} }
+@media (max-width:860px){ .build{height:1150vh} .bstage{align-items:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 100px)} .bcap{max-width:calc(100% - 32px)} }
+@media (prefers-reduced-motion:reduce){ .build{height:auto} .bstage{position:static;height:auto;padding:80px 16px 40px} .bcap{position:static;opacity:1;transform:none;margin-top:16px} .bcap:not([data-i="4"]){display:none} .bhint{display:none} }
 
 /* opening 3: 패널 — 빈 보드 다섯 장이 가로로 흐르며 채워진다 */
-.panels{height:760vh;position:relative;background:#0b0c10;--card:#fff;--card-line:#e5e5ea;--fg:#1d1d1f;--fg-2:#6e6e73;--line:#d2d2d7;--bg-alt:#f5f5f7;--bg:#fff;--accent:#0a58ca}
-.pnstage{position:sticky;top:0;height:100vh;overflow:hidden}
-.pnhead{position:absolute;top:calc(48px + 5vh);left:max(16px,calc(50% - 600px));max-width:380px;z-index:2;pointer-events:none}
+.pnhead{position:absolute;top:calc(48px + 5vh);left:max(16px,calc(50% - 600px));max-width:380px;z-index:2;pointer-events:none;opacity:0}
 .pnhead .w{font-family:var(--brand);font-size:clamp(40px,5.5vw,76px);line-height:.95;letter-spacing:-.045em;color:#fff}
 .pnhead .k{font-family:'Noto Sans KR',sans-serif;font-size:clamp(13px,1.1vw,15px);color:rgba(255,255,255,.7);margin-top:10px;letter-spacing:.04em;line-height:1.6}
-.pnview{height:100vh;padding-top:90px;display:flex;align-items:center}
+.pnview{position:absolute;inset:0;padding-top:90px;display:flex;align-items:center;opacity:0;z-index:1}
 .pntrack{display:flex;gap:28px;padding:0 40px;will-change:transform;transform-origin:0 50%}
 .pnboard{flex:0 0 auto;width:min(400px,calc((100vh - 360px)/1.414),78vw);filter:drop-shadow(0 24px 50px rgba(0,0,0,.5))}
 .pnboard svg{width:100%;height:auto;display:block;overflow:visible}
@@ -124,7 +122,7 @@ nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 .pnsheen{position:absolute;top:0;bottom:0;left:0;width:45%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none;transform:translateX(-120%) skewX(-18deg);mix-blend-mode:screen}
 .pnfoot .now{font-size:13px;font-weight:500;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:inline-block;animation:pnNow .45s cubic-bezier(.2,.7,.2,1)}
 @keyframes pnNow{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.pnfoot{position:absolute;left:0;right:0;bottom:max(14px,3vh);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.pnfoot{position:absolute;left:0;right:0;bottom:max(14px,3vh);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:4;opacity:0}
 .pndots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
 .pndots span{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.55);padding:4px 10px;border-radius:999px;border:1px solid transparent;transition:color .3s,border-color .3s,background .3s}
 .pndots span::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .3s}
@@ -132,8 +130,8 @@ nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 .pndots span.on::before{background:#6fb1ff}
 .pncta{font-size:14px;font-weight:500;background:#fff;color:#0b0c10;border-radius:999px;padding:8px 16px}
 .pncta:hover{text-decoration:none;opacity:.85}
-@media (max-width:860px){ .panels{height:620vh} .pnhead{max-width:calc(100% - 32px)} .pnview{padding-top:150px} .pnboard{filter:drop-shadow(0 10px 24px rgba(0,0,0,.12))} .pndots span{padding:4px 7px;font-size:0} .pndots span::before{width:7px;height:7px} }
-@media (prefers-reduced-motion:reduce){ .pnboard{transform:none !important;opacity:1 !important} .pnsheen,.pnfoot .now{display:none} .panels{height:auto} .pnstage{position:static;height:auto;padding:72px 0 40px} .pnhead{position:static;max-width:560px;margin:0 auto 24px;padding:0 16px} .pnview{height:auto;padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch} .pntrack{transform:none !important;padding:12px 16px 28px} .pnfoot{position:static;margin-top:8px} }
+@media (max-width:860px){ .pnhead{max-width:calc(100% - 32px)} .pnview{padding-top:150px} .pnboard{filter:drop-shadow(0 10px 24px rgba(0,0,0,.12))} .pndots span{padding:4px 7px;font-size:0} .pndots span::before{width:7px;height:7px} }
+@media (prefers-reduced-motion:reduce){ .pnboard{transform:none !important;opacity:1 !important} .pnsheen,.pnfoot .now{display:none} .pnhead{position:static;opacity:1;max-width:560px;margin:40px auto 24px;padding:0 16px} .pnview{position:static;opacity:1;height:auto;padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch} .pntrack{transform:none !important;padding:12px 16px 28px} .pnfoot{position:static;opacity:1;margin-top:8px} }
 
 /* blocks */
 .view{min-height:60vh}
@@ -507,14 +505,8 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
       <div class="bcap" data-i="2"><div class="w">RISE</div><div class="k">입체 — 선이 일어서서 덩어리가 된다</div></div>
       <div class="bcap" data-i="3"><div class="w">LIGHT</div><div class="k">빛 — 창에 불이 든다</div></div>
       <div class="bcap" data-i="4"><div class="w">HOUSE</div><div class="k">집 — 카메라가 내려오면, 이렇게 집이 된다</div></div>
-      <div class="bcap" data-i="5"><div class="w">PANEL</div><div class="k">패널 — 집 한 채가 한 장의 그림이 되고, 여섯 장이 한 세트가 된다</div></div>
       <div class="bhint">내리면서 보세요 ↓</div>
-    </div>
-  </div>
-
-  <div class="panels" id="panels">
-    <div class="pnstage">
-      <div class="pnhead"><div class="w">PANEL</div><div class="k">빈 칸 여섯 장이 한 세트가 됩니다 — 컨셉 · 대지 · 평면 · 단면 · 분해도 · 투시. 자리를 먼저 잡고, 내리면 채워집니다.</div></div>
+      <div class="pnhead"><div class="w">PANEL</div><div class="k">여섯 장이 한 세트 — 컨셉 · 대지 · 평면 · 단면 · 분해도 · 투시. 자리를 먼저 잡고, 내리면 채워집니다.</div></div>
       <div class="pnview"><div class="pntrack" id="pnTrack"></div></div>
       <div class="pnfoot"><div class="now" id="pnNow" data-i="0">01 컨셉 — 한 줄의 생각이 그림이 된다</div><div class="pndots" id="pnDots"></div><a class="pncta" href="#panel">내 패널 만들기 ›</a></div>
     </div>
@@ -1555,7 +1547,7 @@ const BUILD=(function(){
     if(m.T) add([[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]],[0,0,1],m.T,'T');
     if(m.B) add([[x0,y1,z0],[x1,y1,z0],[x1,y0,z0],[x0,y0,z0]],[0,0,-1],m.B,'B');
     return F; }
-  function scene(p){
+  function scene(p,TG){
     const W='#ffffff', dimW='rgba(255,255,255,.62)', faintW='rgba(255,255,255,.22)', acc='#6fb1ff', warm='#ffb84d';
     const line=st(p,0,0.13), plan=st(p,0.13,0.32), planOut=1-st(p,0.38,0.44);
     const t=ease(st(p,0.34,0.44)), ctxOut=1-t;
@@ -1633,14 +1625,15 @@ const BUILD=(function(){
       s+=`<g opacity="${(1-st(photo,.15,.7)).toFixed(2)}"><g filter="url(#fGlowW)">${GLOW}</g>${G}</g>`;
     }
     /* ---- 사진: 모형이 사진의 자리에 서면, 진짜 집으로 ---- */
-    if(photo>0.001){ const S=1-0.62*shrink, zoom=1+0.08*photo-0.08*shrink*0; const cx=400, cy=300+40*shrink; const fw=800*S, fh=600*S; const pad=14*shrink;
-      // 사진 뒤에 흰 종이(패널) — 줄어들수록 드러난다
-      s+=`<g opacity="${shrink>0.01?1:0}"><rect x="${(cx-fw/2-pad).toFixed(1)}" y="${(cy-fh/2-pad).toFixed(1)}" width="${(fw+pad*2).toFixed(1)}" height="${(fh+pad*2+36*shrink).toFixed(1)}" rx="${(6*shrink).toFixed(1)}" fill="#fff" opacity="${shrink.toFixed(2)}"/></g>`;
-      s+=`<g opacity="${photo.toFixed(3)}" transform="translate(${cx} ${cy}) scale(${S.toFixed(4)}) translate(-400 -300)"><clipPath id="cPh"><rect width="800" height="600" rx="${(10*shrink).toFixed(1)}"/></clipPath><g clip-path="url(#cPh)"><image href="img/house-dusk.jpg" x="0" y="0" width="800" height="600" preserveAspectRatio="xMidYMid slice" transform="translate(400 300) scale(${(1+0.1*photo).toFixed(3)}) translate(-400 -300)"/><rect width="800" height="600" fill="url(#gVig)" opacity="${(1-shrink).toFixed(2)}"/></g></g>`;
-      if(shrink>0.01){ const by=cy+fh/2+pad; s+=`<g font-family="inherit" opacity="${st(shrink,.5,1).toFixed(2)}"><text x="${(cx-fw/2).toFixed(1)}" y="${(by+16).toFixed(1)}" font-size="${(9*S+4).toFixed(1)}" font-weight="700" fill="#0a58ca" letter-spacing="1.5">06 · PERSPECTIVE</text><text x="${(cx+fw/2).toFixed(1)}" y="${(by+16).toFixed(1)}" text-anchor="end" font-size="${(9*S+4).toFixed(1)}" font-weight="700" fill="#1d1d1f" letter-spacing="1">ZIPLAN</text></g>`; } }
+    if(photo>0.001){ const T=TG||{x:200,y:150,w:400,h:566}; const phh=T.w*360/594; const rx=T.w/420*6*shrink;
+      const R={x:mix(0,T.x,shrink), y:mix(0,T.y,shrink), w:mix(800,T.w,shrink), h:mix(600,phh,shrink)}; const Pp={x:mix(0,T.x,shrink), y:mix(0,T.y,shrink), w:mix(800,T.w,shrink), h:mix(600,T.h,shrink)};
+      // 뒤의 흰 종이(패널 보드 자리) — 줄어들수록 드러난다
+      if(shrink>0.001) s+=`<rect x="${Pp.x.toFixed(1)}" y="${Pp.y.toFixed(1)}" width="${Pp.w.toFixed(1)}" height="${Pp.h.toFixed(1)}" rx="${rx.toFixed(1)}" fill="#fff" stroke="#e5e5ea" opacity="${shrink.toFixed(2)}"/>`;
+      const cx=R.x+R.w/2, cy=R.y+R.h/2, z=1+0.1*photo*(1-shrink);
+      s+=`<g opacity="${photo.toFixed(3)}"><clipPath id="cPh"><rect x="${R.x.toFixed(1)}" y="${R.y.toFixed(1)}" width="${R.w.toFixed(1)}" height="${R.h.toFixed(1)}" rx="${rx.toFixed(1)}"/></clipPath><g clip-path="url(#cPh)"><image href="img/house-dusk.jpg" x="${R.x.toFixed(1)}" y="${R.y.toFixed(1)}" width="${R.w.toFixed(1)}" height="${R.h.toFixed(1)}" preserveAspectRatio="xMidYMid slice" transform="translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${z.toFixed(3)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})"/><rect x="${R.x.toFixed(1)}" y="${R.y.toFixed(1)}" width="${R.w.toFixed(1)}" height="${R.h.toFixed(1)}" fill="url(#gVig)" opacity="${(1-shrink).toFixed(2)}"/></g></g>`; }
     return s+`</g>`;
   }
-  const capIndex=p=>p<0.13?0:(p<0.34?1:(p<0.61?2:(p<0.72?3:(p<0.90?4:5))));
+  const capIndex=p=>p<0.13?0:(p<0.34?1:(p<0.61?2:(p<0.72?3:4)));
   return {scene,capIndex};
 })();
 /* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
@@ -1665,10 +1658,15 @@ const BUILD=(function(){
   let tPrev=0; function animate(ts){ raf=0; const dt=tPrev?Math.min(80,ts-tPrev):16; tPrev=ts; const diff=target-cur; if(Math.abs(diff)<0.0006){ cur=target; tPrev=0; paint(cur); return; } cur+=diff*(1-Math.exp(-dt/110)); paint(cur); raf=requestAnimationFrame(animate); }   // 시간 기준 감쇠: 어떤 화면 주사율에서도 약 0.4초 안에 따라붙는다   // 스크롤 관성: 영상처럼 부드럽게 따라온다
   function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=56&&q.bottom>56; }); nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
   if(rm){ nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',[sec,$('#build'),$('#panels')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=56&&q.bottom>56; })&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.add('on-dark'); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
-(function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false;
-  function paint(p){ svg.innerHTML=BUILD.scene(p); const i=BUILD.capIndex(p); caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=p>0.05?0:1; }
-  function tick(){ ticking=false; if($('#view-home').hidden) return; const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
-  if(rm){ paint(1); return; } paint(0); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
+let pnApi=null;   // 패널 구동부가 채운다(아래)
+(function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'), pnv=$('#build .pnview'), pnh=$('#build .pnhead'), pnf=$('#build .pnfoot'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
+  // 한 섹션 안에서: 0~0.56 집이 되는 과정(끝에 사진이 보드 자리로 줄어듦) · 0.50~1 패널 여섯 장
+  function paint(P){ const p=st(P,0,0.56), pp=st(P,0.50,1); const T=pnApi?pnApi.target():null;
+    const svgOn=1-st(P,0.56,0.585); svg.style.opacity=svgOn.toFixed(3); svg.style.display=svgOn>0?'':'none'; if(svgOn>0) svg.innerHTML=BUILD.scene(p,T);
+    const i=P<0.545?BUILD.capIndex(p):-1; caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=P>0.03?0:1;
+    const on=st(P,0.50,0.555); pnv.style.opacity=on.toFixed(3); pnh.style.opacity=on.toFixed(3); pnf.style.opacity=on.toFixed(3); if(pnApi) pnApi.paint(pp); }
+  function tick(){ ticking=false; if($('#view-home').hidden) return; const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const P=Math.max(0,Math.min(1,-r.top/(r.height-vh))); if(Math.abs(P-last)<0.0015) return; last=P; paint(P); }
+  if(rm){ svg.innerHTML=BUILD.scene(0.8,null); return; } paint(0); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; if(pnApi) pnApi.measure(); tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ last=-1; if(pnApi) pnApi.measure(); tick(); }); })();
 
 /* 패널 장면 — 빈 네모 다섯 장(컨셉·대지·평면·단면·모형)이 가로로 흐르며 글·도면·버블 다이어그램으로 채워진다.
    처음엔 다섯 장을 작게 한눈에 → 첫 장으로 다가가 → 한 장씩 옆으로. 가상의 패널이라 자리만 잡는다. */
@@ -1794,9 +1792,8 @@ const PANELS=(function(){
     return s+foot(0.97,'5/6'); }
   /* 06 PERSPECTIVE — 전면 사진 · 제목 오버레이 · 컷 3 · 크레딧 */
   function b5(){ let s='';
-    s+=ph(0,0,W,360,0.1,0)+ph(24,376,116,80,0.6)+ph(152,376,116,80,0.66)+ph(280,376,116,80,0.72)+ph(24,470,240,72,0.84)+ph(280,470,116,72,0.9);
-    s+=el(0.1,`<rect x="0" y="0" width="${W}" height="360" fill="var(--bg-alt)"/>`);
-    s+=`<clipPath id="pnPhotoClip"><rect x="0" y="0" width="${W}" height="360" rx="6"/></clipPath><image data-q="0.14" data-m="photo" href="img/house-dusk.jpg" x="0" y="0" width="${W}" height="360" preserveAspectRatio="xMidYMid slice" clip-path="url(#pnPhotoClip)" style="opacity:0"/>`;
+    s+=ph(0,0,W,360,-1,0)+ph(24,376,116,80,0.6)+ph(152,376,116,80,0.66)+ph(280,376,116,80,0.72)+ph(24,470,240,72,0.84)+ph(280,470,116,72,0.9);
+    s+=`<clipPath id="pnPhotoClip"><rect x="0" y="0" width="${W}" height="360" rx="6"/></clipPath><image data-q="-1" data-m="photo" href="img/house-dusk.jpg" x="0" y="0" width="${W}" height="360" preserveAspectRatio="xMidYMid slice" clip-path="url(#pnPhotoClip)" style="opacity:0"/>`;
     s+=el(0.4,`<rect x="0" y="250" width="${W}" height="110" fill="url(#pnShade)" clip-path="url(#pnPhotoClip)"/>${txt(24,30,'06 · PERSPECTIVE',9,700,'rgba(255,255,255,.85)','start',1.5)}${txt(W-24,30,'SHEET 6 / 6',9,700,'rgba(255,255,255,.6)','end',1.5)}${txt(24,312,'저녁, 불이 켜질 때',26,700,'#fff','start',-0.5)}${txt(24,332,'남서쪽에서 본 투시 · 돌벽은 어둡게, 유리는 따뜻하게 — 집은 밤에 등이 된다',9,400,'rgba(255,255,255,.85)')}`);
     const iso=ISO(2.1,58,56);
     const mini=[[1,43,1,12,0,0.6,CONC],[2,32,2,12,0.6,3.9,GL],[34,42,3,12,0.6,4.2,STO],[1,33,1,13.2,3.9,4.4,CONC],[2,12,2,9,4.4,7.6,GL],[12,21,3,10,4.4,7.6,MET],[21,32,2,9,4.4,7.6,GL],[15,17,5,7.6,4.4,10,STO],[1.2,12.8,1.2,9.8,7.6,8.1,CONC],[20.2,32.8,1.2,9.8,7.6,8.1,CONC]].map(b=>iso.box(b[0]-22,b[1]-22,b[2]-7,b[3]-7,b[4],b[5],b[6][0],b[6][1],b[6][2])).join('');
@@ -1812,26 +1809,31 @@ const PANELS=(function(){
   return {BOARDS,boardSVG,fill,st,ease};
 })();
 /* 패널 장면 구동: 다섯 장을 작게 한눈에 → 첫 장으로 다가가 → 한 장씩 옆으로. 각 장은 가운데 올 때 채워진다 */
-(function(){ const sec=$('#panels'), track=$('#pnTrack'), dots=$('#pnDots'); if(!sec||!track) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=PANELS.st, ease=PANELS.ease;
+(function(){ const sec=$('#build'), track=$('#pnTrack'), dots=$('#pnDots'), svg=$('#buildSvg'); if(!sec||!track) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=PANELS.st, ease=PANELS.ease;
   track.innerHTML=PANELS.BOARDS.map((b,i)=>`<div class="pnboard" data-i="${i}">${PANELS.boardSVG(i)}</div>`).join(''); dots.innerHTML=PANELS.BOARDS.map(b=>`<span>${b[0]}</span>`).join('');
-  const boards=Array.from(track.children), dot=Array.from(dots.children), N=boards.length, lastB=boards.map(()=>-1); let last=-1, ticking=false, G=null; const now=$('#pnNow'), headEl=$('#panels .pnhead'); const NOW=['01 컨셉 — 숲을 등지고, 계곡을 향해','02 대지 — 땅이 먼저 말한다','03 평면 — 세 끝은 돌, 가운데는 홀','04 단면·입면 — 높이와 빛','05 분해도 — 다섯 겹으로 읽는 집','06 투시 — 저녁, 불이 켜질 때'];
+  const boards=Array.from(track.children), dot=Array.from(dots.children), N=boards.length, lastB=boards.map(()=>-1); let last=-1, ticking=false, G=null; const now=$('#pnNow'), headEl=$('#build .pnhead'); const NOW=['01 컨셉 — 숲을 등지고, 계곡을 향해','02 대지 — 땅이 먼저 말한다','03 평면 — 세 끝은 돌, 가운데는 홀','04 단면·입면 — 높이와 빛','05 분해도 — 다섯 겹으로 읽는 집','06 투시 — 저녁, 불이 켜질 때'];
   boards.forEach(b=>{ const sh=document.createElement('div'); sh.className='pnsheen'; b.appendChild(sh); });
   if(rm){ boards.forEach(b=>PANELS.fill(b,1)); dot[0].classList.add('on'); return; }
-  function measure(){ const W=boards[0].offsetWidth, gap=28, pad=40, vw=sec.clientWidth; const trackW=pad*2+W*N+gap*(N-1); const sc0=Math.max(0.2,Math.min(1,(vw-88)/trackW)); G={W,gap,pad,vw,trackW,sc0,tx0:(vw-trackW*sc0)/2}; }
+  // 사진이 줄어들어 들어갈 자리: 한눈에 보기 상태에서 여섯째 보드의 위치를 SVG 좌표로
+  function target(){ if(!G) measure(); return cachedT; }
+  let cachedT=null, lastP=0;
+  function measure(){ const W=boards[0].offsetWidth, gap=28, pad=40, vw=sec.clientWidth; const trackW=pad*2+W*N+gap*(N-1); const sc0=Math.max(0.2,Math.min(1,(vw-88)/trackW)); G={W,gap,pad,vw,trackW,sc0,tx0:(vw-trackW*sc0)/2};
+    // 한눈에 보기 상태로 잠깐 놓고 여섯째 보드 자리를 잰다 (다음 paint가 되돌린다)
+    track.style.transform=`translateX(${G.tx0.toFixed(1)}px) scale(${G.sc0.toFixed(4)})`; boards.forEach(b=>{ b.style.transform=''; });
+    const br=boards[N-1].getBoundingClientRect(), sr=svg.getBoundingClientRect(); if(sr.width>0){ const s=Math.min(sr.width/800,sr.height/600); const ox=(sr.width-800*s)/2, oy=(sr.height-600*s)/2; cachedT={x:(br.left-sr.left-ox)/s, y:(br.top-sr.top-oy)/s, w:br.width/s, h:br.height/s}; } }
   const txOf=f=>G.vw/2-(G.pad+f*(G.W+G.gap)+G.W/2);
-  function paint(p){ if(!G) measure();
-    const SEG=0.172, P0=0.1; let sc, tx, f;
-    if(p<P0){ const e=ease(st(p,0,P0)); sc=G.sc0+(1-G.sc0)*e; tx=G.tx0+(txOf(0)-G.tx0)*e; f=0; }
+  function paint(p){ if(!G) measure(); lastP=p;
+    const SEG=0.132, P0=0.3; let sc, tx, f;
+    if(p<P0){ const e=ease(st(p,0.2,P0)); sc=G.sc0+(1-G.sc0)*e; tx=G.tx0+(txOf(0)-G.tx0)*e; f=0; }
     else { const u=(p-P0)/SEG; const i=Math.min(N-1,Math.floor(u)); const loc=u-i; f=Math.min(N-1,i+ease(st(loc,0.25,1))); sc=1; tx=txOf(f); }
     track.style.transform=`translateX(${tx.toFixed(1)}px) scale(${sc.toFixed(4)})`;
-    const zoom=p<P0?ease(st(p,0,P0)):1;   // 한눈에 볼 땐 평평하게, 다가가면 옆 장이 살짝 돌아선다
+    const zoom=p<P0?ease(st(p,0.2,P0)):1;   // 한눈에 볼 땐 평평하게, 다가가면 옆 장이 살짝 돌아선다
     boards.forEach((b,i)=>{ const d=Math.max(-1,Math.min(1,f-i)); const ad=Math.abs(d); b.style.transform=`perspective(1400px) rotateY(${(d*14*zoom).toFixed(2)}deg) scale(${(1-0.06*ad*zoom).toFixed(3)})`; b.style.opacity=(1-0.35*ad*zoom).toFixed(3); b.style.zIndex=String(10-Math.round(ad*5));
       const pc=P0+i*SEG; const v=st(p,pc-0.08,pc+0.04); const sh=b.querySelector('.pnsheen'); if(sh) sh.style.transform=`translateX(${(-120+260*st(v,0.1,1)).toFixed(0)}%) skewX(-18deg)`;
       if(Math.abs(v-lastB[i])<0.002) return; lastB[i]=v; PANELS.fill(b,v); });
     const act=Math.round(f); dot.forEach((d,i)=>d.classList.toggle('on',i===act)); if(now&&now.dataset.i!==String(act)){ now.dataset.i=String(act); now.textContent=NOW[act]; now.style.animation='none'; void now.offsetWidth; now.style.animation=''; }
     if(headEl) headEl.style.transform=`translateY(${(-26*p).toFixed(1)}px)`; }
-  function tick(){ ticking=false; if($('#view-home').hidden) return; const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); if(Math.abs(p-last)<0.0015) return; last=p; paint(p); }
-  paint(0); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ measure(); last=-1; tick(); }); window.addEventListener('hashchange',()=>{ measure(); last=-1; setTimeout(tick,50); }); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ measure(); last=-1; tick(); }); })();
+  paint(0); pnApi={paint,target,measure}; })();
 
 /* 스크롤 등장: 섹션·카드·문단을 화면에 들어올 때 띄우고, 격자는 순서대로 */
 (function(){ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; if(rm) return;
