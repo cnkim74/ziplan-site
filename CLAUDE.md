@@ -38,6 +38,13 @@
 - 흰색 블록 모형 `wmRender`(임의 각도 회전 등각, 끌어서 회전, `CTHUMB.boxes(kind)`) — 취향 랩 결과 `#dnWm`
 - 법규 볼륨 `drawLawLab`/`lawCheck`(모형 페이지): 건폐율·용적률·정북 일조 사선(주거지역: 10m 이하 1.5m, 초과 높이/2)·높이 — 개략
 - 콘타 `drawContour`/`ctExport`(대지 페이지): 합성 지형(경사·언덕·구릉·골짜기) → marching squares 등고선 → 적층 등각 + 레이저 커팅 레이어 SVG(mm, 빨강 자르기·파랑 새기기)·등고선 평면 SVG
+- 로고(2026-10-13): Z 마크 폐기 → 파란 그라데이션 타일 안의 흰 "P = 집" 마크(기둥+박공 지붕+벽, `markSVG(size,_,anim)`), favicon도 동일(build_public.py). 워드마크는 ZI**P**LAN(P 파랑) 유지
+- 상단 메가 메뉴: `NAVG`(시작하기·설계하기·보여주기·둘러보기·함께하기) → `buildNav()`가 `.ngb` 버튼과 `#mega` 패널(아이콘·설명·오른쪽 특집 카드) 생성, 모바일 `#navMenu`도 같은 데이터. 현재 방 표시는 `navCurrent(h)`
+- 패널 랩: 레이아웃 9종(hero·band·process·grid·poster·split·axo·story·minimal), 무대 샘플 이미지 `PSAMPLE`, 수상작 공통점 `PLESSON` 10개, `panelDiag()` 3초 진단, 공모전 달력 `COMPS`(국내 4·해외 7, 일정은 해마다 바뀜 — 매년 갱신 필요). reveal IO는 threshold 0으로(키 큰 요소가 안 나타나던 버그 수정)
+- 건축 여행 `#travel`: `TPL` 32곳(위경도·건축가·연도·볼 것), 남한 근사 외곽 지도 `tMap`, 카드 `tCard`, 코스 짜기 `tPlan`(관심사 점수 → 가까운 순 → 하루 10:00~18:30, 점심 삽입, 하루 최대 perDay), 추천 코스 `TCOURSE` 4개, 카카오맵 검색 링크
+- 방문 통계: `supabase/analytics.sql` 적용됨(2026-10-13) — `page_views`(익명 vid/sid, 쿠키·IP 없음, DNT 존중, insert만) + `pv_channel()` + `admin_traffic(days)`. 클라이언트 `ZT`(정식 https 사이트에서만, claude/localhost 제외). 이벤트: signup_open, plan_click, chat_open, course_copy, course_preset
+- 관리자 탭: 개요(목표 링·깔때기·할 일) / 유입·채널(일별·채널 도넛·방·리퍼러·기기·캠페인·시간대·행동) / 수익(결제 연동 전 시뮬레이터, localStorage `zip_rev`) / 채널 관리(UTM 생성·저장 `zip_utm`, 채널 보드) / 회원·콘텐츠 / 문의함
+- 테스트 주의: nav-glass(html2canvas)가 헤드리스에서 큰 페이지 캡처 중 멈춤 → Playwright에선 /html2canvas/ 라우트 차단
 - 학생 판별: `SCHOOL_RE` = ac.kr / edu / edu.xx / ac.xx 메일
 
 ### 남은 할 일 (2026-10-12 기준)
