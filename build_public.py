@@ -60,7 +60,7 @@ for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vend
     shutil.copy(root / rel, dist / rel)
 
 # vercel.json: 정적 사이트, 캐시
-(dist / 'vercel.json').write_text('{"cleanUrls":true,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"}]},{"source":"/(vendor|effects|data)/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]}]}', encoding='utf-8')
+(dist / 'vercel.json').write_text('{"images":{"sizes":[640,960,1280,1920],"formats":["image/avif","image/webp"],"minimumCacheTTL":2678400,"remotePatterns":[{"protocol":"https","hostname":"d8j0ntlcm91z4.cloudfront.net"}]},"cleanUrls":true,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"}]},{"source":"/(vendor|effects|data)/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]}]}', encoding='utf-8')
 files = [str(p.relative_to(dist)) for p in dist.rglob('*') if p.is_file()]
 total = sum((dist / f).stat().st_size for f in files)
 print(len(files), 'files,', round(total/1024), 'KB'); print('\n'.join(sorted(files)))
