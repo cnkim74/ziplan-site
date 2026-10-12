@@ -138,6 +138,14 @@ nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 /* blocks */
 .view{min-height:60vh}
 .hero{padding:72px 16px 40px;text-align:center}
+#introHero{position:relative;overflow:hidden;isolation:isolate;padding-top:96px;padding-bottom:64px}
+.sgbg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+#introHero .sgbg{-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,#000 40%,transparent 100%);opacity:.9}
+.mod.gradband{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:150px 16px}
+.mod.gradband .tag{color:rgba(255,255,255,.78)}
+.mod.gradband .links a{color:#fff;text-decoration-color:rgba(255,255,255,.5)}
+.mod.gradband .sgbg{opacity:1}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) #introHero .sgbg{display:none} }
 .hero h1{font-size:clamp(52px,9vw,96px);line-height:1;letter-spacing:-0.045em}
 .hero .tag{font-size:clamp(22px,3.4vw,34px);font-weight:500;margin-top:14px}
 .hero .sub{font-size:19px;color:var(--fg-2);margin-top:8px;max-width:640px;margin-inline:auto}
@@ -577,7 +585,7 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
     </div>
   </div>
 
-  <div class="mod">
+  <div class="mod gradband" id="likeBand">
     <h2>고를수록 당신을 닮는다.</h2>
     <div class="tag">좋아요 한 사례와 고른 대안이 스타일 프로필이 됩니다. 결정은 늘 당신 것입니다.</div>
     <div class="links"><a href="#learn">사례 보러 가기</a><a href="#studio">내 작업실</a></div>
@@ -1970,3 +1978,6 @@ drawSite(); $('#tileSite').innerHTML=siteSVG(); redraw(); renderCases(); renderP
 <script src="vendor/liquid-glass/container.js"></script>
 <script src="vendor/liquid-glass/button.js"></script>
 <script src="effects/nav-glass.js"></script>
+<script src="effects/shader-gradient.js"></script>
+<script>/* 움직이는 그라데이션 배경: 히어로(파스텔) · "닮는다" 띠(깊은 남색) */
+(function(){ if(!window.ShaderGradient) return; var go=function(){ var hero=document.getElementById('introHero'); if(hero) ShaderGradient.mount(hero,{colors:['#f6f8ff','#d9e7ff','#e8dcff'],speed:.18,strength:.8,density:.8,frequency:.55,amplitude:1,grain:.03,tilt:.5,light:.5,sat:1.05}); var band=document.getElementById('likeBand'); if(band) ShaderGradient.mount(band,{colors:['#070b1f','#1d3a9c','#8ab8ff'],speed:.22,strength:1.1,density:.85,frequency:.7,amplitude:1,grain:.06,tilt:.6,light:.9,sat:1.1}); }; if(document.readyState==='complete') go(); else window.addEventListener('load',go); })();</script>
