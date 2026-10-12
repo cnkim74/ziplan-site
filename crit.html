@@ -90,15 +90,13 @@ nav.on-dark:not(.lg-on){background:rgba(10,12,18,.55)}
 @media (max-width:860px){ .photo{height:360vh} .phead{top:calc(48px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pl,.pdrift{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
-.build{height:720vh;position:relative}
+.build{height:760vh;position:relative}
 .bstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
 .bstage svg{width:min(100%,1180px);height:auto;max-height:100vh;display:block;margin-left:auto}
-.bcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);max-width:400px;opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s;pointer-events:none}
+.bcap{position:absolute;left:max(16px,calc(50% - 600px));bottom:max(36px,10vh);max-width:440px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;pointer-events:none}
 .bcap.on{opacity:1;transform:none}
-.bcap .n{font-size:12px;letter-spacing:.1em;color:var(--fg-2);margin-bottom:8px}
-.bcap h2{font-size:clamp(56px,8vw,112px);font-weight:900;line-height:1;letter-spacing:-.04em}
-.bcap .n{font-family:var(--brand);font-size:13px;letter-spacing:.14em;color:var(--accent)}
-.bcap p{font-size:clamp(15px,1.6vw,19px);color:var(--fg-2);margin:10px 0 0;max-width:36ch}
+.bcap .w{font-family:var(--brand);font-size:clamp(56px,8.5vw,120px);line-height:.95;letter-spacing:-.045em;color:var(--fg)}
+.bcap .k{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:clamp(13px,1.15vw,16px);letter-spacing:.06em;margin-top:12px;color:var(--fg-2);line-height:1.6}
 .bhint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--fg-2);letter-spacing:.06em;transition:opacity .3s}
 @media (max-width:860px){ .build{height:560vh} .bstage{align-items:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 100px)} .bcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .build{height:auto} .bstage{position:static;height:auto;padding:80px 16px 40px} .bcap{position:static;opacity:1;transform:none;margin-top:16px} .bcap:not([data-i="6"]){display:none} .bhint{display:none} }
@@ -323,6 +321,21 @@ textarea{min-height:96px;resize:vertical;line-height:1.5}
 .post.locked img,.post.locked .noimg{filter:blur(14px);opacity:.55}
 .post.locked{position:relative}
 .post.locked::after{content:"한 장 올리면 열립니다";position:absolute;top:12px;left:12px;background:var(--fg);color:var(--bg);font-size:12px;padding:5px 10px;border-radius:999px}
+
+/* 스크롤 등장 효과 (움직임 줄이기면 전부 즉시 표시) */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv[data-d="1"]{transition-delay:.07s}.rv[data-d="2"]{transition-delay:.14s}.rv[data-d="3"]{transition-delay:.21s}.rv[data-d="4"]{transition-delay:.28s}.rv[data-d="5"]{transition-delay:.35s}
+  .rv.zoom{transform:translateY(18px) scale(.97)}
+  .tile{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+  .tile:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+  .tile .art svg{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .tile:hover .art svg{transform:translateY(-4px) scale(1.03)}
+  .ccard,.case,.plan,.scard,.pfjob{transition:transform .35s,box-shadow .35s}
+  .ccard:hover,.case:hover,.plan:hover,.pfjob:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.07)}
+  .hero.px{will-change:transform}
+}
 /* 자료실 */
 .lbhow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:20px}
 .lbhow .fact .v{font-size:15px;line-height:1.45;font-weight:600}
@@ -432,13 +445,13 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
   <div class="build" id="build">
     <div class="bstage">
       <svg id="buildSvg" viewBox="0 0 800 600" role="img" aria-label="대지 평면이 그려지고 마당과 층이 쌓여 집이 되는 장면"></svg>
-      <div class="bcap" data-i="0"><div class="n">LINE</div><h2>선</h2><p>건축은 한 선에서 시작한다. 땅의 경계, 길, 북쪽.</p></div>
-      <div class="bcap" data-i="1"><div class="n">SITE</div><h2>대지</h2><p>15 × 20m. 남쪽에 길, 북쪽에 낮은 산. 해는 남쪽에서 들어와 서쪽으로 지고, 바람은 북서에서 온다.</p></div>
-      <div class="bcap" data-i="2"><div class="n">PLAN</div><h2>평면</h2><p>거실과 부엌은 해를 보고, 침실은 조용한 서쪽으로. 가운데를 마당에 내준다.</p></div>
-      <div class="bcap" data-i="3"><div class="n">RISE</div><h2>입체</h2><p>선이 일어선다. 1층은 ㄱ자, 2층은 작은 상자 하나. 상자 옆이 마당 위 테라스가 된다.</p></div>
-      <div class="bcap" data-i="4"><div class="n">LIGHT</div><h2>빛</h2><p>해가 지나가며 그림자가 돈다. 남쪽 벽에 창을 낸다.</p></div>
-      <div class="bcap" data-i="5"><div class="n">SECTION</div><h2>단면</h2><p>잘라서 본다. 층고, 바닥, 사람의 키. 도면은 결국 몸의 크기다.</p></div>
-      <div class="bcap" data-i="6"><div class="n">HOME</div><h2>집</h2><p>마당을 안은 집. 사례, 대지, 컨셉, 도면, 모형, 패널. 당신의 첫 집도 이 순서로.</p></div>
+      <div class="bcap" data-i="0"><div class="w">LINE</div><div class="k">선 — 땅의 경계, 길, 북쪽</div></div>
+      <div class="bcap" data-i="1"><div class="w">SITE</div><div class="k">대지 — 32 × 22m · 남쪽 길 · 북쪽 숲 · 해 · 바람</div></div>
+      <div class="bcap" data-i="2"><div class="w">PLAN</div><div class="k">평면 — 거실과 식당은 숲을 보고, 돌 코어가 둘을 잇는다</div></div>
+      <div class="bcap" data-i="3"><div class="w">RISE</div><div class="k">입체 — 유리 위에 두 개의 상자, 가운데 굴뚝</div></div>
+      <div class="bcap" data-i="4"><div class="w">LIGHT</div><div class="k">빛 — 해가 돌고, 남쪽 창에 불이 든다</div></div>
+      <div class="bcap" data-i="5"><div class="w">SECTION</div><div class="k">단면 — 층고 3.6 / 3.0, 사람의 키</div></div>
+      <div class="bcap" data-i="6"><div class="w">HOME</div><div class="k">집 — 당신의 첫 집도 이 순서로</div></div>
       <div class="bhint">내리면서 보세요 ↓</div>
     </div>
   </div>
@@ -845,7 +858,7 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
   </div>
 </section>
 
-<footer><div class="in"><span><span class="mark" data-mark="14"></span> ZIPLAN — 모두의 건축 (프로토타입)</span><span>예시 프로젝트: HOUSE PARK H3 · 내보내기: PNG · SVG</span></div></footer>
+<footer><div class="in"><span><span class="mark" data-mark="14"></span> ZIPLAN — 모두의 건축 (프로토타입)</span><span>예시 프로젝트: 두 상자 집 · 내보내기: PNG · SVG</span></div></footer>
 
 <script src="data/portfolio.js"></script>
 <script src="data/library.js"></script><!-- 자료실 데이터 --><!-- 포트폴리오 방 데이터 (주기적으로 갱신) -->
@@ -861,28 +874,25 @@ function markSVG(size,color,anim,pColor){ color=color||'currentColor'; pColor=pC
 $$('[data-mark]').forEach(el=>el.innerHTML=markSVG(+el.dataset.mark));
 $('#heroMark').innerHTML=`<div style="width:132px;height:132px;background:var(--fg);border-radius:30px;display:flex;align-items:center;justify-content:center">${markSVG(92,'var(--bg)',true,'#2997ff')}</div>`;
 
-/* ---------- Example project (HOUSE PARK H3) ---------- */
+/* ---------- Example project (두 상자 집 — 표지 사진의 집을 가상 프로젝트로) ---------- */
 const EXAMPLE={
-  title:'HOUSE PARK', concept:'두 담 사이, 오르는 공원',
-  site:'대구 중구 공평동 16-11 · 1,125㎡ · 중심상업지역', use:'근린생활시설 + 숙박', scale:'지상 10층 · 연면적 5,435㎡',
-  keys:'공원, 틈, 테라스',
-  notes:'남·북이 막힌 틈을 두 개의 담으로 세우고, 가운데를 공원에 내준다. 공원이 서쪽에서 3·4·5층 테라스로 올라와 21m 하늘 공원에 닿고, 동성로 쪽 액자(6~8층 비움)로 빠져나간다. 북쪽 담 10층, 남쪽 담은 9→8→6층으로 낮아져 남측 채광. 공원 쪽은 석재·목재·초록, 동성로 쪽은 테라코타·브론즈·유리.',
+  title:'두 상자 집', concept:'숲을 향해 연 두 상자, 돌벽이 잇는다',
+  site:'강원 평창 (예시 대지) · 660㎡ · 계획관리지역', use:'단독주택', scale:'지상 2층 · 연면적 238㎡',
+  keys:'숲, 돌벽, 테라스',
+  notes:'남쪽 길에서 올라와 돌 코어(현관·굴뚝)를 지나면 좌우로 두 상자가 열린다. 1층은 숲을 향한 유리 — 거실과 식당·부엌이 각각 한 상자를 차지하고, 2층 흰 콘크리트 상자가 그 위에 얹혀 남쪽으로 1m 내민다. 서쪽 상자 2층은 침실, 동쪽 상자 2층은 가족실과 테라스. 돌 굴뚝이 두 상자를 한 집으로 묶는다. 재료는 흰 콘크리트, 검은 금속 외장, 현장 돌, 유리.',
   layout:'hero', ai:{title:'',subtitle:'',statement:'',captions:{},highlights:[]},
-  zc:{addr:'대구 중구 공평동 16-11',area:1125,zone:'central',bcr:80,far:800,w:29,d:38.8,want:'1층은 카페, 위는 작은 호텔. 공원 쪽으로 열린 건물.'},
-  zFloor:'1F · 열린 공용층', zW:29, zH:38.8,
-  zRooms:`공원 카페, 76, public, 공원 라운지|관통길 · 중정
-공원 라운지, 76, public, 공원 카페|관통길 · 중정
-편의점, 82, public, 관통길 · 중정|팝업 스토어
-팝업 스토어, 82, public, 편의점|브랜드 스토어
-브랜드 스토어, 76, public, 팝업 스토어|게스트 로비
-게스트 로비, 28, private, 브랜드 스토어|게스트 코어
-짐 보관, 18, service, 게스트 로비
-공용 화장실, 28, service, 근생 코어
-근생 코어, 30, core, 공원 카페
-게스트 코어, 30, core, 게스트 로비
-관통길 · 중정, 112, outdoor, 공원 카페|편의점`,
-  secHeights:'5.0, 4.0, 4.0, 4.0, 4.0, 3.3, 3.3, 3.3, 3.3, 3.3',
-  floors:[['1F',900,'근생'],['2F',900,'근생'],['3F',560,'근생'],['4F',560,'근생'],['5F',480,'근생'],['6F',400,'숙박'],['7F',360,'숙박'],['8F',360,'숙박'],['9F',360,'숙박'],['10F',150,'숙박']],
+  zc:{addr:'강원 평창군 (예시 대지)',area:660,zone:'plan',bcr:40,far:100,w:30,d:22,want:'숲을 보는 거실, 2층엔 침실과 테라스. 돌 굴뚝이 있는 집.'},
+  zFloor:'1F · 숲을 보는 층', zW:30, zH:22,
+  zRooms:`거실, 48, public, 현관·홀|정원
+식당·부엌, 42, public, 현관·홀|테라스 데크
+현관·홀, 18, core, 거실|식당·부엌
+서재, 14, private, 거실
+욕실, 8, service, 현관·홀
+창고·보일러, 10, service, 욕실
+테라스 데크, 30, outdoor, 식당·부엌
+정원, 60, outdoor, 거실`,
+  secHeights:'3.6, 3.0',
+  floors:[['1F',150,'주거'],['2F',88,'주거']],
   conceptPick:null, concepts:[], likes:[], tMode:'statement', tOut:''
 };
 const state=JSON.parse(JSON.stringify(EXAMPLE)); state.images=[]; state.areas=null; state.zones=null; state.rot=0;
@@ -1133,9 +1143,9 @@ function massIcon(type){ const f='#1d1d1f', g='#c7c7cc'; const base=`<rect x="6"
   split:`<rect x="14" y="22" width="30" height="48" fill="${f}"/><rect x="76" y="30" width="30" height="40" fill="${f}"/><rect x="44" y="60" width="32" height="10" fill="${g}"/>`,
   frame:`<rect x="14" y="14" width="92" height="56" fill="${f}"/><rect x="30" y="28" width="60" height="42" fill="#fff"/>`}[type]||`<rect x="14" y="40" width="92" height="30" fill="${f}"/>`; return `<svg viewBox="0 0 120 80" aria-hidden="true">${base}${m}</svg>`; }
 const DEFAULT_CONCEPTS=[
-  {name:'두 담 사이, 오르는 공원',line:'막힌 남북을 두 개의 담으로 세우고, 그 틈을 공원에 내준다.',why:'서쪽 공원이 테라스를 타고 올라와 거리로 빠져나간다. 틈이 곧 건물의 얼굴.',mass:'split',moves:['남·북 두 동, 가운데 11m 틈','3·4·5층 테라스가 공원에서 올라옴','동성로 쪽 6~8층을 비운 액자'],refs:[{name:'Tietgen Dormitory',arch:'Lundgaard & Tranberg',note:'둘러싸되 열린 중심'},{name:'대학로 샘터사옥',arch:'김수근',note:'벽돌 담과 틈의 거리성'}]},
-  {name:'계단 위의 거리',line:'건물 전체를 공원에서 거리로 내려오는 큰 계단으로 만든다.',why:'모든 층이 테라스를 갖고, 지붕이 곧 길이 된다. 남측 채광이 자연히 확보된다.',mass:'step',moves:['서쪽 10층에서 동쪽 4층으로 내려오는 계단형','각 층 테라스를 외부 계단이 잇는다','하부 2개 층은 거리에 열린 상가'],refs:[{name:'Mountain Dwellings',arch:'BIG',note:'주차장 위에 얹힌 테라스 주거'},{name:'Habitat 67',arch:'Moshe Safdie',note:'물러나며 쌓인 집들'}]},
-  {name:'공원을 안은 상자',line:'외곽은 단단한 상자, 안쪽은 공원이 들어온 중정.',why:'소음과 양옆 건물로부터 등을 돌리고 안으로 연다. 상업은 바깥, 숙박은 안쪽.',mass:'court',moves:['도로 쪽 벽돌 상자, 안쪽 유리 중정','1층 관통 통로로 공원과 거리 연결','숙박 복도가 중정을 돈다'],refs:[{name:'Kolumba Museum',arch:'Peter Zumthor',note:'두꺼운 외피, 조용한 안'},{name:'쌈지길',arch:'최문규',note:'중정을 도는 길'}]}
+  {name:'숲을 향해 연 두 상자',line:'유리 저층 위에 흰 상자 둘을 얹고, 돌 코어가 가운데서 잇는다.',why:'거실과 식당이 각자 숲을 갖는다. 돌 굴뚝 하나가 두 상자를 한 집으로 묶는다.',mass:'split',moves:['1층은 전면 유리 — 숲으로 열림','2층 두 상자가 남쪽으로 1m 내밈','가운데 돌 코어: 현관·계단·굴뚝'],refs:[{name:'Farnsworth House',arch:'Mies van der Rohe',note:'유리로 숲에 서는 법'},{name:'Casa Malaparte',arch:'Adalberto Libera',note:'풍경 위의 단단한 상자'}]},
+  {name:'경사를 따라 내려앉는 집',line:'숲의 경사를 그대로 받아 반층씩 어긋난 바닥으로 내려간다.',why:'모든 방이 땅에 닿고, 지붕이 곧 테라스가 된다. 북쪽 숲이 거실 창 높이로 들어온다.',mass:'step',moves:['길에서 반층 올라 현관, 다시 반층 내려 거실','지붕 테라스가 계단처럼 숲으로 내려감','낮은 지붕은 흙과 풀로 덮기'],refs:[{name:'Fallingwater',arch:'Frank Lloyd Wright',note:'지형을 타고 내려앉는 바닥'},{name:'Casa Barragán',arch:'Luis Barragán',note:'벽이 만드는 빛의 방'}]},
+  {name:'돌담 안의 마당',line:'현장 돌로 쌓은 낮은 담이 마당을 안고, 집은 담에 기대어 선다.',why:'숲과 도로에서 한 겹 물러나 안으로 연다. 바깥은 돌, 안은 나무와 유리.',mass:'court',moves:['도로 쪽 돌담, 안쪽 목재 중정','거실·식당이 마당을 ㄱ자로 둘러쌈','침실은 마당 건너 조용한 상자'],refs:[{name:'Kolumba Museum',arch:'Peter Zumthor',note:'두꺼운 외피, 조용한 안'},{name:'수졸당',arch:'승효상',note:'담과 마당의 집'}]}
 ];
 function conceptCard(c,i){ const picked=state.conceptPick&&state.conceptPick.name===c.name; return `<div class="ccard" aria-pressed="${picked}"><div class="m">${massIcon(c.mass)}</div><h4>${esc(c.name)}</h4><div class="line">${esc(c.line)}</div><div class="why">${esc(c.why)}</div><ul>${(c.moves||[]).map(m=>`<li>${esc(m)}</li>`).join('')}</ul><div class="refs">${(c.refs||[]).map(r=>`${esc(r.name)} — ${esc(r.arch)}${r.note?' · '+esc(r.note):''}`).join('<br>')}</div><button class="btn ${picked?'dark':'sec'} pick" data-pick="${i}">${picked?'고른 안':'이 안으로'}</button></div>`; }
 function renderConceptCards(){ const list=state.concepts.length?state.concepts:DEFAULT_CONCEPTS; $('#cCards').innerHTML=list.map(conceptCard).join(''); $('#cStyle').textContent=styleSummary(); }
@@ -1411,81 +1421,143 @@ initStory($('#view-panel .story'),n=>{ panelStageLayout=['hero','band','process'
 
 /* ---------- Opening scene: plan → zoning → floors → building, driven by scroll ---------- */
 const BUILD=(function(){
-  /* 표지 장면 — 한 선(단선)으로 시작해 대지 → 평면 → 입체 → 빛 → 단면 → 집. 스크롤 진행 p(0~1)에 따라 그린다. */
-  const D=20, Wd=15; // 대지: x 서→동 20m, y 북→남 15m. 남쪽 도로, 북쪽 낮은 산.
-  const FLOORS=[ // 층별 상자 [x0,x1,y0,y1,kind]
-    [[2,13,1,6.5,'wall'],[2,6.5,6.5,13.5,'wall'],[6.5,18,6.5,13.5,'gap']],
-    [[2,8.5,1,6.5,'wall'],[8.5,13,1,6.5,'gap']]
-  ];
-  const ZONES=[[2,8.5,1,6.5,'거실'],[8.5,13,1,6.5,'부엌'],[2,6.5,6.5,13.5,'침실'],[6.5,18,6.5,13.5,'마당'],[13,18,1,6.5,'현관']];
-  const FH=52, M=16; // 층고 px, 1m=16px(등각)
+  /* 선 장면 — 표지 사진의 집("두 상자 집")을 선 → 대지 → 평면 → 입체 → 빛 → 단면 → 집 순서로 그린다. p = 스크롤 진행 0~1 */
+  const D=32, Wd=22;                    // 대지: x 서→동 32m, y 북→남 22m. 남쪽 도로, 북쪽 숲.
+  const FH=56, M=14;                    // 층고 px, 등각에서 1m = 14px
   const ca=Math.cos(Math.PI/6), sa=Math.sin(Math.PI/6);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; const st=(p,a,b)=>clamp((p-a)/(b-a),0,1);
-  function P(x,y,z,t){ x=D-x; const sp=18, si=M; const px=500+(x-D/2)*sp, py=280+(y-Wd/2)*sp; const ix=500+(x-y)*ca*si-((D-Wd)/2)*ca*si, iy=300+(x+y)*sa*si-((D+Wd)/2)*sa*si+150-z; return [px+(ix-px)*t, py+(iy-py)*t]; }
+  // 상자: [x0,x1,y0,y1, kind]  kind: box(흰 콘크리트)·glass(유리 저층)·stone(돌 코어)·deck(테라스 슬래브)·chimney
+  const F1=[[3,14,8,16,'glass'],[14,19,8,15,'stone'],[19,30,8,16,'glass']];
+  const F2=[[2,14,7,17,'box'],[19,28,7,15,'box'],[19,28,15,17,'deck']];
+  const CHIM=[15.3,17,9,10.6];          // 굴뚝 평면
+  const ZONES=[[3,14,8,16,'거실',48],[14,19,8,15,'현관·홀',18],[19,30,8,16,'식당·부엌',42],[19,30,16,19,'테라스 데크',30],[3,9,16,19,'정원',0]];
+  const FURN=[ [4,7.5,10,12.4],[8,11,13.5,15.4],[21,26,10.5,12.5],[27.5,29.5,9,15] ];   // 소파·테이블·식탁·주방대 (평면 가구)
+  const TREES=[[1.5,19.5,1.6],[8,20.5,1.3],[12,3.5,1.8],[24,3,2.1],[30.5,19,1.4],[27,20.5,1.1],[2,3,1.5],[21,5.2,1.2]];
   const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
   const pathOf=a=>'M'+a.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
-  // 한 붓으로 그리는 선: pathLength=1, dashoffset=1-k
   const pen=(d,k,col,w,extra='')=>k<=0?'':`<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:${(1-k).toFixed(3)}" ${extra}/>`;
+  function P(x,y,z,t){ x=D-x; const sp=13.5, si=M; const px=490+(x-D/2)*sp, py=290+(y-Wd/2)*sp; const ix=490+(x-y)*ca*si-((D-Wd)/2)*ca*si, iy=300+(x+y)*sa*si-((D+Wd)/2)*sa*si+135-z; return [px+(ix-px)*t, py+(iy-py)*t]; }
+  const DEFS=`<defs>
+    <linearGradient id="gS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e6e6ea"/></linearGradient>
+    <linearGradient id="gE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f1f4"/><stop offset="1" stop-color="#cfcfd5"/></linearGradient>
+    <linearGradient id="gT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f3f3f6"/></linearGradient>
+    <linearGradient id="gGl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dcecff"/><stop offset=".5" stop-color="#b9d6ff"/><stop offset="1" stop-color="#8fbcff"/></linearGradient>
+    <linearGradient id="gGlE" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c7dfff"/><stop offset="1" stop-color="#7fb0f5"/></linearGradient>
+    <linearGradient id="gWarm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3a8"/><stop offset="1" stop-color="#ffb84d"/></linearGradient>
+    <pattern id="pStone" width="7" height="4" patternUnits="userSpaceOnUse"><rect width="7" height="4" fill="#bdb8ae"/><path d="M0 2 H7 M3.5 0 V2 M1 2 V4 M5.5 2 V4" stroke="#8f8a80" stroke-width=".5"/></pattern>
+    <pattern id="pStoneE" width="7" height="4" patternUnits="userSpaceOnUse"><rect width="7" height="4" fill="#a39e94"/><path d="M0 2 H7 M3.5 0 V2 M1 2 V4 M5.5 2 V4" stroke="#7a756c" stroke-width=".5"/></pattern>
+    <pattern id="pHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#0a58ca" stroke-width="1.2"/></pattern>
+    <pattern id="pGrass" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".6" fill="#8fbf9a"/><circle cx="7" cy="8" r=".6" fill="#8fbf9a"/></pattern>
+    <filter id="fBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="fSoft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <filter id="fGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>`;
   function scene(p){
     const ink='var(--fg)', faint='var(--line)', acc='var(--accent)', dim='var(--fg-2)';
-    const line=st(p,0,0.10), site=st(p,0.09,0.22), plan=st(p,0.22,0.38), zone=st(p,0.27,0.40);
-    const t=ease(st(p,0.40,0.52)), fillIn=st(p,0.58,0.66), light=st(p,0.64,0.78), win=st(p,0.66,0.74);
-    const secIn=st(p,0.78,0.86), secOut=st(p,0.92,0.96), sec=Math.min(secIn,1-secOut), home=st(p,0.92,1);
-    const zoneOut=1-st(p,0.46,0.56), planOut=1-st(p,0.44,0.50);
-    let s='';
-    /* 0. 한 선: 대지 경계 + 도로 + 북 화살표를 한 붓으로 */
-    const site4=[P(0,0,0,t),P(D,0,0,t),P(D,Wd,0,t),P(0,Wd,0,t)];
-    s+=`<polygon points="${pts(site4)}" fill="var(--bg-alt)" opacity="${(site*0.9).toFixed(2)}"/>`;
-    { const sw=P(0,Wd,0,t), se=P(D,Wd,0,t); const one=pathOf([P(0,Wd,0,t),P(0,0,0,t),P(D,0,0,t),P(D,Wd,0,t),P(0,Wd,0,t),[sw[0],sw[1]+14*(1-t)+6*t],[se[0],se[1]+14*(1-t)+6*t]]);
+    const line=st(p,0,0.10), site=st(p,0.09,0.22), plan=st(p,0.22,0.40), zone=st(p,0.29,0.42);
+    const t=ease(st(p,0.42,0.54)), fillIn=st(p,0.60,0.68), light=st(p,0.66,0.80), win=st(p,0.68,0.76);
+    const secIn=st(p,0.80,0.88), secOut=st(p,0.93,0.97), sec=Math.min(secIn,1-secOut), home=st(p,0.93,1);
+    const zoneOut=1-st(p,0.48,0.58), planOut=1-st(p,0.46,0.52), planUI=site*(1-t);
+    let s=DEFS;
+    /* ---- 대지면 + 잔디 패턴 ---- */
+    const lot=[P(0,0,0,t),P(D,0,0,t),P(D,Wd,0,t),P(0,Wd,0,t)];
+    s+=`<polygon points="${pts(lot)}" fill="var(--bg-alt)" opacity="${(site*0.95).toFixed(2)}"/>`;
+    if(t>0.3) s+=`<polygon points="${pts(lot)}" fill="url(#pGrass)" opacity="${(0.6*(t-0.3)/0.7).toFixed(2)}"/>`;
+    /* ---- 0. 한 선: 경계·도로·북 ---- */
+    { const sw=P(0,Wd,0,t), se=P(D,Wd,0,t); const one=pathOf([P(0,Wd,0,t),P(0,0,0,t),P(D,0,0,t),P(D,Wd,0,t),P(0,Wd,0,t),[sw[0],sw[1]+14*(1-t)+7*t],[se[0],se[1]+14*(1-t)+7*t]]);
       s+=pen(one,line,ink,1.3); }
-    /* 1. 대지 읽기: 치수·해·산·바람 (평면에서만) */
-    const o=site*(1-t); if(o>0.01){ const a=P(0,-1.6,0,0), b=P(D,-1.6,0,0), c=P(D+1.6,0,0,0), d=P(D+1.6,Wd,0,0); const sw=P(0,Wd,0,0), se=P(D,Wd,0,0), nw=P(0,0,0,0);
-      s+=`<g opacity="${o.toFixed(2)}" font-family="inherit" font-size="12" fill="${dim}">`;
-      s+=pen(`M${a[0]} ${a[1]} L${b[0]} ${b[1]}`,site,acc,.8)+`<text x="500" y="${a[1]-6}" text-anchor="middle" fill="${acc}" opacity="${st(site,.5,1)}">20 m</text>`;
-      s+=pen(`M${c[0]} ${c[1]} L${d[0]} ${d[1]}`,site,acc,.8)+`<text x="${c[0]+8}" y="284" fill="${acc}" opacity="${st(site,.5,1)}">15 m</text>`;
-      s+=`<text x="500" y="${sw[1]+27}" text-anchor="middle" font-size="11" opacity="${st(site,.3,.8)}">도로 · 남 — 주 진입</text>`;
-      s+=pen(`M${nw[0]-40} ${nw[1]-30} q ${(se[0]-sw[0])/2+40} -46 ${se[0]-sw[0]+80} 0`,st(site,.2,.9),faint,1)+`<text x="500" y="${nw[1]-58}" text-anchor="middle" font-size="11" opacity="${st(site,.6,1)}">낮은 산 · 북 — 조망, 겨울바람 막음</text>`;
-      const sun=[]; for(let k=0;k<=24;k++){ const ang=(k/24)*Math.PI; const r=330; sun.push([500+Math.cos(ang)*r, 285+Math.sin(ang)*r*0.46]); }
-      s+=pen(pathOf(sun),st(site,.3,1),'#ffb300',1.2,'stroke-dasharray="4 4"'); const sk=sun[Math.round(18*st(site,.3,1))]; s+=`<circle cx="${sk[0]}" cy="${sk[1]}" r="${9*st(site,.3,.6)}" fill="#ffb300"/><text x="${sk[0]+14}" y="${sk[1]+4}" font-size="11" opacity="${st(site,.8,1)}">해 · 남서로 진다</text>`;
-      // 바람: 북서에서 오는 화살표 셋
-      for(let k=0;k<3;k++){ const w0=P(-3+k*1.2,-2.5+k*1.8,0,0), w1=P(0.5+k*1.2,0.5+k*1.8,0,0); s+=pen(`M${w0[0]} ${w0[1]} L${w1[0]} ${w1[1]} m-6 -2 l6 2 l-5 4`,st(site,.5+k*.1,.9+k*.1),dim,.8); }
+    /* ---- 1. 대지 읽기 (평면에서만) ---- */
+    if(planUI>0.01){ const a=P(0,-1.8,0,0), b=P(D,-1.8,0,0), c=P(D+1.8,0,0,0), d=P(D+1.8,Wd,0,0); const sw=P(0,Wd,0,0), se=P(D,Wd,0,0), nw=P(0,0,0,0), ne=P(D,0,0,0);
+      s+=`<g opacity="${planUI.toFixed(2)}" font-family="inherit" font-size="11" fill="${dim}">`;
+      // 치수선 + 틱
+      const tick=(q,dx,dy)=>`<line x1="${q[0]-dx}" y1="${q[1]-dy}" x2="${q[0]+dx}" y2="${q[1]+dy}" stroke="${acc}" stroke-width=".8"/>`;
+      s+=pen(`M${a[0]} ${a[1]} L${b[0]} ${b[1]}`,site,acc,.8)+tick(a,2,4)+tick(b,2,4)+`<text x="490" y="${a[1]-6}" text-anchor="middle" fill="${acc}" font-size="12" opacity="${st(site,.5,1)}">32 m</text>`;
+      s+=pen(`M${c[0]} ${c[1]} L${d[0]} ${d[1]}`,site,acc,.8)+tick(c,4,2)+tick(d,4,2)+`<text x="${c[0]+9}" y="${(c[1]+d[1])/2+4}" fill="${acc}" font-size="12" opacity="${st(site,.5,1)}">22 m</text>`;
+      // 도로
+      s+=`<text x="490" y="${sw[1]+28}" text-anchor="middle" opacity="${st(site,.3,.8)}">도로 · 남 — 주 진입</text>`;
+      for(let k=0;k<14;k++){ const x0=sw[0]+k*(se[0]-sw[0])/14+6, y=sw[1]+21; s+=`<line x1="${x0}" y1="${y}" x2="${x0+12}" y2="${y}" stroke="${faint}" stroke-width="1" opacity="${st(site,.3,.8)}"/>`; }
+      // 북쪽 숲 (능선 두 겹)
+      s+=pen(`M${nw[0]-40} ${nw[1]-26} q ${(ne[0]-nw[0])/2+40} -44 ${ne[0]-nw[0]+80} 0`,st(site,.2,.9),faint,1)+pen(`M${nw[0]-20} ${nw[1]-14} q ${(ne[0]-nw[0])/2+20} -26 ${ne[0]-nw[0]+40} 0`,st(site,.3,1),faint,.8);
+      s+=`<text x="490" y="${nw[1]-58}" text-anchor="middle" opacity="${st(site,.6,1)}">숲 · 북 — 조망, 겨울바람 막음</text>`;
+      // 북 화살표 + 스케일바
+      s+=`<g opacity="${st(site,.7,1)}" transform="translate(${ne[0]+34},${ne[1]+18})"><circle r="12" fill="none" stroke="${ink}" stroke-width=".8"/><polygon points="0,-10 4,4 0,1 -4,4" fill="${ink}"/><text y="26" text-anchor="middle" font-size="10" fill="${ink}">N</text></g>`;
+      s+=`<g opacity="${st(site,.7,1)}" transform="translate(${sw[0]},${sw[1]+40})"><rect width="54" height="4" fill="${ink}"/><rect x="54" width="54" height="4" fill="none" stroke="${ink}" stroke-width=".8"/><text y="14" font-size="10">0</text><text x="54" y="14" font-size="10" text-anchor="middle">4</text><text x="108" y="14" font-size="10" text-anchor="middle">8 m</text></g>`;
+      // 해 궤적 + 바람
+      const sun=[]; for(let k=0;k<=24;k++){ const ang=(k/24)*Math.PI; const r=340; sun.push([490+Math.cos(ang)*r, 295+Math.sin(ang)*r*0.5]); }
+      s+=`<g opacity="${(1-0.85*st(plan,0,0.5)).toFixed(2)}">`+pen(pathOf(sun),st(site,.3,1),'#ffb300',1.2,'stroke-dasharray="4 4"'); const sk=sun[Math.round(18*st(site,.3,1))]; s+=`<circle cx="${sk[0]}" cy="${sk[1]}" r="${12*st(site,.3,.6)}" fill="#ffb300" filter="url(#fGlow)" opacity=".6"/><circle cx="${sk[0]}" cy="${sk[1]}" r="${8*st(site,.3,.6)}" fill="#ffb300"/><text x="${sk[0]+14}" y="${sk[1]+4}" opacity="${st(site,.8,1)}">해 · 남서로 진다</text></g>`;
+      for(let k=0;k<3;k++){ const w0=P(-3.5+k*1.4,-3+k*2,0,0), w1=P(0.6+k*1.4,0.6+k*2,0,0); s+=pen(`M${w0[0]} ${w0[1]} L${w1[0]} ${w1[1]} m-6 -2 l6 2 l-5 4`,st(site,.5+k*.1,.9+k*.1),dim,.8); }
+      s+=`<text x="${nw[0]-14}" y="${nw[1]-4}" text-anchor="end" opacity="${st(site,.8,1)}">북서풍</text></g>`; }
+    /* ---- 2. 평면: 두꺼운 벽, 문, 창, 가구, 방 이름·면적 ---- */
+    if(plan>0.01&&planOut>0.01){
+      const wallsAll=[...F1, [CHIM[0],CHIM[1],CHIM[2],CHIM[3],'chimney'], [15,18,16,19,'steps']];
+      s+=`<g opacity="${planOut.toFixed(2)}">`;
+      wallsAll.forEach((b,i)=>{ const k=st(plan*wallsAll.length-i,0,1); if(k<=0) return; const [x0,x1,y0,y1,kind]=b; const q=[P(x0,y0,0,t),P(x1,y0,0,t),P(x1,y1,0,t),P(x0,y1,0,t),P(x0,y0,0,t)];
+        if(kind==='steps'){ for(let j=0;j<3;j++){ const a=P(x0,y0+j*1,0,t), c=P(x1,y0+j*1,0,t); s+=pen(`M${a[0]} ${a[1]} L${c[0]} ${c[1]}`,k,ink,.8); } return; }
+        if(kind==='chimney'){ s+=`<polygon points="${pts(q)}" fill="url(#pHatch)" opacity="${k}"/>`+pen(pathOf(q),k,ink,1.4); return; }
+        // 벽: 바깥선 굵게 + 안쪽선 (벽 두께 0.3m) — 돌 코어는 더 두껍게
+        const th=kind==='stone'?0.5:0.3; const qi=[P(x0+th,y0+th,0,t),P(x1-th,y0+th,0,t),P(x1-th,y1-th,0,t),P(x0+th,y1-th,0,t),P(x0+th,y0+th,0,t)];
+        s+=`<path d="${pathOf(q)} ${pathOf(qi)}" fill="${ink}" fill-rule="evenodd" opacity="${(0.85*k).toFixed(2)}"/>`+pen(pathOf(q),k,ink,1.6);
+        // 남쪽 유리벽: 창 표시(가는 삼중선)와 멀리언
+        if(kind==='glass'){ const a=P(x0+0.4,y1,0,t), c=P(x1-0.4,y1,0,t); s+=`<g opacity="${k}" stroke="${acc}" stroke-width=".7"><line x1="${a[0]}" y1="${a[1]-1.5}" x2="${c[0]}" y2="${c[1]-1.5}"/><line x1="${a[0]}" y1="${a[1]+1.5}" x2="${c[0]}" y2="${c[1]+1.5}"/></g>`; const n=Math.round((x1-x0)/2.2); for(let j=1;j<n;j++){ const m=P(x0+(x1-x0)*j/n,y1,0,t); s+=`<line x1="${m[0]}" y1="${m[1]-3}" x2="${m[0]}" y2="${m[1]+3}" stroke="${acc}" stroke-width=".7" opacity="${k}"/>`; } }
+        // 문: 현관(코어 남측) 여닫이 호
+        if(kind==='stone'){ const h=P(16,15,0,t), r=1.2*13.5*(1-t)+1.2*M*t; s+=`<path d="M${h[0]} ${h[1]} a ${r} ${r} 0 0 1 ${-r} ${-r}" fill="none" stroke="${ink}" stroke-width=".7" opacity="${k}"/><line x1="${h[0]}" y1="${h[1]}" x2="${h[0]-r}" y2="${h[1]}" stroke="${ink}" stroke-width="1.2" opacity="${k}"/>`; }
+      });
+      // 가구 (얇은 선)
+      const fk=st(plan,.7,1); if(fk>0){ FURN.forEach(f=>{ const q=[P(f[0],f[2],0,t),P(f[1],f[2],0,t),P(f[1],f[3],0,t),P(f[0],f[3],0,t),P(f[0],f[2],0,t)]; s+=pen(pathOf(q),fk,dim,.6); }); const tb=P(23.5,11.5,0,t); s+=`<circle cx="${tb[0]}" cy="${tb[1]}" r="${(1.1*13.5)*(1-t)+1.1*M*t}" fill="none" stroke="${dim}" stroke-width=".6" opacity="${fk}"/>`; }
+      // 방 이름·면적
+      const lk=st(plan,.5,1); if(lk>0&&zoneOut>0.01){ ZONES.forEach(z=>{ const m=P((z[0]+z[1])/2,(z[2]+z[3])/2,0,t); s+=`<g opacity="${(lk*zoneOut).toFixed(2)}" font-family="inherit" text-anchor="middle"><text x="${m[0]}" y="${m[1]-2}" font-size="11.5" font-weight="700" fill="${ink}">${z[4]}</text>${z[5]?`<text x="${m[0]}" y="${m[1]+11}" font-size="9.5" fill="${dim}">${z[5]} ㎡</text>`:''}</g>`; }); }
+      // 타이틀 블록
+      const tb=P(D,Wd+4.6,0,0); s+=`<g opacity="${(st(plan,.3,.8)*planUI).toFixed(2)}" font-family="inherit" text-anchor="end"><text x="${tb[0]}" y="${tb[1]}" font-size="11" fill="${dim}" letter-spacing="1.5">1F PLAN · 1:200</text><text x="${tb[0]}" y="${tb[1]+15}" font-size="11" fill="${dim}">두 상자 집 · 연면적 238㎡ · 예시</text></g>`;
       s+=`</g>`; }
-    /* 2. 평면: 방 벽을 한 붓씩, 영역 색은 살짝 */
-    const planBoxes=FLOORS[0].concat([[13,18,1,6.5,'porch']]);
-    if(plan>0.01&&planOut>0.01){ planBoxes.forEach((b,i)=>{ const k=st(plan*planBoxes.length-i,0,1); if(k<=0) return; const q=[P(b[0],b[2],0,t),P(b[1],b[2],0,t),P(b[1],b[3],0,t),P(b[0],b[3],0,t),P(b[0],b[2],0,t)]; s+=`<g opacity="${planOut.toFixed(2)}">${pen(pathOf(q),k,ink,b[4]==='wall'?1.6:.8,b[4]==='wall'?'':'stroke-dasharray="3 3"')}</g>`; }); }
-    const zo=zone*zoneOut; if(zo>0.01){ ZONES.forEach((z,i)=>{ const k=st(zone*ZONES.length-i,0,1); const q=[P(z[0],z[2],0,t),P(z[1],z[2],0,t),P(z[1],z[3],0,t),P(z[0],z[3],0,t)]; const col=z[4]==='마당'?'#30d158':(z[4]==='침실'?'#5e5ce6':(z[4]==='현관'?'#8e8e93':'#ff9f0a')); const m=P((z[0]+z[1])/2,(z[2]+z[3])/2,0,t); s+=`<g opacity="${(k*zo).toFixed(2)}"><polygon points="${pts(q)}" fill="${col}" fill-opacity=".22"/><text x="${m[0]}" y="${m[1]+4}" text-anchor="middle" font-size="12" font-family="inherit" fill="${ink}">${z[4]}</text></g>`; }); }
-    /* 4. 빛: 해의 위치 → 그림자 (건물 전에 바닥에) */
-    const theta=Math.PI*(0.15+0.7*light); const sx=-Math.cos(theta)*0.9, sy=-0.55; // 그림자는 북쪽으로, 해 반대편으로
-    const shadowOf=(x0,x1,y0,y1,z0,h)=>{ const hm=(z0+h)/M; return [P(x0,y0,0,t),P(x1,y0,0,t),P(x1+sx*hm,y0+sy*hm,0,t),P(x0+sx*hm,y0+sy*hm,0,t)]; };
-    if(t>0.01&&light>0.01){ FLOORS.forEach((boxes,i)=>{ const v=st(p,0.46+i*0.08,0.58+i*0.08); if(v<=0) return; for(const b of boxes){ if(b[4]==='gap') continue; const hm=(i*FH+FH*v)/M; const q=[P(b[0],b[2],0,t),P(b[1],b[2],0,t),P(b[1]+sx*hm,b[2]+sy*hm,0,t),P(b[0]+sx*hm,b[2]+sy*hm,0,t)]; const q2=[P(b[0],b[2],0,t),P(b[0],b[3],0,t),P(b[0]+sx*hm,b[3]+sy*hm,0,t),P(b[0]+sx*hm,b[2]+sy*hm,0,t)]; s+=`<polygon points="${pts(q)}" fill="${ink}" fill-opacity="${(0.10*light).toFixed(3)}"/><polygon points="${pts(q2)}" fill="${ink}" fill-opacity="${(0.10*light).toFixed(3)}"/>`; } }); }
-    /* 3. 입체: 선으로 세우고(와이어) → 면이 채워진다 */
-    const xc=D-(2+13*secIn); // 단면 절단면 x (동→서로 쓸고 지나감)
-    if(t>0.01){ FLOORS.forEach((boxes,i)=>{ const v=st(p,0.46+i*0.08,0.58+i*0.08); if(v<=0) return; const z0=i*FH*t, hh=FH*v*t; const sorted=[...boxes].sort((a,b)=>((D-a[1])+a[2])-((D-b[1])+b[2]));
-        for(const b of sorted){ const [x0,x1,y0,y1,kind]=b; const h=kind==='gap'?Math.min(4,FH*v*t*0.12):hh;
-          const cut=sec>0.01&&kind!=='wall'?false:(sec>0.01&&x0<xc&&x1>xc); const ghost=sec>0.01&&x0>=xc&&kind==='wall';
-          const lit=0.5+0.5*Math.cos(theta); // 남면 밝기
-          const top=kind==='gap'?'#d9f2e0':'#ffffff', side=kind==='gap'?'#bfe3cb':`rgb(${Math.round(226+18*lit)},${Math.round(226+18*lit)},${Math.round(230+16*lit)})`, side2=kind==='gap'?'#a9d6b8':`rgb(${Math.round(236-26*lit)},${Math.round(236-26*lit)},${Math.round(240-24*lit)})`;
-          const fo=(fillIn*(ghost?0.12:1)).toFixed(2), so=ghost?0.25:1;
-          const X1=cut?xc:x1;
-          const E=[P(x0,y0,z0,t),P(x0,y1,z0,t),P(x0,y1,z0+h,t),P(x0,y0,z0+h,t)], S=[P(x0,y1,z0,t),P(X1,y1,z0,t),P(X1,y1,z0+h,t),P(x0,y1,z0+h,t)], T=[P(x0,y0,z0+h,t),P(X1,y0,z0+h,t),P(X1,y1,z0+h,t),P(x0,y1,z0+h,t)];
-          s+=`<g opacity="${so}"><polygon points="${pts(S)}" fill="${side}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/><polygon points="${pts(E)}" fill="${side2}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/><polygon points="${pts(T)}" fill="${top}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
-          // 창: 남면에 세로 창 (빛 단계부터)
-          if(kind==='wall'&&win>0.01&&!ghost){ const n=Math.max(1,Math.round((X1-x0)/3)); for(let k=0;k<n;k++){ const wx0=x0+(X1-x0)*(k+0.3)/n, wx1=x0+(X1-x0)*(k+0.7)/n; if(wx1>X1) continue; const W=[P(wx0,y1,z0+h*0.25,t),P(wx1,y1,z0+h*0.25,t),P(wx1,y1,z0+h*0.8,t),P(wx0,y1,z0+h*0.8,t)]; s+=`<polygon points="${pts(W)}" fill="#9fc5ff" fill-opacity="${(0.55*win*fillIn).toFixed(2)}" stroke="${ink}" stroke-width=".6" opacity="${win.toFixed(2)}"/>`; } }
-          // 단면: 절단면의 포셰(두꺼운 선 + 빗금), 바닥 슬래브선, 사람
-          if(cut){ const C=[P(xc,y0,z0,t),P(xc,y1,z0,t),P(xc,y1,z0+h,t),P(xc,y0,z0+h,t)]; s+=`<polygon points="${pts(C)}" fill="var(--bg)" stroke="${acc}" stroke-width="2.2" stroke-linejoin="round" opacity="${sec.toFixed(2)}"/>`; const sl0=P(xc,y0,z0+3,t), sl1=P(xc,y1,z0+3,t); s+=`<line x1="${sl0[0]}" y1="${sl0[1]}" x2="${sl1[0]}" y2="${sl1[1]}" stroke="${acc}" stroke-width="3" opacity="${sec.toFixed(2)}"/>`;
-            if(i===0){ const f=P(xc,(y0+y1)/2,z0,t); const hp=1.7*M*t; s+=`<g opacity="${sec.toFixed(2)}" stroke="${ink}" stroke-width="1" fill="none"><line x1="${f[0]}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.75}"/><circle cx="${f[0]}" cy="${f[1]-hp*0.88}" r="${hp*0.12}"/><line x1="${f[0]-4}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.4}"/><line x1="${f[0]+4}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.4}"/></g>`; } }
-          s+=`</g>`; }
-        }); }
-    if(sec>0.01){ const a=P(xc,-1.5,0,t), b=P(xc,Wd+1.5,0,t); s+=`<g opacity="${sec.toFixed(2)}"><line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${acc}" stroke-width="1" stroke-dasharray="6 4"/><text x="${b[0]+8}" y="${b[1]+4}" font-size="12" font-family="inherit" fill="${acc}">A — A' 단면</text></g>`; }
-    /* 6. 집: 나무, 벤치, 재료 해칭, 이름표 */
-    if(home>0.01){ const trees=[[10,10.5,9],[15.5,9,7],[12.5,12.3,5]]; for(const tr of trees){ const c=P(tr[0],tr[1],0,t); s+=`<line x1="${c[0]}" y1="${c[1]}" x2="${c[0]}" y2="${c[1]-14*home}" stroke="${ink}" stroke-width=".8"/><circle cx="${c[0]}" cy="${c[1]-14*home}" r="${(tr[2]*home).toFixed(1)}" fill="#30d158" fill-opacity=".85" stroke="${ink}" stroke-width=".6"/>`; }
-      const b0=P(8,12.5,0,t), b1=P(10.5,12.5,0,t); s+=`<line x1="${b0[0]}" y1="${b0[1]-6*home}" x2="${b1[0]}" y2="${b1[1]-6*home}" stroke="${ink}" stroke-width="2" opacity="${home}"/>`;
-      // 남면 벽돌 해칭 (가로 줄눈)
-      for(let k=1;k<6;k++){ const z=FH*k/6; const a=P(2,6.5,z,t), b=P(6.5,6.5,z,t); s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${ink}" stroke-width=".4" opacity="${(0.5*home).toFixed(2)}"/>`; }
-      const lp=P(-1,Wd+1,0,t); s+=`<g opacity="${home}" font-family="inherit"><text x="${lp[0]+10}" y="${lp[1]+16}" font-size="12" fill="${dim}">마당집 · 지상 2층 · 연면적 128㎡ · 예시</text></g>`; }
+    // 영역 색 (평면 → 등각으로 넘어가는 동안 살짝)
+    const zo=zone*zoneOut; if(zo>0.01){ ZONES.forEach((z,i)=>{ if(!z[5]) return; const k=st(zone*ZONES.length-i,0,1); const q=[P(z[0],z[2],0,t),P(z[1],z[2],0,t),P(z[1],z[3],0,t),P(z[0],z[3],0,t)]; const col=z[4].includes('테라스')?'#30d158':(z[4].includes('현관')?'#8e8e93':'#ff9f0a'); s+=`<polygon points="${pts(q)}" fill="${col}" fill-opacity="${(0.16*k*zo).toFixed(3)}"/>`; }); }
+    /* ---- 4. 빛: 해의 위치에 따른 그림자 (블러) ---- */
+    const theta=Math.PI*(0.15+0.7*light); const sx=-Math.cos(theta)*0.95, sy=-0.6; const lit=0.5+0.5*Math.cos(theta);
+    if(t>0.01&&light>0.01){ let sh=''; const all=[...F1.map(b=>[b,0]),...F2.map(b=>[b,1])]; for(const [b,i] of all){ if(b[4]==='deck') continue; const v=st(p,0.50+i*0.08,0.62+i*0.08); if(v<=0) continue; const hm=(i*FH+FH*v)/M; const q=[P(b[0],b[2],0,t),P(b[1],b[2],0,t),P(b[1]+sx*hm,b[2]+sy*hm,0,t),P(b[0]+sx*hm,b[2]+sy*hm,0,t)]; const q2=[P(b[0],b[2],0,t),P(b[0],b[3],0,t),P(b[0]+sx*hm,b[3]+sy*hm,0,t),P(b[0]+sx*hm,b[2]+sy*hm,0,t)]; sh+=`<polygon points="${pts(q)}"/><polygon points="${pts(q2)}"/>`; }
+      s+=`<g fill="${ink}" fill-opacity="${(0.16*light).toFixed(3)}" filter="url(#fBlur)">${sh}</g>`; }
+    const tree=(tr,k)=>{ const c=P(tr[0],tr[1],0,t); const r=tr[2]*M*k; return `<ellipse cx="${c[0]+r*0.4}" cy="${c[1]+2}" rx="${r*0.9}" ry="${r*0.35}" fill="${ink}" fill-opacity=".08"/><line x1="${c[0]}" y1="${c[1]}" x2="${c[0]}" y2="${c[1]-r*1.3}" stroke="#6b4f3a" stroke-width="1.2"/><circle cx="${c[0]}" cy="${c[1]-r*1.3}" r="${r}" fill="#3aa65b" fill-opacity=".9" stroke="${ink}" stroke-width=".5"/><circle cx="${c[0]-r*0.3}" cy="${c[1]-r*1.55}" r="${r*0.6}" fill="#58c279" fill-opacity=".9"/>`; };
+    if(home>0.01) for(const tr of TREES) if(tr[1]<8) s+=tree(tr,home);   // 집 뒤(북쪽) 나무 먼저
+    /* ---- 3. 입체: 와이어 → 면 ---- */
+    const xc=D-(2+15*secIn);
+    if(t>0.01){
+      // 건물 밑 접지 그림자(AO)
+      const ao=[P(2,7,0,t),P(30,7,0,t),P(30,17,0,t),P(2,17,0,t)]; s+=`<polygon points="${pts(ao)}" fill="${ink}" fill-opacity="${(0.10*fillIn).toFixed(3)}" filter="url(#fBlur)"/>`;
+      const drawBox=(b,i,z0,hh)=>{ const [x0,x1,y0,y1,kind]=b; const cut=sec>0.01&&x0<xc&&x1>xc&&kind!=='deck'; const ghost=sec>0.01&&x0>=xc&&kind!=='deck'; const X1=cut?xc:x1; const h=kind==='deck'?Math.min(5,hh*0.1):hh;
+        const E=[P(x0,y0,z0,t),P(x0,y1,z0,t),P(x0,y1,z0+h,t),P(x0,y0,z0+h,t)], S=[P(x0,y1,z0,t),P(X1,y1,z0,t),P(X1,y1,z0+h,t),P(x0,y1,z0+h,t)], T=[P(x0,y0,z0+h,t),P(X1,y0,z0+h,t),P(X1,y1,z0+h,t),P(x0,y1,z0+h,t)];
+        const fo=(fillIn*(ghost?0.1:1)).toFixed(2), so=ghost?0.25:1;
+        let fS='url(#gS)', fE='url(#gE)', fT='url(#gT)'; if(kind==='glass'){ fS='url(#gGl)'; fE='url(#gGlE)'; fT='#f4f4f7'; } if(kind==='stone'){ fS='url(#pStone)'; fE='url(#pStoneE)'; fT='#d9d4ca'; } if(kind==='deck'){ fS='#e2e2e6'; fE='#d0d0d6'; fT='#f0efe9'; }
+        let g=`<g opacity="${so}">`;
+        g+=`<polygon points="${pts(S)}" fill="${fS}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/><polygon points="${pts(E)}" fill="${fE}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/><polygon points="${pts(T)}" fill="${fT}" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7" stroke-linejoin="round"/>`;
+        // 유리 저층: 멀리언 + 안쪽 따뜻한 빛
+        if(kind==='glass'&&fillIn>0.2){ const n=Math.round((X1-x0)/2.2); for(let j=1;j<n;j++){ const a=P(x0+(X1-x0)*j/n,y1,z0,t), c=P(x0+(X1-x0)*j/n,y1,z0+h,t); g+=`<line x1="${a[0]}" y1="${a[1]}" x2="${c[0]}" y2="${c[1]}" stroke="${ink}" stroke-width=".5" opacity="${(0.7*fillIn).toFixed(2)}"/>`; }
+          if(light>0.01){ const Wq=[P(x0+0.3,y1,z0+0.5*M*0.06,t),P(X1-0.3,y1,z0+h*0.06,t),P(X1-0.3,y1,z0+h*0.9,t),P(x0+0.3,y1,z0+h*0.9,t)]; g+=`<polygon points="${pts(Wq)}" fill="url(#gWarm)" fill-opacity="${(0.42*win).toFixed(2)}"/>`; } }
+        // 2층 상자: 남면 긴 창
+        if(kind==='box'&&win>0.01&&!ghost){ const Wq=[P(x0+1,y1,z0+h*0.3,t),P(X1-1,y1,z0+h*0.3,t),P(X1-1,y1,z0+h*0.82,t),P(x0+1,y1,z0+h*0.82,t)]; g+=`<polygon points="${pts(Wq)}" fill="url(#gGl)" fill-opacity="${(0.8*win*fillIn).toFixed(2)}" stroke="${ink}" stroke-width=".5" opacity="${win.toFixed(2)}"/>`; const n=Math.round((X1-x0-2)/2.4); for(let j=1;j<n;j++){ const a=P(x0+1+(X1-x0-2)*j/n,y1,z0+h*0.3,t), c=P(x0+1+(X1-x0-2)*j/n,y1,z0+h*0.82,t); g+=`<line x1="${a[0]}" y1="${a[1]}" x2="${c[0]}" y2="${c[1]}" stroke="${ink}" stroke-width=".5" opacity="${(0.7*win).toFixed(2)}"/>`; } }
+        // 테라스 난간
+        if(kind==='deck'&&fillIn>0.3){ const n=8; for(let j=0;j<=n;j++){ const a=P(x0+(x1-x0)*j/n,y1,z0+h,t), c=P(x0+(x1-x0)*j/n,y1,z0+h+1.0*M*t,t); g+=`<line x1="${a[0]}" y1="${a[1]}" x2="${c[0]}" y2="${c[1]}" stroke="${ink}" stroke-width=".6" opacity="${fillIn}"/>`; } const r0=P(x0,y1,z0+h+1.0*M*t,t), r1=P(x1,y1,z0+h+1.0*M*t,t); g+=`<line x1="${r0[0]}" y1="${r0[1]}" x2="${r1[0]}" y2="${r1[1]}" stroke="${ink}" stroke-width="1" opacity="${fillIn}"/>`; }
+        // 단면: 절단면 해칭 + 슬래브 + 사람
+        if(cut){ const C=[P(xc,y0,z0,t),P(xc,y1,z0,t),P(xc,y1,z0+h,t),P(xc,y0,z0+h,t)]; g+=`<polygon points="${pts(C)}" fill="var(--bg)" opacity="${sec.toFixed(2)}"/><polygon points="${pts(C)}" fill="url(#pHatch)" opacity="${(0.9*sec).toFixed(2)}" stroke="${acc}" stroke-width="2" stroke-linejoin="round"/>`; const sl0=P(xc,y0,z0+4,t), sl1=P(xc,y1,z0+4,t); g+=`<line x1="${sl0[0]}" y1="${sl0[1]}" x2="${sl1[0]}" y2="${sl1[1]}" stroke="${acc}" stroke-width="3.5" opacity="${sec.toFixed(2)}"/>`;
+          const dm0=P(xc,y1+0.8,z0,t), dm1=P(xc,y1+0.8,z0+h,t); g+=`<g opacity="${sec.toFixed(2)}" stroke="${acc}" stroke-width=".8"><line x1="${dm0[0]}" y1="${dm0[1]}" x2="${dm1[0]}" y2="${dm1[1]}"/><line x1="${dm0[0]-4}" y1="${dm0[1]}" x2="${dm0[0]+4}" y2="${dm0[1]}"/><line x1="${dm1[0]-4}" y1="${dm1[1]}" x2="${dm1[0]+4}" y2="${dm1[1]}"/></g><text x="${dm1[0]+6}" y="${(dm0[1]+dm1[1])/2+4}" font-size="10" font-family="inherit" fill="${acc}" opacity="${sec.toFixed(2)}">${i===0?'3.6':'3.0'} m</text>`;
+          if(i===0){ const f=P(xc,(y0+y1)/2,z0,t); const hp=1.7*M*t; g+=`<g opacity="${sec.toFixed(2)}" stroke="${ink}" stroke-width="1" fill="none"><line x1="${f[0]}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.75}"/><circle cx="${f[0]}" cy="${f[1]-hp*0.88}" r="${hp*0.12}"/><line x1="${f[0]-4}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.4}"/><line x1="${f[0]+4}" y1="${f[1]}" x2="${f[0]}" y2="${f[1]-hp*0.4}"/><line x1="${f[0]-6}" y1="${f[1]-hp*0.55}" x2="${f[0]+6}" y2="${f[1]-hp*0.6}"/></g>`; } }
+        return g+'</g>'; };
+      // 그리는 순서: 뒤(북·서)에서 앞으로
+      const order=(boxes)=>[...boxes].sort((a,b)=>((D-a[1])+a[2])-((D-b[1])+b[2]));
+      [F1,F2].forEach((boxes,i)=>{ const v=st(p,0.50+i*0.08,0.62+i*0.08); if(v<=0) return; const z0=i*FH*t, hh=FH*v*t; for(const b of order(boxes)) s+=drawBox(b,i,z0,hh); });
+      // 굴뚝 (2층 위로 1.2층 더)
+      { const v=st(p,0.62,0.72); if(v>0){ const z0=0, h=(FH*2+FH*0.9)*v*t; const [x0,x1,y0,y1]=CHIM; const E=[P(x0,y0,z0,t),P(x0,y1,z0,t),P(x0,y1,z0+h,t),P(x0,y0,z0+h,t)], S=[P(x0,y1,z0,t),P(x1,y1,z0,t),P(x1,y1,z0+h,t),P(x0,y1,z0+h,t)], T=[P(x0,y0,z0+h,t),P(x1,y0,z0+h,t),P(x1,y1,z0+h,t),P(x0,y1,z0+h,t)]; const fo=fillIn.toFixed(2); s+=`<polygon points="${pts(S)}" fill="url(#pStone)" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7"/><polygon points="${pts(E)}" fill="url(#pStoneE)" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7"/><polygon points="${pts(T)}" fill="#cfcac0" fill-opacity="${fo}" stroke="${ink}" stroke-width=".7"/>`; } }
+      // 현관 계단 (등각)
+      { const v=st(p,0.56,0.64); if(v>0){ for(let j=0;j<3;j++){ const z=(2-j)*0.3*M*t*v; const q=[P(15,16+j,z,t),P(18,16+j,z,t),P(18,17+j,z,t),P(15,17+j,z,t)]; s+=`<polygon points="${pts(q)}" fill="#ececf0" fill-opacity="${fillIn}" stroke="${ink}" stroke-width=".6"/>`; } } }
+    }
+    if(sec>0.01){ const a=P(xc,-1.5,0,t), b=P(xc,Wd+1.5,0,t); s+=`<g opacity="${sec.toFixed(2)}"><line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${acc}" stroke-width="1" stroke-dasharray="6 4"/><circle cx="${a[0]}" cy="${a[1]}" r="7" fill="var(--bg)" stroke="${acc}" stroke-width="1"/><text x="${a[0]}" y="${a[1]+3.5}" font-size="9" font-family="inherit" text-anchor="middle" fill="${acc}">A</text><circle cx="${b[0]}" cy="${b[1]}" r="7" fill="var(--bg)" stroke="${acc}" stroke-width="1"/><text x="${b[0]}" y="${b[1]+3.5}" font-size="9" font-family="inherit" text-anchor="middle" fill="${acc}">A</text></g>`; }
+    /* ---- 해 (등각에서, 빛 단계) ---- */
+    if(t>0.5&&light>0.01&&home<0.5){ const r=300; const sxp=490+Math.cos(theta)*r, syp=330-Math.sin(theta)*r*0.55; s+=`<g opacity="${(light*(1-home*2)).toFixed(2)}"><circle cx="${sxp}" cy="${syp}" r="16" fill="#ffb300" filter="url(#fGlow)" opacity=".55"/><circle cx="${sxp}" cy="${syp}" r="9" fill="#ffb300"/></g>`; }
+    /* ---- 6. 집: 나무, 진입로, 라벨 ---- */
+    if(home>0.01){ for(const tr of TREES) if(tr[1]>=8) s+=tree(tr,home);
+      const pathq=[P(15.6,19,0,t),P(17.4,19,0,t),P(17.4,Wd,0,t),P(15.6,Wd,0,t)]; s+=`<polygon points="${pts(pathq)}" fill="#dcdcdf" stroke="${ink}" stroke-width=".5" opacity="${home}"/>`;
+      const lp=P(-1,Wd+1,0,t); s+=`<g opacity="${home}" font-family="inherit"><text x="${lp[0]+10}" y="${lp[1]+16}" font-size="12" fill="${dim}">두 상자 집 · 지상 2층 · 연면적 238㎡ · 콘크리트 · 돌 · 유리</text></g>`; }
     return s;
   }
-  const capIndex=p=>p<0.09?0:(p<0.22?1:(p<0.40?2:(p<0.62?3:(p<0.78?4:(p<0.92?5:6)))));
+  const capIndex=p=>p<0.09?0:(p<0.22?1:(p<0.42?2:(p<0.64?3:(p<0.80?4:(p<0.93?5:6)))));
   return {scene,capIndex};
 })();
 /* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
@@ -1514,6 +1586,18 @@ const BUILD=(function(){
   function paint(p){ svg.innerHTML=BUILD.scene(p); const i=BUILD.capIndex(p); caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=p>0.05?0:1; }
   function tick(){ ticking=false; if($('#view-home').hidden) return; const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
   if(rm){ paint(1); return; } paint(0); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
+
+/* 스크롤 등장: 섹션·카드·문단을 화면에 들어올 때 띄우고, 격자는 순서대로 */
+(function(){ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; if(rm) return;
+  const SEL=['#introHero > *','.intro > *','.trio > span','.mod > h2','.mod > .tag','.mod > p','.tiles .tile','.plans .plan','.wb .in > h2','.wb .in > .tag','.wb .in > .filters','.scard','.ccard','.case','.pfjob','.pftips > button','.lbhow > .fact','.facts > .fact','.two > *','.grid2 > *','.cards3 > *','.morelinks > a','.view:not(#view-home) .hero > *','.posts .post'];
+  const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+  function tag(root){ (root||document).querySelectorAll(SEL.join(',')).forEach(el=>{ if(el.classList.contains('rv')) return; const par=el.parentElement; const sib=par?Array.from(par.children).filter(c=>c.matches&&c.matches(SEL.join(','))):[el]; const i=sib.indexOf(el); el.classList.add('rv'); if(el.matches('.tile,.plan,.ccard,.case,.pfjob,.pftips > button,.fact,.trio > span')) el.dataset.d=String(Math.min(5,i%6)); if(el.matches('.tile,.plan,.ccard')) el.classList.add('zoom'); io.observe(el); }); }
+  tag(); let mo=0; new MutationObserver(()=>{ clearTimeout(mo); mo=setTimeout(()=>tag(),60); }).observe(document.body,{childList:true,subtree:true});
+  // 화면(해시)이 바뀌면 새 화면의 위쪽 요소는 바로 보이게
+  window.addEventListener('hashchange',()=>{ setTimeout(()=>{ document.querySelectorAll('.view:not([hidden]) .rv:not(.in)').forEach(el=>{ const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.9) el.classList.add('in'); }); },80); });
+  // 홈 히어로(ZIPLAN 워드마크)는 스크롤에 살짝 뒤처지며 따라온다
+  const hero=$('#introHero'); if(hero){ hero.classList.add('px'); let tk=false; window.addEventListener('scroll',()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{ tk=false; if($('#view-home').hidden) return; const r=hero.getBoundingClientRect(); const vh=innerHeight; if(r.bottom<0||r.top>vh){ return; } const k=(vh-r.top)/(vh+r.height); hero.style.transform=`translateY(${((0.5-k)*40).toFixed(1)}px)`; }); },{passive:true}); }
+})();
 
 /* rotating word in the hero */
 (function(){ const el=$('#rotWord'); const words=['건축','설계','집','도면','모형','패널','크리틱']; let i=0; if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; setInterval(()=>{ el.classList.add('out'); setTimeout(()=>{ i=(i+1)%words.length; el.textContent=words[i]; el.classList.remove('out'); },300); },2200); })();
