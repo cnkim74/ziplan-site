@@ -514,13 +514,13 @@ footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);paddi
   </div>
   <div class="build" id="build">
     <div class="bstage">
-      <svg id="buildSvg" viewBox="0 0 800 600" role="img" aria-label="어둠 속에서 선, 평면, 입체, 불 켜진 창, 사진, 분해도로 이어지는 집이 되는 과정 장면"></svg>
+      <svg id="buildSvg" viewBox="0 0 800 600" role="img" aria-label="어둠 속에서 선, 평면, 입체, 불 켜진 창, 사진, 그리고 패널 한 장으로 이어지는 집이 되는 과정 장면"></svg>
       <div class="bcap" data-i="0"><div class="w">LINE</div><div class="k">선 — 어둠 속에 땅과 집의 윤곽이 한 선으로</div></div>
       <div class="bcap" data-i="1"><div class="w">PLAN</div><div class="k">평면 — 벽이 서고, 남쪽은 유리, 가운데 현관과 굴뚝</div></div>
       <div class="bcap" data-i="2"><div class="w">RISE</div><div class="k">입체 — 선이 일어서서 덩어리가 된다</div></div>
       <div class="bcap" data-i="3"><div class="w">LIGHT</div><div class="k">빛 — 창에 불이 든다</div></div>
       <div class="bcap" data-i="4"><div class="w">HOUSE</div><div class="k">집 — 카메라가 내려오면, 이렇게 집이 된다</div></div>
-      <div class="bcap" data-i="5"><div class="w">EXPLODE</div><div class="k">분해 — 지붕 · 2층 · 슬래브 · 1층 · 대지, 한 장의 패널로</div></div>
+      <div class="bcap" data-i="5"><div class="w">PANEL</div><div class="k">패널 — 집 한 채가 한 장의 그림이 되고, 여섯 장이 한 세트가 된다</div></div>
       <div class="bhint">내리면서 보세요 ↓</div>
     </div>
   </div>
@@ -1570,11 +1570,11 @@ const BUILD=(function(){
     return F; }
   function scene(p){
     const W='#ffffff', dimW='rgba(255,255,255,.62)', faintW='rgba(255,255,255,.22)', acc='#6fb1ff', warm='#ffb84d';
-    const line=st(p,0,0.12), plan=st(p,0.12,0.30), planOut=1-st(p,0.36,0.42);
-    const t=ease(st(p,0.32,0.42)), ctxOut=1-t;
-    const rise=st(p,0.36,0.57), fillIn=st(p,0.50,0.58), wire=1-fillIn, light=st(p,0.58,0.68);
-    const fin=ease(st(p,0.66,0.78)), photo=st(p,0.78,0.84)*(1-st(p,0.87,0.90));
-    const ex=ease(st(p,0.89,0.96)), fly=ease(st(p,0.965,1));
+    const line=st(p,0,0.13), plan=st(p,0.13,0.32), planOut=1-st(p,0.38,0.44);
+    const t=ease(st(p,0.34,0.44)), ctxOut=1-t;
+    const rise=st(p,0.38,0.60), fillIn=st(p,0.53,0.61), wire=1-fillIn, light=st(p,0.61,0.72);
+    const fin=ease(st(p,0.70,0.82)), photo=st(p,0.82,0.87), shrink=ease(st(p,0.90,1));
+    const ex=0, fly=0;
     const C=camAt(t,fin,ex,fly); const EYE=[C.tg[0]+C.E[0]*C.Dd,C.tg[1]+C.E[1]*C.Dd,C.tg[2]+C.E[2]*C.Dd]; const P=(x,y,z)=>proj(C,[x,y,z]); const P2=(x,y)=>P(x,y,0);
     const q4=(x0,x1,y0,y1,z=0)=>[P(x0,y0,z),P(x1,y0,z),P(x1,y1,z),P(x0,y1,z)];
     let s=DEFS+`<g clip-path="url(#cFrame)">`;
@@ -1625,8 +1625,6 @@ const BUILD=(function(){
       TREES.forEach((tr,i)=>{ const k=(i<4?st(rise,.2,.6):st(fin,0,.5))*(1-ex); if(k<=0.01) return; items.push({tree:tr,k}); });
       items.forEach(it=>{ if(it.q){ it.s=it.q.map(v=>P(v[0],v[1],v[2])); it.dep=it.s.reduce((a,v)=>a+v[2],0)/it.s.length; const cen=it.q.reduce((a,v)=>[a[0]+v[0]/4,a[1]+v[1]/4,a[2]+v[2]/4],[0,0,0]); const ed=[EYE[0]-cen[0],EYE[1]-cen[1],EYE[2]-cen[2]]; it.back=dot(it.n,ed)<=0; } else { const c=it.tree; const sc=P(c[0],c[1],c[2]*1.1); it.sc=sc; it.dep=sc[2]-0.5; } });
       items.sort((a,b)=>a.dep-b.dep);
-      // 분해도 안내선
-      if(ex>0.01){ const H=8.1+DZ.rf+1; [[1,12],[43,12],[43,1]].forEach(([x,y])=>{ const a=P(x,y,0), b=P(x,y,H); s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${acc}" stroke-width=".8" stroke-dasharray="4 4" opacity="${(0.7*ex*(1-fly)).toFixed(2)}"/>`; }); }
       let G='', GLOW='';
       for(const it of items){
         if(it.tree){ const [x,y,r]=it.tree; const b=P(x,y,0), c=it.sc; const rr=r*c[3]*it.k; G+=`<g opacity="${Math.min(1,it.k*1.5).toFixed(2)}"><line x1="${b[0]}" y1="${b[1]}" x2="${c[0]}" y2="${c[1]}" stroke="#55555c" stroke-width="${(0.22*c[3]).toFixed(1)}"/><circle cx="${c[0]}" cy="${c[1]-rr*0.1}" r="${rr.toFixed(1)}" fill="url(#gTree)" stroke="rgba(255,255,255,.25)" stroke-width=".5"/></g>`; continue; }
@@ -1645,16 +1643,17 @@ const BUILD=(function(){
         g+=`<polygon points="${pts(it.s)}" fill="none" stroke="${W}" stroke-width="${(0.6+0.6*wire).toFixed(2)}" stroke-opacity="${(0.25+0.65*wire).toFixed(2)}" stroke-linejoin="round" opacity="${it.ga}"/>`;
         if(wire>0.3) GLOW+=`<polygon points="${pts(it.s)}" fill="none" stroke="${W}" stroke-width="1.6" stroke-opacity="${(0.5*wire).toFixed(2)}"/>`;
         G+=g; }
-      s+=`<g opacity="${(1-fly*0.85).toFixed(2)}"><g filter="url(#fGlowW)">${GLOW}</g>${G}</g>`;
-      // 분해도 층 이름
-      if(ex>0.01){ const LAY=[['지붕 · 깊은 처마와 굴뚝',8.1+DZ.rf],['2층 · 침실 세 상자',6+DZ.f2],['슬래브 · 테라스와 난간',4.1+DZ.s1],['1층 · 거실·식당·게스트동',2.2+DZ.f1],['대지 · 데크와 수영장',0.3]]; s+=`<g font-family="inherit" opacity="${(ex*(1-fly)).toFixed(2)}">`; LAY.forEach((l,i)=>{ const a=P(43,12,l[1]), k=st(ex,.3+i*.1,.6+i*.1); const x=a[0]+30, y=a[1]; s+=`<line x1="${a[0]+4}" y1="${a[1]}" x2="${x-6}" y2="${y}" stroke="${acc}" stroke-width=".7" opacity="${k}"/><circle cx="${a[0]+4}" cy="${a[1]}" r="2" fill="${acc}" opacity="${k}"/><text x="${x}" y="${y+4}" font-size="11" fill="${W}" opacity="${k}">${l[0]}</text>`; }); s+=`</g>`; }
+      s+=`<g opacity="${(1-st(photo,.15,.7)).toFixed(2)}"><g filter="url(#fGlowW)">${GLOW}</g>${G}</g>`;
     }
     /* ---- 사진: 모형이 사진의 자리에 서면, 진짜 집으로 ---- */
-    if(photo>0.001){ s+=`<g opacity="${photo.toFixed(3)}"><image href="img/house-dusk.jpg" x="0" y="0" width="800" height="600" preserveAspectRatio="xMidYMid slice"/><rect width="800" height="600" fill="url(#gVig)"/></g>`; }
-    if(ex>0.4&&fly<0.9){ s+=`<g opacity="${(st(ex,.4,.8)*(1-fly)).toFixed(2)}" font-family="inherit"><text x="788" y="584" text-anchor="end" font-size="12" fill="${dimW}">한 장의 패널로 — 아래로 내려가면 여섯 장이 기다린다</text><text x="788" y="568" text-anchor="end" font-size="10" fill="${dimW}" letter-spacing="1.5">EXPLODED AXONOMETRIC</text></g>`; }
+    if(photo>0.001){ const S=1-0.62*shrink, zoom=1+0.08*photo-0.08*shrink*0; const cx=400, cy=300+40*shrink; const fw=800*S, fh=600*S; const pad=14*shrink;
+      // 사진 뒤에 흰 종이(패널) — 줄어들수록 드러난다
+      s+=`<g opacity="${shrink>0.01?1:0}"><rect x="${(cx-fw/2-pad).toFixed(1)}" y="${(cy-fh/2-pad).toFixed(1)}" width="${(fw+pad*2).toFixed(1)}" height="${(fh+pad*2+36*shrink).toFixed(1)}" rx="${(6*shrink).toFixed(1)}" fill="#fff" opacity="${shrink.toFixed(2)}"/></g>`;
+      s+=`<g opacity="${photo.toFixed(3)}" transform="translate(${cx} ${cy}) scale(${S.toFixed(4)}) translate(-400 -300)"><clipPath id="cPh"><rect width="800" height="600" rx="${(10*shrink).toFixed(1)}"/></clipPath><g clip-path="url(#cPh)"><image href="img/house-dusk.jpg" x="0" y="0" width="800" height="600" preserveAspectRatio="xMidYMid slice" transform="translate(400 300) scale(${(1+0.1*photo).toFixed(3)}) translate(-400 -300)"/><rect width="800" height="600" fill="url(#gVig)" opacity="${(1-shrink).toFixed(2)}"/></g></g>`;
+      if(shrink>0.01){ const by=cy+fh/2+pad; s+=`<g font-family="inherit" opacity="${st(shrink,.5,1).toFixed(2)}"><text x="${(cx-fw/2).toFixed(1)}" y="${(by+16).toFixed(1)}" font-size="${(9*S+4).toFixed(1)}" font-weight="700" fill="#0a58ca" letter-spacing="1.5">06 · PERSPECTIVE</text><text x="${(cx+fw/2).toFixed(1)}" y="${(by+16).toFixed(1)}" text-anchor="end" font-size="${(9*S+4).toFixed(1)}" font-weight="700" fill="#1d1d1f" letter-spacing="1">ZIPLAN</text></g>`; } }
     return s+`</g>`;
   }
-  const capIndex=p=>p<0.12?0:(p<0.32?1:(p<0.58?2:(p<0.68?3:(p<0.89?4:5))));
+  const capIndex=p=>p<0.13?0:(p<0.34?1:(p<0.61?2:(p<0.72?3:(p<0.90?4:5))));
   return {scene,capIndex};
 })();
 /* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
