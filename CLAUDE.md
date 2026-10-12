@@ -25,9 +25,11 @@
 - crit.html의 `window.ZIPLAN_AUTH={url,key}`에 URL과 publishable 키가 들어가 있음(공개용 키)
 - `authMode()`: 'claude'(claude.ai 안) / 'server'(Supabase, supabase-js@2.45.4 UMD를 jsdelivr에서 지연 로드) / 'local'(체험, localStorage)
 - 스키마: `supabase/schema.sql` — profiles(+가입 트리거), case_saves, case_likes(본인만), case_views + `bump_case_view` RPC, `case_stats` 뷰
+- 관리자: `supabase/admin.sql` — profiles.role(user/admin/super_admin)+email, role 컬럼은 클라이언트가 못 씀(컬럼 grant), `admin_stats()`·`admin_set_role()` RPC는 관리자만. 최고 관리자 = killerzoz0728@gmail.com. 화면은 `#admin`(사용자 팝오버의 "관리자 페이지"), `renderAdmin()`
 - 학생 판별: `SCHOOL_RE` = ac.kr / edu / edu.xx / ac.xx 메일
 
 ### 남은 할 일 (2026-10-12 기준)
+0. **admin.sql** — schema.sql 다음에 SQL Editor에서 실행 (사용자가 직접)
 1. **schema.sql 미적용** — Supabase SQL Editor에서 실행 필요 (MCP apply_migration이 이전 세션에서 취소됨). 확인: public 테이블이 비어 있으면 아직 안 된 것
 2. Authentication → URL Configuration: Site URL `https://ziplan-site-dist.vercel.app`, Redirect URLs에 같은 주소
 3. Google 로그인: Google Cloud OAuth 클라이언트(웹), 리디렉션 URI `https://zxxcpbzlwxfqgzqcealg.supabase.co/auth/v1/callback`, Client ID/Secret을 Supabase Providers → Google에 입력
