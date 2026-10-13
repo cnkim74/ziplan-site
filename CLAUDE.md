@@ -72,6 +72,11 @@
   - 매스 조작 도감 `drawConceptLab`: 12갈래 탭(생성기 썸네일), 큰 3D(`#clV3`, sticky) + 네 장면 버튼(대지/덩어리/조작/완성 = PGV stage site/mass/clay/full, 자동 순환 `clAuto`), 직접 만지기 `CLC.o`(층수·폭·깊이·층고·외피·지붕·창·조작 31종 `CL_OPS`, 무작위·초기화·취향 랩으로), 아래 `#clExt`(땅 바꿔 보기·도면·사양·닮은 실제 건물)
   - 마법사: 고른 것 → 단어 `cwKeys()`(`CW_KW`), `cwMount(i)` — 3D·도구·수치 줄, 결과 아래 `cwExtHTML(i)`(땅·도면·사양·닮은 건물·취향 랩에서 이어 짓기)
   - `bldBuild`는 #dna가 아니면 먼저 이동
+- 2026-10-14 새벽 v5:
+  - 컨셉 레시피 `CREC_RAW` 44개(세계 거장 12 · 시대 양식 10 · 한국 건축 9 · 요즘 흐름 13) — [id,이름,감정(새롭다/트렌디하다/한국스럽다/시적이다/대담하다/고요하다/따뜻하다/유쾌하다),출처,출처 이름,한 줄,이야기,왜 새로운가,설계 수 3,도감 id,단어,생성기 덮어쓰기 o{add,skin,roof,win,F,W,D,fh,site,accent},색 3]. 엔진 `crecScore/crecPick`(겹치는 단어·갈래·6축 벡터·대지, 감정마다 하나), `crecSpec`(사용자 용도·대지 단어 유지 + 레시피 단어 + 덮어쓰기), UI `crecHTML(id)/crecRender(id,keys,site)/crecOpen` — 카드 6장(생성기 썸네일) + 상세(3D·도구·이야기·참고 건물·도면) + 레시피 도감 전체. 컨셉 방 `crecConcept()`(마법사 아래, 마법사 결과·취향 단어 반영), 취향 랩 결과 `crec_dn`. 단어 검증 스크립트: 스크래치 chk.js
+  - 포트폴리오 방 `renderPfPlus()`: 표지(사진 기둥) · 진로 지도 13갈래 `PF_PATHS`(비전공 OK 표시) · 연봉 범위 막대 `PF_PAY`(한국고용정보원 직업정보 2023 조사, 어디가에서 열람한 하위25/중위/상위25·만족도) · 비교 카드(희림·삼우 평균 연봉 캐치 2026, 10대 건설사 2025 평균 아주경제, 2026 공무원 봉급표, BLS·Dezeen Pay 100·AIA) · 예시 경로 6(가상, 실존 인물 아님) · 12쪽 포트폴리오 해부 `PF_ANAT` · 비전공자의 길 `PF_ALL`. 숫자는 해마다 갱신 필요
+  - 관리자 운영실: 머리 그라데이션 + 상태 칩(`admHeadPaint`), 탭 추가 — 등급·요금 `admPlanRender`(플랜 6 `ZTIER`, 활동 등급 5 `ZGRADE`, 점수 규칙 `ZPTS`, 전환 깔때기, 페이월 원칙, `admin_plan_stats`), 수익화 전략 `admGrowthRender`(북극성·수익원 8 `ADM_REV`·단위 경제 계산기·학사 일정 캘린더·12개월 로드맵·위험), 운영 가이드북 `admGuideRender`(10장 체크리스트, localStorage `zip_guide_chk`, 매일/매주는 기간 바뀌면 초기화). 로컬 미리보기: `localhost/dist/index.html?admdemo=1#admin`(예시 데이터, localhost에서만)
+  - 회원 등급: 활동 점수 `zPoints()`(방문일 `zip_days`·프로젝트·기록·저장) → `zGrade` — 사용자 팝오버 `zGradeHTML()`, 요금 아래 `#zGradeBox`. 계정 저장은 `supabase/tiers.sql`(plan·plan_until·points, `admin_plan_stats`, `admin_set_plan`) — 아직 미적용, 사용자가 Supabase에서 실행해야 함
 - 힉스필드 크레딧: 무료 요금제 잔여 3.4 — 업스케일(2크레딧/장)으로 로컬 이미지(alt-*, p-*, pn-*) 개선은 보류
 - 로컬 저화질 AVIF(img/f-*) → 정식 사이트에선 `HF` 맵으로 힉스필드 원본 PNG를 /_vercel/image로(`hfUp` MutationObserver, 패널 시트는 `hqs`)
 - 사례 카드·모달: `casePh(c)`로 사진 + 아이소 썸네일 배지
