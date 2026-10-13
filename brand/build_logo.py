@@ -10,11 +10,13 @@ def L_P(x): return f'<path transform="translate({x} 0)" d="M0 0H38V30H11V48H0ZM1
 def L_L(x): return f'<path transform="translate({x} 0)" d="M0 0H11V38H34V48H0Z"/>',34
 def L_A(x): return f'<path transform="translate({x} 0)" d="M0 0H40V48H29V30H11V48H0ZM11 10V20H29V10Z" fill-rule="evenodd"/>',40
 def L_N(x): return f'<path transform="translate({x} 0)" d="M0 0H12L29 30V0H40V48H28L11 18V48H0Z"/>',40
-def word(ink=INK,blue=BLUE,gap=9):
-    x=0; parts=[]
-    for f,c in [(L_Z,ink),(L_I,ink),(L_P,blue),(L_L,ink),(L_A,ink),(L_N,ink)]:
-        s,w=f(x); parts.append(f'<g fill="{c}">{s}</g>'); x+=w+gap
-    return ''.join(parts), x-gap
+import json as _j
+_A=_j.load(open(__import__('os').path.join(__import__('os').path.dirname(__file__),'archivo_ziplan.json')))
+def word(ink=INK,blue=BLUE,gap=None):
+    sc=48/_A['cap']; parts=[]
+    for ch,x,d in _A['g']:
+        parts.append(f'<path fill="{blue if ch=="P" else ink}" transform="translate({x*sc:.2f} 48) scale({sc:.5f} {-sc:.5f})" d="{d}"/>')
+    return ''.join(parts), _A['w']*sc
 def svg(body,vb,w=None,h=None,bg=None,rx=0):
     vx,vy,vw,vh=vb; b=f'<rect x="{vx}" y="{vy}" width="{vw}" height="{vh}" rx="{rx}" fill="{bg}"/>' if bg else ''
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vx} {vy} {vw} {vh}"'+(f' width="{w}" height="{h}"' if w else '')+f'>{b}{body}</svg>'

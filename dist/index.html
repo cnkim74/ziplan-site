@@ -2045,7 +2045,7 @@ function markSVG(size,color,anim,pColor){ color=color||'currentColor'; pColor=pC
   return `<svg class="zmark" viewBox="-6 -6 112 112" width="${size}" height="${size}" aria-hidden="true"><g fill="${color}"><path${c(0)} d="M4 6H56V16L23 38H56V48H4V38L37 16H4Z"/><rect${c(1)} x="76" y="6" width="12" height="42"/></g><g fill="${pColor}"><rect${c(2)} x="4" y="54" width="12" height="44"/><rect${c(3)} x="4" y="54" width="92" height="10"/><rect${c(4)} x="84" y="54" width="12" height="34"/><rect${c(5)} x="4" y="78" width="92" height="10"/></g></svg>`; }
 function wordSVG(h,ink,blue){ ink=ink||'currentColor'; blue=blue||'#2b6cff'; return `<svg class="zword" viewBox="-2 -2 252 52" height="${h}" width="${Math.round(h*252/52)}" role="img" aria-label="ZIPLAN"><g fill="${ink}"><path d="M0 0H40V10L14 38H40V48H0V38L26 10H0Z"/><rect x="49" y="0" width="11" height="48"/></g><path fill="${blue}" d="M69 0H107V30H80V48H69ZM80 10V20H96V10Z" fill-rule="evenodd"/><g fill="${ink}"><path d="M116 0H127V38H150V48H116Z"/><path d="M159 0H199V48H188V30H170V48H159ZM170 10V20H188V10Z" fill-rule="evenodd"/><path d="M208 0H220L237 30V0H248V48H236L219 18V48H208Z"/></g></svg>`; }
 $$('[data-mark]').forEach(el=>el.innerHTML=markSVG(+el.dataset.mark));
-$('#heroMark').innerHTML=`<div class="hmtile">${markSVG(100,'#fff',true,'#4f8dff')}</div>`; $$('.logo .brand').forEach(b=>{ b.innerHTML=wordSVG(15); b.classList.add('svgw'); });
+$('#heroMark').innerHTML=`<div class="hmtile">${markSVG(100,'#fff',true,'#4f8dff')}</div>`;
 
 /* ---------- Example project (두 상자 집 — 표지 사진의 집을 가상 프로젝트로) ---------- */
 const EXAMPLE={
