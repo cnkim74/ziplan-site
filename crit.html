@@ -1625,12 +1625,64 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .dnr-hero,.dnsp,.dnv,.dnr-grid,.dnr-cases,.dnr-sugg{scroll-margin-top:90px}
 .dnsec-h{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:56px 0 16px}
 @media(max-width:900px){.dncat{margin:10px -10px 14px;padding:14px 10px 16px;border-radius:22px}.dnstyle span{display:none}.dnpick-h{margin-top:14px}}
+/* ===== 건축 도감 ===== */
+.dnat{max-width:1280px;margin:72px auto 40px;padding:0 24px;scroll-margin-top:80px}
+.dnat-h{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:end;margin-bottom:22px}
+.dnat-h h2{font-family:var(--brand);font-size:clamp(34px,4.6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:8px 0 12px}
+.dnat-h h2 b{background:linear-gradient(120deg,#ff7a45,#ffb341 40%,#7cc4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.dnat-h p{color:var(--fg-2);font-size:15px;line-height:1.6;margin:0;max-width:56ch}
+.dnat-st{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.dnat-st div{background:var(--card);border:1px solid var(--card-line);border-radius:18px;padding:14px 12px}
+.dnat-st b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em}.dnat-st span{font-size:12px;color:var(--fg-2)}
+.dnat-f{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 18px;position:sticky;top:64px;z-index:5;padding:10px 0;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.dnat-f .pfto button{white-space:nowrap;flex:0 0 auto}.dnat-f .pfto em{font-style:normal;font-size:11px;opacity:.6;margin-left:4px}
+.dnat-f input{flex:1 1 220px;min-width:200px;border:1px solid var(--card-line);background:var(--card);color:var(--fg);border-radius:999px;padding:10px 16px;font:inherit;font-size:14px}
+.dnat-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:16px}
+.dnat-c{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--card-line);border-radius:20px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.9,.3,1.2),box-shadow .3s}
+.dnat-c:hover,.dnat-c:focus-visible{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(0,0,0,.45)}.dnat-c:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dnat-c .ph{position:relative;aspect-ratio:4/3;background:linear-gradient(160deg,#e9e6df,#d8d4cb);overflow:hidden}
+.dnat-c .ph.gen{background:linear-gradient(170deg,#dfe7ef,#eef0ea)}
+.dnat-c .ph>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.dnat-c:hover .ph>img{transform:scale(1.05)}
+.dnat-c .tg{position:absolute;left:10px;top:10px;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.78);color:#1d1d1f;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dnat-c .mdl{position:absolute;inset:0;opacity:0;transition:opacity .45s;pointer-events:none;background:linear-gradient(170deg,#dfe7ef,#eef0ea)}
+.dnat-c .mdl img{width:100%;height:100%;object-fit:cover}.dnat-c .mdl span{position:absolute;right:10px;bottom:10px;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;background:#1d1d1f;color:#fff}
+.dnat-c:hover .mdl:not(:empty){opacity:1}
+.dnat-c .bd{padding:12px 14px 14px;display:grid;gap:3px}.dnat-c .bd b{font-size:15.5px;letter-spacing:-.01em}.dnat-c .bd>span{font-size:12.5px;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dnat-c .ks{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.dnat-c .ks em{font-style:normal;font-size:11.5px;padding:3px 8px;border-radius:999px;background:color-mix(in srgb,var(--fg) 7%,transparent);color:var(--fg-2)}
+.dnat-c .ks em.on{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--fg);font-weight:700}
+.ld{position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);background-size:200% 100%;animation:dnatLd 1.3s linear infinite}
+@keyframes dnatLd{to{background-position:-200% 0}}
+.dnat-more{display:flex;gap:14px;align-items:center;justify-content:center;margin:22px 0 4px}.dnat-more span{font-size:13px;color:var(--fg-2)}
+.dnat-cr{font-size:12px;color:var(--fg-2);text-align:center;margin:12px auto 0;max-width:70ch;line-height:1.6}
+.dnat-tw{margin-top:56px}.dnat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dnat-m{position:fixed;inset:0;z-index:200;background:rgba(10,10,12,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-items:center;padding:24px;animation:dnatIn .25s ease}
+.dnat-m[hidden]{display:none}@keyframes dnatIn{from{opacity:0}}
+html.dnat-lock{overflow:hidden}
+.dnat-mb{position:relative;width:min(1180px,100%);max-height:calc(100vh - 48px);overflow:auto;background:var(--bg);border-radius:26px;display:grid;grid-template-columns:1.25fr 1fr;box-shadow:0 40px 120px -30px rgba(0,0,0,.6);animation:dnatUp .35s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes dnatUp{from{transform:translateY(18px) scale(.98)}}
+.dnat-mb .x{position:absolute;right:14px;top:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#1d1d1f;font-size:16px;cursor:pointer;backdrop-filter:blur(8px)}
+.dnat-mp{padding:14px;display:grid;gap:10px;align-content:start}
+.dnat-mp .pic{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:#ddd}.dnat-mp .pic.gen{background:linear-gradient(170deg,#dfe7ef,#eef0ea)}.dnat-mp .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.dnat-mp .dnat-md{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:8px}
+.dnat-mp .dnat-mt{position:relative;aspect-ratio:13/9;border-radius:12px;overflow:hidden;background:linear-gradient(170deg,#dfe7ef,#eef0ea)}.dnat-mp .dnat-mt img{width:100%;height:100%;object-fit:cover;display:block}
+.dnat-mp .dnat-md span{font-size:13px;color:var(--fg-2);line-height:1.5}
+.dnat-mp .cr{font-size:11.5px;color:var(--fg-2);margin:0 4px}.dnat-mp .cr a{color:inherit}
+.dnat-mi{padding:34px 30px 30px 18px}.dnat-mi h3{font-family:var(--brand);font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;margin:8px 0 4px;line-height:1.08}
+.dnat-mi .who{color:var(--fg-2);margin:0 0 14px}.dnat-mi .ln{font-size:17px;line-height:1.55;margin:0 0 20px}
+.dnat-mi h4{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:var(--fg-2);margin:20px 0 10px}
+.dnat-mi .dns-ks{display:flex;flex-wrap:wrap;gap:6px}.dnat-mi .ov{font-size:13.5px;color:var(--fg-2);margin:14px 0 0}
+.dnat-mi .act{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.dnat-mini{display:flex;flex-wrap:wrap;gap:6px}.dnat-mini button{border:1px solid var(--card-line);background:var(--card);color:var(--fg);border-radius:999px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}.dnat-mini button:hover{border-color:var(--fg-2)}
+@media(max-width:1000px){.dnat-row{grid-template-columns:repeat(2,1fr)}.dnat-h{grid-template-columns:1fr}.dnat-mb{grid-template-columns:1fr}.dnat-mi{padding:6px 20px 24px}}
+@media(max-width:640px){.dnat{padding:0 16px;margin-top:48px}.dnat-g{grid-template-columns:repeat(2,1fr);gap:10px}.dnat-st{grid-template-columns:repeat(2,1fr)}.dnat-c .bd{padding:10px}.dnat-c .bd b{font-size:14px}.dnat-c .ks em:nth-child(n+3){display:none}.dnat-f{top:56px;gap:8px}.dnat-f .pfto{overflow-x:auto;flex-wrap:nowrap;max-width:100%}.dnat-m{padding:0;place-items:end stretch}.dnat-mb{border-radius:22px 22px 0 0;max-height:92vh}.dnat-mp .dnat-md{grid-template-columns:130px 1fr}.dnat-row{gap:10px}}
 .dnr-nav{position:sticky;top:74px;z-index:20;display:flex;gap:4px;width:max-content;max-width:100%;overflow-x:auto;margin:18px auto 0;padding:5px;border-radius:999px;background:color-mix(in srgb,var(--card) 72%,transparent);border:1px solid var(--card-line);backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);box-shadow:0 10px 30px -18px rgba(0,0,0,.4);scrollbar-width:none}
 .dnr-nav button{border:0;background:transparent;color:var(--fg);font:inherit;font-size:13px;padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}.dnr-nav button:hover{background:color-mix(in srgb,var(--fg) 8%,transparent)}
 .dns-k{display:inline-flex;align-items:center;gap:4px;color:var(--c,var(--accent));background:color-mix(in srgb,var(--c,var(--accent)) 13%,transparent)}.dns-k i.dki{width:15px;height:15px;color:inherit;margin:0}.dns-k i.dki svg{width:14px;height:14px}.dns-k i.dki.mono{width:16px;height:16px;font-size:7.5px}
 .dnr-kw span{display:inline-flex;align-items:center;gap:6px}.dnr-kw i.dki{color:#fff;width:18px;height:18px;display:inline-grid;place-items:center}.dnr-kw i.dki svg{width:16px;height:16px}.dnr-kw i.dki.mono{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.25);font-style:normal;font-size:8px;font-weight:800}
 .dnsec-t{font-family:var(--brand);font-size:clamp(24px,2.6vw,36px);letter-spacing:-.02em;margin:8px 0 0}
 @media(max-width:900px){.dnr-nav{position:relative;top:0;margin:14px 0 0;width:auto}}
+.dns-site{display:flex;align-items:center;gap:6px;font-size:12px;color:#333;padding:0 4px}.dns-site select,.dnl-site select{font:inherit;font-size:12.5px;border:1px solid rgba(0,0,0,.15);border-radius:10px;padding:5px 8px;background:rgba(255,255,255,.85);color:#111}
+.dnl-site{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;font-size:12px;color:var(--fg-2)}.dnl-site select{background:var(--card);color:var(--fg);border-color:var(--card-line)}
 </style>
 
 <nav>
@@ -2185,8 +2237,8 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
     <div class="dnk">설계 취향 랩</div>
     <h1 class="dnh1"><span>고를수록,</span><br><span>집이 지어집니다.</span></h1>
     <p>마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p>
-    <div class="dnstats"><div><b id="dnKwN">0</b><span>건축 단어</span></div><div><b>12</b><span>설계 방향</span></div><div><b id="dnComb">0</b><span>다섯 개만 골라도 나오는 조합</span></div></div>
-    <div class="dnhero-act"><a class="btn big" href="#dnPick" data-dnjump>단어 고르러 가기</a><button class="btn ghost" id="dnLibOpen" type="button">내 기록<em id="dnLibN">0</em></button></div>
+    <div class="dnstats"><div><b id="dnKwN">0</b><span>건축 단어</span></div><div><b>12</b><span>설계 방향</span></div><div><b id="dnComb">0</b><span>다섯 개만 골라도 나오는 조합</span></div><div><b id="dnBldN">0</b><span>단어로 읽은 실제 건물</span></div></div>
+    <div class="dnhero-act"><a class="btn big" href="#dnPick" data-dnjump>단어 고르러 가기</a><button class="btn ghost" id="dnAtlasOpen" type="button">건축 도감</button><button class="btn ghost" id="dnLibOpen" type="button">내 기록<em id="dnLibN">0</em></button></div>
   </div></div>
   <div class="dnmarq" aria-hidden="true"><div class="dnmarq-in" id="dnMarq"></div><div class="dnmarq-in" id="dnMarq2"></div></div>
   <div class="dnwrap sty-liquid" id="dnPick">
@@ -2198,7 +2250,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
     </div>
     <aside class="dnlive" id="dnLive" aria-live="polite">
       <div class="dnl-tag"><span><i></i>지금 짓는 집</span><span>끌어서 돌려 보기</span></div>
-      <div class="dnl-3d" id="dnLive3d"></div><div class="dnl-cap" id="dnLiveCap"></div>
+      <div class="dnl-3d" id="dnLive3d"></div><div class="dnl-site"><span>주변 환경</span><select data-dnsite><option value="">단어대로</option><option value="flat">평평한 대지</option><option value="city">도심</option><option value="alley">좁은 골목</option><option value="suburb">신도시 주택가</option><option value="village">오래된 마을</option><option value="forest">숲 속</option><option value="slope">경사지</option><option value="mountain">산자락</option><option value="water">호숫가</option><option value="sea">바닷가</option><option value="field">들판 · 논</option></select></div><div class="dnl-cap" id="dnLiveCap"></div>
       <div class="dnl-h"><b id="dnCode">····</b><span><em id="dnCount">0</em>개 고름</span></div>
       <div id="dnPersona"></div>
       <div id="dnRadar"></div>
@@ -2208,7 +2260,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
     </aside>
   </div>
   <div id="dnResult" hidden></div>
-  <div class="dnlib" id="dnLib" hidden></div><div class="dn-toast" id="dnToast" role="status"></div>
+  <div class="dnlib" id="dnLib" hidden></div><section class="dnat" id="dnAtlas" aria-label="건축 도감"></section><div class="dn-toast" id="dnToast" role="status"></div>
 </section>
 <section class="view" id="view-studio" hidden>
   <div class="sthero"><div class="stsg" id="stSg"></div><div class="stin">
@@ -2971,7 +3023,7 @@ const DNA_CATS=[
   '함께 사는 집|f1o1|court1 village2','1인 가구|f-1|frame1 stack1','작업실 겸 집|f1|split2','아이 키우는 집|o1|court2 terrace1','노부부의 집|v-2|roof1 court1','반려동물과 사는 집|n1v-1|court2',
   '쉐어하우스|f1o1|village2 court1','다세대|v1f1|stack2 terrace1','카페|o2|glass1 frame1','갤러리|o-1|thickwall2 buried1','도서관|v1o1|stack2','근린생활시설|n-1o1|pilotis1 skin1',
   '게스트하우스|n1f1|village2','스테이|n2o-1|court2 buried1','기숙사|f1|court2 stack1','공방|l-1|thickwall1 roof1','교회 · 명상 공간|o-2v1|thickwall2','주민 센터|o2|pilotis2 village1',
-  '사무실|n-1v1|skin2 stack1','복합 문화 공간|o1x1|split2 stack1','유치원|o1v-1|roof3 court1','주말 주택|n2|frame1 roof1','학교|o1|court2 pilotis1','상가 주택|n-1v1|split1 skin1','카페 겸 집|f1|split2 frame1','작은 미술관|o-1|thickwall2 court1']],
+  '사무실|n-1v1|skin2 stack1','복합 문화 공간|o1x1|split2 stack1','유치원|o1v-1|roof3 court1','주말 주택|n2|frame1 roof1','학교|o1|court2 pilotis1','상가 주택|n-1v1|split1 skin1','카페 겸 집|f1|split2 frame1','작은 미술관|o-1|thickwall2 court1','박물관|o-1v-1|thickwall2 court1','고층 타워|v2n-2|stack3 skin1','공연장|x1o-1|stack1 skin2']],
  ['tech','구조 · 지속가능',[
   '패시브 하우스|l-1o-1|thickwall1 roof1','자연 환기|n1o1|village1 pilotis1','태양광 지붕|x1|roof2','빗물 모으기|n2|roof1 court1','리모델링|x-1|thickwall1 frame1','프리패브|l1x1|village1 stack1',
   '모듈러|f1x1|village2 stack1','저층 고밀|v-1f1|village2 court1','건물 녹화|n2|terrace2 buried1','재사용 재료|n1x1|thickwall1 village1','경량 목구조|l1n1|roof2 village1','철골|l1x1|pavilion2 stack1',
@@ -2994,7 +3046,10 @@ const DNA_CATS=[
  ['master','건축가처럼',[
   '안도 다다오처럼|o-2l-2n1|court2 thickwall2 buried1','르 코르뷔지에처럼|o1l1|pilotis3 frame1','미스처럼|o2l2f-2|glass3','피터 줌터처럼|l-2o-1n1|thickwall3 buried1','자하 하디드처럼|x2v1|stack2',
   'SANAA처럼|l2o2f1|glass2 village1','BIG처럼|x2n1|terrace3 stack1','김수근처럼|f1v1|split2 thickwall2','승효상처럼|o-2f1|court3 thickwall1','조병수처럼|n2o-1|buried2 court1',
-  '이타미 준처럼|n2x-1l-1|frame2 thickwall1 roof1','알바 알토처럼|n2x1|roof2 village1','루이스 칸처럼|l-2v1|thickwall2 court1','쿠마 겐고처럼|n2l1|skin3 roof1','OMA처럼|x2v2|stack3','후지모토 소우처럼|o2f2|stack2 village1']]
+  '이타미 준처럼|n2x-1l-1|frame2 thickwall1 roof1','알바 알토처럼|n2x1|roof2 village1','루이스 칸처럼|l-2v1|thickwall2 court1','쿠마 겐고처럼|n2l1|skin3 roof1','OMA처럼|x2v2|stack3','후지모토 소우처럼|o2f2|stack2 village1',
+  '프랭크 로이드 라이트처럼|n2l-1x-1|terrace2 roof1 pilotis1','가우디처럼|x2n1|stack1 village1','렌조 피아노처럼|l2o1|glass2 frame1','노먼 포스터처럼|l2x1v1|glass2 stack1','헤르조그 & 드 뫼롱처럼|x1l-1|skin2 thickwall1',
+  '알바로 시자처럼|o-1x-1|court2 frame1','카를로 스카르파처럼|n1o-1|thickwall2 court1','이토 도요처럼|l2o2|glass3','반 시게루처럼|l2n1|roof2 glass1','김중업처럼|x1l1|pilotis2 stack1',
+  '정기용처럼|n2x-2|roof2 village1','조민석처럼|x2|stack2 split1','장 누벨처럼|x1o-1|skin3','프랭크 게리처럼|x2f1|stack3','루이스 바라간처럼|o-2n1|court3 thickwall1','오스카 니마이어처럼|x2l1|pilotis2 glass1']]
 ];
 const DNA_ARCH={
  court:{kcat:['site','korea'],kw:'마당',name:'마당을 품은 집',persona:'마당 짓는 사람',shape:'court',mass:'court',v:{o:-.7,v:-.4,l:-.2,n:.4,f:-.1,x:-.3},
@@ -3099,7 +3154,7 @@ function dnaChipsHTML(){ const sel=new Set(state.dna); const q=dnaQ.trim();
     const cc=DN_CATC[cid]||'#3f7bff'; return `<div class="dncat zrv" data-cat="${cid}" style="--c:${cc}"><div class="dnch"><span class="dnch-ic">${dnCatIcon(cid)}</span><div><h3>${esc(cname)}</h3><p>${esc(DN_CATTXT[cid]||'')}</p></div><span class="dnch-n">${on?on+'개 고름':ks.length+'개'}</span></div><div class="dnchips">${ks.map((k,ki)=>`<button type="button" class="dk${sel.has(k.label)?' on':''}" style="--i:${ki}" data-k="${esc(k.label)}" aria-pressed="${sel.has(k.label)}" title="${esc(dnHint(k.label))}">${dnIcon(k)}<span>${esc(k.label)}</span></button>`).join('')}</div></div>`; }).join('')||'<div class="dnempty">맞는 단어가 없습니다.</div>'; }
 function renderDnaLab(){ const tabs=$('#dnTabs'); if(!tabs) return;
   tabs.innerHTML=[['all','전체'],...DNA_CATS.map(c=>[c[0],c[1]])].map(([id,n])=>`<button type="button" data-cat="${id}" aria-pressed="${dnaCat===id}" style="--c:${DN_CATC[id]||'currentColor'}">${id==='all'?'':dnCatIcon(id)}${esc(n)}</button>`).join(''); dnStyleApply();
-  $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); try{ dnHeroInit(); dnaLibRender(); }catch(e){} }
+  $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); try{ dnHeroInit(); dnaLibRender(); dnAtlasInit(); }catch(e){} }
 function dnaLive(full){ const r=dnaAnalyze(state.dna); const el=$('#dnLive'); if(!el) return r;
   $('#dnCount').textContent=r.n; $('#dnCode').textContent=r.n?r.code:'····'; $('#dnPersona').textContent=r.n?dnaPersona(r):'단어를 고르면 이름이 생깁니다';
   dnaTweenRadar($('#dnRadar'),r.vec);
@@ -4619,7 +4674,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('#view-travel')&&!e.
    취향 랩 v2 — 키워드 → 건물 생성기 (PG)
    고른 단어를 프로그램 · 매스 · 조작 · 외피 · 창 · 지붕 · 대지로 번역해 three.js 모형을 짓는다
    ===================================================================== */
-const PG_PROG={house:[14,11,2,3.2,'단독주택'],small:[10,8,1,3.2,'작은 집'],studio:[13,10,2,3.8,'작업실'],share:[16,12,3,3.1,'공유주택'],multi:[15,13,4,3.0,'다세대 주택'],cafe:[13,10,2,3.8,'카페'],gallery:[22,15,2,4.6,'갤러리'],library:[24,17,3,4.2,'작은 도서관'],retail:[13,12,4,3.6,'근린생활시설'],stay:[18,12,2,3.2,'스테이'],dorm:[26,12,4,3.1,'기숙사'],chapel:[15,10,1,6,'명상 공간'],civic:[24,16,2,4,'주민 센터'],office:[19,16,5,3.8,'사무실'],culture:[26,18,3,4.4,'복합 문화 공간'],kinder:[26,16,1,3.8,'유치원'],school:[34,14,3,3.8,'학교']};
+const PG_PROG={museum:[30,20,2,5,'박물관'],tower:[22,22,12,3.8,'고층 타워'],hall:[34,26,2,6.5,'공연장'],house:[14,11,2,3.2,'단독주택'],small:[10,8,1,3.2,'작은 집'],studio:[13,10,2,3.8,'작업실'],share:[16,12,3,3.1,'공유주택'],multi:[15,13,4,3.0,'다세대 주택'],cafe:[13,10,2,3.8,'카페'],gallery:[22,15,2,4.6,'갤러리'],library:[24,17,3,4.2,'작은 도서관'],retail:[13,12,4,3.6,'근린생활시설'],stay:[18,12,2,3.2,'스테이'],dorm:[26,12,4,3.1,'기숙사'],chapel:[15,10,1,6,'명상 공간'],civic:[24,16,2,4,'주민 센터'],office:[19,16,5,3.8,'사무실'],culture:[26,18,3,4.4,'복합 문화 공간'],kinder:[26,16,1,3.8,'유치원'],school:[34,14,3,3.8,'학교']};
 const PG_SKIN={conc:['solid','conc',0xcbc6be,2.4,'노출 콘크리트'],brick:['solid','brick',0xffffff,1.2,'벽돌'],brickR:['solid','brickR',0xffffff,1.2,'붉은 벽돌'],brickOld:['solid','brickOld',0xffffff,1.2,'재사용 벽돌'],brickD:['solid','brickD',0xffffff,1.2,'검은 벽돌'],
  stone:['solid','stone',0xffffff,2.4,'석재'],basalt:['solid','basalt',0xffffff,1.6,'현무암'],wood:['solid','wood',0xffffff,1.2,'목재 사이딩'],clt:['solid','clt',0xffffff,2.4,'CLT'],charred:['solid','charred',0xffffff,1.2,'탄화목'],bamboo:['solid','bamboo',0xffffff,1,'대나무'],
  stucco:['solid','stucco',0xffffff,3,'흰 회벽'],earth:['solid','earth',0xffffff,2,'흙벽'],tile:['solid','tile',0xffffff,1,'타일'],metal:['solid','metal',0xffffff,2,'금속 패널'],corten:['solid','corten',0xffffff,2,'코르텐강'],
@@ -4642,7 +4697,7 @@ const PGK={
  '물소리':{ops:['pool']},'나무 냄새':{skin:'wood'},'맨발로 걷는 바닥':{ops:['deck']},'바람이 지나가는':{ops:['pilotis','gap']},'비 오는 날':{ops:['eaves']},'눈 쌓인 마당':{ops:['court']},'햇볕 드는 창가':{win:'corner'},'거친 손맛':{skin:'stone'},'차가운 금속':{skin:'metal'},'따뜻한 흙':{skin:'earth'},'깊은 그늘':{ops:['eaves']},'높은 천장':{fh:4.4},'낮고 아늑한 천장':{fh:2.8},'멀리 보이는 수평선':{win:'ribbon',site:'sea'},'숨바꼭질':{ops:['gap','split']},'창밖의 계절':{win:'frame',ops:['bigtree']},'밤하늘 보기':{ops:['roofgarden']},
  '산책하듯 걷는 길':{ops:['ramp']},'돌아 들어가는 입구':{ops:['wall']},'오르며 보이는 풍경':{ops:['terrace']},'머무는 계단':{ops:['stair']},'한 바퀴 도는 회랑':{ops:['court','cloister']},'곧게 뻗은 축':{plan:'bar'},'갈림길':{ops:['village']},'옥상까지 이어지는 길':{ops:['ramp','roofgarden']},'천천히 내려가는 길':{ops:['sunken']},'안과 밖을 오가는':{win:'full',ops:['deck']},'빛을 따라 걷는':{ops:['skylight']},'문턱 없는 집':{floors:1,win:'full'},
  '하얀 집':{skin:'stucco'},'검은 집':{skin:'charred'},'회색 톤':{skin:'conc'},'흙색 톤':{skin:'earth'},'나무색':{skin:'wood'},'청록 포인트':{accent:'#2e7d7a'},'원색 포인트':{accent:'#e8452c'},'파스텔':{accent:'#e9b8ad'},'녹이 슨':{skin:'corten'},
- '안도 다다오처럼':{skin:'conc',win:'slit',ops:['wall','pool']},'르 코르뷔지에처럼':{skin:'stucco',win:'ribbon',ops:['pilotis','roofgarden']},'미스처럼':{skin:'glass',roof:'slab',ops:['deck']},'피터 줌터처럼':{skin:'stone',win:'deep'},'자하 하디드처럼':{ops:['curve','cantilever'],skin:'stucco'},'SANAA처럼':{skin:'glass',ops:['round','gap'],roof:'slab'},'BIG처럼':{ops:['terrace','twist']},'김수근처럼':{skin:'brickD',ops:['split']},'승효상처럼':{skin:'corten',ops:['court','wall']},'조병수처럼':{ops:['sink','court'],skin:'conc'},'이타미 준처럼':{skin:'charred',roof:'gable',win:'frame'},'알바 알토처럼':{skin:'brick',roof:'shed',ops:['curve']},'루이스 칸처럼':{skin:'conc',win:'deep',ops:['court','skylight']},'쿠마 겐고처럼':{skin:'woodlouver',ops:['eaves']},'OMA처럼':{ops:['shift','cantilever'],skin:'glass'},'후지모토 소우처럼':{ops:['module','shift'],skin:'stucco'}};
+ '안도 다다오처럼':{skin:'conc',win:'slit',ops:['wall','pool']},'르 코르뷔지에처럼':{skin:'stucco',win:'ribbon',ops:['pilotis','roofgarden']},'미스처럼':{skin:'glass',roof:'slab',ops:['deck']},'피터 줌터처럼':{skin:'stone',win:'deep'},'자하 하디드처럼':{ops:['curve','cantilever'],skin:'stucco'},'SANAA처럼':{skin:'glass',ops:['round','gap'],roof:'slab'},'BIG처럼':{ops:['terrace','twist']},'김수근처럼':{skin:'brickD',ops:['split']},'승효상처럼':{skin:'corten',ops:['court','wall']},'조병수처럼':{ops:['sink','court'],skin:'conc'},'이타미 준처럼':{skin:'charred',roof:'gable',win:'frame'},'알바 알토처럼':{skin:'brick',roof:'shed',ops:['curve']},'루이스 칸처럼':{skin:'conc',win:'deep',ops:['court','skylight']},'쿠마 겐고처럼':{skin:'woodlouver',ops:['eaves']},'OMA처럼':{ops:['shift','cantilever'],skin:'glass'},'후지모토 소우처럼':{ops:['module','shift'],skin:'stucco'},'프랭크 로이드 라이트처럼':{skin:'stone',win:'ribbon',ops:['cantilever','eaves']},'가우디처럼':{skin:'tile',ops:['curve']},'렌조 피아노처럼':{skin:'glass',roof:'slab',ops:['frameGrid','shades']},'노먼 포스터처럼':{skin:'glass',ops:['curve','frameGrid']},'헤르조그 & 드 뫼롱처럼':{skin:'perf',ops:['shift']},'알바로 시자처럼':{skin:'stucco',win:'slit',ops:['curve','wall']},'카를로 스카르파처럼':{skin:'conc',win:'slit',ops:['pool','stair']},'이토 도요처럼':{skin:'glass',ops:['slabs']},'반 시게루처럼':{skin:'woodlouver',roof:'big'},'김중업처럼':{skin:'stucco',ops:['pilotis','curve']},'정기용처럼':{skin:'earth',roof:'gable',ops:['deck']},'조민석처럼':{skin:'metal',ops:['twist','carve']},'장 누벨처럼':{skin:'perf',roof:'slab',ops:['shades']},'프랭크 게리처럼':{skin:'metal',ops:['curve','twist']},'루이스 바라간처럼':{skin:'stucco',ops:['wall','pool','court'],accent:'#e8452c'},'오스카 니마이어처럼':{skin:'stucco',roof:'slab',ops:['curve','pilotis']},'박물관':{prog:'museum'},'고층 타워':{prog:'tower'},'공연장':{prog:'hall'}};
 const PG_BASE_DEF={court:{skin:'stucco',roof:'flat',win:'punch'},terrace:{skin:'conc',roof:'green',win:'full'},pilotis:{skin:'stucco',roof:'roofgarden',win:'ribbon'},village:{skin:'wood',roof:'gable',win:'punch'},buried:{skin:'conc',roof:'green',win:'full'},thickwall:{skin:'brick',roof:'flat',win:'deep'},
  glass:{skin:'glass',roof:'slab',win:'full'},split:{skin:'wood',roof:'shed',win:'punch'},stack:{skin:'conc',roof:'flat',win:'full'},roof:{skin:'wood',roof:'big',win:'full'},frame:{skin:'conc',roof:'flat',win:'frame'},skin:{skin:'louver',roof:'flat',win:'full'}};
 const PG_ARCH_OP={court:'court',terrace:'terrace',pilotis:'pilotis',village:'gap',buried:'sink',thickwall:'plinth',glass:'lightTop',split:'split',stack:'shift',roof:'eaves',frame:'frame',skin:'shades'};
@@ -4664,7 +4719,7 @@ function pgSpec(keys,opt){ opt=opt||{}; const r=dnaAnalyze(keys); const labels=r
   const PR=PG_PROG[P.prog]; P.progName=PR[4]; P.W=PR[0]; P.D=PR[1]; P.F=PR[2]; P.fh=PR[3];
   if(pg.length) log('site',pg[pg.length-1][0],`${PR[4]}의 규모(대략 ${PR[0]}×${PR[1]}m, ${PR[2]}층)로 시작했어요`);
   const sc=by('scale'); if(sc.length){ P.W*=1.25; P.D*=1.2; log('mass',sc[0][0],'조금 더 크고 당당한 비례로 키웠어요'); }
-  P.F=Math.max(1,Math.min(8,P.F+Math.round(r.vec.v*1.6)));
+  P.F=Math.max(1,Math.min(P.prog==='tower'?16:8,P.F+Math.round(r.vec.v*1.6)));
   const fl=by('floors'); if(fl.length){ const f=Math.min(...fl.map(x=>x[1].floors)); P.F=fl.some(x=>x[1].floors>=4)?Math.max(P.F,4):f; log('mass',fl[0][0],P.F===1?'모든 방을 한 층에 펼쳤어요':`${P.F}층까지 쌓았어요`); }
   const fhm=by('fh'); if(fhm.length){ P.fh=fhm[fhm.length-1][1].fh; log('mass',fhm[0][0],P.fh>3.6?'층높이를 4m 넘게 올렸어요':'천장을 낮춰 아늑하게 했어요'); }
   if(by('narrow').length){ P.W=Math.min(P.W,9); P.D=Math.min(P.D,12); }
@@ -4678,7 +4733,7 @@ function pgSpec(keys,opt){ opt=opt||{}; const r=dnaAnalyze(keys); const labels=r
   const rf=by('roof'); P.roof=rf.length?rf[rf.length-1][1].roof:(r.vec.x<-.5?'gable':r.vec.n>.55&&D0.roof==='flat'?'green':D0.roof); if(mode==='wild') P.roof=r.vec.x<0?'shed':(r.vec.v>0?'vault':'saw');
   if(P.roof==='roofgarden'){ P.roof='flat'; P.ops.add('roofgarden'); }
   log('op',rf.length?rf[rf.length-1][0]:'',`지붕은 ${PG_ROOFT[P.roof]}`);
-  const st=by('site'); P.site=st.length?st[st.length-1][1].site:(r.vec.n>.55?'forest':r.vec.n<-.55?'city':'flat'); log('site',st.length?st[st.length-1][0]:'',`대지는 ${PG_SITET[P.site]}`);
+  const st=by('site'); P.site=opt.site?opt.site:st.length?st[st.length-1][1].site:(r.vec.n>.55?'forest':r.vec.n<-.55?'city':'flat'); log('site',st.length?st[st.length-1][0]:'',`대지는 ${PG_SITET[P.site]}`);
   const ac=by('accent'); P.accent=ac.length?ac[ac.length-1][1].accent:null; P.night=by('night').length>0; P.ground=by('ground').length?'gravel':null;
   // 조작
   for(const [l,m] of mods) for(const o of (m.ops||[])){ if(!P.ops.has(o)){ P.ops.add(o); if(PG_OPT[o]) log(o==='wall'||o==='pool'||o==='bigtree'||o==='yard'||o==='sink'||o==='sunken'||o==='plaza'?'site':o==='deck'||o==='solar'||o==='vines'||o==='jars'||o==='roofgarden'?'life':'op',l,PG_OPT[o]); } }
@@ -4697,7 +4752,7 @@ function pgVolumes(P,R){ const {W,D,F}=P; const V=[]; const v=(o)=>{ const x=Obj
   if(P.ops.has('village')){ const n=Math.max(4,Math.min(7,Math.round(W*D/38))); const cells=[[0,0],[1,0],[-1,0],[0,1],[1,1],[-1,1],[0,-1]]; const s=Math.max(5,Math.sqrt(W*D/n)*.92);
     cells.slice(0,n).forEach(([i,j],k)=>{ const w=s*(.8+R()*.35), d=s*(.75+R()*.4); v({x:i*(s+2.4)+(R()-.5)*1.2,z:j*(s+2.2)+(R()-.5)*1,w,d,n:k%3===0?Math.min(2,F):1,rot:(R()-.5)*.18,role:'house'}); }); return V; }
   if(B==='terrace'||P.ops.has('terrace')){ const n=Math.max(2,F+(B==='terrace'?1:0)), step=Math.max(2.6,D*.28); for(let f=0;f<n;f++) v({z:-f*step/2,d:Math.max(4,D-f*step*.7),y0:f,n:1,role:'tier',tier:f}); V.forEach((t,i)=>{ const nx=V[i+1]; t.exp=nx?(t.z+t.d/2)-(nx.z+nx.d/2):t.d; }); return V; }
-  if(B==='stack'||P.ops.has('shift')){ for(let f=0;f<F;f++){ const sx=(f%2?1:-1)*W*.16*(f?1:0), sz=(f%3===1?1:f%3===2?-1:0)*D*.14; v({x:sx,z:sz,w:W*(f%2?.86:1),d:D*(f%2?.92:1),y0:f,n:1,role:'plate',rot:P.ops.has('twist')?f*.13:0}); } return V; }
+  if(B==='stack'||P.ops.has('shift')){ for(let f=0;f<F;f++){ const sx=f===0?0:(f%2?1:-1)*W*.14; v({x:sx,z:0,w:W,d:D,y0:f,n:1,role:'plate',rot:P.ops.has('twist')?f*.13:0}); } return V; }
   if(P.ops.has('twist')){ for(let f=0;f<F;f++) v({y0:f,n:1,rot:f*.16,role:'plate'}); return V; }
   if(B==='split'||P.ops.has('split')){ const w=W*.5; v({x:-w/2-.9,w,n:F}); v({x:w/2+.9,z:-1.2,w,y0:.5,n:F,role:'main2'}); v({x:0,w:1.8,d:D*.6,n:F+.5,role:'link',skin:'glass'}); return V; }
   if(P.ops.has('twin')){ const w=W*.46; v({x:-w/2-2,w,role:'main'}); v({x:w/2+2,z:-1.5,w,d:D*.85,n:Math.max(1,F-(P.F>1?1:0)),role:'main2',skin:P.skin2||null}); return V; }
@@ -4762,7 +4817,7 @@ function pgMats(T,P){ const C={}; const std=(k,o)=>{ if(C[k]) return C[k]; const
     perf:std('perf',{color:0xffffff,map:pgTex(T,'perf'),alphaTest:.5,side:T.DoubleSide,metalness:.4,roughness:.45}), deck:std('deck',{color:0xffffff,map:pgTex(T,'deck')}),
     giwa:std('giwa',{color:0xffffff,map:pgTex(T,'giwa'),roughness:.7}), seam:std('seam',{color:0xffffff,map:pgTex(T,'seam'),roughness:.55,metalness:.3}), roofFlat:std('roofFlat',{color:0xb9b4ab}),
     grass:std('grass',{color:0xffffff,map:pgTex(T,'grass')}), pave:std('pave',{color:0xffffff,map:pgTex(T,'pave')}), gravel:std('gravel',{color:0xffffff,map:pgTex(T,'gravel')}), dark:std('dark',{color:0x2b2d30,roughness:.6}),
-    water:std('water',{color:0x5f8ea6,roughness:.05,metalness:.6,transparent:true,opacity:.88}), soil:std('soil',{color:0x8a7a62}), pv:std('pv',{color:0x1e2a3a,roughness:.25,metalness:.6}),
+    paddy:std('paddy',{color:0xb8c86a,roughness:.9}), water:std('water',{color:0x5f8ea6,roughness:.05,metalness:.6,transparent:true,opacity:.88}), soil:std('soil',{color:0x8a7a62}), pv:std('pv',{color:0x1e2a3a,roughness:.25,metalness:.6}),
     trunk:std('trunk',{color:0x5e4a3a}), leaf1:std('leaf1',{color:0x6e9257,roughness:.95}), leaf2:std('leaf2',{color:0x86a865,roughness:.95}), leaf3:std('leaf3',{color:0x587e4a,roughness:.95}), bloom:std('bloom',{color:0xf0e2e6}),
     rail:std('rail',{color:0x9fb3bd,roughness:.1,metalness:.3,transparent:true,opacity:.35,depthWrite:false}), lamp:std('lamp',{color:0xfff2d6,emissive:0xffcf8a,emissiveIntensity:0}),
     jar:std('jar',{color:0x5a3a28,roughness:.35}), people:new T.MeshStandardMaterial({vertexColors:true,roughness:.85}), accent:std('accent',{color:accent,roughness:.5,metalness:.2}),
@@ -4791,7 +4846,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
   const V=pgVolumes(P,R);
   // 조작: 들어 올리기 · 묻기 · 캔틸레버 · 탑 · 기단
   const lift=P.ops.has('pilotis')&&!P.ops.has('sink')?fh*1.05:0;
-  if(P.ops.has('cantilever')){ const top=V.filter(v=>v.role!=='link'&&v.role!=='tower').sort((a,b)=>(b.y0+b.n)-(a.y0+a.n))[0]; if(top&&(top.y0+top.n)>=2){ if(top.n>1){ top.n-=1; V.push(Object.assign({},top,{y0:top.y0+top.n,n:1,x:top.x+top.w*.22,w:top.w*1.05,role:'cant'})); } else { top.x+=top.w*.2; top.role='cant'; } } }
+  if(P.ops.has('cantilever')){ const top=V.filter(v=>v.role!=='link'&&v.role!=='tower').sort((a,b)=>(b.y0+b.n)-(a.y0+a.n))[0]; if(top&&(top.y0+top.n)>=2){ if(top.role==='plate'){ top.w*=1.25; top.x+=top.w*.12; top.role='plate'; } else if(top.n>1){ top.n-=1; V.push(Object.assign({},top,{y0:top.y0+top.n,n:1,x:top.x+top.w*.22,w:top.w*1.05,role:'cant'})); } else { top.x+=top.w*.2; top.role='cant'; } } }
   if(P.ops.has('tower')&&!V.some(v=>v.role==='tower')){ const m=V[0]; V.push({x:m.x+m.w*.32,z:m.z-m.d*.22,w:Math.min(5,m.w*.3),d:Math.min(5,m.d*.35),y0:m.y0,n:m.n+2,rot:m.rot,role:'tower'}); }
   if(P.ops.has('twin')&&P.ops.has('bridge')&&V.length>=2&&!V.some(v=>v.role==='link')){ const a=V[0],b=V[1]; const y=Math.max(1,Math.min(a.y0+a.n,b.y0+b.n)-1); V.push({x:(a.x+b.x)/2,z:(a.z+b.z)/2,w:Math.abs(b.x-a.x)-(a.w+b.w)/2+1,d:2.4,y0:y,n:1,rot:0,role:'link',skin:'glass'}); }
   const solidSkin=id=>PG_SKIN[id]&&PG_SKIN[id][0]==='solid';
@@ -4810,7 +4865,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
     switch(style){
      case 'ribbon': out.push([-L/2+m,L/2-m,1,Math.min(h-.45,2.3)]); break;
      case 'full': if(side==='f'||side==='b'||L<9) out.push([-L/2+.45,L/2-.45,.12,h-.32]); else punch(2.2,2.2,.6); break;
-     case 'slit': { const n=Math.max(1,Math.floor(L/2.6)); for(let i=0;i<n;i++){ const cx=-L/2+1+(L-2)*(i+.3+.4*((i*7+fi*3)%5)/5)/n; out.push([cx-.15,cx+.15,.25,h-.3]); } break; }
+     case 'slit': { const n=Math.max(1,Math.floor(L/2.6)); for(let i=0;i<n;i++){ const cx=-L/2+1+(L-2)*(i+.3+.4*((i*7+side.charCodeAt(0))%5)/5)/n; out.push([cx-.15,cx+.15,.25,h-.3]); } break; }
      case 'deep': case 'punch': case 'lattice': punch(style==='deep'?1.4:1.3,1.6,.9); break;
      case 'corner': out.push([L/2-Math.min(4,L*.45),L/2-.05,.4,h-.35]); if(L>8) punch(1.2,1.5,.9); break;
      case 'frame': if(side==='f') out.push([-L*.34,L*.34,.35,h-.4]); else punch(1,1.2,1); break;
@@ -4850,7 +4905,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
       if(P.ops.has('eaves')&&!CRV&&v.role!=='tier'&&v.role!=='plate'){ boxM(fg,w+3.4,.3,d+3.4,0,.55,0,M.white,0); }
       if(CRV&&v.role!=='big'){ mesh(rrGeo(w,d,.6,CR),M.slab,fg,0,0,0); } else { boxM(fg,w,.12,d,0,0,0,M.roofFlat,0,false); const ph=.6; [[w,ph,.25,0,d/2-.125],[w,ph,.25,0,-d/2+.125],[.25,ph,d,w/2-.125,0],[.25,ph,d,-w/2+.125,0]].forEach(([a,b,c,x,z])=>boxM(fg,a,b,c,x,0,z,par,tm)); }
       if(kind==='green'||P.ops.has('roofgarden')||v.role==='tier'){ const ex=v.role==='tier'&&!high?Math.max(1.2,v.exp||2):d-.6; const gz=d/2-.3-ex/2; boxM(fg,w-.6,.35,ex,0,.05,gz,M.grass,4,false); const n=Math.floor(w*ex/7); for(let i=0;i<n;i++){ const s=.35+R()*.45; const b=new T.Mesh(pgPeople(T).lobe,[M.leaf1,M.leaf2,M.leaf3][i%3]); b.scale.set(s,s*.7,s); b.position.set((R()-.5)*(w-1.6),.4+s*.4,gz+(R()-.5)*(ex-1)); b.castShadow=true; fg.add(b); } if(high&&w*d>60&&R()<.8) pgTree(T,M,fg,(R()-.5)*(w-4)*.6,(R()-.5)*(d-4)*.6,.55,2,.4); if(v.role==='tier'){ const r=new T.Mesh(new T.BoxGeometry(w,1.05,.05),M.rail); r.position.set(0,.55+.5,d/2-.05); fg.add(r); } }
-      else if(high&&w*d>40&&!CRV){ boxM(fg,2.2,1.1,1.6,w*.25,.1,-d*.2,M.ghost,0); }
+      else if(high&&w>7&&d>7&&!CRV){ boxM(fg,2.2,1.1,1.6,w*.25,.1,-d*.2,M.ghost,0); }
       if(high&&P.ops.has('solar')){ for(let i=0;i<Math.floor((w-2)/1.2);i++) for(let j=0;j<Math.floor((d-2)/2.4);j++){ const p=new T.Mesh(new T.BoxGeometry(1.05,.05,1.8),M.pv); p.position.set(-w/2+1.6+i*1.2,.9,-d/2+1.6+j*2.4); p.rotation.x=-.45; p.castShadow=true; fg.add(p); } }
       if(high&&P.ops.has('skylight')){ const s=Math.min(3,w*.25); const g=boxM(fg,s,.9,s,0,.1,0,M.glass,0,false); g.userData.glass=true; boxM(fg,s+.3,.12,s+.3,0,.95,0,M.frame,0); }
       return; }
@@ -4925,7 +4980,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
     else { const n=Math.round(H/.18); for(let i=0;i<n;i++){ const t=(i+1)/n; const st=new T.Mesh(new T.BoxGeometry(1.5,.12,.34),M.white); st.position.set(x0,t*H-.06,m.z+run/2-t*run); st.castShadow=true; bldg.add(st); } const r=new T.Mesh(new T.BoxGeometry(.04,.04,Math.hypot(run,H)),M.frame); r.position.set(x0+.75,H/2+1,m.z); r.rotation.x=Math.atan2(H,run); bldg.add(r); } }
   if(P.ops.has('spiral')){ const m=V[0]; const H=(m.y0+m.n)*fh+lift; const cx=m.x+m.w/2+2, cz=m.z+m.d/2-2; const n=Math.round(H/.2); for(let i=0;i<n;i++){ const a=i*.42; const st=new T.Mesh(new T.BoxGeometry(1.5,.08,.42),M.white); st.position.set(cx+Math.cos(a)*.85,i*.2+.1,cz+Math.sin(a)*.85); st.rotation.y=-a; st.castShadow=true; bldg.add(st); } const p=new T.Mesh(new T.CylinderGeometry(.12,.12,H+1,10),M.frame); p.position.set(cx,H/2,cz); bldg.add(p); }
   if(P.ops.has('canopy')){ const m=V[0]; const c=new T.Mesh(new T.BoxGeometry(m.w*.5,.25,4),M.frame); c.position.set(m.x-m.w*.18,lift+3,m.z+m.d/2+2); c.castShadow=true; bldg.add(c); }
-  if(P.ops.has('nuru')){ const m=V[0]; const g=new T.Group(); g.position.set(m.x-m.w/2-3,0,m.z+m.d/2-3); for(const [a,b] of [[-1,-1],[1,-1],[-1,1],[1,1]]){ const c=new T.Mesh(new T.CylinderGeometry(.16,.18,2.2,10),M.wood); c.position.set(a*2,1.1,b*2); c.castShadow=true; g.add(c); } const fl=new T.Mesh(pgBoxGeo(T,5,.25,5,1.2),M.deck); fl.position.y=2.3; fl.castShadow=true; g.add(fl); for(const [a,b] of [[-1,-1],[1,-1],[-1,1],[1,1]]){ const c=new T.Mesh(new T.CylinderGeometry(.13,.13,2.6,10),M.wood); c.position.set(a*2,3.7,b*2); g.add(c); } const rg=new T.Group(); rg.position.y=5; g.add(rg); roofTop(rg,{role:'nuru'},4.4,4.4,'hanok','stucco'); bldg.add(g); }
+  if(P.ops.has('nuru')){ const m=V[0]; const g=new T.Group(); g.position.set(m.x-m.w/2-4.8,0,m.z+m.d/2-1.5); for(const [a,b] of [[-1,-1],[1,-1],[-1,1],[1,1]]){ const c=new T.Mesh(new T.CylinderGeometry(.16,.18,2.2,10),M.wood); c.position.set(a*2,1.1,b*2); c.castShadow=true; g.add(c); } const fl=new T.Mesh(pgBoxGeo(T,5,.25,5,1.2),M.deck); fl.position.y=2.3; fl.castShadow=true; g.add(fl); for(const [a,b] of [[-1,-1],[1,-1],[-1,1],[1,1]]){ const c=new T.Mesh(new T.CylinderGeometry(.13,.13,2.6,10),M.wood); c.position.set(a*2,3.7,b*2); g.add(c); } const rg=new T.Group(); rg.position.y=5; g.add(rg); roofTop(rg,{role:'nuru'},4.4,4.4,'hanok','stucco'); bldg.add(g); }
   // 데크
   if(P.ops.has('deck')){ V.filter(v=>v.y0<=0&&v.role!=='tower').slice(0,3).forEach(v=>{ const d=new T.Mesh(pgBoxGeo(T,v.w+2.4,.4,v.d+2.4,1.6),M.deck); d.position.set(v.x,lift+.2,v.z); d.rotation.y=v.rot||0; d.receiveShadow=true; d.castShadow=true; bldg.add(d); }); }
   // 테라스 난간
@@ -4933,31 +4988,66 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
   // ---------- 대지 ----------
   const bb=new T.Box3().setFromObject(bldg); const bw=bb.max.x-bb.min.x, bd=bb.max.z-bb.min.z; const cx=(bb.min.x+bb.max.x)/2, cz=(bb.min.z+bb.max.z)/2;
   const yardD=(P.ops.has('yard')||P.ops.has('pool')||P.ops.has('plaza')||P.ops.has('sunken'))?20:13; const roadZ=bb.max.z+yardD; const lotW=Math.max(bw+16,34); const lotZ0=bb.min.z-9, lotZ1=roadZ-7.5; const lotD=lotZ1-lotZ0; const front=lotZ1;
-  const gnd=new T.Mesh(new T.CircleGeometry(220,48),M.grass); gnd.material=M.grass; gnd.rotation.x=-Math.PI/2; gnd.position.y=-.02; gnd.receiveShadow=true; site.add(gnd); M.grass.map.repeat&&0;
-  const lot=new T.Mesh(pgBoxGeo(T,lotW,.06,lotD,6),P.ground==='gravel'?M.gravel:M.pave); lot.position.set(cx,-.02,(lotZ0+lotZ1)/2); lot.receiveShadow=true; site.add(lot);
-  const lawn=new T.Mesh(pgBoxGeo(T,lotW-4,.08,lotD*.45,4),M.grass); lawn.position.set(cx,0,lotZ0+lotD*.22); lawn.receiveShadow=true; if(P.site!=='city'&&P.site!=='alley') site.add(lawn);
-  if(P.ops.has('sink')){ const eh=fh*.78, cd=P.ops.has('sunken')?7:5.5; const x0=bb.min.x-7, x1=bb.max.x+7, z0=bb.min.z-9, zb=bb.max.z, zf=bb.max.z+cd; const earthMats=[M.stone,M.stone,M.grass,M.grass,M.stone,M.stone];
+  const SITE=P.site||'flat'; const hasRoad=!['forest','mountain'].includes(SITE);
+  const padX0=bb.min.x-7, padX1=bb.max.x+7, padZ0=bb.min.z-9, padZ1=roadZ+7;
+  const away=(x,z)=>{ const dx=Math.max(padX0-x,0,x-padX1), dz=Math.max(padZ0-z,0,z-padZ1); return Math.min(1,Math.hypot(dx,dz)/22); };
+  const nz=(x,z)=>Math.sin(x*.043+1.3)*Math.cos(z*.051+.4)+.5*Math.sin(x*.11+z*.07+2)+.25*Math.sin(x*.23-z*.19);
+  const sm=t=>t*t*(3-2*t);
+  const Hf=(x,z)=>{ const a=sm(away(x,z)); switch(SITE){
+    case 'slope': return Math.max(0,padZ0-z)*.34*sm(Math.min(1,Math.max(0,padZ0-z)/14))+a*nz(x,z)*1.2+Math.max(0,Math.abs(x-cx)-lotW/2)*.08*Math.max(0,padZ0+20-z)/20;
+    case 'mountain': return a*(5+nz(x,z)*4)+Math.max(0,padZ0-25-z)*.45+Math.max(0,Math.abs(x-cx)-60)*.25;
+    case 'forest': return a*(1.4+nz(x,z)*1.6);
+    case 'water': return z<padZ0+2?-Math.min(2.2,(padZ0+2-z)*.35):a*nz(x,z)*.5;
+    case 'sea': return z<padZ0+2?-Math.min(3,(padZ0+2-z)*.22):a*nz(x,z)*.4;
+    case 'field': case 'village': case 'suburb': case 'flat': return a*nz(x,z)*.5;
+    default: return 0; } };
+  { const g=new T.PlaneGeometry(520,520,130,130); g.rotateX(-Math.PI/2); const pos=g.attributes.position, uv=g.attributes.uv; const col=[]; const c=new T.Color();
+    for(let i=0;i<pos.count;i++){ const x=pos.getX(i)+cx, z=pos.getZ(i)+cz; const h=Hf(x,z); pos.setY(i,h-.03); uv.setXY(i,uv.getX(i)*130,uv.getY(i)*130);
+      if((SITE==='sea'||SITE==='water')&&h<-.15) c.setRGB(1,.93,.72); else if(SITE==='mountain'&&h>9) c.setRGB(.86,.88,.8); else if(SITE==='field'&&away(x,z)>.1) c.setRGB(.97,1,.86); else c.setRGB(1,1,1); col.push(c.r,c.g,c.b); }
+    g.setAttribute('color',new T.Float32BufferAttribute(col,3)); g.computeVertexNormals(); const gm=M.grass.clone(); gm.vertexColors=true; const gnd=new T.Mesh(g,gm); gnd.position.set(cx,0,cz); gnd.receiveShadow=true; site.add(gnd); }
+  const H=(x,z)=>Hf(x,z);
+  const lot=new T.Mesh(pgBoxGeo(T,lotW,.06,lotD,6),P.ground==='gravel'||SITE==='forest'||SITE==='mountain'?M.gravel:M.pave); lot.position.set(cx,-.02,(lotZ0+lotZ1)/2); lot.receiveShadow=true; site.add(lot);
+  const lawn=new T.Mesh(pgBoxGeo(T,lotW-4,.08,lotD*.45,4),M.grass); lawn.position.set(cx,0,lotZ0+lotD*.22); lawn.receiveShadow=true; if(SITE!=='city'&&SITE!=='alley') site.add(lawn);
+  if(P.ops.has('sink')){ const eh=fh*.78, cd=P.ops.has('sunken')?7:5.5; const x0=bb.min.x-7, x1=bb.max.x+7, z0=bb.min.z-9, zf=bb.max.z+cd; const earthMats=[M.stone,M.stone,M.grass,M.grass,M.stone,M.stone];
     const eb=(ax,bx,az,bz)=>{ if(bx-ax<.2||bz-az<.2) return; const o=new T.Mesh(pgBoxGeo(T,bx-ax,eh,bz-az,3),earthMats); o.position.set((ax+bx)/2,eh/2,(az+bz)/2); o.castShadow=true; o.receiveShadow=true; site.add(o); };
     eb(x0,x1,z0,bb.min.z); eb(x0,bb.min.x,bb.min.z,zf); eb(bb.max.x,x1,bb.min.z,zf); eb(x0,x1,zf,zf+5);
-    for(let i=0;i<8;i++){ const st=new T.Mesh(new T.BoxGeometry(3,eh*(i+1)/8,.4),M.stone); st.position.set(bb.max.x-2.5,eh*(i+1)/16,zf+.2-i*.4+3.4); st.castShadow=true; site.add(st); }
-    for(let i=0;i<6;i++) pgTree(T,M,life,x0+3+R()*(x1-x0-6),z0+2+R()*5,.8+R()*.4,i%3,eh); }
-  const road=new T.Mesh(new T.PlaneGeometry(400,9),M.dark); road.rotation.x=-Math.PI/2; road.position.set(cx,.01,roadZ); road.receiveShadow=true; site.add(road);
-  const lines=[]; for(let i=-20;i<20;i++){ const l=new T.Mesh(new T.PlaneGeometry(3,.15),M.white); l.rotation.x=-Math.PI/2; l.position.set(cx+i*7,.02,roadZ); site.add(l); lines.push(l); }
-  const walk=new T.Mesh(pgBoxGeo(T,400,.14,3,3),M.pave); walk.position.set(cx,0,roadZ-6); walk.receiveShadow=true; site.add(walk);
-  if(P.site==='slope'){ const back=new T.Mesh(pgBoxGeo(T,lotW+60,fh*1.6,60,4),M.grass); back.position.set(cx,0,bb.min.z-30); back.receiveShadow=true; back.castShadow=true; site.add(back); const wall=new T.Mesh(pgBoxGeo(T,lotW+60,fh*1.6,.6,2.4),M.stone); wall.position.set(cx,0,bb.min.z-.4); wall.castShadow=true; site.add(wall); for(let i=0;i<10;i++) pgTree(T,M,life,cx-30+i*6.5+R()*3,bb.min.z-8-R()*20,.9+R()*.4,i%3,fh*1.6); }
-  if(P.site==='water'||P.site==='sea'){ const wt=new T.Mesh(new T.PlaneGeometry(P.site==='sea'?900:160,P.site==='sea'?400:60),M.water); wt.rotation.x=-Math.PI/2; wt.position.set(cx,.05,lotZ1+(P.site==='sea'?200:30)); site.add(wt); road.visible=false; walk.visible=false; lines.forEach(l=>l.visible=false); const dock=new T.Mesh(pgBoxGeo(T,4,.3,14,1.6),M.deck); dock.position.set(cx+bw*.3,0,road.position.z+6); site.add(dock); }
-  if(P.site==='forest'||P.site==='mountain'||P.site==='field'||P.site==='flat'||P.site==='suburb'){ const n=P.site==='forest'?44:P.site==='field'?8:14; for(let i=0;i<n;i++){ const a=R()*Math.PI*2, rr=Math.max(bw,bd)*.75+8+R()*(P.site==='forest'?36:30); const x=cx+Math.cos(a)*rr, z=cz+Math.sin(a)*rr*.9; if(z>lotZ0-2&&z<roadZ+8&&Math.abs(x-cx)<lotW/2+2) continue; pgTree(T,M,life,x,z,.85+R()*.6,P.site==='forest'?(i%3?1:0):i%3,0); } }
-  if(P.site==='mountain'||P.site==='sea'){ const mm=new T.MeshStandardMaterial({color:0x9fb0a8,roughness:1,transparent:true,opacity:.75}); mm.color.convertSRGBToLinear(); for(let i=0;i<6;i++){ const c=new T.Mesh(new T.ConeGeometry(40+R()*40,25+R()*30,7),mm); c.position.set(-160+i*65,10,-170-R()*40); c.scale.y=.8; site.add(c); } }
-  if(P.site==='city'||P.site==='alley'||P.site==='suburb'||P.site==='village'){ const gap=P.site==='alley'?2.2:4.5; [[-1],[1]].forEach(([sg])=>{ for(let k=0;k<3;k++){ const w=8+R()*6, d=10+R()*8, h=P.site==='village'?fh:P.site==='suburb'?fh*2:fh*(3+Math.floor(R()*4)); const x=cx+sg*(bw/2+gap+w/2)+sg*k*(w+3), z=cz-k*2+(R()-.5)*4; const g=new T.Mesh(pgBoxGeo(T,w,h,d,P.site==='village'||P.site==='suburb'?3:12.8),P.site==='city'||P.site==='alley'?M.facade:M.ghost); g.position.set(x,h/2,z); g.castShadow=true; g.receiveShadow=true; site.add(g); if(P.site==='village'){ const sh=new T.Shape(); sh.moveTo(-w/2-.5,0); sh.lineTo(0,w*.35); sh.lineTo(w/2+.5,0); const eg=new T.ExtrudeGeometry(sh,{depth:d+1,bevelEnabled:false}); eg.translate(0,0,-(d+1)/2); const rf=new T.Mesh(eg,M.giwa); rf.position.set(x,h,z); rf.castShadow=true; site.add(rf); } } }); const bk=new T.Mesh(pgBoxGeo(T,lotW+30,fh*4,8,12.8),P.site==='city'?M.facade:M.ghost); bk.position.set(cx,fh*2,bb.min.z-10); if(P.site==='city'||P.site==='alley') site.add(bk); }
+    for(let i=0;i<8;i++){ const st=new T.Mesh(new T.BoxGeometry(3,eh*(i+1)/8,.4),M.stone); st.position.set(bb.max.x-2.5,eh*(i+1)/16,zf+.2-i*.4+3.4); st.castShadow=true; site.add(st); } }
+  // 길
+  const roadW=SITE==='alley'?5:SITE==='field'||SITE==='village'?6:9; const lines=[];
+  const road=new T.Mesh(new T.PlaneGeometry(520,roadW),SITE==='field'||SITE==='village'?M.gravel:M.dark); road.rotation.x=-Math.PI/2; road.position.set(cx,.01,roadZ); road.receiveShadow=true;
+  const walk=new T.Mesh(pgBoxGeo(T,520,.14,3,3),M.pave); walk.position.set(cx,0,roadZ-roadW/2-1.5); walk.receiveShadow=true;
+  if(hasRoad){ site.add(road,walk); if(roadW>=9) for(let i=-30;i<30;i++){ const l=new T.Mesh(new T.PlaneGeometry(3,.15),M.white); l.rotation.x=-Math.PI/2; l.position.set(cx+i*7,.02,roadZ); site.add(l); lines.push(l); } }
+  else { const pth=new T.Mesh(pgBoxGeo(T,3,.1,40,3),M.gravel); pth.position.set(cx+bw*.2,0,lotZ1+18); if(SITE==='forest'||SITE==='mountain') site.add(pth); }
+  // 주변 건물: 카메라 쪽(오른쪽 앞)은 비워 둠
+  const okSpot=(x,z,w,d)=>!(x+w/2>bb.min.x-2&&z+d/2>bb.min.z-2)&&!(x+w/2>padX0&&x-w/2<padX1&&z+d/2>padZ0&&z-d/2<padZ1);
+  const ctxBox=(x,z,w,d,h,mat,tm)=>{ const g=new T.Mesh(pgBoxGeo(T,w,h,d,tm),mat); g.position.set(x,H(x,z)+h/2,z); g.castShadow=true; g.receiveShadow=true; site.add(g); return g; };
+  const gableOn=(x,z,w,d,h,mat)=>{ const sh=new T.Shape(); sh.moveTo(-w/2-.5,0); sh.lineTo(0,Math.min(w,d)*.36); sh.lineTo(w/2+.5,0); const eg=new T.ExtrudeGeometry(sh,{depth:d+1,bevelEnabled:false}); eg.translate(0,0,-(d+1)/2); const rf=new T.Mesh(eg,mat); rf.position.set(x,H(x,z)+h,z); rf.castShadow=true; site.add(rf); };
+  if(SITE==='city'||SITE==='alley'){ const gap=SITE==='alley'?1.4:4; for(let row=0;row<3;row++) for(let k=0;k<7;k++){ const w=8+R()*7, d=10+R()*7, h=fh*(2+Math.floor(R()*(SITE==='alley'?3:7))); const x=bb.min.x-gap-w/2-k*(w+2.5)+(row?R()*6:0), z=cz+row*-(d+6)+(row?0:(R()-.5)*3); if(!okSpot(x,z,w,d)&&row===0) continue; ctxBox(x,z,w,d,h,M.facade,12.8); }
+    for(let k=0;k<6;k++){ const w=9+R()*8, d=9+R()*6, h=fh*(3+Math.floor(R()*6)); const x=cx+k*(w+3)-6, z=bb.min.z-gap-d/2-3-R()*3; ctxBox(x,z,w,d,h,M.facade,12.8); }
+    for(let k=0;k<8;k++){ const w=9+R()*6, d=10, h=fh*(2+Math.floor(R()*4)); const x=cx-18-k*(w+3), z=roadZ+roadW/2+3+d/2; ctxBox(x,z,w,d,h,M.facade,12.8); }
+    if(hasRoad) for(let i=0;i<6;i++){ const car=new T.Mesh(new T.BoxGeometry(4.2,1.3,1.8),i%3?M.frame:M.slab); car.position.set(cx-40+i*14+R()*4,.75,roadZ+(i%2?1.8:-1.8)); car.castShadow=true; site.add(car); }
+    for(let i=0;i<10;i++){ const x=cx-50+i*10; pgTree(T,M,life,x,walk.position.z-.2,.65,0,0); } }
+  if(SITE==='suburb'||SITE==='village'){ for(let k=0;k<14;k++){ const a=R()*Math.PI*2, rr=Math.max(bw,bd)/2+16+R()*40; const x=cx+Math.cos(a)*rr, z=cz+Math.sin(a)*rr; const w=7+R()*4, d=8+R()*4, h=SITE==='village'?fh*.95:fh*(1+Math.floor(R()*2)); if(!okSpot(x,z,w,d)) continue; ctxBox(x,z,w,d,h,SITE==='village'?M.ghost:M.ghost,3); gableOn(x,z,w,d,h,SITE==='village'?M.giwa:M.seam); if(SITE==='village'){ const sw=new T.Mesh(pgBoxGeo(T,w+6,1.4,.5,2.4),M.stone); sw.position.set(x,H(x,z)+.7,z+d/2+2.5); sw.castShadow=true; site.add(sw); } } }
+  if(SITE==='field'){ for(let i=-6;i<=6;i++) for(let j=-4;j<=3;j++){ const x=cx+i*16, z=cz+j*14-6; if(Math.abs(x-cx)<lotW/2+6&&z>padZ0-6&&z<padZ1+4) continue; const pd=new T.Mesh(new T.PlaneGeometry(14.6,12.6),(i+j)%4===0?M.water:M.paddy||M.grass); pd.rotation.x=-Math.PI/2; pd.position.set(x,H(x,z)+.04,z); pd.receiveShadow=true; site.add(pd); } }
+  if(SITE==='water'||SITE==='sea'){ const wt=new T.Mesh(new T.PlaneGeometry(1400,SITE==='sea'?700:240),M.water); wt.rotation.x=-Math.PI/2; wt.position.set(cx,-.75,padZ0-(SITE==='sea'?350:120)); site.add(wt); const dock=new T.Mesh(pgBoxGeo(T,3,.3,16,1.6),M.deck); dock.position.set(cx-bw*.2,.05,padZ0-5); site.add(dock); for(let k=0;k<5;k++){ const pst=new T.Mesh(new T.CylinderGeometry(.12,.12,2,8),M.wood); pst.position.set(cx-bw*.2+(k%2?1.3:-1.3),-.6,padZ0-11+k*3.6); site.add(pst); }
+    if(SITE==='water') for(let i=0;i<40;i++){ const x=cx-60+R()*120, z=padZ0-1-R()*3; const rd=new T.Mesh(new T.ConeGeometry(.12,1.2+R(),5),M.leaf3); rd.position.set(x,H(x,z)+.5,z); site.add(rd); } }
+  if(SITE==='mountain'||SITE==='sea'||SITE==='field'||SITE==='forest'){ const mm=new T.MeshStandardMaterial({color:0x8fa3a0,roughness:1,transparent:true,opacity:.72,fog:true}); mm.color.convertSRGBToLinear(); for(let i=0;i<8;i++){ const c=new T.Mesh(new T.ConeGeometry(50+R()*60,30+R()*45,8),mm); c.position.set(cx-280+i*80+R()*20,8,cz-230-R()*60); c.scale.z=.7; site.add(c); } }
+  // 나무 (지형 위)
+  { const nT=SITE==='forest'?110:SITE==='mountain'?60:SITE==='slope'?34:SITE==='field'?10:SITE==='city'||SITE==='alley'?0:18;
+    for(let i=0;i<nT;i++){ const a=R()*Math.PI*2, rr=Math.max(bw,bd)*.6+9+R()*(SITE==='forest'?70:50); const x=cx+Math.cos(a)*rr, z=cz+Math.sin(a)*rr*.95; if(away(x,z)<.08) continue; if((SITE==='water'||SITE==='sea')&&z<padZ0+3) continue; if(x>bb.max.x+4&&z>bb.max.z+4&&rr<45) continue;
+      const kind=SITE==='forest'||SITE==='mountain'?(R()<.55?1:R()<.5?0:2):i%3; pgTree(T,M,life,x,z,.8+R()*.7,kind,H(x,z)-.05); }
+    if(SITE==='forest') for(let i=0;i<70;i++){ const x=cx+(R()-.5)*170, z=cz+(R()-.5)*170; if(away(x,z)<.1) continue; const b=new T.Mesh(pgPeople(T).lobe,[M.leaf1,M.leaf2,M.leaf3][i%3]); const s=.5+R()*.7; b.scale.set(s,s*.6,s); b.position.set(x,H(x,z)+s*.3,z); site.add(b); }
+    if(SITE==='mountain') for(let i=0;i<24;i++){ const x=cx+(R()-.5)*200, z=cz+(R()-.5)*200; if(away(x,z)<.2) continue; const rk=new T.Mesh(new T.DodecahedronGeometry(.8+R()*2,0),M.stone); rk.position.set(x,H(x,z)+.3,z); rk.rotation.set(R()*3,R()*3,0); rk.castShadow=true; site.add(rk); } }
+  if(SITE==='slope'){ const wall=new T.Mesh(pgBoxGeo(T,lotW,Math.max(.6,H(cx,padZ0-6)),.6,2.4),M.stone); wall.position.set(cx,Math.max(.6,H(cx,padZ0-6))/2,padZ0-.5); wall.castShadow=true; site.add(wall); }
   if(P.ops.has('wall')){ const h=2.4, t=.5; const x0=cx-lotW/2+1.5, x1=cx+lotW/2-1.5, z0=bb.min.z-3, z1=Math.min(front-.5,bb.max.z+5); const wm=P.skin==='conc'?M.conc:M.stone; [[x1-x0,t,(x0+x1)/2,z0],[(x1-x0)/2-2.2,t,x0+((x1-x0)/2-2.2)/2,z1],[(x1-x0)/2-2.2,t,x1-((x1-x0)/2-2.2)/2,z1]].forEach(([L,tt,x,z])=>{ const o=new T.Mesh(pgBoxGeo(T,L,h,tt,2.4),wm); o.position.set(x,h/2,z); o.castShadow=true; o.receiveShadow=true; site.add(o); }); [x0,x1].forEach(x=>{ const o=new T.Mesh(pgBoxGeo(T,t,h,z1-z0,2.4),wm); o.position.set(x,h/2,(z0+z1)/2); o.castShadow=true; site.add(o); }); }
   if(P.ops.has('pool')){ const pw=Math.min(bw*.7,18); const p=new T.Mesh(new T.BoxGeometry(pw,.1,4.5),M.water); p.position.set(cx,.1,bb.max.z+3.6); site.add(p); const e=new T.Mesh(pgBoxGeo(T,pw+.6,.16,5.1,2.4),M.stone); e.position.set(cx,.03,bb.max.z+3.6); e.receiveShadow=true; site.add(e); }
   if(P.ops.has('sunken')&&!P.ops.has('sink')){ const s=new T.Mesh(new T.BoxGeometry(bw*.6,2.4,5),M.stone); s.material=M.stone; s.position.set(cx,-1.2,bb.max.z+3.5); site.add(s); const fl=new T.Mesh(pgBoxGeo(T,bw*.6-.8,.1,4.2,2),M.pave); fl.position.set(cx,-2.3,bb.max.z+3.5); site.add(fl); }
   if(P.ops.has('plaza')){ const pz=new T.Mesh(pgBoxGeo(T,bw+8,.1,8,3),M.pave); pz.position.set(cx,.03,bb.max.z+4.5); site.add(pz); }
   if(P.ops.has('bigtree')&&!P.ops.has('court')) pgTree(T,M,life,cx-bw/2-3.5,bb.max.z+2,1.35,0,0);
   // 가로등 · 사람
-  for(let i=-3;i<=3;i++){ const x=cx+i*12; const p=new T.Mesh(new T.CylinderGeometry(.06,.08,4.2,8),M.dark); p.position.set(x,2.1,walk.position.z-1.2); site.add(p); const h=new T.Mesh(new T.BoxGeometry(.5,.16,.5),M.lamp); h.position.set(x,4.25,walk.position.z-1.2); site.add(h); lights.push(h); }
+  if(hasRoad) for(let i=-3;i<=3;i++){ const x=cx+i*12; const p=new T.Mesh(new T.CylinderGeometry(.06,.08,4.2,8),M.dark); p.position.set(x,2.1,walk.position.z-1.2); site.add(p); const h=new T.Mesh(new T.BoxGeometry(.5,.16,.5),M.lamp); h.position.set(x,4.25,walk.position.z-1.2); site.add(h); lights.push(h); }
   const PPL=pgPeople(T).stand; const np=opt.people===false?0:Math.min(14,4+Math.round(gfa/90));
-  for(let i=0;i<np;i++){ const m=new T.Mesh(PPL[i%PPL.length],M.people); const onWalk=i%3===0; m.position.set(onWalk?cx+(R()-.5)*40:cx+(R()-.5)*bw*.9,0,onWalk?walk.position.z+(R()-.5)*2:bb.max.z+1.5+R()*4); m.rotation.y=R()*Math.PI*2; m.castShadow=true; life.add(m); }
+  for(let i=0;i<np;i++){ const m=new T.Mesh(PPL[i%PPL.length],M.people); const onWalk=i%3===0; m.position.set(onWalk?cx+(R()-.5)*40:cx+(R()-.5)*bw*.9,0,onWalk&&hasRoad?walk.position.z+(R()-.5)*2:bb.max.z+1.5+R()*4); m.rotation.y=R()*Math.PI*2; m.castShadow=true; life.add(m); }
   if(lift) for(let i=0;i<3;i++){ const m=new T.Mesh(PPL[(i+3)%PPL.length],M.people); m.position.set(cx+(R()-.5)*bw*.5,0,cz+(R()-.5)*bd*.4); m.rotation.y=R()*6; m.castShadow=true; life.add(m); }
   // 인스턴스 메시 만들기
   const iMeshes=[]; for(const k in inst){ const it=inst[k]; const im=new T.InstancedMesh(it.geo,it.mat,it.list.length); it.list.forEach((m,i)=>im.setMatrixAt(i,m)); im.instanceMatrix.needsUpdate=true; im.castShadow=!!it.shadow; im.receiveShadow=true; if(k.startsWith('pL')) im.userData.lit=1; if(k.startsWith('pD')||k.startsWith('pL')) im.userData.glass=true; it.grp.add(im); iMeshes.push(im); }
@@ -4971,7 +5061,7 @@ function pgSky(T,night){ const g=new T.SphereGeometry(600,32,16), col=[]; const 
   for(let i=0;i<p.count;i++){ const t=Math.max(0,Math.min(1,p.getY(i)/380)); c.copy(hor).lerp(top,Math.pow(t,.65)); col.push(c.r,c.g,c.b); } g.setAttribute('color',new T.Float32BufferAttribute(col,3)); return new T.Mesh(g,new T.MeshBasicMaterial({vertexColors:true,side:T.BackSide,fog:false,depthWrite:false})); }
 function pgLights(T,sc){ const hemi=new T.HemisphereLight(0xf1eee8,0x8f8677,.8); sc.add(hemi); const fill=new T.DirectionalLight(0xdfe6f0,.28); fill.position.set(-60,50,-40); sc.add(fill);
   const sun=new T.DirectionalLight(0xfff0dc,2); sun.castShadow=true; const sm=innerWidth<700?1536:2560; sun.shadow.mapSize.set(sm,sm); Object.assign(sun.shadow.camera,{left:-55,right:55,top:55,bottom:-55,near:5,far:260}); sun.shadow.bias=-.0005; sun.shadow.normalBias=.02; sc.add(sun); sc.add(sun.target); return {hemi,fill,sun}; }
-function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky,skyN,B=null,P=null; let disposed=false, io=null, ro=null; const st={az:.75,el:.3,dist:60,cy:6,cx:0,cz:0,auto:opt.auto!==false,drag:null,raf:0,t0:0,night:false,clay:false,stage:'full',gap:0,gapT:0,sunA:-.9,vis:true,tz:null,flyT:0};
+function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky,skyN,B=null,P=null; let disposed=false, io=null, ro=null; const st={az:.75,el:.32,dist:60,cy:6,cx:0,cz:0,auto:opt.auto!==false,drag:null,raf:0,t0:0,night:false,clay:false,stage:'full',gap:0,gapT:0,sunA:-.9,vis:true,tz:null,flyT:0};
   el.classList.add('pgv'); el.innerHTML='<div class="pgv-load"><i></i><span>모형을 짓는 중…</span></div>';
   const init=()=>t3Load().then(TT=>{ if(disposed) return; T=TT; R=new T.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true}); R.setPixelRatio(Math.min(2,devicePixelRatio||1)); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; R.toneMappingExposure=1;
     el.querySelector('.pgv-load')&&el.querySelector('.pgv-load').remove(); el.prepend(R.domElement); sc=new T.Scene(); cam=new T.PerspectiveCamera(opt.fov||34,1,.5,2000); L=pgLights(T,sc); sky=pgSky(T,false); skyN=pgSky(T,true); skyN.visible=false; sc.add(sky,skyN); sc.fog=new T.Fog(0xe6e3dc,220,620);
@@ -4990,7 +5080,7 @@ function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky
     floorsAt(now-st.t0); placeCam(); R.render(sc,cam); }
   function floorsAt(t){ B.floors.forEach(fg=>{ const u=fg.userData; const dl=(u.idx||0)*120+(u.roof?60:0); const k=ease((t-dl)/520); fg.position.y=u.ty+st.gap*(u.idx||0)*1.0-(1-k)*4; fg.scale.y=Math.max(.001,k); }); }
   function placeCam(){ const d=st.dist; cam.position.set(st.cx+Math.cos(st.az)*Math.cos(st.el)*d,st.cy+Math.sin(st.el)*d,st.cz+Math.sin(st.az)*Math.cos(st.el)*d); cam.lookAt(st.cx,st.cy,st.cz); }
-  function frame(){ const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); st.cx=c.x; st.cz=c.z; st.cy=Math.max(2,sz.y*.42); const r=Math.max(sz.x,sz.z,sz.y*1.5); st.base=r; st.asp=Math.max(1,1.45/(cam.aspect||1.4)); st.dist=(r*1.55+16)*st.asp; L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+30); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+30; L.sun.shadow.camera.updateProjectionMatrix(); }
+  function frame(){ const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); st.cx=c.x; st.cz=c.z; st.cy=Math.max(2,sz.y*.42); const r=Math.max(sz.x,sz.z,sz.y*1.5); st.base=r; st.asp=Math.max(1,1.45/(cam.aspect||1.4)); st.dist=(r*1.7+22)*st.asp; L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+30); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+30; L.sun.shadow.camera.updateProjectionMatrix(); }
   function light(){ if(!T) return; const n=st.night; const a=st.sunA; L.sun.position.set(st.cx+Math.cos(a)*80,n?28:62+Math.sin(a*.7)*12,st.cz+Math.sin(a)*80+30); L.sun.intensity=n?.15:2; L.sun.color.set(n?0x9fb6ff:(st.stage==='life'||opt.golden?0xffe0b8:0xfff0dc)); L.hemi.intensity=n?.16:.8; L.hemi.color.set(n?0x4a5a8a:0xf1eee8); L.fill.intensity=n?.05:.28; sky.visible=!n; skyN.visible=n; sc.fog.color.set(n?0x1c2238:0xe6e3dc); R.toneMappingExposure=n?1.35:1;
     if(B){ const M=B.M; M.glassLit.emissiveIntensity=n?1.3:0; M.inner.emissiveIntensity=n?.55:0; M.lamp.emissiveIntensity=n?2:0; B.iMeshes.forEach(im=>{ if(im.userData.lit&&!st.clay) im.material=n?M.glassLit:M.glass; }); for(const k in M.C){ const m=M.C[k]; if(m.userData.k&&m.userData.k.startsWith('wall_')&&m.emissive&&m.transparent) m.emissiveIntensity=n?.6:0; } } }
   function applyStage(){ if(!B) return; const s=st.stage; B.site.visible=true; B.mass.visible=s==='mass'; B.bldg.visible=s!=='site'&&s!=='mass'; B.life.visible=s==='life'||s==='full'; const clay=st.clay||s==='clay'||s==='mass';
@@ -5000,7 +5090,7 @@ function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky
   api.nums=()=>B&&B.nums; api.spec=()=>P;
   api.stage=(s,cam)=>{ st.stage=s; applyStage(); if(cam) api.view(cam); };
   api.clay=v=>{ st.clay=v; applyStage(); }; api.night=v=>{ st.night=v; light(); }; api.sun=a=>{ st.sunA=a; light(); }; api.explode=v=>{ st.gapT=v?2.6:0; };
-  api.view=k=>{ if(!B) return; st.auto=k==='spin'; const b=st.base||30; const to={az:st.az,el:st.el,dist:st.dist,cy:st.cy}; const A=st.asp||1; if(k==='top'){ to.el=1.38; to.dist=(b*1.6+18)*A; } else if(k==='eye'){ to.el=.07; to.dist=(b*.95+10)*A; to.cy=1.7+b*.05; } else if(k==='front'){ to.az=Math.PI/2; to.el=.18; to.dist=(b*1.3+12)*A; } else if(k==='aerial'){ to.el=.62; to.dist=(b*1.75+20)*A; } else { to.el=.3; to.dist=(b*1.55+16)*A; to.cy=Math.max(2,(B.bb.max.y-B.bb.min.y)*.42); }
+  api.view=k=>{ if(!B) return; st.auto=k==='spin'; const b=st.base||30; const to={az:st.az,el:st.el,dist:st.dist,cy:st.cy}; const A=st.asp||1; if(k==='top'){ to.el=1.38; to.dist=(b*1.6+18)*A; } else if(k==='eye'){ to.el=.07; to.dist=(b*.95+10)*A; to.cy=1.7+b*.05; } else if(k==='front'){ to.az=Math.PI/2; to.el=.18; to.dist=(b*1.3+12)*A; } else if(k==='aerial'){ to.el=.62; to.dist=(b*1.75+20)*A; } else { to.el=.32; to.dist=(b*1.7+22)*A; to.cy=Math.max(2,(B.bb.max.y-B.bb.min.y)*.42); }
     st.tz={t0:performance.now(),dur:1100,from:{az:st.az,el:st.el,dist:st.dist,cy:st.cy},to}; };
   api.png=()=>{ if(!R) return ''; if(B){ if(st.tz){ for(const key of ['az','el','dist','cy']) st[key]=st.tz.to[key]; st.tz=null; } floorsAt(1e6); placeCam(); } R.render(sc,cam); return R.domElement.toDataURL('image/png'); };
   api.rebuildAnim=()=>{ st.t0=performance.now(); };
@@ -5008,7 +5098,7 @@ function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky
   init(); return api; }
 /* 썸네일: 화면 밖 렌더러 하나로 차례대로 */
 let PGTH=null; const PGTC={};
-function pgThumb(P,w,h){ const key=[P.keys.join('|'),P.base,P.mode].join('#'); if(PGTC[key]) return Promise.resolve(PGTC[key]);
+function pgThumb(P,w,h){ const key=[P.keys.join('|'),P.base,P.mode,P.site].join('#'); if(PGTC[key]) return Promise.resolve(PGTC[key]);
   return t3Load().then(T=>new Promise(res=>{ const go=()=>{ if(!PGTH){ const R=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); R.setPixelRatio(1); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; const sc=new T.Scene(); const L=pgLights(T,sc); sc.add(pgSky(T,false)); sc.fog=new T.Fog(0xe6e3dc,200,600); PGTH={R,sc,L,cam:new T.PerspectiveCamera(32,1,.5,2000)}; }
       const {R,sc,L,cam}=PGTH; R.setSize(w||480,h||340,false); cam.aspect=(w||480)/(h||340); cam.updateProjectionMatrix(); const B=pgBuild(T,P,{people:false}); sc.add(B.root);
       const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); const r=Math.max(sz.x,sz.z,sz.y*1.5); const d=r*1.5+14, az=.75, el=.4; L.sun.position.set(c.x-50,62,c.z-40); L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+25); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+25; L.sun.shadow.camera.updateProjectionMatrix();
@@ -5094,14 +5184,14 @@ const DIK={ /* 단어 → 아이콘 */
  '천창':'skylight','고측창':'clere','슬릿 창':'slit','작은 창':'smallwin','통창':'bigwin','코너 창':'corner','간접광':'soft','빛 우물':'well','그림자 놀이':'shadow','루버 사이 빛':'louver','북측 고른 빛':'north','노을빛':'dusk','아침 해':'dawn','어둠과 대비':'contrast','반사광':'reflect','물에 비친 빛':'reflect','밤의 등불':'lamp','빛의 길':'path',
  '고요한':'calm','명상적':'med','따뜻한':'warm','미니멀':'minimal','대담한':'bold','유쾌한':'fun','원초적':'rough','섬세한':'light','묵직한':'heavy','가벼운':'light','투명한':'clear','소박한':'house','도시적':'city','시적인':'poem','거친':'rough','정제된':'minimal','편안한':'calm','신비로운':'moon','느린':'calm','활기찬':'fun','기념비적':'tower','숨은':'hide','열린':'open','단단한':'heavy','낯선':'star','익숙한':'house','자연스러운':'leaf','깨끗한':'minimal',
  '경사지':'slope','숲':'forest','물가':'water','바다 조망':'sea','산 조망':'mountain','골목':'alley','도심 협소지':'narrow','코너 대지':'corner','남향':'compass','차경':'eye','담장':'wall','경계 흐리기':'blur','골목 잇기':'alley','공공 마당 열기':'people','바람길':'wind','지형 순응':'slope','큰 나무 지키기':'tree','소음 막기':'ear','사생활 지키기':'shield','길에서 물러나기':'yard','들판':'field','오래된 마을':'village','신도시 필지':'grid','눈 많은 곳':'snow',
- '함께 사는 집':'people','1인 가구':'person','작업실 겸 집':'pencil','아이 키우는 집':'kid','노부부의 집':'people','반려동물과 사는 집':'paw','쉐어하우스':'people','다세대':'stack','카페':'cup','갤러리':'picture','도서관':'book','근린생활시설':'shop','게스트하우스':'key','스테이':'key','기숙사':'office','공방':'hammer','교회 · 명상 공간':'chapel','주민 센터':'civic','사무실':'office','복합 문화 공간':'culture','유치원':'kid','주말 주택':'house','학교':'school','상가 주택':'shop','카페 겸 집':'cup','작은 미술관':'picture',
+ '함께 사는 집':'people','1인 가구':'person','작업실 겸 집':'pencil','아이 키우는 집':'kid','노부부의 집':'people','반려동물과 사는 집':'paw','쉐어하우스':'people','다세대':'stack','카페':'cup','갤러리':'picture','도서관':'book','근린생활시설':'shop','게스트하우스':'key','스테이':'key','기숙사':'office','공방':'hammer','교회 · 명상 공간':'chapel','주민 센터':'civic','사무실':'office','복합 문화 공간':'culture','유치원':'kid','주말 주택':'house','학교':'school','상가 주택':'shop','카페 겸 집':'cup','작은 미술관':'picture','박물관':'civic','고층 타워':'tower','공연장':'culture',
  '패시브 하우스':'shield','자연 환기':'wind','태양광 지붕':'solar','빗물 모으기':'drop','리모델링':'recycle','프리패브':'module','모듈러':'module','저층 고밀':'village','건물 녹화':'leaf','재사용 재료':'recycle','경량 목구조':'frame','철골':'frame','RC 벽식':'heavy','라멘 구조':'grid','장스팬':'bar','깊은 처마':'eaves','이중 외피':'louver','지열':'heat','저에너지':'bolt','단열 두껍게':'heavy','외부 차양':'shadow','목재 루버':'louver',
  '한옥':'hanok','처마':'eaves','툇마루':'maru','대청':'maru','마당':'court','담':'wall','서까래':'rafter','창호':'lattice','사랑채와 안채':'twin','누마루':'pilotis','장독대':'jar','온돌':'heat','돌담':'stonewall','골목 마을':'village','차경 정원':'eye','달동네 계단':'moonhouse',
  '물소리':'sound','나무 냄새':'leaf','맨발로 걷는 바닥':'foot','바람이 지나가는':'wind','비 오는 날':'rain','눈 쌓인 마당':'snow','햇볕 드는 창가':'sun','고요한 소리':'calm','거친 손맛':'rough','차가운 금속':'louver','따뜻한 흙':'warm','깊은 그늘':'eaves','높은 천장':'tall','낮고 아늑한 천장':'low','멀리 보이는 수평선':'horizon','숨바꼭질':'hide2','창밖의 계절':'tree','밤하늘 보기':'star',
  '산책하듯 걷는 길':'path','돌아 들어가는 입구':'loop','오르며 보이는 풍경':'stair','머무는 계단':'stair','한 바퀴 도는 회랑':'loop','곧게 뻗은 축':'axis','갈림길':'fork','옥상까지 이어지는 길':'ramp','천천히 내려가는 길':'sunken','안과 밖을 오가는':'threshold','빛을 따라 걷는':'sun','문턱 없는 집':'threshold'};
 const DIC_CAT={space:'court',form:'box',mat:'palette',light:'sun',mood:'calm',site:'mountain',life:'house',tech:'solar',korea:'hanok',sense:'sound',move:'path',color:'palette',master:'pencil'};
 const DN_CATTXT={space:'방과 마당을 어떻게 놓을까',form:'덩어리의 모양',mat:'손에 닿는 재료',light:'빛이 들어오는 방식',mood:'머물 때의 기분',site:'땅과 풍경',life:'누가 무엇을 하는 곳',tech:'구조와 지속가능성',korea:'한국 집의 언어',sense:'몸으로 느끼는 것',move:'걷고 오르는 길',color:'전체의 색',master:'좋아하는 건축가의 방식'};
-const DN_MASTER={'안도 다다오처럼':'AT','르 코르뷔지에처럼':'LC','미스처럼':'MV','피터 줌터처럼':'PZ','자하 하디드처럼':'ZH','SANAA처럼':'SA','BIG처럼':'BI','김수근처럼':'김','승효상처럼':'승','조병수처럼':'조','이타미 준처럼':'IJ','알바 알토처럼':'AA','루이스 칸처럼':'LK','쿠마 겐고처럼':'KK','OMA처럼':'OM','후지모토 소우처럼':'SF'};
+const DN_MASTER={'안도 다다오처럼':'AT','르 코르뷔지에처럼':'LC','미스처럼':'MV','피터 줌터처럼':'PZ','자하 하디드처럼':'ZH','SANAA처럼':'SA','BIG처럼':'BI','김수근처럼':'김','승효상처럼':'승','조병수처럼':'조','이타미 준처럼':'IJ','알바 알토처럼':'AA','루이스 칸처럼':'LK','쿠마 겐고처럼':'KK','OMA처럼':'OM','후지모토 소우처럼':'SF','프랭크 로이드 라이트처럼':'FW','가우디처럼':'AG','렌조 피아노처럼':'RP','노먼 포스터처럼':'NF','헤르조그 & 드 뫼롱처럼':'HM','알바로 시자처럼':'AS','카를로 스카르파처럼':'CS','이토 도요처럼':'TI','반 시게루처럼':'SB','김중업처럼':'중','정기용처럼':'정','조민석처럼':'민','장 누벨처럼':'JN','프랭크 게리처럼':'FG','루이스 바라간처럼':'LB','오스카 니마이어처럼':'ON'};
 const DN_MATPAT={brick:'<path d="M0 4h16M0 8h16M0 12h16M5 0v4M11 4v4M5 8v4M11 12v4" stroke="rgba(255,255,255,.55)" stroke-width="1"/>',wood:'<path d="M4 0v16M8 0v16M12 0v16" stroke="rgba(0,0,0,.22)" stroke-width="1"/>',conc:'<circle cx="4" cy="4" r=".9" fill="rgba(0,0,0,.35)"/><circle cx="12" cy="4" r=".9" fill="rgba(0,0,0,.35)"/><circle cx="4" cy="12" r=".9" fill="rgba(0,0,0,.35)"/><circle cx="12" cy="12" r=".9" fill="rgba(0,0,0,.35)"/>',glass:'<path d="M3 13L13 3M7 15l8-8" stroke="rgba(255,255,255,.8)" stroke-width="1.2"/>',louver:'<path d="M3 0v16M6.5 0v16M10 0v16M13.5 0v16" stroke="rgba(0,0,0,.3)" stroke-width="1.2"/>',perf:'<circle cx="4" cy="4" r="1.3" fill="rgba(0,0,0,.4)"/><circle cx="12" cy="4" r="1.3" fill="rgba(0,0,0,.4)"/><circle cx="8" cy="8" r="1.3" fill="rgba(0,0,0,.4)"/><circle cx="4" cy="12" r="1.3" fill="rgba(0,0,0,.4)"/><circle cx="12" cy="12" r="1.3" fill="rgba(0,0,0,.4)"/>',stone:'<path d="M0 6h9v-6M9 6h7M0 11h5v5M5 11h11M12 11v5" stroke="rgba(0,0,0,.25)" stroke-width="1"/>',tile:'<path d="M0 8h16M8 0v16" stroke="rgba(0,0,0,.18)" stroke-width="1"/>',none:''};
 const DN_MATK={'노출 콘크리트':'conc','벽돌':'brick','붉은 벽돌':'brick','석재':'stone','현무암':'conc','목재':'wood','CLT':'wood','탄화목':'wood','유리':'glass','유글라스':'louver','폴리카보네이트':'louver','금속 패널':'louver','코르텐강':'none','알루미늄 루버':'louver','타공 메탈':'perf','테라코타':'louver','흰 회벽':'none','흙벽':'stone','한지':'tile','기와':'brick','대나무':'wood','타일':'tile','재사용 벽돌':'brick','검은 철':'none','녹색 지붕':'none','자갈 마당':'perf'};
 function dnIcon(k){ if(k.cat==='master'){ return `<i class="dki mono">${esc(DN_MASTER[k.label]||k.label[0])}</i>`; }
@@ -5110,7 +5200,7 @@ function dnIcon(k){ if(k.cat==='master'){ return `<i class="dki mono">${esc(DN_M
 const dnCatIcon=c=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${DIC[DIC_CAT[c]]||DIC.house}</svg>`;
 function dnHint(label){ const m=PGK[label]; if(!m) return '취향의 방향을 바꿔요'; const t=[]; if(m.prog) t.push('용도: '+PG_PROG[m.prog][4]); if(m.skin) t.push('외피: '+PG_SKIN[m.skin][4]); if(m.roof) t.push('지붕: '+(PG_ROOFT[m.roof]||m.roof)); if(m.win) t.push('창: '+PG_WINT[m.win]); if(m.site) t.push('대지: '+PG_SITET[m.site]); if(m.floors) t.push(m.floors===1?'단층':m.floors+'층 이상'); if(m.fh) t.push(m.fh>3.6?'높은 천장':'낮은 천장'); if(m.ops&&m.ops.length) t.push('조작: '+m.ops.map(o=>PG_OPN[o]).filter(Boolean).join('·')); return t.join(' · ')||'취향의 방향을 바꿔요'; }
 
-window.__pgTest=(keys,base,mode,o)=>{ let el=document.getElementById('pgTestBox'); if(!el){ el=document.createElement('div'); el.id='pgTestBox'; el.style.cssText='position:fixed;inset:0;z-index:99999;background:#fff'; document.body.appendChild(el); window.__pgv=PGV(el,{auto:false,wheel:true}); } const P=pgSpec(keys,{base,mode}); window.__pgv.show(P,Object.assign({instant:true},o||{})); return P; };
+window.__pgTest=(keys,base,mode,o)=>{ let el=document.getElementById('pgTestBox'); if(!el){ el=document.createElement('div'); el.id='pgTestBox'; el.style.cssText='position:fixed;inset:0;z-index:99999;background:#fff'; document.body.appendChild(el); window.__pgv=PGV(el,{auto:false,wheel:true}); } const P=pgSpec(keys,{base,mode,site:(o||{}).site}); window.__pgv.show(P,Object.assign({instant:true},o||{})); return P; };
 /* ---------- 취향 랩 v2 화면: 라이브 모형 · 스크롤 장면 · 세 대안 · 아홉 갈래 · 내 기록 ---------- */
 const DV={live:null,main:null,alt:0,specs:[],cur:null,curB:null,names:[],story:null,stage:'full'};
 const DN_STEPS=[['site','01','땅을 읽다','대지와 크기를 정합니다'],['mass','02','덩어리를 놓다','흰 덩어리로 배치를 잡습니다'],['op','03','덩어리를 다듬다','들고, 깎고, 비우고, 쌓습니다'],['skin','04','외피와 빛을 입히다','재료와 창으로 표정을 만듭니다'],['life','05','사람이 사는 장면','나무와 사람, 해 질 녘의 빛']];
@@ -5121,7 +5211,7 @@ function dnComb(n,k){ let c=1; for(let i=0;i<k;i++) c=c*(n-i)/(i+1); return c; }
 /* 라이브 모형 */
 let dnLiveT=0;
 function dnaLive3D(){ const el=$('#dnLive3d'); if(!el) return; if(!DV.live) DV.live=PGV(el,{auto:true}); clearTimeout(dnLiveT);
-  dnLiveT=setTimeout(()=>{ const ex=!state.dna.length; const keys=ex?['마당','목재','박공지붕','따뜻한']:state.dna; const P=pgSpec(keys); DV.live.show(P,{keepCam:true});
+  dnLiveT=setTimeout(()=>{ const ex=!state.dna.length; const keys=ex?['마당','목재','박공지붕','따뜻한']:state.dna; const P=pgSpec(keys,{site:DV.site}); DV.live.show(P,{keepCam:true});
     const cap=$('#dnLiveCap'); if(cap) cap.innerHTML=ex?'<em>예시</em> 단어를 고르면 이 집이 바뀝니다':`<b>${esc(P.progName)}</b><span>${esc(PG_SKIN[P.skin][4])} · ${esc(PG_ROOFT[P.roof])} · ${P.F}층 · ${esc(PG_SITET[P.site])}</span>`; },ex0()?0:240); }
 const ex0=()=>!DV.live||!DV.live.spec();
 /* 결과 */
@@ -5146,7 +5236,7 @@ function dnStoryObserve(){ if(dnStoryIO) dnStoryIO.disconnect(); if(!('Intersect
   const end=$('#dnStoryEnd'); if(end) dnStoryIO.observe(end); }
 function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'); if(!r.n){ box.hidden=true; return; } box.hidden=false; const A=r.arch[0], B2=r.arch[1]||A;
   if(DV.main&&DV.main.dispose){ DV.main.dispose(); DV.main=null; } DV.curB=null; DV.stage='full';
-  DV.specs=[pgSpec(state.dna,{base:A.id,mode:'main'}),pgSpec(state.dna,{base:A.id,mode:'mix'}),pgSpec(state.dna,{base:B2.id,mode:'wild'})];
+  DV.specs=[pgSpec(state.dna,{base:A.id,mode:'main',site:DV.site}),pgSpec(state.dna,{base:A.id,mode:'mix',site:DV.site}),pgSpec(state.dna,{base:B2.id,mode:'wild',site:DV.site})];
   DV.names=[['A','정석안',A.name],['B','혼합안',`${A.name} + ${B2.name}`],['C','실험안',`${B2.name}, 더 과감하게`]];
   const keepSg=$('#dnrSg'); if(keepSg) keepSg.remove();
   const cases=(typeof CASES!=='undefined'?CASES:[]).map(c=>{ let s=0; for(const a of r.arch.slice(0,3)) if(a.cases.includes(c.id)) s+=a===A?3:1.5; for(const t of c.tags) if(state.dna.some(k=>k.includes(t)||t.includes(k))) s+=1; for(const a of r.arch.slice(0,2)) for(const t of a.tags) if(c.tags.includes(t)) s+=1; return {c,s}; }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4);
@@ -5155,7 +5245,7 @@ function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'
     <div class="dnr-l"><div class="dnk">나의 설계 DNA · ${esc(r.code)}</div><h2>${esc(dnaPersona(r))}</h2><p class="dnr-s">${dnaSentence(r)}</p>
       <div class="dnr-act"><button class="btn big" id="dnToConcept">이 방향으로 컨셉 3안 만들기</button><button class="btn ghost" id="dnRec">이 결과 기록하기</button><button class="btn ghost" id="dnShare">결과 복사</button></div></div>
     <div class="dnr-r"><div class="dnr-kw">${state.dna.slice(0,14).map((k,i)=>`<span style="--i:${i}">${DNA_BY[k]?dnIcon(DNA_BY[k]):''}${esc(k)}</span>`).join('')}</div><div class="dnr-name"><b>${esc(A.name)}</b><em>${A.pct}% 맞음 · 단어 ${r.n}개</em></div></div></div>
-  <nav class="dnr-nav" aria-label="결과 둘러보기"><button data-dngo="dnStoryWrap">짓는 순서</button><button data-dngo="dnSpecSec">사양</button><button data-dngo="dnVarSec">아홉 갈래</button><button data-dngo="dnRefSec">참고</button><button data-dngo="dnLib">내 기록</button></nav>
+  <nav class="dnr-nav" aria-label="결과 둘러보기"><button data-dngo="dnStoryWrap">짓는 순서</button><button data-dngo="dnSpecSec">사양</button><button data-dngo="dnVarSec">아홉 갈래</button><button data-dngo="dnTwinSec">닮은 건물</button><button data-dngo="dnRefSec">참고</button><button data-dngo="dnLib">내 기록</button></nav>
   <div class="dns" id="dnStoryWrap">
     <div class="dns-stage"><div class="dns-sticky">
       <div class="dns-3d" id="dnStage3d"></div>
@@ -5164,12 +5254,13 @@ function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'
       <div class="dns-bar" role="group" aria-label="보기">
         <button data-dv="clay" aria-pressed="false" title="흰 스터디 모형">흰 모형</button><button data-dv="night" aria-pressed="false">밤</button><button data-dv="explode" aria-pressed="false" title="층을 띄워 보기">층 펼치기</button>
         <span class="dns-sep"></span><button data-dvv="spin">돌기</button><button data-dvv="aerial">조감</button><button data-dvv="front">정면</button><button data-dvv="eye">눈높이</button><button data-dvv="top">위</button>
-        <label class="dns-sun">해<input type="range" id="dnSun" min="-180" max="0" value="-52"></label><button data-dvx="png" title="그림으로 저장">PNG</button><button data-dvx="rec" class="pri">기록</button></div>
+        <label class="dns-site">대지<select data-dnsite><option value="">단어대로</option><option value="flat">평평한 대지</option><option value="city">도심</option><option value="alley">좁은 골목</option><option value="suburb">신도시 주택가</option><option value="village">오래된 마을</option><option value="forest">숲 속</option><option value="slope">경사지</option><option value="mountain">산자락</option><option value="water">호숫가</option><option value="sea">바닷가</option><option value="field">들판 · 논</option></select></label><label class="dns-sun">해<input type="range" id="dnSun" min="-180" max="0" value="-52"></label><button data-dvx="png" title="그림으로 저장">PNG</button><button data-dvx="rec" class="pri">기록</button></div>
     </div></div>
     <div class="dns-steps"><div class="dns-intro"><span class="lab-k">SCROLL · 짓는 순서</span><h3>스크롤하면 집이 지어집니다</h3><p>고른 단어 ${r.n}개가 어떤 결정으로 이어졌는지, 땅에서 완성까지 다섯 장면으로 보여 드려요. 왼쪽 위에서 세 대안(정석·혼합·실험)을 바꿔 볼 수 있어요.</p></div><div id="dnStory"></div><div class="dns-end" id="dnStoryEnd" data-step="end"><b>완성</b><p>끌어서 돌려 보고, 흰 모형·밤·층 펼치기로 살펴보세요.</p></div></div>
   </div>
   <div class="dnsp zrv" id="dnSpecSec"><div class="dnsp-h"><span class="lab-k">SPEC · 개략 사양</span><h3>이 대안을 숫자로</h3></div><div id="dnSpec"></div></div>
   <div class="dnv zrv" id="dnVarSec"><div class="dnv-h"><div><span class="lab-k">ALL CASES · 경우의 수</span><h3>같은 단어, 아홉 갈래의 건물</h3><p>고른 단어를 열두 방향에 모두 대 보고, 잘 맞는 순서로 아홉 개를 지었어요. 눌러서 위 모형으로 불러오세요.</p></div></div><div class="dnv-row" id="dnVars">${r.arch.slice(0,9).map((a,i)=>`<button class="dnv-c" data-var="${a.id}" style="--i:${i}"><div class="dnv-th"><i></i></div><div class="dnv-b"><em>${a.pct}%</em><b>${esc(a.name)}</b><span>${esc(dnaLine(a,state.dna))}</span></div></button>`).join('')}</div></div>
+  ${bldTwinHTML()}
   <div class="dnsec-h" id="dnRefSec"><div><span class="lab-k">NEXT · 다음 걸음</span><h3 class="dnsec-t">설계를 이어 가는 데 필요한 것</h3></div></div>
   <div class="dnr-grid">
     <div class="dnr-card zrv"><h4>세 갈래</h4>${r.arch.slice(0,3).map((a,i)=>`<div class="dnr-alt"><div class="ico">${CTHUMB.kind(a.shape)}</div><div><b>${i+1}. ${esc(a.name)}</b><p>${esc(dnaLine(a,state.dna))}</p><span class="bar"><i style="width:${a.pct}%"></i></span></div></div>`).join('')}</div>
@@ -5181,9 +5272,9 @@ function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'
   <div class="dnr-sugg zrv"><h4>이 단어도 어울려요</h4><div class="dnchips">${r.sugg.map(k=>`<button type="button" class="dk" data-k="${esc(k)}">+ ${esc(k)}</button>`).join('')}</div></div>`;
   if(keepSg) $('#dnrSg').replaceWith(keepSg);
   DV.main=PGV($('#dnStage3d'),{auto:true,onBuilt:(B,P)=>{ DV.curB=B; const sp=$('#dnSpec'); if(sp){ sp.innerHTML=dnaSpecHTML(P,B.nums); dnCount(sp); } }}); dnaShowAlt(0); dnaReveal(); sgPaint($('#dnrSg'),r,{uSpeed:0.12,uStrength:2.2,uDensity:1.3,cDistance:3.4,positionX:0.8,rotationZ:-20});
-  dnVarThumbs(r); dnaLibRender(); }
+  dnVarThumbs(r); dnaLibRender(); try{ bldGenObserve($('#dnResult')); }catch(e){} }
 let dnVarJob=0;
-function dnVarThumbs(r){ const job=++dnVarJob; const cards=$$('#dnVars .dnv-c'); let i=0; const next=()=>{ if(job!==dnVarJob||i>=cards.length) return; const c=cards[i++]; const P=pgSpec(state.dna,{base:c.dataset.var}); pgThumb(P,520,360).then(url=>{ if(job!==dnVarJob) return; const th=c.querySelector('.dnv-th'); th.innerHTML=`<img src="${url}" alt="">`; c.querySelector('.dnv-b span').textContent=`${PG_SKIN[P.skin][4]} · ${PG_ROOFT[P.roof]} · ${P.F}층`; setTimeout(next,30); }).catch(()=>{}); }; setTimeout(next,600); }
+function dnVarThumbs(r){ const job=++dnVarJob; const cards=$$('#dnVars .dnv-c'); let i=0; const next=()=>{ if(job!==dnVarJob||i>=cards.length) return; const c=cards[i++]; const P=pgSpec(state.dna,{base:c.dataset.var,site:DV.site}); pgThumb(P,520,360).then(url=>{ if(job!==dnVarJob) return; const th=c.querySelector('.dnv-th'); th.innerHTML=`<img src="${url}" alt="">`; c.querySelector('.dnv-b span').textContent=`${PG_SKIN[P.skin][4]} · ${PG_ROOFT[P.roof]} · ${P.F}층`; setTimeout(next,30); }).catch(()=>{}); }; setTimeout(next,600); }
 /* 내 기록 */
 function dnaLibGet(){ const a=lsGet('zip_dna_lib',[]); const b=Array.isArray(state.dnaLib)?state.dnaLib:[]; const m=new Map(); [...a,...b].forEach(x=>{ if(x&&x.id&&!m.has(x.id)) m.set(x.id,x); }); return [...m.values()].sort((x,y)=>y.t-x.t).slice(0,40); }
 function dnaLibSet(list){ lsSet('zip_dna_lib',list); state.dnaLib=list.slice(0,40); try{ touch('dna'); }catch(e){} }
@@ -5201,13 +5292,219 @@ let dnScrollOn=false;
 function dnScroll(){ if(location.hash!=='#dna') return; const v=$('#view-dna'); if(!v) return; const y=scrollY, h=innerHeight; v.style.setProperty('--dnp',Math.min(1,y/(h*.9)).toFixed(3)); const mq=$('#dnMarq'); if(mq) mq.style.transform=`translate3d(${-(y*.35)%2400}px,0,0)`; const mq2=$('#dnMarq2'); if(mq2) mq2.style.transform=`translate3d(${-2400+(y*.25)%2400}px,0,0)`; }
 function dnScrollInit(){ if(dnScrollOn) return; dnScrollOn=true; addEventListener('scroll',()=>requestAnimationFrame(dnScroll),{passive:true}); }
 function dnHeroInit(){ const n=DNA_KW.length; const c=$('#dnComb'); if(c) c.textContent=dnFmt(Math.round(dnComb(n,5))); const kn=$('#dnKwN'); if(kn) kn.textContent=n; const mq=$('#dnMarq'), mq2=$('#dnMarq2'); if(mq&&!mq.innerHTML){ const words=DNA_KW.map(k=>k.label); const pick=(o)=>Array.from({length:60},(_,i)=>words[(i*37+o)%words.length]); mq.innerHTML=pick(3).map(w=>`<span>${esc(w)}</span>`).join('<i>·</i>').repeat(2); mq2.innerHTML=pick(91).map(w=>`<span>${esc(w)}</span>`).join('<i>·</i>').repeat(2); } dnScrollInit(); dnScroll(); }
+const BLD=[["jongmyo", "종묘 정전", "조선 왕실", "1395", "서울", "kr", "t", ["긴 바", "하나의 큰 지붕", "기와", "명상적", "기념비적", "석재"], "100m 넘게 이어지는 수평의 지붕과 빈 월대", "1/1a/Jeongjeon,_Jongmyo_(Autumn,_2012).jpg", 4000, "KOGL Type 1", "문화재청"],
+["buseoksa", "부석사 무량수전", "고려", "1376", "영주", "kr", "t", ["기와", "처마", "차경", "경사지", "목재", "산 조망"], "배흘림기둥과 안양루에서 보는 소백산 능선", "2/25/부석사_무량수전.jpg", 5184, "CC BY-SA 4.0", "최옥석"],
+["byeongsan", "병산서원", "유성룡 문중", "1613", "안동", "kr", "t", ["누마루", "차경", "중정형", "물가", "목재", "한옥"], "만대루가 강과 산을 액자처럼 담는다", "e/ec/병산서원-1.jpg", 3992, "CC BY-SA 4.0", "limhyungkyu"],
+["changdeok", "창덕궁", "조선 왕실", "1405", "서울", "kr", "t", ["한옥", "지형 순응", "큰 나무 지키기", "차경 정원", "기와"], "지형을 거스르지 않고 앉은 궁궐", "d/d4/창덕궁_전경_(2012).jpg", 4000, "KOGL Type 1", "문화재청"],
+["gyeongbok", "경복궁", "조선 왕실", "1395", "서울", "kr", "t", ["기와", "중정형", "기념비적", "회랑", "석재"], "축을 따라 겹겹이 놓인 마당과 전각", "6/63/광화문_월대.jpg", 6512, "KOGL Type 1", "서울관광 아카이브"],
+["hwaseong", "수원 화성", "정약용 등", "1796", "수원", "kr", "t", ["석재", "벽돌", "긴 바", "지형 순응", "담"], "거중기로 쌓은 계획 도시의 성곽", "d/d1/Hwaseong_Fortress,_Suwon,_Gyeonggi-do,_Republic_of_Korea_(2).jpg", 4096, "CC BY-SA 4.0", "Lance Vanlewen"],
+["bulguksa", "불국사", "김대성", "751", "경주", "kr", "t", ["석재", "두꺼운 기단", "기와", "계단형", "경사지"], "석축 위에 올린 부처의 나라", "e/eb/Lotus_Flower_Bridge_and_Seven_Treasure_Bridge_at_Bulguksa_in_Gyeongju,_Korea.jpg", 2148, "Public domain", ""],
+["seokguram", "석굴암", "김대성", "751", "경주", "kr", "t", ["석재", "땅에 묻기", "원형", "신비로운", "명상적"], "원과 사각의 비례로 짠 돌의 우주", "f/fb/Front_view_of_Seokguram_from_front_chamber.jpg", 3804, "KOGL Type 1", "Seok-Hong, Han"],
+["haein", "해인사 장경판전", "조선 왕실", "1488", "합천", "kr", "t", ["자연 환기", "목재", "기와", "긴 바", "바람길"], "바람만으로 팔만대장경을 지킨 창고", "b/bb/한국_문화_여행_음식_해인사003.jpg", 1920, "CC BY 4.0", "한국교육방송공사"],
+["hahoe", "하회마을", "풍산 류씨", "조선", "안동", "kr", "t", ["골목 마을", "한옥", "물가", "오래된 마을", "돌담"], "강이 S자로 감아 도는 땅의 마을", "d/d8/Hahoe_Folk_Village_02.jpg", 5109, "CC0", "Bernard Gagnon"],
+["soswaewon", "소쇄원", "양산보", "1530", "담양", "kr", "t", ["차경 정원", "물소리", "숲", "누마루", "담"], "계곡에 담과 정자를 걸친 별서 정원", "d/d8/Korea-Damyang-Soswaewon_in_spring-01.jpg", 1000, "CC BY-SA 3.0", "kayakorea (Brandon Butler)"],
+["space", "공간 사옥", "김수근", "1971", "서울", "kr", "m", ["벽돌", "스킵플로어", "김수근처럼", "방들의 마을", "작은 창"], "반 층씩 흐르는 검은 벽돌의 방들", "8/8f/Space_Group_Building.jpg", 1600, "CC BY 4.0", "Seoul Institute"],
+["kyungdong", "경동교회", "김수근", "1981", "서울", "kr", "m", ["벽돌", "교회 · 명상 공간", "빛 우물", "램프", "묵직한"], "기도하는 손 같은 벽돌 덩어리", "0/04/Kyungdong_Presbyterian_Church.jpg", 1600, "CC BY 4.0", "Seoul Institute"],
+["frembassy", "주한프랑스대사관", "김중업", "1962", "서울", "kr", "m", ["김중업처럼", "곡면", "필로티", "흰 회벽"], "하늘로 휘어 오르는 콘크리트 지붕", "", 0, "", ""],
+["ddp", "동대문디자인플라자", "자하 하디드", "2014", "서울", "kr", "c", ["자하 하디드처럼", "곡면", "금속 패널", "비정형", "공공 마당 열기"], "끊김 없이 흐르는 알루미늄 외피", "8/8f/Dongdaemun_Design_Plaza_at_night,_Seoul,_Korea.jpg", 3600, "CC BY 2.0", "Eugene Lim"],
+["leeum", "리움미술관", "마리오 보타 · 장 누벨 · 렘 콜하스", "2004", "서울", "kr", "c", ["갤러리", "테라코타", "코르텐강", "원형", "경사지"], "세 거장이 한 언덕에 지은 세 채", "c/c4/Leeum,_Samsung_Museum_of_Art.jpg", 3008, "CC BY-SA 2.0", "takato marui"],
+["mmca", "국립현대미술관 서울관", "민현준", "2013", "서울", "kr", "c", ["갤러리", "중정형", "공공 마당 열기", "골목 잇기", "분절된 매스"], "건물 대신 마당을 여럿 놓은 미술관", "", 0, "", ""],
+["cityhall", "서울시청 신청사", "유걸", "2012", "서울", "kr", "c", ["유리", "곡면", "건물 녹화", "도시적", "처마"], "처마를 닮은 유리 파도", "5/5e/Seoul_City_Hall_from_Plaza.jpg", 5883, "CC BY-SA 4.0", "Tristan Surtel"],
+["lotte", "롯데월드타워", "KPF", "2017", "서울", "kr", "c", ["고층 타워", "유리", "탑", "도시적", "기념비적"], "붓끝처럼 가늘어지는 555m 탑", "5/57/Lotte_World_morning_view_8.jpg", 6000, "CC BY-SA 4.0", "kallerna"],
+["myeongdong", "명동성당", "코스트 신부", "1898", "서울", "kr", "m", ["붉은 벽돌", "교회 · 명상 공간", "탑", "박공지붕", "고측창"], "한국 첫 고딕 벽돌 성당", "3/36/Myeongdong_Cathedral_01_(cropped).jpg", 3577, "CC BY-SA 4.0", "Asacyan"],
+["nmk", "국립중앙박물관", "정림건축", "2005", "서울", "kr", "c", ["박물관", "긴 바", "프레임", "석재", "기념비적"], "성곽처럼 누운 매스와 열린 마당", "2/24/National_Museum_of_Korea,_Seoul_(2)_(40236586235).jpg", 6000, "CC BY 2.0", "Richard Mortel"],
+["acc", "국립아시아문화전당", "우규승", "2015", "광주", "kr", "c", ["땅에 묻기", "선큰 가든", "옥상 정원", "복합 문화 공간", "천창"], "광장 아래로 묻어 땅을 공원으로 돌려준 전당", "", 0, "", ""],
+["sewoon", "세운상가", "김수근", "1968", "서울", "kr", "m", ["긴 바", "다세대", "근린생활시설", "브릿지", "리모델링"], "도시를 1km 가로지르는 주상복합", "2/2c/세운상가.jpg", 5184, "CC BY-SA 4.0", "MaRail"],
+["seonyudo", "선유도공원", "조성룡 · 정영선", "2002", "서울", "kr", "c", ["리모델링", "물가", "건물 녹화", "재사용 재료", "노출 콘크리트"], "정수장 구조물을 남긴 재생 공원", "7/77/Seoul_Seonyudo_Park.jpg", 1840, "CC BY 2.0", "letsputphotographsontheinternet"],
+["seoullo", "서울로 7017", "MVRDV", "2017", "서울", "kr", "c", ["리모델링", "브릿지", "건물 녹화", "도시적", "공공 마당 열기"], "고가도로를 사람과 나무의 길로", "7/74/Seoullo_7017_Overview_(5).jpg", 4160, "CC BY-SA 4.0", "Christian Bolz"],
+["museumsan", "뮤지엄 산", "안도 다다오", "2013", "원주", "kr", "c", ["안도 다다오처럼", "노출 콘크리트", "석재", "물에 비친 빛", "산 조망"], "산 정상의 물·돌·빛의 미술관", "5/55/Museum_SAN.tif", 3055, "CC BY-SA 4.0", "Museum SAN"],
+["bonte", "본태박물관", "안도 다다오", "2012", "제주", "kr", "c", ["안도 다다오처럼", "노출 콘크리트", "담장", "한옥", "물에 비친 빛"], "담과 물 사이의 콘크리트 박물관", "7/7c/본태박물관.jpg", 1080, "CC BY-SA 4.0", "김나롱"],
+["podo", "포도호텔", "이타미 준", "2001", "제주", "kr", "c", ["이타미 준처럼", "작은 덩어리 여럿", "박공지붕", "스테이", "들판"], "제주 오름을 닮은 지붕들", "6/69/Guest_House_PODO_Hotel_01.jpg", 2434, "CC BY-SA 4.0", "Htwzzz"],
+["bangju", "방주교회", "이타미 준", "2009", "제주", "kr", "c", ["이타미 준처럼", "교회 · 명상 공간", "물가", "금속 패널", "박공지붕"], "물 위에 뜬 방주", "7/75/Bangju_Church_(side).png", 4032, "CC BY-SA 4.0", "Thomas Housieaux"],
+["mimesis", "미메시스 아트 뮤지엄", "알바로 시자", "2009", "파주", "kr", "c", ["알바로 시자처럼", "곡면", "흰 회벽", "갤러리", "천창"], "곡면 벽이 빛을 타고 흐른다", "", 0, "", ""],
+["forbidden", "자금성", "명 왕실", "1420", "베이징, 중국", "asia", "t", ["중정형", "기와", "기념비적", "붉은 벽돌", "두꺼운 기단"], "축과 마당으로 짠 거대한 궁궐 도시", "e/ef/The_Forbidden_City_-_View_from_Coal_Hill.jpg", 4092, "CC BY-SA 3.0", "Pixelflake"],
+["himeji", "히메지성", "이케다 데루마사", "1609", "효고, 일본", "asia", "t", ["탑", "흰 회벽", "처마", "두꺼운 기단", "석재"], "백로처럼 흰 다섯 겹 천수각", "c/c1/Himeji_castle_in_may_2015.jpg", 5632, "CC BY-SA 4.0", "Nikos Kitsakis"],
+["katsura", "가쓰라 이궁", "하치조노미야", "1620", "교토, 일본", "asia", "t", ["차경 정원", "목재", "한지", "툇마루", "물가"], "정원과 마루가 이어지는 일본 별장", "b/b9/Katsura_Rikyu_(3264799678).jpg", 3502, "CC BY-SA 2.0", "KimonBerlin"],
+["tajmahal", "타지마할", "우스타드 아흐마드 라호리", "1653", "아그라, 인도", "asia", "t", ["석재", "기념비적", "물에 비친 빛", "원형", "두꺼운 기단"], "물에 비치는 흰 대리석 영묘", "1/1d/Taj_Mahal_(Edited).jpeg", 3840, "CC BY-SA 4.0", "Yann; edited by Jim Carter"],
+["angkor", "앙코르 와트", "수리야바르만 2세", "1150", "시엠레아프, 캄보디아", "asia", "t", ["석재", "계단형", "회랑", "물가", "기념비적"], "해자와 회랑으로 둘러싼 돌산", "4/41/Angkor_Wat.jpg", 2004, "CC BY-SA 4.0", "Bjørn Christian Tørrissen"],
+["churchlight", "빛의 교회", "안도 다다오", "1989", "오사카, 일본", "asia", "c", ["안도 다다오처럼", "노출 콘크리트", "빛의 길", "교회 · 명상 공간", "어둠과 대비"], "벽에 낸 십자가 틈으로 들어오는 빛", "4/4b/Ibaraki_Kasugaoka_Church_light_cross.jpg", 1070, "CC BY-SA 3.0", "Bergmann"],
+["chichu", "지추 미술관", "안도 다다오", "2004", "나오시마, 일본", "asia", "c", ["땅에 묻기", "천창", "노출 콘크리트", "선큰 가든", "바다 조망"], "땅에 묻혀 하늘만 남긴 미술관", "3/35/150505_Chichu_Art_Museum_Naoshima_Island_Kagawa_pref_Japan01s3.jpg", 5850, "CC BY 2.5", "663highland"],
+["sumiyoshi", "스미요시 주택", "안도 다다오", "1976", "오사카, 일본", "asia", "c", ["중정형", "노출 콘크리트", "도심 협소지", "사생활 지키기", "안도 다다오처럼"], "좁은 땅 가운데 하늘로 열린 마당", "c/c6/Azuma_house.JPG", 2114, "CC BY-SA 3.0", "Oiuysdfg"],
+["sendai", "센다이 미디어테크", "이토 도요", "2001", "센다이, 일본", "asia", "c", ["이토 도요처럼", "슬래브 적층", "유리", "도서관", "투명한"], "튜브 기둥과 판 일곱 장", "1/14/Sendai_Mediatheque_2009.jpg", 857, "CC BY 2.0", "scarletgreen"],
+["kanazawa", "21세기 미술관", "SANAA", "2004", "가나자와, 일본", "asia", "c", ["SANAA처럼", "원형", "유리", "방들의 마을", "경계 흐리기"], "둥근 유리 안에 흩어진 방들", "b/b2/21st_Century_Museum_of_Contemporary_Art,_Kanazawa011.jpg", 3861, "CC BY 2.1 jp", "金沢市"],
+["teshima", "테시마 미술관", "니시자와 류에", "2010", "테시마, 일본", "asia", "c", ["곡면", "노출 콘크리트", "물소리", "들판", "명상적"], "물방울 같은 껍질 하나", "1/1d/Teshima_Art_Museum_exterior_view_201310.jpg", 6000, "CC BY 2.0", "Kentaro Ohno"],
+["moriyama", "모리야마 주택", "니시자와 류에", "2005", "도쿄, 일본", "asia", "c", ["방들의 마을", "흰 회벽", "작은 덩어리 여럿", "골목", "1인 가구"], "흩어진 열 개의 하얀 상자", "", 0, "", ""],
+["fuji", "후지 유치원", "데즈카 건축", "2007", "도쿄, 일본", "asia", "c", ["유치원", "원형", "옥상 정원", "목재", "유쾌한"], "지붕 위를 끝없이 도는 놀이터", "", 0, "", ""],
+["nakagin", "나카긴 캡슐 타워", "구로카와 기쇼", "1972", "도쿄, 일본", "asia", "m", ["모듈 반복", "모듈러", "기숙사", "탑", "금속 패널"], "갈아 끼우는 캡슐 아파트", "2/26/Nakagin.jpg", 3278, "CC BY-SA 3.0", "Jordy Meow"],
+["yokohama", "요코하마 국제여객터미널", "FOA", "2002", "요코하마, 일본", "asia", "c", ["지형 따라 접기", "목재", "램프", "옥상 정원", "바다 조망"], "접힌 땅 같은 부두", "0/0d/Osanbashi.jpg", 600, "CC BY-SA 3.0", "Gleam"],
+["tama", "다마 미술대 도서관", "이토 도요", "2007", "도쿄, 일본", "asia", "c", ["도서관", "곡면", "노출 콘크리트", "오픈 플랜", "이토 도요처럼"], "아치가 겹겹이 엇갈린 숲 같은 도서관", "9/96/Tama_bijutsu_daigaku_library.jpg", 900, "CC BY-SA 3.0", "Robertbaum"],
+["kait", "KAIT 공방", "이시가미 준야", "2008", "가나가와, 일본", "asia", "c", ["공방", "유리", "숲", "투명한", "장스팬"], "305개의 가는 기둥 숲", "3/3c/Kanagawa_Institute_of_Technology.jpg", 722, "CC BY-SA 3.0", "Catto"],
+["marinabay", "마리나 베이 샌즈", "모셰 사프디", "2010", "싱가포르", "asia", "c", ["고층 타워", "브릿지", "옥상 정원", "캔틸레버", "바다 조망"], "세 개의 탑 위에 걸친 배", "c/c7/Marina_Bay_Sands_(I).jpg", 6366, "CC BY 4.0", "Supanut Arunoprayote"],
+["cctv", "CCTV 본사", "OMA", "2012", "베이징, 중국", "asia", "c", ["OMA처럼", "캔틸레버", "브릿지", "고층 타워", "대담한"], "공중에서 꺾여 이어진 고리", "5/5e/China_Central_Television_HQ,_from_China_World_Trade_Centre_(Cropped).jpg", 3195, "CC BY-SA 4.0", "Dayton12345"],
+["birdsnest", "베이징 국가체육장", "헤르조그 & 드 뫼롱", "2008", "베이징, 중국", "asia", "c", ["헤르조그 & 드 뫼롱처럼", "원형", "검은 철", "공연장", "기념비적"], "새 둥지 같은 철골 그물", "2/25/Beijing_China_Beijing-National-Stadium-01.jpg", 3808, "CC BY-SA 3.0", "CEphoto, Uwe Aranas"],
+["burj", "부르즈 할리파", "SOM", "2010", "두바이, UAE", "me", "c", ["고층 타워", "유리", "탑", "기념비적", "도시적"], "세계에서 가장 높은 탑", "9/90/Burj_Khalifa_(worlds_tallest_building)_and_the_Dubai_skyline_(25781049892).jpg", 5496, "CC BY 2.0", "imran shahabuddin"],
+["louvreabu", "루브르 아부다비", "장 누벨", "2017", "아부다비, UAE", "me", "c", ["장 누벨처럼", "그림자 놀이", "바다 조망", "박물관", "하나의 큰 지붕"], "빛의 비가 내리는 거대한 돔", "0/09/Louvre_abu_dhabi,_interno,_cortile_coperto_01.jpg", 6720, "CC BY-SA 4.0", "Francesco Bini"],
+["mia", "이슬람 미술관", "I. M. 페이", "2008", "도하, 카타르", "me", "c", ["석재", "박물관", "바다 조망", "기념비적", "적층"], "바다 위에 쌓은 기하학", "8/8d/IslamicArtMuseumDohaSkyline.jpg", 1000, "CC BY 2.0", "Mohamod Fasil"],
+["heydar", "헤이다르 알리예프 센터", "자하 하디드", "2012", "바쿠, 아제르바이잔", "me", "c", ["자하 하디드처럼", "곡면", "흰 회벽", "복합 문화 공간", "비정형"], "땅에서 솟아오르는 흰 물결", "e/e1/Heydar_Aliyev_International_Conference_Center_Baku_Azerbaijan.jpg", 3264, "CC BY-SA 4.0", "Fanti Salms"],
+["dhaka", "방글라데시 국회의사당", "루이스 칸", "1982", "다카, 방글라데시", "asia", "m", ["루이스 칸처럼", "노출 콘크리트", "물에 비친 빛", "기념비적", "원형"], "물 위의 기하학 요새", "d/d5/National_Parliament_House_(213516449).jpeg", 2048, "CC BY 3.0", "Francisco Anzola"],
+["parthenon", "파르테논 신전", "익티노스 · 칼리크라테스", "B.C.438", "아테네, 그리스", "eu", "t", ["석재", "두꺼운 기단", "기념비적", "박공지붕", "회랑"], "완벽한 비례의 기둥 숲", "d/da/The_Parthenon_in_Athens.jpg", 1144, "CC BY 2.0", "Steve Swayne"],
+["pantheon", "판테온", "하드리아누스", "125", "로마, 이탈리아", "eu", "t", ["원형", "천창", "노출 콘크리트", "기념비적", "빛 우물"], "지름 43m 돔 꼭대기의 빛 구멍", "7/7b/Pantheon_(Rome)_-_Right_side_and_front.jpg", 7512, "CC BY-SA 4.0", "NikonZ7II"],
+["hagiasophia", "아야 소피아", "안테미우스 · 이시도로스", "537", "이스탄불, 튀르키예", "eu", "t", ["원형", "고측창", "기념비적", "석재", "교회 · 명상 공간"], "빛 위에 떠 있는 듯한 돔", "4/4a/Hagia_Sophia_(228968325).jpeg", 2048, "CC BY-SA 3.0", "Adli Wahid"],
+["notredame", "파리 노트르담 대성당", "장 드 셸 등", "1260", "파리, 프랑스", "eu", "t", ["석재", "교회 · 명상 공간", "탑", "고측창", "기념비적"], "플라잉 버트레스와 장미창", "f/f7/Notre-Dame_de_Paris,_4_October_2017.jpg", 4938, "CC0", "Ali Sabbagh"],
+["florence", "피렌체 대성당", "브루넬레스키", "1436", "피렌체, 이탈리아", "eu", "t", ["원형", "벽돌", "타일", "기념비적", "교회 · 명상 공간"], "비계 없이 쌓은 두 겹 돔", "c/c7/Cattedrale_di_Santa_Maria_del_Fiore_–_Il_Duomo_di_Firenze.jpg", 3872, "CC BY 2.0", "Gary Campbell-Hall"],
+["alhambra", "알람브라 궁전", "나스르 왕조", "1354", "그라나다, 스페인", "eu", "t", ["중정형", "물에 비친 빛", "흙벽", "회랑", "타일"], "물과 빛과 장식의 중정들", "d/de/Dawn_Charles_V_Palace_Alhambra_Granada_Andalusia_Spain.jpg", 4592, "CC0", "Jebulon"],
+["rotonda", "빌라 로톤다", "안드레아 팔라디오", "1592", "비첸차, 이탈리아", "eu", "t", ["원형", "석재", "두꺼운 기단", "기념비적", "차경"], "네 면이 같은 언덕 위 빌라", "d/d8/Larotonda2009.JPG", 640, "CC BY-SA 3.0", "Marco Bagarella"],
+["stpeters", "성 베드로 대성당", "미켈란젤로 등", "1626", "바티칸", "eu", "t", ["원형", "석재", "기념비적", "공공 마당 열기", "교회 · 명상 공간"], "광장을 끌어안은 돔", "f/f5/Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg", 13066, "CC BY-SA 4.0", "Alvesgaspar"],
+["sagrada", "사그라다 파밀리아", "안토니 가우디", "1882~", "바르셀로나, 스페인", "eu", "m", ["가우디처럼", "탑", "석재", "숲", "교회 · 명상 공간"], "돌로 지은 숲", "e/ef/SF_maig_2_cropped.jpg", 1227, "CC BY-SA 4.0", "Canaan"],
+["casamila", "카사 밀라", "안토니 가우디", "1912", "바르셀로나, 스페인", "eu", "m", ["가우디처럼", "곡면", "석재", "중정형", "다세대"], "물결치는 돌 파사드", "d/de/Casa_Milà,_general_view.jpg", 4299, "CC BY-SA 4.0", "Thomas Ledl"],
+["eiffel", "에펠탑", "귀스타브 에펠", "1889", "파리, 프랑스", "eu", "m", ["검은 철", "탑", "기념비적", "투명한", "철골"], "철로 짠 300m 탑", "8/85/Tour_Eiffel_Wikimedia_Commons_(cropped).jpg", 2900, "Public domain", "Benh LIEU SONG"],
+["savoye", "빌라 사보아", "르 코르뷔지에", "1931", "푸아시, 프랑스", "eu", "m", ["르 코르뷔지에처럼", "필로티", "수평 띠창 매스", "옥상 정원", "흰 회벽"], "근대 건축 5원칙의 교과서", "", 0, "", ""],
+["unite", "위니테 다비타시옹 (베를린)", "르 코르뷔지에", "1958", "베를린, 독일", "eu", "m", ["르 코르뷔지에처럼", "필로티", "다세대", "노출 콘크리트", "옥상 정원"], "들어 올린 수직 마을", "a/a1/Corbusierhaus_B-Westend_06-2017.jpg", 3364, "FAL", "A.Savin"],
+["ronchamp", "롱샹 성당", "르 코르뷔지에", "1955", "롱샹, 프랑스", "eu", "m", ["곡면", "교회 · 명상 공간", "작은 창", "흰 회벽", "신비로운"], "두꺼운 벽에 흩뿌린 색색의 창", "", 0, "", ""],
+["tourette", "라 투레트 수도원", "르 코르뷔지에", "1960", "에뵈쉬르아르브레슬, 프랑스", "eu", "m", ["중정형", "노출 콘크리트", "경사지", "교회 · 명상 공간", "필로티"], "경사지에 들어 올린 수도원", "2/23/Sainte-Marie_de_la_Tourette,_Untergeschoss._2.jpg", 4405, "CC BY-SA 4.0", "Peter Christian Riemann"],
+["barcelona", "바르셀로나 파빌리온", "미스 반 데어 로에", "1929", "바르셀로나, 스페인", "eu", "m", ["미스처럼", "석재", "물에 비친 빛", "평지붕", "오픈 플랜"], "벽이 떠다니는 흐르는 공간", "4/42/The_Barcelona_Pavilion,_Barcelona,_2010.jpg", 5466, "CC BY 3.0", "Ashley Pomeroy"],
+["farnsworth", "판스워스 하우스", "미스 반 데어 로에", "1951", "일리노이, 미국", "am", "m", ["미스처럼", "유리", "들어 올리기", "숲", "원룸 같은 집"], "판 두 장 사이의 유리 상자", "0/0b/Farnsworth_House_by_Mies_Van_Der_Rohe_-_exterior-8.jpg", 5456, "CC BY-SA 3.0", "Victor Grigas"],
+["seagram", "시그램 빌딩", "미스 반 데어 로에", "1958", "뉴욕, 미국", "am", "m", ["미스처럼", "고층 타워", "검은 철", "유리", "공공 마당 열기"], "청동 멀리언의 정제된 탑", "9/99/Seagram_Building_(35098307116).jpg", 5617, "CC BY-SA 2.0", "Ken OHYAMA"],
+["nng", "신 국립미술관", "미스 반 데어 로에", "1968", "베를린, 독일", "eu", "m", ["미스처럼", "하나의 큰 지붕", "유리", "검은 철", "갤러리"], "여덟 기둥 위 떠 있는 강철 지붕", "c/c7/Berlin_Neue_Nationalgalerie_asv2021-11_img1.jpg", 7371, "FAL", "A.Savin"],
+["fallingwater", "낙수장", "프랭크 로이드 라이트", "1937", "펜실베이니아, 미국", "am", "m", ["프랭크 로이드 라이트처럼", "캔틸레버", "물소리", "숲", "석재"], "폭포 위로 내민 테라스", "b/bc/Fallingwater3.jpg", 2048, "CC0", "lachrimae72"],
+["guggenheimny", "구겐하임 뉴욕", "프랭크 로이드 라이트", "1959", "뉴욕, 미국", "am", "m", ["원형", "램프", "갤러리", "흰 회벽", "아트리움"], "나선 램프를 걸으며 보는 미술관", "f/ff/Solomon_R._Guggenheim_Museum_(48059131351).jpg", 5265, "CC BY 2.0", "Ajay Suresh"],
+["robie", "로비 하우스", "프랭크 로이드 라이트", "1910", "시카고, 미국", "am", "m", ["프랭크 로이드 라이트처럼", "벽돌", "깊은 처마", "긴 바", "수평 띠창 매스"], "땅에 낮게 깔린 프레리 하우스", "1/19/Frederick_C._Robie_House.JPG", 3648, "CC BY-SA 3.0", "Teemu08"],
+["bauhaus", "바우하우스 데사우", "발터 그로피우스", "1926", "데사우, 독일", "eu", "m", ["유리", "흰 회벽", "학교", "브릿지", "평지붕"], "유리 커튼월의 학교", "1/1c/Dessau_Bauhaus-Gebäude_asv2024-06_img1.jpg", 6202, "FAL", "A.Savin"],
+["mairea", "빌라 마이레아", "알바 알토", "1939", "노르마르쿠, 핀란드", "eu", "m", ["알바 알토처럼", "숲", "목재", "ㄱ자 배치", "따뜻한"], "숲과 이어지는 나무의 집", "d/d2/4Y1A7841_Alvar_Aalto,_Finland_(26710745140).jpg", 2839, "CC BY 2.0", "Ninara"],
+["paimio", "파이미오 요양원", "알바 알토", "1933", "파이미오, 핀란드", "eu", "m", ["알바 알토처럼", "흰 회벽", "숲", "테라스", "긴 바"], "햇빛을 위해 지은 병원", "4/4a/Paimio_Sanatorium2.jpg", 1600, "CC BY 2.0", "Leon Liao"],
+["saynatsalo", "세이나찰로 타운홀", "알바 알토", "1952", "세이나찰로, 핀란드", "eu", "m", ["붉은 벽돌", "중정형", "주민 센터", "숲", "경사지"], "벽돌 마당 위의 마을 회관", "e/ec/SaynatsaloTownHall4.jpg", 2048, "CC BY 3.0", "Zache"],
+["salk", "소크 연구소", "루이스 칸", "1965", "라호야, 미국", "am", "m", ["루이스 칸처럼", "노출 콘크리트", "바다 조망", "물에 비친 빛", "중정형"], "바다로 흐르는 물길 하나", "7/7d/Salk_Institute_2.jpg", 4032, "CC BY-SA 4.0", "Codera23"],
+["kimbell", "킴벨 미술관", "루이스 칸", "1972", "포트워스, 미국", "am", "m", ["루이스 칸처럼", "갤러리", "천창", "노출 콘크리트", "북측 고른 빛"], "볼트 지붕 틈으로 내리는 은빛", "8/81/Kimbell_Art_Museum_Highsmith.jpg", 6059, "Public domain", "Carol M. Highsmith"],
+["glasshouse", "글라스 하우스", "필립 존슨", "1949", "코네티컷, 미국", "am", "m", ["유리", "숲", "원룸 같은 집", "투명한", "검은 철"], "숲속의 투명한 방 하나", "b/be/Glass_House_2006.jpg", 6248, "Public domain", "Carol M. Highsmith"],
+["sydney", "시드니 오페라 하우스", "예른 웃손", "1973", "시드니, 호주", "oc", "m", ["곡면", "공연장", "바다 조망", "타일", "두꺼운 기단"], "바다 위에 펼친 하얀 돛", "a/a0/Sydney_Australia._(21339175489).jpg", 3201, "CC0", "Bernard Spragg"],
+["twa", "TWA 플라이트 센터", "에로 사리넨", "1962", "뉴욕, 미국", "am", "m", ["곡면", "노출 콘크리트", "비정형", "대담한", "통창"], "날개를 편 콘크리트 터미널", "6/64/Ehemaliges_TWA-Terminal_am_John_F._Kennedy_International_Airport_in_New_York.JPG", 2595, "CC BY-SA 4.0", "Roland Arhelger"],
+["brasilia", "브라질리아 대성당", "오스카 니마이어", "1970", "브라질리아, 브라질", "am", "m", ["오스카 니마이어처럼", "원형", "유리", "교회 · 명상 공간", "기념비적"], "하늘로 모은 손 같은 기둥", "f/f4/Catedral_Metropolitana_de_Brasilia.jpg", 3000, "CC BY-SA 4.0", "Tissiana de A. de Souza"],
+["barragan", "바라간 자택", "루이스 바라간", "1948", "멕시코시티, 멕시코", "am", "m", ["루이스 바라간처럼", "흰 회벽", "담장", "원색 포인트", "명상적"], "색과 벽으로 빚은 고요", "9/94/Luis_Barragán_House_and_Studio-115242.jpg", 1200, "CC BY-SA 3.0 igo", "Francesco Bandarin"],
+["schroder", "슈뢰더 하우스", "헤리트 리트벨트", "1924", "위트레흐트, 네덜란드", "eu", "m", ["가변 벽", "원색 포인트", "흰 회벽", "코너 창", "유쾌한"], "움직이는 벽의 데 스테일 집", "a/a7/Rietveld_Schröderhuis_HayKranen-20.JPG", 4515, "CC BY 3.0", "Husky"],
+["tugendhat", "투겐트하트 주택", "미스 반 데어 로에", "1930", "브르노, 체코", "eu", "m", ["미스처럼", "경사지", "통창", "석재", "오픈 플랜"], "경사지 아래로 열리는 거실", "c/c2/Vila_Tugendhat_exterior_Dvorak2.JPG", 6016, "CC BY-SA 4.0", "Petr1987"],
+["eames", "임스 하우스", "찰스 · 레이 임스", "1949", "로스앤젤레스, 미국", "am", "m", ["프리패브", "철골", "유리", "원색 포인트", "숲"], "기성 부품으로 조립한 집", "6/67/Eames_House.jpg", 2000, "CC BY 2.0", "Ilpo's Sojourn"],
+["habitat", "해비타트 67", "모셰 사프디", "1967", "몬트리올, 캐나다", "am", "m", ["모듈 반복", "적층", "테라스", "다세대", "물가"], "이웃의 지붕이 나의 정원", "f/fe/Habitat_67_2019_dllu_01.jpg", 7362, "CC BY-SA 4.0", "Dllu"],
+["brion", "브리온 묘역", "카를로 스카르파", "1978", "알티볼레, 이탈리아", "eu", "m", ["카를로 스카르파처럼", "노출 콘크리트", "물에 비친 빛", "명상적", "담장"], "물과 콘크리트의 정원 묘역", "9/92/31_Tomba_Brion_-_San_Vito_d'Altivole,_Treviso,_Italy_-_Carlo_Scarpa-FPPL3028.jpg", 1050, "CC BY-SA 4.0", "Filippo Poli"],
+["castelvecchio", "카스텔베키오 미술관", "카를로 스카르파", "1964", "베로나, 이탈리아", "eu", "m", ["카를로 스카르파처럼", "리모델링", "석재", "박물관", "재사용 재료"], "옛 성에 새 동선을 엮다", "c/ce/Verona,_castelvecchio,_museo_01.jpg", 5790, "CC BY-SA 4.0", "Sailko"],
+["chandigarh", "찬디가르 의사당", "르 코르뷔지에", "1962", "찬디가르, 인도", "asia", "m", ["르 코르뷔지에처럼", "노출 콘크리트", "하나의 큰 지붕", "기념비적", "물에 비친 빛"], "거대한 처마 아래의 의사당", "1/1a/Palace_of_Assembly_Chandigarh_2006.jpg", 4760, "CC BY-SA 2.0", "duncid"],
+["bilbao", "구겐하임 빌바오", "프랭크 게리", "1997", "빌바오, 스페인", "eu", "c", ["프랭크 게리처럼", "곡면", "금속 패널", "물가", "갤러리"], "티타늄 꽃잎처럼 피어난 미술관", "c/c7/Museo_Guggenheim,_Bilbao_(31273245344).jpg", 4272, "CC BY 2.0", "Naotake Murayama"],
+["disneyhall", "월트 디즈니 콘서트홀", "프랭크 게리", "2003", "로스앤젤레스, 미국", "am", "c", ["프랭크 게리처럼", "곡면", "공연장", "금속 패널", "대담한"], "바람에 부푼 스테인리스 돛", "8/8c/Walt_Disney_Concert_Hall,_LA,_CA,_jjron_22.03.2012.jpg", 5368, "GFDL 1.2", "jjron"],
+["pompidou", "퐁피두 센터", "렌조 피아노 · 리처드 로저스", "1977", "파리, 프랑스", "eu", "c", ["렌조 피아노처럼", "철골", "원색 포인트", "공공 마당 열기", "복합 문화 공간"], "설비를 바깥으로 꺼낸 문화 기계", "f/fb/Centre_Pompidou,_seen_from_Tour_Montparnasse.jpg", 3488, "CC0", "Alf van Beem"],
+["lloyds", "로이드 빌딩", "리처드 로저스", "1986", "런던, 영국", "eu", "c", ["금속 패널", "철골", "아트리움", "사무실", "도시적"], "안팎을 뒤집은 은빛 사옥", "", 0, "", ""],
+["gherkin", "30 세인트 메리 액스", "노먼 포스터", "2004", "런던, 영국", "eu", "c", ["노먼 포스터처럼", "고층 타워", "곡면", "유리", "자연 환기"], "자연 환기를 위한 오이 모양 탑", "8/8e/30_St_Mary_Axe,_'Gherkin'.JPG", 1200, "Public domain", "Paste"],
+["shard", "더 샤드", "렌조 피아노", "2012", "런던, 영국", "eu", "c", ["렌조 피아노처럼", "고층 타워", "유리", "탑", "도시적"], "유리 조각처럼 솟은 탑", "9/9a/The_Shard_at_sunset_2017_(cropped).jpg", 1742, "CC BY-SA 4.0", "Colin"],
+["tatemodern", "테이트 모던", "헤르조그 & 드 뫼롱", "2000", "런던, 영국", "eu", "c", ["헤르조그 & 드 뫼롱처럼", "리모델링", "벽돌", "갤러리", "물가"], "발전소를 미술관으로", "0/00/Tate_Modern_-_Bankside_Power_Station.jpg", 4000, "CC BY-SA 4.0", "Acabashi"],
+["elbphil", "엘프필하모니", "헤르조그 & 드 뫼롱", "2017", "함부르크, 독일", "eu", "c", ["헤르조그 & 드 뫼롱처럼", "공연장", "유리", "물가", "재사용 벽돌"], "창고 위에 얹은 유리 파도", "c/c2/Elbphilharmonie_2025.jpg", 1920, "CC BY 4.0", "Evgenii Salganik"],
+["seattle", "시애틀 중앙도서관", "OMA", "2004", "시애틀, 미국", "am", "c", ["OMA처럼", "도서관", "유리", "적층", "캔틸레버"], "쌓고 어긋낸 플랫폼", "2/2c/Seattle_Library_01.jpg", 5424, "CC BY-SA 4.0", "Ɱ"],
+["casamusica", "카사 다 무지카", "OMA", "2005", "포르투, 포르투갈", "eu", "c", ["OMA처럼", "공연장", "노출 콘크리트", "매스 깎기", "비정형"], "깎아 낸 돌 같은 콘서트홀", "b/b9/Casa_Da_Musica_(3190746009).jpg", 4800, "CC BY-SA 2.0", "Filipe Fortes"],
+["therme", "테르메 발스", "피터 줌터", "1996", "발스, 스위스", "eu", "c", ["피터 줌터처럼", "석재", "땅에 묻기", "물소리", "경사지"], "산에 박힌 돌의 욕장", "4/43/Brutarchitekt_Therme_Vals.jpg", 2885, "CC BY-SA 4.0", "Brutarchitekt"],
+["kolumba", "콜룸바 미술관", "피터 줌터", "2007", "쾰른, 독일", "eu", "c", ["피터 줌터처럼", "재사용 벽돌", "리모델링", "박물관", "간접광"], "폐허 위의 회색 벽돌", "3/3e/Kolumba.jpg", 1030, "CC BY-SA 3.0", "Elke Wetzig (Elya)"],
+["bruderklaus", "브루더 클라우스 들판 예배당", "피터 줌터", "2007", "메헤르니히, 독일", "eu", "c", ["피터 줌터처럼", "노출 콘크리트", "들판", "교회 · 명상 공간", "빛 우물"], "불에 그을린 나무 거푸집의 탑", "5/58/Bruder_Klaus_Feldkapelle_(18833789670).jpg", 5113, "CC BY-SA 2.0", "Kenta Mabuchi"],
+["rolex", "롤렉스 러닝 센터", "SANAA", "2010", "로잔, 스위스", "eu", "c", ["SANAA처럼", "지형 따라 접기", "유리", "도서관", "중정형"], "물결치는 한 장의 바닥", "b/b8/Rolex_Learning_center.jpg", 1024, "CC BY-SA 3.0", "Mikado1201"],
+["maxxi", "MAXXI 국립21세기미술관", "자하 하디드", "2010", "로마, 이탈리아", "eu", "c", ["자하 하디드처럼", "곡면", "노출 콘크리트", "갤러리", "브릿지"], "흐르는 콘크리트 리본", "", 0, "", ""],
+["vitra", "비트라 소방서", "자하 하디드", "1993", "바일 암 라인, 독일", "eu", "c", ["자하 하디드처럼", "캔틸레버", "노출 콘크리트", "대담한", "비정형"], "날카롭게 찌르는 콘크리트 판", "f/ff/Baden-Württemberg_Weil_am_Rhein_Vitra_Fire_station_01.jpg", 6016, "CC BY-SA 3.0", "Calips"],
+["jewish", "유대인 박물관", "다니엘 리베스킨트", "2001", "베를린, 독일", "eu", "c", ["금속 패널", "슬릿 창", "박물관", "보이드", "어둠과 대비"], "번개처럼 꺾인 아연 상자와 빈 공간", "f/f5/Berlin_Jüdisches_Museum_und_der_Libeskind-Bau.jpg", 10309, "CC BY-SA 4.0", "Marek Śliwecki"],
+["bosco", "보스코 베르티칼레", "스테파노 보에리", "2014", "밀라노, 이탈리아", "eu", "c", ["고층 타워", "건물 녹화", "테라스", "다세대", "숲"], "나무 900그루를 심은 탑", "", 0, "", ""],
+["mountaind", "마운틴 드웰링스", "BIG", "2008", "코펜하겐, 덴마크", "eu", "c", ["BIG처럼", "계단형", "테라스", "다세대", "옥상 정원"], "주차장 위 계단형 마을", "c/cc/VM_Bjerget.JPG", 2532, "Public domain", "Orf3us"],
+["8house", "8 하우스", "BIG", "2010", "코펜하겐, 덴마크", "eu", "c", ["BIG처럼", "중정형", "램프", "다세대", "경사지"], "자전거로 꼭대기까지 오르는 집", "9/96/BIG_-_8_House.jpg", 1100, "CC BY 2.0", "Forgemind ArchiMedia"],
+["via57", "비아 57 웨스트", "BIG", "2016", "뉴욕, 미국", "am", "c", ["BIG처럼", "중정형", "비정형", "다세대", "물가"], "피라미드를 비튼 아파트", "1/1b/VIA_57_West_-_exterior.jpg", 2742, "CC BY-SA 4.0", "Razvan Dinu"],
+["copenhill", "코펜힐", "BIG", "2019", "코펜하겐, 덴마크", "eu", "c", ["BIG처럼", "지형 따라 접기", "옥상 정원", "유쾌한", "재사용 재료"], "지붕이 스키장인 소각장", "a/a9/Amager_Bakke_Copenhagen_1.jpg", 4820, "CC BY-SA 4.0", "kallerna"],
+["oslo", "오슬로 오페라 하우스", "스뇌헤타", "2008", "오슬로, 노르웨이", "eu", "c", ["공연장", "석재", "지형 따라 접기", "바다 조망", "공공 마당 열기"], "바다에서 걸어 올라가는 지붕", "3/39/Oslo_Opera_House_-_2025.jpg", 5962, "CC0", "Pierre Blaché"],
+["louisvuitton", "루이비통 재단", "프랭크 게리", "2014", "파리, 프랑스", "eu", "c", ["프랭크 게리처럼", "유리", "곡면", "숲", "갤러리"], "유리 돛 열두 장", "", 0, "", ""],
+["kunsthaus", "쿤스트하우스 그라츠", "피터 쿡 · 콜린 푸르니에", "2003", "그라츠, 오스트리아", "eu", "c", ["곡면", "유리", "낯선", "갤러리", "밤의 등불"], "도시에 내려앉은 친근한 외계인", "9/9b/Graz_Kunsthaus_vom_Schlossberg_20061126.jpg", 3888, "CC BY-SA 2.5", "Marion Schneider & Christoph Aistleitner"],
+["phaeno", "파에노 과학관", "자하 하디드", "2005", "볼프스부르크, 독일", "eu", "c", ["자하 하디드처럼", "들어 올리기", "노출 콘크리트", "복합 문화 공간", "비정형"], "콘크리트 콘 위에 떠 있는 과학관", "e/ea/Phaeno_Suedseite_RB.jpg", 7530, "CC BY-SA 3.0", "Richard Bartz"],
+["serpentine", "서펜타인 파빌리온 2019", "이시가미 준야", "2019", "런던, 영국", "eu", "c", ["하나의 큰 지붕", "석재", "숲", "가벼운", "공공 마당 열기"], "돌 지붕이 언덕처럼 내려앉은 파빌리온", "5/5e/Serpentine_Pavilion_2019_III_(48169154472).jpg", 2048, "CC BY-SA 2.0", "George Rex"],
+["naoshimaH", "베네세 하우스", "안도 다다오", "1992", "나오시마, 일본", "asia", "c", ["안도 다다오처럼", "바다 조망", "노출 콘크리트", "스테이", "원형"], "바다를 마주한 미술관 호텔", "3/3f/Part_of_the_Benesse_House.jpg", 6000, "CC BY-SA 4.0", "Bea Phi"],
+["waterchurch", "물의 교회", "안도 다다오", "1988", "홋카이도, 일본", "asia", "c", ["안도 다다오처럼", "물에 비친 빛", "교회 · 명상 공간", "숲", "통창"], "물 위에 선 십자가", "9/90/Church_on_the_Water_Exterior1.jpg", 1840, "CC BY 2.0", "Forgemind ArchiMedia"],
+["ginzaMaison", "메종 에르메스", "렌조 피아노", "2001", "도쿄, 일본", "asia", "c", ["렌조 피아노처럼", "유리", "도심 협소지", "밤의 등불", "근린생활시설"], "유리 블록으로 빛나는 등불", "6/63/2018_Hermes_Ginza_2.jpg", 2000, "CC BY-SA 4.0", "Kakidai"],
+["prada", "프라다 아오야마", "헤르조그 & 드 뫼롱", "2003", "도쿄, 일본", "asia", "c", ["헤르조그 & 드 뫼롱처럼", "유리", "근린생활시설", "도시적", "낯선"], "볼록 유리 마름모의 결정", "4/48/PRADA_BOUTIQUE_AOYAMA.jpg", 2500, "CC BY-SA 3.0", "Wiiii"],
+["tods", "토즈 오모테산도", "이토 도요", "2004", "도쿄, 일본", "asia", "c", ["이토 도요처럼", "노출 콘크리트", "근린생활시설", "숲", "그림자 놀이"], "느티나무 가지를 닮은 외벽", "c/cf/Omotesando_buildings.jpg", 4608, "CC BY-SA 3.0", "Syced"],
+["naHouse", "하우스 NA", "후지모토 소우", "2011", "도쿄, 일본", "asia", "c", ["후지모토 소우처럼", "유리", "스킵플로어", "1인 가구", "투명한"], "나무 위에 사는 듯한 유리 선반들", "d/d7/House_NA.jpg", 2448, "CC BY 2.0", "Nicolás Boullosa"],
+["nianing", "물의 집 · 대나무 집", "쿠마 겐고", "2002", "베이징, 중국", "asia", "c", ["쿠마 겐고처럼", "대나무", "숲", "스테이", "루버 사이 빛"], "대나무 루버로 거른 빛", "6/66/Commune_by_the_great_wall3.jpg", 1200, "CC BY-SA 3.0", "ぷくぷく"],
+["arenamorro", "아레나 두 모후", "헤르조그 & 드 뫼롱", "2014", "나탈, 브라질", "am", "c", ["헤르조그 & 드 뫼롱처럼", "하나의 큰 지붕", "타공 메탈", "주민 센터", "골목"], "마을을 덮은 하나의 지붕", "0/08/Arena_do_morro,_Mãe_Luiza,_Natal,_RN.jpg", 800, "CC BY-SA 4.0", "assecom"],
+["cartier", "카르티에 재단", "장 누벨", "1994", "파리, 프랑스", "eu", "c", ["장 누벨처럼", "유리", "숲", "갤러리", "투명한"], "나무와 겹치는 유리 막", "", 0, "", ""],
+["arabe", "아랍 세계 연구소", "장 누벨", "1987", "파리, 프랑스", "eu", "c", ["장 누벨처럼", "이중 외피", "그림자 놀이", "박물관", "금속 패널"], "조리개처럼 열고 닫는 외피", "", 0, "", ""],
+["blur", "블러 빌딩", "딜러 스코피디오", "2002", "이베르동, 스위스", "eu", "c", ["경계 흐리기", "물가", "가벼운", "낯선", "철골"], "안개로 지은 건물", "a/a7/20020717_Expo_Yverdon_23.JPG", 2400, "CC BY 2.5", "Norbert Aepli"],
+["highline", "하이라인", "딜러 스코피디오 + 렌프로", "2009", "뉴욕, 미국", "am", "c", ["리모델링", "건물 녹화", "브릿지", "산책하듯 걷는 길", "도시적"], "버려진 철로 위 공중 정원", "5/5a/High_Line_Park,_Section_1a.jpg", 1920, "CC0", "Dansnguyen"],
+["metropol", "메트로폴 파라솔", "위르겐 마이어", "2011", "세비야, 스페인", "eu", "c", ["하나의 큰 지붕", "목재", "공공 마당 열기", "곡면", "유쾌한"], "광장 위에 펼친 나무 버섯", "e/e4/Metropolparasolnov2011001.jpg", 3872, "CC BY-SA 3.0", "Anual"],
+["soumaya", "소우마야 미술관", "페르난도 로메로", "2011", "멕시코시티, 멕시코", "am", "c", ["곡면", "금속 패널", "박물관", "낯선", "비틀기"], "육각 알루미늄 비늘의 곡면", "b/b2/Museo_Soumaya,_Ciudad_de_México,_México,_2015-07-18,_DD_12.JPG", 5150, "CC BY-SA 4.0", "Diego Delso"],
+["harpa", "하르파", "헤닝 라르센 · 올라퓌르 엘리아손", "2011", "레이캬비크, 아이슬란드", "eu", "c", ["공연장", "유리", "바다 조망", "밤의 등불", "모듈 반복"], "현무암 기둥을 닮은 유리 벌집", "", 0, "", ""],
+["acropolis", "아크로폴리스 박물관", "베르나르 추미", "2009", "아테네, 그리스", "eu", "c", ["박물관", "유리", "들어 올리기", "필로티", "두꺼운 기단"], "유적 위에 띄운 박물관", "", 0, "", ""],
+["amore", "아모레퍼시픽 사옥", "데이비드 치퍼필드", "2017", "서울", "kr", "c", ["알루미늄 루버", "중정형", "사무실", "공공 마당 열기", "단순한 박스"], "세 구멍을 낸 달항아리 큐브", "", 0, "", ""],
+["songeun", "송은", "헤르조그 & 드 뫼롱", "2021", "서울", "kr", "c", ["헤르조그 & 드 뫼롱처럼", "노출 콘크리트", "갤러리", "매스 깎기", "도심 협소지"], "송판 무늬 콘크리트를 비스듬히 자른 조각", "", 0, "", ""],
+["sayuwon", "사유원", "승효상 · 알바로 시자 등", "2021", "군위", "kr", "c", ["승효상처럼", "코르텐강", "숲", "명상적", "산 조망"], "산에 흩어진 사유의 건축들", "", 0, "", ""],
+["ewha", "이화여대 ECC", "도미니크 페로", "2008", "서울", "kr", "c", ["땅에 묻기", "선큰 가든", "유리", "학교", "옥상 정원"], "땅을 가른 계곡형 캠퍼스", "2/2e/Ewha_Campus_Complex.jpg", 3648, "CC BY-SA 4.0", "Ken Eckert"],
+["hyundaicard", "현대카드 라이브러리", "최욱", "2013", "서울", "kr", "c", ["도서관", "노출 콘크리트", "골목", "작은 미술관", "중정형"], "골목 안의 조용한 책의 집", "", 0, "", ""]];
+
+/* ===== 건축 도감: 세계 건물을 단어로 읽기 ===== */
+const BLD_REG={kr:'한국',asia:'아시아',me:'중동',eu:'유럽',am:'아메리카',oc:'오세아니아'}, BLD_ERA={t:'전통',m:'근대',c:'현대'};
+const BLDX=BLD.map(a=>({id:a[0],name:a[1],arch:a[2],year:a[3],city:a[4],reg:a[5],era:a[6],keys:a[7].filter(k=>DNA_BY[k]),line:a[8],p:a[9],w:a[10],lic:a[11],by:a[12]}));
+const BLD_BY=Object.fromEntries(BLDX.map(b=>[b.id,b]));
+function bldImg(b,w){ if(!b.p) return ''; const seg=b.p.split('/'), n=seg[2], en=encodeURIComponent(n), base='https://upload.wikimedia.org/wikipedia/commons/'; const tif=/\.tiff?$/i.test(n);
+  if(b.w<=w&&!tif) return base+seg[0]+'/'+seg[1]+'/'+en; return base+'thumb/'+seg[0]+'/'+seg[1]+'/'+en+'/'+(tif?'lossy-page1-':'')+w+'px-'+en+(tif?'.jpg':''); }
+function bldFile(b){ return 'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(b.p.split('/')[2]); }
+const BLDA={}; function bldArch(b){ if(!BLDA[b.id]){ const r=dnaAnalyze(b.keys); BLDA[b.id]=r.arch[0]?r.arch[0].id:'court'; } return BLDA[b.id]; }
+const BLDTH={}; function bldModel(b,w,h){ const k=b.id+'@'+w; if(BLDTH[k]) return Promise.resolve(BLDTH[k]); const P=pgSpec(b.keys,{base:bldArch(b),mode:'main'}); return pgThumb(P,w||520,h||360).then(u=>BLDTH[k]=u); }
+function bldShared(b,keys){ return b.keys.filter(k=>keys.includes(k)); }
+function bldSimilar(keys,n,skip){ const r=dnaAnalyze(keys); const A=r.arch[0], B2=r.arch[1];
+  return BLDX.filter(b=>b.id!==skip).map(b=>{ const sh=bldShared(b,keys); let s=sh.length*3; if(A&&bldArch(b)===A.id) s+=2; if(B2&&bldArch(b)===B2.id) s+=1; return {b,sh,s}; }).filter(x=>x.sh.length||x.s>=2).sort((x,y)=>y.s-x.s||y.sh.length-x.sh.length).slice(0,n||8); }
+function bldCard(b,extra){ const img=bldImg(b,500); return `<button type="button" class="dnat-c" data-bld="${b.id}"><div class="ph${img?'':' gen'}">${img?`<img src="${img}" alt="${esc(b.name)}" loading="lazy" decoding="async">`:'<i class="ld"></i>'}<span class="tg">${img?BLD_REG[b.reg]+' · '+BLD_ERA[b.era]:'단어로 지은 모형'}</span><span class="mdl"></span></div><div class="bd"><b>${esc(b.name)}</b><span>${esc(b.arch)} · ${esc(b.year)}</span>${extra||`<div class="ks">${b.keys.slice(0,3).map(k=>`<em>${esc(k)}</em>`).join('')}</div>`}</div></button>`; }
+/* 결과 안: 닮은 실제 건물 */
+function bldTwinHTML(){ const L=bldSimilar(state.dna,8); if(!L.length) return ''; return `<div class="dnat-tw zrv" id="dnTwinSec"><div class="dnv-h"><div><span class="lab-k">REAL BUILDINGS · 닮은 실제 건물</span><h3>내 단어와 닮은 건물 ${L.length}채</h3><p>도감 ${BLDX.length}채를 같은 단어로 읽어 두었어요. 겹치는 단어가 많은 순서예요. 눌러서 사진과 함께 보고, 그 건물처럼 지어 볼 수 있어요.</p></div><button class="btn sec" type="button" data-dngo="dnAtlas">도감 전체 보기</button></div><div class="dnat-row">${L.map(({b,sh})=>bldCard(b,`<div class="ks">${sh.slice(0,4).map(k=>`<em class="on">${esc(k)}</em>`).join('')}${sh.length?'':`<em>${esc(DNA_ARCH[bldArch(b)].name)}</em>`}</div>`)).join('')}</div></div>`; }
+/* 도감 */
+const ATL={reg:'',era:'',q:'',n:36};
+function bldFiltered(){ const q=ATL.q.trim().toLowerCase(); return BLDX.filter(b=>(!ATL.reg||b.reg===ATL.reg)&&(!ATL.era||b.era===ATL.era)&&(!q||[b.name,b.arch,b.city,b.line,...b.keys].join(' ').toLowerCase().includes(q))); }
+function dnAtlasInit(){ const el=$('#dnAtlas'); if(!el||el.dataset.on) return; el.dataset.on='1'; const archs=new Set(BLDX.flatMap(b=>b.arch.split(/\s*[·+]\s*/))).size, cities=new Set(BLDX.map(b=>b.city.split(',').pop().trim())).size, ph=BLDX.filter(b=>b.p).length;
+  const hn=$('#dnBldN'); if(hn) hn.textContent=BLDX.length;
+  el.innerHTML=`<div class="dnat-h"><div><span class="lab-k">ATLAS · 건축 도감</span><h2>건물 <b>${BLDX.length}</b>채를<br>단어로 읽었어요</h2><p>파르테논부터 코펜힐까지, 2,500년 동안 지어진 건물들을 이 랩의 단어로 하나하나 풀어 두었어요. 사진을 누르면 그 단어로 다시 지은 모형을 함께 보고, 그대로 내 설계의 출발점으로 가져올 수 있어요.</p></div>
+   <div class="dnat-st"><div><b>${BLDX.length}</b><span>건물</span></div><div><b>${archs}</b><span>건축가 · 시대</span></div><div><b>${cities}</b><span>나라 · 도시</span></div><div><b>${ph}</b><span>자유 이용 사진</span></div></div></div>
+   <div class="dnat-f"><div class="pfto" role="group" aria-label="지역"><button data-atreg="" aria-pressed="true">전체</button>${Object.entries(BLD_REG).map(([k,v])=>`<button data-atreg="${k}" aria-pressed="false">${v}<em>${BLDX.filter(b=>b.reg===k).length}</em></button>`).join('')}</div>
+   <div class="pfto" role="group" aria-label="시대"><button data-atera="" aria-pressed="true">모든 시대</button>${Object.entries(BLD_ERA).map(([k,v])=>`<button data-atera="${k}" aria-pressed="false">${v}</button>`).join('')}</div>
+   <input type="search" id="dnatQ" placeholder="건물 · 건축가 · 단어로 찾기 — 안도, 벽돌, 서울…" autocomplete="off"></div>
+   <div class="dnat-g" id="dnatG"></div><div class="dnat-more"><button class="btn ghost" type="button" id="dnatMore">더 보기</button><span id="dnatN"></span></div>
+   <p class="dnat-cr">사진은 위키미디어 공용의 자유 이용 사진(CC BY · BY-SA · CC0 · 공공누리 1유형 등)이며, 각 사진의 작가와 라이선스를 상세 보기에 적었어요. 자유 이용 사진이 없는 건물은 단어로 지은 모형으로 보여 드려요.</p>`;
+  dnAtlasRender(); }
+function dnAtlasRender(){ const g=$('#dnatG'); if(!g) return; const L=bldFiltered(); g.innerHTML=L.slice(0,ATL.n).map(b=>bldCard(b)).join('')||'<p class="muted">맞는 건물이 없어요. 다른 단어로 찾아보세요.</p>'; const m=$('#dnatMore'); if(m) m.hidden=L.length<=ATL.n; const n=$('#dnatN'); if(n) n.textContent=`${Math.min(L.length,ATL.n)} / ${L.length}채`; bldGenObserve(g); }
+let bldIO=null, bldQ=[], bldBusy=false;
+function bldGenObserve(root){ if(!bldIO) bldIO=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ bldIO.unobserve(e.target); bldQ.push(e.target); bldPump(); } }); },{rootMargin:'200px'}); root.querySelectorAll('.dnat-c .ph.gen').forEach(p=>bldIO.observe(p)); }
+function bldPump(){ if(bldBusy||!bldQ.length) return; bldBusy=true; const ph=bldQ.shift(); const b=BLD_BY[ph.closest('[data-bld]').dataset.bld]; bldModel(b,520,360).then(u=>{ ph.querySelector('.ld')?.remove(); if(!ph.querySelector('img')) ph.insertAdjacentHTML('afterbegin',`<img src="${u}" alt="">`); }).catch(()=>{}).finally(()=>{ bldBusy=false; setTimeout(bldPump,40); }); }
+/* 사진 위에 마우스를 올리면 → 단어로 지은 모형 */
+document.addEventListener('pointerover',e=>{ const c=e.target.closest&&e.target.closest('.dnat-c'); if(!c||c._m) return; const ph=c.querySelector('.ph'); if(ph.classList.contains('gen')) return; c._m=1; bldModel(BLD_BY[c.dataset.bld],520,360).then(u=>{ c.querySelector('.mdl').innerHTML=`<img src="${u}" alt=""><span>단어로 지은 모형</span>`; }).catch(()=>{}); });
+function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!m){ document.body.insertAdjacentHTML('beforeend','<div class="dnat-m" id="dnatM" role="dialog" aria-modal="true" aria-label="건물 보기" hidden></div>'); m=$('#dnatM'); }
+  const img=bldImg(b,1280); const same=BLDX.filter(x=>x.id!==b.id&&x.arch===b.arch).slice(0,4); const sim=bldSimilar(b.keys,4,b.id).map(x=>x.b).filter(x=>!same.includes(x)).slice(0,4);
+  m.innerHTML=`<div class="dnat-mb"><button class="x" type="button" data-atclose aria-label="닫기">✕</button>
+   <div class="dnat-mp"><div class="pic${img?'':' gen'}">${img?`<img src="${img}" alt="${esc(b.name)}">`:'<i class="ld"></i>'}</div><div class="dnat-md"><div class="dnat-mt"><i class="ld"></i></div><span>같은 단어로 지은 모형 — ${esc(DNA_ARCH[bldArch(b)].name)}</span></div>${img?`<p class="cr">사진 <a href="${bldFile(b)}" target="_blank" rel="noopener">${esc(b.by||'작가 미상')} · ${esc(b.lic)}</a> · 위키미디어 공용</p>`:''}</div>
+   <div class="dnat-mi"><span class="lab-k">${BLD_REG[b.reg]} · ${BLD_ERA[b.era]} · ${esc(b.city)}</span><h3>${esc(b.name)}</h3><p class="who">${esc(b.arch)} · ${esc(b.year)}</p><p class="ln">${esc(b.line)}</p>
+    <h4>이 건물을 읽은 단어</h4><div class="dns-ks">${b.keys.map(k=>dnKey(k)).join('')}</div>
+    ${state.dna.length?`<p class="ov">내 단어와 겹치는 것: <b>${bldShared(b,state.dna).map(esc).join(', ')||'아직 없어요'}</b></p>`:''}
+    <div class="act"><button class="btn big" type="button" data-atbuild="${b.id}">이 건물처럼 지어 보기</button><button class="btn sec" type="button" data-atadd="${b.id}">내 단어에 더하기</button></div>
+    ${same.length?`<h4>${esc(b.arch)}의 다른 건물</h4><div class="dnat-mini">${same.map(x=>`<button type="button" data-bld="${x.id}">${esc(x.name)}</button>`).join('')}</div>`:''}
+    ${sim.length?`<h4>단어가 닮은 건물</h4><div class="dnat-mini">${sim.map(x=>`<button type="button" data-bld="${x.id}">${esc(x.name)}</button>`).join('')}</div>`:''}</div></div>`;
+  m.hidden=false; document.documentElement.classList.add('dnat-lock'); m.querySelector('.x').focus({preventScroll:true});
+  bldModel(b,720,500).then(u=>{ const mi=m.querySelector('.dnat-mt'); if(mi) mi.innerHTML=`<img src="${u}" alt="">`; if(!img){ const p=m.querySelector('.pic'); if(p) p.innerHTML=`<img src="${u}" alt="">`; } }).catch(()=>{}); }
+function bldClose(){ const m=$('#dnatM'); if(m) m.hidden=true; document.documentElement.classList.remove('dnat-lock'); }
+function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
+  const t=$('#dnToast'); if(t){ t.textContent=add?`${b.name}의 단어를 더했어요`:`${b.name}의 단어 ${b.keys.length}개로 지었어요`; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2400); } }
+document.addEventListener('click',e=>{ if(!e.target.closest) return;
+  const mb=e.target.closest('#dnatM'); if(mb&&(e.target===mb||e.target.closest('[data-atclose]'))){ bldClose(); return; }
+  const bb=e.target.closest('[data-atbuild]'); if(bb){ bldBuild(bb.dataset.atbuild); return; }
+  const ba=e.target.closest('[data-atadd]'); if(ba){ bldBuild(ba.dataset.atadd,true); return; }
+  const c=e.target.closest('[data-bld]'); if(c){ bldOpen(c.dataset.bld); return; }
+  const r=e.target.closest('[data-atreg]'); if(r){ ATL.reg=r.dataset.atreg; ATL.n=36; $$('[data-atreg]').forEach(x=>x.setAttribute('aria-pressed',x===r)); dnAtlasRender(); return; }
+  const er=e.target.closest('[data-atera]'); if(er){ ATL.era=er.dataset.atera; ATL.n=36; $$('[data-atera]').forEach(x=>x.setAttribute('aria-pressed',x===er)); dnAtlasRender(); return; }
+  if(e.target.closest('#dnatMore')){ ATL.n+=36; dnAtlasRender(); return; }
+  if(e.target.closest('#dnAtlasOpen')){ dnAtlasInit(); $('#dnAtlas').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+});
+document.addEventListener('input',e=>{ if(e.target.id==='dnatQ'){ ATL.q=e.target.value; ATL.n=36; clearTimeout(dnAtlasRender._t); dnAtlasRender._t=setTimeout(dnAtlasRender,120); } });
+window.__atlas={BLDX,get dna(){ return state.dna; }};
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ const m=$('#dnatM'); if(m&&!m.hidden) bldClose(); } });
 document.addEventListener('click',e=>{ const v=e.target.closest('#view-dna'); if(!v) return;
   const at=e.target.closest('#dnAltTabs [data-alt]'); if(at){ dnaShowAlt(+at.dataset.alt); return; }
   const dv=e.target.closest('[data-dv]'); if(dv&&DV.main){ const on=dv.getAttribute('aria-pressed')!=='true'; dv.setAttribute('aria-pressed',on); DV.main[dv.dataset.dv](on); return; }
   const dvv=e.target.closest('[data-dvv]'); if(dvv&&DV.main){ DV.main.view(dvv.dataset.dvv); return; }
   const dx=e.target.closest('[data-dvx]'); if(dx&&DV.main){ if(dx.dataset.dvx==='png'){ const a=document.createElement('a'); a.href=DV.main.png(); a.download=`ZIPLAN-${(DV.cur&&DV.cur.name||'concept').replace(/\s+/g,'-')}.png`; a.click(); } else dnaRecord(); return; }
   if(e.target.closest('#dnRec')){ dnaRecord(); return; }
-  const vr=e.target.closest('[data-var]'); if(vr){ const P=pgSpec(state.dna,{base:vr.dataset.var}); DV.names[3]=['V','갈래',DNA_ARCH[vr.dataset.var].name]; $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); dnaShowAlt(3,P); $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); $('#dnStoryWrap').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  const vr=e.target.closest('[data-var]'); if(vr){ const P=pgSpec(state.dna,{base:vr.dataset.var,site:DV.site}); DV.names[3]=['V','갈래',DNA_ARCH[vr.dataset.var].name]; $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); dnaShowAlt(3,P); $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); $('#dnStoryWrap').scrollIntoView({behavior:'smooth',block:'start'}); return; }
   const lo=e.target.closest('[data-libopen]'); if(lo){ dnaLibOpen(lo.dataset.libopen); return; }
   const ld=e.target.closest('[data-libdel]'); if(ld){ const id=ld.dataset.libdel; dnaLibSet(dnaLibGet().filter(x=>x.id!==id)); try{ localStorage.removeItem('zip_dna_th_'+id); }catch(err){} dnaLibRender(); return; }
   if(e.target.closest('#dnLibOpen')){ dnaLibRender(); $('#dnLib').scrollIntoView({behavior:'smooth',block:'start'}); return; }
@@ -5221,6 +5518,8 @@ document.addEventListener('mousemove',e=>{ const c=e.target.closest&&e.target.cl
 function dnStyleApply(){ const k=lsGet('zip_dnsty','liquid'); const w=$('#dnPick'); if(!w) return; w.classList.remove('sty-liquid','sty-frost','sty-clean'); w.classList.add('sty-'+k); $$('[data-dnsty]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.dnsty===k)); }
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-dnsty]'); if(!b) return; lsSet('zip_dnsty',b.dataset.dnsty); dnStyleApply(); });
 document.addEventListener('pointerdown',e=>{ const b=e.target.closest&&e.target.closest('#dnPick .dncat .dk'); if(!b) return; const r=b.getBoundingClientRect(); const d=document.createElement('span'); d.className='drop'; const s=Math.max(r.width,r.height)*2.2; d.style.cssText=`left:${e.clientX-r.left}px;top:${e.clientY-r.top}px;width:${s}px;height:${s}px`; b.appendChild(d); setTimeout(()=>d.remove(),650); });
+document.addEventListener('change',e=>{ const sel=e.target.closest('[data-dnsite]'); if(!sel) return; DV.site=sel.value||undefined; $$('[data-dnsite]').forEach(x=>{ if(x!==sel) x.value=sel.value; });
+  try{ dnaLive3D(); }catch(err){} if(DV.main&&DV.cur){ DV.specs=DV.specs.map(P=>pgSpec(state.dna,{base:P.base,mode:P.mode,site:DV.site})); const cur=DV.alt<3?DV.specs[DV.alt]:pgSpec(state.dna,{base:DV.cur.base,mode:DV.cur.mode,site:DV.site}); dnaShowAlt(DV.alt,cur); if(DV.alt>=3) $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); const r=dnaAnalyze(state.dna); dnVarThumbs(r); } });
 /* ---------- 관리자 페이지 (#admin) — 숫자는 서버 함수 admin_stats()가 관리자일 때만 돌려준다 ---------- */
 let ADM=null;
 const admNum=n=>Number(n||0).toLocaleString('ko-KR');
