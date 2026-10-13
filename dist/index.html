@@ -1023,7 +1023,7 @@ html.is-student .plan .stl .ok{display:inline}
 .zc-gl{position:absolute;inset:-40%;background:conic-gradient(from 0deg,rgba(63,123,255,.35),rgba(255,94,156,.3),rgba(138,107,255,.35),rgba(48,209,88,.25),rgba(63,123,255,.35));filter:blur(14px);animation:zcspin 7s linear infinite;opacity:.8}
 @keyframes zcspin{to{transform:rotate(360deg)}}
 #zchat.open .zc-fab em{display:none}#zchat.open .zc-fab{padding:0 16px}
-.zc-panel{position:absolute;right:0;bottom:70px;width:min(390px,calc(100vw - 32px));height:min(580px,calc(100vh - 120px));display:flex;flex-direction:column;border-radius:28px;overflow:hidden;color:var(--fg);
+.zc-panel{position:absolute;right:0;bottom:70px;width:min(430px,calc(100vw - 32px));height:min(680px,calc(100vh - 110px));display:flex;flex-direction:column;border-radius:28px;overflow:hidden;color:var(--fg);
   background:color-mix(in srgb,var(--card) 74%,transparent);backdrop-filter:blur(28px) saturate(1.8);-webkit-backdrop-filter:blur(28px) saturate(1.8);border:1px solid color-mix(in srgb,var(--fg) 12%,transparent);
   box-shadow:0 30px 80px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.5);transform-origin:100% 100%;animation:zcIn .35s cubic-bezier(.3,1.4,.5,1)}
 @keyframes zcIn{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
@@ -1405,7 +1405,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .cw-mood{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:2fr 1fr;gap:8px;min-height:460px}
 .cw-mood figure{margin:0;border-radius:18px;overflow:hidden;background:var(--bg-alt)}.cw-mood figure img{width:100%;height:100%;object-fit:cover;display:block;animation:cwz 1.2s cubic-bezier(.2,.8,.2,1) both}
 @keyframes cwz{from{transform:scale(1.15);opacity:0}}
-.cw-mood .m0{grid-column:1/-1}.cw-mood .m3{display:none}
+.cw-mood .mo0{grid-column:1/-1}.cw-mood .mo3{display:none}
 .cw-sw{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:5px}.cw-sw span{font-size:11.5px;font-weight:700;background:rgba(255,255,255,.88);color:#1d1d1f;padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
 .cw-body{display:flex;flex-direction:column;gap:12px}.cw-k{font-size:12px;font-weight:800;letter-spacing:.06em;color:#ff5e3a}
 .cw-name{margin:0;font-size:clamp(30px,3.6vw,48px);letter-spacing:-.04em;line-height:1.05;word-break:keep-all}.cw-name small{display:block;font-size:16px;letter-spacing:.1em;color:var(--fg-2);margin-top:6px;font-weight:600}
@@ -1421,6 +1421,73 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .cw-wm{height:320px;border-radius:18px;background:var(--bg-alt)}
 @media(max-width:1000px){.cw-res.on{grid-template-columns:1fr}.cw-mood{min-height:340px}.cw-grid.g4{grid-template-columns:repeat(2,1fr)}.cw-grid.g3{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.cw-shell{padding:14px;border-radius:24px}.cw-steps button{padding:8px 10px;font-size:12.5px}.cw-cols{grid-template-columns:1fr}.cw-t.ic{min-height:112px;padding:14px}.cw-dia{padding:8px}.cw-f>div{height:52px}.cw-nav .btn{padding:10px 14px}}
+.cw-viz{display:flex;flex-direction:column;gap:8px;min-width:0}
+.m3{position:relative;height:440px;border-radius:22px;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#f4f1ea,#dcd6c8);cursor:grab;touch-action:none}
+.m3.night{background:radial-gradient(120% 90% at 50% 0%,#1d2540,#0a0d18)}
+.m3:active{cursor:grabbing}.m3 canvas{display:block;width:100%!important;height:100%!important}
+.m3-load,.m3-fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--fg-2);font-size:14px}.m3-fallback svg{width:70%;height:70%}
+.m3-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.m3-sun{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg-2)}.m3-sun input{width:110px;accent-color:#ff9f0a}
+.m3-info{font-size:12.5px;font-weight:700;color:var(--fg-2)}
+.cw-viz .cw-mood{min-height:0;height:150px;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr}.cw-viz .cw-mood .mo0{grid-column:auto}.cw-viz .cw-mood .mo3{display:block}
+@media(max-width:560px){.m3{height:320px}.cw-viz .cw-mood{height:110px;grid-template-columns:repeat(3,1fr)}.cw-viz .cw-mood figure:nth-child(4){display:none}}
+/* ===== 건축 사전 ===== */
+.encsvg{width:100%;height:auto;display:block;color:var(--fg)}.encsvg .l{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.encsvg .f{fill:color-mix(in srgb,currentColor 8%,transparent);stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}
+.encsvg .k{fill:#ff5e3a22;stroke:#ff5e3a;stroke-width:2;stroke-linejoin:round}.encsvg .a{fill:none;stroke:#3f7bff;stroke-width:2;stroke-dasharray:7 5;marker-end:url(#ea);animation:encd 1.2s linear infinite}
+@keyframes encd{to{stroke-dashoffset:-24}}.encsvg text{font-size:10.5px;fill:var(--fg-2);font-family:var(--font);font-weight:600}
+.zc-m.encm{max-width:100%;width:100%;padding:12px}
+.enc{display:flex;flex-direction:column;gap:8px}.enc-k{font-size:11px;font-weight:800;color:#ff5e3a;letter-spacing:.04em}.enc-t{font-size:19px;letter-spacing:-.02em}.enc-t em{font-style:normal;font-size:12px;color:var(--fg-2);font-weight:600;margin-left:4px}
+.enc-v{background:var(--bg-alt);border-radius:14px;padding:8px}.enc p{margin:0;font-size:14px;line-height:1.65;word-break:keep-all}.enc ul{margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:var(--fg-2)}
+.enc-ex{display:flex;gap:6px;overflow-x:auto}.enc-ex a{flex:0 0 132px;text-decoration:none!important;color:var(--fg)}.enc-ex img{width:132px;height:84px;object-fit:cover;border-radius:10px;display:block}.enc-ex span{font-size:11.5px;font-weight:700}
+.enc-see{display:flex;flex-wrap:wrap;gap:5px}.enc-see button{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:4px 10px;font-size:12px;cursor:pointer}
+.enc-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}.enc-bar input{flex:1 1 260px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:12px 18px;font-size:15px}
+.enc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.enc-c{display:flex;flex-direction:column;gap:4px;text-align:left;border:1px solid var(--card-line);background:var(--card);color:var(--fg);border-radius:20px;padding:12px;cursor:pointer;transition:transform .35s cubic-bezier(.3,1.4,.4,1),box-shadow .3s;transition-delay:calc(var(--i)*30ms)}
+.enc-c:hover{transform:translateY(-4px);box-shadow:0 20px 40px -24px rgba(0,0,0,.4)}.enc-ct{display:block;background:var(--bg-alt);border-radius:12px;padding:4px;margin-bottom:6px}.enc-c em{font-style:normal;font-size:11px;font-weight:800;color:#ff5e3a}.enc-c b{font-size:16px}.enc-cs{font-size:12.5px;color:var(--fg-2);line-height:1.5;word-break:keep-all}
+.enc-modal{position:fixed;inset:0;z-index:92;background:rgba(10,12,18,.4);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
+.enc-mbox{position:relative;width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:24px;padding:22px;box-shadow:0 40px 100px rgba(0,0,0,.35);animation:zcIn .3s}.enc-x{position:absolute;right:12px;top:10px;border:0;background:none;font-size:26px;color:var(--fg-2);cursor:pointer}
+.enc-mbox .enc-t{font-size:26px}
+@media(max-width:1000px){.enc-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.enc-grid{grid-template-columns:1fr 1fr;gap:8px}.enc-c{padding:9px}.enc-c b{font-size:14px}}
+/* ---- 여행: 지도 도구 · 상세 서랍 ---- */
+.tv-mtools{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.tv-mtools .modes{margin-right:auto}.tv-mtools .modes button{font-size:12px;padding:6px 12px}
+.tv-mtools #tvFull{width:36px;padding:6px 0;justify-content:center}
+.tv-mapbox.full{position:fixed!important;inset:0;top:0!important;z-index:2000;background:var(--bg);padding:14px;display:flex;flex-direction:column}
+.tv-mapbox.full .tv-map{flex:1;height:auto!important;max-height:none;border-radius:22px}
+.tv-mapbox.full .tv-maphint{display:none}
+.tv-det{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;font-size:13px}
+.tv-card h3[data-tdet]{cursor:pointer}.tv-card h3[data-tdet]:hover{color:var(--accent)}
+.tvp-b .tvp-act{display:flex;gap:6px}
+.tv-dr{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0);transition:background .3s;display:flex;justify-content:flex-end}
+.tv-dr[hidden]{display:none}
+.tv-dr.on{background:rgba(0,0,0,.42);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.tv-drb{position:relative;width:min(560px,100vw);height:100%;overflow-y:auto;background:var(--bg);box-shadow:-30px 0 60px -20px rgba(0,0,0,.4);transform:translateX(100%);transition:transform .36s cubic-bezier(.2,.9,.25,1);overscroll-behavior:contain}
+.tv-dr.on .tv-drb{transform:none}
+.tv-drx{position:absolute;right:14px;top:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;cursor:pointer;backdrop-filter:blur(10px)}
+.tv-drph{position:relative;aspect-ratio:4/3;background:var(--bg-alt);overflow:hidden}
+.tv-drph img{width:100%;height:100%;object-fit:cover;display:block;animation:tvKen 14s ease-out both}
+@keyframes tvKen{from{transform:scale(1.12)}to{transform:scale(1)}}
+.tv-drph .tv-art{height:100%;display:grid;place-items:center}.tv-drph .tv-art svg{height:70%}
+.tv-drph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),transparent 55%);pointer-events:none}
+.tv-drt{position:absolute;left:22px;right:22px;bottom:18px;z-index:2;color:#fff}
+.tv-drt span{font-size:12px;opacity:.85;letter-spacing:.02em}.tv-drt h3{font-size:28px;line-height:1.15;margin:4px 0 2px;letter-spacing:-.02em}.tv-drt em{font-style:normal;font-size:13px;opacity:.85}
+.tv-drph .ph-cr{z-index:2}
+.tv-drin{padding:20px 22px 40px}
+.tv-drin h4{font-size:15px;margin:24px 0 10px;padding-left:10px;border-left:3px solid var(--c)}
+.tv-drwhy{font-size:15px;line-height:1.7;margin:16px 0 0}
+.tv-feat{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tv-feat li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;padding:12px 14px;border-radius:16px;background:var(--bg-alt);font-size:14px;line-height:1.6;animation:mgIn .5s both;animation-delay:calc(var(--i)*90ms + 150ms)}
+.tv-feat i{width:28px;height:28px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;font-weight:800;font-size:13px;display:grid;place-items:center}
+.tv-drin .tv-see{margin-top:16px}
+.tv-drdia{display:flex;align-items:center;gap:14px;margin-top:16px;padding:12px 14px;border:1px dashed var(--card-line);border-radius:16px;font-size:13px;color:var(--fg-2)}
+.tv-drdia>div{width:76px;height:60px;flex:0 0 auto}.tv-drdia svg{width:100%;height:100%}
+.tv-eat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.tv-eat a{display:block;padding:12px 14px;border-radius:16px;border:1px solid var(--card-line);background:var(--card);color:inherit;text-decoration:none;transition:transform .25s cubic-bezier(.3,1.4,.4,1),border-color .2s}
+.tv-eat a:hover{transform:translateY(-3px);border-color:var(--c)}
+.tv-eat b{display:block;font-size:14px}.tv-eat span{display:block;font-size:12px;color:var(--fg-2);margin:3px 0 6px}.tv-eat em{font-style:normal;font-size:12px;font-weight:700;color:var(--accent)}
+.tv-small{font-size:11.5px;color:var(--fg-2);margin:8px 0 0}
+.tv-dract{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;position:sticky;bottom:0;padding:12px 0 4px;background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.tv-tl .ln a{color:var(--accent);font-weight:700;text-decoration:none}
+@media(max-width:700px){.tv-dr{align-items:flex-end}.tv-drb{width:100vw;height:92vh;border-radius:24px 24px 0 0;transform:translateY(100%)}.tv-drt h3{font-size:23px}}
 </style>
 
 </head>
@@ -3246,12 +3313,13 @@ function zcAnswer(q){ const qt=zcTok(q); const has=w=>qt.some(t=>t.includes(w)||
 const ZC={open:false,tab:'ai',busy:false,log:lsGet('zip_chat',[])};
 (function(){ const w=document.createElement('div'); w.id='zchat'; w.innerHTML=`<button class="zc-fab" id="zcFab" aria-label="길잡이·문의 열기" aria-expanded="false"><span class="zc-gl"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z"/></svg><em>물어보기</em></button>
   <div class="zc-panel" id="zcPanel" hidden role="dialog" aria-label="ZIPLAN 길잡이"><div class="zc-h"><div class="zc-tabs"><button data-zt="ai" aria-pressed="true">AI 길잡이</button><button data-zt="ask" aria-pressed="false">문의하기</button></div><button class="zc-x" id="zcX" aria-label="닫기">×</button></div>
-   <div class="zc-ai" id="zcAi"><div class="zc-log" id="zcLog"></div><div class="zc-chips" id="zcChips">${['용적률이 뭐예요?','중정형 사례 보여줘','동지 그림자 보고 싶어','학생 할인','패널 어떻게 만들어요?'].map(q=>`<button>${q}</button>`).join('')}</div><form class="zc-in" id="zcForm"><input id="zcQ" placeholder="찾는 것을 물어보세요" autocomplete="off" maxlength="300"><button aria-label="보내기">↑</button></form></div>
+   <div class="zc-ai" id="zcAi"><div class="zc-log" id="zcLog"></div><div class="zc-chips" id="zcChips">${['스킵플로어가 뭐야?','캔틸레버 그림으로 보여줘','처마는 왜 길어?','용적률이 뭐예요?','중정형 사례 보여줘','동지 그림자 보고 싶어','학생 할인','패널 어떻게 만들어요?'].map(q=>`<button>${q}</button>`).join('')}</div><form class="zc-in" id="zcForm"><input id="zcQ" placeholder="찾는 것을 물어보세요" autocomplete="off" maxlength="300"><button aria-label="보내기">↑</button></form></div>
    <form class="zc-ask" id="zcAsk" hidden><p>관리자에게 바로 전달됩니다. 답이 필요하면 이메일을 남겨 주세요.</p><div class="row"><input id="zaName" placeholder="이름 (선택)" maxlength="60"><select id="zaKind"><option>일반 문의</option><option>오류 신고</option><option>기능 제안</option><option>학교 · 단체 도입</option><option>제휴</option></select></div><input id="zaEmail" type="email" placeholder="답변 받을 이메일 (선택)" maxlength="120"><textarea id="zaMsg" placeholder="내용을 적어 주세요" maxlength="3000" required></textarea><button class="btn" id="zaGo">보내기</button><div class="status" id="zaSt"></div></form></div>`;
   document.body.appendChild(w); zcRender(); })();
-function zcRender(){ const log=$('#zcLog'); if(!log) return; const L=ZC.log.length?ZC.log:[{r:'b',h:'안녕하세요, ZIPLAN 길잡이예요. 용어, 기능, 사례, 설계 방향을 물어보면 바로 찾아 드려요. 사람에게 묻고 싶으면 위의 <b>문의하기</b>를 눌러 주세요.'}];
-  log.innerHTML=L.map(m=>`<div class="zc-m ${m.r}">${m.h}${m.go?`<div class="zc-go">${m.go.map(g=>`<a href="${g[0]}"${g[2]?` data-case="${esc(g[2])}"`:''}${g[3]?` data-arch="${esc(g[3])}"`:''}>${esc(g[1])} ›</a>`).join('')}</div>`:''}</div>`).join('')+(ZC.busy?'<div class="zc-m b typing"><i></i><i></i><i></i></div>':''); log.scrollTop=log.scrollHeight; }
+function zcRender(){ const log=$('#zcLog'); if(!log) return; const L=ZC.log.length?ZC.log:[{r:'b',h:'안녕하세요, ZIPLAN 길잡이예요. 스킵플로어·캔틸레버·처마 같은 건축 용어는 그림과 함께 쉽게 설명해 드리고, 기능·사례·설계 방향도 물어보면 바로 찾아 드려요. 사람에게 묻고 싶으면 위의 <b>문의하기</b>를 눌러 주세요.'}];
+  log.innerHTML=L.map(m=>`<div class="zc-m ${m.r}${m.enc?' encm':''}">${m.enc&&typeof ENC!=='undefined'?encCard(ENC.find(e=>e.id===m.enc)||ENC[0]):m.h}${m.go?`<div class="zc-go">${m.go.map(g=>`<a href="${g[0]}"${g[2]?` data-case="${esc(g[2])}"`:''}${g[3]?` data-arch="${esc(g[3])}"`:''}>${esc(g[1])} ›</a>`).join('')}</div>`:''}</div>`).join('')+(ZC.busy?'<div class="zc-m b typing"><i></i><i></i><i></i></div>':''); log.scrollTop=log.scrollHeight; }
 async function zcAsk(q){ q=q.trim(); if(!q||ZC.busy) return; ZC.log.push({r:'u',h:esc(q)}); ZC.busy=true; zcRender(); await new Promise(r=>setTimeout(r,420));
+  { const en=(typeof encFind==='function')?encFind(q):null; if(en){ ZC.busy=false; ZC.log.push({r:'b',enc:en.id,go:[['#library','건축 사전 전체 보기']]}); ZC.log=ZC.log.slice(-30); lsSet('zip_chat',ZC.log); zcRender(); return; } }
   let ans=null; if(sample&&!sample.local){ try{ const r=await sample(`당신은 건축 학습·설계 사이트 ZIPLAN의 길잡이입니다. 한국어로 3문장 이내, 쉬운 말로 답하고, 관련 기능이 있으면 이름을 말하세요(취향 랩, 내집코드, 대지·해와 바람, 컨셉·매스 조작 도감, 도면·관계 다이어그램, 모형·층 펼쳐 보기, 패널, 사례, 자료실, 내 작업실). 법규는 "조례 확인 필요"를 붙이세요.\n질문: ${q}`,{modelTier:'quick'}); if(r&&r.text) ans={html:esc(r.text).replace(/\n/g,'<br>'),go:null}; }catch(e){} }
   const hits=zcAnswer(q); if(!ans&&hits.length) ans={html:hits.map(h=>h.html).join('<hr>'),go:hits.map(h=>[h.go[0],h.go[1],h.cs||'',h.arch||''])}; else if(ans&&hits.length) ans.go=hits.map(h=>[h.go[0],h.go[1],h.cs||'',h.arch||'']);
   if(!ans) ans={html:'그 내용은 아직 제가 바로 찾지 못했어요. 표현을 바꿔 물어보시거나, <b>문의하기</b>로 남겨 주시면 관리자가 확인합니다.',go:[['#dna','취향 랩'],['#library','열린 자료']]};
@@ -3467,12 +3535,12 @@ const tHav=(a,b)=>{ const R=6371,r=Math.PI/180; const dl=(b.lat-a.lat)*r, dn=(b.
 const tMin=(km,mode)=>Math.round(mode==='car'?km*1.3/55*60+10:km*1.35/42*60+20);
 const tFmt=m=>m>=60?`${Math.floor(m/60)}시간${m%60?' '+(m%60)+'분':''}`:`${m}분`;
 const tClock=m=>`${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
-const PH={"haein":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/20170812.%ED%95%B4%EC%9D%B8%EC%82%AC_%EC%9E%A5%EA%B2%BD%ED%8C%90%EC%A0%84%28Haeinsa_Janggyeong_Panjeon%29.01.jpg/1920px-20170812.%ED%95%B4%EC%9D%B8%EC%82%AC_%EC%9E%A5%EA%B2%BD%ED%8C%90%EC%A0%84%28Haeinsa_Janggyeong_Panjeon%29.01.jpg","https://commons.wikimedia.org/wiki/File:20170812.%ED%95%B4%EC%9D%B8%EC%82%AC_%EC%9E%A5%EA%B2%BD%ED%8C%90%EC%A0%84%28Haeinsa_Janggyeong_Panjeon%29.01.jpg","SpongeFan0304","CC BY-SA 4.0",5312],"podo":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Guest_House_PODO_Hotel_01.jpg/1920px-Guest_House_PODO_Hotel_01.jpg","https://commons.wikimedia.org/wiki/File:Guest_House_PODO_Hotel_01.jpg","Htwzzz","CC BY-SA 4.0",2434],"suphung":["https://upload.wikimedia.org/wikipedia/commons/a/a5/Three_Art_Museums_%E3%80%8EWind%E3%80%8F.jpg","https://commons.wikimedia.org/wiki/File:Three_Art_Museums_%E3%80%8EWind%E3%80%8F.jpg","Htwzzz","CC BY-SA 4.0",1500],"bonte":["https://upload.wikimedia.org/wikipedia/commons/7/7c/%EB%B3%B8%ED%83%9C%EB%B0%95%EB%AC%BC%EA%B4%80.jpg","https://commons.wikimedia.org/wiki/File:%EB%B3%B8%ED%83%9C%EB%B0%95%EB%AC%BC%EA%B4%80.jpg","김나롱","CC BY-SA 4.0",1080],"kyungdong":["https://upload.wikimedia.org/wikipedia/commons/0/04/Kyungdong_Presbyterian_Church.jpg","https://commons.wikimedia.org/wiki/File:Kyungdong_Presbyterian_Church.jpg","Seoul Institute","CC BY 4.0",1600],"glasshouse":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Glass_House%2C_Phoenix_Island%2C_Jeju.jpg/1920px-Glass_House%2C_Phoenix_Island%2C_Jeju.jpg","https://commons.wikimedia.org/wiki/File:Glass_House%2C_Phoenix_Island%2C_Jeju.jpg","ProjectManhattan","CC BY-SA 3.0",3920],"jongmyo":["https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Jeongjeon%2C_Jongmyo_%28Summer%2C_2013%29.jpg/1920px-Jeongjeon%2C_Jongmyo_%28Summer%2C_2013%29.jpg","https://commons.wikimedia.org/wiki/File:Jeongjeon%2C_Jongmyo_%28Summer%2C_2013%29.jpg","Cultural Heritage Administration","KOGL Type 1",4000],"ddp":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg/1920px-Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg","https://commons.wikimedia.org/wiki/File:Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg","Eugene Lim","CC BY 2.0",3600],"ecc":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ewha_Campus_Complex.jpg/1920px-Ewha_Campus_Complex.jpg","https://commons.wikimedia.org/wiki/File:Ewha_Campus_Complex.jpg","Ken Eckert","CC BY-SA 4.0",3648],"seoullo":["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Seoullo_7017_02.jpg/1920px-Seoullo_7017_02.jpg","https://commons.wikimedia.org/wiki/File:Seoullo_7017_02.jpg","분당선M","CC BY-SA 3.0",5232],"byeongsan":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/%EB%B3%91%EC%82%B0%EC%84%9C%EC%9B%90-1.jpg/1920px-%EB%B3%91%EC%82%B0%EC%84%9C%EC%9B%90-1.jpg","https://commons.wikimedia.org/wiki/File:%EB%B3%91%EC%82%B0%EC%84%9C%EC%9B%90-1.jpg","limhyungkyu","CC BY-SA 4.0",3992],"seonyudo":["https://upload.wikimedia.org/wikipedia/commons/3/39/Seonyudo_Park_-_historical_-_2005_June_6_various_-_01.jpg","https://commons.wikimedia.org/wiki/File:Seonyudo_Park_-_historical_-_2005_June_6_various_-_01.jpg","Nesnad","CC BY 4.0",1600],"therme":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Therme_Vals_facade%2C_Vals%2C_Graub%C3%BCnden%2C_Switzerland_-_20090809.jpg/1920px-Therme_Vals_facade%2C_Vals%2C_Graub%C3%BCnden%2C_Switzerland_-_20090809.jpg","https://commons.wikimedia.org/wiki/File:Therme_Vals_facade%2C_Vals%2C_Graub%C3%BCnden%2C_Switzerland_-_20090809.jpg","Micha L. Rieser","Attribution",3000],"amore":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Amore_Pacific_World_HQ.jpg/1920px-Amore_Pacific_World_HQ.jpg","https://commons.wikimedia.org/wiki/File:Amore_Pacific_World_HQ.jpg","kallerna","CC BY-SA 4.0",5200],"changdeok":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Changdeokgung_Buyongji_in_2026.jpg/1920px-Changdeokgung_Buyongji_in_2026.jpg","https://commons.wikimedia.org/wiki/File:Changdeokgung_Buyongji_in_2026.jpg","Sadopaul","CC BY-SA 4.0",9200],"habitat":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Habitat_67_2019_dllu_02.jpg/1920px-Habitat_67_2019_dllu_02.jpg","https://commons.wikimedia.org/wiki/File:Habitat_67_2019_dllu_02.jpg","Dllu","CC BY-SA 4.0",7428],"space":["https://upload.wikimedia.org/wikipedia/commons/8/8f/Space_Group_Building.jpg","https://commons.wikimedia.org/wiki/File:Space_Group_Building.jpg","Seoul Institute","CC BY 4.0",1600],"sosu":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sosu_Seowon_%287%29.jpg/1920px-Sosu_Seowon_%287%29.jpg","https://commons.wikimedia.org/wiki/File:Sosu_Seowon_%287%29.jpg","Kyle","CC BY 2.0",5184],"dosan":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Korea-Andong-Dosan_Seowon_2991%262-06.jpg/1920px-Korea-Andong-Dosan_Seowon_2991%262-06.jpg","https://commons.wikimedia.org/wiki/File:Korea-Andong-Dosan_Seowon_2991%262-06.jpg","Steve46814","CC BY-SA 3.0",2460],"tietgen":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tietgenkollegiet_Copenhagen.jpg/1920px-Tietgenkollegiet_Copenhagen.jpg","https://commons.wikimedia.org/wiki/File:Tietgenkollegiet_Copenhagen.jpg","News Oresund","CC BY 2.0",4191],"hwaseong":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Banghwasuryujeong_20081005_.JPG/1920px-Banghwasuryujeong_20081005_.JPG","https://commons.wikimedia.org/wiki/File:Banghwasuryujeong_20081005_.JPG","oreum","CC BY-SA 3.0",2048],"mountain":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Bjarke_ingels_group%2C_BIG_JDS_PLOT%2C_mountain_dwellings%2C_copenhagen_2005-2008.jpg/1920px-Bjarke_ingels_group%2C_BIG_JDS_PLOT%2C_mountain_dwellings%2C_copenhagen_2005-2008.jpg","https://commons.wikimedia.org/wiki/File:Bjarke_ingels_group%2C_BIG_JDS_PLOT%2C_mountain_dwellings%2C_copenhagen_2005-2008.jpg","SEIER+SEIER","CC BY 2.0",2973],"busancinema":["https://upload.wikimedia.org/wikipedia/commons/e/e1/Busan_Cinema_Center.jpg","https://commons.wikimedia.org/wiki/File:Busan_Cinema_Center.jpg","399scout","CC BY-SA 4.0",1800],"naoshima":["https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chichu_art_museum01s2560.jpg/1920px-Chichu_art_museum01s2560.jpg","https://commons.wikimedia.org/wiki/File:Chichu_art_museum01s2560.jpg","663highland","CC BY 2.5",2550],"seattle":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Seattle_Central_Library_from_Fourth_%26_Madison_Building_-_Nov_2024.jpg/1920px-Seattle_Central_Library_from_Fourth_%26_Madison_Building_-_Nov_2024.jpg","https://commons.wikimedia.org/wiki/File:Seattle_Central_Library_from_Fourth_%26_Madison_Building_-_Nov_2024.jpg","SounderBruce","CC BY-SA 4.0",4080],"buseoksa":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Muryangsujeon_at_Buseoksa_02.jpg/1920px-Muryangsujeon_at_Buseoksa_02.jpg","https://commons.wikimedia.org/wiki/File:Muryangsujeon_at_Buseoksa_02.jpg","Bernard Gagnon","CC0",5123],"bongjeong":["https://upload.wikimedia.org/wikipedia/commons/6/68/Korea-Andong-Bongjeongsa_3040-06_Geungnakjeon.JPG","https://commons.wikimedia.org/wiki/File:Korea-Andong-Bongjeongsa_3040-06_Geungnakjeon.JPG","Steve46814","CC BY-SA 3.0",1280],"sendai":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Sendai_Mediatheque_2020_1.jpg/1920px-Sendai_Mediatheque_2020_1.jpg","https://commons.wikimedia.org/wiki/File:Sendai_Mediatheque_2020_1.jpg","Ymblanter","CC BY-SA 4.0",6000],"yangdong":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Yangdong_Village_02.jpg/1920px-Yangdong_Village_02.jpg","https://commons.wikimedia.org/wiki/File:Yangdong_Village_02.jpg","Bernard Gagnon","CC0",3855],"bangju":["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bangju_Church_%28side%29_%282%29.png/1920px-Bangju_Church_%28side%29_%282%29.png","https://commons.wikimedia.org/wiki/File:Bangju_Church_%28side%29_%282%29.png","Thomas Housieaux","CC BY-SA 4.0",4032],"bulguksa":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Bulguksa_temple_entrance_gate_stairs_flower_bed_and_blue_sky_in_Gyeongju_South_Korea.jpg/1920px-Bulguksa_temple_entrance_gate_stairs_flower_bed_and_blue_sky_in_Gyeongju_South_Korea.jpg","https://commons.wikimedia.org/wiki/File:Bulguksa_temple_entrance_gate_stairs_flower_bed_and_blue_sky_in_Gyeongju_South_Korea.jpg","Basile Morin","CC BY-SA 4.0",6536],"hahoe":["https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Hahoe_Folk_Village_03.jpg/1920px-Hahoe_Folk_Village_03.jpg","https://commons.wikimedia.org/wiki/File:Hahoe_Folk_Village_03.jpg","Bernard Gagnon","CC0",4773],"kolumba":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Haupteingang_und_Schriftzug_Kolumba_K%C3%B6ln_%281889-91%29.jpg/1920px-Haupteingang_und_Schriftzug_Kolumba_K%C3%B6ln_%281889-91%29.jpg","https://commons.wikimedia.org/wiki/File:Haupteingang_und_Schriftzug_Kolumba_K%C3%B6ln_%281889-91%29.jpg","Raimond Spekking","CC BY-SA 4.0",3400],"ssamziegil":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/%EC%8C%88%EC%A7%80%EA%B8%B8.jpg/1920px-%EC%8C%88%EC%A7%80%EA%B8%B8.jpg","https://commons.wikimedia.org/wiki/File:%EC%8C%88%EC%A7%80%EA%B8%B8.jpg","Tmannya","CC BY-SA 3.0",4288],"mmca":["https://upload.wikimedia.org/wikipedia/commons/a/a9/MMCA_Seoul.jpg","https://commons.wikimedia.org/wiki/File:MMCA_Seoul.jpg","서울연구원","CC BY 4.0",1600],"leeum":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hannam-dong%2C_where_art_and_culture_meet.jpg/1920px-Hannam-dong%2C_where_art_and_culture_meet.jpg","https://commons.wikimedia.org/wiki/File:Hannam-dong%2C_where_art_and_culture_meet.jpg","Korea.net / KOCIS","CC BY-SA 2.0",2592]};
+const PH={"haein":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/20170812.%ED%95%B4%EC%9D%B8%EC%82%AC_%EC%9E%A5%EA%B2%BD%ED%8C%90%EC%A0%84%28Haeinsa_Janggyeong_Panjeon%29.01.jpg/1920px-20170812.%ED%95%B4%EC%9D%B8%EC%82%AC_%EC%9E%A5%EA%B2%BD%ED%8C%90%EC%A0%84%28Haeinsa_Janggyeong_Panjeon%29.01.jpg","https://commons.wikimedia.org/wiki/File:20170812.%ED%95%B4%EC%9D%B8%EC%82%AC_%EC%9E%A5%EA%B2%BD%ED%8C%90%EC%A0%84%28Haeinsa_Janggyeong_Panjeon%29.01.jpg","SpongeFan0304","CC BY-SA 4.0",5312],"podo":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Guest_House_PODO_Hotel_01.jpg/1920px-Guest_House_PODO_Hotel_01.jpg","https://commons.wikimedia.org/wiki/File:Guest_House_PODO_Hotel_01.jpg","Htwzzz","CC BY-SA 4.0",2434],"suphung":["https://upload.wikimedia.org/wikipedia/commons/a/a5/Three_Art_Museums_%E3%80%8EWind%E3%80%8F.jpg","https://commons.wikimedia.org/wiki/File:Three_Art_Museums_%E3%80%8EWind%E3%80%8F.jpg","Htwzzz","CC BY-SA 4.0",1500],"bonte":["https://upload.wikimedia.org/wikipedia/commons/7/7c/%EB%B3%B8%ED%83%9C%EB%B0%95%EB%AC%BC%EA%B4%80.jpg","https://commons.wikimedia.org/wiki/File:%EB%B3%B8%ED%83%9C%EB%B0%95%EB%AC%BC%EA%B4%80.jpg","김나롱","CC BY-SA 4.0",1080],"kyungdong":["https://upload.wikimedia.org/wikipedia/commons/0/04/Kyungdong_Presbyterian_Church.jpg","https://commons.wikimedia.org/wiki/File:Kyungdong_Presbyterian_Church.jpg","Seoul Institute","CC BY 4.0",1600],"glasshouse":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Glass_House%2C_Phoenix_Island%2C_Jeju.jpg/1920px-Glass_House%2C_Phoenix_Island%2C_Jeju.jpg","https://commons.wikimedia.org/wiki/File:Glass_House%2C_Phoenix_Island%2C_Jeju.jpg","ProjectManhattan","CC BY-SA 3.0",3920],"jongmyo":["https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Jeongjeon%2C_Jongmyo_%28Summer%2C_2013%29.jpg/1920px-Jeongjeon%2C_Jongmyo_%28Summer%2C_2013%29.jpg","https://commons.wikimedia.org/wiki/File:Jeongjeon%2C_Jongmyo_%28Summer%2C_2013%29.jpg","Cultural Heritage Administration","KOGL Type 1",4000],"ddp":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg/1920px-Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg","https://commons.wikimedia.org/wiki/File:Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg","Eugene Lim","CC BY 2.0",3600],"ecc":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ewha_Campus_Complex.jpg/1920px-Ewha_Campus_Complex.jpg","https://commons.wikimedia.org/wiki/File:Ewha_Campus_Complex.jpg","Ken Eckert","CC BY-SA 4.0",3648],"seoullo":["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Seoullo_7017_02.jpg/1920px-Seoullo_7017_02.jpg","https://commons.wikimedia.org/wiki/File:Seoullo_7017_02.jpg","분당선M","CC BY-SA 3.0",5232],"byeongsan":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/%EB%B3%91%EC%82%B0%EC%84%9C%EC%9B%90-1.jpg/1920px-%EB%B3%91%EC%82%B0%EC%84%9C%EC%9B%90-1.jpg","https://commons.wikimedia.org/wiki/File:%EB%B3%91%EC%82%B0%EC%84%9C%EC%9B%90-1.jpg","limhyungkyu","CC BY-SA 4.0",3992],"seonyudo":["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Korea_Seonyudo_Summer_20140805_10_%2814862140773%29.jpg/1920px-Korea_Seonyudo_Summer_20140805_10_%2814862140773%29.jpg","https://commons.wikimedia.org/wiki/File:Korea_Seonyudo_Summer_20140805_10_%2814862140773%29.jpg","Korea.net / KOCIS","CC BY-SA 2.0",5472],"therme":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Therme_Vals_facade%2C_Vals%2C_Graub%C3%BCnden%2C_Switzerland_-_20090809.jpg/1920px-Therme_Vals_facade%2C_Vals%2C_Graub%C3%BCnden%2C_Switzerland_-_20090809.jpg","https://commons.wikimedia.org/wiki/File:Therme_Vals_facade%2C_Vals%2C_Graub%C3%BCnden%2C_Switzerland_-_20090809.jpg","Micha L. Rieser","Attribution",3000],"amore":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Amore_Pacific_World_HQ.jpg/1920px-Amore_Pacific_World_HQ.jpg","https://commons.wikimedia.org/wiki/File:Amore_Pacific_World_HQ.jpg","kallerna","CC BY-SA 4.0",5200],"changdeok":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Changdeokgung_Buyongji_in_2026.jpg/1920px-Changdeokgung_Buyongji_in_2026.jpg","https://commons.wikimedia.org/wiki/File:Changdeokgung_Buyongji_in_2026.jpg","Sadopaul","CC BY-SA 4.0",9200],"habitat":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Habitat_67_2019_dllu_02.jpg/1920px-Habitat_67_2019_dllu_02.jpg","https://commons.wikimedia.org/wiki/File:Habitat_67_2019_dllu_02.jpg","Dllu","CC BY-SA 4.0",7428],"space":["https://upload.wikimedia.org/wikipedia/commons/8/8f/Space_Group_Building.jpg","https://commons.wikimedia.org/wiki/File:Space_Group_Building.jpg","Seoul Institute","CC BY 4.0",1600],"sosu":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sosu_Seowon_%287%29.jpg/1920px-Sosu_Seowon_%287%29.jpg","https://commons.wikimedia.org/wiki/File:Sosu_Seowon_%287%29.jpg","Kyle","CC BY 2.0",5184],"dosan":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Korea-Andong-Dosan_Seowon_2991%262-06.jpg/1920px-Korea-Andong-Dosan_Seowon_2991%262-06.jpg","https://commons.wikimedia.org/wiki/File:Korea-Andong-Dosan_Seowon_2991%262-06.jpg","Steve46814","CC BY-SA 3.0",2460],"tietgen":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tietgenkollegiet_Copenhagen.jpg/1920px-Tietgenkollegiet_Copenhagen.jpg","https://commons.wikimedia.org/wiki/File:Tietgenkollegiet_Copenhagen.jpg","News Oresund","CC BY 2.0",4191],"hwaseong":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Banghwasuryujeong_-_Hwaseong_Fortress_-_Daytime_-_2008-10-17.JPG/1920px-Banghwasuryujeong_-_Hwaseong_Fortress_-_Daytime_-_2008-10-17.JPG","https://commons.wikimedia.org/wiki/File:Banghwasuryujeong_-_Hwaseong_Fortress_-_Daytime_-_2008-10-17.JPG","Jpbarrass","Public domain",2560],"mountain":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Bjarke_ingels_group%2C_BIG_JDS_PLOT%2C_mountain_dwellings%2C_copenhagen_2005-2008.jpg/1920px-Bjarke_ingels_group%2C_BIG_JDS_PLOT%2C_mountain_dwellings%2C_copenhagen_2005-2008.jpg","https://commons.wikimedia.org/wiki/File:Bjarke_ingels_group%2C_BIG_JDS_PLOT%2C_mountain_dwellings%2C_copenhagen_2005-2008.jpg","SEIER+SEIER","CC BY 2.0",2973],"busancinema":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Busan_Cinema_Center_and_Centum_City_Skyline_at_Night.jpg/1920px-Busan_Cinema_Center_and_Centum_City_Skyline_at_Night.jpg","https://commons.wikimedia.org/wiki/File:Busan_Cinema_Center_and_Centum_City_Skyline_at_Night.jpg","Raja Syazwina RS","CC BY 2.0",4928],"naoshima":["https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chichu_art_museum01s2560.jpg/1920px-Chichu_art_museum01s2560.jpg","https://commons.wikimedia.org/wiki/File:Chichu_art_museum01s2560.jpg","663highland","CC BY 2.5",2550],"seattle":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Seattle_Central_Library_from_Fourth_%26_Madison_Building_-_Nov_2024.jpg/1920px-Seattle_Central_Library_from_Fourth_%26_Madison_Building_-_Nov_2024.jpg","https://commons.wikimedia.org/wiki/File:Seattle_Central_Library_from_Fourth_%26_Madison_Building_-_Nov_2024.jpg","SounderBruce","CC BY-SA 4.0",4080],"buseoksa":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Muryangsujeon_at_Buseoksa_02.jpg/1920px-Muryangsujeon_at_Buseoksa_02.jpg","https://commons.wikimedia.org/wiki/File:Muryangsujeon_at_Buseoksa_02.jpg","Bernard Gagnon","CC0",5123],"bongjeong":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/%EC%95%88%EB%8F%99%EB%B4%89%EC%A0%95%EC%82%AC%EA%B7%B9%EB%9D%BD%EC%A0%84.jpg/1920px-%EC%95%88%EB%8F%99%EB%B4%89%EC%A0%95%EC%82%AC%EA%B7%B9%EB%9D%BD%EC%A0%84.jpg","https://commons.wikimedia.org/wiki/File:%EC%95%88%EB%8F%99%EB%B4%89%EC%A0%95%EC%82%AC%EA%B7%B9%EB%9D%BD%EC%A0%84.jpg","Unknown author","Public domain",2428],"sendai":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Sendai_Mediatheque_2020_1.jpg/1920px-Sendai_Mediatheque_2020_1.jpg","https://commons.wikimedia.org/wiki/File:Sendai_Mediatheque_2020_1.jpg","Ymblanter","CC BY-SA 4.0",6000],"yangdong":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Yangdong_Village_02.jpg/1920px-Yangdong_Village_02.jpg","https://commons.wikimedia.org/wiki/File:Yangdong_Village_02.jpg","Bernard Gagnon","CC0",3855],"bangju":["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bangju_Church_%28side%29_%282%29.png/1920px-Bangju_Church_%28side%29_%282%29.png","https://commons.wikimedia.org/wiki/File:Bangju_Church_%28side%29_%282%29.png","Thomas Housieaux","CC BY-SA 4.0",4032],"bulguksa":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Bulguksa_temple_entrance_gate_stairs_flower_bed_and_blue_sky_in_Gyeongju_South_Korea.jpg/1920px-Bulguksa_temple_entrance_gate_stairs_flower_bed_and_blue_sky_in_Gyeongju_South_Korea.jpg","https://commons.wikimedia.org/wiki/File:Bulguksa_temple_entrance_gate_stairs_flower_bed_and_blue_sky_in_Gyeongju_South_Korea.jpg","Basile Morin","CC BY-SA 4.0",6536],"hahoe":["https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Hahoe_Folk_Village_03.jpg/1920px-Hahoe_Folk_Village_03.jpg","https://commons.wikimedia.org/wiki/File:Hahoe_Folk_Village_03.jpg","Bernard Gagnon","CC0",4773],"kolumba":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Haupteingang_und_Schriftzug_Kolumba_K%C3%B6ln_%281889-91%29.jpg/1920px-Haupteingang_und_Schriftzug_Kolumba_K%C3%B6ln_%281889-91%29.jpg","https://commons.wikimedia.org/wiki/File:Haupteingang_und_Schriftzug_Kolumba_K%C3%B6ln_%281889-91%29.jpg","Raimond Spekking","CC BY-SA 4.0",3400],"ssamziegil":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/%EC%8C%88%EC%A7%80%EA%B8%B8.jpg/1920px-%EC%8C%88%EC%A7%80%EA%B8%B8.jpg","https://commons.wikimedia.org/wiki/File:%EC%8C%88%EC%A7%80%EA%B8%B8.jpg","Tmannya","CC BY-SA 3.0",4288],"mmca":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/MMCA_Seoul_2016.jpg/1920px-MMCA_Seoul_2016.jpg","https://commons.wikimedia.org/wiki/File:MMCA_Seoul_2016.jpg","jens kuu","CC BY 2.0",4272],"leeum":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hannam-dong%2C_where_art_and_culture_meet.jpg/1920px-Hannam-dong%2C_where_art_and_culture_meet.jpg","https://commons.wikimedia.org/wiki/File:Hannam-dong%2C_where_art_and_culture_meet.jpg","Korea.net / KOCIS","CC BY-SA 2.0",2592]};
 /* 사진: Wikimedia Commons (자유 라이선스). 정식 사이트에선 Vercel 이미지 최적화를 거쳐 AVIF로, 실패하면 원본 */
 const onVercel=/vercel\.app$|ziplan/.test(location.hostname)&&location.protocol==='https:';
-function phSrc(id,w){ const p=PH[id]; if(!p) return ''; return onVercel?`/_vercel/image?url=${encodeURIComponent(p[0])}&w=${w||640}&q=80`:p[0]; }
-function phSet(id){ const p=PH[id]; if(!p||!onVercel) return ''; const mx=p[4]||1920; return [384,640,960,1280,1920].filter(w=>w<=mx*1.05).map(w=>`/_vercel/image?url=${encodeURIComponent(p[0])}&w=${w}&q=80 ${w}w`).join(', '); }
-function phImg(id,w,cls,alt,sizes){ const p=PH[id]; if(!p) return ''; const ss=phSet(id); return `<img class="${cls||''}" src="${phSrc(id,w)}"${ss?` srcset="${ss}" sizes="${sizes||(w>=1280?'(max-width:1180px) 94vw, 50vw':w>=640?'(max-width:900px) 94vw, 34vw':w+'px')}"`:''} data-raw="${p[0]}" onerror="this.removeAttribute('srcset');if(this.src!==this.dataset.raw)this.src=this.dataset.raw" alt="${esc(alt||'')}" loading="lazy" decoding="async">`; }
+function phSrc(id,w){ const p=PH[id]; if(!p) return ''; return onVercel?`/_vercel/image?url=${encodeURIComponent(p[0])}&w=${w||640}&q=85`:p[0]; }
+function phSet(id){ const p=PH[id]; if(!p||!onVercel) return ''; const mx=p[4]||1920; return [384,640,960,1280,1920].filter(w=>w<=mx*1.05).map(w=>`/_vercel/image?url=${encodeURIComponent(p[0])}&w=${w}&q=85 ${w}w`).join(', '); }
+function phImg(id,w,cls,alt,sizes){ const p=PH[id]; if(!p) return ''; const ss=phSet(id); return `<img class="${cls||''}" src="${phSrc(id,w)}"${ss?` srcset="${ss}" sizes="${sizes||(w>=1280?'(max-width:1180px) 100vw, 60vw':w>=640?'(max-width:900px) 100vw, 44vw':Math.round(w*1.4)+'px')}"`:''} data-raw="${p[0]}" onerror="this.removeAttribute('srcset');if(this.src!==this.dataset.raw)this.src=this.dataset.raw" alt="${esc(alt||'')}" loading="lazy" decoding="async">`; }
 function phCredit(id){ const p=PH[id]; if(!p) return ''; return `<a class="phc" href="${p[1]}" target="_blank" rel="noopener" title="사진 출처">ⓘ ${esc(p[2]||'Wikimedia Commons')} · ${esc(p[3])}</a>`; }
 /* ZIPLAN 에디터 평가(주관): [공간, 빛, 재료, 찾아가기] */
 const TSC={ddp:[4.5,3.5,4.5,5],amore:[4.5,4.5,4,5],leeum:[4.5,4,5,4.5],mmca:[4.5,4,3.5,5],songeun:[4,3.5,5,4.5],seoullo:[3.5,3,3,5],kyungdong:[4.5,5,4.5,4.5],space:[5,3.5,4.5,4.5],jongmyo:[5,4,4.5,4.5],changdeok:[5,4,4.5,4],ecc:[4.5,4.5,4,4.5],seonyudo:[4.5,4,4.5,4.5],mimesis:[4.5,5,4.5,3.5],hwaseong:[4.5,4,4.5,4],museumsan:[5,5,5,3],sayuwon:[5,4.5,5,2.5],byeongsan:[5,4.5,4.5,3],hahoe:[4.5,4,4.5,3.5],dosan:[4.5,4,4,3],buseoksa:[5,4.5,4.5,2.5],sosu:[4,4,4,3],bongjeong:[4.5,4,4.5,3],bulguksa:[4.5,4,5,4],yangdong:[4.5,4,4.5,3.5],busancinema:[4,4,4,4.5],haein:[4.5,4,5,3],bonte:[4.5,4.5,4.5,3.5],bangju:[4,4.5,4.5,3.5],podo:[4.5,4,4.5,3.5],suphung:[5,5,4.5,2],yumin:[5,4.5,4.5,3.5],glasshouse:[3.5,4,3.5,4]};
@@ -3489,7 +3557,7 @@ let LF=null; function tLeaflet(){ if(LF) return LF; LF=new Promise((res,rej)=>{ 
 async function tMap(){ const el=$('#tvMap'); if(!el) return; let L; try{ L=await tLeaflet(); }catch(e){ el.innerHTML='<div class="tv-empty">지도를 불러오지 못했어요.</div>'; return; }
   if(!TV.mapObj){ el.innerHTML=''; const dark=matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement.dataset.theme!=='light';
     const m=L.map(el,{zoomControl:false,scrollWheelZoom:false,attributionControl:true}).setView([36.2,127.8],7); L.control.zoom({position:'bottomright'}).addTo(m);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:dark?'tv-tiles dk':'tv-tiles',attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 기여자'}).addTo(m);
+    TV.mapObj=m; tStyle(TV.sty||'calm'); tMapTools();
     m.on('click',()=>m.scrollWheelZoom.enable()); el.addEventListener('mouseleave',()=>m.scrollWheelZoom.disable());
     TV.mapObj=m; TV.layer=L.layerGroup().addTo(m); setTimeout(()=>m.invalidateSize(),200); }
   const m=TV.mapObj; TV.layer.clearLayers(); if(TV.route){ m.removeLayer(TV.route); TV.route=null; }
@@ -3497,7 +3565,7 @@ async function tMap(){ const el=$('#tvMap'); if(!el) return; let L; try{ L=await
   TPL.forEach(p=>{ const on=vis.includes(p), ri=route.indexOf(p); const c=TREG[p.r][1];
     const icon=L.divIcon({className:'tvm',iconSize:[46,46],iconAnchor:[23,23],html:`<div class="tvm-in${on?'':' dim'}${ri>=0?' rt':''}${TV.sel===p.id?' sel':''}" style="--c:${c}">${PH[p.id]?`<img src="${phSrc(p.id,128)}" data-raw="${PH[p.id][0]}" onerror="if(this.src!==this.dataset.raw)this.src=this.dataset.raw" alt="">`:`<span>${esc(p.n[0])}</span>`}${ri>=0?`<em>${ri+1}</em>`:''}</div>`});
     const mk=L.marker([p.lat,p.lon],{icon,zIndexOffset:ri>=0?1000:on?500:0,title:p.n}).addTo(TV.layer);
-    mk.bindPopup(`<div class="tvp">${PH[p.id]?`<div class="tvp-ph">${phImg(p.id,384,'',p.n)}</div>`:''}<div class="tvp-b"><b>${esc(p.n)}</b><span>${esc(p.a)} · ${esc(p.y)}</span>${stars(tScore(p.id),'sm')} <em>${tScore(p.id).toFixed(1)}</em><p>${esc(p.why)}</p><button class="btn sm" data-tgo="${p.id}">카드 보기</button></div></div>`,{maxWidth:260,minWidth:240,className:'tvpop'}); });
+    mk.bindPopup(`<div class="tvp">${PH[p.id]?`<div class="tvp-ph">${phImg(p.id,640,'',p.n,'420px')}</div>`:''}<div class="tvp-b"><b>${esc(p.n)}</b><span>${esc(p.a)} · ${esc(p.y)}</span>${stars(tScore(p.id),'sm')} <em>${tScore(p.id).toFixed(1)}</em><p>${esc(p.why)}</p><div class="tvp-act"><button class="btn sm" data-tdet="${p.id}">자세히</button><button class="btn sec sm" data-tgo="${p.id}">카드 보기</button></div></div></div>`,{maxWidth:260,minWidth:240,className:'tvpop'}); });
   if(TV.me){ L.circleMarker([TV.me.lat,TV.me.lon],{radius:9,color:'#fff',weight:3,fillColor:'#ff3b30',fillOpacity:1}).addTo(TV.layer).bindTooltip(TV.meName||'출발',{permanent:true,direction:'top',className:'tvtip'}); }
   if(route.length){ const pts=(TV.aiShow&&TV.me?[[TV.me.lat,TV.me.lon]]:[]).concat(route.map(p=>[p.lat,p.lon])); TV.route=L.polyline(pts,{color:'#2b6cff',weight:4,opacity:.85,dashArray:'8 8',className:'tv-route'}).addTo(m); }
   const fit=(TV.focus==='route'&&route.length)?route:vis; if(fit.length){ const b=L.latLngBounds(fit.map(p=>[p.lat,p.lon])); if(TV.me&&TV.aiShow) b.extend([TV.me.lat,TV.me.lon]); m.flyToBounds(b,{padding:[50,50],maxZoom:fit.length===1?14:12,duration:.8}); } }
@@ -3505,12 +3573,12 @@ async function tMap(){ const el=$('#tvMap'); if(!el) return; let L; try{ L=await
 function tCard(p,i,feat){ const c=TREG[p.r][1]; const sc=TSC[p.id]||[4,4,4,4]; const r=TRAT[p.id]; const mine=tMine()[p.id]; const dist=TV.me?tHav(TV.me,p):null;
   return `<article class="tv-card zrv${feat?' feat':''}${TV.sel===p.id?' sel':''}" data-tp="${p.id}" id="tvc-${p.id}" style="--i:${i%6};--c:${c}">
   <div class="tv-ph">${PH[p.id]?phImg(p.id,feat?1280:640,'',p.n):`<div class="tv-art">${CTHUMB.kind(p.sh,1)}</div>`}<span class="tv-kd">${p.k==='t'?'전통':'현대'} · ${esc(p.y)}</span>${dist!==null?`<span class="tv-dist">${dist<1?'1km 안':Math.round(dist)+'km'}</span>`:''}${phCredit(p.id)}</div>
-  <div class="tv-b"><div class="tv-rg" style="color:${c}">${TREG[p.r][0]}</div><h3>${esc(p.n)}</h3><div class="tv-ar">${esc(p.a)}</div>
+  <div class="tv-b"><div class="tv-rg" style="color:${c}">${TREG[p.r][0]}</div><h3 data-tdet="${p.id}">${esc(p.n)}</h3><div class="tv-ar">${esc(p.a)}</div>
    <div class="tv-rate"><div class="tv-score"><b>${tScore(p.id).toFixed(1)}</b>${stars(tScore(p.id))}<span>ZIPLAN 평가</span></div>${r&&r.n?`<div class="tv-vis">${stars(r.avg,'sm')}<span>방문자 ${r.avg.toFixed(1)} · ${r.n}명</span></div>`:''}</div>
    <div class="tv-bars">${TSCL.map((l,k)=>`<div><span>${l}</span><i><b style="--w:${sc[k]/5*100}%"></b></i></div>`).join('')}</div>
    <p>${esc(p.why)}</p><div class="tv-see"><b>꼭 볼 것</b> ${esc(p.see)}</div>
    <div class="tv-tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join('')}<span class="tv-h">머무는 시간 ${p.h}시간</span></div>
-   <div class="tv-act"><button class="btn sm" data-tadd="${p.id}">코스에 넣기</button><a class="btn sec sm" href="https://map.kakao.com/link/search/${encodeURIComponent(p.n.replace(/\s*\(.+\)/,''))}" target="_blank" rel="noopener">길찾기 ›</a><span class="tv-myr" data-tr="${p.id}" title="별점 주기">${[1,2,3,4,5].map(n=>`<button data-trs="${n}" aria-label="${n}점"${mine>=n?' class="on"':''}>★</button>`).join('')}</span></div></div></article>`; }
+   <div class="tv-act"><button class="btn sm" data-tadd="${p.id}">코스에 넣기</button><button class="btn sec sm" data-tdet="${p.id}">자세히 · 맛집</button><a class="btn sec sm" href="https://map.kakao.com/link/search/${encodeURIComponent(p.n.replace(/\s*\(.+\)/,''))}" target="_blank" rel="noopener">길찾기 ›</a><span class="tv-myr" data-tr="${p.id}" title="별점 주기">${[1,2,3,4,5].map(n=>`<button data-trs="${n}" aria-label="${n}점"${mine>=n?' class="on"':''}>★</button>`).join('')}</span></div></div></article>`; }
 function tSorted(list){ const L=list.slice(); if(TV.sort==='score') L.sort((a,b)=>tScore(b.id)-tScore(a.id)); else if(TV.sort==='near'&&TV.me) L.sort((a,b)=>tHav(TV.me,a)-tHav(TV.me,b)); else if(TV.sort==='vis') L.sort((a,b)=>((TRAT[b.id]||{}).avg||0)-((TRAT[a.id]||{}).avg||0)||tScore(b.id)-tScore(a.id)); return L; }
 function tList(){ const el=$('#tvList'); if(!el) return; const vis=TPL.filter(p=>TV.reg==='all'||p.r===TV.reg); $('#tvCount').textContent=`${vis.length}곳`;
   if(TV.reg==='all'&&TV.sort==='rec'){ let i=0; el.innerHTML=Object.keys(TREG).map((r,ri)=>{ const L=vis.filter(p=>p.r===r).sort((a,b)=>tScore(b.id)-tScore(a.id)); if(!L.length) return ''; return `<section class="tv-ch" style="--c:${TREG[r][1]}"><header class="tv-chh zrv"><span class="tv-chn">${String(ri+1).padStart(2,'0')}</span><div><h3>${TREG[r][0]}</h3><p>${TREGTXT[r]}</p></div><em>${L.length}곳</em><span class="tv-chw" aria-hidden="true">${{seoul:'SEOUL',gyeonggi:'GYEONGGI',gangwon:'GANGWON',gyeongbuk:'GYEONGBUK',busan:'BUSAN',jeju:'JEJU'}[r]}</span></header><div class="tv-grid">${L.map((p,k)=>tCard(p,i++,k===0)).join('')}</div></section>`; }).join(''); }
@@ -3538,7 +3606,7 @@ async function tAiText(){ const box=$('#tvAiText'); if(!box||!TV.ai) return; box
 function tAiDraw(){ const el=$('#tvAi'); if(!el) return; if(!TV.ai){ el.innerHTML=`<div class="tv-ai-empty"><div class="tv-ai-ico">✦</div><b>출발지를 고르면, AI가 가까운 순서로 코스를 짭니다.</b><span>위치는 이 브라우저에서만 쓰고 저장하지 않아요.</span></div>`; return; }
   const S=TV.ai.stops; el.innerHTML=`<div class="tv-ai-head"><div><span class="tv-ai-k">ZIPLAN AI 추천 · ${esc(TV.meName)} 출발</span><h3>${S.length}곳 · ${tFmt(TV.ai.total)}</h3></div><div class="tv-ai-act"><button class="btn sm" id="tvAiCopy">복사</button><button class="btn sec sm" id="tvAiPlan">코스 짜기로 보내기</button></div></div>
    <p class="tv-ai-text" id="tvAiText"></p>
-   <ol class="tv-ai-stops">${S.map((s,i)=>`<li data-tp="${s.p.id}" style="--i:${i}"><div class="tv-ai-ph">${phImg(s.p.id,384,'',s.p.n)||CTHUMB.kind(s.p.sh,1)}<em>${i+1}</em></div><div><b>${esc(s.p.n)}</b><span>${i?'앞 장소에서':'출발지에서'} ${Math.round(s.km)}km · 차로 ${tFmt(s.mv)}</span>${stars(tScore(s.p.id),'sm')}</div></li>`).join('')}</ol>`; }
+   <ol class="tv-ai-stops">${S.map((s,i)=>`<li data-tp="${s.p.id}" style="--i:${i}"><div class="tv-ai-ph">${phImg(s.p.id,640,'',s.p.n,'(max-width:700px) 60vw, 360px')||CTHUMB.kind(s.p.sh,1)}<em>${i+1}</em></div><div><b>${esc(s.p.n)}</b><span>${i?'앞 장소에서':'출발지에서'} ${Math.round(s.km)}km · 차로 ${tFmt(s.mv)}</span>${stars(tScore(s.p.id),'sm')}</div></li>`).join('')}</ol>`; }
 function tUseOrigin(o){ TV.me={lat:o[2],lon:o[3]}; TV.meName=o[1]; TV.sort='near'; $$('[data-tsort]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tsort==='near')); tNear(); tList(); }
 /* ---------- 스크롤 효과: 표지 사진 기둥 시차 · 숫자 세기 · 별 채우기 ---------- */
 let tIO=null; function tObserve(){ if(!('IntersectionObserver' in window)) { $$('#view-travel .stars,#view-travel .tv-bars,#view-travel .tv-num').forEach(e=>e.classList.add('go')); return; }
@@ -3552,7 +3620,7 @@ function tCount(el){ const to=+el.dataset.n, t0=performance.now(); const f=t=>{ 
     $$('.tv-card.feat .tv-ph img',v).forEach(im=>{ const r=im.parentElement.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; im.style.transform=`scale(1.12) translate3d(0,${((r.top+r.height/2-vh/2)/vh*-34).toFixed(1)}px,0)`; }); }
   if(!rm){ addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('hashchange',()=>setTimeout(tick,60)); } })();
 function tCover(){ const el=$('#tvCover'); if(!el||el.dataset.done) return; el.dataset.done=1; const ids=Object.keys(PH).filter(k=>TPL.some(p=>p.id===k)); const cols=[[],[],[],[],[]]; ids.forEach((k,i)=>cols[i%5].push(k));
-  el.querySelector('.tv-cols').innerHTML=cols.map(c=>`<div class="tv-col">${c.concat(c.slice(0,2)).map(k=>`<figure>${phImg(k,640,'',(TPL.find(p=>p.id===k)||{}).n,'(max-width:900px) 34vw, 21vw')}<figcaption>${esc((TPL.find(p=>p.id===k)||{}).n||'')}</figcaption></figure>`).join('')}</div>`).join('');
+  el.querySelector('.tv-cols').innerHTML=cols.map(c=>`<div class="tv-col">${c.concat(c.slice(0,2)).map(k=>`<figure>${phImg(k,960,'',(TPL.find(p=>p.id===k)||{}).n,'(max-width:900px) 64vw, 42vw')}<figcaption>${esc((TPL.find(p=>p.id===k)||{}).n||'')}</figcaption></figure>`).join('')}</div>`).join('');
   const st=$('#tvStats'); const n=k=>`<b class="tv-num" data-n="${k}">0</b>`; st.innerHTML=`<div>${n(TPL.length)}<span>곳</span></div><div>${n(Object.keys(TREG).length)}<span>지역</span></div><div>${n(TPL.filter(p=>p.tags.includes('세계유산')).length)}<span>세계유산</span></div><div>${n(TPL.filter(p=>p.tags.includes('거장')).length)}<span>거장의 건축</span></div>`;
   $('#tvOrig').innerHTML=TORIG.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join(''); }
 function drawTravel(){ if(!$('#view-travel')) return; tCover(); tMap(); tList(); tAiDraw(); if(!TV.plan) tPlan(); if(!tRatings.done){ tRatings.done=1; tRatings(); } tObserve(); setTimeout(()=>TV.mapObj&&TV.mapObj.invalidateSize(),300); }
@@ -3573,7 +3641,7 @@ function tPlan(force){ const pool0=TPL.filter(p=>TV.start==='all'||p.r===TV.star
 function tPlanDraw(){ const el=$('#tvPlan'); if(!el||!TV.plan) return; const D=TV.plan.days; const nP=D.flat().filter(s=>s.p).length;
   if(!nP){ el.innerHTML='<div class="tv-empty">이 조건에 맞는 곳이 없어요. 지역이나 관심사를 바꿔 보세요.</div>'; return; }
   el.innerHTML=`<div class="tv-dtabs">${D.map((d,i)=>`<button data-tday="${i}" aria-pressed="${i===TV.day}">${i+1}일차 <em>${d.filter(s=>s.p).length}곳</em></button>`).join('')}</div>
-  <ol class="tv-tl">${(D[TV.day]||[]).map(s=>s.p?`<li class="st" data-tp="${s.p.id}"><time>${tClock(s.t)}</time><div class="tv-tc"><b>${esc(s.p.n)}</b><span>${esc(s.p.a)} · ${esc(s.p.y)} · 약 ${tFmt(s.dur)}</span><p>${esc(s.p.see)}</p></div><div class="tv-tth">${phImg(s.p.id,256,'',s.p.n)||CTHUMB.kind(s.p.sh,1)}</div></li>`:s.move?`<li class="mv"><time></time><span>${TV.mode==='car'?'🚗':'🚆'} 이동 약 ${tFmt(s.move)}</span></li>`:`<li class="ln"><time>${tClock(s.t)}</time><span>🍚 점심 — 근처 맛집에서 쉬어 가기</span></li>`).join('')}</ol>
+  <ol class="tv-tl">${(D[TV.day]||[]).map(s=>s.p?`<li class="st" data-tp="${s.p.id}"><time>${tClock(s.t)}</time><div class="tv-tc"><b>${esc(s.p.n)}</b><span>${esc(s.p.a)} · ${esc(s.p.y)} · 약 ${tFmt(s.dur)}</span><p>${esc(s.p.see)}</p></div><div class="tv-tth">${phImg(s.p.id,256,'',s.p.n)||CTHUMB.kind(s.p.sh,1)}</div></li>`:s.move?`<li class="mv"><time></time><span>${TV.mode==='car'?'🚗':'🚆'} 이동 약 ${tFmt(s.move)}</span></li>`:(()=>{ const D0=D[TV.day]||[]; const k=D0.indexOf(s); const pv=D0.slice(0,k).reverse().find(x=>x.p); const f=pv&&tEat(pv.p.id)[0]; return `<li class="ln"><time>${tClock(s.t)}</time><span>🍚 점심 — ${f?`<a href="${f[2]}" target="_blank" rel="noopener">${esc(f[0])}</a> <small>${esc(f[1])}</small>`:'근처 맛집에서 쉬어 가기'}</span></li>`; })()).join('')}</ol>
   <div class="tv-pa"><button class="btn" id="tvCopy">코스 복사</button><button class="btn sec" id="tvAsk">AI 길잡이에게 다듬어 달라기</button><span class="muted">이동 시간은 직선거리로 어림한 값이에요. 월요일 휴관·예약제인 곳이 많으니 출발 전 확인하세요.</span></div>`; }
 function tCourseText(){ return TV.plan.days.map((d,i)=>`[${i+1}일차]\n`+d.map(s=>s.p?`${tClock(s.t)} ${s.p.n} (${s.p.a}, ${s.p.y}) — ${s.p.see}`:s.move?`   ↓ 이동 약 ${tFmt(s.move)}`:`${tClock(s.t)} 점심`).join('\n')).join('\n\n')+'\n\n— ZIPLAN 건축 여행'; }
 (function(){ const v=$('#view-travel'); if(!v) return;
@@ -3726,7 +3794,7 @@ const ZT=(()=>{ const A=window.ZIPLAN_AUTH; let on=false; try{ on=!!(A&&A.url&&l
 
 /* ---------- 홈: 보러 가는 건축 레일 ---------- */
 (function(){ const t=$('#hrTrack'); if(!t) return; const ids=['jongmyo','byeongsan','ddp','bangju','buseoksa','museumsan','changdeok','bulguksa','podo','haein','amore','hahoe','glasshouse','kyungdong'].filter(k=>PH[k]);
-  const card=k=>{ const p=TPL.find(x=>x.id===k); return `<a class="hr-card" href="#travel" data-hrgo="${k}">${phImg(k,640,'',p.n,'300px')}<div><b>${esc(p.n)}</b><span>${esc(p.a)} · ${esc(p.y)}</span><br>${stars(tScore(k),'sm go')}</div></a>`; };
+  const card=k=>{ const p=TPL.find(x=>x.id===k); return `<a class="hr-card" href="#travel" data-hrgo="${k}">${phImg(k,960,'',p.n,'(max-width:600px) 420px, 580px')}<div><b>${esc(p.n)}</b><span>${esc(p.a)} · ${esc(p.y)}</span><br>${stars(tScore(k),'sm go')}</div></a>`; };
   t.innerHTML=ids.map(card).join('')+ids.map(card).join('');
   t.addEventListener('click',e=>{ const a=e.target.closest('[data-hrgo]'); if(a){ const id=a.dataset.hrgo; setTimeout(()=>{ const c=$('#tvc-'+id); if(c){ c.scrollIntoView({behavior:'smooth',block:'center'}); c.classList.add('sel'); } },700); } }); })();
 /* ---------- 전체 검색 (⌘K / Ctrl+K / /) ---------- */
@@ -3759,6 +3827,74 @@ function hqs(k){ return (typeof onVercel!=='undefined'&&onVercel&&HF[k])?hfUrl(k
 function hfUp(root){ if(!onVercel) return; (root||document).querySelectorAll('img[src^="img/f-"]').forEach(im=>{ const k=im.getAttribute('src'); if(!HF[k]) return; im.dataset.fb=k; im.setAttribute('onerror',"this.removeAttribute('srcset');this.src=this.dataset.fb"); im.srcset=[640,960,1280,1920].map(w=>hfUrl(k,w)+' '+w+'w').join(', '); if(!im.sizes) im.sizes='(max-width:900px) 94vw, 50vw'; im.src=hfUrl(k,1280); });
   (root||document).querySelectorAll('image').forEach(el=>{ const k=el.getAttribute('href')||el.getAttribute('xlink:href'); if(k&&HF[k]){ el.setAttribute('href',hfUrl(k,1280)); } }); }
 (function(){ if(!onVercel) return; hfUp(); let t=0; new MutationObserver(()=>{ clearTimeout(t); t=setTimeout(()=>hfUp(),80); }).observe(document.body,{childList:true,subtree:true}); })();
+
+/* ---------- 컨셉 3D 매스: 갈래별 실제 건물에 가까운 모형 (three.js r128, cdnjs 지연 로드) ---------- */
+let T3P=null; function t3Load(){ if(T3P) return T3P; T3P=new Promise((res,rej)=>{ if(window.THREE) return res(window.THREE); const s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'; s.onload=()=>res(window.THREE); s.onerror=rej; document.head.appendChild(s); }); return T3P; }
+const M3={prog:{house:[1,2,'단독주택'],cafe:[.9,2,'카페·근생'],library:[1.45,2,'작은 도서관'],gallery:[1.35,2,'갤러리'],stay:[1.2,2,'게스트하우스'],share:[1.3,3,'공유주택'],studio:[1.1,2,'작업실'],community:[1.4,2,'마을회관']}};
+function m3Build(THREE,id,prog,opt){ const G=new THREE.Group(); const [S,FL]=M3.prog[prog]||M3.prog.house; const fh=3.3; const mats={};
+  const M=(k,c,o)=>{ if(mats[k]) return mats[k]; const m=new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.85,metalness:0},o||{})); m.color.convertSRGBToLinear(); if(m.emissive) m.emissive.convertSRGBToLinear(); return mats[k]=m; };
+  const conc=M('conc',0xc9c5bc), white=M('white',0xf3f1ec), wood=M('wood',0xb07a4f,{roughness:.7}), dark=M('dark',0x2f3236,{roughness:.6,metalness:.3}), brick=M('brick',0xa65a3c), stone=M('stone',0xb9b0a1), green=M('green',0x7aa36b), roofm=M('roof',0x3d4045,{roughness:.7}),
+    glass=M('glass',0x9fc3d6,{roughness:.08,metalness:.6,transparent:true,opacity:.55}), glow=M('glow',0xffd9a0,{emissive:0xffb35c,emissiveIntensity:opt.night?1.4:0,roughness:.3}), deck=M('deck',0x9c7650), trunk=M('trunk',0x6b4f3a), leaf=M('leaf',0x6f9a5c,{roughness:.95}), leaf2=M('leaf2',0x8db070,{roughness:.95}), water=M('water',0x6fa3bf,{roughness:.1,metalness:.4});
+  const EM=new THREE.LineBasicMaterial({color:0x2a2d31,transparent:true,opacity:.28}); const box=(w,h,d,x,y,z,m,cast=true)=>{ const geo=new THREE.BoxGeometry(w,h,d); const g=new THREE.Mesh(geo,m); g.position.set(x,y+h/2,z); g.castShadow=cast; g.receiveShadow=true; G.add(g); if(w>.3&&d>.3&&h>.2&&m!==glass){ const e=new THREE.LineSegments(new THREE.EdgesGeometry(geo),EM); e.position.copy(g.position); G.add(e); } return g; };
+  const win=(w,h,x,y,z,ax)=>{ /* 유리 + 밤엔 빛 */ const m=opt.night?glow:glass; const g=new THREE.Mesh(new THREE.BoxGeometry(ax==='x'?.08:w,h,ax==='x'?w:.08),m); g.position.set(x,y+h/2,z); G.add(g); return g; };
+  const col=(x,z,h,r,m)=>{ const g=new THREE.Mesh(new THREE.CylinderGeometry(r||.18,r||.18,h,12),m||conc); g.position.set(x,h/2,z); g.castShadow=true; G.add(g); };
+  const tree=(x,z,s)=>{ s=s||1; const t=new THREE.Mesh(new THREE.CylinderGeometry(.12*s,.18*s,2.4*s,6),trunk); t.position.set(x,1.2*s,z); t.castShadow=true; G.add(t); const c=new THREE.Mesh(new THREE.IcosahedronGeometry(1.6*s,1),Math.random()<.5?leaf:leaf2); c.position.set(x,3.2*s,z); c.scale.y=1.15; c.castShadow=true; G.add(c); };
+  const person=(x,z,c)=>{ const m=M('p'+c,c); const b=new THREE.Mesh(new THREE.CylinderGeometry(.2,.24,1.2,8),m); b.position.set(x,.6,z); b.castShadow=true; G.add(b); const h=new THREE.Mesh(new THREE.SphereGeometry(.17,10,8),M('skin',0xe0c2a2)); h.position.set(x,1.42,z); G.add(h); };
+  const gable=(w,d,h,x,y,z,m,rot)=>{ const sh=new THREE.Shape(); sh.moveTo(-w/2,0); sh.lineTo(0,h); sh.lineTo(w/2,0); sh.lineTo(-w/2,0); const geo=new THREE.ExtrudeGeometry(sh,{depth:d,bevelEnabled:false}); geo.translate(0,0,-d/2); const g=new THREE.Mesh(geo,m); g.position.set(x,y,z); if(rot){ g.rotation.y=rot; } g.castShadow=true; g.receiveShadow=true; G.add(g); return g; };
+  const ribbon=(len,y,z,h)=>{ win(len,h||1.4,0,y,z); };
+  const s=S; let info='';
+  switch(id){
+   case 'court': { const W=16*s,D=14*s,t=4.2*s,H=FL*fh; box(W,H,t,0,0,-D/2+t/2,white); box(W,H,t,0,0,D/2-t/2,white); box(t,H,D-2*t,-W/2+t/2,0,0,white); box(t,H,D-2*t,W/2-t/2,0,0,white);
+     for(let f=0;f<FL;f++){ win(W-2*t-0.6,2.2,0,f*fh+.6,-D/2+t+.05); win(W-2*t-.6,2.2,0,f*fh+.6,D/2-t-.05); win(D-2*t-.6,2.2,-W/2+t+.05,f*fh+.6,0,'x'); win(D-2*t-.6,2.2,W/2-t-.05,f*fh+.6,0,'x'); }
+     win(1.2,1.2,-W/4,fh+1,-D/2-.05); win(1.2,1.2,W/4,fh+1,-D/2-.05); win(2.4,2.6,0,0,D/2+.05);
+     box(W-2*t,.15,D-2*t,0,0,0,stone,false); tree(0,0,1.1*s); box(W+.2,.6,.3,0,H,-D/2,white); box(W+.2,.6,.3,0,H,D/2,white); box(.3,.6,D,-W/2,H,0,white); box(.3,.6,D,W/2,H,0,white); info=`${Math.round(W)}×${Math.round(D)}m · ${FL}층 · 가운데 마당 ${Math.round(W-2*t)}×${Math.round(D-2*t)}m`; break; }
+   case 'terrace': { const W=15*s,dep=6*s; for(let f=0;f<FL+2;f++){ const z=f*-4.2*s; box(W,fh,dep,0,f*fh,z,conc); win(W-1,2.2,0,f*fh+.4,z+dep/2+.05); box(W,.5,1.4*s,0,(f+1)*fh,z+dep/2-.7*s,green); if(f<FL+1){ for(let i=0;i<4;i++) box(.9,.6,.9,-W/2+2+i*3.6*s,(f+1)*fh+.5,z+dep/2-.6,M('pl',0x5d8a4e)); } }
+      info=`${FL+2}단 테라스 · 층마다 ${(4.2*s).toFixed(1)}m 물러남`; break; }
+   case 'pilotis': { const W=26*s,D=8*s,lift=3.6; for(let i=0;i<5;i++) for(const zz of [-D/2+1,D/2-1]) col(-W/2+2+i*(W-4)/4,zz,lift,.25); box(W,FL*fh,D,0,lift,0,white); for(let f=0;f<FL;f++){ win(W-.6,1.3,0,lift+f*fh+1.1,D/2+.05); win(W-.6,1.3,0,lift+f*fh+1.1,-D/2-.05); }
+     box(W-2,.4,D-1.5,0,lift+FL*fh,0,green); box(3,lift,3.2,W/2-3,0,0,dark); for(let i=0;i<3;i++) tree(-W/4+i*W/4,-D/2-5,.9); info=`${Math.round(W)}m 바를 ${lift}m 들어 올림 · 1층은 비움`; break; }
+   case 'village': { const H=[[0,0,6,8,1],[9,-2,5,6,1],[-8,3,5,7,1],[4,8,7,5,0],[-4,-9,6,5,0],[10,7,4,5,1]]; H.forEach(([x,z,w,d,two],i)=>{ x*=s; z*=s; const h=two?fh*1.6:fh; box(w,h,d,x,0,z,i%2?white:wood); gable(w+.6,d+.6,w*.45,x,h,z,roofm); win(1.4,1.6,x-w/4,.9,z+d/2+.05); win(1,1.2,x+w/4,h-1.8,z+d/2+.05); });
+     box(30*s,.08,3,0,0,1.6*s,stone,false); tree(-1*s,-4*s,.8); tree(6*s,3*s,.7); info=`작은 집 ${H.length}채 · 사이사이 골목과 마당`; break; }
+   case 'buried': { const W=24*s,D=20*s,cw=8*s,cd=8*s; box(W,.6,(D-cd)/2,0,-.3,-(D+cd)/4,green); box(W,.6,(D-cd)/2,0,-.3,(D+cd)/4,green); box((W-cw)/2,.6,cd,-(W+cw)/4,-.3,0,green); box((W-cw)/2,.6,cd,(W+cw)/4,-.3,0,green);
+     const pit=new THREE.Mesh(new THREE.BoxGeometry(cw,3.4,cd),M('pit',0xd9d6cf,{side:THREE.BackSide})); pit.position.set(0,-1.4,0); pit.receiveShadow=true; G.add(pit); [[0,-cd/2],[0,cd/2]].forEach(([x,z])=>win(cw-.4,2.6,x,-3,z+(z>0?-.05:.05))); [-cw/2,cw/2].forEach(x=>win(cd-.4,2.6,x+(x>0?-.05:.05),-3,0,'x')); tree(0,0,.7);
+     box(4,.3,10,-W/2+2.5,0,-2,stone); box(3,1.6,3,W/4,0,-D/4,glass); info=`땅에 묻힌 집 · 가운데 성큰 마당 ${Math.round(cw)}×${Math.round(cd)}m`; break; }
+   case 'thickwall': { const W=14*s,D=12*s,H=FL*fh+1; box(W,H,D,0,0,0,brick); box(3*s,H+5,3*s,W/2-2*s,0,-D/2+2*s,brick); [[-W/4,1],[W/6,1.3],[-W/8,fh+1.2],[W/4,fh+.8]].forEach(([x,y])=>{ win(1.1,1.6,x,y,D/2+.06); box(1.5,2,.6,x,y-.2,D/2+.05,M('rev',0x8a4a31)); }); win(2,3,-W/3,0,D/2+.06);
+     info=`두께 600mm 벽 · 깊게 판 작은 창 · 빛의 탑`; break; }
+   case 'glass': { const W=18*s,D=11*s,H=3.4; box(W+4,.3,D+4,0,0,0,deck); [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>col(a*W/2,b*D/2,H,.12,dark)); win(W,H-.3,0,.3,D/2,null); win(W,H-.3,0,.3,-D/2); win(D,H-.3,-W/2,.3,0,'x'); win(D,H-.3,W/2,.3,0,'x'); box(W+3,.35,D+3,0,H,0,white); box(2.5,H,2.5,-W/5,.3,0,wood);
+     for(let i=0;i<6;i++) tree(-W/2-4+i*(W+8)/5,-D/2-6,.9+i%2*.3); info=`가는 기둥 · 유리 벽 · 지붕 슬래브 하나`; break; }
+   case 'split': { const W=9*s,D=10*s; box(W,fh*2,D,-W/2-.6,0,0,wood); box(W,fh*2,D,W/2+.6,fh/2,-1.5,white); box(1.2,fh*2.5,D-2,0,0,-.5,glass); for(const f of [0,1]){ win(W-1.2,2,-W/2-.6,f*fh+.5,D/2+.05); win(W-1.2,2,W/2+.6,fh/2+f*fh+.5,D/2-1.5+.05); }
+     gable(W+.6,D+.6,2.2,-W/2-.6,fh*2,0,roofm); box(W+.6,.3,D+.6,W/2+.6,fh*2.5,-1.5,white); info=`반 층(${(fh/2).toFixed(1)}m)씩 어긋난 두 매스 · 가운데 유리 계단`; break; }
+   case 'stack': { const L=[[0,0,14,9],[3,0,12,8],[-2,0,13,8.5],[2.5,0,10,7]]; L.slice(0,FL+2).forEach(([dx,_,w,d],i)=>{ const y=i*fh, rx=dx*s, rz=(i%2?2.5:-2)*s; box(w*s,fh-.25,d*s,rx,y,rz,conc); win(w*s-.4,2.3,rx,y+.4,rz+d*s/2+.05); win(d*s-.4,2.3,rx+w*s/2+.05,y+.4,rz,'x'); box(w*s,.25,d*s,rx,y+fh-.25,rz,white); });
+     info=`${Math.min(4,FL+2)}개 판을 엇갈려 쌓음 · 내민 부분이 아래층의 처마`; break; }
+   case 'roof': { const W=20*s,D=12*s; box(W-3,fh,D-3,0,0,0,wood); win(W-4,2.6,0,.2,(D-3)/2+.05); for(let i=0;i<6;i++){ col(-W/2+1+i*(W-2)/5,D/2-.5,fh,.16,wood); col(-W/2+1+i*(W-2)/5,-D/2+.5,fh,.16,wood); } gable(D+3,W+2,5.2*s,0,fh,0,roofm,Math.PI/2);
+     box(W,.25,D,0,0,0,deck,false); info=`하나의 큰 지붕 · 처마 ${1.5*s|0}m · 그 아래 모든 방`; break; }
+   case 'frame': { const W=10*s,H=FL*fh+1,L=18*s,t=.6; box(W,t,L,0,H-t,0,conc); box(W,t,L,0,0,0,conc); box(t,H,L,-W/2+t/2,0,0,conc); box(t,H,L,W/2-t/2,0,0,conc); win(W-2*t,H-2*t,0,t,L/2-.3); box(W-2*t-.2,(H-2*t)*.55,L*.45,0,t,-L*.22,white); win(W-2*t-.4,(H-2*t)*.5,0,t+.1,L*.005); box(W+6,.2,8,0,0,L/2+4,deck,false); water&&box(W+8,.05,6,0,0,L/2+11,water,false);
+     info=`${Math.round(W)}m 프레임이 풍경 쪽으로 열림 · 끝면 전면 유리`; break; }
+   case 'skin': { const W=14*s,D=11*s,H=FL*fh+.6; box(W-1,H,D-1,0,0,0,glass); for(let i=0;i<=Math.round(W/0.6);i++){ box(.12,H,.5,-W/2+i*.6,0,D/2,wood); box(.12,H,.5,-W/2+i*.6,0,-D/2,wood); } for(let i=0;i<=Math.round(D/.6);i++){ box(.5,H,.12,-W/2,0,-D/2+i*.6,wood); box(.5,H,.12,W/2,0,-D/2+i*.6,wood); } box(W+.4,.3,D+.4,0,H,0,dark);
+     info=`세로 핀 ${Math.round(W/0.6)*2+Math.round(D/0.6)*2}개로 빛을 거름 · 안쪽은 유리`; break; }
+  }
+  // 사람·나무로 크기감
+  person(4*s,12*s,0x3f7bff); person(5*s,12.6*s,0xff5e3a); person(-6*s,13*s,0x30a46c); if(id!=='glass') { tree(-17*s,-8*s,1.1); tree(16*s,-10*s,1.3); tree(-19*s,4*s,.9); }
+  return {G,info,mats}; }
+window.__m3=(el,id,prog)=>m3Mount(el,id,prog);
+function m3Mount(el,id,prog){ if(!el) return; if(el._m3) el._m3.stop(); el.innerHTML='<div class="m3-load">3D 모형을 세우는 중…</div>';
+  t3Load().then(THREE=>{ el.innerHTML=''; const W=el.clientWidth||600, H=el.clientHeight||420; const R=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true}); R.setPixelRatio(Math.min(2,devicePixelRatio||1)); R.setSize(W,H); R.shadowMap.enabled=true; R.shadowMap.type=THREE.PCFSoftShadowMap; R.outputEncoding=THREE.sRGBEncoding; R.toneMapping=THREE.ACESFilmicToneMapping; R.toneMappingExposure=.95; el.appendChild(R.domElement);
+    const sc=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(32,W/H,.5,800); const st={night:false,t:0,az:.9,el:.42,dist:0,auto:true,drag:null,raf:0};
+    const hemi=new THREE.HemisphereLight(0xdfeeff,0x8a7f6a,.75); sc.add(hemi); const sun=new THREE.DirectionalLight(0xfff1dc,1.35); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); const sc2=60; Object.assign(sun.shadow.camera,{left:-sc2,right:sc2,top:sc2,bottom:-sc2,near:1,far:200}); sun.shadow.bias=-.0004; sc.add(sun);
+    const ground=new THREE.Mesh(new THREE.CircleGeometry(90,48),(()=>{const m=new THREE.MeshStandardMaterial({color:0xd9d3c4,roughness:1}); m.color.convertSRGBToLinear(); return m;})()); ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; sc.add(ground);
+    const lot=new THREE.Mesh(new THREE.PlaneGeometry(44,40),(()=>{const m=new THREE.MeshStandardMaterial({color:0xb9c6a6,roughness:1}); m.color.convertSRGBToLinear(); return m;})()); lot.rotation.x=-Math.PI/2; lot.position.y=.01; lot.receiveShadow=true; sc.add(lot);
+    const road=new THREE.Mesh(new THREE.PlaneGeometry(120,8),(()=>{const m=new THREE.MeshStandardMaterial({color:0x6f7275,roughness:.9}); m.color.convertSRGBToLinear(); return m;})()); road.rotation.x=-Math.PI/2; road.position.set(0,.02,26); road.receiveShadow=true; sc.add(road);
+    let B=null; const build=()=>{ if(B) sc.remove(B.G); B=m3Build(THREE,id,prog,{night:st.night}); sc.add(B.G); const bb=new THREE.Box3().setFromObject(B.G); const sz=bb.getSize(new THREE.Vector3()); st.dist=Math.max(sz.x,sz.z,sz.y*1.6)*1.45+8; st.cy=sz.y*.35; const cap=el.parentElement&&el.parentElement.querySelector('.m3-info'); if(cap) cap.textContent=B.info; };
+    const light=()=>{ if(st.night){ sc.background=null; hemi.intensity=.18; hemi.color.set(0x5a6b9a); sun.intensity=.12; sun.color.set(0x9fb6ff); R.toneMappingExposure=1.3; el.classList.add('night'); } else { hemi.intensity=.55; hemi.color.set(0xdfeeff); sun.intensity=2.1; sun.color.set(0xfff1dc); R.toneMappingExposure=.95; el.classList.remove('night'); } sun.position.set(Math.cos(st.sunA||-.9)*60,st.night?20:55,Math.sin(st.sunA||-.9)*60+20); };
+    build(); light();
+    const frame=()=>{ if(st.auto) st.az+=.0025; const d=st.dist; cam.position.set(Math.cos(st.az)*Math.cos(st.el)*d,Math.sin(st.el)*d+st.cy,Math.sin(st.az)*Math.cos(st.el)*d); cam.lookAt(0,st.cy,0); R.render(sc,cam); st.raf=requestAnimationFrame(frame); };
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ cancelAnimationFrame(st.raf); if(e.isIntersecting) st.raf=requestAnimationFrame(frame); })); io.observe(el);
+    const cv=R.domElement; cv.style.touchAction='none';
+    cv.addEventListener('pointerdown',e=>{ st.drag=[e.clientX,e.clientY,st.az,st.el]; st.auto=false; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener('pointermove',e=>{ if(!st.drag) return; st.az=st.drag[2]+(e.clientX-st.drag[0])*.008; st.el=Math.max(.08,Math.min(1.35,st.drag[3]+(e.clientY-st.drag[1])*.006)); });
+    cv.addEventListener('pointerup',()=>{ st.drag=null; }); cv.addEventListener('wheel',e=>{ e.preventDefault(); st.dist=Math.max(18,Math.min(220,st.dist*(1+Math.sign(e.deltaY)*.08))); },{passive:false});
+    const ro=new ResizeObserver(()=>{ const w=el.clientWidth,h=el.clientHeight; if(!w||!h) return; R.setSize(w,h); cam.aspect=w/h; cam.updateProjectionMatrix(); }); ro.observe(el);
+    el._m3={stop(){ cancelAnimationFrame(st.raf); io.disconnect(); ro.disconnect(); R.dispose(); },night(v){ st.night=v; build(); light(); },sun(a){ st.sunA=a; light(); },view(k){ st.auto=false; if(k==='top'){ st.el=1.35; } else if(k==='eye'){ st.el=.1; st.dist*=.6; } else { st.el=.5; st.auto=true; } },png(){ R.render(sc,cam); return R.domElement.toDataURL('image/png'); }};
+  }).catch(()=>{ el.innerHTML=`<div class="m3-fallback">${CTHUMB.kind(DNA_ARCH[id].shape)}</div>`; }); }
 
 /* ---------- 컨셉 마법사: 무엇을 → 어디에 → 어떤 느낌 → 어떤 하루 → 세 갈래 + 이름 ---------- */
 const CWP=[['house','단독주택','가족이 사는 집','<path d="M3 11l9-7 9 7v9H3z"/><path d="M10 20v-5h4v5"/>','재(齋)'],['cafe','카페·근생','길에 여는 가게','<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2M8 3v3M12 3v3"/>','정(亭)'],['library','작은 도서관','머물러 읽는 공공','<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/>','당(堂)'],['gallery','갤러리','보는 공간','<rect x="3" y="4" width="18" height="14" rx="1"/><path d="M6 15l4-5 3 3 2-2 3 4"/>','관(館)'],['stay','게스트하우스','머물다 가는 집','<path d="M3 18V8M3 13h18v5M21 18v-5"/><path d="M7 13V10h5v3"/>','헌(軒)'],['share','공유주택','같이, 또 따로','<path d="M3 12l5-4 5 4v8H3zM13 12l4-3 4 3v8h-8"/>','채'],['studio','작업실·오피스','일하는 곳','<rect x="3" y="6" width="18" height="12" rx="1"/><path d="M8 6V4h8v2M3 11h18"/>','원(院)'],['community','마을회관','동네의 거실','<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M10 20c0-3 3-5 6-5s6 2 6 5"/>','당(堂)']];
@@ -3802,7 +3938,8 @@ function cwStepHTML(){ const S=CW.step; const tile=(on,attr,inner,cls)=>`<button
 function cwResHTML(){ if(!CW.res) return ''; const R=CW.res;
   return `<div class="cw-tabs">${R.map((r,i)=>`<button data-cwr="${i}" aria-pressed="${i===CW.sel}"><span>${CTHUMB.kind(r.A.shape)}</span><b>${String.fromCharCode(65+i)}안</b><em>${esc(r.A.name)}</em></button>`).join('')}</div>`+R.map((r,i)=>{ const nm=r.names[r.nameSel];
    return `<article class="cw-res${i===CW.sel?' on':''}" data-ri="${i}">
-    <div class="cw-mood">${r.mood.map((k,j)=>`<figure class="m${j}">${phImg(k,j===0?1280:640,'',k,j===0?'(max-width:900px) 94vw, 40vw':'(max-width:900px) 46vw, 18vw')}</figure>`).join('')}<div class="cw-sw">${(r.A.mat||[]).map(m=>`<span>${esc(m)}</span>`).join('')}</div></div>
+    <div class="cw-viz"><div class="m3" id="m3_${i}"></div><div class="m3-bar"><div class="modes"><button data-m3v="spin" aria-pressed="true">돌려 보기</button><button data-m3v="top">위에서</button><button data-m3v="eye">눈높이</button></div><div class="modes"><button data-m3n="0" aria-pressed="true">낮</button><button data-m3n="1">밤</button></div><label class="m3-sun">해<input type="range" min="-3.1" max="0" step=".05" value="-.9" data-m3s></label><button class="btn sec sm" data-m3png>이미지 저장</button></div><div class="m3-info"></div>
+     <div class="cw-mood">${r.mood.map((k,j)=>`<figure class="mo${j}">${phImg(k,960,'',k,'(max-width:900px) 60vw, 26vw')}</figure>`).join('')}<div class="cw-sw">${(r.A.mat||[]).map(m=>`<span>${esc(m)}</span>`).join('')}</div></div></div>
     <div class="cw-body"><div class="cw-k">${String.fromCharCode(65+i)}안 · ${esc(r.A.name)}</div>
      <h3 class="cw-name">${esc(nm.ko)}${nm.sub?`<small>${esc(nm.sub)}</small>`:''}</h3>
      <p class="cw-stmt">${esc(r.stmt)}</p>
@@ -3810,13 +3947,13 @@ function cwResHTML(){ if(!CW.res) return ''; const R=CW.res;
      <div class="cw-dia">${[['대지','plate'],['볼륨','block'],['조작',r.A.shape],['결과',r.A.shape]].map((f,j)=>`<div class="cw-f" style="--i:${j}"><div>${j===2?`<div class="clx">${CTHUMB.kind('block',1)}${CTHUMB.kind(f[1],1)}</div>`:CTHUMB.kind(f[1],1)}</div><em>${String(j+1).padStart(2,'0')}</em><b>${f[0]}</b></div>`).join('<i class="cw-ar">→</i>')}</div>
      <div class="cw-cols"><div><h4>이렇게 시작</h4><ol>${r.A.moves.slice(0,3).map(m=>`<li>${esc(m)}</li>`).join('')}${r.extra?`<li>${esc(r.extra)}</li>`:''}</ol></div><div><h4>왜 이 방향</h4><p>${esc(r.why)}</p><h4>빛</h4><p>${esc(r.A.light||'')}</p></div></div>
      <div class="cw-refs"><h4>참고할 건물</h4>${r.A.refs.map(f=>`<div><b>${esc(f.name)}</b><span>${esc(f.arch)}${f.note?' · '+esc(f.note):''}</span></div>`).join('')}</div>
-     <div class="cw-act"><button class="btn big" data-cwgo="${i}">이 컨셉으로 시작</button><button class="btn sec" data-cwwm="${i}">흰 모형으로 보기</button><button class="btn sec" data-cwcopy="${i}">컨셉 보드 복사</button></div>
-     <div class="wmbox cw-wm" id="cwWm${i}" hidden></div></div></article>`; }).join(''); }
+     <div class="cw-act"><button class="btn big" data-cwgo="${i}">이 컨셉으로 시작</button><button class="btn sec" data-cwcopy="${i}">컨셉 보드 복사</button></div>
+     </div></article>`; }).join(''); }
 function cwDraw(){ const el=$('#cwBox'); if(!el) return; const S=CW.step;
   $('#cwSteps').innerHTML=['무엇을','어디에','어떤 느낌','어떤 하루','세 갈래'].map((t,i)=>`<button data-cwstep="${i}" class="${i===S?'on':''}${i<S?' done':''}" ${i===4&&!CW.res?'disabled':''}><i>${i<S?'✓':i+1}</i>${t}</button>`).join('');
   $('#cwSum').innerHTML=[CW.prog&&CWP.find(p=>p[0]===CW.prog)[1],CW.site&&CWS.find(s=>s[0]===CW.site)[1],...CW.feel,CW.day&&CWD.find(d=>d[0]===CW.day)[1]].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')||'<em>고른 것이 여기에 모여요</em>';
   if(S<4){ el.innerHTML=cwStepHTML(); el.className='cw-box step'; }
-  else { el.innerHTML=cwResHTML(); el.className='cw-box res'; }
+  else { el.innerHTML=cwResHTML(); el.className='cw-box res'; const r=CW.res[CW.sel]; setTimeout(()=>m3Mount($('#m3_'+CW.sel),r.id,CW.prog||'house'),30); }
   $('#cwPrev').hidden=S===0; const nx=$('#cwNext'); nx.hidden=S===4; nx.textContent=S===3?'세 갈래 받기 ✦':'다음'; nx.disabled=(S===0&&!CW.prog)||(S===1&&!CW.site)||(S===2&&!CW.feel.length);
   dnaReveal(); }
 function cwGo(s){ CW.step=Math.max(0,Math.min(4,s)); if(CW.step===4&&!CW.res) cwBuild(); cwDraw(); const w=$('#cwWrap'); if(w&&w.getBoundingClientRect().top<0) w.scrollIntoView({behavior:'smooth',block:'start'}); }
@@ -3846,8 +3983,365 @@ function cwBoard(i){ const r=CW.res[i], nm=r.names[r.nameSel]; return `[${nm.ko}
     if(t.closest('[data-cwshuf]')){ const ri=+t.closest('[data-ri]').dataset.ri; CW.seed+=3; const R=CW.res[ri]; R.names=cwNames(R.A,R.id,CW.seed+ri); R.nameSel=0; cwDraw(); return; }
     const g=t.closest('[data-cwgo]'); if(g){ cwApply(+g.dataset.cwgo); return; }
     const w=t.closest('[data-cwwm]'); if(w){ const i=+w.dataset.cwwm, box=$('#cwWm'+i); box.hidden=!box.hidden; if(!box.hidden){ try{ wmMount(box,CW.res[i].A.shape,1); }catch(err){ box.innerHTML=CTHUMB.kind(CW.res[i].A.shape); } } return; }
+    const mv=t.closest('[data-m3v]'); if(mv){ const m=$('#m3_'+CW.sel); m&&m._m3&&m._m3.view(mv.dataset.m3v); mv.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===mv)); return; }
+    const mn=t.closest('[data-m3n]'); if(mn){ const m=$('#m3_'+CW.sel); m&&m._m3&&m._m3.night(mn.dataset.m3n==='1'); mn.parentElement.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===mn)); return; }
+    if(t.closest('[data-m3png]')){ const m=$('#m3_'+CW.sel); if(m&&m._m3){ const a=document.createElement('a'); a.href=m._m3.png(); a.download=(CW.res[CW.sel].names[CW.res[CW.sel].nameSel].ko||'concept')+'.png'; a.click(); } return; }
     const c=t.closest('[data-cwcopy]'); if(c){ const txt=cwBoard(+c.dataset.cwcopy); navigator.clipboard&&navigator.clipboard.writeText(txt); tToast('컨셉 보드를 복사했어요'); return; } });
+  sec.addEventListener('input',e=>{ const r=e.target.closest('[data-m3s]'); if(r){ const m=$('#m3_'+CW.sel); m&&m._m3&&m._m3.sun(+r.value); } });
   cwDraw(); })();
+/* ---------- 건축 사전: 쉬운 설명 + 그림 + 예시 (채팅·자료실 공용) ---------- */
+const ENCD='<defs><marker id="ea" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#3f7bff"/></marker><marker id="ek" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ff5e3a"/></marker><pattern id="eh" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-opacity=".3"/></pattern></defs>';
+const EG=(y)=>`<rect x="0" y="${y}" width="300" height="${180-y}" fill="url(#eh)"/><line x1="0" y1="${y}" x2="300" y2="${y}" class="l"/>`;
+const ES=b=>`<svg class="encsvg" viewBox="0 0 300 180" role="img">${ENCD}${b}</svg>`;
+const ENC=[
+/* ── 공간 ── */
+{id:'skip',t:'스킵플로어',en:'Skip floor',cat:'공간',al:['스킵 플로어','반층','반 층','split level','스플릿','스킵'],
+ easy:'층과 층 사이를 반 층(약 1.2~1.5m)씩 어긋나게 놓는 방식이에요. 계단 몇 단만 오르면 다른 공간이 나와서, 집 전체가 하나로 이어진 느낌을 줍니다.',
+ pts:['경사지에서 땅을 덜 깎고 지을 수 있어요','시선이 위아래로 이어져 좁아도 넓게 느껴져요','방마다 높이가 달라 자연스럽게 영역이 나뉘어요','단점: 계단이 많아 이동이 불편할 수 있어요'],
+ ex:[['공간 사옥 — 김수근','space'],['경동교회 — 김수근','kyungdong']],see:['void','ramp','section'],
+ svg:()=>ES(`${EG(150)}<path class="f" d="M30 150V90H140V150"/><path class="f" d="M140 150V70H250V150" /><path class="k" d="M30 90H140M140 120H250M30 120H140M140 70H250"/><path class="l" d="M30 120H140M140 105H250"/><path class="l" d="M128 120l6-7 6-8"/><path class="l" d="M128 90l6-7 6-8"/><text x="36" y="84">거실</text><text x="146" y="64">서재</text><text x="146" y="100">식당</text><text x="36" y="114">침실</text><path class="a" d="M255 120V105" marker-end="url(#ek)"/><text x="258" y="116" fill="#ff5e3a">½층</text>`)},
+{id:'court',t:'중정',en:'Courtyard',cat:'공간',al:['마당','안마당','코트야드','ㅁ자'],
+ easy:'건물로 둘러싸인 가운데 마당이에요. 밖으로는 닫고 안으로 열어서, 도심에서도 하늘과 바람, 빛을 온전히 가질 수 있어요.',
+ pts:['모든 방이 마당을 향해 열려 빛과 환기가 좋아요','바깥 시선과 소음을 막아 사생활을 지켜요','마당 폭이 좁으면 어두워져요 — 높이의 1~1.5배 이상이 좋아요','한옥의 안마당도 같은 원리예요'],
+ ex:[['병산서원','byeongsan'],['Tietgen 기숙사','tietgen']],see:['atrium','void','daecheong'],
+ svg:()=>ES(`<rect x="40" y="25" width="220" height="130" class="f"/><rect x="100" y="60" width="100" height="60" fill="#30a46c22" stroke="#30a46c" stroke-width="2"/><circle cx="150" cy="90" r="12" fill="#30a46c66"/><text x="132" y="116" fill="#30a46c">마당</text><path class="a" d="M120 40V58"/><path class="a" d="M180 40V58"/><path class="a" d="M60 90H98"/><path class="a" d="M240 90H202"/><text x="48" y="20">밖은 닫고 · 안으로 연다</text>`)},
+{id:'atrium',t:'아트리움',en:'Atrium',cat:'공간',al:['아트리움','천창 홀','로비 보이드'],
+ easy:'건물 안에 여러 층을 관통하는 큰 홀이에요. 위에 천창을 두어 깊은 건물 안쪽까지 빛을 끌어들이고, 사람들이 모이는 중심이 됩니다.',
+ pts:['층과 층이 서로 보여 건물 전체가 하나로 느껴져요','더운 공기가 위로 빠져 자연 환기에 도움돼요(굴뚝 효과)','화재 시 연기 확산을 막는 설비가 꼭 필요해요'],
+ ex:[['아모레퍼시픽 본사','amore']],see:['void','stack','court'],
+ svg:()=>ES(`${EG(155)}<path class="f" d="M40 155V35H260V155"/><path class="l" d="M40 75H120M180 75H260M40 115H120M180 115H260"/><rect x="120" y="35" width="60" height="120" fill="#ffd66b22" stroke="#ffb400" stroke-dasharray="4 3"/><path d="M118 35L150 20L182 35" class="k"/><path class="a" d="M150 22V140" stroke="#ffb400" style="stroke:#ffb400"/><text x="124" y="150">아트리움</text>`)},
+{id:'void',t:'보이드',en:'Void',cat:'공간',al:['오픈 천장','복층 천장','뚫린 공간','void'],
+ easy:'바닥을 일부러 비워 위아래 층이 뚫려 있는 공간이에요. 거실 위를 2층 높이로 열어 두는 것이 대표적이죠.',
+ pts:['천장이 높아져 시원하고 밝아요','가족이 다른 층에 있어도 기척이 느껴져요','냉난방 부하가 커지니 단열과 창 배치를 함께 생각해야 해요'],
+ ex:[['리움미술관','leeum']],see:['atrium','skip'],
+ svg:()=>ES(`${EG(150)}<path class="f" d="M40 150V40H260V150"/><path class="l" d="M150 95H260"/><rect x="40" y="40" width="110" height="110" fill="#ff5e3a14" stroke="#ff5e3a" stroke-dasharray="5 4"/><text x="70" y="70" fill="#ff5e3a">보이드</text><text x="170" y="82">2층</text><text x="170" y="130">1층</text><circle cx="85" cy="128" r="6" class="l"/><path class="l" d="M85 134v14"/><circle cx="200" cy="80" r="6" class="l"/><path class="a" d="M95 120L190 86"/>`)},
+{id:'ramp',t:'램프',en:'Ramp',cat:'공간',al:['경사로','슬로프','스로프'],
+ easy:'계단 대신 완만한 비탈길로 층을 잇는 방법이에요. 걷는 동안 풍경이 천천히 바뀌어, 이동 자체가 건축 경험이 됩니다.',
+ pts:['휠체어·유모차도 쉽게 다녀요(배리어프리)','법적으로는 보통 1/12(약 8%) 이하의 기울기','같은 높이를 오르는 데 계단보다 길이가 훨씬 길게 필요해요'],
+ ex:[['경동교회 외부 경사로','kyungdong'],['DDP','ddp']],see:['skip'],
+ svg:()=>ES(`${EG(150)}<path class="f" d="M30 150V60H270V150"/><path class="k" d="M40 150L260 105"/><path class="k" d="M260 105L40 60" stroke-dasharray="5 4"/><text x="150" y="140" fill="#ff5e3a">1 : 12</text><path class="a" d="M60 140L220 110"/>`)},
+{id:'mezzanine',t:'메자닌',en:'Mezzanine',cat:'공간',al:['다락','중층','로프트'],
+ easy:'층고가 높은 공간 안에 바닥을 일부만 걸쳐 만든 중간층이에요. 아래는 넓게, 위는 아늑하게 쓸 수 있어요.',
+ pts:['같은 땅에서 쓸 수 있는 면적이 늘어요','아래 공간과 시선이 이어져 답답하지 않아요','층고 기준과 면적 산정은 조례를 확인해야 해요'],
+ ex:[],see:['void','skip'],
+ svg:()=>ES(`${EG(150)}<path class="f" d="M40 150V30H260V150"/><path class="k" d="M150 90H260"/><path class="l" d="M150 90v-12"/><path class="l" d="M135 150l5-10 5-10 5-10 5-10"/><text x="170" y="82">메자닌</text><text x="60" y="120">높은 층고</text>`)},
+{id:'sunken',t:'썬큰',en:'Sunken garden',cat:'공간',al:['선큰','성큰','썬큰가든','지하 마당'],
+ easy:'땅을 파서 낮게 만든 마당이에요. 지하층에도 자연광과 바람이 들어오게 해서 지하를 지상처럼 쓰게 해 줍니다.',
+ pts:['지하 공간의 채광·환기 문제를 해결해요','지상의 소음에서 한 겹 물러난 조용한 마당이 생겨요','배수 계획을 꼭 세워야 해요'],
+ ex:[['이화여대 ECC','ecc']],see:['court','buried'],
+ svg:()=>ES(`<rect x="0" y="80" width="300" height="100" fill="url(#eh)"/><path class="l" d="M0 80H90V140H210V80H300"/><rect x="40" y="92" width="50" height="48" class="f"/><rect x="210" y="92" width="50" height="48" class="f"/><path class="a" d="M150 20L130 135" style="stroke:#ffb400"/><text x="122" y="155">썬큰 마당</text><text x="22" y="74">지면</text>`)},
+{id:'pilotis',t:'필로티',en:'Pilotis',cat:'구조',al:['필로티 구조','기둥 1층','띄운 1층'],
+ easy:'건물을 기둥으로 들어 올리고 1층을 비워 두는 방식이에요. 르 코르뷔지에가 제안한 근대 건축의 원칙 중 하나죠.',
+ pts:['1층을 주차장·마당·통로로 열어 줄 수 있어요','땅의 습기를 피하고 바람이 통해요','지진 때 1층 기둥에 힘이 몰리니 보강 설계가 중요해요'],
+ ex:[['Unité d\'Habitation','']],see:['column','cantilever'],
+ svg:()=>ES(`${EG(150)}<rect x="40" y="40" width="220" height="60" class="f"/><path class="l" d="M40 70H260"/>${[60,110,190,240].map(x=>`<rect x="${x-4}" y="100" width="8" height="50" class="k"/>`).join('')}<path class="a" d="M10 130H290"/><text x="120" y="142">비워 둔 1층</text>`)},
+{id:'cantilever',t:'캔틸레버',en:'Cantilever',cat:'구조',al:['켄틸레버','내민보','돌출','캔틸래버'],
+ easy:'한쪽 끝만 고정되고 다른 끝은 허공으로 내민 구조예요. 받침 없이 떠 있는 것처럼 보여 극적인 인상을 줍니다.',
+ pts:['고정된 쪽 뿌리 부분에 큰 힘(휨 모멘트)이 걸려요','내민 길이가 길수록 보가 깊어지거나 뒤쪽 무게가 필요해요','처마, 발코니, 다이빙대가 모두 캔틸레버'],
+ ex:[['영화의전당 빅루프','busancinema']],see:['beam','pilotis'],
+ svg:()=>ES(`${EG(150)}<rect x="40" y="70" width="90" height="80" class="f"/><path class="k" d="M40 70H270V90H40"/><path class="a" d="M250 30V66" marker-end="url(#ea)"/><text x="232" y="26">하중</text><path d="M60 92q35 24 70 0" fill="none" stroke="#ff5e3a" stroke-dasharray="3 3"/><text x="52" y="120" fill="#ff5e3a">뿌리에 큰 힘</text>`)},
+{id:'beam',t:'라멘조 (기둥·보)',en:'Rigid frame',cat:'구조',al:['라멘','기둥보','기둥 보','골조','철근콘크리트 골조','라멘구조'],
+ easy:'기둥과 보를 단단하게 붙여 뼈대를 만드는 구조예요. 벽이 힘을 받지 않으니 벽을 자유롭게 옮기거나 크게 뚫을 수 있어요.',
+ pts:['사무실·상가처럼 평면을 자주 바꾸는 건물에 좋아요','기둥 간격(스팬)이 보통 6~9m','벽식보다 층고가 조금 높아져요(보 깊이 때문)'],
+ ex:[],see:['wall','column','flatslab'],
+ svg:()=>ES(`${EG(160)}${[50,150,250].map(x=>`<rect x="${x-5}" y="40" width="10" height="120" class="k"/>`).join('')}<rect x="45" y="40" width="210" height="10" class="k"/><rect x="45" y="98" width="210" height="10" class="k"/><text x="70" y="80">자유로운 벽</text><path class="l" d="M95 108v52" stroke-dasharray="4 3"/>`)},
+{id:'wall',t:'벽식 구조',en:'Bearing wall',cat:'구조',al:['내력벽','벽식','벽식구조','내력벽 구조'],
+ easy:'벽 자체가 지붕과 바닥의 무게를 받는 구조예요. 한국 아파트 대부분이 이 방식이라 벽을 함부로 헐 수 없어요.',
+ pts:['보가 없어 층고를 낮게 지을 수 있어 경제적이에요','소음이 벽을 타고 잘 전달되는 편이에요','리모델링 때 평면을 바꾸기 어려워요'],
+ ex:[],see:['beam','masonry'],
+ svg:()=>ES(`${EG(160)}${[50,150,250].map(x=>`<rect x="${x-7}" y="40" width="14" height="120" fill="#ff5e3a33" stroke="#ff5e3a"/>`).join('')}<path class="l" d="M43 40H257M43 100H257"/>${[100,200].map(x=>`<path class="a" d="M${x} 20V38"/>`).join('')}<text x="160" y="80">벽이 무게를 받음</text>`)},
+{id:'column',t:'기둥',en:'Column',cat:'구조',al:['기둥','칼럼','열주'],
+ easy:'위에서 내려오는 무게를 땅까지 전달하는 세로 부재예요. 기둥의 간격과 배치가 건물의 리듬을 만듭니다.',
+ pts:['굵기는 받는 무게와 높이에 따라 정해져요','기둥이 적을수록 넓은 공간, 대신 보가 깊어져요','한옥의 배흘림·민흘림처럼 모양에 미학을 담기도 해요'],
+ ex:[['종묘 정전','jongmyo']],see:['baeheullim','beam'],
+ svg:()=>ES(`${EG(160)}<rect x="40" y="30" width="220" height="12" class="f"/>${[70,130,190,250].map(x=>`<rect x="${x-7}" y="42" width="14" height="118" class="k"/>`).join('')}${[70,130,190,250].map(x=>`<path class="a" d="M${x} 50V150"/>`).join('')}`)},
+{id:'truss',t:'트러스',en:'Truss',cat:'구조',al:['트러스 구조','삼각형 구조'],
+ easy:'가는 부재를 삼각형으로 엮어 큰 거리를 건너는 구조예요. 삼각형은 모양이 잘 찌그러지지 않아 가볍고도 튼튼해요.',
+ pts:['체육관·공장·다리처럼 넓은 공간에 써요','부재 하나하나는 당기거나 미는 힘만 받아요','한옥 지붕틀과 원리는 달라요 — 한옥은 보 위에 쌓아요'],
+ ex:[],see:['beam','arch'],
+ svg:()=>ES(`${EG(150)}<path class="k" d="M30 110H270L150 50Z"/><path class="k" d="M90 110L120 65L150 110L180 65L210 110"/><rect x="24" y="110" width="12" height="40" class="f"/><rect x="264" y="110" width="12" height="40" class="f"/><text x="120" y="130">삼각형 = 안 찌그러짐</text>`)},
+{id:'arch',t:'아치',en:'Arch',cat:'구조',al:['아치 구조','홍예'],
+ easy:'돌이나 벽돌을 곡선으로 쌓아 무게를 양옆으로 흘려보내는 구조예요. 재료가 서로 밀어 붙들어서, 접착제 없이도 서 있어요.',
+ pts:['모든 부재가 눌리는 힘(압축)만 받아 돌·벽돌에 딱 맞아요','양 끝이 바깥으로 벌어지려 해서 옆을 잡아 줘야 해요','불국사 청운교·백운교의 무지개다리도 아치예요'],
+ ex:[['불국사','bulguksa']],see:['dome','truss'],
+ svg:()=>ES(`${EG(150)}<path class="k" d="M60 150V100A90 70 0 0 1 240 100V150H210V100A60 46 0 0 0 90 100V150Z"/><path class="a" d="M150 20V40"/><path class="a" d="M105 70L70 120"/><path class="a" d="M195 70L230 120"/>`)},
+{id:'dome',t:'돔',en:'Dome',cat:'구조',al:['돔 구조','둥근 지붕','쿠폴라'],
+ easy:'아치를 한 바퀴 돌려 만든 반구 모양 지붕이에요. 가운데 기둥 없이 넓은 공간을 덮을 수 있어요.',
+ pts:['판테온은 2천 년 가까이 버틴 콘크리트 돔이에요','꼭대기에 구멍(오쿨루스)을 내 빛을 들이기도 해요','아래쪽 둘레가 벌어지지 않게 링으로 묶어요'],
+ ex:[],see:['arch','shell'],
+ svg:()=>ES(`${EG(150)}<path class="k" d="M50 150V110A100 100 0 0 1 250 110V150"/><path class="l" d="M50 110H250" stroke-dasharray="4 3"/><rect x="142" y="8" width="16" height="6" fill="#ffb400"/><path class="a" d="M150 16V140" style="stroke:#ffb400"/><text x="160" y="40">오쿨루스</text>`)},
+{id:'shell',t:'셸 구조',en:'Shell',cat:'구조',al:['쉘','쉘구조','곡면 구조'],
+ easy:'얇은 곡면 하나로 지붕 전체를 만드는 구조예요. 달걀 껍데기처럼 모양 덕분에 얇아도 강해요.',
+ pts:['콘크리트 몇 cm 두께로 수십 m를 덮기도 해요','시드니 오페라하우스가 대표적이에요','곡면 거푸집이 어려워 공사비가 높아요'],
+ ex:[],see:['dome'],
+ svg:()=>ES(`${EG(150)}<path class="k" d="M30 150Q80 40 150 60Q220 80 270 150"/><path class="l" d="M30 150Q80 50 150 68Q220 88 270 150" opacity=".5"/><text x="120" y="120">얇아도 강한 곡면</text>`)},
+{id:'flatslab',t:'플랫 슬래브',en:'Flat slab',cat:'구조',al:['무량판','무량판 구조','플랫슬래브'],
+ easy:'보 없이 바닥판(슬래브)을 기둥이 바로 받치는 구조예요. 천장이 평평해 층고를 아끼고 설비 배관이 쉬워요.',
+ pts:['기둥 윗부분에 힘이 몰려 뚫림(펀칭) 보강이 중요해요','주차장·창고·주상복합에 많이 써요','보가 없어 평면이 자유로워요'],
+ ex:[],see:['beam','column'],
+ svg:()=>ES(`${EG(160)}<rect x="30" y="55" width="240" height="12" class="k"/><rect x="30" y="110" width="240" height="12" class="k"/>${[80,220].map(x=>`<rect x="${x-6}" y="67" width="12" height="43" class="f"/><rect x="${x-6}" y="122" width="12" height="38" class="f"/><path d="M${x-14} 67h28l-6 8h-16z" fill="#ff5e3a55"/>`).join('')}<text x="110" y="95">보 없음</text>`)},
+{id:'core',t:'코어',en:'Core',cat:'구조',al:['계단실','코어 구조','엘리베이터 코어'],
+ easy:'계단·엘리베이터·화장실·설비를 한 덩어리로 모아 둔 단단한 기둥 같은 부분이에요. 고층 건물에서는 건물을 붙잡는 척추 역할도 해요.',
+ pts:['코어를 모으면 나머지 공간이 넓게 열려요','중앙 코어 / 편심 코어 / 양단 코어 등 배치가 다양해요','바람·지진의 옆 힘을 많이 받아요'],
+ ex:[],see:['beam','brace'],
+ svg:()=>ES(`<rect x="40" y="30" width="220" height="120" class="f"/><rect x="120" y="65" width="60" height="50" fill="#ff5e3a33" stroke="#ff5e3a" stroke-width="2"/><text x="132" y="94" fill="#ff5e3a">코어</text><text x="52" y="50">열린 사무 공간</text><path class="l" d="M128 72h18v18h-18zM154 72h18v36h-18z"/>`)},
+{id:'brace',t:'브레이싱',en:'Bracing',cat:'구조',al:['가새','브레이스','X 브레이싱'],
+ easy:'기둥과 보 사이에 대각선 부재를 넣어 옆으로 밀리지 않게 잡아 주는 것이에요.',
+ pts:['바람·지진처럼 옆에서 오는 힘에 강해져요','X자, V자, 한쪽 대각선 등 모양이 다양해요','창을 가리지 않게 배치하는 게 디자인 포인트'],
+ ex:[],see:['beam','truss','seismic'],
+ svg:()=>ES(`${EG(160)}<path class="l" d="M60 160V40H240V160M60 100H240"/><path class="k" d="M60 160L150 100L240 160M60 100L150 40L240 100"/><path class="a" d="M10 70H55"/><text x="10" y="64">옆 힘</text>`)},
+{id:'seismic',t:'내진 · 면진',en:'Seismic design',cat:'구조',al:['내진','면진','제진','지진'],
+ easy:'내진은 건물을 튼튼하게 버티게 하는 것, 면진은 건물과 땅 사이에 고무 받침을 넣어 흔들림 자체를 덜 받게 하는 것이에요.',
+ pts:['내진: 기둥·벽·브레이싱으로 버팀','면진: 적층고무 받침이 흔들림을 흡수','제진: 댐퍼로 흔들림 에너지를 줄임','한국은 2층 이상 또는 연면적 200㎡ 이상이면 내진 설계 대상(세부 기준 확인 필요)'],
+ ex:[],see:['brace','foundation'],
+ svg:()=>ES(`${EG(150)}<rect x="80" y="40" width="140" height="90" class="f"/>${[100,150,200].map(x=>`<rect x="${x-10}" y="132" width="20" height="16" rx="4" fill="#30d15855" stroke="#30a46c"/>`).join('')}<path class="a" d="M20 165h40M280 165h-40"/><text x="96" y="30">면진 받침이 흔들림 흡수</text>`)},
+{id:'foundation',t:'기초',en:'Foundation',cat:'구조',al:['줄기초','매트기초','독립기초','파일','말뚝','기초 공사'],
+ easy:'건물의 무게를 땅에 고르게 전달하는 맨 아래 부분이에요. 땅이 약하면 말뚝(파일)을 단단한 지층까지 박아요.',
+ pts:['독립기초: 기둥마다 하나','줄기초: 벽 아래를 따라 길게','매트기초: 건물 바닥 전체를 한 판으로','지반조사 결과로 종류를 정해요'],
+ ex:[],see:['column','seismic'],
+ svg:()=>ES(`<rect x="0" y="70" width="300" height="110" fill="url(#eh)"/><line x1="0" y1="70" x2="300" y2="70" class="l"/><rect x="60" y="20" width="180" height="50" class="f"/><rect x="50" y="70" width="200" height="16" class="k"/>${[80,150,220].map(x=>`<rect x="${x-4}" y="86" width="8" height="70" class="k"/>`).join('')}<text x="190" y="170">말뚝</text>`)},
+/* ── 환경 ── */
+{id:'eaves',t:'처마 · 차양',en:'Eaves / Shading',cat:'환경',al:['처마','차양','캐노피','햇빛 가리개','태양고도'],
+ easy:'지붕이나 판을 밖으로 내밀어 여름의 높은 해는 막고, 겨울의 낮은 해는 들이는 장치예요.',
+ pts:['한국 기준 남쪽 창 처마는 창 높이의 0.3~0.5배 정도가 무난해요','여름 해는 높고(약 76°), 겨울 해는 낮아요(약 30°, 중부 지방)','동·서쪽은 해가 낮게 들어와 세로 루버가 더 효과적이에요'],
+ ex:[['종묘 정전','jongmyo'],['병산서원','byeongsan']],see:['louver','passive','cheoma'],
+ svg:()=>ES(`${EG(160)}<rect x="160" y="60" width="80" height="100" class="f"/><path class="k" d="M150 60H250"/><path class="l" d="M165 80h0M165 80v60" stroke-width="3"/><circle cx="40" cy="20" r="10" fill="#ffb400"/><path class="a" d="M48 26L150 58" style="stroke:#ff9f0a"/><text x="60" y="54" fill="#ff9f0a">여름 — 막음</text><circle cx="20" cy="110" r="8" fill="#ffd66b"/><path class="a" d="M28 112L165 130"/><text x="40" y="132" fill="#3f7bff">겨울 — 들임</text>`)},
+{id:'louver',t:'루버',en:'Louver',cat:'환경',al:['루버','핀','세로핀','가로 루버','브리즈 솔레이유'],
+ easy:'얇은 판을 일정 간격으로 줄지어 세워 햇빛과 시선을 거르는 장치예요. 빛은 들이되 눈부심과 열은 줄여요.',
+ pts:['가로 루버는 남쪽(높은 해), 세로 루버는 동·서쪽(낮은 해)에 효과적','건물 표정을 만드는 디자인 요소이기도 해요','움직이는 루버로 계절마다 조절하기도 해요'],
+ ex:[['아모레퍼시픽 본사','amore'],['송은','']],see:['eaves'],
+ svg:()=>ES(`${EG(160)}<rect x="40" y="30" width="200" height="130" class="f" opacity=".5"/>${Array.from({length:12},(_,i)=>`<rect x="${48+i*16}" y="30" width="6" height="130" fill="#b07a4f"/>`).join('')}<path class="a" d="M290 40L180 90" style="stroke:#ffb400"/><text x="230" y="30">빛을 거름</text>`)},
+{id:'crossvent',t:'맞통풍',en:'Cross ventilation',cat:'환경',al:['맞바람','통풍','자연환기','앞뒤 창'],
+ easy:'마주 보는 두 벽에 창을 내어 바람이 집을 관통하게 하는 거예요. 에어컨 없이도 여름을 시원하게 나는 기본 방법이에요.',
+ pts:['들어오는 창은 작게, 나가는 창은 크게 하면 바람이 빨라져요','방 깊이가 너무 깊으면(약 12m 이상) 효과가 줄어요','한옥은 앞뒤 창호와 대청으로 맞통풍을 만들어요'],
+ ex:[['해인사 장경판전','haein']],see:['stackeffect','daecheong'],
+ svg:()=>ES(`${EG(150)}<path class="f" d="M50 150V60L150 25L250 60V150"/><rect x="46" y="95" width="8" height="25" fill="#9fc3d6"/><rect x="246" y="85" width="8" height="40" fill="#9fc3d6"/><path class="a" d="M10 108H290"/><text x="12" y="98" fill="#3f7bff">바람</text>`)},
+{id:'stackeffect',t:'굴뚝 효과',en:'Stack effect',cat:'환경',al:['연돌효과','연돌 효과','스택 이펙트','중력환기'],
+ easy:'더운 공기는 위로 올라가니, 아래에 창을 두고 위에도 창을 열면 공기가 저절로 빨려 올라가며 환기돼요.',
+ pts:['높이 차가 클수록 효과가 커요(계단실·아트리움)','바람이 없는 날에도 환기가 돼요','고층에서는 겨울에 엘리베이터 문이 잘 안 닫히는 원인이 되기도 해요'],
+ ex:[],see:['crossvent','atrium'],
+ svg:()=>ES(`${EG(160)}<path class="f" d="M90 160V20H210V160"/><rect x="86" y="130" width="8" height="20" fill="#9fc3d6"/><rect x="206" y="24" width="8" height="18" fill="#9fc3d6"/><path class="a" d="M60 140H110Q150 140 150 100V40Q150 30 200 30H250"/><text x="20" y="128" fill="#3f7bff">찬 공기</text><text x="222" y="22" fill="#ff5e3a">더운 공기</text>`)},
+{id:'passive',t:'패시브 하우스',en:'Passive house',cat:'환경',al:['패시브','에너지 절약 주택','제로에너지','고단열'],
+ easy:'두꺼운 단열, 새지 않는 창, 열을 되살리는 환기장치로 냉난방 에너지를 아주 적게 쓰는 집이에요.',
+ pts:['단열을 끊김 없이 감싸 열교를 없애요','기밀(바람 샘 막기)이 핵심','열회수 환기장치로 신선한 공기는 들이고 열은 지켜요','남향 창과 처마로 태양열을 계절별로 조절'],
+ ex:[],see:['insulation','eaves'],
+ svg:()=>ES(`${EG(160)}<path d="M60 160V70L150 25L240 70V160" fill="none" stroke="#ff9f0a" stroke-width="9" opacity=".6"/><path class="f" d="M66 160V73L150 33L234 73V160"/><rect x="130" y="110" width="40" height="30" fill="#9fc3d6" stroke="currentColor"/><path class="l" d="M90 120h20v20h-20zM96 124l8 12M104 124l-8 12"/><text x="76" y="154">열회수 환기</text>`)},
+{id:'insulation',t:'단열 · 열교',en:'Insulation / Thermal bridge',cat:'환경',al:['단열','열교','외단열','내단열','결로'],
+ easy:'단열은 집을 따뜻한 외투로 감싸는 것이고, 열교는 그 외투에 난 구멍처럼 열이 새는 길이에요. 열교가 있으면 그 자리에 결로와 곰팡이가 생겨요.',
+ pts:['외단열은 구조체까지 감싸 열교가 적어요','발코니·슬래브 끝·창틀 주위가 대표적인 열교','결로는 따뜻하고 습한 공기가 차가운 면에 닿아 생겨요'],
+ ex:[],see:['passive'],
+ svg:()=>ES(`<rect x="110" y="20" width="30" height="150" class="f"/><rect x="140" y="20" width="22" height="150" fill="#ffd66b66" stroke="#ffb400"/><rect x="40" y="90" width="122" height="14" fill="#ff5e3a55" stroke="#ff5e3a"/><path class="a" d="M60 60h-40" style="stroke:#ff5e3a"/><text x="168" y="40">단열재</text><text x="30" y="125" fill="#ff5e3a">열교: 슬래브가 단열을 끊음</text><text x="200" y="100">밖</text><text x="60" y="40">안</text>`)},
+{id:'daylight',t:'일조 · 채광',en:'Daylight',cat:'환경',al:['일조','채광','햇빛','남향','일조권'],
+ easy:'해가 얼마나, 언제 들어오는지가 일조이고, 실내를 밝히는 빛을 들이는 방법이 채광이에요.',
+ pts:['남향이 겨울 햇빛을 가장 많이 받아요','천창은 같은 크기의 벽 창보다 약 3배 밝아요','ZIPLAN 대지 페이지의 “해와 바람”에서 날짜별 그림자를 볼 수 있어요'],
+ ex:[['경동교회','kyungdong']],see:['eaves','northsun'],
+ svg:()=>ES(`${EG(150)}<path class="f" d="M70 150V60H230V150"/><rect x="140" y="56" width="30" height="6" fill="#ffd66b"/><path class="a" d="M155 20V140" style="stroke:#ffb400"/><circle cx="30" cy="40" r="10" fill="#ffb400"/><path class="a" d="M40 46L70 90" style="stroke:#ffb400"/><text x="180" y="40">천창</text>`)},
+/* ── 법규 ── */
+{id:'bcr',t:'건폐율',en:'Building coverage ratio',cat:'법규',al:['건폐율','건축면적'],
+ easy:'땅 넓이 중에서 건물이 땅을 덮는 넓이(위에서 본 그림자)의 비율이에요. 마당과 숨 쉴 틈을 남기라는 규칙이죠.',
+ pts:['건폐율 = 건축면적 ÷ 대지면적 × 100','300㎡ 땅에 60%면 1층 바닥 그림자는 최대 180㎡','용도지역과 지자체 조례로 정해져요(내집코드에서 계산)'],
+ ex:[],see:['far','northsun'],
+ svg:()=>ES(`<rect x="40" y="20" width="220" height="140" fill="#30a46c18" stroke="#30a46c" stroke-dasharray="5 4"/><rect x="70" y="45" width="130" height="85" fill="#ff5e3a33" stroke="#ff5e3a" stroke-width="2"/><text x="96" y="94" fill="#ff5e3a">건축면적</text><text x="200" y="152" fill="#30a46c">대지</text>`)},
+{id:'far',t:'용적률',en:'Floor area ratio',cat:'법규',al:['용적률','연면적','FAR'],
+ easy:'땅 넓이에 비해 모든 층 바닥을 합친 넓이(연면적)가 몇 배인지예요. 건물을 얼마나 크게 지을 수 있는지를 정해요.',
+ pts:['용적률 = 연면적 ÷ 대지면적 × 100','같은 용적률이면 얇고 높게도, 넓고 낮게도 지을 수 있어요','지하층·일부 필로티 주차장은 보통 빠져요(조례 확인)'],
+ ex:[],see:['bcr'],
+ svg:()=>ES(`${EG(160)}<rect x="40" y="150" width="220" height="10" fill="#30a46c55"/><rect x="60" y="70" width="80" height="80" class="f"/><path class="l" d="M60 110h80M60 90h80M60 130h80"/><rect x="170" y="30" width="50" height="120" class="f"/><path class="l" d="M170 50h50M170 70h50M170 90h50M170 110h50M170 130h50"/><text x="66" y="62">4층</text><text x="172" y="22">6층</text><text x="104" y="176" fill="#ff5e3a">같은 용적률</text>`)},
+{id:'northsun',t:'정북 일조 사선',en:'North daylight setback',cat:'법규',al:['일조사선','정북사선','일조 사선','정북 방향 이격'],
+ easy:'주거지역에서 북쪽 이웃의 햇빛을 지키기 위해, 북쪽으로 갈수록 건물을 낮추거나 물러나게 하는 규칙이에요.',
+ pts:['높이 10m 이하 부분: 정북 경계에서 1.5m 이상','10m 초과 부분: 그 높이의 1/2 이상 띄우기','그래서 주택 북쪽이 계단처럼 깎인 모양이 흔해요','지역·조례마다 달라요 — 모형 페이지의 법규 볼륨에서 확인'],
+ ex:[],see:['bcr','far'],
+ svg:()=>ES(`${EG(160)}<path class="l" d="M270 160V20" stroke-dasharray="4 3"/><text x="246" y="16">북쪽 경계</text><path d="M60 160V40H190L228 80V160Z" class="f"/><path class="k" d="M150 20L270 160" stroke-dasharray="6 4" fill="none"/><path class="l" d="M228 160H270" /><text x="226" y="152">1.5m</text>`)},
+/* ── 한옥 ── */
+{id:'cheoma',t:'처마 (한옥)',en:'Korean eaves',cat:'한옥',al:['서까래','추녀','한옥 지붕','곡선 지붕'],
+ easy:'한옥 지붕 끝이 벽 밖으로 길게 나온 부분이에요. 끝이 살짝 들려 있어 무거운 지붕이 가볍게 날아오르는 듯 보여요.',
+ pts:['비와 여름 햇빛을 막고 겨울 햇빛은 깊이 들여요','서까래 여러 개가 부채처럼 퍼져 처마를 받쳐요','처마 끝이 위로 휘는 곡선을 “앙곡”, 평면에서 튀어나온 곡선을 “안허리곡”이라 해요'],
+ ex:[['부석사 무량수전','buseoksa'],['봉정사 극락전','bongjeong']],see:['eaves','baeheullim','gongpo'],
+ svg:()=>ES(`${EG(160)}<path class="k" d="M20 70Q150 95 280 70L235 40H65Z" fill="#3d404533"/><rect x="85" y="80" width="130" height="80" class="f"/><path class="l" d="M100 80v80M200 80v80"/><path class="a" d="M30 40L80 82" style="stroke:#ffb400"/><text x="230" y="100">깊은 처마</text>`)},
+{id:'baeheullim',t:'배흘림기둥',en:'Entasis',cat:'한옥',al:['배흘림','민흘림','엔타시스'],
+ easy:'기둥 아래에서 1/3쯤 높이를 가장 굵게 하고 위아래로 갈수록 가늘게 만든 기둥이에요. 곧은 기둥이 가운데가 가늘어 보이는 착시를 바로잡아요.',
+ pts:['부석사 무량수전 기둥이 대표적이에요','그리스 파르테논의 엔타시스와 같은 원리','민흘림은 위로 갈수록만 가늘어지는 기둥'],
+ ex:[['부석사 무량수전','buseoksa']],see:['column','cheoma'],
+ svg:()=>ES(`${EG(165)}<path class="k" d="M135 20Q126 100 128 165H172Q174 100 165 20Z"/><path class="l" d="M200 20V165" stroke-dasharray="4 3"/><path class="l" d="M196 20H204M196 165H204"/><text x="210" y="112" fill="#ff5e3a">가장 굵게(⅓)</text><path class="l" d="M178 110H205"/>`)},
+{id:'gongpo',t:'공포',en:'Bracket set',cat:'한옥',al:['공포','주심포','다포','익공'],
+ easy:'기둥 위에서 지붕의 무게를 받아 기둥에 나눠 주는 나무 짜임이에요. 처마를 멀리 내밀게 해 주고, 그 자체로 화려한 장식이 됩니다.',
+ pts:['주심포: 기둥 위에만 공포(부석사 무량수전, 봉정사 극락전)','다포: 기둥 사이에도 공포(궁궐·큰 사찰)','익공: 새 날개 모양의 간소한 형식(향교·서원)'],
+ ex:[['봉정사 극락전','bongjeong']],see:['cheoma','column'],
+ svg:()=>ES(`${EG(165)}<rect x="138" y="100" width="24" height="65" class="f"/><path class="k" d="M110 100H190V90H120V80H180V70H130V60H170"/><path class="l" d="M60 50L240 50"/><text x="200" y="88">공포</text><path class="a" d="M150 30V46"/>`)},
+{id:'daecheong',t:'대청마루',en:'Daecheong',cat:'한옥',al:['대청','마루','툇마루'],
+ easy:'한옥 가운데 방과 방 사이의 넓은 나무 바닥이에요. 앞뒤가 트여 여름에 바람이 지나가는 시원한 거실이자 의례 공간이었어요.',
+ pts:['남쪽 마당과 북쪽 뒤뜰을 이어 맞통풍을 만들어요','온돌방(겨울)과 대청(여름)으로 계절에 맞춰 사는 집','툇마루는 방 앞에 덧댄 좁은 마루'],
+ ex:[['하회마을','hahoe'],['양동마을','yangdong']],see:['ondol','crossvent','court'],
+ svg:()=>ES(`<rect x="30" y="40" width="240" height="100" class="f"/><rect x="110" y="40" width="80" height="100" fill="#b07a4f44" stroke="#b07a4f" stroke-width="2"/><text x="125" y="95" fill="#b07a4f">대청</text><text x="50" y="95">안방</text><text x="215" y="95">건넌방</text><path class="a" d="M150 175V5"/><text x="156" y="170" fill="#3f7bff">바람</text>`)},
+{id:'ondol',t:'온돌',en:'Ondol',cat:'한옥',al:['구들','온돌방','바닥난방','아궁이'],
+ easy:'아궁이에서 불을 때면 뜨거운 연기가 바닥 밑 돌(구들) 사이로 지나가며 방바닥을 데우는 한국의 난방 방식이에요.',
+ pts:['돌이 열을 오래 품어 밤새 따뜻해요','오늘날 아파트 바닥 난방도 온돌의 원리','2018년 국가무형문화유산으로 지정되었어요'],
+ ex:[],see:['daecheong'],
+ svg:()=>ES(`${EG(160)}<rect x="60" y="60" width="200" height="60" class="f"/><path d="M60 120h200v14H60z" fill="#a65a3c55" stroke="#a65a3c"/><path class="a" d="M30 140Q150 128 268 136" style="stroke:#ff5e3a"/><rect x="262" y="40" width="14" height="96" class="f"/><text x="20" y="160">아궁이</text><text x="240" y="34">굴뚝</text><text x="120" y="100">따뜻한 바닥</text>`)},
+{id:'chagyeong',t:'차경',en:'Borrowed scenery',cat:'한옥',al:['차경','풍경을 빌리다','액자 풍경'],
+ easy:'바깥 풍경을 빌려 집 안으로 들이는 한국 건축의 태도예요. 창과 기둥이 액자가 되어 산과 강이 집의 일부가 됩니다.',
+ pts:['병산서원 만대루는 병산과 낙동강을 일곱 칸 액자로 담아요','큰 유리보다 기둥 사이로 끊어 보는 게 핵심','현대 건축의 “픽처 윈도”와도 통해요'],
+ ex:[['병산서원','byeongsan'],['글라스하우스','glasshouse']],see:['daecheong'],
+ svg:()=>ES(`<path d="M0 120Q60 60 120 100T240 70T300 90V180H0Z" fill="#30a46c33"/><path d="M0 150Q150 135 300 150V180H0Z" fill="#6fa3bf55"/>${[40,100,160,220,280].map(x=>`<rect x="${x-5}" y="20" width="10" height="150" fill="#6b4f3a"/>`).join('')}<rect x="35" y="14" width="250" height="10" fill="#6b4f3a"/><text x="110" y="45">기둥 사이 = 액자</text>`)},
+/* ── 도면 ── */
+{id:'plan',t:'평면도',en:'Floor plan',cat:'도면',al:['평면','플랜','배치도'],
+ easy:'건물을 바닥에서 1.2m쯤 높이에서 수평으로 잘라 위에서 내려다본 그림이에요. 방의 배치와 문·창의 위치를 보여 줘요.',
+ pts:['잘린 벽은 두껍게, 보이는 선은 가늘게','문은 열리는 방향을 호(곡선)로 그려요','축척은 주택 1/100, 상세 1/50이 흔해요'],
+ ex:[],see:['section','elevation'],
+ svg:()=>ES(`<path d="M40 30H260V150H40Z M150 30V100 M40 100H200" fill="none" stroke="currentColor" stroke-width="5"/><path d="M200 100h30" stroke="currentColor" stroke-width="5"/><path class="l" d="M200 100A30 30 0 0 0 230 130" stroke-dasharray="3 3"/><rect x="80" y="26" width="40" height="8" fill="#9fc3d6"/><text x="70" y="70">거실</text><text x="180" y="70">방</text><text x="70" y="130">주방</text>`)},
+{id:'section',t:'단면도',en:'Section',cat:'도면',al:['단면','섹션','종단면'],
+ easy:'건물을 수직으로 잘라 옆에서 본 그림이에요. 층고, 천장 높이, 계단, 빛이 들어오는 모습처럼 높이의 이야기를 보여 줘요.',
+ pts:['평면이 “어떻게 놓였나”라면 단면은 “어떻게 쌓였나”','잘린 바닥·벽은 진하게 칠해요','공간의 성격은 단면에서 많이 결정돼요'],
+ ex:[],see:['plan','skip','elevation'],
+ svg:()=>ES(`${EG(150)}<path d="M50 150V50L150 20L250 50V150" fill="none" stroke="currentColor" stroke-width="5"/><path d="M50 100H250" stroke="currentColor" stroke-width="5"/><path class="l" d="M210 150l8-10 8-10 8-10 8-10 8-10"/><path class="a" d="M20 30L90 80" style="stroke:#ffb400"/><text x="80" y="130">1층</text><text x="80" y="85">2층</text>`)},
+{id:'elevation',t:'입면도',en:'Elevation',cat:'도면',al:['입면','파사드','정면도'],
+ easy:'건물의 바깥 면을 정면에서 똑바로 본 그림이에요. 창의 리듬, 재료, 높이 비례를 보여 줘요.',
+ pts:['원근 없이 그려서 실제 크기 비례가 그대로예요','동·서·남·북 네 면을 그려요','파사드(facade)는 건물의 얼굴이라는 뜻'],
+ ex:[],see:['plan','section'],
+ svg:()=>ES(`${EG(155)}<rect x="50" y="35" width="200" height="120" class="f"/>${[0,1,2].map(r=>[0,1,2,3].map(c=>`<rect x="${68+c*46}" y="${48+r*36}" width="26" height="22" fill="#9fc3d6" stroke="currentColor"/>`).join('')).join('')}`)},
+{id:'axo',t:'액소노메트릭',en:'Axonometric',cat:'도면',al:['액소','아이소','아이소메트릭','투상도','분해 액소'],
+ easy:'원근 없이 세 방향 길이를 모두 실제 비례로 비스듬히 그린 입체 그림이에요. 공간 구성과 켜를 한눈에 설명하기 좋아요.',
+ pts:['평행선은 끝까지 평행 — 길이를 그대로 잴 수 있어요','분해 액소로 구조·층·외피를 떼어 보여 주기도 해요','ZIPLAN 사례 썸네일도 아이소 방식이에요'],
+ ex:[],see:['perspective','plan'],
+ svg:()=>ES(`<path class="f" d="M150 30L240 75L150 120L60 75Z"/><path class="f" d="M60 75V135L150 180V120Z"/><path class="f" d="M240 75V135L150 180V120Z" opacity=".7"/><path class="k" d="M150 10L240 55L150 100L60 55Z" fill="none" stroke-dasharray="4 3"/><text x="210" y="30" fill="#ff5e3a">분해된 지붕</text>`)},
+{id:'perspective',t:'투시도',en:'Perspective',cat:'도면',al:['투시','원근','소실점','렌더'],
+ easy:'사람 눈처럼 멀어질수록 작아지게 그린 그림이에요. 실제로 그 자리에 서 있는 듯한 느낌을 전해요.',
+ pts:['1점 투시: 정면을 바라볼 때','2점 투시: 모서리를 볼 때(가장 흔함)','눈높이 약 1.5m에서 보는 투시가 가장 자연스러워요'],
+ ex:[],see:['axo'],
+ svg:()=>ES(`<line x1="0" y1="80" x2="300" y2="80" class="l" stroke-dasharray="4 3"/><circle cx="20" cy="80" r="3" fill="#ff5e3a"/><circle cx="280" cy="80" r="3" fill="#ff5e3a"/><path class="f" d="M140 40V150L60 120V60Z"/><path class="f" d="M140 40V150L230 118V62Z"/><path class="l" d="M20 80L60 60M20 80L60 120M280 80L230 62M280 80L230 118" stroke-dasharray="2 3"/><text x="10" y="100" fill="#ff5e3a">소실점</text>`)},
+{id:'scale',t:'축척',en:'Scale',cat:'도면',al:['스케일','1/100','1:100','1/50'],
+ easy:'실제 크기를 도면에 몇 분의 1로 줄였는지예요. 1:100이면 도면의 1cm가 실제 1m예요.',
+ pts:['배치도 1:200~500, 평면 1:100, 상세 1:10~20','축척 막대를 함께 그리면 확대·축소해도 정확해요','모형도 1:50, 1:100처럼 축척을 정해 만들어요'],
+ ex:[],see:['plan'],
+ svg:()=>ES(`<rect x="40" y="70" width="220" height="14" fill="none" stroke="currentColor"/>${[0,1,2,3,4].map(i=>`<rect x="${40+i*44}" y="70" width="22" height="14" fill="currentColor" opacity=".7"/>`).join('')}<text x="36" y="104">0</text><text x="122" y="104">5m</text><text x="250" y="104">10m</text><text x="100" y="54" fill="#ff5e3a">1 : 100 → 1cm = 1m</text>`)},
+/* ── 재료 ── */
+{id:'exposedconc',t:'노출 콘크리트',en:'Exposed concrete',cat:'재료',al:['노출콘크리트','콘크리트','송판','송판무늬','안도 다다오'],
+ easy:'마감재를 덧대지 않고 콘크리트 면 그대로를 드러낸 마감이에요. 거푸집 자국과 동그란 구멍(폼타이)이 표정이 됩니다.',
+ pts:['한 번에 잘 부어야 해서 시공 정밀도가 중요해요','송판 거푸집을 쓰면 나뭇결이 찍혀요(송은)','단열은 안쪽에 하거나 이중벽으로 해요'],
+ ex:[['본태박물관','bonte'],['송은','']],see:['masonry','insulation'],
+ svg:()=>ES(`<rect x="40" y="25" width="220" height="130" fill="#c9c5bc"/>${[0,1,2].map(r=>[0,1,2,3].map(c=>`<circle cx="${68+c*55}" cy="${50+r*42}" r="4" fill="#8f8a80"/>`).join('')).join('')}${[1,2].map(r=>`<line x1="40" y1="${25+r*43}" x2="260" y2="${25+r*43}" stroke="#a9a49a"/>`).join('')}<text x="190" y="172">폼타이 구멍</text>`)},
+{id:'masonry',t:'조적',en:'Masonry',cat:'재료',al:['벽돌','조적조','벽돌쌓기','줄눈'],
+ easy:'벽돌이나 돌을 하나하나 쌓아 벽을 만드는 방식이에요. 쌓는 방법(쌓기 패턴)과 줄눈이 벽의 표정을 만들어요.',
+ pts:['영식·불식·길이쌓기 등 패턴이 다양해요','김수근의 공간 사옥·경동교회가 벽돌의 대표작','지진에 약해 철근이나 골조로 보강해요'],
+ ex:[['공간 사옥','space'],['경동교회','kyungdong']],see:['wall','exposedconc'],
+ svg:()=>ES(`${Array.from({length:7},(_,r)=>Array.from({length:8},(_,c)=>`<rect x="${20+c*34+(r%2?17:0)}" y="${20+r*20}" width="32" height="18" fill="#a65a3c" opacity="${.65+((r*3+c)%4)*.08}"/>`).join('')).join('')}`)},
+{id:'curtainwall',t:'커튼월',en:'Curtain wall',cat:'재료',al:['커튼 월','유리벽','유리 외벽'],
+ easy:'구조와 상관없이 건물 바깥에 커튼처럼 걸어 놓은 유리·금속 외벽이에요. 고층 빌딩 유리 외관 대부분이 커튼월이에요.',
+ pts:['무게는 골조가 받고, 외벽은 바람과 비만 막아요','멀리언(세로 틀)과 트랜섬(가로 틀)이 격자를 만들어요','여름 과열을 막으려면 로이유리·차양이 필요해요'],
+ ex:[['아모레퍼시픽 본사','amore']],see:['louver','beam'],
+ svg:()=>ES(`${EG(165)}<rect x="70" y="15" width="160" height="150" fill="#9fc3d644" stroke="currentColor"/>${[1,2,3].map(c=>`<line x1="${70+c*40}" y1="15" x2="${70+c*40}" y2="165" stroke="currentColor"/>`).join('')}${[1,2,3,4].map(r=>`<line x1="70" y1="${15+r*30}" x2="230" y2="${15+r*30}" stroke="currentColor" opacity=".6"/>`).join('')}<path class="k" d="M60 45h10M60 75h10M60 105h10" /><text x="236" y="60">유리</text>`)},
+{id:'clt',t:'CLT (목구조)',en:'Cross-laminated timber',cat:'재료',al:['CLT','목조','목구조','나무 건물','집성목','구조용 목재'],
+ easy:'얇은 나무판을 결 방향을 엇갈리게 겹쳐 붙인 큰 판이에요. 콘크리트처럼 벽과 바닥을 만들 수 있어 나무로 고층도 짓습니다.',
+ pts:['탄소를 품은 재료라 친환경','공장에서 만들어 현장 조립이 빨라요','불에 타면 겉이 숯이 되어 안쪽을 보호해요(탄화층)'],
+ ex:[],see:['wall'],
+ svg:()=>ES(`${[0,1,2,3,4].map(i=>`<g transform="translate(${60+i*6} ${40+i*18})"><rect width="170" height="16" fill="${i%2?'#c99c6f':'#b07a4f'}" stroke="#6b4f3a"/>${Array.from({length:i%2?16:4},(_,k)=>`<line x1="${i%2?k*11:0}" y1="${i%2?0:4*k}" x2="${i%2?k*11:170}" y2="${i%2?16:4*k}" stroke="#6b4f3a" opacity=".4"/>`).join('')}</g>`).join('')}<text x="80" y="150">결을 엇갈려 겹친 판</text>`)},
+];
+const ENC_CAT=['공간','구조','환경','법규','한옥','도면','재료'];
+function encFind(q){ const s=q.toLowerCase().replace(/\s+/g,''); let best=null,bs=0; ENC.forEach(e=>{ [e.t,e.en,...e.al].forEach(w=>{ const W=w.toLowerCase().replace(/\s+/g,'').replace(/\(.+\)/,''); if(W.length<2) return; if(s.includes(W)){ const sc=W.length+(w===e.t?2:0); if(sc>bs){bs=sc;best=e;} } }); }); return best; }
+function encCard(e,full){ const ex=e.ex.filter(x=>x[1]&&(typeof PH!=='undefined')&&PH[x[1]]);
+  return `<div class="enc">${full?'':`<div class="enc-k">${esc(e.cat)} · 건축 사전</div>`}<b class="enc-t">${esc(e.t)} <em>${esc(e.en)}</em></b><div class="enc-v">${e.svg()}</div><p>${esc(e.easy)}</p><ul>${e.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>${ex.length?`<div class="enc-ex">${ex.map(x=>`<a href="#travel" data-encgo="${x[1]}">${phImg(x[1],384,'',x[0],'160px')}<span>${esc(x[0])}</span></a>`).join('')}</div>`:''}${e.see.length?`<div class="enc-see">${e.see.map(id=>{ const r=ENC.find(z=>z.id===id); return r?`<button data-encq="${r.id}">${esc(r.t)}</button>`:''; }).join('')}</div>`:''}</div>`; }
+
+/* 채팅 연결: 사전 카드는 id만 저장하고 그릴 때 만든다 */
+const _zcAnswer=zcAnswer;
+/* 자료실: 건축 사전 */
+(function(){ const v=$('#view-library'); if(!v) return; const sec=document.createElement('section'); sec.className='lab enc-lib'; sec.id='encLib';
+  sec.innerHTML=`<div class="lab-h"><span class="lab-k">ARCHITECTURE A–Z · ${ENC.length}개</span><h2>건축 사전, 그림으로 쉽게.</h2><p>스킵플로어, 캔틸레버, 처마, 용적률… 어려운 말을 그림 한 장과 쉬운 문장으로. 오른쪽 아래 채팅에서 물어봐도 같은 그림으로 답해 드려요.</p></div>
+   <div class="enc-bar"><input id="encQ" placeholder="찾을 말 — 예: 스킵플로어, 필로티, 단열" autocomplete="off"><div class="modes" id="encCats"><button data-encc="all" aria-pressed="true">전체</button>${ENC_CAT.map(c=>`<button data-encc="${c}">${c}</button>`).join('')}</div></div>
+   <div class="enc-grid" id="encGrid"></div><div class="enc-modal" id="encModal" hidden><div class="enc-mbox"><button class="enc-x" data-encx>×</button><div id="encMBody"></div></div></div>`;
+  const anchor=v.querySelector('.openhub')?.closest('section')||v.querySelector('.ribbonx.rroom'); (anchor||v.firstElementChild).after(sec);
+  let cat='all'; const draw=()=>{ const q=($('#encQ').value||'').trim().toLowerCase(); const L=ENC.filter(e=>(cat==='all'||e.cat===cat)&&(!q||[e.t,e.en,...e.al,e.easy].join(' ').toLowerCase().includes(q)));
+    $('#encGrid').innerHTML=L.map((e,i)=>`<button class="enc-c zrv" data-enco="${e.id}" style="--i:${i%8}"><span class="enc-ct">${e.svg()}</span><em>${esc(e.cat)}</em><b>${esc(e.t)}</b><span class="enc-cs">${esc((e.easy.match(/^.+?[요다]\./)||[e.easy])[0])}</span></button>`).join('')||'<div class="muted">찾는 말이 없어요. 채팅에서 물어보세요.</div>'; dnaReveal(); };
+  const open=id=>{ const e=ENC.find(x=>x.id===id); if(!e) return; $('#encMBody').innerHTML=encCard(e,true); $('#encModal').hidden=false; };
+  sec.addEventListener('click',ev=>{ const c=ev.target.closest('[data-encc]'); if(c){ cat=c.dataset.encc; $$('#encCats button').forEach(b=>b.setAttribute('aria-pressed',b===c)); draw(); return; }
+    const o=ev.target.closest('[data-enco]'); if(o){ open(o.dataset.enco); return; } const q=ev.target.closest('[data-encq]'); if(q){ open(q.dataset.encq); return; }
+    if(ev.target.closest('[data-encx]')||ev.target.id==='encModal'){ $('#encModal').hidden=true; } });
+  $('#encQ').addEventListener('input',draw); draw(); window.__encOpen=open; })();
+document.addEventListener('click',e=>{ const g=e.target.closest('[data-encgo]'); if(g){ const id=g.dataset.encgo; $('#encModal')&&($('#encModal').hidden=true); setTimeout(()=>{ const c=$('#tvc-'+id); if(c){ c.scrollIntoView({behavior:'smooth',block:'center'}); c.classList.add('sel'); } },700); }
+  const q=e.target.closest('#zchat [data-encq]'); if(q){ const r=ENC.find(z=>z.id===q.dataset.encq); if(r) zcAsk(r.t+'가 뭐야?'); } });
+
+/* ---------- 건축 여행 2: 건물 특징 · 근처 먹거리 · 상세 서랍 · 지도 스타일/투어 ---------- */
+const TFEAT={
+ ddp:['크기와 곡률이 다른 알루미늄 패널을 컴퓨터로 설계·제작한 비정형 외피','동대문운동장 자리의 성곽·이간수문 유구를 보존한 공원','실내 기둥을 줄인 대공간 — 알림터·배움터'],
+ amore:['정육면체 매스에 뚫린 세 개의 큰 개구부와 하늘 정원','외피의 세로 알루미늄 핀이 햇빛과 시선을 조절','1층 아트리움을 시민에게 연 “도시의 거실”'],
+ leeum:['M1(마리오 보타): 테라코타 벽돌과 역원뿔 로툰다','M2(장 누벨): 녹슨 스테인리스와 유리 상자','렘 콜하스의 검은 콘크리트 블록(아동교육문화센터)'],
+ mmca:['여러 채로 흩어 놓은 “군도형” 배치','마당 여러 개를 지나며 미술관 안팎을 걷는 동선','전시실 상당 부분을 지하에 두어 경복궁 경관을 지킴'],
+ songeun:['나뭇결이 찍힌 송판 노출 콘크리트 한 덩어리','높이 제한선을 그대로 받은 비스듬한 지붕 윤곽','안쪽 정원과 층층이 이어지는 전시 공간'],
+ seoullo:['1970년 고가도로를 2017년 보행 정원으로 재생','크기가 다른 원형 화분 수백 개의 하늘 정원','17개 연결로로 주변 동네와 이어짐 — 이름의 “17”'],
+ kyungdong:['붉은 벽돌 덩어리를 감아 오르는 외부 경사로 진입','밖은 닫히고, 안은 제단 위 빛 한 줄기','기도하는 손을 닮은 수직 매스'],
+ space:['검은 벽돌 구관(1971)과 유리 신관의 대비','반 층씩 어긋나는 스킵플로어, 낮은 천장의 휴먼 스케일','담쟁이로 덮인 외벽 — 지금은 아라리오뮤지엄'],
+ jongmyo:['길이 100m가 넘는 정전 — 가장 긴 단일 목조 건물 중 하나','넓은 돌 기단(월대)이 만드는 비움과 위엄','장식을 덜어낸 반복의 미학 — 세계유산(1995)'],
+ changdeok:['지형을 따라 자유롭게 앉힌 궁궐 배치','후원의 부용지와 주합루 — 정원과 건축의 조화','세계유산(1997)'],
+ ecc:['지상은 정원으로 남기고 건물은 땅속에','가운데 계곡 같은 대계단 “캠퍼스 밸리”','양쪽 유리벽으로 지하 깊이 들어오는 빛'],
+ seonyudo:['옛 정수장 침전지·여과지를 정원으로 재활용','콘크리트 기둥에 담쟁이를 올린 “녹색 기둥의 정원”','재생 생태공원의 선구적 사례'],
+ mimesis:['곡면 흰 벽이 안마당을 감싸는 형태','측창·천창 빛이 곡면을 따라 흐르는 전시실','알바루 시자 설계(카를로스 카스타녜이라·김준성 협업)'],
+ hwaseong:['거중기 등을 써서 쌓은 계획 성곽(1796)','방화수류정 — 감시 초소이자 연못 위 정자','일곱 개의 아치 수문 화홍문'],
+ museumsan:['플라워가든–워터가든–본관–스톤가든으로 이어지는 긴 동선','파주석 벽과 노출 콘크리트의 “상자 속의 상자”','빛 자체가 작품인 제임스 터렐관'],
+ sayuwon:['수목원 안에 흩어진 건축들(승효상·알바루 시자)','시자의 소요헌 — 흰 벽 사이로 들어오는 빛','승효상의 명정 — 물과 하늘만 남긴 명상 공간'],
+ byeongsan:['만대루 일곱 칸이 병산과 낙동강을 액자처럼 담는 차경','입교당에서 만대루 너머로 이어지는 시선의 축','세계유산 “한국의 서원”(2019)'],
+ hahoe:['강이 마을을 S자로 감아 도는 하회(河回) 지형','양반가와 초가가 함께 앉은 마을 구조','세계유산 “한국의 역사마을”(2010)'],
+ dosan:['퇴계가 직접 지은 세 칸 도산서당','제자들이 세운 서원 건물과의 대비','낙동강 건너 시사단'],
+ buseoksa:['무량수전의 배흘림기둥과 주심포 공포(고려)','안양루까지 오를수록 열리는 소백산 풍경','세계유산 “산사, 한국의 산지승원”(2018)'],
+ sosu:['우리나라 첫 사액서원(백운동서원, 1543)','죽계천과 소나무 숲에 낮게 앉은 배치','세계유산 “한국의 서원”(2019)'],
+ bongjeong:['극락전 — 남아 있는 가장 오래된 목조건축 중 하나(고려)','주심포 맞배지붕의 단정한 비례','세계유산 “산사”(2018)'],
+ bulguksa:['청운교·백운교 — 돌로 쌓은 계단 다리','자연석에 다듬은 돌을 맞춘 석축(그렝이)','다보탑·석가탑 — 세계유산(1995)'],
+ yangdong:['산줄기를 따라 양반가는 위, 초가는 아래','관가정·향단 등 오래된 가옥','세계유산 “한국의 역사마을”(2010)'],
+ busancinema:['한쪽만 받친 채 길게 내민 빅루프(캔틸레버)','지붕 아래 LED 천장 — 밤의 거대한 스크린','쿱 힘멜블라우의 해체주의 형태'],
+ haein:['앞뒤 창 크기를 달리해 공기를 흐르게 한 자연 환기','숯·소금·횟가루를 섞은 흙바닥의 습도 조절','팔만대장경 보관 — 세계유산(1995)'],
+ bonte:['노출 콘크리트와 전통 흙담·기와 담장의 만남','산방산 쪽으로 열린 물의 정원','담 사이를 걷다 열리는 안도 다다오의 동선'],
+ bangju:['노아의 방주를 모티프로 한 물 위의 교회','하늘을 비추는 금속판 지붕','이타미 준(유동룡) 설계'],
+ podo:['제주 초가 마을을 하늘에서 본 포도송이 형태','이어지는 지붕 곡선의 리듬','안쪽 중정'],
+ suphung:['물·바람·돌 — 세 개의 작은 명상 공간','하늘을 비추는 물의 미술관 수면','비오토피아 단지 안, 예약 관람'],
+ yumin:['돌담 사이 긴 진입로 — 시선이 닫혔다 열림','물의 정원 너머 성산일출봉을 한 장면으로','처음엔 “지니어스 로사이”로 지어짐(2008)'],
+ glasshouse:['바다를 향해 V자로 열린 유리 상자','2층에서 보는 성산일출봉','섭지코지 언덕 위의 안도 다다오'],
+};
+/* 근처 먹거리: [이름, 설명, 카카오맵 링크] — 카카오맵 장소 기준. 장소가 아니라 골목·식당가는 검색 링크 */
+const KM=id=>'http://place.map.kakao.com/'+id, KS=q=>'https://map.kakao.com/link/search/'+encodeURIComponent(q);
+const EAT={
+ jongno:[['부촌육회 본점','광장시장 육회 · 종로 200-12',KM(21852953)],['진옥화할매원조닭한마리 본점','동대문 닭한마리 골목',KM(10785496)],['광장시장','빈대떡·마약김밥 먹자골목',KS('광장시장')]],
+ samcheong:[['삼청동수제비','삼청로 101-1',KM(13559837)],['북촌·삼청동 골목','카페와 밥집',KS('삼청동 맛집')]],
+ namdaemun:[['남대문 갈치조림골목','남대문시장길',KM(8234306)],['남대문시장','칼국수·호떡',KS('남대문시장 맛집')]],
+ yongsan:[['용리단길','신용산역 주변 식당가',KS('용리단길 맛집')]],hannam:[['한남동','이태원로 주변',KS('한남동 맛집')]],cheongdam:[['청담동','도산대로 주변',KS('청담동 맛집')]],sinchon:[['이대·신촌','학생 맛집 골목',KS('이대 맛집')]],dangsan:[['당산·양평동','선유도역 주변',KS('선유도역 맛집')]],
+ paju:[['파주출판도시 식당가','출판단지 안 국밥·면옥',KS('파주출판도시 맛집')]],suwon:[['본수원갈비 본점','수원 왕갈비 · 팔달구 중부대로223번길 41',KM(7908963)],['수원 통닭거리','팔달문 근처',KS('수원 통닭거리')]],
+ wonju:[['오크밸리 리조트 식당','뮤지엄 산 같은 단지 안',KS('오크밸리 맛집')]],gunwi:[['군위·팔공산','사유원 가는 길',KS('군위 맛집')]],
+ andong:[['안동찜닭골목','안동구시장 — 원조 찜닭',KM(7989034)],['헛제사밥 까치구멍집','석주로 203 · 헛제삿밥',KM(11247782)],['안동간고등어숯불가든 본점','하회마을 가는 길 · 풍천면',KM(719065721)]],
+ yeongju:[['부석사 입구 식당가','산채비빔밥·청국장',KM(16430745)],['순흥전통묵집','소수서원 근처 · 묵밥',KM(21515429)]],
+ gyeongju:[['교리김밥 경주본점','달걀지단 김밥 · 탑리3길 2',KM(11807645)],['황남빵','태종로 783 · 경주 대표 간식',KM(26519092)]],
+ busan:[['해운대원조할매국밥','돼지국밥 · 구남로21번길',KM(367285394)],['개금밀면','부산 밀면',KM(21316948)]],hapcheon:[['해인사 치인리 식당가','산채비빔밥·산채정식',KS('해인사 산채비빔밥')]],
+ jejuw:[['안덕·사계 국숫집','제주 고기국수',KS('안덕 고기국수')],['산방산 주변','흑돼지·갈치',KS('산방산 맛집')]],jejue:[['성산·섭지코지','고등어회·갈치조림',KS('성산 맛집')]],
+};
+const TEATP={ddp:'jongno',jongmyo:'jongno',kyungdong:'jongno',space:'samcheong',changdeok:'samcheong',mmca:'samcheong',seoullo:'namdaemun',amore:'yongsan',leeum:'hannam',songeun:'cheongdam',ecc:'sinchon',seonyudo:'dangsan',mimesis:'paju',hwaseong:'suwon',museumsan:'wonju',sayuwon:'gunwi',byeongsan:'andong',hahoe:'andong',dosan:'andong',bongjeong:'andong',buseoksa:'yeongju',sosu:'yeongju',bulguksa:'gyeongju',yangdong:'gyeongju',busancinema:'busan',haein:'hapcheon',bonte:'jejuw',bangju:'jejuw',podo:'jejuw',suphung:'jejuw',yumin:'jejue',glasshouse:'jejue'};
+const tEat=id=>EAT[TEATP[id]]||[];
+/* 상세 서랍 */
+function tDetail(id){ const p=TPL.find(x=>x.id===id); if(!p) return; let d=$('#tvDrawer'); if(!d){ d=document.createElement('div'); d.id='tvDrawer'; d.className='tv-dr'; document.body.appendChild(d); d.addEventListener('click',e=>{ if(e.target===d||e.target.closest('[data-tdx]')) tDetailClose(); const g=e.target.closest('[data-tdmap]'); if(g){ tDetailClose(); const pp=TPL.find(x=>x.id===g.dataset.tdmap); $('#tvMap').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>{ TV.mapObj&&TV.mapObj.flyTo([pp.lat,pp.lon],15,{duration:1}); },400); } const a=e.target.closest('[data-tdadd]'); if(a){ tDetailClose(); document.querySelector(`[data-tadd="${a.dataset.tdadd}"]`)?.click(); } }); }
+  const c=TREG[p.r][1], sc=TSC[p.id]||[4,4,4,4], r=TRAT[p.id], F=TFEAT[p.id]||[], E=tEat(p.id); const nm=p.n.replace(/\s*\(.+\)/,'');
+  d.innerHTML=`<aside class="tv-drb" style="--c:${c}"><button class="tv-drx" data-tdx aria-label="닫기">×</button>
+   <div class="tv-drph">${PH[p.id]?phImg(p.id,1280,'',p.n,'(max-width:700px) 100vw, 560px'):`<div class="tv-art">${CTHUMB.kind(p.sh,1)}</div>`}${phCredit(p.id)}<div class="tv-drt"><span>${TREG[p.r][0]} · ${p.k==='t'?'전통':'현대'} · ${esc(p.y)}</span><h3>${esc(p.n)}</h3><em>${esc(p.a)}</em></div></div>
+   <div class="tv-drin">
+    <div class="tv-rate"><div class="tv-score"><b>${tScore(p.id).toFixed(1)}</b>${stars(tScore(p.id),'go')}<span>ZIPLAN 평가</span></div>${r&&r.n?`<div class="tv-vis">${stars(r.avg,'sm go')}<span>방문자 ${r.avg.toFixed(1)} · ${r.n}명</span></div>`:''}</div>
+    <div class="tv-bars go">${TSCL.map((l,k)=>`<div><span>${l}</span><i><b style="--w:${sc[k]/5*100}%"></b></i></div>`).join('')}</div>
+    <p class="tv-drwhy">${esc(p.why)}</p>
+    <h4>건축 포인트</h4><ol class="tv-feat">${F.map((f,i)=>`<li style="--i:${i}"><i>${i+1}</i><span>${esc(f)}</span></li>`).join('')}</ol>
+    <div class="tv-see"><b>꼭 볼 것</b> ${esc(p.see)}</div>
+    <div class="tv-drdia"><div>${CTHUMB.kind(p.sh,1)}</div><span>매스 성격 — ${esc((Object.values(DNA_ARCH).find(a=>a.shape===p.sh)||{}).name||'')}</span></div>
+    ${E.length?`<h4>근처에서 먹기</h4><div class="tv-eat">${E.map(x=>`<a href="${x[2]}" target="_blank" rel="noopener"><b>🍽 ${esc(x[0])}</b><span>${esc(x[1])}</span><em>카카오맵 ›</em></a>`).join('')}</div><p class="tv-small">카카오맵 장소 기준이에요. 영업 시간·휴무는 방문 전에 확인하세요.</p>`:''}
+    <div class="tv-dract"><button class="btn" data-tdadd="${p.id}">코스에 넣기</button><button class="btn sec" data-tdmap="${p.id}">지도에서 보기</button><a class="btn sec" href="https://map.kakao.com/link/to/${encodeURIComponent(nm)},${p.lat},${p.lon}" target="_blank" rel="noopener">길찾기 ›</a></div>
+   </div></aside>`;
+  d.hidden=false; requestAnimationFrame(()=>d.classList.add('on')); document.documentElement.style.overflow='hidden'; }
+function tDetailClose(){ const d=$('#tvDrawer'); if(!d) return; d.classList.remove('on'); document.documentElement.style.overflow=''; setTimeout(()=>d.hidden=true,300); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') tDetailClose(); });
+/* 지도 스타일 · 전체 화면 · 자동 투어 */
+const TSTY={calm:['차분한','https://tile.openstreetmap.org/{z}/{x}/{y}.png','tv-tiles','© OpenStreetMap 기여자'],color:['기본','https://tile.openstreetmap.org/{z}/{x}/{y}.png','','© OpenStreetMap 기여자'],sat:['위성','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}','','Tiles © Esri — Esri, Maxar, Earthstar Geographics']};
+function tStyle(k){ const m=TV.mapObj; if(!m||!window.L) return; const s=TSTY[k]; if(TV.tile) m.removeLayer(TV.tile); const dark=matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement.dataset.theme!=='light';
+  TV.tile=L.tileLayer(s[1],{maxZoom:19,className:k==='calm'?(dark?'tv-tiles dk':'tv-tiles'):'',attribution:s[3]}).addTo(m); TV.tile.bringToBack(); TV.sty=k; $$('[data-tsty]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tsty===k)); }
+let TTOUR=null; function tTour(){ const btn=$('#tvTour'); if(TTOUR){ clearTimeout(TTOUR); TTOUR=null; btn.textContent='▶ 지도 투어'; return; } const L0=(TV.focus==='route'&&TV.plan?(TV.plan.days[TV.day]||[]).filter(s=>s.p).map(s=>s.p):TPL.filter(p=>TV.reg==='all'||p.r===TV.reg)); let i=0; btn.textContent='■ 투어 멈춤';
+  const step=()=>{ if(!TV.mapObj||i>=L0.length){ TTOUR=null; btn.textContent='▶ 지도 투어'; return; } const p=L0[i++]; TV.mapObj.flyTo([p.lat,p.lon],15,{duration:1.6}); setTimeout(()=>{ TV.layer.eachLayer(l=>{ if(l.options&&l.options.title===p.n) l.openPopup(); }); },1700); TTOUR=setTimeout(step,4600); }; step(); }
+function tMapTools(){ const box=$('.tv-mapbox'); if(!box||$('#tvMapTools')) return; const t=document.createElement('div'); t.id='tvMapTools'; t.className='tv-mtools';
+  t.innerHTML=`<div class="modes">${Object.entries(TSTY).map(([k,s])=>`<button data-tsty="${k}" aria-pressed="${k==='calm'}">${s[0]}</button>`).join('')}</div><button class="btn sec sm" id="tvTour">▶ 지도 투어</button><button class="btn sec sm" id="tvFull" title="크게 보기">⤢</button>`; box.insertBefore(t,box.firstChild); }
+document.addEventListener('click',e=>{ if(!e.target.closest('#view-travel')&&!e.target.closest('.leaflet-popup')) return;
+  const s=e.target.closest('[data-tsty]'); if(s){ tStyle(s.dataset.tsty); return; }
+  if(e.target.closest('#tvTour')){ tTour(); return; }
+  if(e.target.closest('#tvFull')){ const b=$('.tv-mapbox'); b.classList.toggle('full'); document.documentElement.style.overflow=b.classList.contains('full')?'hidden':''; setTimeout(()=>TV.mapObj&&TV.mapObj.invalidateSize(),320); return; }
+  const dt=e.target.closest('[data-tdet]'); if(dt){ e.preventDefault(); tDetail(dt.dataset.tdet); return; } });
 
 /* ---------- 관리자 페이지 (#admin) — 숫자는 서버 함수 admin_stats()가 관리자일 때만 돌려준다 ---------- */
 let ADM=null;
