@@ -1847,6 +1847,72 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 @keyframes dnatLd{to{background-position:-200% 0}}
 .dnat-more{display:flex;gap:14px;align-items:center;justify-content:center;margin:22px 0 4px}.dnat-more span{font-size:13px;color:var(--fg-2)}
 .dnat-cr{font-size:12px;color:var(--fg-2);text-align:center;margin:12px auto 0;max-width:70ch;line-height:1.6}
+/* 도감 카테고리 + 테마 */
+#dnAtlas{--tha:#7cc4ff;--thb:#14161d;--thc:#22283a;--thi:#f2f4f8}
+.atc{margin:4px 0 14px}
+.atc-tabs{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--card);border:1px solid var(--card-line);width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.atc-tabs::-webkit-scrollbar{display:none}
+.atc-tabs button{all:unset;cursor:pointer;white-space:nowrap;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:700;color:var(--fg-2);transition:background .3s,color .3s}
+.atc-tabs button em{font-style:normal;font-size:11px;font-weight:600;opacity:.55;margin-left:5px}
+.atc-tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.atc-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.atc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;max-height:132px;overflow:auto;padding:2px;scrollbar-width:thin}
+.atc-chips button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;border:1px solid var(--card-line);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 12px 6px 10px;font-size:13px;transition:transform .25s cubic-bezier(.2,.9,.3,1.3),background .25s,border-color .25s}
+.atc-chips button:hover{transform:translateY(-2px);border-color:var(--tha)}
+.atc-chips button i{width:12px;height:12px;border-radius:50%;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.atc-chips button em{font-style:normal;font-size:11px;opacity:.55}
+.atc-chips button[aria-pressed="true"]{background:var(--thb);color:var(--thi);border-color:var(--tha);box-shadow:0 0 0 2px color-mix(in srgb,var(--tha) 45%,transparent)}
+.atc-chips button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.atth{position:relative;overflow:hidden;border-radius:28px;min-height:340px;margin:0 0 18px;color:var(--ink);background:linear-gradient(125deg,var(--b1),var(--b2));transition:background .8s ease;isolation:isolate;scroll-margin-top:80px;--ox:50%}
+.atth-pat,.atth-pat2{position:absolute;inset:-60px;background-repeat:repeat;opacity:.5;animation:atPan 60s linear infinite;z-index:0}
+.atth-pat2{transition:opacity .9s ease;opacity:0}
+.atth.swap .atth-pat{animation:atPan 60s linear infinite,atWipe 1s cubic-bezier(.6,.05,.2,1) both}
+.atth.swap .atth-pat2{animation:atFade 1s ease both}
+@keyframes atFade{from{opacity:.5}to{opacity:0}}
+@keyframes atPan{to{background-position:240px 120px}}
+@keyframes atWipe{from{clip-path:circle(0% at var(--ox) 60%)}to{clip-path:circle(150% at var(--ox) 60%)}}
+.atth[data-pat="destijl"] .atth-pat,.atth[data-pat="barragan"] .atth-pat,.atth[data-pat="trencadis"] .atth-pat{opacity:.32}
+.atth[data-pat="azulejo"] .atth-pat{opacity:.22}
+.atth-fx{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.atth-sh{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--b1) 92%,transparent) 0%,color-mix(in srgb,var(--b1) 70%,transparent) 42%,transparent 75%)}
+.atth-t{position:relative;z-index:3;padding:40px 44px 34px;max-width:min(640px,62%)}
+.atth-t .k{display:inline-block;font-size:11.5px;letter-spacing:.18em;font-weight:800;color:var(--ac);padding:5px 10px;border:1px solid color-mix(in srgb,var(--ac) 55%,transparent);border-radius:999px;background:color-mix(in srgb,var(--b1) 50%,transparent)}
+.atth-t h3{font-family:var(--brand);font-size:clamp(40px,6vw,84px);line-height:1;letter-spacing:-.04em;margin:16px 0 14px;font-weight:800}
+.atth-t h3.ar{font-size:clamp(34px,4.6vw,64px)}
+.atth-t h3 span{display:inline-block}
+.atth.swap .atth-t h3 span{animation:atChar .7s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--i)*45ms + .1s)}
+@keyframes atChar{from{opacity:0;transform:translateY(.5em) rotate(6deg);filter:blur(6px)}}
+.atth-t p{font-size:15px;line-height:1.65;margin:0;max-width:52ch;opacity:.9}
+.atth.swap .atth-t p,.atth.swap .atth-t .st,.atth.swap .atth-t .k{animation:atUp .7s ease both .25s}
+@keyframes atUp{from{opacity:0;transform:translateY(12px)}}
+.atth-t .st{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.atth-t .st div{padding:10px 14px;border-radius:14px;background:color-mix(in srgb,var(--ink) 10%,transparent);border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);min-width:72px}
+.atth-t .st b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.atth-t .st span{font-size:11.5px;opacity:.75}
+.atth-t .mg{position:absolute;right:-30px;top:-20px;font-family:var(--brand);font-size:220px;line-height:1;font-weight:900;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--ac) 55%,transparent);opacity:.5;pointer-events:none;letter-spacing:-.05em}
+.atth-ph{position:absolute;z-index:3;right:28px;top:50%;width:min(36%,420px);height:280px;transform:translateY(-50%);pointer-events:none}
+.atth-ph figure{position:absolute;margin:0;width:56%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 22px 50px -18px rgba(0,0,0,.6);border:3px solid color-mix(in srgb,var(--ink) 85%,transparent)}
+.atth-ph figure img{width:100%;height:100%;object-fit:cover;display:block}
+.atth-ph figcaption{position:absolute;left:6px;bottom:6px;font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff;max-width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.atth-ph figure:nth-child(1){left:0;top:4%;transform:rotate(-6deg)}
+.atth-ph figure:nth-child(2){right:0;top:0;transform:rotate(5deg)}
+.atth-ph figure:nth-child(3){left:10%;bottom:0;transform:rotate(3deg)}
+.atth-ph figure:nth-child(4){right:4%;bottom:6%;transform:rotate(-4deg)}
+.atth.swap .atth-ph figure{animation:atDeal .8s cubic-bezier(.2,.9,.3,1.25) both;animation-delay:calc(var(--i)*90ms + .2s)}
+@keyframes atDeal{from{opacity:0;translate:60px 30px;scale:.7}}
+.dnat-f{gap:10px}
+.dnat-f .atcur{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;background:var(--thb);color:var(--thi);border:1px solid var(--tha);white-space:nowrap}
+.dnat-f .atcur button{all:unset;cursor:pointer;opacity:.75;font-size:12px;padding:0 2px}
+.dnat-c:hover,.dnat-c:focus-visible{border-color:color-mix(in srgb,var(--tha) 60%,var(--card-line))}
+.dnat-c .tg{border-left:3px solid var(--tha)}
+.dnat-g.atin .dnat-c{animation:atCard .55s cubic-bezier(.2,.9,.3,1.1) both}
+.dnat-g.atin .dnat-c:nth-child(2){animation-delay:.04s}.dnat-g.atin .dnat-c:nth-child(3){animation-delay:.08s}.dnat-g.atin .dnat-c:nth-child(4){animation-delay:.12s}.dnat-g.atin .dnat-c:nth-child(5){animation-delay:.16s}.dnat-g.atin .dnat-c:nth-child(6){animation-delay:.2s}.dnat-g.atin .dnat-c:nth-child(7){animation-delay:.24s}.dnat-g.atin .dnat-c:nth-child(8){animation-delay:.28s}.dnat-g.atin .dnat-c:nth-child(n+9){animation-delay:.32s}
+@keyframes atCard{from{opacity:0;transform:translateY(18px) scale(.97)}}
+.dnat-mi .lab-k button,.dnat-mi .who button{all:unset;cursor:pointer;border-bottom:1px dashed currentColor}
+.dnat-mi .lab-k button:hover,.dnat-mi .who button:hover{color:var(--accent)}
+@media(max-width:900px){.atth-ph{display:none}.atth-t{max-width:100%}.atth-sh{background:linear-gradient(180deg,color-mix(in srgb,var(--b1) 55%,transparent),color-mix(in srgb,var(--b1) 88%,transparent))}}
+@media(max-width:640px){.atc-tabs{width:100%}.atc-tabs button{padding:8px 12px;font-size:13px}.atc-chips{flex-wrap:nowrap;overflow-x:auto;max-height:none;padding-bottom:6px}.atth{min-height:300px;border-radius:22px}.atth-t{padding:26px 20px 22px}.atth-t p{font-size:14px}.atth-t .st div{padding:8px 10px;min-width:0}.atth-t .st b{font-size:18px}.atth-t .mg{font-size:150px;right:-20px}}
+@media (prefers-reduced-motion:reduce){.atth-pat,.atth-pat2{animation:none}.atth.swap *{animation:none!important}.dnat-g.atin .dnat-c{animation:none}}
 .dnat-tw{margin-top:56px}.dnat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .dnat-m{position:fixed;inset:0;z-index:200;background:rgba(10,10,12,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-items:center;padding:24px;animation:dnatIn .25s ease}
 .dnat-m[hidden]{display:none}@keyframes dnatIn{from{opacity:0}}
@@ -5526,10 +5592,10 @@ function dnMarqTick(now){ MQ.raf=0; if(!MQ.vis||document.hidden||location.hash!=
 addEventListener('hashchange',()=>{ if(location.hash==='#dna') setTimeout(dnMarqGo,60); });
 /* 도감 표지: 건축여행 표지처럼 기운 사진 기둥이 스크롤에 따라 엇갈려 흐른다 */
 function dnCoverHTML(){ const ph=BLDX.filter(b=>b.p); const cols=[[],[],[],[],[]]; ph.forEach((b,i)=>cols[i%5].push(b));
-  const archs=new Set(BLDX.flatMap(b=>b.arch.split(/\s*[·+]\s*/))).size, cities=new Set(BLDX.map(b=>b.city.split(',').pop().trim())).size;
+  const archs=new Set(BLDX.flatMap(b=>b.arch.split(/\s*[·+]\s*/))).size, cities=new Set(BLDX.map(bldCountry)).size;
   return `<section class="tv-cover dnat-cov" id="dnatCover"><div class="tv-cols" aria-hidden="true">${cols.map(c=>`<div class="tv-col">${c.slice(0,8).map(b=>`<figure><img src="${bldImg(b,500)}" alt="" loading="lazy" decoding="async"><figcaption>${esc(b.name)}</figcaption></figure>`).join('')}</div>`).join('')}</div><div class="tv-cov-sh"></div>
-    <div class="tv-cov-t"><span class="lab-k">ATLAS · 건축 도감</span><h2>세계의 건물 ${BLDX.length}채,<br>단어로 다시 읽다.</h2><p>파르테논부터 코펜힐까지 2,500년의 건축을 이 랩의 단어로 풀었어요. 사진을 누르면 같은 단어로 지은 모형이 나타나고, 그대로 내 설계의 출발점이 됩니다.</p>
-    <div class="tv-stats"><div><b class="dnc-n" data-n="${BLDX.length}">0</b><span>건물</span></div><div><b class="dnc-n" data-n="${archs}">0</b><span>건축가 · 시대</span></div><div><b class="dnc-n" data-n="${cities}">0</b><span>나라 · 도시</span></div><div><b class="dnc-n" data-n="${DNA_KW.length}">0</b><span>읽는 단어</span></div></div></div></section>`; }
+    <div class="tv-cov-t"><span class="lab-k">ATLAS · 건축 도감</span><h2>세계의 건물 ${BLDX.length}채,<br>단어로 다시 읽다.</h2><p>기자의 피라미드부터 코펜힐까지 4,500년, ${new Set(BLDX.map(bldCountry)).size}개 나라의 건축을 이 랩의 단어로 풀었어요. 사진을 누르면 같은 단어로 지은 모형이 나타나고, 그대로 내 설계의 출발점이 됩니다.</p>
+    <div class="tv-stats"><div><b class="dnc-n" data-n="${BLDX.length}">0</b><span>건물</span></div><div><b class="dnc-n" data-n="${archs}">0</b><span>건축가 · 시대</span></div><div><b class="dnc-n" data-n="${cities}">0</b><span>나라</span></div><div><b class="dnc-n" data-n="${DNA_KW.length}">0</b><span>읽는 단어</span></div></div></div></section>`; }
 function dnCoverPar(){ const cov=$('#dnatCover'); if(!cov||MQ.rm) return; const vh=innerHeight; const r=cov.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; const k=(vh-r.top)/(vh+r.height);
   $$('#dnatCover .tv-col').forEach((c,i)=>c.style.transform=`translate3d(0,${((i%2?-1:1)*(k-0.5)*(160+i*40)).toFixed(1)}px,0)`); const h=cov.querySelector('.tv-cov-t'); if(h) h.style.transform=`translate3d(0,${((k-0.5)*-60).toFixed(1)}px,0)`;
   if(!cov.dataset.cnt&&r.top<vh*.6){ cov.dataset.cnt=1; cov.querySelectorAll('.dnc-n').forEach(el=>{ const to=+el.dataset.n, t0=performance.now(); const f=t=>{ const q=Math.min(1,(t-t0)/1200); el.textContent=Math.round(to*(1-Math.pow(1-q,3))); if(q<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }); } }
@@ -6233,10 +6299,265 @@ const BLD=[["jongmyo", "종묘 정전", "조선 왕실", "1395", "서울", "kr",
 ["songeun", "송은", "헤르조그 & 드 뫼롱", "2021", "서울", "kr", "c", ["헤르조그 & 드 뫼롱처럼", "노출 콘크리트", "갤러리", "매스 깎기", "도심 협소지"], "송판 무늬 콘크리트를 비스듬히 자른 조각", "", 0, "", ""],
 ["sayuwon", "사유원", "승효상 · 알바로 시자 등", "2021", "군위", "kr", "c", ["승효상처럼", "코르텐강", "숲", "명상적", "산 조망"], "산에 흩어진 사유의 건축들", "", 0, "", ""],
 ["ewha", "이화여대 ECC", "도미니크 페로", "2008", "서울", "kr", "c", ["땅에 묻기", "선큰 가든", "유리", "학교", "옥상 정원"], "땅을 가른 계곡형 캠퍼스", "2/2e/Ewha_Campus_Complex.jpg", 3648, "CC BY-SA 4.0", "Ken Eckert"],
-["hyundaicard", "현대카드 라이브러리", "최욱", "2013", "서울", "kr", "c", ["도서관", "노출 콘크리트", "골목", "작은 미술관", "중정형"], "골목 안의 조용한 책의 집", "", 0, "", ""]];
+["hyundaicard", "현대카드 라이브러리", "최욱", "2013", "서울", "kr", "c", ["도서관", "노출 콘크리트", "골목", "작은 미술관", "중정형"], "골목 안의 조용한 책의 집", "", 0, "", ""],
+["seokjojeon", "덕수궁 석조전", "하딩 등", "1910", "서울", "kr", "m", ["석재", "기념비적", "두꺼운 기단", "회랑", "정제된"], "궁궐 안에 지은 신고전주의 석조 궁전", "f/f9/Deoksugung_Palace_20240409_045.jpg", 6000, "CC BY 4.0", "Mobius6"],
+["wolji", "동궁과 월지", "신라 왕실", "674", "경주", "kr", "t", ["물가", "물에 비친 빛", "기와", "차경 정원", "처마"], "연못에 비치는 신라의 밤", "a/a7/Water_reflection_of_Donggung_Palace_in_Wolji_Pond_at_blue_hour_in_Gyeongju_South_Korea.jpg", 6497, "CC BY-SA 4.0", "Basile Morin"],
+["cheomseong", "첨성대", "신라", "7세기", "경주", "kr", "t", ["석재", "원형", "탑", "기념비적", "신비로운"], "365개 돌로 쌓은 하늘 관측대", "d/d4/Cheomseongdae_Observatory_under_blue_sky_in_Gyeongju_South_Korea.jpg", 6480, "CC BY-SA 4.0", "Basile Morin"],
+["tongdosa", "통도사", "자장율사", "646", "양산", "kr", "t", ["기와", "처마", "중정형", "명상적", "숲"], "부처의 사리를 모신 불보사찰", "5/5a/Korea-Tongdosa-01.jpg", 2531, "CC BY-SA 3.0", "Steve46814"],
+["sudeoksa", "수덕사 대웅전", "고려", "1308", "예산", "kr", "t", ["목재", "박공지붕", "처마", "명상적", "서까래"], "군더더기 없는 맞배지붕의 기품", "b/b7/Sudeoksa_01.JPG", 1600, "CC BY-SA 3.0", "Lawinc82"],
+["bongjeong", "봉정사 극락전", "고려", "13세기", "안동", "kr", "t", ["목재", "처마", "기와", "소박한", "경사지"], "한국에서 가장 오래된 목조 건물", "f/f8/안동봉정사전경.jpg", 918, "Public domain", "Unknown author"],
+["dosan", "도산서원", "이황", "1574", "안동", "kr", "t", ["한옥", "마당", "소박한", "물가", "차경"], "퇴계가 직접 짓고 가르친 소박한 서원", "6/6b/Dosanseowon1.jpg", 1710, "Public domain", "Uriah923"],
+["yangdong", "양동마을", "경주 손씨·여강 이씨", "15세기", "경주", "kr", "t", ["골목 마을", "한옥", "경사지", "기와", "오래된 마을"], "산자락을 따라 흩어진 양반 마을", "7/72/Yangdong_Village_02.jpg", 3855, "CC0", "Bernard Gagnon"],
+["changgyeong", "창경궁", "조선 왕실", "1483", "서울", "kr", "t", ["한옥", "기와", "중정형", "처마", "회랑"], "동쪽을 바라보는 드문 궁궐", "d/da/창경궁_정면_전경1_(2014).jpg", 1600, "CC BY 2.0 kr", "서울시"],
+["deoksu", "덕수궁", "조선 왕실", "15세기", "서울", "kr", "t", ["기와", "처마", "담", "도시적", "석재"], "도심 한가운데 근대와 전통이 겹친 궁", "f/f6/덕수궁_전경_(2013).jpg", 4000, "KOGL Type 1", "문화재청"],
+["namhan", "남한산성", "조선", "1626", "광주", "kr", "t", ["석재", "지형 순응", "산 조망", "담", "기념비적"], "산 능선을 따라 두른 성곽 도시", "7/79/Khitai5.jpg", 1600, "CC BY-SA 2.0", "Khitai"],
+["sungnyemun", "숭례문", "조선", "1398", "서울", "kr", "t", ["기와", "처마", "두꺼운 기단", "석재", "기념비적"], "서울의 남쪽 대문", "8/81/Sungnyemun_Gate,_front,_2013.jpg", 3604, "CC BY-SA 3.0", "DoulosCore"],
+["jeondong", "전주 전동성당", "프와넬 신부", "1914", "전주", "kr", "m", ["붉은 벽돌", "교회 · 명상 공간", "탑", "곡면", "기념비적"], "비잔틴 돔을 얹은 붉은 벽돌 성당", "0/0d/Jeondong_catholic_church,_Jeonju.JPG", 1944, "Public domain", "mintz0223"],
+["gyesan", "대구 계산성당", "프와넬 신부", "1902", "대구", "kr", "m", ["붉은 벽돌", "교회 · 명상 공간", "탑", "박공지붕", "고측창"], "두 개의 첨탑이 선 영남의 첫 성당", "", 0, "", ""],
+["yakhyeon", "약현성당", "코스트 신부", "1892", "서울", "kr", "m", ["벽돌", "교회 · 명상 공간", "탑", "고측창", "소박한"], "한국 최초의 서양식 성당", "1/1c/Jungnim-dong_Yakhyeon_Catholic_church_Outside_1.JPG", 3264, "CC BY-SA 3.0", "U2em"],
+["seoulstation", "문화역서울284", "쓰카모토 야스시", "1925", "서울", "kr", "m", ["붉은 벽돌", "원형", "리모델링", "기념비적", "복합 문화 공간"], "옛 서울역을 문화 공간으로", "f/f7/구서울역사-Culture-Station-Seoul-284.jpg", 5472, "CC BY-SA 4.0", "Korearoadtour"],
+["seoullib", "서울도서관", "일제강점기", "1926", "서울", "kr", "m", ["석재", "도서관", "리모델링", "두꺼운 기단", "기념비적"], "옛 시청을 시민 도서관으로", "9/99/Seoul-City.Hall-02.jpg", 2560, "Public domain", "ddol-mang"],
+["63bldg", "63빌딩", "SOM · 박춘명", "1985", "서울", "kr", "m", ["고층 타워", "유리", "반사광", "도시적", "물가"], "금빛 유리로 빛나는 여의도의 상징", "9/93/63_Building.jpg", 3240, "CC BY-SA 4.0", "Sebastian Hoering"],
+["nseoultower", "N서울타워", "장종률", "1975", "서울", "kr", "m", ["탑", "산 조망", "밤의 등불", "도시적", "기념비적"], "남산 꼭대기의 전망탑", "6/61/N-Seoul_tower_from_Itaewon_bridge_pinhole.jpg", 1365, "CC BY-SA 4.0", "Aatu Dorochenko"],
+["busancinema", "영화의전당", "쿱 힘멜블라우", "2011", "부산", "kr", "c", ["하나의 큰 지붕", "캔틸레버", "밤의 등불", "대담한", "공연장"], "세계 최대 캔틸레버 지붕", "5/54/Busan_Cinema_Center_BIFF_2023.jpg", 1800, "CC BY-SA 4.0", "399scout"],
+["incheonair", "인천국제공항", "펜트레스", "2001", "인천", "kr", "c", ["장스팬", "유리", "곡면", "하나의 큰 지붕", "철골"], "한국의 첫 관문", "b/bc/인천국제공항_(1472).jpeg", 4929, "KOGL Type 1", "Korea Aerospace Research Institute"],
+["moasnu", "서울대학교 미술관", "렘 콜하스", "2005", "서울", "kr", "c", ["OMA처럼", "캔틸레버", "경사지", "갤러리", "유리"], "경사지 위로 들어 올린 미술관", "", 0, "", ""],
+["kyobo", "강남 교보타워", "마리오 보타", "2003", "서울", "kr", "c", ["붉은 벽돌", "고층 타워", "두 동으로 나누기", "도시적", "기념비적"], "두 개의 벽돌 탑 사이의 유리", "", 0, "", ""],
+["someseoul", "세빛섬", "해안건축", "2011", "서울", "kr", "c", ["물가", "곡면", "밤의 등불", "유리", "유쾌한"], "한강 위에 뜬 인공섬", "f/ff/Korea_Sevit_Island_15_(15540663165).jpg", 4880, "CC BY-SA 2.0", "Republic of Korea"],
+["songdo", "송도 센트럴파크", "KPF", "2009", "인천", "kr", "c", ["물가", "도시적", "건물 녹화", "산책하듯 걷는 길", "공공 마당 열기"], "신도시 한가운데 바닷물 공원", "9/90/Songdo_Central_Park_in_2021.jpg", 4032, "CC BY-SA 4.0", "José Carioca"],
+["haeundaeipark", "해운대 아이파크", "다니엘 리베스킨트", "2011", "부산", "kr", "c", ["고층 타워", "곡면", "바다 조망", "유리", "대담한"], "돛을 닮은 바다 앞 고층 주거", "", 0, "", ""],
+["horyuji", "호류지", "쇼토쿠 태자", "607", "나라, 일본", "asia", "t", ["목재", "탑", "처마", "기와", "명상적"], "세계에서 가장 오래된 목조 건축군", "1/17/Horyu-ji11s3200.jpg", 3720, "CC BY-SA 4.0", "663highland"],
+["todaiji", "도다이지", "쇼무 천황", "752", "나라, 일본", "asia", "t", ["목재", "기념비적", "하나의 큰 지붕", "처마", "장스팬"], "거대한 대불을 덮은 목조 대전", "2/2f/Tōdai-ji_Kon-dō.jpg", 2500, "CC BY-SA 3.0", "Wii"],
+["ise", "이세 신궁", "신토", "690", "이세, 일본", "asia", "t", ["목재", "박공지붕", "숲", "명상적", "소박한"], "20년마다 새로 짓는 신궁", "8/8d/Naiku_04.jpg", 3000, "CC BY-SA 4.0", "N yotarou"],
+["byodoin", "뵤도인 봉황당", "후지와라 요리미치", "1053", "우지, 일본", "asia", "t", ["물에 비친 빛", "처마", "목재", "물가", "신비로운"], "연못 위에 날개를 편 봉황", "6/69/Phoenix_Hall,_Byodo-in,_November_2016_-01.jpg", 5377, "CC BY-SA 4.0", "Martin Falbisoner"],
+["kinkakuji", "킨카쿠지", "아시카가 요시미쓰", "1397", "교토, 일본", "asia", "t", ["물에 비친 빛", "금속 패널", "물가", "적층", "차경 정원"], "연못에 비친 금빛 누각", "0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg", 4000, "CC BY-SA 4.0", "Nacaru"],
+["kiyomizu", "기요미즈데라", "도쿠가와 이에미쓰 재건", "1633", "교토, 일본", "asia", "t", ["목재", "경사지", "들어 올리기", "산 조망", "처마"], "못 없이 짠 나무 무대", "3/3c/Kiyomizu.jpg", 1452, "CC BY-SA 3.0", "Jordy Meow"],
+["matsumoto", "마쓰모토성", "이시카와 가즈마사", "1594", "마쓰모토, 일본", "asia", "t", ["탑", "검은 집", "두꺼운 기단", "물가", "처마"], "까마귀처럼 검은 천수각", "e/e3/Matsumoto_Castle_Keep_Tower.jpg", 4752, "CC BY-SA 4.0", "Lightning toothed whale"],
+["yoyogi", "요요기 국립경기장", "단게 겐조", "1964", "도쿄, 일본", "asia", "m", ["곡면", "장스팬", "노출 콘크리트", "기념비적", "공연장"], "케이블로 매단 곡면 지붕", "1/18/Kokuritsu_Yoyogi_Kyōgijō_1.jpg", 4412, "CC BY-SA 3.0 de", "Arne Müseler"],
+["hiroshima", "히로시마 평화기념자료관", "단게 겐조", "1955", "히로시마, 일본", "asia", "m", ["필로티", "노출 콘크리트", "긴 바", "명상적", "박물관"], "기둥 위로 들어 올린 기억의 집", "c/cd/Hiroshima_Peace_Memorial_Museum_2009.jpg", 2534, "CC BY-SA 3.0", "Wii"],
+["kagawa", "가가와현청사", "단게 겐조", "1958", "다카마쓰, 일본", "asia", "m", ["노출 콘크리트", "처마", "슬래브 적층", "사무실", "필로티"], "목조 처마를 콘크리트로 번역한 청사", "9/99/Kagawa-Pref-Office-east.jpg", 1920, "CC BY-SA 3.0", "Nakaful"],
+["tokyoforum", "도쿄 국제포럼", "라파엘 비뇰리", "1996", "도쿄, 일본", "asia", "c", ["유리", "아트리움", "철골", "장스팬", "도시적"], "배의 용골 같은 유리 홀", "0/0b/Tokyo_International_Forum_-_Marunouchi.jpg", 4032, "CC BY-SA 4.0", "しんぎんぐきゃっと"],
+["skytree", "도쿄 스카이트리", "닛켄 설계", "2012", "도쿄, 일본", "asia", "c", ["탑", "철골", "밤의 등불", "도시적", "기념비적"], "오중탑의 구조를 빌린 634m 탑", "8/84/Tokyo_Skytree_2014_Ⅲ.jpg", 1632, "CC BY-SA 3.0", "Kakidai"],
+["nmwa", "국립서양미술관", "르 코르뷔지에", "1959", "도쿄, 일본", "asia", "m", ["르 코르뷔지에처럼", "필로티", "박물관", "램프", "노출 콘크리트"], "르 코르뷔지에의 동아시아 유일 작품", "9/9d/National_museum_of_western_art05s3200.jpg", 3872, "CC BY-SA 4.0", "663highland"],
+["miho", "미호 미술관", "I. M. 페이", "1997", "시가, 일본", "asia", "c", ["땅에 묻기", "산 조망", "유리", "박물관", "숲"], "터널 끝 산속에 숨긴 미술관", "e/e7/Miho_museum02n3872.jpg", 3872, "CC BY-SA 4.0", "663highland"],
+["hillside", "힐사이드 테라스", "마키 후미히코", "1969", "도쿄, 일본", "asia", "m", ["작은 덩어리 여럿", "흰 회벽", "골목 잇기", "근린생활시설", "다세대"], "30년에 걸쳐 자란 작은 도시", "d/db/Hillside_Terrace,_Building_C_20241020_(II).jpg", 6390, "CC BY 4.0", "Supanut Arunoprayote"],
+["tsukuba", "쓰쿠바 센터빌딩", "이소자키 아라타", "1983", "쓰쿠바, 일본", "asia", "c", ["석재", "선큰 가든", "기념비적", "타일", "공공 마당 열기"], "일본 포스트모더니즘의 대표작", "f/fe/Tsukuba_Center_Building_2008.jpg", 1766, "CC BY-SA 3.0", "Wii"],
+["takasugian", "다카스기안", "후지모리 데루노부", "2004", "지노, 일본", "asia", "c", ["목재", "들어 올리기", "유쾌한", "숲", "작은 창"], "나무 두 그루 위의 찻집", "", 0, "", ""],
+["nezu", "네즈 미술관", "쿠마 겐고", "2009", "도쿄, 일본", "asia", "c", ["쿠마 겐고처럼", "처마", "대나무", "박물관", "차경 정원"], "대나무 길 끝의 큰 지붕", "d/da/2018_Nezu_Museum_1.jpg", 2500, "CC BY-SA 4.0", "Kakidai"],
+["japanstadium", "일본 국립경기장", "쿠마 겐고", "2019", "도쿄, 일본", "asia", "c", ["쿠마 겐고처럼", "목재 루버", "처마", "건물 녹화", "원형"], "나무 처마를 겹겹이 두른 경기장", "3/3c/Japan_National_Stadium_C-gate_on_2021_July_28.jpg", 4032, "CC0", "Syced"],
+["omotesandohills", "오모테산도 힐스", "안도 다다오", "2006", "도쿄, 일본", "asia", "c", ["안도 다다오처럼", "램프", "아트리움", "근린생활시설", "노출 콘크리트"], "가로수길 경사를 품은 나선 램프", "4/42/Omotesando_Hills_2012.JPG", 4601, "CC BY-SA 3.0", "Kakidai"],
+["design2121", "21_21 디자인 사이트", "안도 다다오", "2007", "도쿄, 일본", "asia", "c", ["안도 다다오처럼", "하나의 큰 지붕", "땅에 묻기", "금속 패널", "갤러리"], "한 장의 철판을 접은 지붕", "a/a3/21_21_DESIGN_SIGHT.jpg", 4200, "CC BY-SA 3.0", "Wii"],
+["horyuhoumotsu", "호류지 보물관", "다니구치 요시오", "1999", "도쿄, 일본", "asia", "c", ["물에 비친 빛", "프레임", "석재", "박물관", "고요한"], "얕은 물 위의 정교한 상자", "0/0d/2018_The_Gallery_of_Horyuji_Treasures_03.jpg", 2500, "CC BY-SA 4.0", "Kakidai"],
+["umeda", "우메다 스카이빌딩", "하라 히로시", "1993", "오사카, 일본", "asia", "c", ["브릿지", "고층 타워", "유리", "두 동으로 나누기", "대담한"], "공중 정원으로 이은 두 탑", "f/f9/2018_Umeda_Sky_Building.jpg", 1684, "CC BY-SA 4.0", "Kakidai"],
+["kyotostation", "교토역", "하라 히로시", "1997", "교토, 일본", "asia", "c", ["아트리움", "계단형", "유리", "철골", "머무는 계단"], "계곡처럼 갈라진 거대한 역사", "4/4b/Kyoto-STA_Central.jpg", 2736, "CC0", "MaedaAkihiko"],
+["templeheaven", "천단 기년전", "명 영락제", "1420", "베이징, 중국", "asia", "t", ["원형", "두꺼운 기단", "기와", "기념비적", "명상적"], "하늘에 풍년을 비는 둥근 전각", "5/5f/Temple_of_Heaven_20160323_01.jpg", 2400, "CC BY-SA 4.0", "Shujianyang"],
+["greatwall", "만리장성", "역대 왕조", "B.C.7세기~1644", "중국", "asia", "t", ["석재", "긴 바", "지형 순응", "산 조망", "기념비적"], "능선을 따라 달리는 거대한 벽", "2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg", 4288, "CC BY-SA 3.0", "Severin.stalder"],
+["potala", "포탈라궁", "5대 달라이 라마", "1649", "라싸, 중국", "asia", "t", ["계단형", "흰 회벽", "산 조망", "기념비적", "두꺼운 기단"], "산을 덮은 흰색과 붉은색의 궁", "b/b6/Potala_Palace_HQ.jpg", 1920, "CC BY-SA 4.0", "Lhasa Government"],
+["suzhoumuseum", "쑤저우 박물관", "I. M. 페이", "2006", "쑤저우, 중국", "asia", "c", ["흰 회벽", "차경 정원", "물에 비친 빛", "박물관", "중정형"], "흰 벽과 회색 선으로 다시 쓴 정원", "4/42/苏州博物馆·苏州·西南向东北.jpg", 6144, "CC BY-SA 4.0", "Legolas1024"],
+["ningbo", "닝보 역사박물관", "왕수", "2008", "닝보, 중국", "asia", "c", ["재사용 벽돌", "기념비적", "매스 깎기", "박물관", "거친"], "헐린 마을의 기와와 벽돌로 쌓은 산", "6/67/South_Gate_of_Ningbo_Museum.jpg", 4377, "CC BY-SA 3.0", "Siyuwj"],
+["shanghaitower", "상하이 타워", "겐슬러", "2015", "상하이, 중국", "asia", "c", ["고층 타워", "비틀기", "유리", "이중 외피", "도시적"], "120도 비틀며 오르는 632m 탑", "f/f2/20191114_Shanghai_Tower_(2).jpg", 2267, "CC0", "Balon Greyjoy"],
+["bankofchina", "중국은행 타워", "I. M. 페이", "1990", "홍콩", "asia", "c", ["고층 타워", "유리", "프레임", "탑", "대담한"], "대나무 마디처럼 자라는 삼각 프레임", "2/25/HK_Bank_of_China_Tower_2008_(2).jpg", 738, "CC BY-SA 4.0", "WiNG"],
+["hsbc", "HSBC 본사", "노먼 포스터", "1985", "홍콩", "asia", "c", ["노먼 포스터처럼", "철골", "아트리움", "필로티", "사무실"], "구조를 바깥에 건 하이테크 은행", "3/38/HK_HSBC_Main_Building_2008.jpg", 1177, "CC BY 3.0", "WiNG"],
+["guangzhouopera", "광저우 오페라 하우스", "자하 하디드", "2010", "광저우, 중국", "asia", "c", ["자하 하디드처럼", "공연장", "곡면", "물가", "비정형"], "강가의 두 조약돌", "2/2f/Guangzhou_Opera_House(Near).JPG", 4224, "CC BY 3.0", "Mr a"],
+["galaxysoho", "갤럭시 소호", "자하 하디드", "2012", "베이징, 중국", "asia", "c", ["자하 하디드처럼", "곡면", "브릿지", "근린생활시설", "흰 회벽"], "흐르며 이어진 네 개의 덩어리", "0/02/Galaxy_Soho.jpg", 2847, "CC BY 2.0", "Rob Deutscher"],
+["ncpa", "중국 국가대극원", "폴 앙드뢰", "2007", "베이징, 중국", "asia", "c", ["원형", "물에 비친 빛", "공연장", "금속 패널", "유리"], "물 위에 떠 있는 티타늄 알", "a/a3/National_Centre_for_the_Performing_Arts.jpg", 2560, "CC BY 2.0", "xiquinhosilva"],
+["taipei101", "타이베이 101", "C.Y. 리", "2004", "타이베이, 대만", "asia", "c", ["고층 타워", "탑", "적층", "유리", "기념비적"], "대나무 마디처럼 쌓은 508m 탑", "5/53/Taipei_101_2009_amk.jpg", 2000, "CC BY-SA 3.0", "AngMoKio"],
+["taichung", "타이중 국립가극원", "이토 도요", "2016", "타이중, 대만", "asia", "c", ["이토 도요처럼", "곡면", "공연장", "비정형", "흰 회벽"], "소리의 동굴로 빚은 극장", "3/31/National_Taichung_Theater_aerial_view_2019.jpg", 3558, "CC BY 4.0", "Wpcpey"],
+["petronas", "페트로나스 트윈 타워", "시저 펠리", "1998", "쿠알라룸푸르, 말레이시아", "asia", "c", ["고층 타워", "두 동으로 나누기", "브릿지", "금속 패널", "기념비적"], "이슬람 별 문양으로 그린 쌍둥이 탑", "2/29/2016_Kuala_Lumpur,_Petronas_Towers_(26).jpg", 3186, "CC BY-SA 4.0", "Marcin Konsek"],
+["jewelchangi", "주얼 창이 공항", "모셰 사프디", "2019", "싱가포르", "asia", "c", ["유리", "건물 녹화", "숲", "물소리", "곡면"], "유리 돔 속 실내 폭포와 숲", "5/5a/Jewel_Changi_Airport_13-11-2023(1).jpg", 3840, "CC BY-SA 4.0", "LN9267"],
+["gardensbay", "가든스 바이 더 베이", "윌킨슨 아이어", "2012", "싱가포르", "asia", "c", ["유리", "건물 녹화", "숲", "곡면", "밤의 등불"], "거대한 철 나무와 온실", "5/5d/Supertree_Grove,_Gardens_by_the_Bay,_Singapore_-_20120712-02.jpg", 5760, "CC BY 2.0", "Shiny Things"],
+["interlace", "인터레이스", "OMA · 올레 스히렌", "2013", "싱가포르", "asia", "c", ["OMA처럼", "적층", "다세대", "중정형", "건물 녹화"], "31개 바를 엇갈려 쌓은 수직 마을", "6/66/The_Interlace_Singapore.jpg", 5400, "CC BY-SA 4.0", "kallerna"],
+["pickering", "파크로열 피커링", "WOHA", "2013", "싱가포르", "asia", "c", ["건물 녹화", "테라스", "숲", "곡면", "스테이"], "계곡 같은 공중 정원 호텔", "4/4b/Parkroyal_on_Pickering_(8579805153).crop.jpg", 1425, "CC BY 2.0", "Erwin Soo"],
+["borobudur", "보로부두르", "샤일렌드라 왕조", "9세기", "자바, 인도네시아", "asia", "t", ["석재", "계단형", "명상적", "기념비적", "두꺼운 기단"], "오르며 깨달음에 이르는 돌 만다라", "2/25/Pradaksina.jpg", 5846, "CC BY-SA 4.0", "Heri nugroho"],
+["watarun", "왓 아룬", "라마 2세", "1842", "방콕, 태국", "asia", "t", ["탑", "타일", "물가", "기념비적", "유쾌한"], "도자기 조각으로 덮은 새벽 사원", "2/2a/เจดีย์ประธานทรงปรางค์วัดอรุณ2.jpg", 8192, "CC BY-SA 4.0", "Mastertongapollo"],
+["shwedagon", "쉐다곤 파고다", "몬족", "6세기", "양곤, 미얀마", "asia", "t", ["탑", "금속 패널", "기념비적", "교회 · 명상 공간", "밤의 등불"], "황금으로 덮은 99m 탑", "c/c4/Shwedagon_Pagoda_2017.jpg", 5184, "CC BY-SA 4.0", "Bjørn Christian Tørrissen"],
+["lotustemple", "연꽃 사원", "파리보르즈 사바", "1986", "델리, 인도", "asia", "c", ["곡면", "흰 회벽", "교회 · 명상 공간", "물가", "기념비적"], "27장의 꽃잎으로 피어난 사원", "f/fc/LotusDelhi.jpg", 1014, "CC BY 2.0", "Vandelizer"],
+["iima", "인도 경영대학원 아마다바드", "루이스 칸", "1974", "아마다바드, 인도", "asia", "m", ["루이스 칸처럼", "벽돌", "원형", "학교", "기념비적"], "벽돌 아치와 원형 개구부의 캠퍼스", "f/f4/Indian_Institute_of_Management_Ahmedabad,_panorama_2006.jpg", 6295, "Public domain", "Lauri Kymäläinen"],
+["sangath", "상가트", "B. V. 도시", "1981", "아마다바드, 인도", "asia", "m", ["곡면", "타일", "물소리", "작업실 겸 집", "땅에 묻기"], "흰 도자기 조각 볼트의 작업실", "", 0, "", ""],
+["humayun", "후마윤 묘", "미락 미르자 기야스", "1570", "델리, 인도", "asia", "t", ["붉은 벽돌", "원형", "차경 정원", "기념비적", "석재"], "타지마할의 원형이 된 정원 묘", "d/d2/Tomb_of_Humayun,_Delhi.jpg", 5294, "GFDL 1.2", "Muhammad Mahdi Karim"],
+["chandbaori", "찬드 바오리", "니쿰바 왕조", "9세기", "아바네리, 인도", "asia", "t", ["계단형", "땅에 묻기", "석재", "물에 비친 빛", "그림자 놀이"], "3,500개 계단으로 내려가는 우물", "3/35/Chand_Baori_perspective_panorama_(July_2022).jpg", 2187, "CC BY-SA 4.0", "Chainwit."],
+["hawamahal", "하와 마할", "프라탑 싱", "1799", "자이푸르, 인도", "asia", "t", ["붉은 벽돌", "작은 창", "바람길", "그림자 놀이", "적층"], "953개 작은 창의 바람 궁전", "4/41/East_facade_Hawa_Mahal_Jaipur_from_ground_level_(July_2022)_-_img_01.jpg", 3345, "CC BY-SA 4.0", "Chainwit."],
+["fatehpur", "파테푸르 시크리", "악바르", "1571", "아그라, 인도", "asia", "t", ["붉은 벽돌", "중정형", "회랑", "기념비적", "석재"], "붉은 사암으로 지은 계획 도시", "b/b5/Fatehput_Sikiri_Buland_Darwaza_gate_2010.jpg", 2938, "CC BY-SA 3.0", "Marcin Białek"],
+["zayed", "셰이크 자이드 그랜드 모스크", "유수프 압델키", "2007", "아부다비, UAE", "me", "c", ["흰 회벽", "원형", "물에 비친 빛", "교회 · 명상 공간", "기념비적"], "82개 돔과 흰 대리석의 모스크", "", 0, "", ""],
+["burjalarab", "부르즈 알 아랍", "톰 라이트", "1999", "두바이, UAE", "me", "c", ["고층 타워", "바다 조망", "곡면", "스테이", "대담한"], "바다 위 돛 모양 호텔", "", 0, "", ""],
+["futuremuseum", "미래 박물관", "킬라 디자인", "2022", "두바이, UAE", "me", "c", ["원형", "금속 패널", "비정형", "박물관", "밤의 등불"], "아랍 서체를 창으로 새긴 고리", "", 0, "", ""],
+["shahmosque", "이맘 모스크", "알리 아크바르 이스파하니", "1629", "이스파한, 이란", "me", "t", ["타일", "원형", "중정형", "기념비적", "교회 · 명상 공간"], "푸른 타일로 덮은 돔", "8/8d/Isfahan_Royal_Mosque_general_(retouched).jpg", 3402, "CC BY-SA 4.0", "Patrickringgenberg"],
+["domerock", "바위의 돔", "우마이야 왕조", "691", "예루살렘", "me", "t", ["타일", "원형", "금속 패널", "기념비적", "교회 · 명상 공간"], "금빛 돔의 팔각 성소", "1/1b/Jerusalem_DomeoftheRock_J65_(cropped).JPG", 4260, "CC BY-SA 4.0", "Ludvig14"],
+["petra", "페트라 알카즈네", "나바테아", "1세기", "페트라, 요르단", "me", "t", ["석재", "땅에 묻기", "기념비적", "신비로운", "매스 깎기"], "바위 절벽을 깎아 만든 보물창고", "e/ed/Al_khazneh.jpg", 7360, "CC BY-SA 3.0", "Susanahajer"],
+["bluemosque", "술탄 아흐메트 모스크", "세데프카르 메흐메트", "1616", "이스탄불, 튀르키예", "me", "t", ["타일", "원형", "탑", "기념비적", "교회 · 명상 공간"], "2만 장의 푸른 타일 모스크", "0/03/Istanbul_(34223582516)_(cropped).jpg", 3000, "CC BY-SA 2.0", "Pedro Szekely"],
+["suleymaniye", "쉴레이마니예 모스크", "미마르 시난", "1557", "이스탄불, 튀르키예", "me", "t", ["석재", "원형", "중정형", "기념비적", "고측창"], "오스만 건축의 정점", "3/38/SüleymaniyeMosqueIstanbul_(cropped).jpg", 4063, "CC0", "Hunanuk"],
+["giza", "기자의 대피라미드", "쿠푸 왕조", "B.C.2560", "기자, 이집트", "af", "t", ["석재", "기념비적", "탑", "두꺼운 기단", "신비로운"], "4,500년 서 있는 돌산", "e/e7/Great_Pyramid_of_Giza_-_Pyramid_of_Khufu.jpg", 2000, "CC BY-SA 4.0", "Douwe C. van der Zee"],
+["abusimbel", "아부심벨 신전", "람세스 2세", "B.C.1264", "아스완, 이집트", "af", "t", ["석재", "땅에 묻기", "기념비적", "매스 깎기", "빛의 길"], "1년에 두 번 빛이 닿는 바위 신전", "b/b5/Ramsis,_Aswan_Governorate,_Egypt_-_panoramio.jpg", 2268, "CC BY 3.0", "youssef_alam"],
+["djenne", "젠네 대모스크", "이스마일라 트라오레", "1907", "젠네, 말리", "af", "t", ["흙벽", "기념비적", "탑", "교회 · 명상 공간", "거친"], "세계 최대의 흙벽돌 건물", "7/75/Djenne_great_mud_mosque.jpg", 2048, "CC BY-SA 3.0", "Ruud Zwart"],
+["lalibela", "랄리벨라 성 기오르기스 교회", "랄리벨라 왕", "12세기", "랄리벨라, 에티오피아", "af", "t", ["석재", "땅에 묻기", "매스 깎기", "교회 · 명상 공간", "신비로운"], "땅을 십자가 모양으로 파낸 교회", "a/aa/Lalibela,_san_giorgio,_esterno_24.jpg", 6748, "CC BY 3.0", "Sailko"],
+["zeitz", "자이츠 MOCAA", "토머스 헤더윅", "2017", "케이프타운, 남아공", "af", "c", ["리모델링", "아트리움", "매스 깎기", "박물관", "물가"], "곡물 사일로를 깎아 만든 미술관", "3/3e/Zeitz_Museum_of_Contemporary_Art_Africa,_Cape_Town_(_1050775).jpg", 2898, "CC BY-SA 4.0", "Matti Blume"],
+["alexandrina", "알렉산드리아 도서관", "스뇌헤타", "2002", "알렉산드리아, 이집트", "af", "c", ["원형", "도서관", "바다 조망", "석재", "기념비적"], "바다를 향해 기운 해시계 지붕", "4/41/Bibliotheca_Alexandrina_GLAM_EGY_05.jpg", 3840, "Public domain", "Hassan Hamdy wahidy"],
+["gando", "간도 초등학교", "디에베도 프랑시스 케레", "2001", "간도, 부르키나파소", "af", "c", ["흙벽", "하나의 큰 지붕", "자연 환기", "학교", "소박한"], "마을이 함께 지은 흙벽 학교", "1/13/Primary_School_Gando.jpg", 3504, "CC BY-SA 3.0", "Schulbausteine"],
+["colosseum", "콜로세움", "베스파시아누스", "80", "로마, 이탈리아", "eu", "t", ["원형", "석재", "공연장", "기념비적", "회랑"], "5만 명이 모이던 원형 경기장", "d/de/Colosseo_2020.jpg", 12051, "CC BY-SA 4.0", "FeaturedPics"],
+["pisa", "피사의 사탑", "보난노 피사노", "1372", "피사, 이탈리아", "eu", "t", ["탑", "석재", "회랑", "원형", "유쾌한"], "기울어져 유명해진 종탑", "4/4b/Italy_-_Pisa_-_Leaning_Tower.jpg", 3257, "CC BY-SA 3.0 de", "Arne Müseler"],
+["stmarks", "산 마르코 대성당", "베네치아 공화국", "1092", "베네치아, 이탈리아", "eu", "t", ["원형", "타일", "물가", "기념비적", "교회 · 명상 공간"], "황금 모자이크의 비잔틴 성당", "6/61/Venezia_Basilica_di_San_Marco_Fassade_2.jpg", 4574, "Public domain", "Zairon"],
+["chartres", "샤르트르 대성당", "중세 장인", "1220", "샤르트르, 프랑스", "eu", "t", ["석재", "고측창", "높은 천장", "교회 · 명상 공간", "신비로운"], "스테인드글라스의 푸른 빛", "2/28/Notre_Dame_de_Chartres.jpg", 2437, "CC BY-SA 3.0", "Olvr"],
+["cologne", "쾰른 대성당", "게르하르트 등", "1880", "쾰른, 독일", "eu", "t", ["석재", "탑", "고측창", "기념비적", "교회 · 명상 공간"], "632년 걸려 완성한 쌍탑", "0/04/Kölner_Dom_-_Westfassade_2022_ohne_Gerüst-0968_b.jpg", 3062, "CC BY-SA 4.0", "Raimond Spekking"],
+["saintechapelle", "생트샤펠", "루이 9세", "1248", "파리, 프랑스", "eu", "t", ["고측창", "빛의 길", "교회 · 명상 공간", "석재", "신비로운"], "벽 대신 빛으로 지은 예배당", "7/70/Sainte_Chapelle_-_Upper_level_1.jpg", 989, "CC BY-SA 2.5", "Didier B (Sam67fr)"],
+["versailles", "베르사유 궁전", "루이 르 보 · 망사르", "1682", "베르사유, 프랑스", "eu", "t", ["석재", "긴 바", "차경 정원", "기념비적", "반사광"], "거울의 방과 끝없는 정원", "9/95/Vue_aérienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_(cropped).jpg", 4608, "CC BY-SA 3.0", "ToucanWings"],
+["montstmichel", "몽생미셸", "베네딕트 수도회", "1523", "노르망디, 프랑스", "eu", "t", ["석재", "탑", "바다 조망", "계단형", "신비로운"], "밀물이면 섬이 되는 수도원", "7/78/Mont-Saint-Michel_vu_du_ciel.jpg", 4000, "CC BY-SA 4.0", "Amaustan"],
+["westminsterabbey", "웨스트민스터 사원", "헨리 3세", "1269", "런던, 영국", "eu", "t", ["석재", "고측창", "교회 · 명상 공간", "탑", "기념비적"], "대관식이 열리는 고딕 사원", "4/47/Westminster_Abbey,_Westminster.jpg", 2292, "CC BY 4.0", "Antiquary"],
+["parliamentuk", "웨스트민스터 궁", "찰스 배리 · 퓨진", "1870", "런던, 영국", "eu", "m", ["석재", "탑", "물가", "긴 바", "기념비적"], "템스 강가의 고딕 리바이벌 의사당", "d/db/Palace_of_Westminster_as_seen_from_Westminster_Bridge.jpg", 4032, "CC0", "ThatsTheBos"],
+["stpauls", "세인트 폴 대성당", "크리스토퍼 렌", "1710", "런던, 영국", "eu", "t", ["원형", "석재", "기념비적", "교회 · 명상 공간", "두꺼운 기단"], "런던 대화재 뒤에 세운 돔", "c/cb/St_Pauls_aerial_(cropped).jpg", 1833, "CC BY 2.0", "Mark Fosh"],
+["neuschwanstein", "노이슈반슈타인 성", "루트비히 2세", "1886", "바이에른, 독일", "eu", "m", ["탑", "산 조망", "흰 회벽", "신비로운", "경사지"], "동화의 원형이 된 성", "f/f8/Schloss_Neuschwanstein_2013.jpg", 5979, "CC BY-SA 3.0 de", "Thomas Wolf"],
+["mezquita", "코르도바 메스키타", "우마이야 왕조", "987", "코르도바, 스페인", "eu", "t", ["회랑", "붉은 벽돌", "모듈 반복", "교회 · 명상 공간", "그림자 놀이"], "끝없이 이어지는 줄무늬 아치 숲", "6/6c/Mezquita_de_Córdoba_desde_el_aire_(Córdoba,_España).jpg", 4288, "CC BY-SA 2.0", "Toni Castillo Quero"],
+["stbasil", "성 바실리 대성당", "포스트니크 · 바르마", "1561", "모스크바, 러시아", "eu", "t", ["탑", "원색 포인트", "작은 덩어리 여럿", "유쾌한", "교회 · 명상 공간"], "불꽃처럼 솟은 아홉 개의 양파 돔", "1/18/Saint_Basil's_Cathedral_in_Moscow.jpg", 2000, "CC BY-SA 4.0", "Tsy1980"],
+["borgund", "보르군 스타브 교회", "중세 장인", "1180", "레르달, 노르웨이", "eu", "t", ["목재", "탄화목", "박공지붕", "숲", "교회 · 명상 공간"], "용 머리를 단 검은 나무 교회", "e/e2/Borgund_Stave_Church_in_Lærdalen,_2013_June.jpg", 2260, "CC BY-SA 3.0", "Ximonic (Simo Räsänen)"],
+["louvrepyramid", "루브르 피라미드", "I. M. 페이", "1989", "파리, 프랑스", "eu", "c", ["유리", "땅에 묻기", "박물관", "선큰 가든", "투명한"], "궁전 마당에 꽂은 유리 입구", "9/90/Louvre_(Ank_kumar_Infosys)_05.jpg", 6000, "CC BY-SA 4.0", "Ank kumar"],
+["pompidoumetz", "퐁피두 메스", "반 시게루", "2010", "메스, 프랑스", "eu", "c", ["반 시게루처럼", "하나의 큰 지붕", "목재", "갤러리", "곡면"], "중국 모자를 닮은 나무 격자 지붕", "b/b5/Metz_47.jpg", 5472, "CC BY-SA 4.0", "FrDr"],
+["louvrelens", "루브르 랑스", "SANAA", "2012", "랑스, 프랑스", "eu", "c", ["SANAA처럼", "긴 바", "금속 패널", "반사광", "박물관"], "광산 터에 누운 흐린 알루미늄 상자", "", 0, "", ""],
+["grandearche", "그랑드 아르슈", "오토 폰 스프레켈센", "1989", "파리, 프랑스", "eu", "c", ["프레임", "기념비적", "흰 회벽", "사무실", "단순한 박스"], "개선문 축 끝의 거대한 액자", "1/1f/Grande_Arche,_France_-_April_2011.jpg", 4738, "CC BY 2.0", "Cristian Bortes"],
+["mucem", "뮈셈", "뤼디 리치오티", "2013", "마르세유, 프랑스", "eu", "c", ["그림자 놀이", "바다 조망", "브릿지", "박물관", "노출 콘크리트"], "콘크리트 레이스로 감싼 상자", "2/2c/\"Beeindruckende_Architektur\"._5.jpg", 7130, "CC BY-SA 4.0", "Holger Uwe Schmitt"],
+["maisonverre", "유리의 집", "피에르 샤로", "1932", "파리, 프랑스", "eu", "m", ["유글라스", "철골", "오픈 플랜", "작업실 겸 집", "반사광"], "유리 블록 벽의 집", "d/d0/Maison_de_verre_Chareau.jpg", 2896, "CC BY-SA 3.0", "Subrealistsandu"],
+["barbican", "바비컨 센터", "체임벌린 파월 앤 본", "1982", "런던, 영국", "eu", "m", ["노출 콘크리트", "다세대", "물가", "복합 문화 공간", "거친"], "브루탈리즘 도시 속 정원", "d/dc/Barbican_Lakeside_on_a_summer_evening.jpg", 6048, "CC BY-SA 3.0", "Daniel Case"],
+["greatcourt", "대영박물관 그레이트 코트", "노먼 포스터", "2000", "런던, 영국", "eu", "c", ["노먼 포스터처럼", "유리", "아트리움", "박물관", "천창"], "중정을 덮은 3,312장의 유리 지붕", "5/5a/British_Museum_Great_Court,_London,_UK_-_Diliff.jpg", 3806, "CC BY-SA 3.0", "Diliff"],
+["eden", "이든 프로젝트", "니콜라스 그림쇼", "2001", "콘월, 영국", "eu", "c", ["원형", "유리", "건물 녹화", "모듈 반복", "숲"], "채석장 속 거품 온실", "7/75/Eden_project.JPG", 2048, "Public domain", "A1personage"],
+["berlinphil", "베를린 필하모니", "한스 샤로운", "1963", "베를린, 독일", "eu", "m", ["공연장", "비정형", "금속 패널", "계단형", "유쾌한"], "포도밭처럼 둘러싼 객석", "4/4a/Berlin_Philharmonie_asv2018-05_img2.jpg", 7594, "FAL", "A.Savin"],
+["reichstag", "독일 국회의사당", "폴 발로 · 노먼 포스터", "1999", "베를린, 독일", "eu", "c", ["노먼 포스터처럼", "리모델링", "유리", "램프", "원형"], "시민이 의원 머리 위를 걷는 유리 돔", "0/0d/Berlin_reichstag_west_panorama_2.jpg", 5980, "GFDL 1.2", "Matthew Field"],
+["einsteinturm", "아인슈타인 탑", "에리히 멘델존", "1921", "포츠담, 독일", "eu", "m", ["곡면", "흰 회벽", "탑", "비정형", "유쾌한"], "흐르는 형태의 천문대", "b/b6/Potsdam_Telegrafenberg_asv2023-09_img4.jpg", 5304, "FAL", "A.Savin"],
+["zollverein", "졸페라인 탄광", "슈프 · 크레머", "1932", "에센, 독일", "eu", "m", ["붉은 벽돌", "검은 철", "리모델링", "기념비적", "복합 문화 공간"], "가장 아름다운 탄광", "4/43/Zeche_Zollverein_abends.jpg", 13085, "CC BY-SA 3.0 de", "Thomas Wolf"],
+["vitrahaus", "비트라하우스", "헤르조그 & 드 뫼롱", "2010", "바일 암 라인, 독일", "eu", "c", ["헤르조그 & 드 뫼롱처럼", "박공지붕", "적층", "검은 집", "갤러리"], "박공집 열두 채를 쌓은 전시장", "c/c9/Vitra_Haus_(2010)_jm03008.jpg", 4272, "CC BY-SA 3.0", "joergens.mi"],
+["weissenhof", "바이센호프 주거단지", "미스 반 데어 로에 등", "1927", "슈투트가르트, 독일", "eu", "m", ["흰 회벽", "평지붕", "다세대", "작은 덩어리 여럿", "미스처럼"], "모더니즘 거장들의 주택 전시회", "d/de/WeissenhofMuseum-pjt.jpg", 3772, "CC BY-SA 4.0", "Pjt56"],
+["hundertwasser", "훈데르트바서 하우스", "프리덴스라이히 훈데르트바서", "1985", "빈, 오스트리아", "eu", "c", ["원색 포인트", "건물 녹화", "유쾌한", "비정형", "다세대"], "직선을 거부한 알록달록한 집", "c/cb/Wien_-_Hundertwasserhaus_(03).JPG", 2944, "CC BY-SA 4.0", "C.Stadler/Bwag"],
+["secession", "빈 분리파 회관", "요제프 마리아 올브리히", "1898", "빈, 오스트리아", "eu", "m", ["흰 회벽", "금속 패널", "갤러리", "기념비적", "두꺼운 기단"], "황금 월계수 돔의 전시관", "c/cb/Secession_2016,_Vienna.jpg", 5716, "CC BY-SA 4.0", "Thomas Ledl"],
+["looshaus", "로스 하우스", "아돌프 로스", "1910", "빈, 오스트리아", "eu", "m", ["석재", "흰 회벽", "단순한 박스", "근린생활시설", "정제된"], "\"장식은 죄악\"의 건물", "0/0e/Looshaus_Michaelerplatz.JPG", 4188, "CC BY-SA 4.0", "Thomas Ledl"],
+["dancinghouse", "댄싱 하우스", "프랭크 게리 · 블라도 밀루니치", "1996", "프라하, 체코", "eu", "c", ["프랭크 게리처럼", "곡면", "비틀기", "유리", "유쾌한"], "춤추는 두 사람을 닮은 건물", "9/97/Tanzendes_Haus_2023.jpg", 3000, "CC BY-SA 4.0", "Danny Alexander Lettkemann"],
+["cubehouses", "큐브 하우스", "피트 블롬", "1984", "로테르담, 네덜란드", "eu", "m", ["모듈 반복", "들어 올리기", "비틀기", "다세대", "유쾌한"], "45도 기울인 정육면체 숲", "f/f8/GraphyArchy_-_Wikipedia_00096.jpg", 4500, "CC BY-SA 4.0", "GraphyArchy"],
+["markthal", "마르크탈", "MVRDV", "2014", "로테르담, 네덜란드", "eu", "c", ["하나의 큰 지붕", "다세대", "근린생활시설", "원색 포인트", "도시적"], "아파트로 감싼 아치형 시장", "1/1a/Markthal-Rotterdam.jpg", 3264, "CC BY-SA 3.0", "Exmpletre"],
+["depotboijmans", "데포 보이만스", "MVRDV", "2021", "로테르담, 네덜란드", "eu", "c", ["반사광", "원형", "박물관", "옥상 정원", "유쾌한"], "도시를 비추는 거울 그릇", "7/77/Boijmans_Depot_Rotterdam.jpg", 2976, "CC BY-SA 4.0", "Iariane"],
+["louisiana", "루이지애나 미술관", "보 · 볼레르트", "1958", "훔레베크, 덴마크", "eu", "m", ["목재", "흰 회벽", "차경", "바다 조망", "갤러리"], "정원과 바다를 잇는 낮은 회랑", "b/bc/Outside_Louisiana_Museum_of_Modern_Art.jpg", 5856, "CC BY-SA 2.0", "Lars Plougmann"],
+["grundtvig", "그룬트비 교회", "P. V. 옌센클린트", "1940", "코펜하겐, 덴마크", "eu", "m", ["벽돌", "탑", "교회 · 명상 공간", "기념비적", "높은 천장"], "오르간 파이프 같은 벽돌 파사드", "b/b7/Grundtvig’s_Church_02_(level_and_colour_adjust).jpg", 2992, "CC BY-SA 2.0", "Haydn Blackey"],
+["blackdiamond", "블랙 다이아몬드", "슈미트 해머 라센", "1999", "코펜하겐, 덴마크", "eu", "c", ["검은 집", "물가", "도서관", "유리", "비틀기"], "운하에 비친 검은 화강석 도서관", "7/7e/Det_Kongelige_Bibliotek_Copenhagen.jpg", 5400, "CC BY-SA 4.0", "kallerna"],
+["temppeliaukio", "템펠리아우키오 교회", "수오말라이넨 형제", "1969", "헬싱키, 핀란드", "eu", "m", ["석재", "땅에 묻기", "천창", "교회 · 명상 공간", "원초적"], "바위를 파고 구리 지붕을 덮은 교회", "9/9b/Temppeliaukio_Church_Helsinki.jpg", 5797, "CC BY-SA 4.0", "Jens Strauß"],
+["oodi", "오디 헬싱키 중앙도서관", "ALA", "2018", "헬싱키, 핀란드", "eu", "c", ["목재", "곡면", "도서관", "테라스", "공공 마당 열기"], "나무 파도와 하늘 정원의 도서관", "e/e5/Oodi_Library_(Helsinki,_Finland).jpg", 2951, "CC BY-SA 4.0", "Cope Baronet"],
+["kamppi", "캄피 예배당", "K2S", "2012", "헬싱키, 핀란드", "eu", "c", ["목재", "곡면", "교회 · 명상 공간", "고요한", "도시적"], "도심 광장의 나무 그릇", "3/36/Kamppi_Chapel_2020.jpg", 4032, "CC BY-SA 4.0", "Vadelmavene"],
+["stockholmcityhall", "스톡홀름 시청", "라그나르 외스트베리", "1923", "스톡홀름, 스웨덴", "eu", "m", ["붉은 벽돌", "탑", "물가", "중정형", "기념비적"], "노벨상 연회가 열리는 붉은 벽돌 시청", "0/06/Stockholms_stadshus_February_2026_02.jpg", 7503, "CC BY-SA 4.0", "ArildV"],
+["skogskyrko", "스코그스키르코고르덴", "군나르 아스플룬드", "1940", "스톡홀름, 스웨덴", "eu", "m", ["숲", "명상적", "회랑", "고요한", "차경"], "숲으로 걸어 들어가는 묘역", "4/43/Skogskyrk_Grav_2006.jpg", 2560, "CC BY-SA 3.0", "Holger Ellgaard"],
+["casabatllo", "카사 바트요", "안토니 가우디", "1906", "바르셀로나, 스페인", "eu", "m", ["가우디처럼", "타일", "곡면", "원색 포인트", "다세대"], "용의 비늘을 덮은 집", "b/bf/Casa_Batllo_Overview_Barcelona_Spain_cut.jpg", 2244, "CC BY-SA 3.0", "ChristianSchd"],
+["parkguell", "구엘 공원", "안토니 가우디", "1914", "바르셀로나, 스페인", "eu", "m", ["가우디처럼", "타일", "곡면", "공공 마당 열기", "유쾌한"], "타일 조각 벤치의 언덕 공원", "3/33/Parc_guell_-_panoramio.jpg", 2048, "CC BY 3.0", "essetefano"],
+["artsciences", "발렌시아 예술과학도시", "산티아고 칼라트라바", "1998", "발렌시아, 스페인", "eu", "c", ["곡면", "흰 회벽", "물에 비친 빛", "복합 문화 공간", "대담한"], "물 위에 누운 흰 뼈대들", "5/58/City_of_Arts_and_Sciences_Valencia_in_2014.jpg", 5472, "CC BY-SA 4.0", "Choinowski"],
+["serralves", "세랄베스 미술관", "알바로 시자", "1999", "포르투, 포르투갈", "eu", "c", ["알바로 시자처럼", "흰 회벽", "갤러리", "천창", "차경"], "흰 벽 사이로 정원을 끌어들인 미술관", "1/10/Lonely_Dancer_(4937475766).jpg", 3470, "CC BY-SA 2.0", "Geerd-Olaf Freyer"],
+["leca", "레사 수영장", "알바로 시자", "1966", "마토지뉴스, 포르투갈", "eu", "m", ["알바로 시자처럼", "노출 콘크리트", "바다 조망", "지형 순응", "물소리"], "바위 사이에 넣은 바다 수영장", "9/93/Swimming_Pool_Piscinas_de_Marés_Leça_da_Palmeira_by_Álvaro_Siza_foto_Christian_Gänshirt.jpg", 2259, "CC BY-SA 4.0", "Christian Gänshirt"],
+["maat", "MAAT 리스본", "아만다 레베트", "2016", "리스본, 포르투갈", "eu", "c", ["곡면", "타일", "물가", "옥상 정원", "박물관"], "강가에 내려앉은 타일 파도", "2/21/MAAT.jpg", 3586, "CC BY-SA 4.0", "Stefan Bethke"],
+["pirelli", "피렐리 타워", "지오 폰티", "1958", "밀라노, 이탈리아", "eu", "m", ["고층 타워", "유리", "정제된", "사무실", "긴 바"], "날렵한 다이아몬드 평면의 탑", "0/0b/Mi-Milano-1959-Grattacielo-Pirelli.jpg", 1218, "Public domain", "Albertomos"],
+["velasca", "토레 벨라스카", "BBPR", "1958", "밀라노, 이탈리아", "eu", "m", ["고층 타워", "캔틸레버", "묵직한", "다세대", "도시적"], "중세 탑을 닮은 버섯 모양 고층", "2/2c/Torre_Velasca,_Milan.jpg", 3096, "CC BY-SA 4.0", "Thomas Ledl"],
+["casafascio", "카사 델 파쇼", "주세페 테라니", "1936", "코모, 이탈리아", "eu", "m", ["흰 회벽", "프레임", "단순한 박스", "정제된", "사무실"], "이탈리아 합리주의의 정수", "e/e4/Como_-_Casa_del_Fascio_-_27-09-2017.jpg", 2048, "Public domain", "Danny Alexander Lettkemann"],
+["chrysler", "크라이슬러 빌딩", "윌리엄 반 앨런", "1930", "뉴욕, 미국", "am", "m", ["고층 타워", "금속 패널", "탑", "밤의 등불", "기념비적"], "아르데코의 왕관", "f/f8/Chrysler_Building_NYC-20090519-RM-094845.jpg", 3000, "CC BY-SA 4.0", "Ermel"],
+["empirestate", "엠파이어 스테이트 빌딩", "슈리브, 램 앤 하먼", "1931", "뉴욕, 미국", "am", "m", ["고층 타워", "석재", "탑", "계단형", "기념비적"], "1년 만에 올린 102층", "1/10/Empire_State_Building_(aerial_view).jpg", 846, "Public domain", "Sam Valadi"],
+["flatiron", "플랫아이언 빌딩", "대니얼 버넘", "1902", "뉴욕, 미국", "am", "m", ["석재", "도심 협소지", "고층 타워", "코너 대지", "정제된"], "삼각 필지의 다리미 빌딩", "c/c3/Edificio_Fuller_(Flatiron)_en_2010_desde_el_Empire_State_crop_boxin.jpg", 1489, "Public domain", "Imelenchon"],
+["onewtc", "원 월드 트레이드 센터", "SOM", "2014", "뉴욕, 미국", "am", "c", ["고층 타워", "유리", "탑", "반사광", "기념비적"], "1,776피트의 새 탑", "1/10/One_World_Trade_Center_at_blue_hour,_New_York_City.jpg", 4705, "CC BY-SA 4.0", "Christian David"],
+["oculus", "오큘러스", "산티아고 칼라트라바", "2016", "뉴욕, 미국", "am", "c", ["곡면", "흰 회벽", "천창", "아트리움", "대담한"], "날개를 편 흰 새 같은 역", "b/b2/Oculus_World_Trade_Center_-_August_18_2016.jpg", 5184, "CC BY 2.0", "Anthony Quintano"],
+["vessel", "베슬", "토머스 헤더윅", "2019", "뉴욕, 미국", "am", "c", ["계단형", "오르며 보이는 풍경", "금속 패널", "유쾌한", "공공 마당 열기"], "154개 계단이 얽힌 벌집", "f/f6/Hudson_Yards_Plaza_March_2019_53.jpg", 3264, "CC BY-SA 4.0", "Epicgenius"],
+["newmuseum", "뉴뮤지엄", "SANAA", "2007", "뉴욕, 미국", "am", "c", ["SANAA처럼", "적층", "타공 메탈", "갤러리", "도심 협소지"], "어긋나게 쌓은 은빛 상자", "6/65/New_Museum_in_New_York_City_2015.JPG", 4000, "CC BY-SA 4.0", "MusikAnimal"],
+["whitney", "휘트니 미술관", "렌조 피아노", "2015", "뉴욕, 미국", "am", "c", ["렌조 피아노처럼", "테라스", "금속 패널", "갤러리", "물가"], "하이라인 끝의 계단형 테라스 미술관", "5/59/Whitney_Museum_of_American_Art_(49051573133).jpg", 2508, "CC BY 2.0", "Ajay Suresh"],
+["leverhouse", "레버 하우스", "SOM", "1952", "뉴욕, 미국", "am", "m", ["유리", "필로티", "고층 타워", "공공 마당 열기", "사무실"], "뉴욕 첫 유리 커튼월 사옥", "c/c7/Lever_House_390_Park_Avenue.jpg", 1434, "CC BY-SA 4.0", "Beyond My Ken"],
+["unhq", "유엔 본부", "오스카 니마이어 · 르 코르뷔지에 등", "1952", "뉴욕, 미국", "am", "m", ["고층 타워", "유리", "물가", "사무실", "기념비적"], "세계를 위한 얇은 판 하나", "8/8e/Midtown_Manhattan_Skyline_004_(cropped).jpg", 2257, "CC BY-SA 4.0", "Kidfly182"],
+["lakeshore", "레이크 쇼어 드라이브 860-880", "미스 반 데어 로에", "1951", "시카고, 미국", "am", "m", ["미스처럼", "고층 타워", "검은 철", "다세대", "물가"], "검은 철 멀리언의 쌍둥이 아파트", "5/53/860-880_Lake_Shore_Drive.jpg", 664, "CC BY-SA 2.5", "JeremyA"],
+["marinacity", "마리나 시티", "버트런드 골드버그", "1964", "시카고, 미국", "am", "m", ["원형", "고층 타워", "다세대", "물가", "유쾌한"], "옥수수 속대 같은 둥근 탑", "5/5f/Marina_City,_Chicago,_Illinois,_Estados_Unidos,_2012-10-20,_DD_01.jpg", 3026, "CC BY-SA 3.0", "Diego Delso"],
+["willis", "윌리스 타워", "SOM", "1974", "시카고, 미국", "am", "m", ["고층 타워", "검은 철", "모듈 반복", "적층", "기념비적"], "튜브 아홉 개를 묶은 탑", "7/7d/Sears_Tower,_Wacker_Drive_and_Jackson_Boulevard,_Chicago,_IL_-_54189600901.jpg", 3024, "CC BY-SA 2.0", "w_lemay"],
+["aqua", "아쿠아 타워", "지니 갱", "2009", "시카고, 미국", "am", "c", ["고층 타워", "곡면", "다세대", "테라스", "물가"], "물결치는 발코니의 탑", "2/25/Aqua_Tower,_Chicago.jpg", 2144, "CC BY-SA 3.0", "Juan Lanzagorta Vallín"],
+["crownhall", "크라운 홀", "미스 반 데어 로에", "1956", "시카고, 미국", "am", "m", ["미스처럼", "장스팬", "유리", "오픈 플랜", "학교"], "기둥 없는 하나의 큰 방", "a/a5/S.R._Crown_Hall.jpg", 1650, "CC BY-SA 3.0", "Arturo Duarte Jr."],
+["getty", "게티 센터", "리처드 마이어", "1997", "로스앤젤레스, 미국", "am", "c", ["흰 회벽", "석재", "산 조망", "박물관", "차경 정원"], "언덕 위의 흰 석회암 도시", "0/03/Aerial_Getty_Museum.jpg", 1731, "Public domain", "Jelson25"],
+["stahl", "스탈 하우스", "피에르 쾨니히", "1960", "로스앤젤레스, 미국", "am", "m", ["유리", "캔틸레버", "도시적", "원룸 같은 집", "산 조망"], "도시 야경 위에 떠 있는 유리 집", "2/22/Case_Study_House_No._22.JPG", 2512, "Public domain", "Ovs"],
+["milwaukee", "밀워키 미술관", "산티아고 칼라트라바", "2001", "밀워키, 미국", "am", "c", ["흰 회벽", "곡면", "물가", "박물관", "대담한"], "날개를 여닫는 미술관", "7/79/Milwaukee_Art_Museum_1_(Mulad).jpg", 2400, "CC BY 2.0", "Michael Hicks"],
+["nmaahc", "국립 아프리카계 미국인 역사문화박물관", "데이비드 아자예", "2016", "워싱턴 D.C., 미국", "am", "c", ["금속 패널", "그림자 놀이", "적층", "박물관", "기념비적"], "청동 격자로 감싼 왕관", "", 0, "", ""],
+["eastbuilding", "내셔널 갤러리 동관", "I. M. 페이", "1978", "워싱턴 D.C., 미국", "am", "m", ["석재", "아트리움", "매스 깎기", "갤러리", "기념비적"], "삼각형으로 쪼갠 대리석 미술관", "5/5b/East_Building_of_the_National_Gallery_of_Art.jpg", 3000, "CC BY-SA 4.0", "Difference engine"],
+["johnsonwax", "존슨 왁스 본사", "프랭크 로이드 라이트", "1939", "러신, 미국", "am", "m", ["프랭크 로이드 라이트처럼", "천창", "오픈 플랜", "사무실", "붉은 벽돌"], "연잎 기둥 숲의 사무실", "c/ce/Racine_October_2023_102_(S._C._Johnson_and_Son_Administration_Building_and_Research_Tower).jpg", 6000, "CC BY-SA 4.0", "Michael Barera"],
+["taliesinwest", "탈리에신 웨스트", "프랭크 로이드 라이트", "1937", "스코츠데일, 미국", "am", "m", ["프랭크 로이드 라이트처럼", "석재", "지형 순응", "작업실 겸 집", "깊은 처마"], "사막 돌로 지은 학교 겸 집", "d/df/Taliesin_West_Complex_DSCN2137.jpg", 1600, "Public domain", "Lar"],
+["unitytemple", "유니티 템플", "프랭크 로이드 라이트", "1908", "오크파크, 미국", "am", "m", ["프랭크 로이드 라이트처럼", "노출 콘크리트", "고측창", "교회 · 명상 공간", "단순한 박스"], "최초의 콘크리트 교회 중 하나", "4/41/Oak_Park_Il_Unity_Temple8.jpg", 2048, "CC BY 2.5", "IvoShandor"],
+["exeter", "필립스 엑서터 도서관", "루이스 칸", "1971", "엑서터, 미국", "am", "m", ["루이스 칸처럼", "도서관", "아트리움", "벽돌", "원형"], "거대한 원형 개구부의 책 상자", "c/c7/Phillips_Exeter_Library_atrium_Highsmith.jpg", 4738, "Public domain", "Carol M. Highsmith"],
+["cntower", "CN 타워", "존 앤드루스 등", "1976", "토론토, 캐나다", "am", "m", ["탑", "노출 콘크리트", "도시적", "기념비적", "밤의 등불"], "553m 콘크리트 탑", "", 0, "", ""],
+["biosphere", "몬트리올 바이오스피어", "버크민스터 풀러", "1967", "몬트리올, 캐나다", "am", "m", ["원형", "철골", "모듈 반복", "투명한", "박물관"], "철 삼각형으로 짠 거품", "4/4b/17-08-islcanus-RalfR-DSC_3883.jpg", 4000, "GFDL 1.2", "Ralf Roletschek"],
+["elcastillo", "치첸이트사 엘 카스티요", "마야", "10세기", "유카탄, 멕시코", "am", "t", ["석재", "계단형", "기념비적", "그림자 놀이", "신비로운"], "춘분에 뱀 그림자가 내려오는 피라미드", "5/51/Chichen_Itza_3.jpg", 9771, "CC BY-SA 4.0", "Daniel Schwen"],
+["gilardi", "카사 질라르디", "루이스 바라간", "1976", "멕시코시티, 멕시코", "am", "m", ["루이스 바라간처럼", "원색 포인트", "물에 비친 빛", "도심 협소지", "명상적"], "파랑과 분홍 벽 사이 실내 수영장", "f/f7/Casa_Gilardi_de_Luis_Barragán,_2024.jpg", 960, "CC BY-SA 4.0", "TSolange"],
+["anthropology", "국립인류학박물관", "페드로 라미레스 바스케스", "1964", "멕시코시티, 멕시코", "am", "m", ["하나의 큰 지붕", "중정형", "물소리", "박물관", "기념비적"], "기둥 하나가 받치는 우산 지붕", "9/94/Musee_National_Anthropologie-Entree.jpg", 800, "CC BY-SA 3.0", "kornemuz"],
+["congressbr", "브라질 국회의사당", "오스카 니마이어", "1960", "브라질리아, 브라질", "am", "m", ["오스카 니마이어처럼", "원형", "두 동으로 나누기", "기념비적", "흰 회벽"], "두 그릇과 쌍둥이 탑", "d/d0/Brazilian_National_Congress.jpg", 2130, "CC BY-SA 2.5", "Eurico Zimbres"],
+["niteroi", "니테로이 현대미술관", "오스카 니마이어", "1996", "니테로이, 브라질", "am", "c", ["오스카 니마이어처럼", "원형", "바다 조망", "갤러리", "램프"], "바다 절벽 위의 비행접시", "6/69/Contemporary_Art_Museum_in_Niteroi_City_4.jpg", 4000, "CC BY-SA 4.0", "Donatas Dabravolskas"],
+["masp", "상파울루 미술관 MASP", "리나 보 바르디", "1968", "상파울루, 브라질", "am", "m", ["들어 올리기", "장스팬", "공공 마당 열기", "갤러리", "원색 포인트"], "빨간 기둥 두 쌍이 들어 올린 상자", "7/75/Vista_aérea_de_la_Avenida_Paulista_de_São_Paulo_05.jpg", 8064, "CC BY-SA 4.0", "ProtoplasmaKid"],
+["sescpompeia", "SESC 폼페이아", "리나 보 바르디", "1986", "상파울루, 브라질", "am", "c", ["리모델링", "노출 콘크리트", "브릿지", "복합 문화 공간", "작은 창"], "공장을 동네 문화센터로", "e/e6/Lina_Bo_Bardi,_SESC_Pompéia_(5391718290).jpg", 2260, "CC BY 2.0", "paulisson miura"],
+["machupicchu", "마추픽추", "잉카", "1450", "쿠스코, 페루", "am", "t", ["석재", "계단형", "산 조망", "지형 순응", "신비로운"], "구름 위 능선의 돌 도시", "b/bb/Machu_Picchu,_2023_(012).jpg", 6960, "CC BY-SA 4.0", "Draceane"],
+["cardboard", "판지 성당", "반 시게루", "2013", "크라이스트처치, 뉴질랜드", "oc", "c", ["반 시게루처럼", "교회 · 명상 공간", "박공지붕", "재사용 재료", "가벼운"], "지진 뒤 종이관으로 세운 성당", "e/e2/Christchurch_Cardboard_Cathedral_1_(31310889165).jpg", 4897, "CC BY 2.0", "Tony Hisgett"],
+["parliamentau", "호주 국회의사당", "미첼/주르골라", "1988", "캔버라, 호주", "oc", "c", ["땅에 묻기", "옥상 정원", "기념비적", "지형 따라 접기", "공공 마당 열기"], "언덕 속에 묻고 지붕을 잔디로", "b/b6/Parliament_House_at_dusk,_Canberra_ACT.jpg", 5505, "CC BY-SA 4.0", "Thennicke"],
+["fedsquare", "페더레이션 스퀘어", "LAB 아키텍처", "2002", "멜버른, 호주", "oc", "c", ["비정형", "공공 마당 열기", "금속 패널", "복합 문화 공간", "도시적"], "조각난 삼각 패널의 광장", "5/55/Fed_Square,_Melbourne,_west_view_20230219_1.jpg", 7127, "CC BY-SA 4.0", "DXR"],
+["samil", "삼일빌딩", "김중업", "1970", "서울", "kr", "m", ["김중업처럼", "고층 타워", "검은 철", "유리", "사무실"], "미스의 시그램을 닮은 한국 첫 커튼월 고층", "", 0, "", ""],
+["peacegate", "세계평화의 문", "김중업", "1988", "서울", "kr", "m", ["김중업처럼", "하나의 큰 지붕", "기념비적", "처마", "공공 마당 열기"], "날개를 편 올림픽 공원의 문", "", 0, "", ""],
+["seoularts", "예술의전당", "김석철", "1988", "서울", "kr", "m", ["공연장", "원형", "산 조망", "기념비적", "복합 문화 공간"], "갓 모양 지붕의 오페라 하우스", "1/1f/Seoul_Arts_Center_20.JPG", 3264, "CC BY-SA 3.0", "Piotrus"],
+["sejong", "세종문화회관", "엄덕문", "1978", "서울", "kr", "m", ["공연장", "석재", "기념비적", "처마", "두꺼운 기단"], "광화문의 전통 문양 공연장", "0/03/Night_view_of_the_Sejong_Center_in_May_2025.jpg", 15423, "CC0", "DtSeoul"],
+["independence", "독립기념관", "김기웅", "1987", "천안", "kr", "m", ["기와", "처마", "기념비적", "두꺼운 기단", "박물관"], "거대한 기와지붕 아래 겨레의 집", "a/a1/Independence_Hall_of_Korea(main_hall).jpg", 4000, "CC BY-SA 4.0", "NYPD9990"],
+["warmemorial", "전쟁기념관", "이성관", "1994", "서울", "kr", "m", ["석재", "회랑", "중정형", "기념비적", "박물관"], "회랑으로 둘러싼 추모의 마당", "d/d3/The_War_Memorial_Of_Korea_240615_02.jpg", 3973, "CC BY-SA 4.0", "*Youngjin"],
+["assembly", "국회의사당", "김중업 등", "1975", "서울", "kr", "m", ["원형", "석재", "회랑", "기념비적", "물가"], "돔과 24개 기둥의 의사당", "b/bb/Seoul-National.Assembly-02.jpg", 1280, "CC BY 2.0", "frakorea"],
+["cheonggye", "청계천", "서울시", "2005", "서울", "kr", "c", ["물가", "물소리", "리모델링", "산책하듯 걷는 길", "도시적"], "고가도로를 걷어 낸 도심 물길", "4/4a/Cheonggyecheon_stream_at_sunrise_with_trees_in_Seoul.jpg", 6555, "CC BY-SA 4.0", "Basile Morin"],
+["gamcheon", "감천문화마을", "주민과 예술가", "1950s", "부산", "kr", "m", ["달동네 계단", "원색 포인트", "경사지", "골목 마을", "작은 덩어리 여럿"], "산비탈 계단의 알록달록 마을", "e/ee/Gamcheon_Houses,_2024.jpg", 4912, "CC BY-SA 4.0", "Bl00dnFl4mes"],
+["bukchon", "북촌 한옥마을", "도시형 한옥 집장사", "1930s", "서울", "kr", "m", ["한옥", "골목 마을", "기와", "마당", "오래된 마을"], "도심 언덕의 도시형 한옥 골목", "2/2e/Bukchon_Hanok_Village_01.jpg", 4898, "CC0", "Bgag"],
+["jeonjuhanok", "전주 한옥마을", "주민", "1930s", "전주", "kr", "m", ["한옥", "기와", "골목 마을", "처마", "오래된 마을"], "700여 채 한옥이 모인 동네", "2/22/Jeonju_Hanok_Maeul_02.jpg", 4666, "CC0", "Bernard Gagnon"],
+["sosu", "소수서원", "주세붕", "1543", "영주", "kr", "t", ["한옥", "물가", "숲", "소박한", "마당"], "한국 최초의 사액 서원", "6/6f/Sosu_Seowon_(3).jpg", 4725, "CC BY 2.0", "Kyle"],
+["seongeup", "성읍민속마을", "제주 주민", "15세기", "제주", "kr", "t", ["현무암", "돌담", "작은 덩어리 여럿", "골목 마을", "바람길"], "현무암 돌담과 초가의 제주 마을", "c/c5/Seongeup_Historic_Village.jpg", 5148, "CC BY-SA 4.0", "Trainholic"],
+["sema", "서울시립미술관", "옛 대법원 + 리모델링", "1928", "서울", "kr", "m", ["리모델링", "붉은 벽돌", "갤러리", "기념비적", "두꺼운 기단"], "옛 대법원 정면을 남긴 미술관", "6/6d/Seoul_Museum_of_Art_(2014).jpg", 1600, "CC BY 4.0", "Seoul Institute"],
+["arko", "아르코 미술관", "김수근", "1979", "서울", "kr", "m", ["김수근처럼", "붉은 벽돌", "갤러리", "작은 창", "묵직한"], "대학로의 붉은 벽돌 미술관", "", 0, "", ""],
+["leeufan", "이우환 미술관", "안도 다다오", "2010", "나오시마, 일본", "asia", "c", ["안도 다다오처럼", "땅에 묻기", "노출 콘크리트", "갤러리", "명상적"], "한국 작가 이우환을 위한 반지하 미술관", "3/39/Walkway_to_the_Lee_Ufan_Museum.jpg", 4000, "CC BY-SA 4.0", "Bea Phi"],
+["nijo", "니조성", "도쿠가와 이에야스", "1626", "교토, 일본", "asia", "t", ["목재", "처마", "회랑", "차경 정원", "기와"], "걸으면 새소리가 나는 마루", "d/dd/NinomaruPalace.jpg", 2592, "Public domain", ""],
+["ginkakuji", "긴카쿠지", "아시카가 요시마사", "1490", "교토, 일본", "asia", "t", ["목재", "차경 정원", "고요한", "소박한", "처마"], "은빛을 입히지 않은 은각", "0/06/Ginkakuji_Kyoto03-r.jpg", 3360, "CC BY 2.5", "Oilstreet"],
+["izumo", "이즈모 대사", "신토", "1744", "이즈모, 일본", "asia", "t", ["목재", "박공지붕", "기념비적", "두꺼운 기단", "신비로운"], "가장 오래된 신사 양식", "e/e6/Izumo-taisha14bs4592.jpg", 4592, "CC BY 2.5", "663highland"],
+["itsukushima", "이쓰쿠시마 신사", "다이라노 기요모리", "1168", "미야지마, 일본", "asia", "t", ["물가", "물에 비친 빛", "들어 올리기", "원색 포인트", "회랑"], "밀물에 떠 있는 붉은 신사", "e/ef/Itsukushima_Shrine_Torii_Gate_(13890465459).jpg", 4000, "CC BY-SA 2.0", "redlegsfan21"],
+["shirakawago", "시라카와고", "주민", "17세기", "기후, 일본", "asia", "t", ["박공지붕", "목재", "눈 많은 곳", "골목 마을", "들판"], "합장한 손 같은 초가 지붕 마을", "e/e6/Ogi_Shirakawa-gō,_Gifu,_Japan.jpg", 3200, "CC BY 2.5", "663highland"],
+["stmarytokyo", "도쿄 성 마리아 대성당", "단게 겐조", "1964", "도쿄, 일본", "asia", "m", ["곡면", "금속 패널", "교회 · 명상 공간", "천창", "빛의 길"], "십자 천창의 스테인리스 성당", "9/92/20030702_2_July_2003_Tokyo_Cathedorale_1_Tange_Kenzou_Sekiguchi_Tokyo_Japan_b.jpg", 2288, "CC BY-SA 3.0", "Wikimedia Commons"],
+["shizuokapress", "시즈오카 신문 방송빌딩", "단게 겐조", "1967", "도쿄, 일본", "asia", "m", ["모듈러", "캔틸레버", "탑", "도심 협소지", "사무실"], "원통 코어에 사무실을 꽂은 메타볼리즘", "f/f1/Shizuoka_Press_and_Broadcasting_Center.jpg", 1920, "CC BY-SA 4.0", "Southernhemisphere"],
+["aomori", "아오모리 현립미술관", "아오키 준", "2006", "아오모리, 일본", "asia", "c", ["흰 회벽", "땅에 묻기", "갤러리", "눈 많은 곳", "매스 깎기"], "흰 상자와 흙 구덩이의 미술관", "2/2b/140913_Aomori_Museum_of_Art_Japan03n.jpg", 6000, "CC BY 2.5", "663highland"],
+["sunnyhills", "서니힐스 재팬", "쿠마 겐고", "2013", "도쿄, 일본", "asia", "c", ["쿠마 겐고처럼", "목재 루버", "카페", "루버 사이 빛", "도심 협소지"], "지옥 짜임 나무 숲의 과자 가게", "", 0, "", ""],
+["humbleadmin", "졸정원", "왕헌신", "1513", "쑤저우, 중국", "asia", "t", ["차경 정원", "물가", "회랑", "물에 비친 빛", "고요한"], "물과 회랑의 문인 정원", "d/de/Suzhou_Zhuozheng_Yuan_2015.04.23_08-13-49.jpg", 5472, "CC BY-SA 4.0", "Zhangzhugang"],
+["tulou", "푸젠 토루", "하카족", "15~20세기", "푸젠, 중국", "asia", "t", ["흙벽", "원형", "중정형", "다세대", "기념비적"], "마을 전체가 사는 둥근 흙 성", "9/90/Three_round,_one_oval,_one_square_(16831811084).jpg", 4288, "CC BY 2.0", "Scott Edmunds"],
+["orientalpearl", "동방명주", "장시우", "1994", "상하이, 중국", "asia", "c", ["탑", "원형", "밤의 등불", "도시적", "유쾌한"], "구슬을 꿴 듯한 방송탑", "6/6d/Oriental_Pearl_Tower_20251126.jpg", 2093, "CC BY 4.0", "Supanut Arunoprayote"],
+["harbinopera", "하얼빈 대극원", "MAD", "2015", "하얼빈, 중국", "asia", "c", ["곡면", "흰 회벽", "공연장", "물가", "눈 많은 곳"], "눈 덮인 습지에서 솟은 흰 곡면", "b/be/Harbin_Grand_Theatre_2.jpg", 4000, "CC BY-SA 4.0", "EditQ"],
+["longmuseum", "롱 뮤지엄 웨스트 번드", "아틀리에 데샤우스", "2014", "상하이, 중국", "asia", "c", ["노출 콘크리트", "곡면", "리모델링", "갤러리", "물가"], "석탄 부두 위의 우산 볼트", "6/68/20251129_Long_Museum_West_Bund_(II).jpg", 6270, "CC BY 4.0", "Supanut Arunoprayote"],
+["kandalama", "헤리턴스 칸달라마", "제프리 바와", "1994", "담불라, 스리랑카", "asia", "c", ["건물 녹화", "숲", "물가", "스테이", "지형 순응"], "정글에 묻힌 덩굴 호텔", "5/54/View_from_Heritance_Kandalama_-_5829408332.jpg", 4592, "CC BY 2.0", "David Leo Veksler"],
+["lunuganga", "루누강가", "제프리 바와", "1998", "벤토타, 스리랑카", "asia", "c", ["차경 정원", "물가", "처마", "주말 주택", "고요한"], "50년 동안 가꾼 열대 정원", "6/63/Lunuganga_-_Bungalow_Back.jpg", 8064, "CC BY-SA 4.0", "Eco2004"],
+["taktsang", "파로 탁상 사원", "부탄", "1692", "파로, 부탄", "asia", "t", ["산 조망", "경사지", "흰 회벽", "교회 · 명상 공간", "신비로운"], "절벽에 매달린 호랑이 둥지", "a/a6/Paro_Taktsang,_Bhutan_(edited).jpg", 3819, "CC BY 2.0", "Nina R"],
+["finlandia", "핀란디아 홀", "알바 알토", "1971", "헬싱키, 핀란드", "eu", "m", ["알바 알토처럼", "석재", "공연장", "물가", "흰 회벽"], "흰 대리석의 콘서트홀", "c/cc/Finlandia_Hall-7141.jpg", 2386, "CC BY-SA 3.0", "Matthias Süßen"],
+["hallgrim", "할그림스키르캬", "구드욘 사무엘손", "1986", "레이캬비크, 아이슬란드", "eu", "m", ["탑", "노출 콘크리트", "교회 · 명상 공간", "기념비적", "계단형"], "현무암 기둥을 닮은 교회", "8/8b/Hallgrimskirkja_mai_2026.jpg", 1318, "CC BY 4.0", "Steinn"],
+["aros", "아로스 미술관", "슈미트 해머 라센", "2004", "오르후스, 덴마크", "eu", "c", ["원형", "원색 포인트", "옥상 정원", "갤러리", "유쾌한"], "지붕 위 무지개 산책길", "4/4f/Aros.Arhus.1.jpg", 3872, "CC BY-SA 3.0", "Erik Christensen"],
+["turningtorso", "터닝 토르소", "산티아고 칼라트라바", "2005", "말뫼, 스웨덴", "eu", "c", ["비틀기", "고층 타워", "흰 회벽", "다세대", "물가"], "90도 비틀어 오른 주거 탑", "8/8f/Turning_Torso2.jpg", 2129, "CC BY-SA 4.0", "Amjad Sheikh"],
+["kkl", "루체른 문화컨벤션센터", "장 누벨", "2000", "루체른, 스위스", "eu", "c", ["장 누벨처럼", "하나의 큰 지붕", "물가", "공연장", "반사광"], "호수 위로 날을 세운 지붕", "5/52/Luzern_asv2022-10_Kultur-_und_Kongresszentrum.jpg", 6622, "FAL", "A.Savin"],
+["paulklee", "파울 클레 센터", "렌조 피아노", "2005", "베른, 스위스", "eu", "c", ["렌조 피아노처럼", "곡면", "지형 따라 접기", "갤러리", "들판"], "언덕 세 개로 솟은 미술관", "d/d2/Zentrum_Paul_Klee_Bern_15.JPG", 2592, "CC BY 2.5", "Norbert Aepli"],
+["maisoncarree", "메종 카레", "로마인", "B.C.16", "님, 프랑스", "eu", "t", ["석재", "두꺼운 기단", "기념비적", "회랑", "박공지붕"], "가장 잘 남은 로마 신전", "f/f9/Maison_Carree_in_Nimes_(16).jpg", 4626, "CC BY-SA 4.0", "Krzysztof Golik"],
+["pontgard", "퐁 뒤 가르", "로마인", "1세기", "님, 프랑스", "eu", "t", ["석재", "브릿지", "물가", "기념비적", "모듈 반복"], "세 층 아치의 수도교", "4/42/Pont_du_Gard_BLS.jpg", 12648, "CC BY-SA 3.0", "Benh LIEU SONG"],
+["stonehenge", "스톤헨지", "신석기인", "B.C.2500", "윌트셔, 영국", "eu", "t", ["석재", "원형", "들판", "신비로운", "원초적"], "해의 길을 새긴 돌 원", "3/3c/Stonehenge2007_07_30.jpg", 2816, "CC BY 2.0", "garethwiscombe"],
+["selfridges", "셀프리지 버밍엄", "퓨처 시스템스", "2003", "버밍엄, 영국", "eu", "c", ["곡면", "금속 패널", "근린생활시설", "유쾌한", "비정형"], "은색 원반 1만 5천 개의 백화점", "e/ec/Selfridges_Building,_Birmingham_(2012).jpg", 4140, "CC BY-SA 2.0", "Bs0u10e0"],
+["londoneye", "런던 아이", "막스 바필드", "2000", "런던, 영국", "eu", "c", ["원형", "철골", "물가", "유쾌한", "오르며 보이는 풍경"], "템스강의 135m 관람차", "d/d6/London-Eye-2009.JPG", 4272, "CC BY-SA 3.0", "Khamtran"],
+["alcazar", "세비야 알카사르", "카스티야 왕실", "14세기", "세비야, 스페인", "eu", "t", ["타일", "중정형", "물에 비친 빛", "차경 정원", "회랑"], "무데하르 양식의 정원 궁전", "c/c9/Sevilla-2-2_(48040287512)-edit.jpg", 4299, "CC BY 2.0", "Ajay Suresh"],
+["milanduomo", "밀라노 대성당", "여러 세대", "1965", "밀라노, 이탈리아", "eu", "t", ["석재", "탑", "고측창", "교회 · 명상 공간", "기념비적"], "600년 걸린 대리석 첨탑 숲", "7/70/Milan_Cathedral_from_Piazza_del_Duomo.jpg", 4164, "CC BY-SA 3.0", "Jiuguang Wang"],
+["fondprada", "프라다 재단", "OMA", "2015", "밀라노, 이탈리아", "eu", "c", ["OMA처럼", "리모델링", "금속 패널", "갤러리", "유쾌한"], "금박 탑이 선 옛 증류소", "4/46/Fondazione_Prada,_Milan.jpg", 3000, "CC BY 4.0", "Jay Dixit"],
+["meteora", "메테오라 수도원", "정교회 수도사", "14세기", "테살리아, 그리스", "eu", "t", ["산 조망", "석재", "경사지", "교회 · 명상 공간", "신비로운"], "바위 기둥 위의 수도원", "7/7c/Meteora's_monastery_2.jpg", 7360, "CC BY-SA 4.0", "Stathis floros"],
+["allianz", "알리안츠 아레나", "헤르조그 & 드 뫼롱", "2005", "뮌헨, 독일", "eu", "c", ["헤르조그 & 드 뫼롱처럼", "원형", "밤의 등불", "모듈 반복", "공연장"], "색이 바뀌는 공기 쿠션 경기장", "e/e9/Allianz_Arena_2008-02-09.jpg", 3840, "CC BY-SA 4.0", "Michael 2015"],
+["villamuller", "빌라 뮐러", "아돌프 로스", "1930", "프라하, 체코", "eu", "m", ["흰 회벽", "스킵플로어", "단순한 박스", "함께 사는 집", "정제된"], "방마다 높이가 다른 라움플란", "0/00/Villa-Mueller-Prag-3.jpg", 1200, "CC BY 3.0", "Hpschaefer"],
+["winterpalace", "겨울궁전", "라스트렐리", "1762", "상트페테르부르크, 러시아", "eu", "t", ["긴 바", "원색 포인트", "물가", "기념비적", "중정형"], "에르미타주의 바로크 궁전", "", 0, "", ""],
+["kaufmanndesert", "카우프만 사막 주택", "리처드 노이트라", "1946", "팜스프링스, 미국", "am", "m", ["유리", "평지붕", "산 조망", "주말 주택", "캔틸레버"], "사막 위 수평의 유리 집", "8/8a/Kaufman_Desert_Home.jpg", 4032, "CC BY-SA 4.0", "Pmeulbroek"],
+["gatewayarch", "게이트웨이 아치", "에로 사리넨", "1965", "세인트루이스, 미국", "am", "m", ["곡면", "금속 패널", "기념비적", "탑", "물가"], "192m 스테인리스 아치", "0/00/St_Louis_night_expblend_cropped.jpg", 1620, "CC BY-SA 3.0", "Wikimedia Commons"],
+["dulles", "덜레스 국제공항", "에로 사리넨", "1962", "버지니아, 미국", "am", "m", ["곡면", "하나의 큰 지붕", "장스팬", "노출 콘크리트", "대담한"], "하늘로 휘어 오르는 지붕", "9/92/Washington_Dulles_International_Airport_at_Dusk.jpg", 2750, "CC BY-SA 3.0", "Joe Ravi"],
+["thorncrown", "손크라운 예배당", "페이 존스", "1980", "유레카 스프링스, 미국", "am", "m", ["목재", "숲", "교회 · 명상 공간", "유리", "높은 천장"], "숲속 나무 격자 유리 예배당", "8/81/Thorncrown_Chapel.jpg", 1879, "CC BY 2.0", "Clinton Steeds"],
+["thebroad", "더 브로드", "딜러 스코피디오 + 렌프로", "2015", "로스앤젤레스, 미국", "am", "c", ["그림자 놀이", "천창", "갤러리", "흰 회벽", "유쾌한"], "벌집 베일을 쓴 미술관", "c/c7/Nighttime_view_of_the_Broad_in_LA,_corner_dllu.jpg", 10874, "CC BY-SA 4.0", "Dllu"],
+["rothko", "로스코 예배당", "필립 존슨 등", "1971", "휴스턴, 미국", "am", "m", ["천창", "명상적", "교회 · 명상 공간", "벽돌", "어둠과 대비"], "로스코 그림 14점과 빛 하나", "2/23/Rothko_Chapel_-_1_August_2010.jpg", 3872, "CC BY 2.0", "David Van Horn"],
+["gracefarms", "그레이스 팜스", "SANAA", "2015", "코네티컷, 미국", "am", "c", ["SANAA처럼", "하나의 큰 지붕", "지형 따라 접기", "들판", "유리"], "언덕을 따라 흐르는 강 같은 지붕", "1/16/Grace_Farms_River_building.jpg", 6000, "CC BY-SA 4.0", "Adam.thatcher"],
+["monticello", "몬티첼로", "토머스 제퍼슨", "1809", "버지니아, 미국", "am", "t", ["붉은 벽돌", "원형", "산 조망", "함께 사는 집", "기념비적"], "대통령이 직접 설계한 언덕 위 집", "5/5a/Monticello_reflected.JPG", 2592, "CC BY 2.5", "Wikimedia Commons"],
+["vasconcelos", "바스콘셀로스 도서관", "알베르토 칼라치", "2006", "멕시코시티, 멕시코", "am", "c", ["도서관", "보이드", "적층", "철골", "숲"], "매달린 서가의 메가 도서관", "3/37/Biblioteca_Vasconcelos_e_Insignia.jpg", 4000, "CC BY-SA 4.0", "Omar_sansi"],
+["satelite", "사텔리테 탑", "루이스 바라간 · 마티아스 괴리츠", "1958", "멕시코시티, 멕시코", "am", "m", ["루이스 바라간처럼", "원색 포인트", "탑", "기념비적", "도시적"], "고속도로 옆의 색깔 조각 탑", "b/b9/Torres_de_Satélite_-_2.jpg", 2264, "CC BY-SA 4.0", "ProtoplasmaKid"],
+["bahaichile", "남미 바하이 사원", "하리리 폰타리니", "2016", "산티아고, 칠레", "am", "c", ["곡면", "유글라스", "교회 · 명상 공간", "산 조망", "밤의 등불"], "빛이 스미는 아홉 장의 꽃잎", "", 0, "", ""],
+["copan", "코판 빌딩", "오스카 니마이어", "1966", "상파울루, 브라질", "am", "m", ["오스카 니마이어처럼", "곡면", "다세대", "외부 차양", "도시적"], "S자로 물결치는 거대 아파트", "f/fb/Edifício_Copan_-_frente.jpg", 3240, "CC BY 2.0", "Pablo Trincado"],
+["teatrocolon", "콜론 극장", "프란체스코 탐부리니 등", "1908", "부에노스아이레스, 아르헨티나", "am", "m", ["공연장", "석재", "기념비적", "원형", "두꺼운 기단"], "세계 최고의 음향을 가진 오페라 극장", "8/82/Fachada_del_Teatro_Colón_en_Buenos_Aires,_Argentina.jpg", 3847, "CC0", "EEJC"],
+["artschools", "쿠바 국립예술학교", "리카르도 포로 등", "1965", "아바나, 쿠바", "am", "m", ["벽돌", "곡면", "학교", "숲", "작은 덩어리 여럿"], "벽돌 볼트로 짠 숲속 캠퍼스", "", 0, "", ""],
+["persepolis", "페르세폴리스", "다리우스 1세", "B.C.518", "파르스, 이란", "me", "t", ["석재", "두꺼운 기단", "기념비적", "회랑", "원초적"], "페르시아 제국의 의례 도시", "5/5c/2018-09-21_Iran,_Persepolis,_Tachara_(from_the_southeast).jpg", 3909, "CC BY 4.0", "Laurens R. Krol"],
+["hassan2", "하산 2세 모스크", "미셸 팽소", "1993", "카사블랑카, 모로코", "af", "c", ["탑", "바다 조망", "타일", "교회 · 명상 공간", "기념비적"], "바다 위에 지은 210m 첨탑의 모스크", "8/8a/Sunshine_on_mosque_Hassan_II_in_Casablanca,_Morocco_-_Flickr_-_Milamber's_portfolio.jpg", 3008, "CC BY 2.0", "Milamber's portfolio"],
+["kairouan", "카이로우안 대모스크", "아글라브 왕조", "836", "카이로우안, 튀니지", "af", "t", ["중정형", "회랑", "석재", "교회 · 명상 공간", "탑"], "북아프리카 모스크의 원형", "b/b2/Great_Mosque_of_Kairouan_Panorama_-_Grande_Mosquée_de_Kairouan_Panorama.jpg", 1024, "CC BY-SA 2.0", "Marek Szarejko"],
+["aitbenhaddou", "아이트 벤하두", "베르베르인", "17세기", "와르자자트, 모로코", "af", "t", ["흙벽", "경사지", "골목 마을", "탑", "원초적"], "흙으로 쌓은 언덕 위 요새 마을", "d/d5/Ksar_Aït_Benhaddou,_Marocco_(أيت_بن_حدو،_المغرب,_ⴰⵢⵜ_ⵃⴰⴷⴷⵓ).jpg", 8160, "CC BY-SA 4.0", "Petar Milošević"],
+["roseseidler", "로즈 자이들러 하우스", "해리 자이들러", "1950", "시드니, 호주", "oc", "m", ["필로티", "흰 회벽", "원색 포인트", "함께 사는 집", "숲"], "호주에 들어온 바우하우스", "4/48/RoseSeidlerHouse.jpg", 1280, "CC BY-SA 2.0", "Rory Hyde"],
+["tepapa", "테 파파 박물관", "자스막스", "1998", "웰링턴, 뉴질랜드", "oc", "c", ["박물관", "물가", "두 동으로 나누기", "석재", "공공 마당 열기"], "바다와 땅 사이의 국립박물관", "5/56/Museum_of_New_Zealand_Te_Papa_Tongarewa_unsaturated.jpg", 2048, "CC BY-SA 3.0", "Ulrich Lange"]];
 
 /* ===== 건축 도감: 세계 건물을 단어로 읽기 ===== */
-const BLD_REG={kr:'한국',asia:'아시아',me:'중동',eu:'유럽',am:'아메리카',oc:'오세아니아'}, BLD_ERA={t:'전통',m:'근대',c:'현대'};
+const BLD_REG={kr:'한국',asia:'아시아',me:'중동',eu:'유럽',am:'아메리카',oc:'오세아니아',af:'아프리카'}, BLD_ERA={t:'전통',m:'근대',c:'현대'};
 const BLDX=BLD.map(a=>({id:a[0],name:a[1],arch:a[2],year:a[3],city:a[4],reg:a[5],era:a[6],keys:a[7].filter(k=>DNA_BY[k]),line:a[8],p:a[9],w:a[10],lic:a[11],by:a[12]}));
 const BLD_BY=Object.fromEntries(BLDX.map(b=>[b.id,b]));
 function bldImg(b,w){ if(!b.p) return ''; const seg=b.p.split('/'), n=seg[2], en=encodeURIComponent(n), base='https://upload.wikimedia.org/wikipedia/commons/'; const tif=/\.tiff?$/i.test(n);
@@ -6247,22 +6568,306 @@ const BLDTH={}; function bldModel(b,w,h){ const k=b.id+'@'+w; if(BLDTH[k]) retur
 function bldShared(b,keys){ return b.keys.filter(k=>keys.includes(k)); }
 function bldSimilar(keys,n,skip){ const r=dnaAnalyze(keys); const A=r.arch[0], B2=r.arch[1];
   return BLDX.filter(b=>b.id!==skip).map(b=>{ const sh=bldShared(b,keys); let s=sh.length*3; if(A&&bldArch(b)===A.id) s+=2; if(B2&&bldArch(b)===B2.id) s+=1; return {b,sh,s}; }).filter(x=>x.sh.length||x.s>=2).sort((x,y)=>y.s-x.s||y.sh.length-x.sh.length).slice(0,n||8); }
-function bldCard(b,extra){ const img=bldImg(b,500); return `<button type="button" class="dnat-c" data-bld="${b.id}"><div class="ph${img?'':' gen'}">${img?`<img src="${img}" alt="${esc(b.name)}" loading="lazy" decoding="async">`:'<i class="ld"></i>'}<span class="tg">${img?BLD_REG[b.reg]+' · '+BLD_ERA[b.era]:'단어로 지은 모형'}</span><span class="mdl"></span></div><div class="bd"><b>${esc(b.name)}</b><span>${esc(b.arch)} · ${esc(b.year)}</span>${extra||`<div class="ks">${b.keys.slice(0,3).map(k=>`<em>${esc(k)}</em>`).join('')}</div>`}</div></button>`; }
+function bldCard(b,extra){ const img=bldImg(b,500); return `<button type="button" class="dnat-c" data-bld="${b.id}"><div class="ph${img?'':' gen'}">${img?`<img src="${img}" alt="${esc(b.name)}" loading="lazy" decoding="async">`:'<i class="ld"></i>'}<span class="tg">${img?esc(bldCountry(b))+' · '+esc(b.year):'단어로 지은 모형'}</span><span class="mdl"></span></div><div class="bd"><b>${esc(b.name)}</b><span>${esc(b.arch)} · ${esc(b.year)}</span>${extra||`<div class="ks">${b.keys.slice(0,3).map(k=>`<em>${esc(k)}</em>`).join('')}</div>`}</div></button>`; }
 /* 결과 안: 닮은 실제 건물 */
 function bldTwinHTML(){ const L=bldSimilar(state.dna,8); if(!L.length) return ''; return `<div class="dnat-tw zrv" id="dnTwinSec"><div class="dnv-h"><div><span class="lab-k">REAL BUILDINGS · 닮은 실제 건물</span><h3>내 단어와 닮은 건물 ${L.length}채</h3><p>도감 ${BLDX.length}채를 같은 단어로 읽어 두었어요. 겹치는 단어가 많은 순서예요. 눌러서 사진과 함께 보고, 그 건물처럼 지어 볼 수 있어요.</p></div><button class="btn sec" type="button" data-dngo="dnAtlas">도감 전체 보기</button></div><div class="dnat-row">${L.map(({b,sh})=>bldCard(b,`<div class="ks">${sh.slice(0,4).map(k=>`<em class="on">${esc(k)}</em>`).join('')}${sh.length?'':`<em>${esc(DNA_ARCH[bldArch(b)].name)}</em>`}</div>`)).join('')}</div></div>`; }
+/* ===== 도감 카테고리: 나라 · 지역 · 건축가 · 컨셉 · 시대 · 용도 + 카테고리별 시각 테마 ===== */
+function bldCountry(b){ const i=b.city.lastIndexOf(','); if(i<0) return b.reg==='kr'?'한국':b.city.trim(); return b.city.slice(i+1).trim(); }
+function bldYearN(b){ const y=String(b.year); let m;
+  if(/^B\.?C\.?/i.test(y)){ m=y.match(/(\d+)\s*세기/); if(m) return -(+m[1]*100-50); m=y.match(/\d+/); return m?-(+m[0]):-1000; }
+  if((m=y.match(/(\d+)\s*세기/))) return (+m[1]-1)*100+50; if(y==='조선') return 1600; m=y.match(/\d+/); return m?+m[0]:1900; }
+function bldArchs(b){ return b.arch.split(/\s*[·+,]\s*|\s+등$/).map(s=>s.replace(/\s+등$/,'').trim()).filter(Boolean); }
+const BLD_ERAS=[['ancient','고대',-9999,499],['trad','전통 · 중세',500,1799],['early','근대',1800,1945],['mod','모더니즘',1946,1979],['late','포스트모던 · 하이테크',1980,1999],['now','2000년 이후',2000,9999]];
+function bldEraB(b){ const y=bldYearN(b); return (BLD_ERAS.find(e=>y>=e[2]&&y<=e[3])||BLD_ERAS[5])[0]; }
+const BLD_CON=[
+ ['light','빛과 그림자',['물에 비친 빛','천창','고측창','빛 우물','그림자 놀이','반사광','빛의 길','루버 사이 빛','간접광','슬릿 창','어둠과 대비','밤의 등불','북측 고른 빛']],
+ ['water','물과 함께',['물가','물소리','바다 조망','물에 비친 빛']],
+ ['court','마당 · 중정',['중정형','마당','회랑','공공 마당 열기','선큰 가든','ㄱ자 배치']],
+ ['curve','곡면 · 비정형',['곡면','비정형','비틀기','지형 따라 접기','원형']],
+ ['tower','하늘로 솟다',['탑','고층 타워']],
+ ['earth','땅에 스미다',['땅에 묻기','지형 순응','경사지','계단형','선큰 가든']],
+ ['roof','큰 지붕 · 처마',['하나의 큰 지붕','처마','깊은 처마','박공지붕','장스팬']],
+ ['float','띄우고 비우다',['필로티','들어 올리기','캔틸레버','브릿지','보이드']],
+ ['green','숲과 녹색',['숲','건물 녹화','옥상 정원','들판','큰 나무 지키기','차경 정원']],
+ ['reuse','다시 쓰다',['리모델링','재사용 재료','재사용 벽돌']],
+ ['concrete','노출 콘크리트',['노출 콘크리트']],
+ ['brick','벽돌 · 흙',['벽돌','붉은 벽돌','흙벽','테라코타','재사용 벽돌']],
+ ['wood','나무',['목재','대나무','목재 루버','서까래','탄화목']],
+ ['stone','돌',['석재','두꺼운 기단','돌담','현무암']],
+ ['glass','유리 · 금속',['유리','금속 패널','철골','투명한','이중 외피','타공 메탈','검은 철','유글라스']],
+ ['hanok','한옥의 지혜',['한옥','기와','누마루','차경','툇마루','담','한지','담장']],
+ ['calm','명상 · 고요',['명상적','고요한','신비로운','교회 · 명상 공간']],
+ ['joy','유쾌한 색',['유쾌한','원색 포인트','타일']],
+ ['module','쌓고 반복하다',['모듈 반복','적층','모듈러','작은 덩어리 여럿','방들의 마을','슬래브 적층']],
+ ['monu','기념비',['기념비적']]];
+const BLD_USE=[
+ ['home','주거',/주택|하우스|House|빌라|아파트|해비타트|위니테|집$|마을|단지|레지던스|타워 팰리스/,['다세대','함께 사는 집','원룸 같은 집','1인 가구','주말 주택','작업실 겸 집','스테이']],
+ ['culture','미술관 · 박물관',/미술관|박물관|뮤지엄|갤러리|기념관|아트|전시|Museum/,['갤러리','박물관','작은 미술관']],
+ ['faith','종교 · 명상',/사$|사찰|성당|교회|모스크|사원|신궁|신사|대사$|채플|예배|파고다|수도원|템플|석굴|암$|탁상|교당|묘$|영묘|대성전|사당|종묘/,['교회 · 명상 공간']],
+ ['stage','공연 · 체육',/극장|오페라|콘서트|홀$|아레나|스타디움|경기장|체육관|필하모니|공연/,['공연장']],
+ ['work','업무 · 고층',/타워|빌딩|사옥|본사|센터$|트레이드|오피스/,['사무실','고층 타워']],
+ ['edu','교육 · 도서관',/대학|도서관|학교|캠퍼스|서원|향교|라이브러리|학당|연구소/,['도서관','학교','유치원','기숙사']],
+ ['civic','공공 · 도시',/시청|의사당|의회|광장|공원|청사|정부|국회|시티|천$|거리/,['공공 마당 열기','주민 센터']],
+ ['palace','궁궐 · 성 · 유적',/궁$|궁전|성$|성곽|산성|성채|피라미드|유적|콜로세움|장성|신전|왕릉|문$|첨성대|파르테논|판테온|요새|마추픽추|스톤헨지|페트라|페르세폴리스|성벽/,[]],
+ ['move','교통 · 인프라',/역$|역사|공항|터미널|다리|교$|정거장|아치$|수도교/,[]]];
+function bldUses(b){ if(b._u) return b._u; const n=b.name; b._u=BLD_USE.filter(u=>u[2].test(n)||u[3].some(k=>b.keys.includes(k))).map(u=>u[0]); return b._u; }
+/* ---- 패턴 (SVG 타일) ---- */
+function atSvg(w,h,body){ return `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' viewBox='0 0 ${w} ${h}'>${body}</svg>`)}")`; }
+function atFlower(x,y,c){ return `<g transform='translate(${x} ${y})'><circle r='11' fill='${c[0]}'/><g fill='${c[1]}'><ellipse rx='5' ry='13'/><ellipse rx='13' ry='5'/></g><g fill='${c[2]}' transform='rotate(45)'><ellipse rx='3' ry='9'/><ellipse rx='9' ry='3'/></g><circle r='3.6' fill='${c[3]}'/></g>`; }
+const AT_PAT={
+ dancheong:c=>atSvg(84,84,`<path d='M0 0L84 84M84 0L0 84M42 0L84 42L42 84L0 42Z' fill='none' stroke='${c[3]}' stroke-width='1.4' opacity='.55'/>${atFlower(42,42,c)}${[0,84].map(x=>[0,84].map(y=>atFlower(x,y,[c[1],c[0],c[3],c[2]])).join('')).join('')}`),
+ seigaiha:c=>{ const ring=(x,y)=>[22,16.5,11,5.5].map((r,i)=>`<circle cx='${x}' cy='${y}' r='${r}' fill='${i?'none':c[1]}' stroke='${c[0]}' stroke-width='1.6'/>`).join(''); return atSvg(44,22,ring(0,11)+ring(44,11)+ring(22,22)+ring(0,33)+ring(44,33)); },
+ fret:c=>atSvg(44,44,`<path d='M4 4H40V40H10V10H34V34H16V16H28V28H22' fill='none' stroke='${c[0]}' stroke-width='2.4' stroke-linecap='square'/>`),
+ girih:c=>atSvg(64,64,`<g fill='none' stroke='${c[0]}' stroke-width='1.6'><g transform='translate(32 32)'><rect x='-14' y='-14' width='28' height='28'/><rect x='-14' y='-14' width='28' height='28' transform='rotate(45)'/><circle r='6' stroke='${c[1]}'/></g><path d='M0 32H12M52 32H64M32 0V12M32 52V64M0 0L12 12M64 0L52 12M0 64L12 52M64 64L52 52' stroke='${c[1]}'/></g>`),
+ jali:c=>atSvg(30,30,`<g fill='none' stroke='${c[0]}' stroke-width='1.3'>${[[0,0],[30,0],[0,30],[30,30],[15,15]].map(([x,y])=>`<circle cx='${x}' cy='${y}' r='15'/>`).join('')}</g><circle cx='15' cy='15' r='2.4' fill='${c[1]}'/>`),
+ lotus:c=>atSvg(40,40,`<path d='M20 2L38 20L20 38L2 20Z' fill='none' stroke='${c[0]}' stroke-width='1.3'/><path d='M20 10C24 16 24 22 20 28C16 22 16 16 20 10Z' fill='${c[1]}' opacity='.7'/><circle cx='0' cy='0' r='2' fill='${c[0]}'/><circle cx='40' cy='40' r='2' fill='${c[0]}'/>`),
+ trencadis:c=>atSvg(70,70,`<g stroke='#fff' stroke-width='2.2' stroke-linejoin='round'>${['0,0 22,0 18,16 0,20','22,0 46,0 40,14 18,16','46,0 70,0 70,18 40,14','0,20 18,16 24,36 0,40','18,16 40,14 44,34 24,36','40,14 70,18 70,38 44,34','0,40 24,36 20,56 0,58','24,36 44,34 48,54 20,56','44,34 70,38 70,58 48,54','0,58 20,56 22,70 0,70','20,56 48,54 46,70 22,70','48,54 70,58 70,70 46,70'].map((p,i)=>`<polygon points='${p}' fill='${c[i%c.length]}'/>`).join('')}</g>`),
+ azulejo:c=>atSvg(48,48,`<rect width='48' height='48' fill='${c[1]}'/><g fill='none' stroke='${c[0]}' stroke-width='2'><circle cx='24' cy='24' r='9'/><path d='M24 0C30 10 30 14 24 15C18 14 18 10 24 0ZM24 48C30 38 30 34 24 33C18 34 18 38 24 48ZM0 24C10 18 14 18 15 24C14 30 10 30 0 24ZM48 24C38 18 34 18 33 24C34 30 38 30 48 24Z'/></g><circle cx='24' cy='24' r='3' fill='${c[0]}'/>`),
+ brick:c=>atSvg(48,24,`<g fill='none' stroke='${c[0]}' stroke-width='1.6'><path d='M0 .8H48M0 12.8H48M24 0V12M0 12V24M48 12V24'/></g>`),
+ bauhaus:c=>atSvg(96,96,`<circle cx='24' cy='24' r='16' fill='${c[0]}'/><rect x='56' y='10' width='28' height='28' fill='${c[1]}'/><path d='M10 86L26 58L42 86Z' fill='${c[2]}'/><rect x='58' y='60' width='26' height='6' fill='${c[3]}'/><rect x='58' y='72' width='14' height='6' fill='${c[3]}'/>`),
+ destijl:c=>atSvg(120,120,`<rect width='120' height='120' fill='${c[3]}'/><rect x='0' y='0' width='70' height='58' fill='${c[0]}'/><rect x='76' y='64' width='44' height='56' fill='${c[1]}'/><rect x='0' y='96' width='38' height='24' fill='${c[2]}'/><path d='M73 0V120M0 61H120M38 61V120M73 92H120M0 94H38' stroke='#111' stroke-width='5'/>`),
+ secession:c=>atSvg(36,36,`<rect x='3' y='3' width='12' height='12' fill='${c[0]}'/><rect x='21' y='21' width='12' height='12' fill='${c[0]}'/><rect x='21' y='3' width='12' height='12' fill='none' stroke='${c[1]}' stroke-width='1.4'/><rect x='3' y='21' width='12' height='12' fill='none' stroke='${c[1]}' stroke-width='1.4'/><circle cx='9' cy='9' r='2.5' fill='${c[1]}'/>`),
+ swiss:c=>atSvg(60,60,`<path d='M0 .5H60M.5 0V60' stroke='${c[0]}' stroke-width='1'/><path d='M27 22H33V27H38V33H33V38H27V33H22V27H27Z' fill='${c[1]}'/>`),
+ flake:c=>atSvg(64,64,`<g stroke='${c[0]}' stroke-width='1.4' stroke-linecap='round' fill='none'>${[0,60,120].map(a=>`<path transform='translate(32 32) rotate(${a})' d='M0 -11V11M0 -7L-3 -10M0 -7L3 -10M0 7L-3 10M0 7L3 10'/>`).join('')}${[0,60,120].map(a=>`<path transform='translate(4 6) rotate(${a})' d='M0 -4V4'/>`).join('')}</g>`),
+ skyline:c=>atSvg(24,24,`<rect x='3' y='3' width='6' height='8' fill='${c[0]}' opacity='.9'/><rect x='14' y='3' width='6' height='8' fill='${c[0]}' opacity='.35'/><rect x='3' y='14' width='6' height='8' fill='${c[0]}' opacity='.25'/><rect x='14' y='14' width='6' height='8' fill='${c[0]}' opacity='.7'/>`),
+ barragan:c=>atSvg(140,140,`<rect width='140' height='140' fill='${c[0]}'/><rect x='0' y='0' width='58' height='92' fill='${c[1]}'/><rect x='58' y='60' width='82' height='80' fill='${c[2]}'/><rect x='92' y='0' width='48' height='60' fill='${c[3]}'/>`),
+ bogolan:c=>atSvg(48,48,`<g fill='none' stroke='${c[0]}' stroke-width='2.2' stroke-linejoin='round'><path d='M0 10L8 4L16 10L24 4L32 10L40 4L48 10'/><path d='M0 38L8 32L16 38L24 32L32 38L40 32L48 38'/></g><g fill='${c[0]}'>${[6,18,30,42].map(x=>`<circle cx='${x}' cy='21' r='2.2'/>`).join('')}</g><path d='M0 46H48' stroke='${c[1]}' stroke-width='2' stroke-dasharray='4 4'/>`),
+ meander:c=>atSvg(40,24,`<path d='M0 20H8V4H32V16H16V10H24' fill='none' stroke='${c[0]}' stroke-width='2.2' stroke-linecap='square'/><path d='M24 10V20H40' fill='none' stroke='${c[0]}' stroke-width='2.2'/>`),
+ waves:c=>atSvg(80,24,`<path d='M0 12C10 2 20 2 30 12S50 22 60 12S70 2 80 12' fill='none' stroke='${c[0]}' stroke-width='1.8'/><path d='M0 22C10 14 20 14 30 22S50 30 60 22' fill='none' stroke='${c[1]}' stroke-width='1.1' opacity='.6'/>`),
+ paris:c=>atSvg(36,36,`<path d='M18 0L36 18L18 36L0 18Z' fill='none' stroke='${c[0]}' stroke-width='1'/><path d='M18 8C22 14 22 22 18 28C14 22 14 14 18 8Z' fill='none' stroke='${c[1]}' stroke-width='1.1'/><circle cx='18' cy='18' r='1.8' fill='${c[1]}'/>`),
+ arcade:c=>atSvg(48,48,`<path d='M4 48V22A20 20 0 0 1 44 22V48' fill='none' stroke='${c[0]}' stroke-width='2'/><path d='M0 6H48' stroke='${c[1]}' stroke-width='1.6'/><path d='M24 14V2' stroke='${c[1]}' stroke-width='1' opacity='.6'/>`),
+ stone:c=>atSvg(80,48,`<g fill='none' stroke='${c[0]}' stroke-width='1.4'><path d='M0 .7H80M0 16H80M0 32H80'/><path d='M22 0V16M58 0V16M8 16V32M40 16V32M70 16V32M28 32V48M62 32V48'/></g>`),
+ giwa:c=>atSvg(32,20,`<path d='M0 20A16 16 0 0 1 32 20' fill='none' stroke='${c[0]}' stroke-width='1.6'/><path d='M-16 10A16 16 0 0 1 16 10M16 10A16 16 0 0 1 48 10' fill='none' stroke='${c[1]}' stroke-width='1.2' opacity='.6'/>`),
+ deco:c=>atSvg(64,40,`<g fill='none' stroke='${c[0]}' stroke-width='1.4'>${[30,22,14,6].map(r=>`<path d='M${32-r} 40A${r} ${r} 0 0 1 ${32+r} 40'/>`).join('')}${[-60,-30,0,30,60].map(a=>`<path transform='translate(32 40) rotate(${a})' d='M0 -6V-34'/>`).join('')}</g>`),
+ formtie:c=>atSvg(90,60,`<rect x='.5' y='.5' width='89' height='59' fill='none' stroke='${c[0]}' stroke-width='1'/>${[15,45,75].map(x=>[15,45].map(y=>`<circle cx='${x}' cy='${y}' r='3' fill='${c[1]}'/>`).join('')).join('')}`),
+ glass:c=>atSvg(60,60,`<path d='M0 .5H60M.5 0V60M30 0V60' stroke='${c[0]}' stroke-width='1'/><path d='M8 52L24 12M36 52L50 18' stroke='${c[1]}' stroke-width='2.4' opacity='.45'/>`),
+ dots:c=>atSvg(28,28,`<circle cx='7' cy='7' r='4.5' fill='${c[0]}'/><circle cx='21' cy='21' r='2.2' fill='${c[0]}'/><circle cx='21' cy='7' r='1' fill='${c[1]}'/><circle cx='7' cy='21' r='3.2' fill='${c[1]}'/>`),
+ rays:c=>atSvg(120,120,`<g stroke='${c[0]}' stroke-width='1.2' opacity='.8'>${Array.from({length:12},(_,i)=>`<path d='M0 0L${(120*Math.cos(i*Math.PI/24)).toFixed(1)} ${(120*Math.sin(i*Math.PI/24)).toFixed(1)}'/>`).join('')}</g><circle r='20' fill='${c[1]}' opacity='.5'/>`),
+ leaf:c=>atSvg(56,56,`<g fill='${c[0]}'><path d='M14 26C14 14 24 8 30 8C30 18 24 26 14 26Z'/><path d='M40 50C36 42 40 34 48 32C50 40 46 48 40 50Z' fill='${c[1]}'/></g><path d='M14 26L26 14M40 50L46 38' stroke='${c[1]}' stroke-width='1'/>`),
+ grain:c=>atSvg(40,80,`<g fill='none' stroke='${c[0]}' stroke-width='1.1'><path d='M6 0C10 20 2 40 6 80M18 0C22 30 14 50 18 80M30 0C26 20 34 46 30 80'/><ellipse cx='18' cy='40' rx='4' ry='9' stroke='${c[1]}'/></g>`),
+ contour:c=>atSvg(120,80,`<g fill='none' stroke='${c[0]}' stroke-width='1.1'><path d='M0 70C30 50 50 76 80 58S110 40 120 46'/><path d='M0 54C26 36 54 60 82 42S112 26 120 30'/><path d='M0 38C24 22 56 44 84 26S114 10 120 14'/><path d='M0 22C22 8 58 28 86 10S116 -4 120 0'/></g>`),
+ vbars:c=>atSvg(30,60,`<rect x='4' y='0' width='3' height='60' fill='${c[0]}'/><rect x='14' y='10' width='2' height='50' fill='${c[1]}'/><rect x='22' y='24' width='4' height='36' fill='${c[0]}' opacity='.5'/>`),
+ arcs:c=>atSvg(80,80,`<g fill='none' stroke='${c[0]}' stroke-width='1.4'><path d='M0 80A80 80 0 0 1 80 0'/><path d='M0 60A60 60 0 0 1 60 0'/><path d='M0 40A40 40 0 0 1 40 0'/><path d='M20 80A60 60 0 0 1 80 20' stroke='${c[1]}'/></g>`),
+ ripple:c=>atSvg(90,90,`<g fill='none' stroke='${c[0]}' stroke-width='1.2'><circle cx='45' cy='45' r='10'/><circle cx='45' cy='45' r='22' opacity='.7'/><circle cx='45' cy='45' r='36' opacity='.4'/></g>`),
+ modules:c=>atSvg(40,40,`<rect x='2' y='2' width='16' height='16' fill='none' stroke='${c[0]}' stroke-width='1.4'/><rect x='22' y='2' width='16' height='16' fill='${c[1]}' opacity='.55'/><rect x='2' y='22' width='16' height='16' fill='${c[1]}' opacity='.3'/><rect x='22' y='22' width='16' height='16' fill='none' stroke='${c[0]}' stroke-width='1.4'/>`),
+ court:c=>atSvg(64,64,`<rect x='6' y='6' width='52' height='52' fill='none' stroke='${c[0]}' stroke-width='5'/><rect x='22' y='22' width='20' height='20' fill='${c[1]}' opacity='.5'/>`),
+ tracks:c=>atSvg(60,30,`<path d='M0 8H60M0 22H60' stroke='${c[0]}' stroke-width='1.6'/>${[5,17,29,41,53].map(x=>`<path d='M${x} 4V26' stroke='${c[1]}' stroke-width='1.4'/>`).join('')}`),
+ globe:c=>atSvg(100,100,`<g fill='none' stroke='${c[0]}' stroke-width='1'><circle cx='50' cy='50' r='40'/><ellipse cx='50' cy='50' rx='18' ry='40'/><path d='M10 50H90M16 30H84M16 70H84'/></g>`),
+ mono:c=>atSvg(64,64,`<path d='M0 63.5H64M63.5 0V64' stroke='${c[0]}' stroke-width='1'/><path d='M8 8H24M8 8V24' stroke='${c[1]}' stroke-width='1.6'/>`)
+};
+/* ---- 테마 정의: [제목, 영문, 한 줄, [배경1, 배경2, 포인트, 잉크], 패턴, 효과, 효과색] ---- */
+const T_KR=['#0f3d3a','#1b2d55','#e0473a','#f6edd8'], T_JP=['#141c33','#2b2f4a','#e2584b','#f4ece0'], T_CN=['#5a0f12','#2a0608','#f2c14e','#fde9c2'];
+const AT_TH={
+ all:['세계 건축 도감','WORLD ATLAS','4,500년, 55개 나라의 건물을 같은 단어로 읽어 둔 도감이에요. 나라·건축가·컨셉으로 골라 보면 그 세계의 색과 무늬가 펼쳐져요.',['#14161d','#22283a','#7cc4ff','#f2f4f8'],'globe','plexus',['#7cc4ff','#ffb341','#ff7a45']],
+ /* 나라 */
+ '한국':['한국','KOREA · 韓國','단청의 오방색, 처마의 곡선, 비워 둔 마당. 자연을 빌려 오는 차경(借景)과 땅을 거스르지 않는 배치 — 오래된 지혜가 지금의 벽돌과 콘크리트로 이어져요.',T_KR,'dancheong','petal',['#ffffff','#ffd9e2','#f7a8bb','#ffe9a8'],['#e0473a','#2f8a74','#2b4c8c','#f0c040']],
+ '일본':['일본','JAPAN · 日本','목조의 정밀함과 여백의 미(間, 마). 신사의 나무 기둥에서 안도 다다오의 노출 콘크리트까지 — 비움으로 빛과 계절을 담아요.',T_JP,'seigaiha','petal',['#ffd1dc','#ffb7c8','#fff0f4'],['#e2584b','#f4ece0','#8fa3c8']],
+ '중국':['중국','CHINA · 中國','붉은 기둥과 금빛 지붕, 축을 따라 겹겹이 이어지는 마당. 정원과 회랑의 나라가 이제 세계에서 가장 대담한 곡면을 짓고 있어요.',T_CN,'fret','spark',['#ffcf5a','#ff8a3d','#ffe7a3']],
+ '홍콩':['홍콩','HONG KONG · 香港','바다와 산 사이 좁은 땅에 솟은 수직 도시. 하이테크 타워의 실험실이에요.',['#300a0e','#0e1a2c','#f2c14e','#fde9c2'],'fret','spark',['#ffcf5a','#ff5a5a','#7cc4ff']],
+ '대만':['대만','TAIWAN · 臺灣','대나무 마디를 닮은 마천루와 동굴 같은 극장 — 전통의 상징을 새 구조로 번역해요.',['#10302a','#1a1f33','#e5a93b','#f2f0e6'],'fret','spark',['#ffd36a','#7de0c0']],
+ '인도':['인도','INDIA','붉은 사암과 흰 대리석, 빛을 거르는 돌 격자(잘리). 계단 우물과 무굴 정원, 그리고 르 코르뷔지에와 루이스 칸이 남긴 근대의 실험.',['#5a1d0e','#2b0f2e','#ffa31a','#fff0d6'],'jali','petal',['#ffa31a','#ff6a1a','#ffd23f','#ff3d6e']],
+ '방글라데시':['방글라데시','BANGLADESH','물 위에 뜬 벽돌과 콘크리트의 요새 — 루이스 칸의 국회의사당.',['#2b1a12','#0e2a26','#e08a4c','#f6e8da'],'brick','dust',['#e9a36b','#f4d1a8']],
+ '스리랑카':['스리랑카','SRI LANKA','열대 모더니즘. 정원과 건축의 경계를 지운 제프리 바와의 섬.',['#0d2e1f','#163a2a','#e0b84f','#eef4e8'],'leaf','leaf',['#4fae6a','#9bd36b','#e0b84f']],
+ '부탄':['부탄','BHUTAN','절벽에 매달린 수도원과 바람에 나부끼는 오색 기도 깃발.',['#2a1a12','#3a2a1e','#e0b84f','#f6eee2'],'lotus','confetti',['#2a6ee8','#ffffff','#e5332a','#2fa84f','#f6c21c']],
+ '태국':['태국','THAILAND','금빛 첨탑과 자기 조각으로 덮인 사원 — 햇빛을 반짝임으로 바꾸는 건축.',['#3a2408','#1b1c3a','#f2c14e','#fff3d6'],'lotus','gold',['#ffd86a','#fff2b8']],
+ '캄보디아':['캄보디아','CAMBODIA','밀림 속 돌의 우주 — 앙코르 와트의 회랑과 연꽃 탑.',['#2a2410','#18261a','#d9b25a','#f3ecd6'],'lotus','gold',['#e8c66e','#c8f0a0']],
+ '미얀마':['미얀마','MYANMAR','하늘로 솟은 황금 종 — 쉐다곤 파고다.',['#3a2408','#2a1030','#f5c542','#fff3d6'],'lotus','gold',['#ffd86a','#fff2b8']],
+ '인도네시아':['인도네시아','INDONESIA','층층이 오르는 돌의 만다라 — 보로부두르.',['#26240e','#13261c','#d9b25a','#f3ecd6'],'lotus','gold',['#e8c66e','#c8f0a0']],
+ '말레이시아':['말레이시아','MALAYSIA','이슬람 기하학을 품은 쌍둥이 타워.',['#14223a','#1d1430','#c9d6ea','#f2f4f8'],'girih','gold',['#ffffff','#c9d6ea']],
+ '싱가포르':['싱가포르','SINGAPORE','정원 속의 도시. 하늘 정원과 수직 숲이 고층 건물을 덮어요.',['#0b2a24','#10223a','#7de0a0','#effaf4'],'leaf','leaf',['#4fd18b','#9bf0b5','#ffd86a']],
+ 'UAE':['아랍에미리트','UAE','사막 위의 미래 도시 — 모래바람 속 기록적인 높이와 기하학 문양.',['#3a2a12','#1d1a2e','#e8b45a','#fbf1e0'],'girih','dust',['#f4cf8a','#e8b45a','#fff1d6']],
+ '카타르':['카타르','QATAR','사막의 장미와 이슬람 기하학 — 빛을 조각하는 박물관.',['#3a2a12','#1d1a2e','#e8b45a','#fbf1e0'],'girih','dust',['#f4cf8a','#e8b45a']],
+ '이란':['이란','IRAN','청록 타일로 덮인 돔과 무카르나스 — 페르시아의 하늘빛 기하학.',['#0b2d3a','#14183a','#3fc6d6','#eafaff'],'girih','spark',['#5fe0ee','#ffd86a']],
+ '튀르키예':['튀르키예','TÜRKİYE','동서가 만나는 돔의 도시. 하기아 소피아와 이즈니크 타일.',['#0e2240','#2a1430','#5aa8ff','#eef4ff'],'girih','dust',['#9cc8ff','#ffd86a']],
+ '요르단':['요르단','JORDAN','붉은 사암 절벽을 깎아 만든 도시, 페트라.',['#4a1f14','#2a1410','#f08a5a','#fbeee6'],'stone','dust',['#f4b08a','#f08a5a']],
+ '아제르바이잔':['아제르바이잔','AZERBAIJAN','땅에서 솟아 흐르는 하얀 곡면 — 헤이다르 알리예프 센터.',['#1a2230','#2a3040','#e6eef8','#ffffff'],'arcs','dust',['#ffffff','#c9d6ea']],
+ '예루살렘':['예루살렘','JERUSALEM','세 종교의 성지, 황금 돔.',['#3a2a12','#14223a','#f2c14e','#fbf1e0'],'girih','gold',['#ffd86a','#9cc8ff']],
+ '이집트':['이집트','EGYPT','돌로 쌓은 영원 — 피라미드와 암굴 신전, 그리고 빛의 도서관.',['#4a3212','#2a1c0a','#f2c14e','#fbf1dc'],'bogolan','dust',['#f4d08a','#e8b45a']],
+ '모로코':['모로코','MOROCCO','흙빛 카스바와 젤리주 타일, 대서양 위의 모스크.',['#5a2414','#123a3a','#3fbfa0','#fbeee2'],'girih','dust',['#f4b08a','#3fbfa0']],
+ '튀니지':['튀니지','TUNISIA','북아프리카 가장 오래된 모스크의 마당.',['#4a3212','#1a2a3a','#e8b45a','#fbf1dc'],'girih','dust',['#f4d08a']],
+ '말리':['말리','MALI','해마다 진흙을 덧발라 지키는 세계 최대의 흙 건축.',['#5a2e14','#3a1e0e','#e89a4a','#fbeee2'],'bogolan','dust',['#e9a36b','#f4d1a8']],
+ '에티오피아':['에티오피아','ETHIOPIA','바위를 위에서 아래로 파 내려간 십자가 교회.',['#4a2614','#2a1a10','#e08a4c','#fbeee2'],'bogolan','dust',['#e9a36b']],
+ '남아공':['남아프리카공화국','SOUTH AFRICA','곡물 사일로를 깎아 낸 미술관 — 재생의 상징.',['#2a2420','#1a2430','#e0b84f','#f4f0ea'],'bogolan','dust',['#f4d08a','#c9d6ea']],
+ '부르키나파소':['부르키나파소','BURKINA FASO','마을이 함께 구운 흙벽돌과 떠 있는 지붕 — 프란시스 케레의 학교.',['#5a2e14','#3a1e0e','#e89a4a','#fbeee2'],'bogolan','dust',['#e9a36b','#f4d1a8']],
+ '프랑스':['프랑스','FRANCE','고딕의 빛, 오스만의 대로, 그리고 르 코르뷔지에와 장 누벨의 실험. 빛과 그림자를 연출하는 나라.',['#14203a','#2a1a2e','#f0c987','#f6f0e6'],'paris','bokeh',['#ffd9a0','#f7b0c0','#9cc8ff']],
+ '이탈리아':['이탈리아','ITALY','아치와 돔, 대리석과 테라코타. 로마에서 르네상스, 밀라노의 모더니즘까지.',['#4a2416','#2a1c12','#f0a66a','#fbf0e4'],'arcade','dust',['#f4c08a','#ffe2b8']],
+ '바티칸':['바티칸','VATICAN','르네상스와 바로크가 완성한 돔과 열주.',['#2a1c12','#3a2a1a','#f2c14e','#fbf1e0'],'arcade','gold',['#ffd86a']],
+ '스페인':['스페인','SPAIN','가우디의 트렌카디스 모자이크, 이슬람의 정원, 대담한 현대 구조 — 색과 곡선의 나라.',['#3a1030','#0e2a4a','#ffb020','#fff4e0'],'trencadis','confetti',['#ff5a3c','#ffb020','#2bb3a3','#3a7bd5','#ff7ab0']],
+ '포르투갈':['포르투갈','PORTUGAL','파란 아줄레주와 하얀 벽, 대서양의 빛 — 알바로 시자의 고요.',['#0e2a52','#14365e','#ffffff','#eef4ff'],'azulejo','bubble',['#ffffff','#9cc8ff']],
+ '영국':['영국','UNITED KINGDOM','붉은 벽돌과 고딕 첨탑, 그리고 하이테크의 고향. 비 오는 도시의 건축.',['#2a1a18','#1c2230','#d9634a','#f2ece6'],'brick','rain',['#c9d6ea']],
+ '독일':['독일','GERMANY','바우하우스의 원·사각·삼각. 기능이 형태가 된 근대건축의 출발점.',['#1a1a1a','#2a2a2a','#e5332a','#f4f0e6'],'bauhaus','shapes',['#e5332a','#f6c21c','#2a5cd8','#ffffff'],['#e5332a','#f6c21c','#2a5cd8','#f4f0e6']],
+ '오스트리아':['오스트리아','AUSTRIA','빈 분리파의 황금빛 장식과, 장식을 죄악이라 한 아돌프 로스.',['#2a2410','#1a1a1a','#e0b84f','#f6f0e0'],'secession','gold',['#ffd86a','#fff2b8'],['#e0b84f','#1a1a1a']],
+ '스위스':['스위스','SWITZERLAND','정밀한 그리드와 재료의 분위기 — 줌터와 헤르조그 & 드 뫼롱의 나라.',['#2a0e10','#1a1a1a','#ff3b3b','#ffffff'],'swiss','snow',['#ffffff'],['#ffffff33','#ff3b3b']],
+ '체코':['체코','CZECHIA','춤추는 집과 로스의 라움플란 — 프라하의 실험들.',['#1a1a1a','#2a2030','#e5332a','#f4f0e6'],'bauhaus','shapes',['#e5332a','#f6c21c','#2a5cd8'],['#e5332a','#f6c21c','#2a5cd8','#f4f0e6']],
+ '네덜란드':['네덜란드','NETHERLANDS','몬드리안의 데 스틸, 그리고 MVRDV와 OMA의 대담한 적층.',['#f4f0e6','#e8e2d4','#e5332a','#111111'],'destijl','shapes',['#e5332a','#f6c21c','#2a5cd8','#111111'],['#e5332a','#f6c21c','#2a5cd8','#f4f0e6']],
+ '덴마크':['덴마크','DENMARK','휘게의 나무와 빛, 그리고 BIG의 유쾌한 실용주의.',['#14243a','#1c2c40','#ff6b5a','#f2f6fa'],'flake','snow',['#ffffff'],['#ffffff','#9cc8ff']],
+ '핀란드':['핀란드','FINLAND','숲과 호수, 알바 알토의 나무 곡면. 바위 속 교회와 나무 예배당.',['#0e2430','#14303a','#7de0c0','#eefaf6'],'grain','snow',['#ffffff'],['#bfe8f0','#7de0c0']],
+ '스웨덴':['스웨덴','SWEDEN','숲의 묘지와 붉은 벽돌 시청 — 북유럽 고전주의.',['#14243a','#1c2c40','#f2c14e','#f2f6fa'],'flake','snow',['#ffffff'],['#ffffff','#f2c14e']],
+ '노르웨이':['노르웨이','NORWAY','바이킹의 목조 교회와 빙하를 닮은 오페라 지붕.',['#0e1c2e','#14283c','#9cd8ff','#f2f8fc'],'flake','snow',['#ffffff'],['#ffffff','#9cd8ff']],
+ '아이슬란드':['아이슬란드','ICELAND','현무암 기둥을 닮은 교회와 오로라 아래의 유리 콘서트홀.',['#0a1a2a','#10283a','#7dffc8','#eefaff'],'flake','aurora',['#7dffc8','#7cc4ff','#c08aff'],['#ffffff','#7dffc8']],
+ '그리스':['그리스','GREECE','기둥과 비례 — 서양 건축의 문법이 시작된 곳.',['#0e2a52','#1a3a6a','#ffffff','#f4f8ff'],'meander','dust',['#ffffff','#cfe2ff']],
+ '러시아':['러시아','RUSSIA','양파 돔과 겨울 궁전 — 눈 속의 색채.',['#3a0e14','#14223a','#f2c14e','#fbf1e0'],'meander','snow',['#ffffff'],['#f2c14e','#ffffff']],
+ '미국':['미국','UNITED STATES','마천루의 고향. 시카고와 뉴욕의 스카이라인, 라이트의 초원 주택, 캘리포니아의 유리 집.',['#0b1020','#141c34','#ffb341','#eef2fa'],'skyline','windows',['#ffd27a','#ffb341','#9cc8ff']],
+ '캐나다':['캐나다','CANADA','쌓아 올린 집들의 도시 실험, 해비타트 67과 지오데식 돔.',['#14243a','#1c2c40','#ff5a5a','#f2f6fa'],'skyline','snow',['#ffffff'],['#ffffff','#ff5a5a']],
+ '멕시코':['멕시코','MEXICO','루이스 바라간의 분홍·노랑 벽, 마야의 계단 피라미드 — 햇빛 속 강렬한 색.',['#c2185b','#6a1b9a','#ffca28','#fff4e6'],'barragan','confetti',['#ff4f8b','#ffca28','#ff7a1a','#8a5cff','#2bd3c0'],['#ff4f8b','#ffca28','#ff7a1a','#8a5cff']],
+ '쿠바':['쿠바','CUBA','혁명 후 지은 벽돌 돔의 예술학교.',['#8a1d3a','#1a4a6a','#ffca28','#fff4e6'],'barragan','confetti',['#ff4f8b','#ffca28','#2bd3c0'],['#ff4f8b','#ffca28','#2bd3c0','#ff7a1a']],
+ '브라질':['브라질','BRAZIL','니마이어의 자유로운 곡선과 리나 보 바르디의 대중을 위한 콘크리트.',['#0b3a24','#0e2a4a','#ffd23f','#effaf0'],'arcs','bokeh',['#4fd18b','#ffd23f','#7cc4ff']],
+ '칠레':['칠레','CHILE','안데스를 바라보는 빛의 신전.',['#14243a','#2a1a2e','#ffd9a0','#f6f0e6'],'waves','bokeh',['#ffd9a0','#9cc8ff']],
+ '아르헨티나':['아르헨티나','ARGENTINA','남미의 파리, 부에노스아이레스의 오페라 극장.',['#14203a','#2a1a2e','#f0c987','#f6f0e6'],'paris','bokeh',['#ffd9a0','#9cc8ff']],
+ '페루':['페루','PERU','칼날 하나 들어가지 않는 잉카의 돌쌓기, 구름 위의 마추픽추.',['#1e2a1a','#2a2418','#c8d98a','#f2f4e6'],'stone','dust',['#e8e2c0','#c8d98a']],
+ '호주':['호주','AUSTRALIA','바다를 향해 펼친 조개껍데기 지붕 — 시드니 오페라하우스.',['#0b2a4a','#0e3a5a','#ffd23f','#eef8ff'],'waves','bubble',['#ffffff','#9cd8ff']],
+ '뉴질랜드':['뉴질랜드','NEW ZEALAND','지진 후 종이관으로 다시 세운 대성당, 바다를 품은 국립박물관.',['#0b2a3a','#103a3a','#7de0c0','#eefaf6'],'waves','bubble',['#ffffff','#9cf0d8']],
+ /* 지역 */
+ r_kr:['한국','KOREA','',T_KR,'dancheong','petal',['#ffffff','#ffd9e2','#f7a8bb'],['#e0473a','#2f8a74','#2b4c8c','#f0c040']],
+ r_asia:['아시아','ASIA','목조와 지붕, 사원과 정원 — 그리고 지금 세계에서 가장 빠르게 솟는 도시들.',['#2a1408','#141c33','#f2c14e','#fff3d6'],'lotus','gold',['#ffd86a','#ffb7c8']],
+ r_me:['중동','MIDDLE EAST','기하학 문양과 돔, 사막의 빛 — 무한을 그리는 패턴.',['#3a2a12','#14223a','#e8b45a','#fbf1e0'],'girih','dust',['#f4cf8a','#e8b45a']],
+ r_af:['아프리카','AFRICA','흙과 돌, 공동체가 함께 짓는 건축. 피라미드에서 흙벽돌 학교까지.',['#5a2e14','#3a1e0e','#e89a4a','#fbeee2'],'bogolan','dust',['#e9a36b','#f4d1a8']],
+ r_eu:['유럽','EUROPE','신전과 대성당, 바우하우스와 하이테크 — 서양 건축사의 거의 모든 장.',['#1a1c2a','#2a2030','#f0c987','#f6f0e6'],'arcade','bokeh',['#ffd9a0','#9cc8ff']],
+ r_am:['아메리카','AMERICAS','마천루와 초원의 집, 라틴의 색과 곡선.',['#0b1020','#141c34','#ffb341','#eef2fa'],'skyline','windows',['#ffd27a','#ffb341','#9cc8ff']],
+ r_oc:['오세아니아','OCEANIA','바다와 하늘 사이의 지붕들.',['#0b2a4a','#0e3a5a','#ffd23f','#eef8ff'],'waves','bubble',['#ffffff','#9cd8ff']],
+ /* 컨셉 */
+ c_light:['빛과 그림자','LIGHT & SHADOW','건축의 가장 오래된 재료는 빛이에요. 천창, 고측창, 틈 하나로 공간의 감정이 바뀌어요.',['#0c0c10','#1c1a14','#ffd27a','#fff8e6'],'rays','rays',['#ffe6a8']],
+ c_water:['물과 함께','WITH WATER','물에 비친 건물, 물소리가 들리는 마당 — 물은 건축을 두 배로 만들어요.',['#0b2a3a','#0e3a5a','#7cd8ff','#eef8ff'],'waves','ripple',['#bfeaff','#7cd8ff']],
+ c_court:['마당 · 중정','COURTYARD','안으로 비워 둔 하늘. 동서양 모두 마당을 중심으로 삶을 모았어요.',['#2a2416','#1c2a22','#e8c66e','#f6f2e6'],'court','petal',['#f4e2a8','#ffffff'],['#e8c66e','#9bd36b']],
+ c_curve:['곡면 · 비정형','CURVES','직선을 벗어난 순간 건물은 풍경이 돼요. 가우디부터 자하 하디드까지.',['#1a1430','#0e2440','#ff8ad8','#f6f0ff'],'arcs','plexus',['#ff8ad8','#9cc8ff']],
+ c_tower:['하늘로 솟다','TOWERS','탑과 마천루 — 땅의 기준점이 되는 수직의 건축.',['#0b1020','#141c34','#9cc8ff','#eef2fa'],'vbars','windows',['#ffd27a','#9cc8ff']],
+ c_earth:['땅에 스미다','INTO THE EARTH','땅에 묻고, 경사를 따라 접고, 지형에 순응하는 건축.',['#1e2418','#2a2418','#c8b27a','#f2efe6'],'contour','dust',['#e0d2a8','#c8b27a']],
+ c_roof:['큰 지붕 · 처마','THE GREAT ROOF','하나의 지붕 아래 모든 것을 모으는 힘. 처마의 그늘과 장스팬.',['#1a1a24','#2a2418','#e8a86a','#f6f0e6'],'giwa','rain',['#c9d6ea']],
+ c_float:['띄우고 비우다','LIFT & VOID','필로티로 띄우고, 캔틸레버로 내밀고, 가운데를 비우다.',['#101820','#1a2430','#7cffd8','#eefaf6'],'modules','plexus',['#7cffd8','#ffffff']],
+ c_green:['숲과 녹색','GREEN','지붕 위 정원, 수직 숲, 큰 나무를 지키는 배치.',['#0b2a1a','#143a24','#9bf0b5','#effaf4'],'leaf','leaf',['#4fd18b','#9bf0b5','#d8f0a0']],
+ c_reuse:['다시 쓰다','REUSE','공장은 미술관으로, 사일로는 박물관으로. 가장 친환경적인 건물은 이미 있는 건물이에요.',['#1e1e1a','#2a2620','#e0a060','#f2ede6'],'brick','dust',['#d8c8b0','#e0a060']],
+ c_concrete:['노출 콘크리트','BÉTON BRUT','거푸집 자국과 폼타이 구멍까지 그대로 — 정직하고 묵직한 재료.',['#2a2a2c','#3a3a3e','#c9ccd2','#f4f4f6'],'formtie','dust',['#d8dadf','#a8acb4']],
+ c_brick:['벽돌 · 흙','BRICK & EARTH','손으로 쌓은 단위 — 줄눈과 쌓기 방식이 곧 표정이 돼요.',['#4a1f14','#2a1410','#e8805a','#fbeee6'],'brick','dust',['#f4b08a','#e8805a']],
+ c_wood:['나무','TIMBER','결과 향, 따뜻함. 목조 사원에서 CLT 고층까지.',['#2a1c10','#3a2818','#e8b878','#fbf2e6'],'grain','leaf',['#e8b878','#c89858'],['#e8b878','#a87848']],
+ c_stone:['돌','STONE','시간을 견디는 무게. 쌓고 깎고 새긴 돌의 건축.',['#2a2620','#3a342a','#e0d2b0','#f6f2e8'],'stone','dust',['#e0d2b0','#c8b898']],
+ c_glass:['유리 · 금속','GLASS & STEEL','투명함과 반사, 가벼운 구조 — 근대 이후의 꿈.',['#0b1424','#14243a','#9cd8ff','#eef8ff'],'glass','bokeh',['#9cd8ff','#ffffff','#c8b0ff']],
+ c_hanok:['한옥의 지혜','HANOK WISDOM','처마, 누마루, 차경, 담 — 바람과 햇빛을 다루는 오래된 기술.',T_KR,'giwa','petal',['#ffffff','#ffd9e2','#f7a8bb'],['#e0473a','#2f8a74','#2b4c8c','#f0c040']],
+ c_calm:['명상 · 고요','STILLNESS','소리를 줄이고 빛을 낮춰 마음이 머무는 공간.',['#0e0e14','#1a1a24','#c8b0ff','#f2f0fa'],'ripple','spark',['#e6dcff','#c8b0ff']],
+ c_joy:['유쾌한 색','JOYFUL COLOR','원색과 타일, 경쾌한 형태 — 건축도 웃을 수 있어요.',['#ff5a8a','#ffb020','#2a5cd8','#ffffff'],'trencadis','confetti',['#ff5a3c','#ffb020','#2bb3a3','#3a7bd5','#ff7ab0'],['#ff5a3c','#ffb020','#2bb3a3','#3a7bd5','#ffffff']],
+ c_module:['쌓고 반복하다','STACK & REPEAT','같은 단위를 쌓고 어긋나게 해서 마을 같은 건물을 만들어요.',['#141c24','#1c2a34','#ffb341','#f2f6fa'],'modules','shapes',['#ffb341','#7cc4ff','#ffffff'],['#ffb341','#7cc4ff','#ffffff']],
+ c_monu:['기념비','MONUMENT','도시의 기준점이 되는, 오래 기억되는 건축.',['#1a1610','#2a2418','#f2c14e','#fbf1e0'],'stone','gold',['#ffd86a']],
+ /* 시대 */
+ e_ancient:['고대','ANTIQUITY','피라미드와 신전, 원형 극장 — 돌로 영원을 꿈꾸던 시대.',['#3a2a12','#2a1c0a','#f2c14e','#fbf1dc'],'meander','dust',['#f4d08a','#e8b45a']],
+ e_trad:['전통 · 중세','TRADITION','사찰과 궁궐, 대성당과 모스크 — 장인의 손으로 수백 년을 지은 시대.',['#1e1a14','#2a2018','#e8b878','#f6f0e4'],'arcade','spark',['#ffd27a','#ffb341']],
+ e_early:['근대','EARLY MODERN','철과 유리, 아르데코, 그리고 바우하우스 — 새 재료가 새 형태를 낳던 시대.',['#141414','#24201a','#e0b84f','#f6f0e0'],'deco','gold',['#ffd86a','#fff2b8']],
+ e_mod:['모더니즘','MODERNISM','필로티와 수평창, 노출 콘크리트 — 기능이 곧 아름다움이던 시대.',['#22262c','#30343c','#c9ccd2','#f4f4f6'],'formtie','dust',['#d8dadf','#a8acb4']],
+ e_late:['포스트모던 · 하이테크','HIGH-TECH','구조와 설비를 드러내고, 형태를 비틀고, 유리로 감싸던 시대.',['#0b1424','#14243a','#7cc4ff','#eef8ff'],'glass','bokeh',['#9cd8ff','#ffffff','#ff8ad8']],
+ e_now:['2000년 이후','NOW','컴퓨터가 그린 곡면, 수직 숲, 재생 — 지금 만들어지는 건축.',['#101820','#141c34','#7cffd8','#eefaf6'],'dots','plexus',['#7cffd8','#7cc4ff','#ff8ad8']],
+ /* 용도 */
+ u_home:['주거','HOMES','집은 건축의 시작. 한옥에서 위니테 다비타시옹까지, 사는 방식이 곧 형태예요.',['#2a1c10','#2a2418','#ffc27a','#fbf2e6'],'grain','spark',['#ffd27a','#ffb341']],
+ u_culture:['미술관 · 박물관','MUSEUMS','빛을 다루는 기술이 가장 정교하게 쓰이는 건물.',['#14141a','#24242c','#ffffff','#f6f6f8'],'modules','bokeh',['#ffffff','#ffd9a0']],
+ u_faith:['종교 · 명상','SACRED','사람이 지은 가장 높은 천장, 가장 고요한 빛.',['#0e0e14','#1e1a14','#ffd27a','#fbf6e8'],'rays','spark',['#ffe6a8','#ffd27a']],
+ u_stage:['공연 · 체육','STAGES','수천 명이 함께 숨 쉬는 큰 공간 — 지붕과 음향의 건축.',['#1a0e24','#0e1a34','#ff8ad8','#f6f0ff'],'arcs','bokeh',['#ff8ad8','#ffd27a','#9cc8ff']],
+ u_work:['업무 · 고층','TOWERS & OFFICES','도시의 스카이라인을 만드는 일터.',['#0b1020','#141c34','#ffb341','#eef2fa'],'skyline','windows',['#ffd27a','#9cc8ff']],
+ u_edu:['교육 · 도서관','LEARNING','배우고 읽는 공간 — 서원에서 미디어테크까지.',['#14243a','#1c2a34','#ffd27a','#f2f6fa'],'modules','dust',['#ffe6a8','#ffffff']],
+ u_civic:['공공 · 도시','CIVIC','시청과 광장, 공원과 하천 — 모두의 건축.',['#101820','#1a2430','#7cffd8','#eefaf6'],'court','plexus',['#7cffd8','#ffffff']],
+ u_palace:['궁궐 · 성 · 유적','PALACES & RUINS','권력과 신앙이 남긴 돌과 나무의 기록.',['#2a1c10','#3a2a14','#f2c14e','#fbf1dc'],'stone','gold',['#ffd86a']],
+ u_move:['교통 · 인프라','INFRASTRUCTURE','역과 공항, 다리 — 움직임을 위한 거대한 지붕.',['#0b1020','#141c34','#7cc4ff','#eef2fa'],'tracks','streak',['#9cc8ff','#ffd27a']]};
+AT_TH.r_kr=AT_TH['한국'].slice(); AT_TH.c_hanok[2]=AT_TH.c_hanok[2];
+const AT_TAB=[['country','나라'],['region','지역'],['arch','건축가'],['concept','컨셉'],['era','시대'],['use','용도']];
+const AT_ARCH={'안도 다다오':'노출 콘크리트와 빛, 물로 침묵을 짓는 건축가.','헤르조그 & 드 뫼롱':'재료의 피부를 새로 발명하는 스위스 듀오.','자하 하디드':'중력을 거스르는 흐르는 곡선의 건축.','미스 반 데어 로에':'“적을수록 많다.” 철과 유리의 고전.','I. M. 페이':'기하학으로 빛을 다듬은 모더니스트.','르 코르뷔지에':'필로티·자유로운 평면·수평창 — 근대건축의 문법을 쓴 사람.','프랭크 로이드 라이트':'땅에서 자라난 듯한 유기적 건축.','장 누벨':'빛과 그림자, 반사로 장면을 연출하는 건축가.','SANAA':'얇고 하얗고 투명한 — 경계가 사라지는 공간.','OMA':'도시의 프로그램을 뒤섞어 새 형태를 만드는 렘 콜하스의 사무소.','SOM':'초고층의 교과서를 써 온 미국의 설계 조직.','루이스 칸':'침묵과 빛 — 벽돌과 콘크리트로 만든 기념비.','오스카 니마이어':'브라질의 곡선, 자유로운 콘크리트의 시인.','렌조 피아노':'가볍고 정교한 구조, 하이테크의 장인.','단게 겐조':'전후 일본 모더니즘을 이끈 거장.','김수근':'벽돌과 스킵플로어 — 한국 현대건축 1세대.','이토 도요':'바람처럼 가벼운 건축.','안토니 가우디':'자연을 닮은 곡선과 모자이크, 바르셀로나의 신화.','알바 알토':'북유럽의 나무와 빛, 인간을 위한 모더니즘.','프랭크 게리':'금속 곡면으로 도시의 풍경을 바꾼 건축가.','노먼 포스터':'투명한 구조와 하이테크의 미학.','BIG':'산이 되는 건물, 스키 타는 발전소 — 실용적 유토피아.','쿠마 겐고':'건축을 지우는 건축 — 나무 루버와 자연 재료.','산티아고 칼라트라바':'뼈처럼 하얀 구조, 움직이는 조각 같은 건축.','김중업':'르 코르뷔지에에게 배운 곡선의 건축가.','MVRDV':'적층과 데이터로 만드는 대담한 네덜란드 건축.','알바로 시자':'포르투갈의 흰 벽과 빛, 땅과 바다 사이의 시.','모셰 사프디':'쌓아 올린 집들의 도시를 그리는 건축가.','에로 사리넨':'날아오르는 콘크리트 지붕의 건축가.','루이스 바라간':'분홍과 노랑의 벽, 고요한 멕시코의 정원.','피터 줌터':'재료와 분위기의 건축.','딜러 스코피디오':'도시를 무대로 바꾸는 뉴욕의 스튜디오.','마리오 보타':'벽돌과 원통 — 기하학의 무게.','이타미 준':'제주의 바람과 돌, 재료의 정직함.','카를로 스카르파':'디테일과 물, 시간의 층을 다룬 장인.','리처드 로저스':'구조와 설비를 밖으로 드러낸 하이테크.','다니엘 리베스킨트':'기억을 새긴 날카로운 선.','스뇌헤타':'풍경이 되는 지붕을 짓는 노르웨이 스튜디오.','토머스 헤더윅':'디자인과 건축의 경계를 지우는 영국 스튜디오.','반 시게루':'종이관 구조로 재난 현장을 짓는 건축가.','아돌프 로스':'“장식은 죄악.” 라움플란의 공간.','리나 보 바르디':'브라질 대중을 위한 콘크리트.','제프리 바와':'열대 모더니즘 — 정원과 건축의 경계를 지우다.','니시자와 류에':'물방울 같은 하나의 공간.','이시가미 준야':'구름처럼 가벼운 건축.','하라 히로시':'도시 속의 거대한 지형을 만드는 건축가.','렘 콜하스':'도시를 다시 생각하게 만드는 이론가이자 건축가.'};
+const ATG={tab:'country',sel:''};
+let AT_IDX=null;
+function atIndex(){ if(AT_IDX) return AT_IDX; const cnt=(f)=>{ const m=new Map(); BLDX.forEach(b=>[].concat(f(b)).forEach(k=>m.set(k,(m.get(k)||0)+1))); return m; };
+  const cm=cnt(bldCountry), am=cnt(bldArchs);
+  AT_IDX={
+   country:[...cm].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([k,n])=>({k,l:k,n})),
+   region:Object.entries(BLD_REG).map(([k,l])=>({k,l,n:BLDX.filter(b=>b.reg===k).length})),
+   arch:[...am].filter(([k,n])=>n>=2&&!/왕실|왕조|^조선$|^고려$|장인|주민|신토|미상/.test(k)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([k,n])=>({k,l:k,n})),
+   concept:BLD_CON.map(([k,l,ks])=>({k,l,n:BLDX.filter(b=>ks.some(x=>b.keys.includes(x))).length})).filter(x=>x.n),
+   era:BLD_ERAS.map(([k,l])=>({k,l,n:BLDX.filter(b=>bldEraB(b)===k).length})),
+   use:BLD_USE.map(([k,l])=>({k,l,n:BLDX.filter(b=>bldUses(b).includes(k)).length}))};
+  return AT_IDX; }
+function atMatch(b){ const s=ATG.sel; if(!s) return true; switch(ATG.tab){
+  case 'country': return bldCountry(b)===s; case 'region': return b.reg===s; case 'arch': return bldArchs(b).includes(s);
+  case 'concept': { const c=BLD_CON.find(x=>x[0]===s); return !!c&&c[2].some(k=>b.keys.includes(k)); }
+  case 'era': return bldEraB(b)===s; case 'use': return bldUses(b).includes(s); } return true; }
+function atThemeKey(){ const s=ATG.sel; if(!s) return 'all'; switch(ATG.tab){ case 'country': return AT_TH[s]?s:('r_'+(BLDX.find(b=>bldCountry(b)===s)||{reg:'eu'}).reg); case 'region': return 'r_'+s; case 'concept': return 'c_'+s; case 'era': return 'e_'+s; case 'use': return 'u_'+s; case 'arch': return 'a:'+s; } return 'all'; }
+function atTheme(){ const k=atThemeKey(); if(k.startsWith('a:')){ const nm=k.slice(2); const L=BLDX.filter(b=>bldArchs(b).includes(nm)); const cm={}; L.forEach(b=>{ const c=bldCountry(b); cm[c]=(cm[c]||0)+1; }); const top=Object.entries(cm).sort((a,b)=>b[1]-a[1])[0]; const base=AT_TH[top&&top[0]]||AT_TH['r_'+(L[0]||{reg:'eu'}).reg]||AT_TH.all;
+    const yrs=L.map(bldYearN).filter(y=>y>0); const span=yrs.length?`${Math.min(...yrs)}–${Math.max(...yrs)}`:'';
+    return {key:k,arch:nm,t:nm,en:'ARCHITECT · '+(top?top[0]:'')+(span?' · '+span:''),tag:(AT_ARCH[nm]||`${L.length}채로 읽는 ${nm}의 언어.`)+` 도감 속 ${L.length}채를 모았어요.`,c:base[3],pat:'mono',fx:'lines',fxc:[base[3][2],base[3][3]],pc:[base[3][3]+'22',base[3][2]]}; }
+  const t=AT_TH[k]||AT_TH.all; let tt=t; if(ATG.tab==='country'&&!AT_TH[ATG.sel]) tt=[ATG.sel,(AT_TH['r_'+(BLDX.find(b=>bldCountry(b)===ATG.sel)||{}).reg]||t)[1],'',t[3],t[4],t[5],t[6],t[7]];
+  return {key:k,t:tt[0],en:tt[1],tag:tt[2]||t[2],c:tt[3],pat:tt[4],fx:tt[5],fxc:tt[6],pc:tt[7]}; }
+function atChipsHTML(){ const I=atIndex()[ATG.tab]||[]; return `<button type="button" data-atsel="" aria-pressed="${!ATG.sel}">전체<em>${BLDX.length}</em></button>`+I.map(x=>{ const th=ATG.tab==='country'?AT_TH[x.k]:ATG.tab==='region'?AT_TH['r_'+x.k]:ATG.tab==='concept'?AT_TH['c_'+x.k]:ATG.tab==='era'?AT_TH['e_'+x.k]:ATG.tab==='use'?AT_TH['u_'+x.k]:null; const dot=th?`<i style="background:linear-gradient(135deg,${th[3][0]},${th[3][2]})"></i>`:''; return `<button type="button" data-atsel="${esc(x.k)}" aria-pressed="${ATG.sel===x.k}">${dot}${esc(x.l)}<em>${x.n}</em></button>`; }).join(''); }
+function atCatHTML(){ return `<div class="atc" id="dnatCat"><div class="atc-tabs" role="tablist" aria-label="도감 분류">${AT_TAB.map(([k,l])=>`<button type="button" role="tab" data-attab="${k}" aria-selected="${ATG.tab===k}">${l}<em>${(atIndex()[k]||[]).length}</em></button>`).join('')}</div><div class="atc-chips" id="dnatChips">${atChipsHTML()}</div></div>
+  <section class="atth" id="dnatTheme" aria-live="polite"><div class="atth-pat"></div><div class="atth-pat2"></div><canvas class="atth-fx" aria-hidden="true"></canvas><div class="atth-sh"></div><div class="atth-t"></div><div class="atth-ph" aria-hidden="true"></div></section>`; }
+function atSplit(s){ return [...s].map((ch,i)=>ch===' '?' ':`<span style="--i:${i}">${esc(ch)}</span>`).join(''); }
+function atThemeRender(ev){ const el=$('#dnatTheme'); if(!el) return; const T=atTheme(); const L=BLDX.filter(atMatch); const at=$('#dnAtlas');
+  const c=T.c; at.style.setProperty('--tha',c[2]); at.style.setProperty('--thb',c[0]); at.style.setProperty('--thc',c[1]); at.style.setProperty('--thi',c[3]);
+  el.style.setProperty('--b1',c[0]); el.style.setProperty('--b2',c[1]); el.style.setProperty('--ac',c[2]); el.style.setProperty('--ink',c[3]);
+  const pc=T.pc||[c[3]+'30',c[2]+'55',c[2]+'40',c[3]+'40'];
+  const pat=(AT_PAT[T.pat]||AT_PAT.globe)(T.pat==='dancheong'?pc:pc.length>=4?pc:[pc[0],pc[1],pc[0],pc[1]]);
+  const p1=el.querySelector('.atth-pat'), p2=el.querySelector('.atth-pat2');
+  p2.style.backgroundImage=p1.style.backgroundImage||'none'; p1.style.backgroundImage=pat; el.dataset.pat=T.pat;
+  if(ev&&!AT_RM){ const r=el.getBoundingClientRect(); const x=ev.clientX?Math.max(0,Math.min(100,(ev.clientX-r.left)/r.width*100)):50; el.style.setProperty('--ox',x+'%'); el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap'); }
+  const archs=new Set(L.flatMap(bldArchs)).size, ctry=new Set(L.map(bldCountry)).size, yrs=L.map(bldYearN), y0=Math.min(...yrs), y1=Math.max(...yrs);
+  const yr=y=>y<0?`B.C.${-y}`:String(y);
+  el.querySelector('.atth-t').innerHTML=(T.arch?`<b class="mg" aria-hidden="true">${esc(T.t.replace(/[\s.&]/g,'').slice(0,2))}</b>`:'')+`<span class="k">${esc(T.en)}</span><h3 class="${T.arch?'ar':''}">${atSplit(T.t)}</h3><p>${esc(T.tag)}</p>
+    <div class="st"><div><b>${L.length}</b><span>건물</span></div><div><b>${archs}</b><span>건축가 · 만든 이</span></div>${ATG.tab==='country'?'':`<div><b>${ctry}</b><span>나라</span></div>`}<div><b>${L.length?yr(y0):'-'}</b><span>가장 오래된</span></div><div><b>${L.length?yr(y1):'-'}</b><span>가장 최근</span></div></div>`;
+  const ph=L.filter(b=>b.p).sort((a,b)=>(b.w||0)-(a.w||0)).slice(0,4);
+  el.querySelector('.atth-ph').innerHTML=ph.map((b,i)=>`<figure style="--i:${i}"><img src="${bldImg(b,330)}" alt="" loading="lazy" decoding="async"><figcaption>${esc(b.name)}</figcaption></figure>`).join('');
+  el.dataset.fx=T.fx; atFx.set(T.fx,T.fxc||[c[2]],el); }
+const AT_RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ---- 파티클 효과 (보일 때만 돌아간다) ---- */
+const atFx={el:null,cv:null,ctx:null,kind:'',cols:[],P:[],raf:0,vis:false,w:0,h:0,dpr:1,t0:0,io:null,
+ set(kind,cols,el){ this.kind=kind; this.cols=cols; if(this.el!==el){ this.el=el; this.cv=el.querySelector('.atth-fx'); this.ctx=this.cv.getContext('2d');
+   this.io=new IntersectionObserver(es=>{ this.vis=es[0].isIntersecting; this.vis?this.go():this.stop(); }); this.io.observe(el);
+   addEventListener('resize',()=>{ this.size(); this.seed(); },{passive:true}); document.addEventListener('visibilitychange',()=>document.hidden?this.stop():this.go()); }
+   this.size(); this.seed(); if(AT_RM){ this.frame(0,true); return; } this.go(); },
+ size(){ const r=this.el.getBoundingClientRect(); this.dpr=Math.min(1.5,devicePixelRatio||1); this.w=r.width; this.h=r.height; this.cv.width=Math.round(r.width*this.dpr); this.cv.height=Math.round(r.height*this.dpr); },
+ n(){ const base={petal:46,snow:90,dust:110,spark:48,confetti:56,rain:110,bokeh:22,windows:0,shapes:16,bubble:34,leaf:30,rays:10,ripple:6,lines:14,gold:60,plexus:46,aurora:4,streak:22}[this.kind]||30; return Math.round(base*Math.min(1.2,Math.max(.45,this.w/1100))); },
+ seed(){ const W=this.w,H=this.h,R=Math.random,C=this.cols; this.P=[]; if(this.kind==='windows'){ let x=0; while(x<W){ const bw=24+R()*60, bh=H*(.22+R()*.5); const win=[]; for(let yy=H-bh+8;yy<H-6;yy+=10) for(let xx=x+5;xx<x+bw-6;xx+=8) win.push([xx,yy,R(),R()*6+2]); this.P.push({x,bw,bh,win}); x+=bw+2+R()*6; } return; }
+   for(let i=0;i<this.n();i++) this.P.push({x:R()*W,y:R()*H,s:R(),r:R()*Math.PI*2,v:R(),c:C[i%C.length],k:i%3,ph:R()*6.28}); },
+ go(){ if(AT_RM||this.raf||!this.vis||document.hidden) return; this.t0=performance.now(); const f=t=>{ this.raf=requestAnimationFrame(f); this.frame((t-this.t0)/1000); }; this.raf=requestAnimationFrame(f); },
+ stop(){ cancelAnimationFrame(this.raf); this.raf=0; },
+ frame(t,still){ const x=this.ctx,W=this.w,H=this.h,d=this.dpr; if(!x) return; x.setTransform(d,0,0,d,0,0); x.clearRect(0,0,W,H); const P=this.P, k=this.kind, dt=1/60;
+  if(k==='windows'){ x.fillStyle='rgba(0,0,0,.28)'; P.forEach(b=>{ x.fillRect(b.x,H-b.bh,b.bw,b.bh); b.win.forEach(w=>{ const on=Math.sin(t*.6+w[3]+w[2]*30)>.1-w[2]*.4; if(!on) return; x.globalAlpha=.35+.55*w[2]; x.fillStyle=this.cols[(w[2]*10|0)%this.cols.length]; x.fillRect(w[0],w[1],3,5); }); x.globalAlpha=1; x.fillStyle='rgba(0,0,0,.28)'; }); return; }
+  if(k==='aurora'){ x.globalCompositeOperation='lighter'; P.forEach((p,i)=>{ const g=x.createLinearGradient(0,0,0,H*.8); g.addColorStop(0,'transparent'); g.addColorStop(.5,p.c+'55'); g.addColorStop(1,'transparent'); x.fillStyle=g; x.beginPath(); x.moveTo(0,H*.2); for(let xx=0;xx<=W;xx+=20) x.lineTo(xx,H*(.25+.12*Math.sin(xx/180+t*.4+i*1.7)+i*.05)); for(let xx=W;xx>=0;xx-=20) x.lineTo(xx,H*(.55+.1*Math.sin(xx/140+t*.3+i))); x.fill(); }); x.globalCompositeOperation='source-over'; }
+  if(k==='plexus'){ P.forEach(p=>{ p.x+=Math.cos(p.r)*.25; p.y+=Math.sin(p.r)*.25; if(p.x<0||p.x>W) p.r=Math.PI-p.r; if(p.y<0||p.y>H) p.r=-p.r; }); x.lineWidth=.8; for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const dx=P[i].x-P[j].x, dy=P[i].y-P[j].y, q=dx*dx+dy*dy; if(q<13000){ x.strokeStyle=P[i].c; x.globalAlpha=(1-q/13000)*.35; x.beginPath(); x.moveTo(P[i].x,P[i].y); x.lineTo(P[j].x,P[j].y); x.stroke(); } } x.globalAlpha=.8; P.forEach(p=>{ x.fillStyle=p.c; x.beginPath(); x.arc(p.x,p.y,1.6+p.s*1.6,0,7); x.fill(); }); x.globalAlpha=1; return; }
+  if(k==='rays'){ x.globalCompositeOperation='lighter'; P.forEach((p,i)=>{ const a=-.9+i*.18+Math.sin(t*.25+p.ph)*.06; x.save(); x.translate(W*.82,-20); x.rotate(a+Math.PI/2); const g=x.createLinearGradient(0,0,0,H*1.4); g.addColorStop(0,p.c+'40'); g.addColorStop(1,'transparent'); x.fillStyle=g; x.beginPath(); x.moveTo(-4,0); x.lineTo(4,0); x.lineTo(40+p.s*60,H*1.4); x.lineTo(-40-p.s*60,H*1.4); x.fill(); x.restore(); }); x.globalCompositeOperation='source-over'; }
+  if(k==='ripple'){ P.forEach((p,i)=>{ const ph=((t*.22+p.v)%1); x.strokeStyle=p.c; x.globalAlpha=(1-ph)*.6; x.lineWidth=1.4; x.beginPath(); x.ellipse(p.x,p.y,ph*170,ph*60,0,0,7); x.stroke(); if(ph<.02){ p.x=Math.random()*W; p.y=H*.4+Math.random()*H*.55; } }); x.globalAlpha=1; return; }
+  if(k==='lines'){ x.lineWidth=1; P.forEach((p,i)=>{ const ph=((t*.12+p.v)%1); const hor=p.k!==0; x.strokeStyle=p.c; x.globalAlpha=Math.sin(ph*Math.PI)*.55; x.beginPath(); if(hor){ const y=(p.y|0)+.5; x.moveTo(0,y); x.lineTo(W*ph*1.2,y); } else { const xx=(p.x|0)+.5; x.moveTo(xx,0); x.lineTo(xx,H*ph*1.2); } x.stroke(); x.globalAlpha=Math.sin(ph*Math.PI)*.8; x.fillStyle=p.c; if(hor) x.fillRect(W*ph*1.2-2,p.y-2,4,4); else x.fillRect(p.x-2,H*ph*1.2-2,4,4); if(ph>.985){ p.x=Math.random()*W; p.y=Math.random()*H; } }); x.globalAlpha=1; return; }
+  if(k==='streak'){ x.globalCompositeOperation='lighter'; P.forEach(p=>{ p.x+=(3+p.s*7); if(p.x>W+200){ p.x=-200; p.y=H*(.35+Math.random()*.6); } const g=x.createLinearGradient(p.x-160,0,p.x,0); g.addColorStop(0,'transparent'); g.addColorStop(1,p.c); x.strokeStyle=g; x.globalAlpha=.5+p.v*.4; x.lineWidth=1+p.s*2; x.beginPath(); x.moveTo(p.x-160,p.y); x.lineTo(p.x,p.y); x.stroke(); }); x.globalAlpha=1; x.globalCompositeOperation='source-over'; return; }
+  if(k==='windows'||k==='aurora'||k==='rays') return;
+  P.forEach(p=>{ const s=p.s;
+   switch(k){
+    case 'petal': p.y+=.5+s*.9; p.x+=Math.sin(t*1.2+p.ph)*.7+.35; p.r+=.02+s*.02; if(p.y>H+12){ p.y=-12; p.x=Math.random()*W*1.1-W*.1; }
+      x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.scale(1,Math.abs(Math.cos(t*2+p.ph))*.7+.3); x.fillStyle=p.c; x.globalAlpha=.75+.25*s; x.beginPath(); const R=4+s*5; x.moveTo(0,-R); x.bezierCurveTo(R*.9,-R*.6,R*.7,R*.6,0,R); x.bezierCurveTo(-R*.7,R*.6,-R*.9,-R*.6,0,-R); x.fill(); x.restore(); break;
+    case 'leaf': p.y+=.4+s*.7; p.x+=Math.sin(t*.9+p.ph)*.9; p.r+=.015; if(p.y>H+14){ p.y=-14; p.x=Math.random()*W; }
+      x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.globalAlpha=.8; const L=6+s*7; x.beginPath(); x.moveTo(0,-L); x.quadraticCurveTo(L*.7,0,0,L); x.quadraticCurveTo(-L*.7,0,0,-L); x.fill(); x.restore(); break;
+    case 'snow': p.y+=.3+s*.9; p.x+=Math.sin(t*.7+p.ph)*.35; if(p.y>H+4){ p.y=-4; p.x=Math.random()*W; } x.globalAlpha=.4+.5*s; x.fillStyle=p.c; x.beginPath(); x.arc(p.x,p.y,.8+s*2.2,0,7); x.fill(); break;
+    case 'dust': p.x+=.25+s*.9; p.y+=Math.sin(t*.8+p.ph)*.25-.05; if(p.x>W+4){ p.x=-4; p.y=Math.random()*H; } x.globalAlpha=(.25+.45*s)*(.6+.4*Math.sin(t*2+p.ph)); x.fillStyle=p.c; x.beginPath(); x.arc(p.x,p.y,.6+s*1.6,0,7); x.fill(); break;
+    case 'spark': p.y-=.25+s*.6; p.x+=Math.sin(t+p.ph)*.3; if(p.y<-10){ p.y=H+10; p.x=Math.random()*W; } { const a=.45+.45*Math.sin(t*3+p.ph), r=1.4+s*2.6; const g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,r*5); g.addColorStop(0,p.c); g.addColorStop(1,'transparent'); x.globalAlpha=a*.55; x.fillStyle=g; x.beginPath(); x.arc(p.x,p.y,r*5,0,7); x.fill(); x.globalAlpha=a; x.fillStyle=p.c; x.beginPath(); x.arc(p.x,p.y,r*.6,0,7); x.fill(); } break;
+    case 'gold': { const a=Math.max(0,Math.sin(t*1.6*(.5+s)+p.ph)); if(a<.02&&Math.random()<.02){ p.x=Math.random()*W; p.y=Math.random()*H; } x.globalAlpha=a*.9; x.fillStyle=p.c; const r=1+s*3*a; x.beginPath(); x.moveTo(p.x,p.y-r*3); x.lineTo(p.x+r*.6,p.y); x.lineTo(p.x,p.y+r*3); x.lineTo(p.x-r*.6,p.y); x.fill(); x.beginPath(); x.moveTo(p.x-r*3,p.y); x.lineTo(p.x,p.y+r*.6); x.lineTo(p.x+r*3,p.y); x.lineTo(p.x,p.y-r*.6); x.fill(); } break;
+    case 'confetti': p.y+=.7+s*1.2; p.x+=Math.sin(t*1.4+p.ph)*.6; p.r+=.03+s*.05; if(p.y>H+10){ p.y=-10; p.x=Math.random()*W; }
+      x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.scale(Math.cos(t*3+p.ph),1); x.fillStyle=p.c; x.globalAlpha=.9; const z=4+s*6; if(p.k===0) x.fillRect(-z/2,-z/2,z,z); else if(p.k===1){ x.beginPath(); x.moveTo(0,-z*.6); x.lineTo(z*.6,z*.5); x.lineTo(-z*.6,z*.5); x.fill(); } else { x.beginPath(); x.moveTo(-z*.6,-z*.3); x.lineTo(z*.5,-z*.5); x.lineTo(z*.4,z*.4); x.lineTo(-z*.3,z*.5); x.fill(); } x.restore(); break;
+    case 'rain': p.y+=9+s*7; p.x-=2; if(p.y>H){ p.y=-20; p.x=Math.random()*W*1.2; } x.strokeStyle=p.c; x.globalAlpha=.18+.3*s; x.lineWidth=1; x.beginPath(); x.moveTo(p.x,p.y); x.lineTo(p.x+3,p.y-14-s*8); x.stroke(); break;
+    case 'bokeh': p.x+=Math.cos(p.r)*.18; p.y+=Math.sin(p.r)*.12; if(p.x<-60) p.x=W+60; if(p.x>W+60) p.x=-60; if(p.y<-60) p.y=H+60; if(p.y>H+60) p.y=-60; { const r=18+s*46; const g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,r); g.addColorStop(0,p.c); g.addColorStop(.7,p.c+'66'); g.addColorStop(1,'transparent'); x.globalAlpha=(.14+.16*Math.sin(t*.8+p.ph)+.12); x.fillStyle=g; x.beginPath(); x.arc(p.x,p.y,r,0,7); x.fill(); } break;
+    case 'bubble': p.y-=.35+s*.8; p.x+=Math.sin(t*1.1+p.ph)*.4; if(p.y<-20){ p.y=H+20; p.x=Math.random()*W; } x.strokeStyle=p.c; x.globalAlpha=.3+.35*s; x.lineWidth=1.2; x.beginPath(); x.arc(p.x,p.y,2+s*9,0,7); x.stroke(); x.globalAlpha*=.6; x.beginPath(); x.arc(p.x-s*3,p.y-s*3,1+s*1.5,0,7); x.fillStyle=p.c; x.fill(); break;
+    case 'shapes': p.y+=Math.sin(t*.5+p.ph)*.3; p.x+=.2+s*.3; p.r+=.004+s*.006; if(p.x>W+60) { p.x=-60; p.y=Math.random()*H; }
+      x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.globalAlpha=.6; const S=12+s*26; if(p.k===0){ x.beginPath(); x.arc(0,0,S/2,0,7); x.fill(); } else if(p.k===1) x.fillRect(-S/2,-S/2,S,S); else { x.beginPath(); x.moveTo(0,-S*.58); x.lineTo(S/2,S*.29); x.lineTo(-S/2,S*.29); x.fill(); } x.restore(); break;
+   } });
+  x.globalAlpha=1; }
+};
+function atRefresh(ev){ const ch=$('#dnatChips'); if(ch) ch.innerHTML=atChipsHTML(); $$('[data-attab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.attab===ATG.tab)); atThemeRender(ev); ATL.n=36; dnAtlasRender(); const g=$('#dnatG'); if(g&&!AT_RM){ g.classList.remove('atin'); void g.offsetWidth; g.classList.add('atin'); } }
+document.addEventListener('click',e=>{ if(!e.target.closest) return;
+  const tb=e.target.closest('[data-attab]'); if(tb){ if(ATG.tab===tb.dataset.attab) return; ATG.tab=tb.dataset.attab; ATG.sel=''; atRefresh(e); return; }
+  const sl=e.target.closest('[data-atsel]'); if(sl){ ATG.sel=ATG.sel===sl.dataset.atsel?'':sl.dataset.atsel; atRefresh(e); const th=$('#dnatTheme'); if(th){ const r=th.getBoundingClientRect(); if(r.top<0||r.top>innerHeight*.5) th.scrollIntoView({behavior:AT_RM?'auto':'smooth',block:'start'}); } return; }
+  const ac=e.target.closest('[data-atgo]'); if(ac){ const [t,s]=ac.dataset.atgo.split('|'); bldClose(); ATG.tab=t; ATG.sel=s; dnAtlasInit(); atRefresh(); setTimeout(()=>{ const th=$('#dnatTheme'); if(th) th.scrollIntoView({behavior:'smooth',block:'start'}); },60); return; }
+});
+
 /* 도감 */
 const ATL={reg:'',era:'',q:'',n:36};
-function bldFiltered(){ const q=ATL.q.trim().toLowerCase(); return BLDX.filter(b=>(!ATL.reg||b.reg===ATL.reg)&&(!ATL.era||b.era===ATL.era)&&(!q||[b.name,b.arch,b.city,b.line,...b.keys].join(' ').toLowerCase().includes(q))); }
+function bldFiltered(){ const q=ATL.q.trim().toLowerCase(); return BLDX.filter(b=>atMatch(b)&&(!q||[b.name,b.arch,b.city,bldCountry(b),b.year,b.line,...b.keys].join(' ').toLowerCase().includes(q))); }
 function dnAtlasInit(){ const el=$('#dnAtlas'); if(!el||el.dataset.on) return; el.dataset.on='1'; const archs=new Set(BLDX.flatMap(b=>b.arch.split(/\s*[·+]\s*/))).size, cities=new Set(BLDX.map(b=>b.city.split(',').pop().trim())).size, ph=BLDX.filter(b=>b.p).length;
   const hn=$('#dnBldN'); if(hn) hn.textContent=BLDX.length;
   el.innerHTML=dnCoverHTML()+`<div class="dnat-in">
-   <div class="dnat-f"><div class="pfto" role="group" aria-label="지역"><button data-atreg="" aria-pressed="true">전체</button>${Object.entries(BLD_REG).map(([k,v])=>`<button data-atreg="${k}" aria-pressed="false">${v}<em>${BLDX.filter(b=>b.reg===k).length}</em></button>`).join('')}</div>
-   <div class="pfto" role="group" aria-label="시대"><button data-atera="" aria-pressed="true">모든 시대</button>${Object.entries(BLD_ERA).map(([k,v])=>`<button data-atera="${k}" aria-pressed="false">${v}</button>`).join('')}</div>
-   <input type="search" id="dnatQ" placeholder="건물 · 건축가 · 단어로 찾기 — 안도, 벽돌, 서울…" autocomplete="off"></div>
+   ${atCatHTML()}
+   <div class="dnat-f"><span class="atcur" id="dnatCur" hidden></span><input type="search" id="dnatQ" placeholder="건물 · 건축가 · 나라 · 단어로 찾기 — 안도, 벽돌, 서울, 1960…" autocomplete="off"></div>
    <div class="dnat-g" id="dnatG"></div><div class="dnat-more"><button class="btn ghost" type="button" id="dnatMore">더 보기</button><span id="dnatN"></span></div>
-   <p class="dnat-cr">사진은 위키미디어 공용의 자유 이용 사진(CC BY · BY-SA · CC0 · 공공누리 1유형 등)이며, 각 사진의 작가와 라이선스를 상세 보기에 적었어요. 자유 이용 사진이 없는 건물은 단어로 지은 모형으로 보여 드려요.</p></div>`;
-  dnAtlasRender(); }
-function dnAtlasRender(){ const g=$('#dnatG'); if(!g) return; const L=bldFiltered(); g.innerHTML=L.slice(0,ATL.n).map(b=>bldCard(b)).join('')||'<p class="muted">맞는 건물이 없어요. 다른 단어로 찾아보세요.</p>'; const m=$('#dnatMore'); if(m) m.hidden=L.length<=ATL.n; const n=$('#dnatN'); if(n) n.textContent=`${Math.min(L.length,ATL.n)} / ${L.length}채`; bldGenObserve(g); }
+   <p class="dnat-cr">사진은 위키미디어 공용의 자유 이용 사진(CC BY · BY-SA · CC0 · 퍼블릭 도메인 · 공공누리 1유형 등)이며, 각 사진의 작가와 라이선스를 상세 보기에 적었어요. 자유 이용 사진이 없는 건물은 단어로 지은 모형으로 보여 드려요.</p></div>`;
+  dnAtlasRender(); atThemeRender(); }
+function dnAtlasRender(){ const g=$('#dnatG'); if(!g) return; const L=bldFiltered(); g.innerHTML=L.slice(0,ATL.n).map(b=>bldCard(b)).join('')||'<p class="muted">맞는 건물이 없어요. 다른 단어로 찾아보세요.</p>'; const m=$('#dnatMore'); if(m) m.hidden=L.length<=ATL.n; const n=$('#dnatN'); if(n) n.textContent=`${Math.min(L.length,ATL.n)} / ${L.length}채`; const cu=$('#dnatCur'); if(cu){ const lab=ATG.sel?((atIndex()[ATG.tab]||[]).find(x=>x.k===ATG.sel)||{l:ATG.sel}).l:''; cu.hidden=!ATG.sel; cu.innerHTML=ATG.sel?`${esc(lab)} · ${L.length}채 <button type="button" data-atsel="${esc(ATG.sel)}" aria-label="선택 해제">✕</button>`:''; } bldGenObserve(g); }
 let bldIO=null, bldQ=[], bldBusy=false;
 function bldGenObserve(root){ if(!bldIO) bldIO=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ bldIO.unobserve(e.target); bldQ.push(e.target); bldPump(); } }); },{rootMargin:'200px'}); root.querySelectorAll('.dnat-c .ph.gen').forEach(p=>bldIO.observe(p)); }
 function bldPump(){ if(bldBusy||!bldQ.length) return; bldBusy=true; const ph=bldQ.shift(); const b=BLD_BY[ph.closest('[data-bld]').dataset.bld]; bldModel(b,520,360).then(u=>{ ph.querySelector('.ld')?.remove(); if(!ph.querySelector('img')) ph.insertAdjacentHTML('afterbegin',`<img src="${u}" alt="">`); }).catch(()=>{}).finally(()=>{ bldBusy=false; setTimeout(bldPump,40); }); }
@@ -6272,7 +6877,7 @@ function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!
   const img=bldImg(b,1280); const same=BLDX.filter(x=>x.id!==b.id&&x.arch===b.arch).slice(0,4); const sim=bldSimilar(b.keys,4,b.id).map(x=>x.b).filter(x=>!same.includes(x)).slice(0,4);
   m.innerHTML=`<div class="dnat-mb"><button class="x" type="button" data-atclose aria-label="닫기">✕</button>
    <div class="dnat-mp"><div class="pic${img?'':' gen'}">${img?`<img src="${img}" alt="${esc(b.name)}">`:'<i class="ld"></i>'}</div><div class="dnat-md"><div class="dnat-mt"><i class="ld"></i></div><span>같은 단어로 지은 모형 — ${esc(DNA_ARCH[bldArch(b)].name)}</span></div>${img?`<p class="cr">사진 <a href="${bldFile(b)}" target="_blank" rel="noopener">${esc(b.by||'작가 미상')} · ${esc(b.lic)}</a> · 위키미디어 공용</p>`:''}</div>
-   <div class="dnat-mi"><span class="lab-k">${BLD_REG[b.reg]} · ${BLD_ERA[b.era]} · ${esc(b.city)}</span><h3>${esc(b.name)}</h3><p class="who">${esc(b.arch)} · ${esc(b.year)}</p><p class="ln">${esc(b.line)}</p>
+   <div class="dnat-mi"><span class="lab-k"><button type="button" data-atgo="country|${esc(bldCountry(b))}">${esc(bldCountry(b))}</button> · <button type="button" data-atgo="era|${bldEraB(b)}">${esc((BLD_ERAS.find(x=>x[0]===bldEraB(b))||[])[1]||"")}</button> · ${esc(b.city)}</span><h3>${esc(b.name)}</h3><p class="who">${bldArchs(b).map(a=>(atIndex().arch.some(x=>x.k===a)?`<button type="button" data-atgo="arch|${esc(a)}">${esc(a)}</button>`:esc(a))).join(" · ")} · ${esc(b.year)}</p><p class="ln">${esc(b.line)}</p>
     <h4>이 건물을 읽은 단어</h4><div class="dns-ks">${b.keys.map(k=>dnKey(k)).join('')}</div>
     ${state.dna.length?`<p class="ov">내 단어와 겹치는 것: <b>${bldShared(b,state.dna).map(esc).join(', ')||'아직 없어요'}</b></p>`:''}
     <div class="act"><button class="btn big" type="button" data-atbuild="${b.id}">이 건물처럼 지어 보기</button><button class="btn sec" type="button" data-atadd="${b.id}">내 단어에 더하기</button></div>
