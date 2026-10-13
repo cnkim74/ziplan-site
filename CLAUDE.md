@@ -97,3 +97,11 @@
 - 새 이미지를 추가하면 `build_public.py`의 복사 목록에도 넣을 것
 - 이미지는 AVIF(q25–45)가 WebP보다 훨씬 작음
 - 확인은 Playwright로 데스크톱(1440) + 모바일(390) 스크린샷
+
+## v6 — 도감 398채 + 카테고리/테마 (2026-10-14, 99d611c)
+- BLD 143→398채(57개 나라), 사진 364장(위키미디어 공용 자유 라이선스만, 프랑스·한국 등 파노라마 자유 없는 현대 건물은 로컬 non-free라 제외 → 모형 표시).
+- 데이터 파이프라인(scratch): bld.py(B) + bld2.py(B2, 184) + bld3.py(B3, 71) → mkbld2.py(사진을 id 키로 병합: bldphotos.txt는 B 인덱스, bldphotos2.txt는 id) → bld.js를 `const BLD=[`…`];`에 교체.
+- BLD_REG에 af(아프리카) 추가. 나라 = city 콤마 뒤, 콤마 없으면 reg kr→한국, 아니면 city 자체(싱가포르·홍콩·바티칸·예루살렘).
+- 모듈(atlas3, `/* 도감 */ const ATL` 바로 앞): bldCountry/bldYearN/bldArchs/bldEraB/bldUses, BLD_CON(20 컨셉=키워드 묶음), BLD_USE(9 용도=이름 정규식+키워드), AT_PAT(SVG 타일 ~38종), AT_TH(나라·지역 r_·컨셉 c_·시대 e_·용도 u_ 테마: [제목,영문,한줄,[bg1,bg2,포인트,잉크],패턴,효과,효과색,(패턴색)]), 건축가는 주 활동국 팔레트+모노그램(AT_ARCH 한 줄 소개).
+- UI: 탭(나라/지역/건축가/컨셉/시대/용도) + 칩 → #dnatTheme 배너(패턴 원형 와이프, 글자 스태거, 사진 4장 딜, 통계) + atFx 캔버스 파티클(petal/snow/dust/spark/confetti/rain/bokeh/windows/shapes/bubble/leaf/rays/ripple/lines/gold/plexus/aurora/streak; 보일 때만 rAF, reduced-motion 정지). 모달의 나라·시대·건축가는 data-atgo로 해당 카테고리 이동.
+- 테스트: p29/tatlas3.js (구 tatlas.js는 data-atreg 제거로 마지막 단계 타임아웃 — 정상).
