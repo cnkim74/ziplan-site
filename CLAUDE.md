@@ -60,6 +60,13 @@
   - 디버그: `window.__pgTest(keys,base,mode)` 전체 화면 모형
 - 취향 랩 v3(2026-10-14): 단어 293개(건축가 16명 + 박물관·고층 타워·공연장). 대지 지형 `Hf(x,z)` 높이장 + 평탄 패드, 주변 환경 선택 `[data-dnsite]`(평지·도심·골목·신도시·마을·숲·경사지·산자락·호숫가·바닷가·들판; `DV.site`) — 결과 무대 바와 라이브 패널 둘 다. 정렬 다듬기(층 어긋남은 x ±W*.14만, 캔틸레버는 윗판 확장, 슬릿창 층마다 일정, 도심 이웃은 카메라 쪽 비움, 물은 건물 뒤)
 - 건축 도감 `#dnAtlas`: `BLD` 143채 [id,이름,건축가,연도,도시,지역 kr/asia/me/eu/am/oc,시대 t/m/c,단어[],한 줄,커먼즈 경로 a/ab/파일,원본 폭,라이선스,작가] → `BLDX`. 사진 123장(위키백과 대표 이미지 → 커먼즈 자유 라이선스만, NC/ND 제외), 없으면 `pgThumb` 모형. `bldImg(b,w)`(500/1280 썸네일, tif는 lossy-page1), 카드 hover 시 단어로 지은 모형으로 전환, 모달 `bldOpen`(사진 크레딧·같은 단어 모형·같은 건축가·닮은 건물), "이 건물처럼 지어 보기" `bldBuild(id)` / 더하기. 결과 안 "닮은 실제 건물" `bldTwinHTML()`(겹치는 단어×3 + 같은 갈래 가산). 데이터 원본: 스크래치 `bld.py`·`bldphotos.txt`·`mkbld.py`. 테스트 훅 `window.__atlas`
+- 취향 랩 v4(2026-10-14 새벽):
+  - 흐르는 단어 띠 `#dnMarqBox`(`MQ`, `dnMarqInit/Tick/Sync`): 두 줄이 계속 흐르고 스크롤 속도만큼 빨라지며 기움(skewX), 마우스 올리면 느려짐, 단어 누르면 `dnaToggle`로 바로 고름. 화면 밖·다른 탭이면 rAF 멈춤
+  - 도감 표지 `#dnatCover`(`dnCoverHTML`, `dnCoverPar`): 건축여행 `.tv-cover` 클래스 재사용 — 기운 사진 기둥 시차 + 숫자 세기. 도감 본문은 `.dnat-in`
+  - 성능: `PGV`는 필요할 때만 그림(`poke(n)`, 자라는 중·회전·트윈·드래그일 때만 rAF), 그림자 `shadowMap.autoUpdate=false`(바뀔 때만 needsUpdate), 자동 회전만이면 30fps, 픽셀비 최대 1.5, preserveDrawingBuffer 끔(png()는 렌더 직후 toDataURL). 칩의 상시 backdrop-filter·`.dncat::before` 애니메이션 제거, `content-visibility:auto`, `pgThumb`은 스크롤 중 미룸(`window.__zScrollT`), 셰이더 segments 96
+  - 모형 디테일: 단단한 벽 창은 어두운 유리 `M.glassW`(인스턴스 `userData.m0`로 밤/낮 복귀), 창턱, 층 띠, 기단, 홈통, 문틀·계단·벽등, 다세대·공유·기숙사·스테이는 발코니(`BALC`), 파라펫 두겁, 옥상 환기구·천창·옥상정원 난간, 앞마당 벤치·화분·볼라드 조명. 입구 앞 큰 창은 지우지 않고 문 양옆으로 자름(`pgDoorCut`, 3D·평면·입면 공통)
+  - 도면 `#dnDrawSec`: `pgDrawSet(P,B)` → 배치도 `pgSiteSVG` / 층별 평면 `pgPlanSVG`(벽 포셰·창·문 호·코어 계단+WC·방 나누기 `pgSplit` + 용도별 실 `PG_ROOMS`·가구 `pgFurn`·그리드·치수·방위) / 단면 `pgSectionSVG`(박공은 용마루에 직각으로 자름, 레벨·사람·나무) / 정면도 `pgElevSVG`(재료 무늬 패턴, 지붕, 창). 창 규칙 `pgWin`은 3D `winRects`와 같은 규칙. SVG·PNG 받기, "도면 작업대로 보내기" `dnDrawSend` → zRooms·zFloor·secHeights 채우고 localStorage `zip_dna_draw` → 도면 방 `#dwFromDna`(`dwFromDna()`)
+  - 도감 사진 128장(로이드·MAXXI·아크로폴리스·하르파·ACC 추가, 커먼즈 카테고리 검색). 남은 15채는 자유 사진 없음(프랑스·이탈리아 현대 건축은 파노라마 자유 없음)
 - 힉스필드 크레딧: 무료 요금제 잔여 3.4 — 업스케일(2크레딧/장)으로 로컬 이미지(alt-*, p-*, pn-*) 개선은 보류
 - 로컬 저화질 AVIF(img/f-*) → 정식 사이트에선 `HF` 맵으로 힉스필드 원본 PNG를 /_vercel/image로(`hfUp` MutationObserver, 패널 시트는 `hqs`)
 - 사례 카드·모달: `casePh(c)`로 사진 + 아이소 썸네일 배지
