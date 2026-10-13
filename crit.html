@@ -1148,7 +1148,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .tv-col figure{margin:0;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#1a1c22}
 .tv-col figure img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
 .tv-col figcaption{position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:700;opacity:.85;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.tv-cov-sh{position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 60% at 50% 50%,rgba(8,9,14,.55),rgba(8,9,14,.88)),linear-gradient(to bottom,rgba(8,9,14,.2),rgba(8,9,14,.85))}
+.tv-cov-sh{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 55% at 50% 50%,rgba(8,9,14,.62),rgba(8,9,14,.25)),linear-gradient(to bottom,rgba(8,9,14,.1) 60%,rgba(8,9,14,.75))}
 .tv-cov-t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;will-change:transform}
 .tv-cov-t .lab-k{background:#fff;color:#111}
 .tv-cov-t h2{font-size:clamp(38px,6.4vw,92px);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px;font-weight:900;word-break:keep-all}
@@ -1184,6 +1184,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .tv-map{height:calc(100vh - 170px);min-height:460px;max-height:820px;border-radius:28px;overflow:hidden;border:1px solid var(--card-line);background:var(--bg-alt);box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
 .tv-maphint{font-size:11px;color:var(--fg-2);text-align:center;margin-top:6px}
 .tvm{background:none;border:0}
+.tv-tiles{filter:grayscale(.9) contrast(.92) brightness(1.06) sepia(.08)}.tv-tiles.dk{filter:invert(1) hue-rotate(180deg) grayscale(.85) brightness(.8) contrast(.9)}
 .tvm-in{position:relative;width:46px;height:46px;border-radius:50%;border:3px solid #fff;background:var(--c);box-shadow:0 6px 16px -4px rgba(0,0,0,.45);overflow:visible;transition:transform .3s cubic-bezier(.3,1.5,.4,1),opacity .3s}
 .tvm-in img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.tvm-in span{display:grid;place-items:center;height:100%;color:#fff;font-weight:800}
 .tvm-in.dim{opacity:.35;transform:scale(.7)}.tvm-in.sel,.tvm-in:hover{transform:scale(1.25);z-index:9}.tvm-in.rt{border-color:#2b6cff}
@@ -1989,7 +1990,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
       <div class="zrv" style="--i:3"><div class="tv-howph" data-ph="kyungdong"></div><b>04</b><h4>재료를 가까이</h4><p>송판 무늬, 벽돌 줄눈, 기와의 겹. 사진에 안 담기는 것은 손끝 거리에서 보입니다.</p></div>
       <div class="zrv" style="--i:4"><div class="tv-howph" data-ph="space"></div><b>05</b><h4>한 장 그리기</h4><p>평면 한 장을 기억으로 그려 보세요. 동선을 다시 그리면 설계가 보입니다.</p></div>
     </div>
-    <p class="tv-credit">사진: Wikimedia Commons의 자유 라이선스 사진(각 사진의 ⓘ에 작가·라이선스). 지도: © OpenStreetMap 기여자 · © CARTO. 운영 시간·휴관일·예약 여부는 방문 전 각 기관에서 확인하세요.</p>
+    <p class="tv-credit">사진: Wikimedia Commons의 자유 라이선스 사진(각 사진의 ⓘ에 작가·라이선스). 지도: © OpenStreetMap 기여자. 운영 시간·휴관일·예약 여부는 방문 전 각 기관에서 확인하세요.</p>
   </section>
 </section>
 <section class="view" id="view-guide" hidden>
@@ -3421,7 +3422,7 @@ let LF=null; function tLeaflet(){ if(LF) return LF; LF=new Promise((res,rej)=>{ 
 async function tMap(){ const el=$('#tvMap'); if(!el) return; let L; try{ L=await tLeaflet(); }catch(e){ el.innerHTML='<div class="tv-empty">지도를 불러오지 못했어요.</div>'; return; }
   if(!TV.mapObj){ el.innerHTML=''; const dark=matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement.dataset.theme!=='light';
     const m=L.map(el,{zoomControl:false,scrollWheelZoom:false,attributionControl:true}).setView([36.2,127.8],7); L.control.zoom({position:'bottomright'}).addTo(m);
-    L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark?'dark_all':'light_all'}/{z}/{x}/{y}{r}.png`,{maxZoom:18,subdomains:'abcd',attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>'}).addTo(m);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:dark?'tv-tiles dk':'tv-tiles',attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 기여자'}).addTo(m);
     m.on('click',()=>m.scrollWheelZoom.enable()); el.addEventListener('mouseleave',()=>m.scrollWheelZoom.disable());
     TV.mapObj=m; TV.layer=L.layerGroup().addTo(m); setTimeout(()=>m.invalidateSize(),200); }
   const m=TV.mapObj; TV.layer.clearLayers(); if(TV.route){ m.removeLayer(TV.route); TV.route=null; }
