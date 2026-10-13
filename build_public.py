@@ -50,7 +50,7 @@ s = s.replace('(프로토타입)', '(베타)')
 (dist / 'index.html').write_text(s, encoding='utf-8')
 
 # favicon: 마크 SVG
-(dist / 'favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a9bff"/><stop offset="1" stop-color="#1f5bff"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#g)"/><path d="M32 75V39L50 25L68 39V56H32" fill="none" stroke="#fff" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/></svg>', encoding='utf-8')
+(dist / 'favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -14 128 128"><rect x="-14" y="-14" width="128" height="128" rx="28" fill="#111"/><g fill="none" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12H52M8 44L30 22L52 44M80 8V46" stroke="#fff"/><path d="M10 58V92M90 58V92M10 74H90M10 92H90" stroke="#4f8dff"/></g></svg>', encoding='utf-8')
 
 # 지원 파일
 for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
@@ -60,7 +60,7 @@ for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vend
     shutil.copy(root / rel, dist / rel)
 
 # vercel.json: 정적 사이트, 캐시
-(dist / 'vercel.json').write_text('{"images":{"sizes":[640,960,1280,1920],"formats":["image/avif","image/webp"],"minimumCacheTTL":2678400,"remotePatterns":[{"protocol":"https","hostname":"d8j0ntlcm91z4.cloudfront.net"}]},"cleanUrls":true,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"}]},{"source":"/(vendor|effects|data)/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]}]}', encoding='utf-8')
+(dist / 'vercel.json').write_text('{"images":{"sizes":[128,256,384,640,960,1280,1920],"formats":["image/avif","image/webp"],"minimumCacheTTL":2678400,"remotePatterns":[{"protocol":"https","hostname":"d8j0ntlcm91z4.cloudfront.net"},{"protocol":"https","hostname":"upload.wikimedia.org","pathname":"/wikipedia/commons/**"}]},"cleanUrls":true,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"}]},{"source":"/(vendor|effects|data)/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]}]}', encoding='utf-8')
 files = [str(p.relative_to(dist)) for p in dist.rglob('*') if p.is_file()]
 total = sum((dist / f).stat().st_size for f in files)
 print(len(files), 'files,', round(total/1024), 'KB'); print('\n'.join(sorted(files)))
