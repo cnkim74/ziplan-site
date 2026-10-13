@@ -1672,6 +1672,41 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .dndw-load{padding:80px 20px;text-align:center;color:var(--fg-2)}
 .dwfd{margin:18px 0 26px;padding:18px;border-radius:22px;background:var(--card);border:1px solid var(--card-line)}.dwfd-h{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:12px}.dwfd-h h3{margin:6px 0 4px}.dwfd-h p{margin:0;color:var(--fg-2);font-size:13.5px}
 .dwfd .pfto{margin-bottom:10px;flex-wrap:wrap}.dwfd-s{background:#fbfaf7;border-radius:14px;overflow:hidden;border:1px solid var(--card-line)}.dwfd-s svg{display:block;width:100%;height:auto}
+/* 공용 3D 도구 막대 */
+.pgt{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px;margin-top:8px;border-radius:16px;background:var(--card);border:1px solid var(--card-line)}
+.pgt-g{display:flex;gap:2px;padding:3px;border-radius:999px;background:color-mix(in srgb,var(--fg) 6%,transparent)}
+.pgt-g button{border:0;background:transparent;color:var(--fg);font:inherit;font-size:12.5px;padding:6px 10px;border-radius:999px;cursor:pointer}.pgt-g button:hover{background:color-mix(in srgb,var(--fg) 8%,transparent)}.pgt-g button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.pgt-s{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--fg-2)}.pgt-s select{font:inherit;font-size:12.5px;border:1px solid var(--card-line);background:var(--bg);color:var(--fg);border-radius:999px;padding:5px 10px}.pgt-s input{width:90px}
+.pgw{position:relative;height:440px;border-radius:20px;overflow:hidden;background:#e9e6df}
+.cw-nums{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.cw-nums span{font-size:12px;padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--fg) 6%,transparent);color:var(--fg-2)}.cw-nums b{color:var(--fg)}
+.cw-ext{grid-column:1/-1;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+/* 땅 바꿔 보기 */
+.pgss{display:grid;grid-template-columns:repeat(10,minmax(120px,1fr));gap:10px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin}
+.pgss button{border:1px solid var(--card-line);background:var(--card);color:var(--fg);border-radius:16px;padding:6px;cursor:pointer;font:inherit;text-align:left;transition:transform .3s,box-shadow .3s}
+.pgss button:hover{transform:translateY(-3px)}.pgss button[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+.pgss .th{position:relative;display:block;aspect-ratio:3/2;border-radius:11px;overflow:hidden;background:linear-gradient(170deg,#dfe7ef,#eef0ea)}.pgss .th img{width:100%;height:100%;object-fit:cover;display:block}
+.pgss b{display:block;font-size:12.5px;margin:6px 4px 2px}
+.clx-h{margin:4px 0 12px}.clx-h h3{margin:6px 0 2px;font-size:20px;letter-spacing:-.01em}.clx-h p{margin:0;color:var(--fg-2);font-size:13px}
+.clx-2{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin-top:22px}
+.cltw{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.cltw .dnat-c .ks{display:none}
+.pgdw .dndw-sheet{max-height:none}
+/* 매스 조작 실험대 */
+.cllab{grid-template-columns:1.55fr 1fr!important;align-items:start}
+.cw-res>*,.clx-2>*,.cllab>*{min-width:0}.cw-ext{min-width:0;max-width:100%}.pgss{max-width:100%}.pgt-g{flex-wrap:wrap}.clframes{display:block!important}.clstage{min-width:0;position:sticky;top:84px}@media(max-width:1000px){.clstage{position:static}}.pgt-s span{white-space:nowrap}.clv3{position:relative;height:520px;border-radius:22px;overflow:hidden;background:#e9e6df}
+.clscenes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.clscenes .clf{all:unset;box-sizing:border-box;cursor:pointer;position:relative;overflow:hidden;padding:10px 12px;border-radius:14px;background:var(--card);border:1px solid var(--card-line);opacity:.6;transition:opacity .3s,border-color .3s}
+.clscenes .clf.on{opacity:1;border-color:var(--accent);transform:none;box-shadow:none}.clscenes .clf em{font-style:normal;font-family:var(--brand);font-size:12px;color:var(--fg-2)}.clscenes .clf b{display:block;font-size:14px}.clscenes .clf span{font-size:11.5px;color:var(--fg-2)}
+.clscenes .clf i{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent)}.clscenes .clf.on i{animation:clBar 2.4s linear forwards}@keyframes clBar{to{width:100%}}
+.cltabs button span img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.cl-kw{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+.clc{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}.clc h4{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:var(--fg-2);margin:12px 0 8px}
+.clc-r{display:block;margin:8px 0}.clc-r span{display:flex;justify-content:space-between;font-size:13px;color:var(--fg-2)}.clc-r b{color:var(--fg)}.clc-r input{width:100%}
+.clc-s{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.clc-s label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--fg-2)}.clc-s select{font:inherit;font-size:12.5px;border:1px solid var(--card-line);background:var(--bg);color:var(--fg);border-radius:10px;padding:6px}
+.clc-ops{display:flex;flex-wrap:wrap;gap:5px}.clc-ops button{border:1px solid var(--card-line);background:var(--bg);color:var(--fg);border-radius:999px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}.clc-ops button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.clc-act{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.clext{margin-top:28px}
+@media(max-width:1000px){.cllab{grid-template-columns:1fr!important}.clx-2{grid-template-columns:1fr}.clv3{height:380px}.pgw{height:340px}}
+@media(max-width:640px){.clscenes{grid-template-columns:repeat(2,1fr)}.clc-s{grid-template-columns:1fr 1fr}.pgss{grid-template-columns:repeat(10,130px)}.pgt-s input{width:70px}}
 .dnat-c{content-visibility:auto;contain-intrinsic-size:auto 330px}.dncat{content-visibility:auto;contain-intrinsic-size:auto 420px}.dnat-c:hover,.dnat-c:focus-visible{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(0,0,0,.45)}.dnat-c:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .dnat-c .ph{position:relative;aspect-ratio:4/3;background:linear-gradient(160deg,#e9e6df,#d8d4cb);overflow:hidden}
 .dnat-c .ph.gen{background:linear-gradient(170deg,#dfe7ef,#eef0ea)}
@@ -3412,12 +3447,6 @@ function sunPlay(){ const b=$('#sunPlay'); if(SUNL.play){ cancelAnimationFrame(S
 /* ---------- 컨셉 · 매스 조작 도감 ---------- */
 let CL={arch:null,frame:0,timer:null};
 function conceptLabArch(){ if(CL.arch) return CL.arch; const c=state.conceptPick; if(c&&c.dna&&DNA_ARCH[c.dna]) return c.dna; const r=dnaAnalyze(state.dna); return r.n?r.arch[0].id:'court'; }
-function drawConceptLab(){ const box=$('#clFrames'); if(!box) return; const id=conceptLabArch(), A=DNA_ARCH[id];
-  $('#clTabs').innerHTML=Object.entries(DNA_ARCH).map(([k,a])=>`<button type="button" data-a="${k}" aria-pressed="${k===id}"><span>${CTHUMB.kind(a.shape)}</span>${esc(a.name)}</button>`).join('');
-  const F=[['대지','빈 땅에서 시작',CTHUMB.kind('plate',1)],['볼륨','필요한 면적만큼 한 덩어리',CTHUMB.kind('block',1)],['조작',A.moves[0]+' · '+A.moves[1],`<div class="clx">${CTHUMB.kind('block',1)}${CTHUMB.kind(A.shape,1)}</div>`],['결과',A.name,CTHUMB.kind(A.shape,1)]];
-  box.innerHTML=F.map((f,i)=>`<div class="clf${i===CL.frame?' on':''}" data-f="${i}"><div class="clv">${f[2]}</div><div class="clc"><em>${String(i+1).padStart(2,'0')}</em><b>${esc(f[0])}</b><span>${esc(f[1])}</span></div></div>`).join('');
-  $('#clInfo').innerHTML=`<div class="cl-n">${esc(A.name)}</div><p class="cl-l">“${esc(dnaLine(A,state.dna))}”</p><p>${esc(A.why)}</p><ol>${A.moves.map(m=>`<li>${esc(m)}</li>`).join('')}</ol><div class="cl-r">${A.refs.map(r=>`<span><b>${esc(r.name)}</b> ${esc(r.arch)}</span>`).join('')}</div><div class="actions"><button class="btn" id="clUse">이 방향으로 3안 받기</button><a class="btn sec" href="#dna">내 취향으로 찾기</a></div>`; }
-function clAuto(on){ clearInterval(CL.timer); if(!on) return; CL.timer=setInterval(()=>{ if(location.hash!=='#concept') return; CL.frame=(CL.frame+1)%4; $$('#clFrames .clf').forEach((f,i)=>f.classList.toggle('on',i===CL.frame)); },1900); }
 
 /* ---------- 도면 · 관계 다이어그램 ---------- */
 let BUB={nodes:[],links:[],raf:0,drag:null,t:0};
@@ -4247,7 +4276,7 @@ function cwStepHTML(){ const S=CW.step; const tile=(on,attr,inner,cls)=>`<button
 function cwResHTML(){ if(!CW.res) return ''; const R=CW.res;
   return `<div class="cw-tabs">${R.map((r,i)=>`<button data-cwr="${i}" aria-pressed="${i===CW.sel}"><span>${CTHUMB.kind(r.A.shape)}</span><b>${String.fromCharCode(65+i)}안</b><em>${esc(r.A.name)}</em></button>`).join('')}</div>`+R.map((r,i)=>{ const nm=r.names[r.nameSel];
    return `<article class="cw-res${i===CW.sel?' on':''}" data-ri="${i}">
-    <div class="cw-viz"><div class="m3" id="m3_${i}"></div><div class="m3-bar"><div class="modes"><button data-m3v="spin" aria-pressed="true">돌려 보기</button><button data-m3v="top">위에서</button><button data-m3v="eye">눈높이</button></div><div class="modes"><button data-m3n="0" aria-pressed="true">낮</button><button data-m3n="1">밤</button></div><label class="m3-sun">해<input type="range" min="-3.1" max="0" step=".05" value="-.9" data-m3s></label><button class="btn sec sm" data-m3png>이미지 저장</button></div><div class="m3-info"></div>
+    <div class="cw-viz"><div class="m3 pgw" id="cwv_${i}"></div>${pgToolsHTML('cw'+i)}<div class="cw-nums" id="cwNums_${i}"></div>
      <div class="cw-mood">${r.mood.map((k,j)=>`<figure class="mo${j}">${phImg(k,960,'',k,'(max-width:900px) 60vw, 26vw')}</figure>`).join('')}<div class="cw-sw">${(r.A.mat||[]).map(m=>`<span>${esc(m)}</span>`).join('')}</div></div></div>
     <div class="cw-body"><div class="cw-k">${String.fromCharCode(65+i)}안 · ${esc(r.A.name)}</div>
      <h3 class="cw-name">${esc(nm.ko)}${nm.sub?`<small>${esc(nm.sub)}</small>`:''}</h3>
@@ -4257,12 +4286,12 @@ function cwResHTML(){ if(!CW.res) return ''; const R=CW.res;
      <div class="cw-cols"><div><h4>이렇게 시작</h4><ol>${r.A.moves.slice(0,3).map(m=>`<li>${esc(m)}</li>`).join('')}${r.extra?`<li>${esc(r.extra)}</li>`:''}</ol></div><div><h4>왜 이 방향</h4><p>${esc(r.why)}</p><h4>빛</h4><p>${esc(r.A.light||'')}</p></div></div>
      <div class="cw-refs"><h4>참고할 건물</h4>${r.A.refs.map(f=>`<div><b>${esc(f.name)}</b><span>${esc(f.arch)}${f.note?' · '+esc(f.note):''}</span></div>`).join('')}</div>
      <div class="cw-act"><button class="btn big" data-cwgo="${i}">이 컨셉으로 시작</button><button class="btn sec" data-cwcopy="${i}">컨셉 보드 복사</button></div>
-     </div></article>`; }).join(''); }
+     </div>${i===CW.sel?cwExtHTML(i):''}</article>`; }).join(''); }
 function cwDraw(){ const el=$('#cwBox'); if(!el) return; const S=CW.step;
   $('#cwSteps').innerHTML=['무엇을','어디에','어떤 느낌','어떤 하루','세 갈래'].map((t,i)=>`<button data-cwstep="${i}" class="${i===S?'on':''}${i<S?' done':''}" ${i===4&&!CW.res?'disabled':''}><i>${i<S?'✓':i+1}</i>${t}</button>`).join('');
   $('#cwSum').innerHTML=[CW.prog&&CWP.find(p=>p[0]===CW.prog)[1],CW.site&&CWS.find(s=>s[0]===CW.site)[1],...CW.feel,CW.day&&CWD.find(d=>d[0]===CW.day)[1]].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')||'<em>고른 것이 여기에 모여요</em>';
   if(S<4){ el.innerHTML=cwStepHTML(); el.className='cw-box step'; }
-  else { el.innerHTML=cwResHTML(); el.className='cw-box res'; const r=CW.res[CW.sel]; setTimeout(()=>m3Mount($('#m3_'+CW.sel),r.id,CW.prog||'house'),30); }
+  else { el.innerHTML=cwResHTML(); el.className='cw-box res'; setTimeout(()=>cwMount(CW.sel),30); }
   $('#cwPrev').hidden=S===0; const nx=$('#cwNext'); nx.hidden=S===4; nx.textContent=S===3?'세 갈래 받기 ✦':'다음'; nx.disabled=(S===0&&!CW.prog)||(S===1&&!CW.site)||(S===2&&!CW.feel.length);
   dnaReveal(); }
 function cwGo(s){ CW.step=Math.max(0,Math.min(4,s)); if(CW.step===4&&!CW.res) cwBuild(); cwDraw(); const w=$('#cwWrap'); if(w&&w.getBoundingClientRect().top<0) w.scrollIntoView({behavior:'smooth',block:'start'}); }
@@ -5150,7 +5179,7 @@ function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky
   init(); return api; }
 /* 썸네일: 화면 밖 렌더러 하나로 차례대로 */
 let PGTH=null; const PGTC={};
-function pgThumb(P,w,h){ const key=[P.keys.join('|'),P.base,P.mode,P.site].join('#'); if(PGTC[key]) return Promise.resolve(PGTC[key]);
+function pgThumb(P,w,h){ const key=[P.keys.join('|'),P.base,P.mode,P.site,P.tag||'',w].join('#'); if(PGTC[key]) return Promise.resolve(PGTC[key]);
   return t3Load().then(T=>new Promise(res=>{ const go=()=>{ if(performance.now()-(window.__zScrollT||0)<240){ setTimeout(go,260); return; } if(!PGTH){ const R=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); R.setPixelRatio(1); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; const sc=new T.Scene(); const L=pgLights(T,sc); sc.add(pgSky(T,false)); sc.fog=new T.Fog(0xe6e3dc,200,600); PGTH={R,sc,L,cam:new T.PerspectiveCamera(32,1,.5,2000)}; }
       const {R,sc,L,cam}=PGTH; R.setSize(w||480,h||340,false); cam.aspect=(w||480)/(h||340); cam.updateProjectionMatrix(); const B=pgBuild(T,P,{people:false}); sc.add(B.root);
       const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); const r=Math.max(sz.x,sz.z,sz.y*1.5); const d=r*1.5+14, az=.75, el=.4; L.sun.position.set(c.x-50,62,c.z-40); L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+25); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+25; L.sun.shadow.camera.updateProjectionMatrix();
@@ -5588,6 +5617,91 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return;
   if(e.target.closest('[data-dwfdsvg]')){ const d=lsGet('zip_dna_draw',null); const k=$('#dwFromDna').dataset.cur||'plan'; if(d&&d[k]) dlBlob(new Blob([d[k]],{type:'image/svg+xml'}),`ZIPLAN-${k}.svg`); return; }
 });
 
+/* ===== 컨셉 방: 실제 건물처럼 짓는 3D + 도구 (취향 랩 생성기 공용) ===== */
+const PGVR={};
+const PG_SITE_OPTS=[['','단어대로'],['flat','평평한 대지'],['city','도심'],['alley','좁은 골목'],['suburb','신도시 주택가'],['village','오래된 마을'],['forest','숲 속'],['slope','경사지'],['mountain','산자락'],['water','호숫가'],['sea','바닷가'],['field','들판 · 논']];
+function archKeys(id){ const sc=DNA_KW.filter(k=>k.a&&k.a[id]&&k.cat!=='master'&&k.cat!=='color').map(k=>[k.label,k.a[id],k.cat]).sort((a,b)=>b[1]-a[1]); const out=[], cats={}; for(const [l,w,c] of sc){ if(out.length>=6) break; if((cats[c]||0)>=2) continue; cats[c]=(cats[c]||0)+1; out.push(l); } return out; }
+function pgToolsHTML(id,o){ o=o||{}; return `<div class="pgt" data-pgt="${id}"><div class="pgt-g"><button type="button" data-pgm="clay" aria-pressed="false">흰 모형</button><button type="button" data-pgm="night" aria-pressed="false">밤</button><button type="button" data-pgm="explode" aria-pressed="false">층 펼치기</button></div><div class="pgt-g"><button type="button" data-pgv="spin">돌기</button><button type="button" data-pgv="aerial">조감</button><button type="button" data-pgv="front">정면</button><button type="button" data-pgv="eye">눈높이</button><button type="button" data-pgv="top">위</button></div>${o.noSite?'':`<label class="pgt-s"><span>주변</span><select data-pgsite>${PG_SITE_OPTS.map(([v,n])=>`<option value="${v}">${n}</option>`).join('')}</select></label>`}<label class="pgt-s"><span>해</span><input type="range" min="-180" max="0" value="-52" data-pgsun aria-label="해 방향"></label><button type="button" class="btn sec sm" data-pgpng>PNG</button></div>`; }
+function pgvMount(id,el,make,onBuilt){ const old=PGVR[id]; if(old&&old.v&&old.el===el){ old.make=make; old.onBuilt=onBuilt; const P=make(old.site); old.P=P; old.v.show(P,{keepCam:true}); return old; } if(old&&old.v) try{ old.v.dispose(); }catch(e){}
+  const R={el,make,onBuilt,site:'',P:null}; PGVR[id]=R; R.v=PGV(el,{auto:true,onBuilt:(B,P)=>{ R.B=B; try{ R.onBuilt&&R.onBuilt(B,P); }catch(err){ console.warn(err); } }}); R.P=make(''); R.v.show(R.P); return R; }
+function pgvDispose(prefix){ Object.keys(PGVR).forEach(k=>{ if(k.startsWith(prefix)){ try{ PGVR[k].v.dispose(); }catch(e){} delete PGVR[k]; } }); }
+/* 도면 칸 (여러 곳에서 공용) */
+const PDW={};
+function pgDrawPanelHTML(id){ return `<div class="pgdw" data-pgdw="${id}"><div class="dndw-bar"><div class="pfto" data-pgdwtabs></div><span class="sp"></span><button type="button" class="btn sec sm" data-pgdwx="svg">SVG 받기</button><button type="button" class="btn sec sm" data-pgdwx="png">PNG 받기</button><button type="button" class="btn sm" data-pgdwx="send">도면 작업대로</button></div><div class="dndw-sheet" data-pgdwsheet><div class="dndw-load">도면을 그리는 중…</div></div></div>`; }
+function pgDrawPanel(id,P,B){ const box=document.querySelector(`[data-pgdw="${id}"]`); if(!box||!P) return; let D=PDW[id]; if(!D||D.P!==P) D=PDW[id]={P,B,set:pgDrawSet(P,B),cache:{},tab:(D&&D.tab)||'p0'}; if(!D.set.some(t=>t[0]===D.tab)) D.tab='p0';
+  box.querySelector('[data-pgdwtabs]').innerHTML=D.set.map(([k,n])=>`<button type="button" data-pgdwt="${k}" aria-pressed="${k===D.tab}">${n}</button>`).join('');
+  const t=D.set.find(x=>x[0]===D.tab); try{ D.cache[D.tab]=D.cache[D.tab]||t[2](); box.querySelector('[data-pgdwsheet]').innerHTML=D.cache[D.tab]; }catch(err){ console.warn(err); box.querySelector('[data-pgdwsheet]').innerHTML='<div class="dndw-load">이 모양은 도면으로 풀기 어려워요. 조작을 바꿔 보세요.</div>'; } }
+/* 땅 바꿔 보기 썸네일 줄 */
+const PG_SS=[['city','도심'],['alley','골목'],['suburb','신도시'],['forest','숲'],['slope','경사지'],['mountain','산자락'],['water','호숫가'],['sea','바닷가'],['village','마을'],['field','들판']];
+function pgSiteStripHTML(id){ return `<div class="pgss" data-pgss="${id}">${PG_SS.map(([k,n])=>`<button type="button" data-pgsite-pick="${k}"><span class="th"><i class="ld"></i></span><b>${n}</b></button>`).join('')}</div>`; }
+function pgSiteStripFill(id){ const R=PGVR[id]; const box=document.querySelector(`[data-pgss="${id}"]`); if(!R||!box) return; const job=(box._job||0)+1; box._job=job; const btns=[...box.querySelectorAll('[data-pgsite-pick]')]; let i=0;
+  const next=()=>{ if(box._job!==job||i>=btns.length) return; const b=btns[i++]; const P=R.make(b.dataset.pgsitePick); pgThumb(P,360,240).then(u=>{ if(box._job!==job) return; b.querySelector('.th').innerHTML=`<img src="${u}" alt="">`; setTimeout(next,40); }).catch(()=>setTimeout(next,40)); };
+  btns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.pgsitePick===R.site)); setTimeout(next,500); }
+function pgSetSite(id,site){ const R=PGVR[id]; if(!R) return; R.site=site; R.P=R.make(site); R.v.show(R.P,{keepCam:true}); document.querySelectorAll(`[data-pgt="${id}"] [data-pgsite]`).forEach(s=>s.value=site); document.querySelectorAll(`[data-pgss="${id}"] [data-pgsite-pick]`).forEach(b=>b.setAttribute('aria-pressed',b.dataset.pgsitePick===site)); }
+document.addEventListener('click',e=>{ if(!e.target.closest) return;
+  const t=e.target.closest('[data-pgt]'); if(t){ const R=PGVR[t.dataset.pgt]; if(!R||!R.v) return;
+    const m=e.target.closest('[data-pgm]'); if(m){ const on=m.getAttribute('aria-pressed')!=='true'; m.setAttribute('aria-pressed',on); R.v[m.dataset.pgm](on); return; }
+    const vv=e.target.closest('[data-pgv]'); if(vv){ R.v.view(vv.dataset.pgv); return; }
+    if(e.target.closest('[data-pgpng]')){ const a=document.createElement('a'); a.href=R.v.png(); a.download=`ZIPLAN-${(R.P&&R.P.progName)||'concept'}.png`; a.click(); return; } return; }
+  const sp=e.target.closest('[data-pgsite-pick]'); if(sp){ const id=sp.closest('[data-pgss]').dataset.pgss; pgSetSite(id,sp.dataset.pgsitePick); return; }
+  const dt=e.target.closest('[data-pgdwt]'); if(dt){ const id=dt.closest('[data-pgdw]').dataset.pgdw; const D=PDW[id]; if(D){ D.tab=dt.dataset.pgdwt; pgDrawPanel(id,D.P,D.B); } return; }
+  const dx=e.target.closest('[data-pgdwx]'); if(dx){ const id=dx.closest('[data-pgdw]').dataset.pgdw; const D=PDW[id]; if(!D) return; const k=dx.dataset.pgdwx; const svg=D.cache[D.tab]||(D.cache[D.tab]=D.set.find(x=>x[0]===D.tab)[2]()); const nm=`ZIPLAN-${(D.set.find(x=>x[0]===D.tab)||[])[1]||'도면'}`.replace(/\s+/g,'-');
+    if(k==='svg') dlBlob(new Blob([svg],{type:'image/svg+xml'}),nm+'.svg'); else if(k==='png') svgToPng(svg,b=>b&&dlBlob(b,nm+'.png')); else { DW.P=D.P; DW.B=D.B; DW.set=D.set; DW.cache=D.cache; DW.key=''; dnDrawSend(); } return; }
+});
+document.addEventListener('change',e=>{ const s=e.target.closest&&e.target.closest('[data-pgsite]'); if(s){ const id=s.closest('[data-pgt]').dataset.pgt; pgSetSite(id,s.value); } });
+document.addEventListener('input',e=>{ const s=e.target.closest&&e.target.closest('[data-pgsun]'); if(s){ const R=PGVR[s.closest('[data-pgt]').dataset.pgt]; if(R&&R.v) R.v.sun(+s.value*Math.PI/180); } });
+
+/* ---------- 매스 조작 실험대 (12 갈래 + 직접 만지기) ---------- */
+const CLC={id:null,o:{}};
+const CL_OPS=['court','pilotis','cantilever','terrace','split','void','tower','twist','curve','round','carve','frame','slabs','village','twin','shift','plinth','lightTop','sink','roofgarden','canopy','cloister','wall','pool','deck','eaves','skylight','solar','vines','shades','stair'];
+const CL_SKINS=['conc','brick','brickR','stone','stucco','wood','glass','metal','corten','terra','woodlouver','louver','charred','perf'];
+function clKeys(id){ return state.dna.length>=3?state.dna.slice():archKeys(id); }
+function clMake(site){ const id=CLC.id; const P=pgSpec(clKeys(id),{base:id,site:site||undefined}); const o=CLC.o; if(o.W) P.W=o.W; if(o.D) P.D=o.D; if(o.F) P.F=o.F; if(o.fh) P.fh=o.fh; if(o.skin&&PG_SKIN[o.skin]) P.skin=o.skin; if(o.roof) P.roof=o.roof; if(o.win) P.win=o.win; if(o.add) o.add.forEach(x=>P.ops.add(x)); if(o.del) o.del.forEach(x=>P.ops.delete(x)); P.tag='cl:'+JSON.stringify(o)+':'+site; return P; }
+function clCfgHTML(P){ const sel=(k,list,cur)=>`<select data-clc="${k}">${list.map(([v,n])=>`<option value="${v}"${v===cur?' selected':''}>${n}</option>`).join('')}</select>`;
+  const rng=(k,n,min,max,step,v,u)=>`<label class="clc-r"><span>${n} <b data-clcv="${k}">${v}${u}</b></span><input type="range" data-clc="${k}" min="${min}" max="${max}" step="${step}" value="${v}"></label>`;
+  return `<div class="clc"><h4>직접 만져 보기</h4>${rng('F','층수',1,P.prog==='tower'?16:8,1,P.F,'층')}${rng('W','폭',6,40,1,Math.round(P.W),'m')}${rng('D','깊이',6,30,1,Math.round(P.D),'m')}${rng('fh','층높이',2.8,6,.1,P.fh,'m')}
+   <div class="clc-s"><label><span>외피</span>${sel('skin',CL_SKINS.filter(k=>PG_SKIN[k]).map(k=>[k,PG_SKIN[k][4]]),P.skin)}</label><label><span>지붕</span>${sel('roof',Object.entries(PG_ROOFT).filter(([k])=>k!=='roofgarden'),P.roof)}</label><label><span>창</span>${sel('win',Object.entries(PG_WINT),P.win)}</label></div>
+   <h4>조작 더하기 · 빼기</h4><div class="clc-ops">${CL_OPS.filter(o=>PG_OPN[o]).map(o=>`<button type="button" data-clop="${o}" aria-pressed="${P.ops.has(o)}" title="${esc(PG_OPT[o]||'')}">${PG_OPN[o]}</button>`).join('')}</div>
+   <div class="clc-act"><button type="button" class="btn sec sm" data-clreset>처음 모양으로</button><button type="button" class="btn sec sm" data-clrand>무작위 조작</button><button type="button" class="btn sm" data-cltodna>취향 랩에서 이어 짓기</button></div></div>`; }
+let clT=0; function clRebuild(){ clearTimeout(clT); clT=setTimeout(()=>{ const R=PGVR.cl; if(!R) return; R.P=clMake(R.site); R.v.show(R.P,{keepCam:true}); pgSiteStripFill('cl'); },160); }
+function clThumbs(){ const btns=$$('#clTabs [data-a]'); let i=0; const job=(clThumbs.j=(clThumbs.j||0)+1); const next=()=>{ if(clThumbs.j!==job||i>=btns.length) return; const b=btns[i++]; if(b.dataset.th){ next(); return; } const id=b.dataset.a; const P=pgSpec(archKeys(id),{base:id}); P.tag='clt'; pgThumb(P,240,170).then(u=>{ b.dataset.th=1; const sp=b.querySelector('span'); if(sp) sp.innerHTML=`<img src="${u}" alt="">`; setTimeout(next,60); }).catch(()=>setTimeout(next,60)); }; setTimeout(next,900); }
+function drawConceptLab(){ const box=$('#clFrames'); if(!box) return; const id=conceptLabArch(), A=DNA_ARCH[id];
+  const tabs=$('#clTabs'); if(!tabs.dataset.on){ tabs.dataset.on=1; tabs.innerHTML=Object.entries(DNA_ARCH).map(([k,a])=>`<button type="button" data-a="${k}" aria-pressed="false"><span>${CTHUMB.kind(a.shape)}</span>${esc(a.name)}</button>`).join(''); clThumbs(); }
+  $$('#clTabs [data-a]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.a===id));
+  if(CLC.id!==id){ CLC.id=id; CLC.o={}; }
+  if(!box.dataset.on){ box.dataset.on=1; box.innerHTML=`<div class="clstage"><div class="clv3" id="clV3"></div><div class="clscenes" id="clScenes">${[['대지','빈 땅에서 시작'],['덩어리','필요한 면적만큼'],['조작','깎고 들고 나누기'],['완성','재료와 사람까지']].map((f,i)=>`<button type="button" class="clf${i===3?' on':''}" data-f="${i}"><em>${String(i+1).padStart(2,'0')}</em><b>${f[0]}</b><span>${f[1]}</span><i></i></button>`).join('')}</div>${pgToolsHTML('cl')}</div>`; }
+  const R=pgvMount('cl',$('#clV3'),clMake,(B,P)=>{ const sp=$('#clSpec'); if(sp){ sp.innerHTML=dnaSpecHTML(P,B.nums); try{ dnCount(sp); }catch(e){} } pgDrawPanel('cl',P,B); const tw=$('#clTwins'); if(tw){ const L=bldSimilar(P.keys,4); tw.innerHTML=L.map(({b})=>bldCard(b)).join(''); bldGenObserve(tw); } });
+  const P0=clMake(R.site);
+  $('#clInfo').innerHTML=`<div class="cl-n">${esc(A.name)}</div><p class="cl-l">“${esc(dnaLine(A,state.dna))}”</p><p>${esc(A.why)}</p><div class="cl-kw">${clKeys(id).map(k=>dnKey(k)).join('')}</div><ol>${A.moves.slice(0,4).map(m=>`<li>${esc(m)}</li>`).join('')}</ol><div class="actions"><button class="btn" id="clUse">이 방향으로 3안 받기</button><a class="btn sec" href="#dna">내 취향으로 찾기</a></div>${clCfgHTML(P0)}`;
+  let ext=$('#clExt'); if(!ext){ box.closest('.cllab').insertAdjacentHTML('afterend',`<div class="clext" id="clExt"><div class="clx-h"><span class="lab-k">SITE · 땅 바꿔 보기</span><h3>같은 집, 열 가지 땅</h3><p>누르면 위 모형의 주변이 바뀌어요.</p></div>${pgSiteStripHTML('cl')}<div class="clx-2"><div><div class="clx-h"><span class="lab-k">DRAWINGS · 도면</span><h3>지금 모양을 도면으로</h3></div>${pgDrawPanelHTML('cl')}</div><div><div class="clx-h"><span class="lab-k">SPEC · 숫자</span><h3>개략 사양</h3></div><div id="clSpec"></div><div class="clx-h" style="margin-top:22px"><span class="lab-k">REAL · 닮은 건물</span><h3>실제로 지어진 비슷한 건물</h3></div><div class="cltw" id="clTwins"></div></div></div></div>`); }
+  pgSiteStripFill('cl'); clScene(CL.frame); }
+function clScene(i){ CL.frame=i; const R=PGVR.cl; $$('#clScenes .clf').forEach((f,j)=>f.classList.toggle('on',j===i)); if(R&&R.v) R.v.stage(['site','mass','clay','full'][i]); }
+function clAuto(on){ clearInterval(CL.timer); if(!on) return; let n=0; CL.timer=setInterval(()=>{ if(location.hash!=='#concept'||++n>8){ clearInterval(CL.timer); if(location.hash==='#concept') clScene(3); return; } clScene((CL.frame+1)%4); },2400); }
+document.addEventListener('click',e=>{ if(!e.target.closest) return; const v=e.target.closest('#view-concept'); if(!v) return;
+  const f=e.target.closest('#clScenes .clf'); if(f){ clAuto(false); clScene(+f.dataset.f); e.stopPropagation(); return; }
+  const op=e.target.closest('[data-clop]'); if(op){ clAuto(false); const o=op.dataset.clop, on=op.getAttribute('aria-pressed')!=='true'; op.setAttribute('aria-pressed',on); const add=new Set(CLC.o.add||[]), del=new Set(CLC.o.del||[]); if(on){ add.add(o); del.delete(o); } else { del.add(o); add.delete(o); } CLC.o.add=[...add]; CLC.o.del=[...del]; clScene(3); clRebuild(); return; }
+  if(e.target.closest('[data-clreset]')){ CLC.o={}; drawConceptLab(); return; }
+  if(e.target.closest('[data-clrand]')){ const pool=CL_OPS.slice().sort(()=>Math.random()-.5).slice(0,3); CLC.o={add:pool,F:1+Math.floor(Math.random()*4)}; drawConceptLab(); return; }
+  if(e.target.closest('[data-cltodna]')){ const R=PGVR.cl; state.dna=(R&&R.P?R.P.keys:clKeys(CLC.id)).slice(); try{ touch('dna'); }catch(err){} location.hash='#dna'; setTimeout(()=>{ try{ renderDnaLab(); renderDnaResult(); $('#dnStoryWrap').scrollIntoView({behavior:'smooth',block:'start'}); }catch(err){} },300); return; }
+},true);
+document.addEventListener('input',e=>{ const c=e.target.closest&&e.target.closest('[data-clc]'); if(!c) return; const k=c.dataset.clc; let v=c.value; if(['F','W','D','fh'].includes(k)){ v=+v; const b=document.querySelector(`[data-clcv="${k}"]`); if(b) b.textContent=v+(k==='F'?'층':'m'); } CLC.o[k]=v; clAuto(false); clScene(3); clRebuild(); });
+
+/* ---------- 컨셉 마법사: 고른 것을 단어로 바꿔 실제 건물처럼 ---------- */
+const CW_KW={prog:{house:'함께 사는 집',cafe:'카페',library:'도서관',gallery:'갤러리',stay:'게스트하우스',share:'쉐어하우스',studio:'작업실 겸 집',community:'주민 센터'},
+  site:{city:'도심 협소지',forest:'숲',water:'물가',slope:'경사지',village:'오래된 마을',sea:'바다 조망'},
+  pgsite:{city:'alley',forest:'forest',water:'water',slope:'slope',village:'village',sea:'sea'},
+  feel:{'빛':'천창','바람':'자연 환기','물':'물에 비친 빛','마당':'중정형','풍경':'통창','돌·흙':'석재','나무':'목재','틈':'틈으로 갈라진 매스','계단':'계단형','고요':'고요한','골목':'골목 잇기','재료의 결':'노출 콘크리트'},
+  day:{solo:'1인 가구',family:'함께 사는 집',guest:'게스트하우스',mix:'작업실 겸 집'}};
+function cwKeys(){ const k=[]; const add=l=>{ if(l&&DNA_BY[l]&&!k.includes(l)) k.push(l); }; add(CW_KW.prog[CW.prog]); add(CW_KW.site[CW.site]); CW.feel.forEach(f=>add(CW_KW.feel[f])); if(CW.day&&(CW.prog==='house'||!CW.prog)) add(CW_KW.day[CW.day]); return k; }
+function cwMount(i){ const r=CW.res&&CW.res[i]; const el=$('#cwv_'+i); if(!r||!el) return; Object.keys(PGVR).forEach(k=>{ if(k.startsWith('cw')&&k!=='cw'+i){ try{ PGVR[k].v.dispose(); }catch(e){} delete PGVR[k]; } });
+  const keys=cwKeys(); const mode=['main','mix','wild'][i]||'main'; const make=site=>{ const P=pgSpec(keys,{base:r.id,mode:i===0?'main':'mix',site:site||CW_KW.pgsite[CW.site]}); P.tag='cw'+i; return P; };
+  pgvMount('cw'+i,el,make,(B,P)=>{ const n=$('#cwNums_'+i); if(n) n.innerHTML=`<span><b>${P.progName}</b></span><span>${PG_SKIN[P.skin][4]}</span><span>${PG_ROOFT[P.roof]}</span><span>${B.nums.floors}층 · 연면적 약 ${B.nums.gfa}㎡</span><span>높이 ${B.nums.height}m</span>`; const sp=$('#cwSpec_'+i); if(sp){ sp.innerHTML=dnaSpecHTML(P,B.nums); try{ dnCount(sp); }catch(e){} } pgDrawPanel('cw'+i,P,B); });
+  pgSiteStripFill('cw'+i); const tw=$('#cwTw_'+i); if(tw){ const L=bldSimilar(keys,4); tw.innerHTML=L.map(({b})=>bldCard(b)).join(''); bldGenObserve(tw); } }
+function cwExtHTML(i){ return `<div class="cw-ext"><div class="clx-h"><span class="lab-k">SITE · 땅 바꿔 보기</span><h3>이 컨셉을 다른 땅에 놓으면</h3></div>${pgSiteStripHTML('cw'+i)}
+  <div class="clx-2"><div><div class="clx-h"><span class="lab-k">DRAWINGS · 도면</span><h3>배치 · 평면 · 단면 · 정면</h3></div>${pgDrawPanelHTML('cw'+i)}</div><div><div class="clx-h"><span class="lab-k">SPEC · 개략 사양</span><h3>숫자로 보기</h3></div><div id="cwSpec_${i}"></div><div class="clx-h" style="margin-top:22px"><span class="lab-k">REAL · 닮은 건물</span><h3>참고할 실제 건물</h3></div><div class="cltw" id="cwTw_${i}"></div>
+  <div class="cw-act" style="margin-top:16px"><button type="button" class="btn sec" data-cwdna>취향 랩에서 이어 짓기</button></div></div></div></div>`; }
+document.addEventListener('click',e=>{ if(!e.target.closest) return; if(e.target.closest('[data-cwdna]')){ state.dna=cwKeys(); try{ touch('dna'); }catch(err){} location.hash='#dna'; setTimeout(()=>{ try{ renderDnaLab(); renderDnaResult(); $('#dnStoryWrap').scrollIntoView({behavior:'smooth',block:'start'}); }catch(err){} },300); } });
+
 function dnHeroInit(){ const n=DNA_KW.length; const c=$('#dnComb'); if(c) c.textContent=dnFmt(Math.round(dnComb(n,5))); const kn=$('#dnKwN'); if(kn) kn.textContent=n; dnMarqInit(); dnScrollInit(); dnScroll(); }
 const BLD=[["jongmyo", "종묘 정전", "조선 왕실", "1395", "서울", "kr", "t", ["긴 바", "하나의 큰 지붕", "기와", "명상적", "기념비적", "석재"], "100m 넘게 이어지는 수평의 지붕과 빈 월대", "1/1a/Jeongjeon,_Jongmyo_(Autumn,_2012).jpg", 4000, "KOGL Type 1", "문화재청"],
 ["buseoksa", "부석사 무량수전", "고려", "1376", "영주", "kr", "t", ["기와", "처마", "차경", "경사지", "목재", "산 조망"], "배흘림기둥과 안양루에서 보는 소백산 능선", "2/25/부석사_무량수전.jpg", 5184, "CC BY-SA 4.0", "최옥석"],
@@ -5779,7 +5893,7 @@ function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!
   m.hidden=false; document.documentElement.classList.add('dnat-lock'); m.querySelector('.x').focus({preventScroll:true});
   bldModel(b,720,500).then(u=>{ const mi=m.querySelector('.dnat-mt'); if(mi) mi.innerHTML=`<img src="${u}" alt="">`; if(!img){ const p=m.querySelector('.pic'); if(p) p.innerHTML=`<img src="${u}" alt="">`; } }).catch(()=>{}); }
 function bldClose(){ const m=$('#dnatM'); if(m) m.hidden=true; document.documentElement.classList.remove('dnat-lock'); }
-function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
+function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); if(location.hash!=='#dna'){ location.hash='#dna'; setTimeout(()=>bldBuild(id,add),350); return; } state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
   const t=$('#dnToast'); if(t){ t.textContent=add?`${b.name}의 단어를 더했어요`:`${b.name}의 단어 ${b.keys.length}개로 지었어요`; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2400); } }
 document.addEventListener('click',e=>{ if(!e.target.closest) return;
   const mb=e.target.closest('#dnatM'); if(mb&&(e.target===mb||e.target.closest('[data-atclose]'))){ bldClose(); return; }
