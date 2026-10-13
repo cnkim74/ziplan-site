@@ -67,6 +67,11 @@
   - 모형 디테일: 단단한 벽 창은 어두운 유리 `M.glassW`(인스턴스 `userData.m0`로 밤/낮 복귀), 창턱, 층 띠, 기단, 홈통, 문틀·계단·벽등, 다세대·공유·기숙사·스테이는 발코니(`BALC`), 파라펫 두겁, 옥상 환기구·천창·옥상정원 난간, 앞마당 벤치·화분·볼라드 조명. 입구 앞 큰 창은 지우지 않고 문 양옆으로 자름(`pgDoorCut`, 3D·평면·입면 공통)
   - 도면 `#dnDrawSec`: `pgDrawSet(P,B)` → 배치도 `pgSiteSVG` / 층별 평면 `pgPlanSVG`(벽 포셰·창·문 호·코어 계단+WC·방 나누기 `pgSplit` + 용도별 실 `PG_ROOMS`·가구 `pgFurn`·그리드·치수·방위) / 단면 `pgSectionSVG`(박공은 용마루에 직각으로 자름, 레벨·사람·나무) / 정면도 `pgElevSVG`(재료 무늬 패턴, 지붕, 창). 창 규칙 `pgWin`은 3D `winRects`와 같은 규칙. SVG·PNG 받기, "도면 작업대로 보내기" `dnDrawSend` → zRooms·zFloor·secHeights 채우고 localStorage `zip_dna_draw` → 도면 방 `#dwFromDna`(`dwFromDna()`)
   - 도감 사진 128장(로이드·MAXXI·아크로폴리스·하르파·ACC 추가, 커먼즈 카테고리 검색). 남은 15채는 자유 사진 없음(프랑스·이탈리아 현대 건축은 파노라마 자유 없음)
+- 컨셉 방 v2(2026-10-14): 마법사 결과·매스 조작 도감 모두 취향 랩 생성기(PG) 사용 — 예전 `m3Mount`(three r128 블록)·`CTHUMB` 장면은 더 안 씀
+  - 공용: `PGVR[id]`(뷰어 등록) + `pgvMount(id,el,make,onBuilt)`, 도구 막대 `pgToolsHTML(id)`(흰 모형·밤·층 펼치기·시점·주변 환경·해·PNG, `data-pgt`), 땅 바꿔 보기 `pgSiteStripHTML/Fill`(10곳 썸네일), 도면 칸 `pgDrawPanelHTML/pgDrawPanel`(`PDW`), `archKeys(id)`(갈래별 대표 단어). `pgThumb` 캐시 키에 `P.tag`·폭 포함
+  - 매스 조작 도감 `drawConceptLab`: 12갈래 탭(생성기 썸네일), 큰 3D(`#clV3`, sticky) + 네 장면 버튼(대지/덩어리/조작/완성 = PGV stage site/mass/clay/full, 자동 순환 `clAuto`), 직접 만지기 `CLC.o`(층수·폭·깊이·층고·외피·지붕·창·조작 31종 `CL_OPS`, 무작위·초기화·취향 랩으로), 아래 `#clExt`(땅 바꿔 보기·도면·사양·닮은 실제 건물)
+  - 마법사: 고른 것 → 단어 `cwKeys()`(`CW_KW`), `cwMount(i)` — 3D·도구·수치 줄, 결과 아래 `cwExtHTML(i)`(땅·도면·사양·닮은 건물·취향 랩에서 이어 짓기)
+  - `bldBuild`는 #dna가 아니면 먼저 이동
 - 힉스필드 크레딧: 무료 요금제 잔여 3.4 — 업스케일(2크레딧/장)으로 로컬 이미지(alt-*, p-*, pn-*) 개선은 보류
 - 로컬 저화질 AVIF(img/f-*) → 정식 사이트에선 `HF` 맵으로 힉스필드 원본 PNG를 /_vercel/image로(`hfUp` MutationObserver, 패널 시트는 `hqs`)
 - 사례 카드·모달: `casePh(c)`로 사진 + 아이소 썸네일 배지
