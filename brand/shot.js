@@ -1,0 +1,1 @@
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});const p=await b.newPage({viewport:{width:1400,height:620},deviceScaleFactor:2});await p.goto('file://'+__dirname+'/sheet.html');await p.waitForTimeout(300);await p.screenshot({path:__dirname+'/ziplan-brand-sheet.png'});await b.close();})();

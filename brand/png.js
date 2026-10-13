@@ -1,0 +1,6 @@
+const {chromium}=require('playwright'); const fs=require('fs');
+(async()=>{const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'}); const p=await b.newPage();
+const jobs=[['ziplan-mark.svg',1024,1024,'ziplan-mark-1024.png'],['ziplan-mark-white.svg',1024,1024,'ziplan-mark-white-1024.png'],['ziplan-app-icon.svg',1024,1024,'ziplan-app-icon-1024.png'],['ziplan-app-icon.svg',512,512,'ziplan-app-icon-512.png'],['ziplan-app-icon.svg',180,180,'ziplan-app-icon-180.png'],['ziplan-app-icon.svg',32,32,'ziplan-favicon-32.png'],['ziplan-logo-horizontal.svg',2400,0,'ziplan-logo-horizontal-2400.png'],['ziplan-logo-horizontal-white.svg',2400,0,'ziplan-logo-horizontal-white-2400.png'],['ziplan-logo-stacked.svg',1600,0,'ziplan-logo-stacked-1600.png'],['ziplan-wordmark.svg',2000,0,'ziplan-wordmark-2000.png']];
+for(const [f,w,h,o] of jobs){ const svg=fs.readFileSync(__dirname+'/'+f,'utf8'); const vb=svg.match(/viewBox="([^"]+)"/)[1].split(' ').map(Number); const H=h||Math.round(w*vb[3]/vb[2]);
+  await p.setViewportSize({width:w,height:H}); await p.setContent(`<html><body style="margin:0;background:transparent">${svg.replace('<svg ',`<svg width="${w}" height="${H}" `)}</body></html>`); await p.screenshot({path:__dirname+'/'+o,omitBackground:true,clip:{x:0,y:0,width:w,height:H}}); }
+await b.close();})();

@@ -23,6 +23,7 @@ head = '''<!doctype html>
 <meta property="og:image" content="img/house-dusk.jpg">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="brand/ziplan-app-icon-180.png">
 '''
 assert s.startswith('<meta charset="utf-8">\n')
 s = s[len('<meta charset="utf-8">\n'):]
@@ -50,7 +51,11 @@ s = s.replace('(프로토타입)', '(베타)')
 (dist / 'index.html').write_text(s, encoding='utf-8')
 
 # favicon: 마크 SVG
-(dist / 'favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -14 128 128"><rect x="-14" y="-14" width="128" height="128" rx="28" fill="#111"/><g fill="none" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12H52M8 44L30 22L52 44M80 8V46" stroke="#fff"/><path d="M10 58V92M90 58V92M10 74H90M10 92H90" stroke="#4f8dff"/></g></svg>', encoding='utf-8')
+(dist / 'favicon.svg').write_text((root / 'brand' / 'ziplan-app-icon.svg').read_text(encoding='utf-8'), encoding='utf-8')
+import shutil as _sh
+(dist / 'brand').mkdir(exist_ok=True)
+for _f in (root / 'brand').glob('ziplan-*'):
+    _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
 for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
