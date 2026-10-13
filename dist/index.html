@@ -1511,6 +1511,85 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .tv-mapbox.full .tv-mtools{top:26px;left:26px;right:26px}
 .maplibregl-popup{z-index:20}
 @media(max-width:700px){.tv-mtools .modes button{padding:6px 9px;font-size:11.5px}.tv-mtools>.btn{padding:6px 10px;font-size:12px}}
+/* ===== 취향 랩 v2 ===== */
+.dnhin{transform:translate3d(0,calc(var(--dnp,0)*110px),0);opacity:calc(1 - var(--dnp,0)*1.05);will-change:transform,opacity}
+.dnh1 span{display:inline-block;animation:dnRise .9s cubic-bezier(.2,.9,.2,1) both}.dnh1 span:nth-of-type(2){animation-delay:.12s}
+@keyframes dnRise{from{opacity:0;transform:translateY(40px) skewY(4deg)}}
+.dnstats{display:flex;gap:34px;margin:30px 0 26px;flex-wrap:wrap}.dnstats b{display:block;font-family:var(--brand);font-size:clamp(28px,3.6vw,46px);line-height:1}.dnstats span{font-size:13px;opacity:.8}
+.dnhero-act{display:flex;gap:10px;flex-wrap:wrap}.dnhero-act .btn.big{background:#fff;color:#111}.dnhero-act .btn.ghost{color:#fff;border-color:rgba(255,255,255,.55)}.dnhero-act em{font-style:normal;display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:#fff;color:#111;font-size:12px;margin-left:6px;padding:0 6px}
+.dnmarq{overflow:hidden;padding:26px 0 8px;border-bottom:1px solid var(--line);user-select:none}
+.dnmarq-in{display:flex;white-space:nowrap;gap:18px;align-items:center;font-family:var(--brand);font-size:clamp(34px,5vw,72px);letter-spacing:-.02em;line-height:1.1;will-change:transform}
+.dnmarq-in i{font-style:normal;color:var(--accent);font-size:.6em}.dnmarq-in span{color:transparent;-webkit-text-stroke:1.2px color-mix(in srgb,var(--fg) 55%,transparent)}
+#dnMarq2 span{color:color-mix(in srgb,var(--fg) 85%,transparent);-webkit-text-stroke:0}
+.dnlive{max-height:calc(100vh - 100px);overflow:auto;padding:14px 16px 18px;scrollbar-width:thin}
+.dnl-3d{position:relative;height:250px;margin:0 -4px 8px;border-radius:18px;overflow:hidden;background:#e7e4dd}
+.dnl-cap{font-size:12.5px;color:var(--fg-2);margin:0 0 10px;line-height:1.45;min-height:34px}.dnl-cap b{display:block;color:var(--fg);font-size:14px}.dnl-cap em{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+#dnRadar svg{max-width:200px}
+.dncat .dk{opacity:0;transform:translateY(10px)}.dncat.in .dk{animation:dkIn .45s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--i,0)*12ms)}
+@keyframes dkIn{to{opacity:1;transform:none}}
+.dk.on{animation:none!important;opacity:1!important;transform:none!important}
+.pgv{position:relative;overflow:hidden}.pgv canvas{display:block;width:100%;height:100%;cursor:grab}.pgv canvas:active{cursor:grabbing}
+.pgv-load{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:10px;color:var(--fg-2);font-size:13px}.pgv-load i{width:34px;height:34px;border-radius:50%;border:3px solid color-mix(in srgb,var(--fg) 15%,transparent);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pgv-err{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;color:var(--fg-2);padding:20px;text-align:center}
+.dnr-r{align-items:stretch}.dnr-kw{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-content:center;flex:1;padding:10px}
+.dnr-kw span{font-size:clamp(13px,1.3vw,16px);padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);animation:kwFloat 5s ease-in-out infinite;animation-delay:calc(var(--i)*-.37s)}
+@keyframes kwFloat{50%{transform:translateY(-8px)}}
+/* 스크롤 장면 */
+.dns{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:30px;margin:26px 0 10px}
+.dns-sticky{position:sticky;top:80px;height:calc(100vh - 104px);min-height:480px;border-radius:28px;overflow:hidden;background:#e6e3dc;box-shadow:0 30px 70px -40px rgba(0,0,0,.5)}
+.dns-3d{position:absolute;inset:0}
+.dns-top{position:absolute;left:14px;right:14px;top:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;pointer-events:none;z-index:2}
+.dns-alt{display:flex;gap:6px;pointer-events:auto;background:rgba(255,255,255,.72);backdrop-filter:blur(14px) saturate(1.6);padding:4px;border-radius:16px;box-shadow:0 8px 24px -12px rgba(0,0,0,.4)}
+.dns-alt button{border:0;background:transparent;border-radius:12px;padding:7px 12px;cursor:pointer;display:flex;gap:7px;align-items:baseline;color:#222;font:inherit}.dns-alt button b{font-family:var(--brand);font-size:16px}.dns-alt button span{font-size:12px}
+.dns-alt button[aria-pressed="true"]{background:#111;color:#fff}
+.dns-lab{pointer-events:none;font-size:12px;font-weight:800;letter-spacing:.06em;color:#111;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);padding:8px 12px;border-radius:12px}
+.dns-name{position:absolute;left:18px;bottom:74px;z-index:2;color:#111;pointer-events:none;text-shadow:0 1px 12px rgba(255,255,255,.7)}.dns-name em{display:block;font-style:normal;font-size:12px;font-weight:800;letter-spacing:.05em;opacity:.7}.dns-name b{font-family:var(--brand);font-size:clamp(20px,2.2vw,30px);letter-spacing:-.01em}
+.dns-bar{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:flex;flex-wrap:wrap;gap:5px;align-items:center;background:rgba(255,255,255,.75);backdrop-filter:blur(14px) saturate(1.6);border-radius:16px;padding:6px;box-shadow:0 8px 24px -12px rgba(0,0,0,.4)}
+.dns-bar button{border:0;background:transparent;color:#222;font:inherit;font-size:12.5px;padding:7px 10px;border-radius:10px;cursor:pointer}.dns-bar button:hover{background:rgba(0,0,0,.06)}.dns-bar button[aria-pressed="true"]{background:#111;color:#fff}.dns-bar button.pri{background:var(--accent);color:#fff;margin-left:auto}
+.dns-sep{width:1px;height:20px;background:rgba(0,0,0,.15);margin:0 3px}.dns-sun{display:flex;align-items:center;gap:6px;font-size:12px;color:#333;padding:0 6px}.dns-sun input{width:80px;accent-color:#111}
+.dns-steps{padding:6vh 0 20vh}
+.dns-intro{margin-bottom:12vh}.dns-intro h3{font-family:var(--brand);font-size:clamp(26px,3vw,40px);line-height:1.1;margin:10px 0 12px;letter-spacing:-.02em}.dns-intro p{color:var(--fg-2);line-height:1.7;margin:0}
+.dns-step{min-height:72vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transform:translateY(26px);transition:opacity .5s,transform .6s cubic-bezier(.2,.9,.2,1)}
+.dns-step.on{opacity:1;transform:none}
+.dns-no{font-family:var(--brand);font-size:clamp(56px,7vw,96px);line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--accent)}
+.dns-step h3{font-size:clamp(22px,2.4vw,30px);margin:10px 0 4px;letter-spacing:-.01em}.dns-sub{color:var(--fg-2);margin:0 0 16px;font-size:14px}
+.dns-step ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}.dns-step li{font-size:15px;line-height:1.6;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--card-line)}
+.dns-k{display:inline-block;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);margin-right:8px;vertical-align:1px}
+.dns-end{min-height:40vh;display:flex;flex-direction:column;justify-content:center}.dns-end b{font-family:var(--brand);font-size:40px}.dns-end p{color:var(--fg-2)}
+/* 사양 */
+.dnsp{margin-top:20px;background:var(--card);border:1px solid var(--card-line);border-radius:28px;padding:30px}
+.dnsp-h h3,.dnv-h h3,.dnlib-h h3{font-family:var(--brand);font-size:clamp(24px,2.6vw,36px);letter-spacing:-.02em;margin:8px 0 6px}
+.dnsp-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 22px}.dnsp-nums div{background:var(--bg-alt);border-radius:18px;padding:16px}.dnsp-nums b{display:block;font-family:var(--brand);font-size:clamp(28px,3vw,44px);line-height:1}.dnsp-nums span{font-size:12px;color:var(--fg-2)}
+.dnsp-t{width:100%;border-collapse:collapse;font-size:14px}.dnsp-t th{text-align:left;color:var(--fg-2);font-weight:600;width:110px;padding:9px 0;border-bottom:1px solid var(--card-line);vertical-align:top}.dnsp-t td{padding:9px 0;border-bottom:1px solid var(--card-line)}
+#dnSpec h4{font-size:13px;color:var(--fg-2);margin:22px 0 10px;letter-spacing:.04em}
+.dnsp-log{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.dnsp-log li{font-size:13.5px;line-height:1.55;padding:10px 12px;border-radius:12px;background:var(--bg-alt)}
+/* 아홉 갈래 */
+.dnv{margin-top:20px}.dnv-h p{color:var(--fg-2);margin:0 0 14px;max-width:640px;line-height:1.6}
+.dnv-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,31%);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 20px;scrollbar-width:thin}
+.dnv-c{scroll-snap-align:start;text-align:left;border:1px solid var(--card-line);background:var(--card);border-radius:22px;overflow:hidden;padding:0;cursor:pointer;color:var(--fg);font:inherit;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s,box-shadow .25s;animation:mgIn .6s both;animation-delay:calc(var(--i)*70ms)}
+.dnv-c:hover{box-shadow:0 24px 50px -24px rgba(0,0,0,.45)}.dnv-c:not(:hover){--rx:0deg;--ry:0deg}
+.dnv-th{aspect-ratio:52/36;background:linear-gradient(110deg,var(--bg-alt) 30%,color-mix(in srgb,var(--bg-alt) 60%,#fff) 50%,var(--bg-alt) 70%);background-size:200% 100%;animation:shim 1.4s linear infinite}.dnv-th img{width:100%;height:100%;object-fit:cover;display:block;animation:fadeIn .5s both}
+@keyframes shim{to{background-position:-200% 0}}@keyframes fadeIn{from{opacity:0}}
+.dnv-b{padding:12px 14px 16px}.dnv-b em{font-style:normal;font-size:12px;font-weight:800;color:var(--accent)}.dnv-b b{display:block;font-size:15px;margin:2px 0 4px}.dnv-b span{display:block;font-size:12.5px;color:var(--fg-2);line-height:1.5}
+/* 내 기록 */
+.dnlib{max-width:1320px;margin:0 auto;padding:30px 32px 100px}.dnlib-h p{color:var(--fg-2);margin:0 0 16px;line-height:1.6;max-width:640px}
+.dnlib-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.dnlib-c{border:1px solid var(--card-line);background:var(--card);border-radius:20px;overflow:hidden;animation:mgIn .5s both}
+.dnlib-th{display:block;width:100%;aspect-ratio:42/29;border:0;padding:0;background:var(--bg-alt);cursor:pointer}.dnlib-th img{width:100%;height:100%;object-fit:cover;display:block}
+.dnlib-b{padding:12px 14px 14px}.dnlib-b input{width:100%;font:inherit;font-weight:700;font-size:15px;border:0;border-bottom:1px dashed transparent;background:transparent;color:var(--fg);padding:2px 0}.dnlib-b input:focus{outline:none;border-bottom-color:var(--line)}
+.dnlib-b>span{display:block;font-size:12px;color:var(--fg-2);margin:2px 0 8px}.dnlib-k{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}.dnlib-k em{font-style:normal;font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--bg-alt)}.dnlib-a{display:flex;gap:6px}
+.dn-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);opacity:0;z-index:3000;background:#111;color:#fff;padding:12px 18px;border-radius:14px;font-size:14px;transition:.35s;pointer-events:none;max-width:calc(100vw - 32px)}.dn-toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){
+ .dnwrap{grid-template-columns:1fr}.dntools{position:static}.dnlive{position:sticky;top:56px;z-index:6;max-height:none;order:-1;margin:0 -16px;border-radius:0 0 22px 22px;padding:8px 12px 10px;box-shadow:0 14px 30px -18px rgba(0,0,0,.35)}.dnl-3d{height:172px;margin:0 0 6px}.dnl-cap{min-height:0;margin:0 0 6px}.dnlive #dnRadar,.dnlive #dnTop,.dnlive #dnSel,.dnlive #dnPersona{display:none}.dnl-h b{font-size:22px}.dnl-h{margin-bottom:6px}
+ .dns{display:block}.dns-stage{position:sticky;top:58px;z-index:3;height:48vh;margin:0 -16px}.dns-sticky{position:relative;top:0;height:100%;min-height:0;border-radius:0}
+ .dns-steps{padding:2vh 0 10vh}.dns-intro{margin:20px 0 6vh}.dns-step{min-height:auto;margin:0 0 34vh;opacity:.35}.dns-step.on{opacity:1}
+ .dns-bar{gap:2px;padding:4px}.dns-bar button{padding:6px 7px;font-size:11.5px}.dns-sun{display:none}.dns-sep{display:none}.dns-name{bottom:auto;top:62px;left:14px}.dns-name b{font-size:18px}
+ .dns-alt button{padding:6px 8px}.dns-alt button span{display:none}.dns-lab{font-size:11px;padding:6px 9px}
+ .dnsp{padding:20px}.dnsp-nums{grid-template-columns:repeat(2,1fr)}.dnsp-log{grid-template-columns:1fr}
+ .dnv-row{grid-auto-columns:78%}.dnlib{padding:20px 16px 80px}.dnstats{gap:20px}
+}
+@media (prefers-reduced-motion:reduce){.dnhin{transform:none!important;opacity:1!important}.dnmarq-in{transform:none!important}.dncat .dk{opacity:1;transform:none;animation:none}}
 </style>
 
 </head>
@@ -2065,15 +2144,19 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 <section class="view" id="view-dna" hidden>
   <div class="dnhero"><div class="stsg" id="dnSg"></div><div class="dnhin">
     <div class="dnk">설계 취향 랩</div>
-    <h1>고를수록,<br>설계가 보입니다.</h1>
-    <p>마음이 가는 건축 단어만 누르세요. 여섯 개의 축으로 읽고 열두 갈래 중 당신의 방향, 재료, 사례, 건축가를 골라 드립니다.</p>
+    <h1 class="dnh1"><span>고를수록,</span><br><span>집이 지어집니다.</span></h1>
+    <p>마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p>
+    <div class="dnstats"><div><b id="dnKwN">0</b><span>건축 단어</span></div><div><b>12</b><span>설계 방향</span></div><div><b id="dnComb">0</b><span>다섯 개만 골라도 나오는 조합</span></div></div>
+    <div class="dnhero-act"><a class="btn big" href="#dnPick" data-dnjump>단어 고르러 가기</a><button class="btn ghost" id="dnLibOpen" type="button">내 기록<em id="dnLibN">0</em></button></div>
   </div></div>
-  <div class="dnwrap">
+  <div class="dnmarq" aria-hidden="true"><div class="dnmarq-in" id="dnMarq"></div><div class="dnmarq-in" id="dnMarq2"></div></div>
+  <div class="dnwrap" id="dnPick">
     <div class="dnleft">
-      <div class="dntools"><input id="dnSearch" type="search" placeholder="단어 찾기 — 중정, 벽돌, 고요한…" autocomplete="off"><div class="dntabs" id="dnTabs"></div></div>
+      <div class="dntools"><input id="dnSearch" type="search" placeholder="단어 찾기 — 중정, 벽돌, 고요한, 안도 다다오…" autocomplete="off"><div class="dntabs" id="dnTabs"></div></div>
       <div id="dnChips"></div>
     </div>
     <aside class="dnlive" id="dnLive" aria-live="polite">
+      <div class="dnl-3d" id="dnLive3d"></div><div class="dnl-cap" id="dnLiveCap"></div>
       <div class="dnl-h"><b id="dnCode">····</b><span><em id="dnCount">0</em>개 고름</span></div>
       <div id="dnPersona"></div>
       <div id="dnRadar"></div>
@@ -2083,6 +2166,7 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
     </aside>
   </div>
   <div id="dnResult" hidden></div>
+  <div class="dnlib" id="dnLib" hidden></div><div class="dn-toast" id="dnToast" role="status"></div>
 </section>
 <section class="view" id="view-studio" hidden>
   <div class="sthero"><div class="stsg" id="stSg"></div><div class="stin">
@@ -2854,7 +2938,21 @@ const DNA_CATS=[
  ['korea','한국의 집',[
   '한옥|x-2n1|roof2 court2','처마|x-2|roof3','툇마루|o1x-2|roof2 court1','대청|o1x-2|roof2 court1','마당|o-1n1x-1|court3','담|o-2x-1|court2',
   '서까래|x-2|roof2','창호|x-1l1|court1 frame1','사랑채와 안채|f2x-1|village2 court1','누마루|l1v1x-1|pilotis2 roof1','장독대|x-2n1|court1','온돌|x-2v-1|roof1 court1',
-  '돌담|n1x-1|court1 thickwall1','골목 마을|f2x-1|village3','차경 정원|n2o1|frame2 court1','달동네 계단|v1f1|terrace2 village1']]
+  '돌담|n1x-1|court1 thickwall1','골목 마을|f2x-1|village3','차경 정원|n2o1|frame2 court1','달동네 계단|v1f1|terrace2 village1']],
+ ['sense','감각 · 경험',[
+  '물소리|n2o-1|buried1 court1','나무 냄새|n2x-1|roof2 village1','맨발로 걷는 바닥|n1l-1|roof1 court1','바람이 지나가는|o1n1|pilotis2 village1','비 오는 날|n1o-1|roof3','눈 쌓인 마당|n1o-1|court2 roof1',
+  '햇볕 드는 창가|o1|frame1 terrace1','고요한 소리|o-2|thickwall2 buried1','거친 손맛|l-2n1|thickwall2','차가운 금속|l1n-2|skin2 stack1','따뜻한 흙|n2l-1|thickwall2 roof1','깊은 그늘|o-1|roof2 skin1',
+  '높은 천장|v2|split1 stack1','낮고 아늑한 천장|v-2|roof1 court1','멀리 보이는 수평선|o2n2|frame2 glass1','숨바꼭질|f2o-1|village2 split1','창밖의 계절|n2o1|frame2 court1','밤하늘 보기|v1o1|terrace1 buried1']],
+ ['move','동선 · 움직임',[
+  '산책하듯 걷는 길|f1n1|split1 terrace1','돌아 들어가는 입구|o-1|court2 thickwall1','오르며 보이는 풍경|v1o1|terrace2 split1','머무는 계단|v1f1|split2 terrace1','한 바퀴 도는 회랑|o-1f1|court3','곧게 뻗은 축|f-2|frame2 pilotis1',
+  '갈림길|f2|village2','옥상까지 이어지는 길|v1n1|terrace2 split1','천천히 내려가는 길|v-1|buried2','안과 밖을 오가는|o2|glass1 court1','빛을 따라 걷는|v1|thickwall1 split1','문턱 없는 집|o1l1|glass1 roof1']],
+ ['color','색 · 톤',[
+  '하얀 집|l1x0|frame1 court1|#f4f2ee','검은 집|l-1x1|skin1 frame1|#26282b','회색 톤|n-1|thickwall1 frame1|#9b9b97','흙색 톤|n1x-1|thickwall2 roof1|#a8754f','나무색|n2|roof2 village1|#b5895c',
+  '청록 포인트|x1|skin1|#2e7d7a','원색 포인트|x2f1|village1 stack1|#e8452c','모노톤|f-1|frame2|#5c5f63','파스텔|x1n1|village2|#e9c9c2','녹이 슨|n1x1|thickwall1|#8b4a2b']],
+ ['master','건축가처럼',[
+  '안도 다다오처럼|o-2l-2n1|court2 thickwall2 buried1','르 코르뷔지에처럼|o1l1|pilotis3 frame1','미스처럼|o2l2f-2|glass3','피터 줌터처럼|l-2o-1n1|thickwall3 buried1','자하 하디드처럼|x2v1|stack2',
+  'SANAA처럼|l2o2f1|glass2 village1','BIG처럼|x2n1|terrace3 stack1','김수근처럼|f1v1|split2 thickwall2','승효상처럼|o-2f1|court3 thickwall1','조병수처럼|n2o-1|buried2 court1',
+  '이타미 준처럼|n2x-1l-1|frame2 thickwall1 roof1','알바 알토처럼|n2x1|roof2 village1','루이스 칸처럼|l-2v1|thickwall2 court1','쿠마 겐고처럼|n2l1|skin3 roof1','OMA처럼|x2v2|stack3','후지모토 소우처럼|o2f2|stack2 village1']]
 ];
 const DNA_ARCH={
  court:{kcat:['site','korea'],kw:'마당',name:'마당을 품은 집',persona:'마당 짓는 사람',shape:'court',mass:'court',v:{o:-.7,v:-.4,l:-.2,n:.4,f:-.1,x:-.3},
@@ -2956,10 +3054,10 @@ let dnaCat='all', dnaQ='', dnaPrevPts=null;
 function dnaChipsHTML(){ const sel=new Set(state.dna); const q=dnaQ.trim();
   return DNA_CATS.filter(c=>dnaCat==='all'||c[0]===dnaCat).map(([cid,cname])=>{ const ks=DNA_KW.filter(k=>k.cat===cid&&(!q||k.label.includes(q))); if(!ks.length) return '';
     const on=ks.filter(k=>sel.has(k.label)).length;
-    return `<div class="dncat zrv" data-cat="${cid}"><div class="dnch"><h3>${esc(cname)}</h3><span>${on?on+'개 고름':ks.length+'개'}</span></div><div class="dnchips">${ks.map(k=>`<button type="button" class="dk${sel.has(k.label)?' on':''}" data-k="${esc(k.label)}" aria-pressed="${sel.has(k.label)}">${k.col?`<i style="background:${k.col}"></i>`:''}${esc(k.label)}</button>`).join('')}</div></div>`; }).join('')||'<div class="dnempty">맞는 단어가 없습니다.</div>'; }
+    return `<div class="dncat zrv" data-cat="${cid}"><div class="dnch"><h3>${esc(cname)}</h3><span>${on?on+'개 고름':ks.length+'개'}</span></div><div class="dnchips">${ks.map((k,ki)=>`<button type="button" class="dk${sel.has(k.label)?' on':''}" style="--i:${ki}" data-k="${esc(k.label)}" aria-pressed="${sel.has(k.label)}">${k.col?`<i style="background:${k.col}"></i>`:''}${esc(k.label)}</button>`).join('')}</div></div>`; }).join('')||'<div class="dnempty">맞는 단어가 없습니다.</div>'; }
 function renderDnaLab(){ const tabs=$('#dnTabs'); if(!tabs) return;
   tabs.innerHTML=[['all','전체'],...DNA_CATS.map(c=>[c[0],c[1]])].map(([id,n])=>`<button type="button" data-cat="${id}" aria-pressed="${dnaCat===id}">${esc(n)}</button>`).join('');
-  $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); }
+  $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); try{ dnHeroInit(); dnaLibRender(); }catch(e){} }
 function dnaLive(full){ const r=dnaAnalyze(state.dna); const el=$('#dnLive'); if(!el) return r;
   $('#dnCount').textContent=r.n; $('#dnCode').textContent=r.n?r.code:'····'; $('#dnPersona').textContent=r.n?dnaPersona(r):'단어를 고르면 이름이 생깁니다';
   dnaTweenRadar($('#dnRadar'),r.vec);
@@ -2967,28 +3065,11 @@ function dnaLive(full){ const r=dnaAnalyze(state.dna); const el=$('#dnLive'); if
   $('#dnGo').disabled=r.n<3; $('#dnGo').textContent=r.n<3?`${3-r.n}개 더 고르세요`:'분석 결과 보기';
   const sel=$('#dnSel'); if(sel) sel.innerHTML=state.dna.map(k=>`<button type="button" class="dk on sm" data-k="${esc(k)}">${esc(k)} ×</button>`).join('');
   if(full!==false&&!$('#dnResult').hidden){ clearTimeout(window.__dnrT); window.__dnrT=setTimeout(()=>renderDnaResult(),450); }
-  sgPaint($('#dnSg'),r,{positionX:0.4,rotationZ:-30});
+  sgPaint($('#dnSg'),r,{positionX:0.4,rotationZ:-30}); try{ dnaLive3D(); }catch(e){}
   return r; }
 function dnaTweenRadar(holder,vec){ if(!holder) return; if(!holder.firstChild){ holder.innerHTML=dnaRadar(vec,{size:260}); return; }
   const target=DNA_AX.map(a=>vec[a[0]]||0); const from=dnaPrevPts||target.map(()=>0); dnaPrevPts=target; const t0=performance.now();
   const step=now=>{ const k=Math.min(1,(now-t0)/420), e=1-Math.pow(1-k,3); const v={}; DNA_AX.forEach((a,i)=>v[a[0]]=from[i]+(target[i]-from[i])*e); holder.innerHTML=dnaRadar(v,{size:260}); if(k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
-function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'); if(!r.n){ box.hidden=true; return; } box.hidden=false; const A=r.arch[0]; const keepSg=$('#dnrSg'); if(keepSg) keepSg.remove();
-  const cases=(typeof CASES!=='undefined'?CASES:[]).map(c=>{ let s=0; for(const a of r.arch.slice(0,3)) if(a.cases.includes(c.id)) s+=a===A?3:1.5; for(const t of c.tags) if(state.dna.some(k=>k.includes(t)||t.includes(k))) s+=1; for(const a of r.arch.slice(0,2)) for(const t of a.tags) if(c.tags.includes(t)) s+=1; return {c,s}; }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4);
-  box.innerHTML=`
-  <div class="dnr-hero zrv"><div class="dnr-sg" id="dnrSg"></div>
-    <div class="dnr-l"><div class="dnk">나의 설계 DNA · ${esc(r.code)}</div><h2>${esc(dnaPersona(r))}</h2><p class="dnr-s">${dnaSentence(r)}</p>
-      <div class="dnr-act"><button class="btn big" id="dnToConcept">이 방향으로 컨셉 3안 만들기</button><button class="btn ghost" id="dnSave">작업실에 담기</button><button class="btn ghost" id="dnShare">결과 복사</button></div></div>
-    <div class="dnr-r"><div class="dnr-iso">${CTHUMB.kind(A.shape)}</div><div class="dnr-name"><b>${esc(A.name)}</b><em>${A.pct}% 맞음</em></div></div></div>
-  <div class="dnr-wm zrv"><div class="wmbox" id="dnWm"></div><div class="dnr-wmc"><h4>흰색 블록으로 보기</h4><p>고른 단어로 정한 방향을 스터디 모형처럼 흰 블록으로 세웠습니다. 끌어서 돌려 보세요.${r.vec.v>0.2?' 수직 취향이 강해 조금 높게 세웠어요.':r.vec.v<-0.2?' 수평 취향이 강해 낮게 깔았어요.':''}</p><div class="modes" id="dnWmPick">${r.arch.slice(0,3).map((a,i)=>`<button data-wk="${a.shape}" aria-pressed="${i===0}">${esc(a.name)}</button>`).join('')}</div><div class="actions"><a class="btn sec" href="#model">모형에서 법규 확인</a><a class="btn sec" href="#site">콘타 위에 올려 보기</a></div></div></div>
-  <div class="dnr-grid">
-    <div class="dnr-card zrv"><h4>세 갈래</h4>${r.arch.slice(0,3).map((a,i)=>`<div class="dnr-alt"><div class="ico">${CTHUMB.kind(a.shape)}</div><div><b>${i+1}. ${esc(a.name)}</b><p>${esc(dnaLine(a,state.dna))}</p><span class="bar"><i style="width:${a.pct}%"></i></span></div></div>`).join('')}</div>
-    <div class="dnr-card zrv"><h4>이렇게 시작하세요</h4><ol class="dnr-moves">${A.moves.map(m=>`<li>${esc(m)}</li>`).join('')}</ol>${r.tens.length?`<div class="dnr-tens"><b>부딪히는 취향</b>${r.tens.map(t=>`<p>${esc(t.text)}</p>`).join('')}</div>`:''}</div>
-    <div class="dnr-card zrv"><h4>재료 팔레트</h4><div class="dnr-pal">${r.pal.map(k=>`<div><i style="background:${k.col}"></i><span>${esc(k.label)}</span></div>`).join('')||'<span class="muted">재료를 고르면 여기 칠해집니다.</span>'}</div><h4 style="margin-top:18px">빛</h4><p class="dnr-p">${esc(A.light)}</p></div>
-    <div class="dnr-card zrv"><h4>찾아볼 건축가</h4><div class="dnr-archs">${A.arch.map(n=>`<span>${esc(n)}</span>`).join('')}</div><h4 style="margin-top:18px">참고 건물</h4>${A.refs.map(f=>`<div class="dnr-ref"><b>${esc(f.name)}</b><span>${esc(f.arch)} · ${esc(f.note)}</span></div>`).join('')}</div>
-  </div>
-  ${cases.length?`<div class="dnr-cases zrv"><div class="dnr-ch"><h4>내 취향과 가까운 사례</h4><a href="#learn">사례 더 보기 ›</a></div><div class="dnr-cgrid">${cases.map(({c})=>`<a class="dnr-case" href="#learn" data-case="${esc(c.id)}"><div class="th" style="background:${CTHUMB.bg(c)}">${CTHUMB.svg(c)}</div><b>${esc(c.name)}</b><span>${esc(c.arch)}</span></a>`).join('')}</div></div>`:''}
-  <div class="dnr-sugg zrv"><h4>이 단어도 어울려요</h4><div class="dnchips">${r.sugg.map(k=>`<button type="button" class="dk" data-k="${esc(k)}">+ ${esc(k)}</button>`).join('')}</div></div>`;
-  if(keepSg) $('#dnrSg').replaceWith(keepSg); wmMount($('#dnWm'),A.shape,Math.max(0.75,Math.min(1.45,1+0.45*r.vec.v))); dnaReveal(); sgPaint($('#dnrSg'),r,{uSpeed:0.12,uStrength:2.2,uDensity:1.3,cDistance:3.4,positionX:0.8,rotationZ:-20}); }
 function dnaPalette(r){ const P={court:['#e9d8c4','#9a7b5f','#f5efe6'],terrace:['#a8c69a','#4f7d5b','#e8f0d8'],pilotis:['#d9dde4','#7f8ea3','#f4f5f7'],village:['#f0c9a0','#c7754c','#fbeee0'],buried:['#4b5a4f','#1f2a24','#93a58c'],thickwall:['#b86f4f','#5a3326','#e2c0a7'],glass:['#bfe0ff','#5b8fd9','#eef6ff'],split:['#c9b2e8','#6c4fb0','#f1eafa'],stack:['#9fd3ff','#3a5fd0','#ffd18a'],roof:['#e0b878','#7a5a33','#f6ead2'],frame:['#9cc7c2','#2f5f63','#eaf3f1'],skin:['#c6ccd4','#3e4652','#f0f1f3']}; return (r.arch[0]&&P[r.arch[0].id])||['#cfd8e6','#5b6b86','#f3f5f9']; }
 const dnaIO='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); dnaIO.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px'}):null;
 function dnaReveal(){ $$('.zrv:not(.in)').forEach(el=>{ if(dnaIO) dnaIO.observe(el); else el.classList.add('in'); }); }
@@ -4491,6 +4572,510 @@ document.addEventListener('click',e=>{ if(!e.target.closest('#view-travel')&&!e.
   if(e.target.closest('#tv3d')&&TV.gl){ const m=TV.gl, on=m.getPitch()>10; if(on) m.easeTo({pitch:0,bearing:0,duration:900}); else if(m.getZoom()<12){ const t=TPL.find(x=>x.id===TV.sel)||TPL.find(x=>TV.reg==='all'||x.r===TV.reg); m.flyTo({center:[t.lon,t.lat],zoom:16,pitch:60,bearing:-20,duration:2200,essential:true}); } else m.easeTo({pitch:60,bearing:-20,zoom:Math.max(m.getZoom(),15.2),duration:1400}); return; }
   if(e.target.closest('#tvFull')){ const b=$('.tv-mapbox'); b.classList.toggle('full'); document.documentElement.style.overflow=b.classList.contains('full')?'hidden':''; setTimeout(tResize,320); return; }
   const dt=e.target.closest('[data-tdet]'); if(dt){ e.preventDefault(); tDetail(dt.dataset.tdet); return; } });
+
+/* =====================================================================
+   취향 랩 v2 — 키워드 → 건물 생성기 (PG)
+   고른 단어를 프로그램 · 매스 · 조작 · 외피 · 창 · 지붕 · 대지로 번역해 three.js 모형을 짓는다
+   ===================================================================== */
+const PG_PROG={house:[14,11,2,3.2,'단독주택'],small:[10,8,1,3.2,'작은 집'],studio:[13,10,2,3.8,'작업실'],share:[16,12,3,3.1,'공유주택'],multi:[15,13,4,3.0,'다세대 주택'],cafe:[13,10,2,3.8,'카페'],gallery:[22,15,2,4.6,'갤러리'],library:[24,17,3,4.2,'작은 도서관'],retail:[13,12,4,3.6,'근린생활시설'],stay:[18,12,2,3.2,'스테이'],dorm:[26,12,4,3.1,'기숙사'],chapel:[15,10,1,6,'명상 공간'],civic:[24,16,2,4,'주민 센터'],office:[19,16,5,3.8,'사무실'],culture:[26,18,3,4.4,'복합 문화 공간'],kinder:[26,16,1,3.8,'유치원'],school:[34,14,3,3.8,'학교']};
+const PG_SKIN={conc:['solid','conc',0xcbc6be,2.4,'노출 콘크리트'],brick:['solid','brick',0xffffff,1.2,'벽돌'],brickR:['solid','brickR',0xffffff,1.2,'붉은 벽돌'],brickOld:['solid','brickOld',0xffffff,1.2,'재사용 벽돌'],brickD:['solid','brickD',0xffffff,1.2,'검은 벽돌'],
+ stone:['solid','stone',0xffffff,2.4,'석재'],basalt:['solid','basalt',0xffffff,1.6,'현무암'],wood:['solid','wood',0xffffff,1.2,'목재 사이딩'],clt:['solid','clt',0xffffff,2.4,'CLT'],charred:['solid','charred',0xffffff,1.2,'탄화목'],bamboo:['solid','bamboo',0xffffff,1,'대나무'],
+ stucco:['solid','stucco',0xffffff,3,'흰 회벽'],earth:['solid','earth',0xffffff,2,'흙벽'],tile:['solid','tile',0xffffff,1,'타일'],metal:['solid','metal',0xffffff,2,'금속 패널'],corten:['solid','corten',0xffffff,2,'코르텐강'],
+ glass:['curtain',null,0x8fb4c6,1,'유리 커튼월'],ugl:['curtain','ugl',0xffffff,1,'유글라스'],poly:['curtain','poly',0xffffff,1,'폴리카보네이트'],hanji:['curtain','hanji',0xffffff,1,'한지 창호'],
+ louver:['fins',null,0xc6cace,1,'알루미늄 루버'],woodlouver:['fins','wood',0xffffff,1,'목재 루버'],terra:['fins',null,0xc0663f,1,'테라코타 바게트'],perf:['screen','perf',0xffffff,1,'타공 메탈']};
+const PGK={
+ '중정형':{ops:['court']},'ㄱ자 배치':{plan:'L',ops:['court']},'ㄷ자 배치':{plan:'U',ops:['court']},'안마당':{ops:['court']},'앞마당':{ops:['yard']},'뒷마당':{ops:['yard']},'스킵플로어':{ops:['split']},'오픈 플랜':{win:'full'},'복층 거실':{ops:['void']},'보이드':{ops:['void']},'아트리움':{ops:['void','skylight']},'회랑':{ops:['cloister']},
+ '긴 복도':{plan:'bar'},'방들의 마을':{ops:['village']},'원룸 같은 집':{win:'full',floors:1},'다락':{roof:'gable'},'필로티':{ops:['pilotis']},'캔틸레버':{ops:['cantilever']},'브릿지':{ops:['twin','bridge']},'램프':{ops:['ramp']},'나선 계단':{ops:['spiral']},'선큰 가든':{ops:['sunken']},
+ '옥상 정원':{ops:['roofgarden']},'테라스':{ops:['terrace']},'전이 공간':{ops:['canopy']},'방과 방 사이 틈':{ops:['gap']},'한 층에 다 있는 집':{floors:1},'수직 동선 하나':{ops:['stair']},
+ '긴 바':{plan:'bar'},'탑':{ops:['tower']},'계단형':{ops:['terrace']},'분절된 매스':{ops:['gap']},'적층':{ops:['shift']},'박공지붕':{roof:'gable'},'평지붕':{roof:'flat'},'곡면':{ops:['curve']},'원형':{ops:['round']},'비정형':{ops:['twist','curve']},'매스 깎기':{ops:['carve']},
+ '들어 올리기':{ops:['pilotis']},'땅에 묻기':{ops:['sink']},'겹침':{ops:['shift']},'비틀기':{ops:['twist']},'프레임':{ops:['frame']},'슬래브 적층':{ops:['slabs']},'모듈 반복':{ops:['module']},'두 동으로 나누기':{ops:['twin','bridge']},'하나의 큰 지붕':{roof:'big'},'지형 따라 접기':{site:'slope',ops:['terrace']},'작은 덩어리 여럿':{ops:['village']},'솟은 한 부분':{ops:['tower']},
+ '수평 띠창 매스':{win:'ribbon'},'두꺼운 기단':{ops:['plinth']},'가벼운 상부':{ops:['lightTop']},'틈으로 갈라진 매스':{ops:['gap']},
+ '노출 콘크리트':{skin:'conc'},'벽돌':{skin:'brick'},'붉은 벽돌':{skin:'brickR'},'석재':{skin:'stone'},'현무암':{skin:'basalt'},'목재':{skin:'wood'},'CLT':{skin:'clt'},'탄화목':{skin:'charred'},'유리':{skin:'glass'},'유글라스':{skin:'ugl'},'폴리카보네이트':{skin:'poly'},'금속 패널':{skin:'metal'},'코르텐강':{skin:'corten'},'알루미늄 루버':{skin:'louver'},'타공 메탈':{skin:'perf'},'테라코타':{skin:'terra'},'흰 회벽':{skin:'stucco'},'흙벽':{skin:'earth'},'한지':{skin:'hanji'},'기와':{roof:'hanok'},'대나무':{skin:'bamboo'},'타일':{skin:'tile'},'재사용 벽돌':{skin:'brickOld'},'검은 철':{accent:'steel'},'녹색 지붕':{roof:'green'},'자갈 마당':{ground:'gravel'},
+ '천창':{ops:['skylight']},'고측창':{win:'clere'},'슬릿 창':{win:'slit'},'작은 창':{win:'punch'},'통창':{win:'full'},'코너 창':{win:'corner'},'간접광':{win:'slit'},'빛 우물':{ops:['skylight','void']},'그림자 놀이':{ops:['shades']},'루버 사이 빛':{skin:'louver'},'북측 고른 빛':{roof:'saw'},'노을빛':{win:'full'},'아침 해':{ops:['terrace']},'어둠과 대비':{win:'slit'},'반사광':{ops:['pool']},'물에 비친 빛':{ops:['pool']},'밤의 등불':{night:true},'빛의 길':{ops:['skylight']},
+ '대담한':{ops:['cantilever']},'가벼운':{ops:['lightTop']},'숨은':{ops:['sink']},'투명한':{skin:'glass'},'묵직한':{ops:['plinth']},'기념비적':{scale:1.25},'유쾌한':{ops:['shift']},'미니멀':{roof:'flat'},'소박한':{roof:'gable'},'익숙한':{roof:'gable'},'낯선':{ops:['twist']},
+ '경사지':{site:'slope'},'숲':{site:'forest'},'물가':{site:'water'},'바다 조망':{site:'sea',win:'full'},'산 조망':{site:'mountain',win:'frame'},'골목':{site:'alley'},'도심 협소지':{site:'city',floors:4,narrow:true},'코너 대지':{site:'city'},'차경':{win:'frame'},'담장':{ops:['wall']},'경계 흐리기':{win:'full'},'골목 잇기':{ops:['passage']},'공공 마당 열기':{ops:['pilotis','plaza']},'바람길':{ops:['gap']},'지형 순응':{site:'slope'},'큰 나무 지키기':{ops:['bigtree']},'소음 막기':{ops:['wall']},'사생활 지키기':{ops:['wall']},'길에서 물러나기':{ops:['yard']},'들판':{site:'field'},'오래된 마을':{site:'village'},'신도시 필지':{site:'suburb'},'눈 많은 곳':{roof:'steep'},
+ '함께 사는 집':{prog:'house'},'1인 가구':{prog:'small'},'작업실 겸 집':{prog:'studio'},'아이 키우는 집':{prog:'house',ops:['yard']},'노부부의 집':{prog:'house',floors:1},'반려동물과 사는 집':{prog:'house',ops:['yard']},'쉐어하우스':{prog:'share'},'다세대':{prog:'multi'},'카페':{prog:'cafe'},'갤러리':{prog:'gallery'},'도서관':{prog:'library'},'근린생활시설':{prog:'retail'},'게스트하우스':{prog:'stay'},'스테이':{prog:'stay'},'기숙사':{prog:'dorm'},'공방':{prog:'studio',roof:'saw'},'교회 · 명상 공간':{prog:'chapel'},'주민 센터':{prog:'civic'},'사무실':{prog:'office'},'복합 문화 공간':{prog:'culture'},'유치원':{prog:'kinder'},'주말 주택':{prog:'small'},'학교':{prog:'school'},'상가 주택':{prog:'retail'},'카페 겸 집':{prog:'cafe'},'작은 미술관':{prog:'gallery'},
+ '태양광 지붕':{ops:['solar']},'건물 녹화':{ops:['vines','roofgarden']},'깊은 처마':{ops:['eaves']},'이중 외피':{skin:'perf'},'외부 차양':{ops:['shades']},'목재 루버':{skin:'woodlouver'},'철골':{accent:'steel'},'모듈러':{ops:['module']},'프리패브':{ops:['module']},'빗물 모으기':{ops:['pool']},'경량 목구조':{skin:'wood'},'라멘 구조':{ops:['frameGrid']},'저층 고밀':{ops:['village']},'단열 두껍게':{win:'deep'},
+ '한옥':{roof:'hanok',skin:'stucco',ops:['court','deck']},'처마':{ops:['eaves'],roof:'hanok'},'툇마루':{ops:['deck']},'대청':{ops:['deck']},'마당':{ops:['court']},'담':{ops:['wall']},'서까래':{roof:'hanok'},'창호':{win:'lattice'},'사랑채와 안채':{ops:['twin']},'누마루':{ops:['nuru']},'장독대':{ops:['jars']},'돌담':{ops:['wall']},'골목 마을':{ops:['village']},'차경 정원':{win:'frame'},'달동네 계단':{site:'slope',ops:['terrace']},
+ '물소리':{ops:['pool']},'나무 냄새':{skin:'wood'},'맨발로 걷는 바닥':{ops:['deck']},'바람이 지나가는':{ops:['pilotis','gap']},'비 오는 날':{ops:['eaves']},'눈 쌓인 마당':{ops:['court']},'햇볕 드는 창가':{win:'corner'},'거친 손맛':{skin:'stone'},'차가운 금속':{skin:'metal'},'따뜻한 흙':{skin:'earth'},'깊은 그늘':{ops:['eaves']},'높은 천장':{fh:4.4},'낮고 아늑한 천장':{fh:2.8},'멀리 보이는 수평선':{win:'ribbon',site:'sea'},'숨바꼭질':{ops:['gap','split']},'창밖의 계절':{win:'frame',ops:['bigtree']},'밤하늘 보기':{ops:['roofgarden']},
+ '산책하듯 걷는 길':{ops:['ramp']},'돌아 들어가는 입구':{ops:['wall']},'오르며 보이는 풍경':{ops:['terrace']},'머무는 계단':{ops:['stair']},'한 바퀴 도는 회랑':{ops:['court','cloister']},'곧게 뻗은 축':{plan:'bar'},'갈림길':{ops:['village']},'옥상까지 이어지는 길':{ops:['ramp','roofgarden']},'천천히 내려가는 길':{ops:['sunken']},'안과 밖을 오가는':{win:'full',ops:['deck']},'빛을 따라 걷는':{ops:['skylight']},'문턱 없는 집':{floors:1,win:'full'},
+ '하얀 집':{skin:'stucco'},'검은 집':{skin:'charred'},'회색 톤':{skin:'conc'},'흙색 톤':{skin:'earth'},'나무색':{skin:'wood'},'청록 포인트':{accent:'#2e7d7a'},'원색 포인트':{accent:'#e8452c'},'파스텔':{accent:'#e9b8ad'},'녹이 슨':{skin:'corten'},
+ '안도 다다오처럼':{skin:'conc',win:'slit',ops:['wall','pool']},'르 코르뷔지에처럼':{skin:'stucco',win:'ribbon',ops:['pilotis','roofgarden']},'미스처럼':{skin:'glass',roof:'slab',ops:['deck']},'피터 줌터처럼':{skin:'stone',win:'deep'},'자하 하디드처럼':{ops:['curve','cantilever'],skin:'stucco'},'SANAA처럼':{skin:'glass',ops:['round','gap'],roof:'slab'},'BIG처럼':{ops:['terrace','twist']},'김수근처럼':{skin:'brickD',ops:['split']},'승효상처럼':{skin:'corten',ops:['court','wall']},'조병수처럼':{ops:['sink','court'],skin:'conc'},'이타미 준처럼':{skin:'charred',roof:'gable',win:'frame'},'알바 알토처럼':{skin:'brick',roof:'shed',ops:['curve']},'루이스 칸처럼':{skin:'conc',win:'deep',ops:['court','skylight']},'쿠마 겐고처럼':{skin:'woodlouver',ops:['eaves']},'OMA처럼':{ops:['shift','cantilever'],skin:'glass'},'후지모토 소우처럼':{ops:['module','shift'],skin:'stucco'}};
+const PG_BASE_DEF={court:{skin:'stucco',roof:'flat',win:'punch'},terrace:{skin:'conc',roof:'green',win:'full'},pilotis:{skin:'stucco',roof:'roofgarden',win:'ribbon'},village:{skin:'wood',roof:'gable',win:'punch'},buried:{skin:'conc',roof:'green',win:'full'},thickwall:{skin:'brick',roof:'flat',win:'deep'},
+ glass:{skin:'glass',roof:'slab',win:'full'},split:{skin:'wood',roof:'shed',win:'punch'},stack:{skin:'conc',roof:'flat',win:'full'},roof:{skin:'wood',roof:'big',win:'full'},frame:{skin:'conc',roof:'flat',win:'frame'},skin:{skin:'louver',roof:'flat',win:'full'}};
+const PG_ARCH_OP={court:'court',terrace:'terrace',pilotis:'pilotis',village:'gap',buried:'sink',thickwall:'plinth',glass:'lightTop',split:'split',stack:'shift',roof:'eaves',frame:'frame',skin:'shades'};
+const PG_OPT={court:'가운데를 비워 마당을 만들고, 모든 방이 마당을 보게 했어요',pilotis:'1층을 기둥만 남기고 들어 올려 아래를 비웠어요',cantilever:'위층 한 덩어리를 밖으로 4m 내밀어 그늘과 표정을 만들었어요',terrace:'층마다 한 칸씩 물러나 아래층 지붕을 정원으로 썼어요',split:'반 층씩 어긋난 두 덩어리를 유리 계단으로 이었어요',void:'가운데를 위아래로 뚫어 빛이 내려오는 보이드를 냈어요',bridge:'두 동을 유리 다리로 연결했어요',tower:'한 부분만 두 층 더 솟게 했어요',twist:'층마다 조금씩 돌려 비틀린 매스를 만들었어요',curve:'모서리를 둥글게 굴렸어요',round:'원형 평면으로 바꿨어요',carve:'매스 모서리를 깎아 입구와 테라스로 썼어요',frame:'매스를 굵은 프레임으로 감싸 풍경을 액자처럼 담았어요',slabs:'바닥판을 1m씩 내밀어 층이 드러나게 했어요',module:'같은 모듈을 반복해 조립했어요',village:'방마다 작은 집으로 나눠 마을처럼 놓았어요',gap:'매스 사이에 틈을 내 바람과 빛이 지나가게 했어요',twin:'두 동으로 나눴어요',shift:'판을 밀고 당겨 엇갈려 쌓았어요',plinth:'묵직한 돌 기단 위에 집을 얹었어요',lightTop:'위층은 가벼운 유리로 띄웠어요',sink:'땅에 반쯤 묻어 지붕을 정원으로 덮었어요',sunken:'앞마당을 낮춰 선큰 가든을 만들었어요',roofgarden:'옥상을 정원으로 썼어요',canopy:'입구에 깊은 캐노피를 걸었어요',yard:'앞쪽에 넓은 마당을 남겼어요',cloister:'마당 둘레에 회랑을 둘렀어요',wall:'대지 둘레를 담으로 감싸 안쪽을 지켰어요',pool:'건물 앞에 얕은 물을 두어 빛을 반사하게 했어요',bigtree:'큰 나무 한 그루를 중심에 남겼어요',deck:'툇마루 같은 데크를 둘러 안팎을 이었어요',eaves:'처마를 깊게 내어 비와 여름 해를 막았어요',skylight:'지붕에 천창을 뚫어 빛을 떨어뜨렸어요',solar:'남쪽 지붕에 태양광 패널을 얹었어요',vines:'벽을 덩굴로 덮었어요',shades:'창 위에 수평 차양을 달아 그림자를 그렸어요',ramp:'바깥 경사로로 지붕까지 걸어 올라가게 했어요',spiral:'나선 계단을 밖으로 드러냈어요',stair:'계단을 밖으로 드러내 머무는 자리로 만들었어요',passage:'1층을 뚫어 골목이 지나가게 했어요',plaza:'1층 앞을 공공 마당으로 열었어요',nuru:'한쪽을 누마루처럼 기둥 위로 들어 올렸어요',jars:'마당 한쪽에 장독대를 두었어요',frameGrid:'기둥·보 격자를 외관에 드러냈어요'};
+const PG_ROOFT={flat:'평지붕',green:'풀로 덮은 지붕',gable:'박공지붕',steep:'가파른 박공지붕',shed:'한쪽으로 기운 외쪽지붕',saw:'북쪽 빛을 받는 톱날 지붕',vault:'둥근 볼트 지붕',hanok:'처마 끝이 들리는 기와지붕',big:'모든 방을 덮는 하나의 큰 지붕',slab:'얇게 떠 있는 슬래브 지붕',roofgarden:'옥상 정원'};
+const PG_WINT={ribbon:'수평 띠창',full:'바닥부터 천장까지 통창',slit:'좁고 긴 슬릿 창',punch:'벽에 뚫은 창',deep:'깊게 판 창',corner:'모서리를 감싸는 코너 창',frame:'풍경을 자르는 큰 액자창',clere:'천장 가까운 고측창',lattice:'살대 있는 창호'};
+const PG_SITET={flat:'평평한 대지',slope:'뒤로 올라가는 경사지',water:'잔잔한 물가',sea:'바다를 향한 대지',forest:'숲 속 공터',mountain:'산을 마주한 대지',alley:'좁은 골목 안',city:'도심 필지',field:'넓은 들판',village:'오래된 마을',suburb:'신도시 필지'};
+const pgHash=s=>{ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; };
+const pgRng=seed=>{ let a=seed>>>0||1; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; };
+
+/* ---------- 단어 → 설계 사양 ---------- */
+function pgSpec(keys,opt){ opt=opt||{}; const r=dnaAnalyze(keys); const labels=r.ks.map(k=>k.label);
+  const A=r.arch[0]?r.arch[0].id:'court'; const base=opt.base||A; const mode=opt.mode||'main';
+  const P={keys:labels,base,mode,arch:DNA_ARCH[base],vec:r.vec,ops:new Set(),log:[],seed:pgHash(labels.join('|')+base+mode+(opt.seed||''))};
+  const PRI={mat:6,light:6,form:5,space:5,site:5,korea:4,tech:4,life:4,color:3,master:2,sense:2,move:2,mood:1}; const mods=labels.map((l,i)=>[l,PGK[l],i]).filter(x=>x[1]).sort((a,b)=>((PRI[(DNA_BY[a[0]]||{}).cat]||1)-(PRI[(DNA_BY[b[0]]||{}).cat]||1))||a[2]-b[2]); const by=f=>mods.filter(([l,m])=>m[f]!==undefined);
+  const log=(step,k,t)=>{ if(!P.log.some(x=>x.t===t)) P.log.push({step,k,t}); };
+  // 프로그램 · 규모
+  const pg=by('prog'); P.prog=pg.length?pg[pg.length-1][1].prog:(base==='village'||base==='court'||base==='roof'?'house':base==='stack'||base==='skin'?'retail':base==='glass'||base==='frame'?'house':'house');
+  const PR=PG_PROG[P.prog]; P.progName=PR[4]; P.W=PR[0]; P.D=PR[1]; P.F=PR[2]; P.fh=PR[3];
+  if(pg.length) log('site',pg[pg.length-1][0],`${PR[4]}의 규모(대략 ${PR[0]}×${PR[1]}m, ${PR[2]}층)로 시작했어요`);
+  const sc=by('scale'); if(sc.length){ P.W*=1.25; P.D*=1.2; log('mass',sc[0][0],'조금 더 크고 당당한 비례로 키웠어요'); }
+  P.F=Math.max(1,Math.min(8,P.F+Math.round(r.vec.v*1.6)));
+  const fl=by('floors'); if(fl.length){ const f=Math.min(...fl.map(x=>x[1].floors)); P.F=fl.some(x=>x[1].floors>=4)?Math.max(P.F,4):f; log('mass',fl[0][0],P.F===1?'모든 방을 한 층에 펼쳤어요':`${P.F}층까지 쌓았어요`); }
+  const fhm=by('fh'); if(fhm.length){ P.fh=fhm[fhm.length-1][1].fh; log('mass',fhm[0][0],P.fh>3.6?'층높이를 4m 넘게 올렸어요':'천장을 낮춰 아늑하게 했어요'); }
+  if(by('narrow').length){ P.W=Math.min(P.W,9); P.D=Math.min(P.D,12); }
+  const pl=by('plan'); P.plan=pl.length?pl[pl.length-1][1].plan:null; if(P.plan==='bar'){ P.W=P.W*1.5; P.D=Math.max(7,P.D*.62); log('mass',pl[pl.length-1][0],'길게 뻗은 한 줄의 매스로 펼쳤어요'); }
+  // 외피 · 창 · 지붕 · 대지
+  const D0=PG_BASE_DEF[base]||PG_BASE_DEF.court; const sk=by('skin');
+  P.skin=sk.length?sk[sk.length-1][1].skin:(r.vec.l<-.45?'brick':r.vec.l>.5?'glass':D0.skin); P.skin2=sk.length>1?sk[sk.length-2][1].skin:null; if(P.skin2===P.skin) P.skin2=null;
+  if(mode==='wild'){ const heavy=PG_SKIN[P.skin][0]==='solid'; P.skin2=P.skin; P.skin=heavy?(r.vec.n>0?'woodlouver':'glass'):(r.vec.n>0?'stone':'brickD'); }
+  log('skin',sk.length?sk[sk.length-1][0]:'',`외피는 ${PG_SKIN[P.skin][4]}${P.skin2?`, 기단·부속 동은 ${PG_SKIN[P.skin2][4]}`:''}로 감쌌어요`);
+  const wn=by('win'); P.win=wn.length?wn[wn.length-1][1].win:(r.vec.o>.45?'full':r.vec.o<-.45?(r.vec.l<0?'slit':'punch'):D0.win); log('skin',wn.length?wn[wn.length-1][0]:'',`창은 ${PG_WINT[P.win]}`);
+  const rf=by('roof'); P.roof=rf.length?rf[rf.length-1][1].roof:(r.vec.x<-.5?'gable':r.vec.n>.55&&D0.roof==='flat'?'green':D0.roof); if(mode==='wild') P.roof=r.vec.x<0?'shed':(r.vec.v>0?'vault':'saw');
+  if(P.roof==='roofgarden'){ P.roof='flat'; P.ops.add('roofgarden'); }
+  log('op',rf.length?rf[rf.length-1][0]:'',`지붕은 ${PG_ROOFT[P.roof]}`);
+  const st=by('site'); P.site=st.length?st[st.length-1][1].site:(r.vec.n>.55?'forest':r.vec.n<-.55?'city':'flat'); log('site',st.length?st[st.length-1][0]:'',`대지는 ${PG_SITET[P.site]}`);
+  const ac=by('accent'); P.accent=ac.length?ac[ac.length-1][1].accent:null; P.night=by('night').length>0; P.ground=by('ground').length?'gravel':null;
+  // 조작
+  for(const [l,m] of mods) for(const o of (m.ops||[])){ if(!P.ops.has(o)){ P.ops.add(o); if(PG_OPT[o]) log(o==='wall'||o==='pool'||o==='bigtree'||o==='yard'||o==='sink'||o==='sunken'||o==='plaza'?'site':o==='deck'||o==='solar'||o==='vines'||o==='jars'||o==='roofgarden'?'life':'op',l,PG_OPT[o]); } }
+  if(mode==='mix'&&r.arch[1]){ const o=PG_ARCH_OP[r.arch[1].id]; if(o&&!P.ops.has(o)){ P.ops.add(o); log('op',r.arch[1].name,`둘째 방향(${r.arch[1].name})에서 — ${PG_OPT[o]}`); } }
+  if(mode==='wild'){ const o=r.vec.x>0?'twist':(r.vec.v>0?'cantilever':'carve'); if(!P.ops.has(o)){ P.ops.add(o); log('op','실험',`실험안이라 — ${PG_OPT[o]}`); } if(!P.ops.has('cantilever')&&P.F>1){ P.ops.add('cantilever'); log('op','실험',PG_OPT.cantilever); } }
+  if(base==='village') P.ops.add('village'); if(base==='terrace') P.ops.add('terrace'); if(base==='pilotis') P.ops.add('pilotis'); if(base==='split') P.ops.add('split'); if(base==='stack') P.ops.add('shift');
+  if(base==='buried') P.ops.add('sink'); if(base==='court'&&!['L','U'].includes(P.plan)) P.ops.add('court');
+  if(P.ops.has('village')&&P.F>2) P.F=2;
+  if(P.roof==='hanok'&&['house','small','stay','studio','cafe'].includes(P.prog)) P.F=1;
+  P.name=DNA_ARCH[base]?DNA_ARCH[base].name:'';
+  return P; }
+
+/* ---------- 매스 : volumes {x,z,w,d,y0,n,rot,round,role,skin} ---------- */
+function pgVolumes(P,R){ const {W,D,F}=P; const V=[]; const v=(o)=>{ const x=Object.assign({x:0,z:0,w:W,d:D,y0:0,n:F,rot:0,role:'main'},o); V.push(x); return x; };
+  const B=P.base;
+  if(P.ops.has('village')){ const n=Math.max(4,Math.min(7,Math.round(W*D/38))); const cells=[[0,0],[1,0],[-1,0],[0,1],[1,1],[-1,1],[0,-1]]; const s=Math.max(5,Math.sqrt(W*D/n)*.92);
+    cells.slice(0,n).forEach(([i,j],k)=>{ const w=s*(.8+R()*.35), d=s*(.75+R()*.4); v({x:i*(s+2.4)+(R()-.5)*1.2,z:j*(s+2.2)+(R()-.5)*1,w,d,n:k%3===0?Math.min(2,F):1,rot:(R()-.5)*.18,role:'house'}); }); return V; }
+  if(B==='terrace'||P.ops.has('terrace')){ const n=Math.max(2,F+(B==='terrace'?1:0)), step=Math.max(2.6,D*.28); for(let f=0;f<n;f++) v({z:-f*step/2,d:Math.max(4,D-f*step*.7),y0:f,n:1,role:'tier',tier:f}); V.forEach((t,i)=>{ const nx=V[i+1]; t.exp=nx?(t.z+t.d/2)-(nx.z+nx.d/2):t.d; }); return V; }
+  if(B==='stack'||P.ops.has('shift')){ for(let f=0;f<F;f++){ const sx=(f%2?1:-1)*W*.16*(f?1:0), sz=(f%3===1?1:f%3===2?-1:0)*D*.14; v({x:sx,z:sz,w:W*(f%2?.86:1),d:D*(f%2?.92:1),y0:f,n:1,role:'plate',rot:P.ops.has('twist')?f*.13:0}); } return V; }
+  if(P.ops.has('twist')){ for(let f=0;f<F;f++) v({y0:f,n:1,rot:f*.16,role:'plate'}); return V; }
+  if(B==='split'||P.ops.has('split')){ const w=W*.5; v({x:-w/2-.9,w,n:F}); v({x:w/2+.9,z:-1.2,w,y0:.5,n:F,role:'main2'}); v({x:0,w:1.8,d:D*.6,n:F+.5,role:'link',skin:'glass'}); return V; }
+  if(P.ops.has('twin')){ const w=W*.46; v({x:-w/2-2,w,role:'main'}); v({x:w/2+2,z:-1.5,w,d:D*.85,n:Math.max(1,F-(P.F>1?1:0)),role:'main2',skin:P.skin2||null}); return V; }
+  if(B==='buried'||P.ops.has('sink')){ v({y0:0,n:1,w:W*1.15,d:D*1.1,role:'sunk'}); if(F>1) v({x:W*.18,z:-D*.15,w:W*.45,d:D*.4,y0:0,n:1,role:'pav',skin:P.skin2||(P.skin==='conc'?'glass':P.skin)}); return V; }
+  if(B==='glass'){ v({w:W*1.15,d:D*.9,n:1,role:'pav'}); if(F>1) v({x:-W*.2,w:W*.5,d:D*.6,y0:1,n:1,role:'main2'}); return V; }
+  if(B==='thickwall'){ v({w:W*.85,d:D*.85}); v({x:W*.36,z:-D*.3,w:3.2,d:3.2,n:F+2,role:'tower'}); return V; }
+  if(B==='frame'){ v({w:Math.min(W,11),d:D*1.5,role:'tube',skin:'glass'}); return V; }
+  if(B==='roof'){ v({x:-W*.22,w:W*.45,d:D*.8,n:1}); v({x:W*.25,z:-.8,w:W*.38,d:D*.65,n:1,role:'main2'}); return V; }
+  if(B==='pilotis'&&!P.plan){ v({w:W*1.5,d:Math.max(7,D*.6)}); return V; }
+  v({}); return V; }
+
+/* ---------- 텍스처 (캔버스로 그림) ---------- */
+const PGT={};
+function pgTex(T,kind){ if(PGT[kind]) return PGT[kind]; const S=512, c=document.createElement('canvas'); c.width=c.height=S; const x=c.getContext('2d'); const R=pgRng(pgHash(kind));
+  const noise=(a,col)=>{ for(let i=0;i<S*S/40;i++){ x.fillStyle=col||`rgba(${R()<.5?0:255},${R()<.5?0:255},${R()<.5?0:255},${a*R()})`; x.fillRect(R()*S,R()*S,1+R()*2,1+R()*2); } };
+  const bricks=(cols,mortar,cw,ch)=>{ x.fillStyle=mortar; x.fillRect(0,0,S,S); const bw=S/cw, bh=S/ch; for(let j=0;j<ch;j++) for(let i=-1;i<cw;i++){ const off=j%2?bw/2:0; x.fillStyle=cols[Math.floor(R()*cols.length)]; x.fillRect(i*bw+off+2,j*bh+2,bw-4,bh-3); x.fillStyle='rgba(0,0,0,'+(R()*.12)+')'; x.fillRect(i*bw+off+2,j*bh+bh-6,bw-4,3); } noise(.06); };
+  const boards=(cols,w,gap,vert)=>{ const n=Math.round(S/w); for(let i=0;i<n;i++){ x.fillStyle=cols[Math.floor(R()*cols.length)]; if(vert) x.fillRect(i*w,0,w-gap,S); else x.fillRect(0,i*w,S,w-gap); x.globalAlpha=.08; for(let k=0;k<14;k++){ x.fillStyle=R()<.5?'#000':'#fff'; if(vert) x.fillRect(i*w+R()*w,0,1,S); else x.fillRect(0,i*w+R()*w,S,1); } x.globalAlpha=1; } x.fillStyle='rgba(0,0,0,.35)'; for(let i=0;i<n;i++){ if(vert) x.fillRect(i*w+w-gap,0,gap,S); else x.fillRect(0,i*w+w-gap,S,gap); } };
+  switch(kind){
+   case 'brick': bricks(['#b4664a','#a85c42','#bf7155','#9e5640','#b86d4f','#c27a5c'],'#d8cfc4',5,15); break;
+   case 'brickR': bricks(['#9a4330','#8c3a29','#a64b36','#7f3324','#9d4632'],'#cfc6bb',5,15); break;
+   case 'brickOld': bricks(['#9b6650','#7f5444','#b07a5c','#6e4a3c','#a36f58','#c08a6a','#5e4136'],'#c9c0b4',5,15); break;
+   case 'brickD': bricks(['#3d3b39','#46423f','#353331','#4d4844','#2f2d2b'],'#6b6762',5,15); break;
+   case 'conc': x.fillStyle='#cdc8c0'; x.fillRect(0,0,S,S); noise(.08); x.strokeStyle='rgba(0,0,0,.18)'; x.lineWidth=2; x.strokeRect(1,1,S-2,S/2-2); x.strokeRect(1,S/2+1,S-2,S/2-2); x.fillStyle='rgba(60,55,50,.45)'; for(const yy of [S/8,S*3/8,S*5/8,S*7/8]) for(const xx of [S/6,S/2,S*5/6]){ x.beginPath(); x.arc(xx,yy,4,0,7); x.fill(); } break;
+   case 'stone': { x.fillStyle='#bfb5a2'; x.fillRect(0,0,S,S); let y=0; while(y<S){ const h=40+R()*50; let xx=-R()*80; while(xx<S){ const w=80+R()*140; const g=200+R()*30|0; x.fillStyle=`rgb(${g},${g-10|0},${g-28|0})`; x.fillRect(xx+3,y+3,w-6,h-6); xx+=w; } y+=h; } noise(.07); break; }
+   case 'basalt': x.fillStyle='#4f4c49'; x.fillRect(0,0,S,S); for(let i=0;i<900;i++){ x.fillStyle=`rgba(${R()<.5?20:120},${R()<.5?20:115},${R()<.5?20:110},${.5*R()})`; x.beginPath(); x.arc(R()*S,R()*S,1+R()*5,0,7); x.fill(); } x.strokeStyle='rgba(0,0,0,.4)'; x.lineWidth=3; for(let j=0;j<4;j++){ x.beginPath(); x.moveTo(0,j*S/4+R()*20); x.lineTo(S,j*S/4+R()*20); x.stroke(); } break;
+   case 'wood': boards(['#b98a5a','#a97b4e','#c49768','#b28555','#9d7048'],S/6,3,true); break;
+   case 'clt': x.fillStyle='#ddc093'; x.fillRect(0,0,S,S); boards(['#dcbf92','#d4b685','#e2c79c'],S/3,2,false); break;
+   case 'charred': boards(['#2b2622','#332d28','#241f1c','#3a332d'],S/7,3,true); break;
+   case 'bamboo': boards(['#b8af6b','#a9a05c','#c6bd78'],S/12,2,true); x.fillStyle='rgba(80,70,30,.45)'; for(let j=1;j<4;j++) x.fillRect(0,j*S/4,S,4); break;
+   case 'stucco': x.fillStyle='#f1eee7'; x.fillRect(0,0,S,S); noise(.035); break;
+   case 'earth': for(let y=0;y<S;y+=8+R()*22){ const g=R(); x.fillStyle=`rgb(${176+g*30|0},${136+g*25|0},${96+g*20|0})`; x.fillRect(0,y,S,30); } noise(.08); break;
+   case 'tile': x.fillStyle='#d9d3c8'; x.fillRect(0,0,S,S); for(let j=0;j<16;j++) for(let i=0;i<8;i++){ const g=228+R()*18|0; x.fillStyle=`rgb(${g},${g-4},${g-10})`; x.fillRect(i*S/8+2,j*S/16+2,S/8-4,S/16-4); } break;
+   case 'metal': x.fillStyle='#9ca2a8'; x.fillRect(0,0,S,S); noise(.04); for(let i=0;i<8;i++){ x.fillStyle='rgba(255,255,255,.35)'; x.fillRect(i*S/8,0,3,S); x.fillStyle='rgba(0,0,0,.25)'; x.fillRect(i*S/8+3,0,3,S); } break;
+   case 'corten': x.fillStyle='#8a4a2a'; x.fillRect(0,0,S,S); for(let i=0;i<2600;i++){ x.fillStyle=`rgba(${120+R()*80|0},${50+R()*40|0},${20+R()*20|0},${.35*R()})`; x.beginPath(); x.arc(R()*S,R()*S,1+R()*7,0,7); x.fill(); } x.strokeStyle='rgba(40,20,10,.5)'; x.lineWidth=2; x.strokeRect(1,1,S-2,S-2); break;
+   case 'ugl': for(let i=0;i<S;i+=S/10){ x.fillStyle='#e3ecee'; x.fillRect(i,0,S/10,S); x.fillStyle='rgba(255,255,255,.7)'; x.fillRect(i+4,0,10,S); x.fillStyle='rgba(120,140,145,.5)'; x.fillRect(i+S/10-3,0,3,S); } break;
+   case 'poly': for(let i=0;i<S;i+=S/16){ x.fillStyle='#eef3f4'; x.fillRect(i,0,S/16,S); x.fillStyle='rgba(150,165,170,.35)'; x.fillRect(i,0,2,S); } break;
+   case 'hanji': x.fillStyle='#f5ecd8'; x.fillRect(0,0,S,S); noise(.03); x.fillStyle='#6e5238'; for(let i=0;i<=8;i++){ x.fillRect(i*S/8-3,0,6,S); x.fillRect(0,i*S/8-3,S,6); } break;
+   case 'perf': x.clearRect(0,0,S,S); x.fillStyle='#b3b7bb'; x.fillRect(0,0,S,S); x.globalCompositeOperation='destination-out'; for(let j=0;j<32;j++) for(let i=0;i<32;i++){ const rr=3+5*(.5+.5*Math.sin(i*.35+j*.22)); x.beginPath(); x.arc(i*16+(j%2)*8+8,j*16+8,rr,0,7); x.fill(); } x.globalCompositeOperation='source-over'; break;
+   case 'giwa': x.fillStyle='#4a4d52'; x.fillRect(0,0,S,S); for(let i=0;i<10;i++){ const g=x.createLinearGradient(i*S/10,0,(i+1)*S/10,0); g.addColorStop(0,'#3a3d41'); g.addColorStop(.5,'#6a6e74'); g.addColorStop(1,'#33363a'); x.fillStyle=g; x.fillRect(i*S/10,0,S/10,S); } for(let j=0;j<8;j++){ x.fillStyle='rgba(0,0,0,.35)'; x.fillRect(0,j*S/8,S,5); } break;
+   case 'seam': x.fillStyle='#55595f'; x.fillRect(0,0,S,S); noise(.03); for(let i=0;i<10;i++){ x.fillStyle='rgba(255,255,255,.25)'; x.fillRect(i*S/10,0,3,S); x.fillStyle='rgba(0,0,0,.3)'; x.fillRect(i*S/10+3,0,2,S); } break;
+   case 'grass': x.fillStyle='#93a47a'; x.fillRect(0,0,S,S); for(let i=0;i<9000;i++){ const g=R(); x.fillStyle=`rgba(${95+g*55|0},${125+g*45|0},${70+g*30|0},.5)`; x.fillRect(R()*S,R()*S,1,2+R()*3); } break;
+   case 'pave': x.fillStyle='#cfc8bb'; x.fillRect(0,0,S,S); for(let j=0;j<8;j++) for(let i=0;i<4;i++){ const g=196+R()*24|0; x.fillStyle=`rgb(${g},${g-5},${g-14})`; x.fillRect(i*S/4+(j%2)*S/8+2,j*S/8+2,S/4-4,S/8-4); } break;
+   case 'gravel': x.fillStyle='#bdb6a8'; x.fillRect(0,0,S,S); for(let i=0;i<7000;i++){ const g=150+R()*90|0; x.fillStyle=`rgb(${g},${g-4},${g-12})`; x.beginPath(); x.arc(R()*S,R()*S,1+R()*2.5,0,7); x.fill(); } break;
+   case 'deck': boards(['#a47a52','#9a704a','#b0865c'],S/8,3,false); break;
+   case 'facade': x.fillStyle='#d8d3cb'; x.fillRect(0,0,S,S); for(let j=0;j<4;j++) for(let i=0;i<4;i++){ x.fillStyle='#5d6a74'; x.fillRect(i*S/4+20,j*S/4+24,S/4-40,S/4-48); x.fillStyle='rgba(255,255,255,.2)'; x.fillRect(i*S/4+20,j*S/4+24,S/4-40,8); } break;
+  }
+  const t=new T.CanvasTexture(c); t.wrapS=t.wrapT=T.RepeatWrapping; t.encoding=T.sRGBEncoding; t.anisotropy=4; return PGT[kind]=t; }
+function pgBoxGeo(T,w,h,d,tm){ const g=new T.BoxGeometry(w,h,d); if(tm){ const uv=g.attributes.uv; const dims=[[d,h],[d,h],[w,d],[w,d],[w,h],[w,h]]; for(let f=0;f<6;f++) for(let i=0;i<4;i++){ const k=f*4+i; uv.setXY(k,uv.getX(k)*dims[f][0]/tm,uv.getY(k)*dims[f][1]/tm); } uv.needsUpdate=true; } return g; }
+function pgSurf(T,fn,nu,nv){ const pos=[],uvs=[],idx=[]; for(let j=0;j<=nv;j++) for(let i=0;i<=nu;i++){ const p=fn(i/nu,j/nv); pos.push(p[0],p[1],p[2]); uvs.push(p[3]!==undefined?p[3]:i/nu,p[4]!==undefined?p[4]:j/nv); }
+  for(let j=0;j<nv;j++) for(let i=0;i<nu;i++){ const a=j*(nu+1)+i, b=a+1, c=a+nu+1, d=c+1; idx.push(a,c,b,b,c,d); } const g=new T.BufferGeometry(); g.setAttribute('position',new T.Float32BufferAttribute(pos,3)); g.setAttribute('uv',new T.Float32BufferAttribute(uvs,2)); g.setIndex(idx); g.computeVertexNormals(); return g; }
+
+/* ---------- 재료 ---------- */
+function pgMats(T,P){ const C={}; const std=(k,o)=>{ if(C[k]) return C[k]; const m=new T.MeshStandardMaterial(Object.assign({roughness:.86,metalness:0},o)); if(o&&o.color!==undefined) m.color.convertSRGBToLinear(); if(m.emissive) m.emissive.convertSRGBToLinear(); m.userData.k=k; return C[k]=m; };
+  const skinMat=id=>{ const s=PG_SKIN[id]||PG_SKIN.stucco; if(s[0]==='curtain'&&!s[1]) return std('glass',{color:0x7fa6ba,roughness:.06,metalness:.55,transparent:true,opacity:.42,depthWrite:false}); if(s[0]==='fins'||s[0]==='screen') return std('wall_'+id,{color:0x3c4248,roughness:.3,metalness:.4});
+    const o={color:s[2],map:s[1]?pgTex(T,s[1]):null}; if(s[0]==='curtain'){ o.transparent=true; o.opacity=.9; o.emissive=0x000000; } if(id==='metal'||id==='corten') o.metalness=.25; return std('wall_'+id,o); };
+  const accent=P.accent==='steel'?0x2c2d30:P.accent?parseInt(P.accent.slice(1),16):0x2f3236;
+  return {C,skinMat,
+    glass:std('glass',{color:0x7fa6ba,roughness:.06,metalness:.55,transparent:true,opacity:.42,depthWrite:false}),
+    glassLit:std('glassLit',{color:0xffd59a,emissive:0xffb35c,emissiveIntensity:0,roughness:.3,transparent:true,opacity:.92}),
+    frame:std('frame',{color:accent,roughness:.5,metalness:.35}), slab:std('slab',{color:0xefece6}), white:std('white',{color:0xf3f1ec}), inner:std('inner',{color:0xe9e1d3,emissive:0xffcf8a,emissiveIntensity:0}),
+    conc:std('conc',{color:0xcbc6be,map:pgTex(T,'conc')}), stone:std('stone',{color:0xffffff,map:pgTex(T,'stone')}), wood:std('woodfin',{color:0xffffff,map:pgTex(T,'wood')}), alu:std('alu',{color:0xc6cace,roughness:.4,metalness:.5}), terra:std('terra',{color:0xc0663f,roughness:.8}),
+    perf:std('perf',{color:0xffffff,map:pgTex(T,'perf'),alphaTest:.5,side:T.DoubleSide,metalness:.4,roughness:.45}), deck:std('deck',{color:0xffffff,map:pgTex(T,'deck')}),
+    giwa:std('giwa',{color:0xffffff,map:pgTex(T,'giwa'),roughness:.7}), seam:std('seam',{color:0xffffff,map:pgTex(T,'seam'),roughness:.55,metalness:.3}), roofFlat:std('roofFlat',{color:0xb9b4ab}),
+    grass:std('grass',{color:0xffffff,map:pgTex(T,'grass')}), pave:std('pave',{color:0xffffff,map:pgTex(T,'pave')}), gravel:std('gravel',{color:0xffffff,map:pgTex(T,'gravel')}), dark:std('dark',{color:0x2b2d30,roughness:.6}),
+    water:std('water',{color:0x5f8ea6,roughness:.05,metalness:.6,transparent:true,opacity:.88}), soil:std('soil',{color:0x8a7a62}), pv:std('pv',{color:0x1e2a3a,roughness:.25,metalness:.6}),
+    trunk:std('trunk',{color:0x5e4a3a}), leaf1:std('leaf1',{color:0x6e9257,roughness:.95}), leaf2:std('leaf2',{color:0x86a865,roughness:.95}), leaf3:std('leaf3',{color:0x587e4a,roughness:.95}), bloom:std('bloom',{color:0xf0e2e6}),
+    rail:std('rail',{color:0x9fb3bd,roughness:.1,metalness:.3,transparent:true,opacity:.35,depthWrite:false}), lamp:std('lamp',{color:0xfff2d6,emissive:0xffcf8a,emissiveIntensity:0}),
+    jar:std('jar',{color:0x5a3a28,roughness:.35}), people:new T.MeshStandardMaterial({vertexColors:true,roughness:.85}), accent:std('accent',{color:accent,roughness:.5,metalness:.2}),
+    ghost:std('ghost',{color:0xe4e0d8,roughness:1}), facade:std('facade',{color:0xffffff,map:pgTex(T,'facade')}), clay:std('clay',{color:0xf2efe9,roughness:.92}), clayGlass:std('clayGlass',{color:0xcfd6da,roughness:.4,transparent:true,opacity:.55,depthWrite:false})}; }
+
+/* ---------- 사람 · 나무 (지오메트리 공유) ---------- */
+let PGP=null;
+function pgPeople(T){ if(PGP) return PGP; const merge=parts=>{ const pos=[],nor=[],col=[]; const c=new T.Color(); parts.forEach(([geo,m,hex])=>{ const g2=geo.index?geo.toNonIndexed():geo.clone(); g2.applyMatrix4(m); const p=g2.attributes.position,n=g2.attributes.normal; c.setHex(hex).convertSRGBToLinear(); for(let i=0;i<p.count;i++){ pos.push(p.getX(i),p.getY(i),p.getZ(i)); nor.push(n.getX(i),n.getY(i),n.getZ(i)); col.push(c.r,c.g,c.b); } }); const bg=new T.BufferGeometry(); bg.setAttribute('position',new T.Float32BufferAttribute(pos,3)); bg.setAttribute('normal',new T.Float32BufferAttribute(nor,3)); bg.setAttribute('color',new T.Float32BufferAttribute(col,3)); return bg; };
+  const M4=(x,y,z,rx,ry,rz,sx,sy,sz)=>new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion().setFromEuler(new T.Euler(rx||0,ry||0,rz||0)),new T.Vector3(sx||1,sy||1,sz||1));
+  const leg=new T.CylinderGeometry(.06,.048,1,8), arm=new T.CylinderGeometry(.043,.034,1,7), head=new T.SphereGeometry(.105,12,9), hair=new T.SphereGeometry(.113,12,7,0,Math.PI*2,0,Math.PI*.52), torso=new T.LatheGeometry([[.001,0],[.15,0],[.165,.12],[.178,.36],[.192,.5],[.13,.58],[.05,.62],[.001,.63]].map(([r,y])=>new T.Vector2(r,y)),12), shoe=new T.BoxGeometry(.2,.07,.1);
+  const TOPS=[0x3b4a5c,0x8a3f35,0xd8cfc0,0x5f7254,0xc9a45c,0x2f3338,0xe8e4dc,0x4f7fa0,0xb86b4b,0x2e5a4a], BOT=[0x2a2d33,0x3d4a63,0x5c5048,0xcfc6b5,0x1f2226], SK=[0xE3C3A5,0xD2A987,0xC49A78], HR=[0x1d1a18,0x3a2a1f,0x5a4030];
+  const R=pgRng(7), pk=a=>a[Math.floor(R()*a.length)]; const out=[];
+  for(let i=0;i<10;i++){ const tp=pk(TOPS),bt=pk(BOT),sk=pk(SK),hr=pk(HR); out.push(merge([[leg,M4(0,.43,.068,0,0,0,1,.86,1),bt],[leg,M4(0,.43,-.068,0,0,0,1,.86,1),bt],[shoe,M4(.04,.035,.068),0x2a2522],[shoe,M4(.04,.035,-.068),0x2a2522],[torso,M4(0,.84,0),tp],[arm,M4(0,1.17,.212,.1,0,0,1,.58,1),tp],[arm,M4(0,1.17,-.212,-.1,0,0,1,.58,1),tp],[head,M4(0,1.6,0),sk],[hair,M4(-.012,1.618,0),hr]])); }
+  const lobe=new T.IcosahedronGeometry(1,1), tr=new T.CylinderGeometry(.085,.16,1,7), cone=new T.ConeGeometry(1,1,9);
+  return PGP={stand:out,lobe,tr,cone}; }
+function pgTree(T,M,parent,x,z,s,kind,y){ const g=pgPeople(T); y=y||0; const add=(geo,m,px,py,pz,sx,sy,sz)=>{ const o=new T.Mesh(geo,m); o.position.set(px,py,pz); o.scale.set(sx,sy,sz); o.castShadow=true; o.receiveShadow=true; parent.add(o); return o; };
+  const L=[M.leaf1,M.leaf2,M.leaf3];
+  if(kind===1){ add(g.tr,M.trunk,x,y+1.2*s,z,.95*s,2.4*s,.95*s); [[1.9,1.25,2.3],[3.1,1,2],[4.2,.74,1.7],[5.1,.45,1.3]].forEach(([h,r,hh],i)=>add(g.cone,L[i%3],x,y+h*s,z,r*s*1.25,hh*s,r*s*1.25)); }
+  else if(kind===2){ [[-.18,.1,.22],[.2,-.08,-.2],[.04,.22,.06]].forEach(([dx,dz,t])=>{ const o=add(g.tr,M.trunk,x+dx*s,y+1.1*s,z+dz*s,.62*s,2.3*s,.62*s); o.rotation.z=t; }); [[0,0,2.85,1.25],[.8,.3,2.6,.9],[-.75,-.4,2.7,.95],[.1,-.65,3.35,.85],[-.2,.6,3.3,.8]].forEach(([dx,dz,h,r],i)=>add(g.lobe,L[(i+1)%3],x+dx*s,y+h*s,z+dz*s,r*s,r*.78*s,r*s)); }
+  else { add(g.tr,M.trunk,x,y+1.35*s,z,1.15*s,2.7*s,1.15*s); [[0,0,3.7,1.55],[.95,.45,3.25,1.15],[-.85,.6,3.35,1.1],[.3,-.95,3.3,1.15],[-.45,-.5,4.45,1.05],[.5,.2,4.55,.95]].forEach(([dx,dz,h,r],i)=>add(g.lobe,L[i%3],x+dx*s,y+h*s,z+dz*s,r*s,r*.82*s,r*s)); } }
+
+/* ---------- 건물 짓기 ---------- */
+function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,P); const fh=P.fh;
+  const root=new T.Group(); const bldg=new T.Group(), site=new T.Group(), life=new T.Group(), mass=new T.Group(); root.add(site,bldg,life,mass); mass.visible=false;
+  const floors=[]; const panesLit=[]; const lights=[];
+  const V=pgVolumes(P,R);
+  // 조작: 들어 올리기 · 묻기 · 캔틸레버 · 탑 · 기단
+  const lift=P.ops.has('pilotis')&&!P.ops.has('sink')?fh*1.05:0;
+  if(P.ops.has('cantilever')){ const top=V.filter(v=>v.role!=='link'&&v.role!=='tower').sort((a,b)=>(b.y0+b.n)-(a.y0+a.n))[0]; if(top&&(top.y0+top.n)>=2){ if(top.n>1){ top.n-=1; V.push(Object.assign({},top,{y0:top.y0+top.n,n:1,x:top.x+top.w*.22,w:top.w*1.05,role:'cant'})); } else { top.x+=top.w*.2; top.role='cant'; } } }
+  if(P.ops.has('tower')&&!V.some(v=>v.role==='tower')){ const m=V[0]; V.push({x:m.x+m.w*.32,z:m.z-m.d*.22,w:Math.min(5,m.w*.3),d:Math.min(5,m.d*.35),y0:m.y0,n:m.n+2,rot:m.rot,role:'tower'}); }
+  if(P.ops.has('twin')&&P.ops.has('bridge')&&V.length>=2&&!V.some(v=>v.role==='link')){ const a=V[0],b=V[1]; const y=Math.max(1,Math.min(a.y0+a.n,b.y0+b.n)-1); V.push({x:(a.x+b.x)/2,z:(a.z+b.z)/2,w:Math.abs(b.x-a.x)-(a.w+b.w)/2+1,d:2.4,y0:y,n:1,rot:0,role:'link',skin:'glass'}); }
+  const solidSkin=id=>PG_SKIN[id]&&PG_SKIN[id][0]==='solid';
+  // 매스 그룹 (흰 덩어리 — 스크롤 장면용)
+  V.forEach(v=>{ const h=v.n*fh; const g=new T.Mesh(new T.BoxGeometry(v.w,h,v.d),M.clay); g.position.set(v.x,(v.y0*fh)+lift+h/2,v.z); g.rotation.y=v.rot; g.castShadow=true; g.receiveShadow=true; mass.add(g); });
+  const inst={}; const addI=(key,geo,mat,m4,grp,shadow)=>{ const k=key+'|'+grp.uuid; (inst[k]=inst[k]||{geo,mat,list:[],grp,shadow}).list.push(m4); };
+  const unit=new T.BoxGeometry(1,1,1); const mtx=(x,y,z,sx,sy,sz,ry)=>new T.Matrix4().compose(new T.Vector3(x,y,z),new T.Quaternion().setFromEuler(new T.Euler(0,ry||0,0)),new T.Vector3(sx,sy,sz));
+  const mesh=(geo,mat,grp,x,y,z,cast)=>{ const o=new T.Mesh(geo,mat); o.position.set(x,y,z); o.castShadow=cast!==false; o.receiveShadow=true; grp.add(o); return o; };
+  const boxM=(grp,w,h,d,x,y,z,mat,tm,cast)=>mesh(pgBoxGeo(T,w,h,d,tm),mat,grp,x,y+h/2,z,cast);
+  const rrGeo=(w,d,h,r)=>{ const s=new T.Shape(); const x=w/2,y=d/2; r=Math.min(r,x-.1,y-.1); s.moveTo(-x+r,-y); s.lineTo(x-r,-y); s.quadraticCurveTo(x,-y,x,-y+r); s.lineTo(x,y-r); s.quadraticCurveTo(x,y,x-r,y); s.lineTo(-x+r,y); s.quadraticCurveTo(-x,y,-x,y-r); s.lineTo(-x,-y+r); s.quadraticCurveTo(-x,-y,-x+r,-y); const g=new T.ExtrudeGeometry(s,{depth:h,bevelEnabled:false,curveSegments:10}); g.rotateX(-Math.PI/2); return g; };
+  const CRV=P.ops.has('curve')&&!P.ops.has('round'), CR=4; const scaledC={}; const matScaled=id=>{ if(scaledC[id]) return scaledC[id]; const b=M.skinMat(id); if(!b.map) return scaledC[id]=b; const m=b.clone(); m.map=b.map.clone(); m.map.needsUpdate=true; const tm=(PG_SKIN[id]||[])[3]||2; m.map.repeat.set(1/tm,1/tm); return scaledC[id]=m; };
+  const maxLv=Math.max(...V.map(v=>v.y0+v.n));
+  // 창 패턴 (면 길이 L, 층높이 h)
+  const winRects=(style,L,h,side,f,fi)=>{ const out=[]; if(L<2) return out; const m=.7;
+    const punch=(ww,hh,sill)=>{ const n=Math.max(1,Math.floor((L-1)/(ww+1.6))); const step=(L-1)/n; for(let i=0;i<n;i++){ const cx=-L/2+.5+step*(i+.5); out.push([cx-ww/2,cx+ww/2,sill,Math.min(h-.35,sill+hh)]); } };
+    switch(style){
+     case 'ribbon': out.push([-L/2+m,L/2-m,1,Math.min(h-.45,2.3)]); break;
+     case 'full': if(side==='f'||side==='b'||L<9) out.push([-L/2+.45,L/2-.45,.12,h-.32]); else punch(2.2,2.2,.6); break;
+     case 'slit': { const n=Math.max(1,Math.floor(L/2.6)); for(let i=0;i<n;i++){ const cx=-L/2+1+(L-2)*(i+.3+.4*((i*7+fi*3)%5)/5)/n; out.push([cx-.15,cx+.15,.25,h-.3]); } break; }
+     case 'deep': case 'punch': case 'lattice': punch(style==='deep'?1.4:1.3,1.6,.9); break;
+     case 'corner': out.push([L/2-Math.min(4,L*.45),L/2-.05,.4,h-.35]); if(L>8) punch(1.2,1.5,.9); break;
+     case 'frame': if(side==='f') out.push([-L*.34,L*.34,.35,h-.4]); else punch(1,1.2,1); break;
+     case 'clere': out.push([-L/2+m,L/2-m,h-1.1,h-.4]); if(side==='f') punch(1.2,1.4,.8); break;
+     default: punch(1.3,1.5,.9); }
+    return out; };
+  // 한 층의 껍질
+  const shellFloor=(fg,v,f,fi,skinId,w,d,h,isTop,isGround)=>{ const S=PG_SKIN[skinId]||PG_SKIN.stucco, type=S[0]; const sides=[['f',0,d/2,w,0],['b',0,-d/2,w,Math.PI],['r',w/2,0,d,Math.PI/2],['l',-w/2,0,d,-Math.PI/2]];
+    const pane=(lit,x,y,z,sx,sy,ry)=>{ const m=mtx(x,y,z,sx,sy,.06,ry); addI(lit?'pL':'pD',unit,M.glass,m,fg,false); if(lit) panesLit.push(1); };
+    if(type==='curtain'){ const opaque=!!S[1]; if(CRV) mesh(rrGeo(w,d,.32,CR),M.slab,fg,0,h-.32,0); else boxM(fg,w,.32,d,0,h-.32,0,M.slab,0); const gm=opaque?M.skinMat(skinId):M.glass; const g=CRV?mesh(rrGeo(w-.12,d-.12,h-.32,CR),gm,fg,0,0,0,false):mesh(new T.BoxGeometry(w-.12,h-.32,d-.12),gm,fg,0,(h-.32)/2,0,false); g.userData.glass=!opaque; if(!opaque){ boxM(fg,w-2,h-.6,d-2,0,.02,0,M.inner,0,false).userData.inner=true; boxM(fg,w-.2,.06,d-.2,0,0,0,M.slab,0,false); }
+      else g.userData.glow=true;
+      for(const [s,ox,oz,L0,ry] of sides){ const L=CRV?L0-2*CR:L0; const n=Math.max(2,Math.round(L/1.5)); for(let i=0;i<=n;i++){ const u=-L/2+L*i/n; const x=ox+Math.cos(ry)*u, z=oz-Math.sin(ry)*u; addI('mul',unit,M.frame,mtx(x,(h-.32)/2,z,.07,h-.32,.07),fg,true); } }
+      return; }
+    // 벽 (불투명) 또는 루버/스크린 안쪽 벽
+    const wallMat=(type==='solid')?M.skinMat(skinId):M.skinMat(skinId);
+    if(type==='solid'){ if(CRV) mesh(rrGeo(w,d,h,CR),matScaled(skinId),fg,0,0,0); else boxM(fg,w,h,d,0,0,0,wallMat,S[3]); }
+    else { boxM(fg,w-.9,h-.3,d-.9,0,0,0,M.glass,0,false).userData.glass=true; boxM(fg,w-1.8,h-.6,d-1.8,0,.02,0,M.inner,0,false); boxM(fg,w,.3,d,0,h-.3,0,M.slab,0); }
+    if(type==='fins'){ const fm=skinId==='terra'?M.terra:skinId==='woodlouver'?M.wood:M.alu; const sp=skinId==='terra'?.42:.55; for(const [s,ox,oz,L,ry] of sides){ const n=Math.floor(L/sp); for(let i=0;i<=n;i++){ const u=-L/2+i*L/n; const x=ox+Math.cos(ry)*u+Math.sin(ry)*-.0, z=oz-Math.sin(ry)*u; addI('fin'+skinId,unit,fm,mtx(x,(h-.3)/2,z,skinId==='terra'?.14:.09,h-.3,skinId==='terra'?.14:.45,ry),fg,true); } } return; }
+    if(type==='screen'){ for(const [s,ox,oz,L,ry] of sides){ const p=new T.Mesh(new T.PlaneGeometry(L,h-.3),M.perf); p.position.set(ox,(h-.3)/2,oz); p.rotation.y=ry; p.castShadow=true; fg.add(p); const t=p.material.map; } return; }
+    // 창
+    const style=(v.role==='tower'&&P.win!=='slit')?'slit':P.win;
+    for(const [s,ox,oz,L0,ry] of sides){ const L=CRV?L0-2*CR:L0; if(isGround&&s==='f'&&v.role!=='tower'&&v.role!=='link'){ /* 입구 */ const ew=Math.min(3.2,L*.3); const ex=ox+Math.cos(ry)*(-L*.18), ez=oz+.03; addI('door',unit,M.dark,mtx(ex,1.25,ez,ew,2.5,.08),fg,false); if(P.ops.has('canopy')||P.ops.has('eaves')===false) boxM(fg,ew+2.4,.18,2.4,ex,2.75,oz+1.2,M.frame,0); }
+      const rs=winRects(style,L,h,s,f,fi+s.charCodeAt(0)); rs.forEach(([u0,u1,v0,v1],k)=>{ if(isGround&&s==='f'&&Math.abs((u0+u1)/2+L*.18)<2.2) return; const uc=(u0+u1)/2, ww=u1-u0, hh=v1-v0; const nx=Math.sin(ry), nz=Math.cos(ry); const x=ox+Math.cos(ry)*uc+nx*.02, z=oz-Math.sin(ry)*uc+nz*.02; const lit=((fi*13+k*7+s.charCodeAt(0))%10)<6;
+        pane(lit,x,v0+hh/2,z,ww,hh,ry);
+        if(style==='deep'||style==='frame'){ const dp=style==='frame'?.9:.45, t=.16; [[0,hh/2+t/2,ww+2*t,t],[0,-hh/2-t/2,ww+2*t,t],[-ww/2-t/2,0,t,hh],[ww/2+t/2,0,t,hh]].forEach(([du,dv,sw,sh])=>addI('rev'+skinId,unit,style==='frame'?M.frame:wallMat,mtx(x+Math.cos(ry)*du+nx*dp/2,v0+hh/2+dv,z-Math.sin(ry)*du+nz*dp/2,sw,sh,dp,ry),fg,true)); }
+        else { const t=.05; [[0,hh/2,ww,t],[0,-hh/2,ww,t],[-ww/2,0,t,hh],[ww/2,0,t,hh]].forEach(([du,dv,sw,sh])=>addI('wf',unit,M.frame,mtx(x+Math.cos(ry)*du+nx*.03,v0+hh/2+dv,z-Math.sin(ry)*du+nz*.03,sw,sh,.05,ry),fg,false)); }
+        if(ww>2.4){ const n=Math.round(ww/1.6); for(let i=1;i<n;i++){ const du=-ww/2+ww*i/n; addI('wf',unit,M.frame,mtx(x+Math.cos(ry)*du+nx*.03,v0+hh/2,z-Math.sin(ry)*du+nz*.03,.05,hh,.05,ry),fg,false); } }
+        if(style==='lattice'){ for(let i=1;i<4;i++){ const du=-ww/2+ww*i/4; addI('lat',unit,M.wood,mtx(x+Math.cos(ry)*du+nx*.04,v0+hh/2,z-Math.sin(ry)*du+nz*.04,.04,hh,.04,ry),fg,false); } for(let j=1;j<4;j++) addI('lat',unit,M.wood,mtx(x+nx*.04,v0+hh*j/4,z+nz*.04,ww,.04,.04,ry),fg,false); }
+        if(P.ops.has('shades')) addI('shade',unit,M.frame,mtx(x+nx*.45,v1+.18,z+nz*.45,ww+.6,.08,.9,ry),fg,true);
+      }); }
+    if(P.ops.has('vines')&&f===0) for(const [s,ox,oz,L,ry] of sides){ if(s!=='r'&&s!=='b') continue; const n=Math.floor(L/1.2); for(let i=0;i<n;i++) if(R()<.6){ const u=-L/2+.6+i*1.2, hh=h*(1.2+R()*1.5); const nx=Math.sin(ry),nz=Math.cos(ry); addI('vine',unit,M.leaf3,mtx(ox+Math.cos(ry)*u+nx*.08,hh/2,oz-Math.sin(ry)*u+nz*.08,.5+R()*.5,hh,.12,ry),fg,true); } }
+  };
+  // 지붕
+  const roofTop=(fg,v,w,d,kind,skinId)=>{ const solid=solidSkin(skinId); const par=solid?M.skinMat(skinId):M.slab; const tm=PG_SKIN[skinId]?PG_SKIN[skinId][3]:0;
+    if(kind==='flat'||kind==='green'||kind==='slab'||kind==='big'||(v.role==='tier')){ if(kind==='slab'){ boxM(fg,w+2.4,.28,d+2.4,0,0,0,M.white,0); return; }
+      const high=((v.y0||0)+(v.n||0)>=maxLv-.01)||!['tier','plate'].includes(v.role);
+      if(P.ops.has('eaves')&&!CRV&&v.role!=='tier'&&v.role!=='plate'){ boxM(fg,w+3.4,.3,d+3.4,0,.55,0,M.white,0); }
+      if(CRV&&v.role!=='big'){ mesh(rrGeo(w,d,.6,CR),M.slab,fg,0,0,0); } else { boxM(fg,w,.12,d,0,0,0,M.roofFlat,0,false); const ph=.6; [[w,ph,.25,0,d/2-.125],[w,ph,.25,0,-d/2+.125],[.25,ph,d,w/2-.125,0],[.25,ph,d,-w/2+.125,0]].forEach(([a,b,c,x,z])=>boxM(fg,a,b,c,x,0,z,par,tm)); }
+      if(kind==='green'||P.ops.has('roofgarden')||v.role==='tier'){ const ex=v.role==='tier'&&!high?Math.max(1.2,v.exp||2):d-.6; const gz=d/2-.3-ex/2; boxM(fg,w-.6,.35,ex,0,.05,gz,M.grass,4,false); const n=Math.floor(w*ex/7); for(let i=0;i<n;i++){ const s=.35+R()*.45; const b=new T.Mesh(pgPeople(T).lobe,[M.leaf1,M.leaf2,M.leaf3][i%3]); b.scale.set(s,s*.7,s); b.position.set((R()-.5)*(w-1.6),.4+s*.4,gz+(R()-.5)*(ex-1)); b.castShadow=true; fg.add(b); } if(high&&w*d>60&&R()<.8) pgTree(T,M,fg,(R()-.5)*(w-4)*.6,(R()-.5)*(d-4)*.6,.55,2,.4); if(v.role==='tier'){ const r=new T.Mesh(new T.BoxGeometry(w,1.05,.05),M.rail); r.position.set(0,.55+.5,d/2-.05); fg.add(r); } }
+      else if(high&&w*d>40&&!CRV){ boxM(fg,2.2,1.1,1.6,w*.25,.1,-d*.2,M.ghost,0); }
+      if(high&&P.ops.has('solar')){ for(let i=0;i<Math.floor((w-2)/1.2);i++) for(let j=0;j<Math.floor((d-2)/2.4);j++){ const p=new T.Mesh(new T.BoxGeometry(1.05,.05,1.8),M.pv); p.position.set(-w/2+1.6+i*1.2,.9,-d/2+1.6+j*2.4); p.rotation.x=-.45; p.castShadow=true; fg.add(p); } }
+      if(high&&P.ops.has('skylight')){ const s=Math.min(3,w*.25); const g=boxM(fg,s,.9,s,0,.1,0,M.glass,0,false); g.userData.glass=true; boxM(fg,s+.3,.12,s+.3,0,.95,0,M.frame,0); }
+      return; }
+    const along=w>=d; const span=along?d:w, len=along?w:d; const eo=P.ops.has('eaves')||kind==='hanok'?1.6:.7;
+    if(kind==='gable'||kind==='steep'){ const pitch=kind==='steep'?1.0:.55; const H=span/2*pitch; const sl=Math.hypot(span/2+eo,(span/2+eo)*pitch); const ang=Math.atan(pitch); const rm=P.skin==='wood'||P.skin==='charred'||P.base==='village'?M.seam:M.seam;
+      for(const sgn of [1,-1]){ const g=pgBoxGeo(T,len+eo*2,.22,sl,2); const o=new T.Mesh(g,rm); o.castShadow=true; o.receiveShadow=true; const cx=sgn*(span/2+eo)/2, cy=(H-eo*pitch)/2+.1; if(along){ o.position.set(0,cy,cx); o.rotation.x=sgn*ang; } else { o.position.set(cx,cy,0); o.rotation.set(0,Math.PI/2,0); o.rotateX(sgn*ang); } fg.add(o); }
+      // 박공 벽 (삼각형)
+      const sh=new T.Shape(); sh.moveTo(-span/2,0); sh.lineTo(0,H); sh.lineTo(span/2,0); sh.lineTo(-span/2,0); const eg=new T.ExtrudeGeometry(sh,{depth:len-.02,bevelEnabled:false}); eg.translate(0,0,-(len-.02)/2); const gw=new T.Mesh(eg,solid?M.skinMat(skinId):M.white); if(!along) gw.rotation.y=0; else gw.rotation.y=Math.PI/2; gw.castShadow=true; gw.receiveShadow=true; fg.add(gw);
+      if(P.ops.has('solar')){ for(let i=0;i<Math.floor((len-1)/1.15);i++){ const p=new T.Mesh(new T.BoxGeometry(1.05,.06,Math.min(4,sl*.7)),M.pv); const u=-len/2+.8+i*1.15; if(along){ p.position.set(u,H*.55+.2,span*.24); p.rotation.x=ang; } else { p.position.set(span*.24,H*.55+.2,u); p.rotation.set(0,Math.PI/2,0); p.rotateX(ang); } fg.add(p); } }
+      if(P.ops.has('skylight')){ const g=new T.Mesh(new T.BoxGeometry(1.2,.12,1.6),M.glass); if(along){ g.position.set(0,H*.5+.25,-span*.22); g.rotation.x=-ang; } else { g.position.set(-span*.22,H*.5+.25,0); g.rotation.z=ang; } fg.add(g); }
+      return; }
+    if(kind==='shed'){ const H=span*.32; const sl=Math.hypot(span+eo*2,H); const o=new T.Mesh(pgBoxGeo(T,len+eo*2,.22,sl,2),M.seam); o.castShadow=true; o.receiveShadow=true; if(along){ o.position.set(0,H/2+.1,0); o.rotation.x=-Math.atan(H/(span+eo*2)); } else { o.position.set(0,H/2+.1,0); o.rotation.set(0,Math.PI/2,0); o.rotateX(-Math.atan(H/(span+eo*2))); } fg.add(o);
+      const sh=new T.Shape(); sh.moveTo(-span/2,0); sh.lineTo(-span/2,H); sh.lineTo(span/2,0); sh.lineTo(-span/2,0); const eg=new T.ExtrudeGeometry(sh,{depth:len-.02,bevelEnabled:false}); eg.translate(0,0,-(len-.02)/2); const gw=new T.Mesh(eg,solid?M.skinMat(skinId):M.white); gw.rotation.y=along?Math.PI/2:Math.PI; gw.castShadow=true; fg.add(gw); return; }
+    if(kind==='saw'){ const n=Math.max(2,Math.round(len/4)); const t=len/n, H=Math.min(2.6,span*.22); for(let i=0;i<n;i++){ const u=-len/2+t*(i+.5); const sh=new T.Shape(); sh.moveTo(-t/2,0); sh.lineTo(-t/2,H); sh.lineTo(t/2,0); sh.lineTo(-t/2,0); const eg=new T.ExtrudeGeometry(sh,{depth:span,bevelEnabled:false}); eg.translate(0,0,-span/2); const o=new T.Mesh(eg,M.seam); o.castShadow=true; o.receiveShadow=true; if(along) o.position.set(u,0,0); else { o.rotation.y=Math.PI/2; o.position.set(0,0,u); } fg.add(o); const gl=new T.Mesh(new T.BoxGeometry(.06,H-.25,span-.3),M.glass); if(along) gl.position.set(u-t/2-.04,H/2,0); else { gl.rotation.y=Math.PI/2; gl.position.set(0,H/2,u-t/2-.04); } gl.userData.glass=true; fg.add(gl); } return; }
+    if(kind==='vault'){ const g=new T.CylinderGeometry(span/2,span/2,len+.6,32,1,true,along?0:-Math.PI/2,Math.PI); const o=new T.Mesh(g,M.seam); o.material.side=T.DoubleSide; if(along) o.rotation.z=Math.PI/2; else o.rotation.x=-Math.PI/2; o.castShadow=true; o.receiveShadow=true; const holder=new T.Group(); holder.add(o); holder.scale.y=.45; fg.add(holder); const cap=(sg)=>{ const c=new T.Mesh(new T.CircleGeometry(span/2,32,0,Math.PI),M.glass); if(along){ c.rotation.y=sg>0?Math.PI/2:-Math.PI/2; c.position.x=sg*(len/2); } else { c.position.z=sg*(len/2); if(sg<0) c.rotation.y=Math.PI; } c.scale.y=.45; c.userData.glass=true; fg.add(c); }; cap(1); cap(-1); return; }
+    if(kind==='hanok'){ const a=w/2+eo, b=d/2+eo; const rr=Math.abs(a-b)*.9; const H=Math.min(a,b)*.78; const up=.6; const prof=t=>Math.pow(t,1.45);
+      const face=(e0,e1,r0,r1,lenU)=>pgSurf(T,(u,vv)=>{ const ex=e0[0]+(e1[0]-e0[0])*u, ez=e0[2]+(e1[2]-e0[2])*u; const rx=r0[0]+(r1[0]-r0[0])*u, rz=r0[2]+(r1[2]-r0[2])*u; const edge=Math.pow(Math.abs(2*u-1),3); return [ex+(rx-ex)*vv, H*prof(vv)+up*edge*(1-vv)*(1-vv), ez+(rz-ez)*vv, u*lenU/1.6, vv*H/1.1]; },20,10);
+      let F; if(along){ const R0=[-rr,H,0],R1=[rr,H,0]; F=[face([-a,0,b],[a,0,b],R0,R1,a*2),face([a,0,-b],[-a,0,-b],R1,R0,a*2),face([a,0,b],[a,0,-b],R1,R1,b*2),face([-a,0,-b],[-a,0,b],R0,R0,b*2)]; }
+      else { const R0=[0,H,-rr],R1=[0,H,rr]; F=[face([-a,0,b],[a,0,b],R1,R1,a*2),face([a,0,-b],[-a,0,-b],R0,R0,a*2),face([a,0,b],[a,0,-b],R1,R0,b*2),face([-a,0,-b],[-a,0,b],R0,R1,b*2)]; }
+      F.forEach(g=>{ const o=new T.Mesh(g,M.giwa); o.castShadow=true; o.receiveShadow=true; fg.add(o); }); M.giwa.side=T.DoubleSide;
+      const rl=rr*2+.8; const ridge=new T.Mesh(new T.BoxGeometry(along?rl:.36,.34,along?.36:rl),M.dark); ridge.position.set(0,H+.12,0); ridge.castShadow=true; fg.add(ridge);
+      boxM(fg,w+.4,.32,d+.4,0,-.32,0,M.wood,1.2); return; }
+  };
+  // 볼륨마다 층을 쌓음
+  const tops=[]; let gfa=0, foot=0, maxTop=0;
+  V.forEach((v,vi)=>{ const vg=new T.Group(); vg.position.set(v.x,(v.y0*fh)+lift,v.z); vg.rotation.y=v.rot||0; bldg.add(vg); const nF=Math.ceil(v.n-.01);
+    let skinId=v.skin||P.skin; if(v.role==='tower'&&!v.skin&&P.skin2) skinId=P.skin2;
+    for(let f=0;f<nF;f++){ const gi=Math.floor(v.y0)+f; let sid=skinId; if(P.ops.has('plinth')&&gi===0&&v.role!=='link') sid=P.skin2&&solidSkin(P.skin2)?P.skin2:'stone'; if(P.ops.has('lightTop')&&gi>=1&&v.role!=='link') sid=P.skin==='glass'?'louver':'glass';
+
+      const fg=new T.Group(); fg.position.y=f*fh; fg.userData={ty:f*fh,idx:gi,vy:vg}; vg.add(fg); floors.push(fg);
+      let w=v.w, d=v.d; if(P.ops.has('slabs')){ boxM(fg,w+2,.26,d+2,0,fh-.26,0,M.white,0); }
+      const isG=(gi===0&&!lift)||(v.role==='sunk');
+      if(P.ops.has('curve')||P.ops.has('round')){ const rad=P.ops.has('round')?Math.min(w,d)/2:null; if(rad){ const cyl=new T.Mesh(new T.CylinderGeometry(rad,rad,fh-.3,40),solidSkin(sid)?M.skinMat(sid):M.glass); cyl.position.y=(fh-.3)/2; cyl.castShadow=true; fg.add(cyl); if(!solidSkin(sid)) cyl.userData.glass=true; else{ const band=new T.Mesh(new T.CylinderGeometry(rad+.02,rad+.02,P.win==='slit'?fh*.7:1.5,40,1,true),M.glass); band.position.y=1.7; fg.add(band); } const sl=new T.Mesh(new T.CylinderGeometry(rad+.15,rad+.15,.3,40),M.slab); sl.position.y=fh-.15; sl.castShadow=true; fg.add(sl); gfa+=Math.PI*rad*rad; continue; } }
+      shellFloor(fg,v,f,gi+vi*7,sid,w,d,v.n<1?fh*v.n:(f===nF-1&&v.n%1?fh*(v.n%1):fh),f===nF-1,isG);
+      if(P.ops.has('passage')&&gi===0&&vi===0&&v.w>8){ boxM(fg,4,fh-.4,d+.1,0,0,0,M.dark,0,false); }
+      gfa+=w*d; if(gi===0||v.role==='sunk') foot+=w*d;
+      // 테라스 난간 · 화분
+      if(v.role==='tier'&&f===nF-1){ }
+    }
+    const topY=nF*fh; maxTop=Math.max(maxTop,(v.y0*fh)+lift+topY);
+    if(v.role!=='link'){ const rg=new T.Group(); rg.position.y=topY-(v.n%1?fh*(1-v.n%1):0); rg.userData={ty:rg.position.y,idx:Math.floor(v.y0)+nF,vy:vg,roof:1}; vg.add(rg); floors.push(rg); const big=P.roof==='big';
+      if(v.role==='round'||P.ops.has('round')){ const rad=Math.min(v.w,v.d)/2; const g=new T.Mesh(new T.CylinderGeometry(rad+.4,rad+.4,.3,40),M.white); g.position.y=.15; g.castShadow=true; rg.add(g); if(P.roof==='green'||P.ops.has('roofgarden')){ const gr=new T.Mesh(new T.CylinderGeometry(rad-.3,rad-.3,.4,40),M.grass); gr.position.y=.3; rg.add(gr); } }
+      else roofTop(rg,v,v.w,v.d,big||v.role==='tier'?'flat':(v.role==='house'&&!['flat','green','slab','saw','vault'].includes(P.roof)?P.roof==='big'?'gable':P.roof:v.role==='tower'?'flat':P.roof),skinId); tops.push(v); }
+  });
+  // 하나의 큰 지붕
+  if(P.roof==='big'){ const bb=new T.Box3(); V.forEach(v=>bb.union(new T.Box3(new T.Vector3(v.x-v.w/2,0,v.z-v.d/2),new T.Vector3(v.x+v.w/2,1,v.z+v.d/2)))); const w=bb.max.x-bb.min.x+5, d=bb.max.z-bb.min.z+5; const top=Math.max(...V.map(v=>(v.y0+v.n)*fh))+lift; const rg=new T.Group(); rg.position.set((bb.min.x+bb.max.x)/2,top+.4,(bb.min.z+bb.max.z)/2); rg.userData={ty:top+.4,idx:9,roof:1,vy:null}; bldg.add(rg); floors.push(rg);
+    roofTop(rg,{role:'big'},w,d,'gable',P.skin); for(const [sx,sz] of [[1,1],[-1,1],[1,-1],[-1,-1],[0,1],[0,-1]]){ const c=new T.Mesh(new T.CylinderGeometry(.16,.16,top+.4,10),M.wood); c.position.set(rg.position.x+sx*(w/2-.6),(top+.4)/2,rg.position.z+sz*(d/2-.6)); c.castShadow=true; bldg.add(c); } }
+  // 마당 (중정) — 가운데를 비움: 단일 매스면 링으로 다시 짓는 대신 마당 바닥과 나무, 위 지붕을 뚫은 것처럼 보이게 개구부 박스
+  if(P.ops.has('court')&&!P.ops.has('village')){ const m=V[0]; if(m&&m.w>=10&&m.d>=9&&m.role!=='tier'){ const cw=m.w*.42, cd=m.d*.42; // 링 매스로 교체
+      bldg.children.filter(g=>g.isGroup&&g.position.x===m.x+0&&g.position.z===m.z).slice(0,1).forEach(g=>{ g.visible=false; g.userData.hidden=1; });
+      const ring=[[0,(m.d+cd)/4,m.w,(m.d-cd)/2],[0,-(m.d+cd)/4,m.w,(m.d-cd)/2],[(m.w+cw)/4,0,(m.w-cw)/2,cd],[-(m.w+cw)/4,0,(m.w-cw)/2,cd]];
+      let plan=P.plan==='L'?[ring[1],ring[3]]:P.plan==='U'?[ring[1],ring[2],ring[3]]:ring; if(P.roof==='hanok'||P.roof==='gable'||P.roof==='steep'){ const g=2.4; plan=[[0,-(m.d+cd)/4,m.w,(m.d-cd)/2],[(m.w+cw)/4+.6,g/2,(m.w-cw)/2-1.2,cd+(m.d-cd)/2-g],[-(m.w+cw)/4-.6,g/2,(m.w-cw)/2-1.2,cd+(m.d-cd)/2-g]]; if(P.plan==='L') plan=plan.slice(0,2); }
+      if(mass.children[0]) mass.children[0].visible=false; plan.forEach(([dx,dz,w,d])=>{ const h=Math.max(1,Math.ceil(m.n))*fh; const g=new T.Mesh(new T.BoxGeometry(w,h,d),M.clay); g.position.set(m.x+dx,lift+(m.y0*fh)+h/2,m.z+dz); g.castShadow=true; g.receiveShadow=true; mass.add(g); });
+      plan.forEach(([dx,dz,w,d],k)=>{ const vg=new T.Group(); vg.position.set(m.x+dx,(m.y0*fh)+lift,m.z+dz); bldg.add(vg); const nF=Math.max(1,Math.ceil(m.n)-(k===0&&plan.length===4&&m.n>1?1:0)); for(let f=0;f<nF;f++){ const fg=new T.Group(); fg.position.y=f*fh; fg.userData={ty:f*fh,idx:f,vy:vg}; vg.add(fg); floors.push(fg); shellFloor(fg,{role:'main'},f,f*5+k,P.ops.has('plinth')&&f===0?'stone':P.skin,w,d,fh,f===nF-1,f===0&&!lift); }
+        const rg=new T.Group(); rg.position.y=nF*fh; rg.userData={ty:nF*fh,idx:nF,vy:vg,roof:1}; vg.add(rg); floors.push(rg); roofTop(rg,{role:'main'},w,d,P.roof==='big'?'flat':P.roof,P.skin); });
+      // 마당 바닥 + 나무
+      const cy=lift+(m.y0*fh); const cf=new T.Mesh(pgBoxGeo(T,cw,.12,cd,3),P.ground==='gravel'||P.ops.has('wall')?M.gravel:M.pave); cf.position.set(m.x,cy+.06,m.z); cf.receiveShadow=true; bldg.add(cf);
+      pgTree(T,M,life,m.x,m.z,P.ops.has('bigtree')?1.25:.85,P.ops.has('bigtree')?0:2,cy);
+      if(P.ops.has('cloister')){ for(let i=0;i<Math.floor(cw/2.2);i++) for(const sz of [1,-1]){ const c=new T.Mesh(new T.CylinderGeometry(.12,.12,fh,8),M.wood); c.position.set(m.x-cw/2+1+i*2.2,cy+fh/2,m.z+sz*(cd/2-1)); c.castShadow=true; bldg.add(c); } }
+      if(P.ops.has('jars')) for(let i=0;i<7;i++){ const j=new T.Mesh(new T.SphereGeometry(.32+R()*.15,12,9),M.jar); j.scale.y=1.15; j.position.set(m.x+cw/2-1.6+(i%4)*.75,cy+.45,m.z-cd/2+1+Math.floor(i/4)*.8); j.castShadow=true; life.add(j); }
+    } }
+  // 필로티 기둥
+  if(lift){ V.forEach(v=>{ if(v.y0>0) return; const nx=Math.max(2,Math.round(v.w/5.5)), nz=Math.max(2,Math.round(v.d/5.5)); for(let i=0;i<nx;i++) for(let j=0;j<nz;j++){ if(i>0&&i<nx-1&&j>0&&j<nz-1) continue; const x=-v.w/2+.8+(v.w-1.6)*i/(nx-1), z=-v.d/2+.8+(v.d-1.6)*j/(nz-1); const c=new T.Mesh(new T.CylinderGeometry(.24,.24,lift,14),M.conc); const cs=Math.cos(v.rot||0), sn=Math.sin(v.rot||0); c.position.set(v.x+x*cs+z*sn,lift/2,v.z-x*sn+z*cs); c.castShadow=true; c.receiveShadow=true; bldg.add(c); }
+      const core=new T.Mesh(pgBoxGeo(T,3,lift,3.4,1.2),M.glass); core.position.set(v.x+v.w*.25,lift/2,v.z); core.userData.glass=true; bldg.add(core); }); }
+  // 프레임
+  if(P.ops.has('frame')||P.base==='frame'){ const m=V[0]; const h=(m.n*fh)+.8, t=.7; const g=new T.Group(); g.position.set(m.x,lift+(m.y0*fh),m.z); g.rotation.y=m.rot||0; const fmat=solidSkin(P.skin)?M.skinMat(P.skin):M.conc; const ftm=solidSkin(P.skin)?PG_SKIN[P.skin][3]:2.4; [[m.w+2*t,t,m.d+2.4,0,h-t,0],[t,h,m.d+2.4,-m.w/2-t/2,0,0],[t,h,m.d+2.4,m.w/2+t/2,0,0],[m.w+2*t,.35,m.d+2.4,0,-.35+.01,0]].forEach(([a,b,c,x,y,z])=>{ const o=new T.Mesh(pgBoxGeo(T,a,b,c,ftm),fmat); o.position.set(x,y+b/2,z); o.castShadow=true; o.receiveShadow=true; g.add(o); }); bldg.add(g); g.userData={ty:g.position.y,idx:0}; }
+  if(P.ops.has('frameGrid')){ V.slice(0,1).forEach(v=>{ for(let f=0;f<=v.n;f++){ const b=new T.Mesh(new T.BoxGeometry(v.w+.4,.5,.5),M.white); b.position.set(v.x,lift+(v.y0+f)*fh-.25,v.z+v.d/2+.3); b.castShadow=true; bldg.add(b); } const n=Math.round(v.w/6); for(let i=0;i<=n;i++){ const c=new T.Mesh(new T.BoxGeometry(.5,v.n*fh,.5),M.white); c.position.set(v.x-v.w/2+v.w*i/n,lift+(v.y0*fh)+v.n*fh/2,v.z+v.d/2+.3); c.castShadow=true; bldg.add(c); } }); }
+  // 보이드 (유리 틈) · 계단 · 램프 · 나선 계단 · 캐노피 · 누마루
+  if(P.ops.has('void')){ const m=V[0]; const h=m.n*fh+.4; const g=new T.Mesh(new T.BoxGeometry(1.6,h,m.d+.1),M.glass); g.position.set(m.x-m.w*.08,lift+(m.y0*fh)+h/2,m.z); g.userData.glass=true; bldg.add(g); const s=new T.Mesh(new T.BoxGeometry(1.8,.5,m.d*.5),M.glass); s.position.set(m.x-m.w*.08,lift+(m.y0+m.n)*fh+.3,m.z); bldg.add(s); }
+  if(P.ops.has('stair')||P.ops.has('ramp')){ const m=V[0]; const H=(m.y0+m.n)*fh+lift; const x0=m.x+m.w/2+1.3; const run=Math.max(4,m.d-1);
+    if(P.ops.has('ramp')){ const k=Math.max(1,Math.min(7,Math.ceil(H/1.4))); for(let i=0;i<k;i++){ const y0=H*i/k, y1=H*(i+1)/k; const dir=i%2?-1:1; const o=new T.Mesh(pgBoxGeo(T,1.7,.22,Math.hypot(run,y1-y0),2.4),M.conc); o.position.set(x0+(i%2)*1.9,(y0+y1)/2,m.z); o.rotation.x=dir*Math.atan2(y1-y0,run); o.castShadow=true; o.receiveShadow=true; bldg.add(o); const r=new T.Mesh(new T.BoxGeometry(.05,1,run),M.rail); r.position.set(x0+(i%2)*1.9+.85,(y0+y1)/2+.6,m.z); r.rotation.x=o.rotation.x; bldg.add(r); } }
+    else { const n=Math.round(H/.18); for(let i=0;i<n;i++){ const t=(i+1)/n; const st=new T.Mesh(new T.BoxGeometry(1.5,.12,.34),M.white); st.position.set(x0,t*H-.06,m.z+run/2-t*run); st.castShadow=true; bldg.add(st); } const r=new T.Mesh(new T.BoxGeometry(.04,.04,Math.hypot(run,H)),M.frame); r.position.set(x0+.75,H/2+1,m.z); r.rotation.x=Math.atan2(H,run); bldg.add(r); } }
+  if(P.ops.has('spiral')){ const m=V[0]; const H=(m.y0+m.n)*fh+lift; const cx=m.x+m.w/2+2, cz=m.z+m.d/2-2; const n=Math.round(H/.2); for(let i=0;i<n;i++){ const a=i*.42; const st=new T.Mesh(new T.BoxGeometry(1.5,.08,.42),M.white); st.position.set(cx+Math.cos(a)*.85,i*.2+.1,cz+Math.sin(a)*.85); st.rotation.y=-a; st.castShadow=true; bldg.add(st); } const p=new T.Mesh(new T.CylinderGeometry(.12,.12,H+1,10),M.frame); p.position.set(cx,H/2,cz); bldg.add(p); }
+  if(P.ops.has('canopy')){ const m=V[0]; const c=new T.Mesh(new T.BoxGeometry(m.w*.5,.25,4),M.frame); c.position.set(m.x-m.w*.18,lift+3,m.z+m.d/2+2); c.castShadow=true; bldg.add(c); }
+  if(P.ops.has('nuru')){ const m=V[0]; const g=new T.Group(); g.position.set(m.x-m.w/2-3,0,m.z+m.d/2-3); for(const [a,b] of [[-1,-1],[1,-1],[-1,1],[1,1]]){ const c=new T.Mesh(new T.CylinderGeometry(.16,.18,2.2,10),M.wood); c.position.set(a*2,1.1,b*2); c.castShadow=true; g.add(c); } const fl=new T.Mesh(pgBoxGeo(T,5,.25,5,1.2),M.deck); fl.position.y=2.3; fl.castShadow=true; g.add(fl); for(const [a,b] of [[-1,-1],[1,-1],[-1,1],[1,1]]){ const c=new T.Mesh(new T.CylinderGeometry(.13,.13,2.6,10),M.wood); c.position.set(a*2,3.7,b*2); g.add(c); } const rg=new T.Group(); rg.position.y=5; g.add(rg); roofTop(rg,{role:'nuru'},4.4,4.4,'hanok','stucco'); bldg.add(g); }
+  // 데크
+  if(P.ops.has('deck')){ V.filter(v=>v.y0<=0&&v.role!=='tower').slice(0,3).forEach(v=>{ const d=new T.Mesh(pgBoxGeo(T,v.w+2.4,.4,v.d+2.4,1.6),M.deck); d.position.set(v.x,lift+.2,v.z); d.rotation.y=v.rot||0; d.receiveShadow=true; d.castShadow=true; bldg.add(d); }); }
+  // 테라스 난간
+
+  // ---------- 대지 ----------
+  const bb=new T.Box3().setFromObject(bldg); const bw=bb.max.x-bb.min.x, bd=bb.max.z-bb.min.z; const cx=(bb.min.x+bb.max.x)/2, cz=(bb.min.z+bb.max.z)/2;
+  const yardD=(P.ops.has('yard')||P.ops.has('pool')||P.ops.has('plaza')||P.ops.has('sunken'))?20:13; const roadZ=bb.max.z+yardD; const lotW=Math.max(bw+16,34); const lotZ0=bb.min.z-9, lotZ1=roadZ-7.5; const lotD=lotZ1-lotZ0; const front=lotZ1;
+  const gnd=new T.Mesh(new T.CircleGeometry(220,48),M.grass); gnd.material=M.grass; gnd.rotation.x=-Math.PI/2; gnd.position.y=-.02; gnd.receiveShadow=true; site.add(gnd); M.grass.map.repeat&&0;
+  const lot=new T.Mesh(pgBoxGeo(T,lotW,.06,lotD,6),P.ground==='gravel'?M.gravel:M.pave); lot.position.set(cx,-.02,(lotZ0+lotZ1)/2); lot.receiveShadow=true; site.add(lot);
+  const lawn=new T.Mesh(pgBoxGeo(T,lotW-4,.08,lotD*.45,4),M.grass); lawn.position.set(cx,0,lotZ0+lotD*.22); lawn.receiveShadow=true; if(P.site!=='city'&&P.site!=='alley') site.add(lawn);
+  if(P.ops.has('sink')){ const eh=fh*.78, cd=P.ops.has('sunken')?7:5.5; const x0=bb.min.x-7, x1=bb.max.x+7, z0=bb.min.z-9, zb=bb.max.z, zf=bb.max.z+cd; const earthMats=[M.stone,M.stone,M.grass,M.grass,M.stone,M.stone];
+    const eb=(ax,bx,az,bz)=>{ if(bx-ax<.2||bz-az<.2) return; const o=new T.Mesh(pgBoxGeo(T,bx-ax,eh,bz-az,3),earthMats); o.position.set((ax+bx)/2,eh/2,(az+bz)/2); o.castShadow=true; o.receiveShadow=true; site.add(o); };
+    eb(x0,x1,z0,bb.min.z); eb(x0,bb.min.x,bb.min.z,zf); eb(bb.max.x,x1,bb.min.z,zf); eb(x0,x1,zf,zf+5);
+    for(let i=0;i<8;i++){ const st=new T.Mesh(new T.BoxGeometry(3,eh*(i+1)/8,.4),M.stone); st.position.set(bb.max.x-2.5,eh*(i+1)/16,zf+.2-i*.4+3.4); st.castShadow=true; site.add(st); }
+    for(let i=0;i<6;i++) pgTree(T,M,life,x0+3+R()*(x1-x0-6),z0+2+R()*5,.8+R()*.4,i%3,eh); }
+  const road=new T.Mesh(new T.PlaneGeometry(400,9),M.dark); road.rotation.x=-Math.PI/2; road.position.set(cx,.01,roadZ); road.receiveShadow=true; site.add(road);
+  const lines=[]; for(let i=-20;i<20;i++){ const l=new T.Mesh(new T.PlaneGeometry(3,.15),M.white); l.rotation.x=-Math.PI/2; l.position.set(cx+i*7,.02,roadZ); site.add(l); lines.push(l); }
+  const walk=new T.Mesh(pgBoxGeo(T,400,.14,3,3),M.pave); walk.position.set(cx,0,roadZ-6); walk.receiveShadow=true; site.add(walk);
+  if(P.site==='slope'){ const back=new T.Mesh(pgBoxGeo(T,lotW+60,fh*1.6,60,4),M.grass); back.position.set(cx,0,bb.min.z-30); back.receiveShadow=true; back.castShadow=true; site.add(back); const wall=new T.Mesh(pgBoxGeo(T,lotW+60,fh*1.6,.6,2.4),M.stone); wall.position.set(cx,0,bb.min.z-.4); wall.castShadow=true; site.add(wall); for(let i=0;i<10;i++) pgTree(T,M,life,cx-30+i*6.5+R()*3,bb.min.z-8-R()*20,.9+R()*.4,i%3,fh*1.6); }
+  if(P.site==='water'||P.site==='sea'){ const wt=new T.Mesh(new T.PlaneGeometry(P.site==='sea'?900:160,P.site==='sea'?400:60),M.water); wt.rotation.x=-Math.PI/2; wt.position.set(cx,.05,lotZ1+(P.site==='sea'?200:30)); site.add(wt); road.visible=false; walk.visible=false; lines.forEach(l=>l.visible=false); const dock=new T.Mesh(pgBoxGeo(T,4,.3,14,1.6),M.deck); dock.position.set(cx+bw*.3,0,road.position.z+6); site.add(dock); }
+  if(P.site==='forest'||P.site==='mountain'||P.site==='field'||P.site==='flat'||P.site==='suburb'){ const n=P.site==='forest'?44:P.site==='field'?8:14; for(let i=0;i<n;i++){ const a=R()*Math.PI*2, rr=Math.max(bw,bd)*.75+8+R()*(P.site==='forest'?36:30); const x=cx+Math.cos(a)*rr, z=cz+Math.sin(a)*rr*.9; if(z>lotZ0-2&&z<roadZ+8&&Math.abs(x-cx)<lotW/2+2) continue; pgTree(T,M,life,x,z,.85+R()*.6,P.site==='forest'?(i%3?1:0):i%3,0); } }
+  if(P.site==='mountain'||P.site==='sea'){ const mm=new T.MeshStandardMaterial({color:0x9fb0a8,roughness:1,transparent:true,opacity:.75}); mm.color.convertSRGBToLinear(); for(let i=0;i<6;i++){ const c=new T.Mesh(new T.ConeGeometry(40+R()*40,25+R()*30,7),mm); c.position.set(-160+i*65,10,-170-R()*40); c.scale.y=.8; site.add(c); } }
+  if(P.site==='city'||P.site==='alley'||P.site==='suburb'||P.site==='village'){ const gap=P.site==='alley'?2.2:4.5; [[-1],[1]].forEach(([sg])=>{ for(let k=0;k<3;k++){ const w=8+R()*6, d=10+R()*8, h=P.site==='village'?fh:P.site==='suburb'?fh*2:fh*(3+Math.floor(R()*4)); const x=cx+sg*(bw/2+gap+w/2)+sg*k*(w+3), z=cz-k*2+(R()-.5)*4; const g=new T.Mesh(pgBoxGeo(T,w,h,d,P.site==='village'||P.site==='suburb'?3:12.8),P.site==='city'||P.site==='alley'?M.facade:M.ghost); g.position.set(x,h/2,z); g.castShadow=true; g.receiveShadow=true; site.add(g); if(P.site==='village'){ const sh=new T.Shape(); sh.moveTo(-w/2-.5,0); sh.lineTo(0,w*.35); sh.lineTo(w/2+.5,0); const eg=new T.ExtrudeGeometry(sh,{depth:d+1,bevelEnabled:false}); eg.translate(0,0,-(d+1)/2); const rf=new T.Mesh(eg,M.giwa); rf.position.set(x,h,z); rf.castShadow=true; site.add(rf); } } }); const bk=new T.Mesh(pgBoxGeo(T,lotW+30,fh*4,8,12.8),P.site==='city'?M.facade:M.ghost); bk.position.set(cx,fh*2,bb.min.z-10); if(P.site==='city'||P.site==='alley') site.add(bk); }
+  if(P.ops.has('wall')){ const h=2.4, t=.5; const x0=cx-lotW/2+1.5, x1=cx+lotW/2-1.5, z0=bb.min.z-3, z1=Math.min(front-.5,bb.max.z+5); const wm=P.skin==='conc'?M.conc:M.stone; [[x1-x0,t,(x0+x1)/2,z0],[(x1-x0)/2-2.2,t,x0+((x1-x0)/2-2.2)/2,z1],[(x1-x0)/2-2.2,t,x1-((x1-x0)/2-2.2)/2,z1]].forEach(([L,tt,x,z])=>{ const o=new T.Mesh(pgBoxGeo(T,L,h,tt,2.4),wm); o.position.set(x,h/2,z); o.castShadow=true; o.receiveShadow=true; site.add(o); }); [x0,x1].forEach(x=>{ const o=new T.Mesh(pgBoxGeo(T,t,h,z1-z0,2.4),wm); o.position.set(x,h/2,(z0+z1)/2); o.castShadow=true; site.add(o); }); }
+  if(P.ops.has('pool')){ const pw=Math.min(bw*.7,18); const p=new T.Mesh(new T.BoxGeometry(pw,.1,4.5),M.water); p.position.set(cx,.1,bb.max.z+3.6); site.add(p); const e=new T.Mesh(pgBoxGeo(T,pw+.6,.16,5.1,2.4),M.stone); e.position.set(cx,.03,bb.max.z+3.6); e.receiveShadow=true; site.add(e); }
+  if(P.ops.has('sunken')&&!P.ops.has('sink')){ const s=new T.Mesh(new T.BoxGeometry(bw*.6,2.4,5),M.stone); s.material=M.stone; s.position.set(cx,-1.2,bb.max.z+3.5); site.add(s); const fl=new T.Mesh(pgBoxGeo(T,bw*.6-.8,.1,4.2,2),M.pave); fl.position.set(cx,-2.3,bb.max.z+3.5); site.add(fl); }
+  if(P.ops.has('plaza')){ const pz=new T.Mesh(pgBoxGeo(T,bw+8,.1,8,3),M.pave); pz.position.set(cx,.03,bb.max.z+4.5); site.add(pz); }
+  if(P.ops.has('bigtree')&&!P.ops.has('court')) pgTree(T,M,life,cx-bw/2-3.5,bb.max.z+2,1.35,0,0);
+  // 가로등 · 사람
+  for(let i=-3;i<=3;i++){ const x=cx+i*12; const p=new T.Mesh(new T.CylinderGeometry(.06,.08,4.2,8),M.dark); p.position.set(x,2.1,walk.position.z-1.2); site.add(p); const h=new T.Mesh(new T.BoxGeometry(.5,.16,.5),M.lamp); h.position.set(x,4.25,walk.position.z-1.2); site.add(h); lights.push(h); }
+  const PPL=pgPeople(T).stand; const np=opt.people===false?0:Math.min(14,4+Math.round(gfa/90));
+  for(let i=0;i<np;i++){ const m=new T.Mesh(PPL[i%PPL.length],M.people); const onWalk=i%3===0; m.position.set(onWalk?cx+(R()-.5)*40:cx+(R()-.5)*bw*.9,0,onWalk?walk.position.z+(R()-.5)*2:bb.max.z+1.5+R()*4); m.rotation.y=R()*Math.PI*2; m.castShadow=true; life.add(m); }
+  if(lift) for(let i=0;i<3;i++){ const m=new T.Mesh(PPL[(i+3)%PPL.length],M.people); m.position.set(cx+(R()-.5)*bw*.5,0,cz+(R()-.5)*bd*.4); m.rotation.y=R()*6; m.castShadow=true; life.add(m); }
+  // 인스턴스 메시 만들기
+  const iMeshes=[]; for(const k in inst){ const it=inst[k]; const im=new T.InstancedMesh(it.geo,it.mat,it.list.length); it.list.forEach((m,i)=>im.setMatrixAt(i,m)); im.instanceMatrix.needsUpdate=true; im.castShadow=!!it.shadow; im.receiveShadow=true; if(k.startsWith('pL')) im.userData.lit=1; if(k.startsWith('pD')||k.startsWith('pL')) im.userData.glass=true; it.grp.add(im); iMeshes.push(im); }
+  // 숫자
+  const height=Math.round((maxTop+(['gable','steep','hanok','big'].includes(P.roof)?2.5:.6))*10)/10;
+  const nums={foot:Math.round(foot),gfa:Math.round(gfa),floors:Math.max(...V.map(v=>Math.ceil(v.y0+v.n))),height,vols:V.length};
+  return {root,bldg,site,life,mass,floors,M,nums,V,iMeshes,lights,bb:new T.Box3().setFromObject(bldg)}; }
+
+/* ---------- 생성기 뷰어 (three.js) ---------- */
+function pgSky(T,night){ const g=new T.SphereGeometry(600,32,16), col=[]; const p=g.attributes.position; const top=new T.Color(night?0x0b1226:0x9fc0de).convertSRGBToLinear(), hor=new T.Color(night?0x2a3350:0xeee9df).convertSRGBToLinear(), c=new T.Color();
+  for(let i=0;i<p.count;i++){ const t=Math.max(0,Math.min(1,p.getY(i)/380)); c.copy(hor).lerp(top,Math.pow(t,.65)); col.push(c.r,c.g,c.b); } g.setAttribute('color',new T.Float32BufferAttribute(col,3)); return new T.Mesh(g,new T.MeshBasicMaterial({vertexColors:true,side:T.BackSide,fog:false,depthWrite:false})); }
+function pgLights(T,sc){ const hemi=new T.HemisphereLight(0xf1eee8,0x8f8677,.8); sc.add(hemi); const fill=new T.DirectionalLight(0xdfe6f0,.28); fill.position.set(-60,50,-40); sc.add(fill);
+  const sun=new T.DirectionalLight(0xfff0dc,2); sun.castShadow=true; const sm=innerWidth<700?1536:2560; sun.shadow.mapSize.set(sm,sm); Object.assign(sun.shadow.camera,{left:-55,right:55,top:55,bottom:-55,near:5,far:260}); sun.shadow.bias=-.0005; sun.shadow.normalBias=.02; sc.add(sun); sc.add(sun.target); return {hemi,fill,sun}; }
+function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky,skyN,B=null,P=null; let disposed=false, io=null, ro=null; const st={az:.75,el:.3,dist:60,cy:6,cx:0,cz:0,auto:opt.auto!==false,drag:null,raf:0,t0:0,night:false,clay:false,stage:'full',gap:0,gapT:0,sunA:-.9,vis:true,tz:null,flyT:0};
+  el.classList.add('pgv'); el.innerHTML='<div class="pgv-load"><i></i><span>모형을 짓는 중…</span></div>';
+  const init=()=>t3Load().then(TT=>{ if(disposed) return; T=TT; R=new T.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true}); R.setPixelRatio(Math.min(2,devicePixelRatio||1)); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; R.toneMappingExposure=1;
+    el.querySelector('.pgv-load')&&el.querySelector('.pgv-load').remove(); el.prepend(R.domElement); sc=new T.Scene(); cam=new T.PerspectiveCamera(opt.fov||34,1,.5,2000); L=pgLights(T,sc); sky=pgSky(T,false); skyN=pgSky(T,true); skyN.visible=false; sc.add(sky,skyN); sc.fog=new T.Fog(0xe6e3dc,220,620);
+    const size=()=>{ const w=el.clientWidth||600,h=el.clientHeight||420; R.setSize(w,h,false); R.domElement.style.width='100%'; R.domElement.style.height='100%'; cam.aspect=w/h; cam.updateProjectionMatrix(); }; size(); ro=new ResizeObserver(size); ro.observe(el);
+    const cv=R.domElement; cv.style.touchAction=opt.scrollLock?'none':'pan-y';
+    cv.addEventListener('pointerdown',e=>{ st.drag=[e.clientX,e.clientY,st.az,st.el]; st.auto=false; if(e.pointerType==='mouse'||opt.scrollLock) cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener('pointermove',e=>{ if(!st.drag) return; const dx=e.clientX-st.drag[0], dy=e.clientY-st.drag[1]; if(e.pointerType!=='mouse'&&!opt.scrollLock&&Math.abs(dy)>Math.abs(dx)*1.2) { st.drag=null; return; } st.az=st.drag[2]+dx*.008; st.el=Math.max(.05,Math.min(1.4,st.drag[3]+dy*.006)); st.tz=null; });
+    addEventListener('pointerup',()=>{ st.drag=null; }); cv.addEventListener('wheel',e=>{ if(!e.ctrlKey&&!opt.wheel) return; e.preventDefault(); st.dist=Math.max(14,Math.min(260,st.dist*(1+Math.sign(e.deltaY)*.08))); st.tz=null; },{passive:false});
+    io=new IntersectionObserver(es=>es.forEach(e=>{ st.vis=e.isIntersecting; if(st.vis&&!st.raf&&!disposed) st.raf=requestAnimationFrame(loop); })); io.observe(el); document.addEventListener('visibilitychange',()=>{ if(!document.hidden&&st.vis&&!st.raf&&!disposed) st.raf=requestAnimationFrame(loop); });
+    api.ready=true; if(api._pending){ const p=api._pending; api._pending=null; api.show(p.P,p.o); } st.raf=requestAnimationFrame(loop); }).catch(e=>{ console.warn('PGV',e); el.innerHTML='<div class="pgv-err">3D 모형을 불러오지 못했어요. 새로고침해 주세요.</div>'; });
+  const ease=t=>1-Math.pow(1-Math.max(0,Math.min(1,t)),3);
+  function loop(now){ st.raf=0; if(disposed||!st.vis||document.hidden){ return; } st.raf=requestAnimationFrame(loop); if(!B) { R.render(sc,cam); return; }
+    if(st.auto&&!st.drag) st.az+=.0018;
+    if(st.tz){ const k=Math.min(1,(now-st.tz.t0)/st.tz.dur), e=ease(k); for(const key of ['az','el','dist','cy']) st[key]=st.tz.from[key]+(st.tz.to[key]-st.tz.from[key])*e; if(k>=1) st.tz=null; }
+    st.gap+=(st.gapT-st.gap)*.12;
+    const t=now-st.t0; B.floors.forEach(fg=>{ const u=fg.userData; const dl=(u.idx||0)*120+(u.roof?60:0); const k=ease((t-dl)/520); fg.position.y=u.ty+st.gap*(u.idx||0)*1.0-(1-k)*4; fg.scale.y=Math.max(.001,k); });
+    const d=st.dist; cam.position.set(st.cx+Math.cos(st.az)*Math.cos(st.el)*d,st.cy+Math.sin(st.el)*d,st.cz+Math.sin(st.az)*Math.cos(st.el)*d); cam.lookAt(st.cx,st.cy,st.cz);
+    R.render(sc,cam); }
+  function frame(){ const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); st.cx=c.x; st.cz=c.z; st.cy=Math.max(2,sz.y*.42); const r=Math.max(sz.x,sz.z,sz.y*1.5); st.base=r; st.asp=Math.max(1,1.45/(cam.aspect||1.4)); st.dist=(r*1.55+16)*st.asp; L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+30); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+30; L.sun.shadow.camera.updateProjectionMatrix(); }
+  function light(){ if(!T) return; const n=st.night; const a=st.sunA; L.sun.position.set(st.cx+Math.cos(a)*80,n?28:62+Math.sin(a*.7)*12,st.cz+Math.sin(a)*80+30); L.sun.intensity=n?.15:2; L.sun.color.set(n?0x9fb6ff:(st.stage==='life'||opt.golden?0xffe0b8:0xfff0dc)); L.hemi.intensity=n?.16:.8; L.hemi.color.set(n?0x4a5a8a:0xf1eee8); L.fill.intensity=n?.05:.28; sky.visible=!n; skyN.visible=n; sc.fog.color.set(n?0x1c2238:0xe6e3dc); R.toneMappingExposure=n?1.35:1;
+    if(B){ const M=B.M; M.glassLit.emissiveIntensity=n?1.3:0; M.inner.emissiveIntensity=n?.55:0; M.lamp.emissiveIntensity=n?2:0; B.iMeshes.forEach(im=>{ if(im.userData.lit&&!st.clay) im.material=n?M.glassLit:M.glass; }); for(const k in M.C){ const m=M.C[k]; if(m.userData.k&&m.userData.k.startsWith('wall_')&&m.emissive&&m.transparent) m.emissiveIntensity=n?.6:0; } } }
+  function applyStage(){ if(!B) return; const s=st.stage; B.site.visible=true; B.mass.visible=s==='mass'; B.bldg.visible=s!=='site'&&s!=='mass'; B.life.visible=s==='life'||s==='full'; const clay=st.clay||s==='clay'||s==='mass';
+    const swap=o=>{ if(!o.isMesh) return; if(o.userData.m0===undefined) o.userData.m0=o.material; const g=o.userData.glass||(o.userData.m0.transparent&&o.userData.m0.opacity<.6); o.material=clay?(g?B.M.clayGlass:B.M.clay):o.userData.m0; };
+    B.bldg.traverse(swap); light(); }
+  api.show=(PP,o)=>{ o=o||{}; if(!api.ready){ api._pending={P:PP,o}; return; } P=PP; if(B){ sc.remove(B.root); B.root.traverse(x=>{ if(x.geometry&&!x.geometry.__shared) x.geometry.dispose(); }); } B=pgBuild(T,P,{people:o.people}); sc.add(B.root); const keep=o.keepCam&&st.base; const prev={az:st.az,el:st.el}; frame(); if(keep){ st.az=prev.az; st.el=prev.el; } st.t0=o.instant?-1e6:performance.now(); if(o.stage) st.stage=o.stage; applyStage(); if(!st.raf&&st.vis) st.raf=requestAnimationFrame(loop); if(opt.onBuilt) try{ opt.onBuilt(B,P); }catch(e){} return B; };
+  api.nums=()=>B&&B.nums; api.spec=()=>P;
+  api.stage=(s,cam)=>{ st.stage=s; applyStage(); if(cam) api.view(cam); };
+  api.clay=v=>{ st.clay=v; applyStage(); }; api.night=v=>{ st.night=v; light(); }; api.sun=a=>{ st.sunA=a; light(); }; api.explode=v=>{ st.gapT=v?2.6:0; };
+  api.view=k=>{ if(!B) return; st.auto=k==='spin'; const b=st.base||30; const to={az:st.az,el:st.el,dist:st.dist,cy:st.cy}; const A=st.asp||1; if(k==='top'){ to.el=1.38; to.dist=(b*1.6+18)*A; } else if(k==='eye'){ to.el=.07; to.dist=(b*.95+10)*A; to.cy=1.7+b*.05; } else if(k==='front'){ to.az=Math.PI/2; to.el=.18; to.dist=(b*1.3+12)*A; } else if(k==='aerial'){ to.el=.62; to.dist=(b*1.75+20)*A; } else { to.el=.3; to.dist=(b*1.55+16)*A; to.cy=Math.max(2,(B.bb.max.y-B.bb.min.y)*.42); }
+    st.tz={t0:performance.now(),dur:1100,from:{az:st.az,el:st.el,dist:st.dist,cy:st.cy},to}; };
+  api.png=()=>{ if(!R) return ''; R.render(sc,cam); return R.domElement.toDataURL('image/png'); };
+  api.rebuildAnim=()=>{ st.t0=performance.now(); };
+  api.dispose=()=>{ disposed=true; cancelAnimationFrame(st.raf); st.raf=0; if(io) io.disconnect(); if(ro) ro.disconnect(); if(R){ try{ R.dispose(); R.forceContextLoss(); }catch(e){} } el.innerHTML=''; };
+  init(); return api; }
+/* 썸네일: 화면 밖 렌더러 하나로 차례대로 */
+let PGTH=null; const PGTC={};
+function pgThumb(P,w,h){ const key=[P.keys.join('|'),P.base,P.mode].join('#'); if(PGTC[key]) return Promise.resolve(PGTC[key]);
+  return t3Load().then(T=>new Promise(res=>{ const go=()=>{ if(!PGTH){ const R=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); R.setPixelRatio(1); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; const sc=new T.Scene(); const L=pgLights(T,sc); sc.add(pgSky(T,false)); sc.fog=new T.Fog(0xe6e3dc,200,600); PGTH={R,sc,L,cam:new T.PerspectiveCamera(32,1,.5,2000)}; }
+      const {R,sc,L,cam}=PGTH; R.setSize(w||480,h||340,false); cam.aspect=(w||480)/(h||340); cam.updateProjectionMatrix(); const B=pgBuild(T,P,{people:false}); sc.add(B.root);
+      const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); const r=Math.max(sz.x,sz.z,sz.y*1.5); const d=r*1.5+14, az=.75, el=.4; L.sun.position.set(c.x-50,62,c.z-40); L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+25); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+25; L.sun.shadow.camera.updateProjectionMatrix();
+      cam.position.set(c.x+Math.cos(az)*Math.cos(el)*d,Math.max(2,sz.y*.42)+Math.sin(el)*d,c.z+Math.sin(az)*Math.cos(el)*d); cam.lookAt(c.x,Math.max(2,sz.y*.42),c.z); R.render(sc,cam); const url=R.domElement.toDataURL('image/jpeg',.82); sc.remove(B.root); B.root.traverse(x=>{ if(x.geometry) x.geometry.dispose(); }); PGTC[key]=url; res(url); };
+    (window.requestIdleCallback||setTimeout)(go,{timeout:400}); })); }
+
+window.__pgTest=(keys,base,mode,o)=>{ let el=document.getElementById('pgTestBox'); if(!el){ el=document.createElement('div'); el.id='pgTestBox'; el.style.cssText='position:fixed;inset:0;z-index:99999;background:#fff'; document.body.appendChild(el); window.__pgv=PGV(el,{auto:false,wheel:true}); } const P=pgSpec(keys,{base,mode}); window.__pgv.show(P,Object.assign({instant:true},o||{})); return P; };
+/* ---------- 취향 랩 v2 화면: 라이브 모형 · 스크롤 장면 · 세 대안 · 아홉 갈래 · 내 기록 ---------- */
+const DV={live:null,main:null,alt:0,specs:[],cur:null,curB:null,names:[],story:null,stage:'full'};
+const DN_STEPS=[['site','01','땅을 읽다','대지와 크기를 정합니다'],['mass','02','덩어리를 놓다','흰 덩어리로 배치를 잡습니다'],['op','03','덩어리를 다듬다','들고, 깎고, 비우고, 쌓습니다'],['skin','04','외피와 빛을 입히다','재료와 창으로 표정을 만듭니다'],['life','05','사람이 사는 장면','나무와 사람, 해 질 녘의 빛']];
+const DN_STAGE={site:['site','aerial'],mass:['mass','default'],op:['clay','default'],skin:['mat','front'],life:['life','default'],end:['full','default']};
+const PG_STRUCT=s=>({conc:'철근콘크리트 벽식',brick:'RC 구조 + 벽돌 치장 쌓기',brickR:'RC 구조 + 벽돌 치장 쌓기',brickOld:'RC 구조 + 재사용 벽돌',brickD:'RC 구조 + 검은 벽돌',stone:'RC 구조 + 석재 붙임',basalt:'RC 구조 + 현무암',wood:'경량 목구조',clt:'CLT 판 구조',charred:'목구조 + 탄화목 사이딩',bamboo:'목구조 + 대나무 스크린',stucco:'RC 구조 + 스타코',earth:'흙다짐 벽 + 목구조 지붕',tile:'RC 구조 + 타일',metal:'철골 + 금속 패널',corten:'철골 + 코르텐 패널',glass:'철골 + 유리 커튼월',ugl:'철골 + 유글라스',poly:'철골 + 폴리카보네이트',hanji:'목구조 + 한지 창호',louver:'철골 + 알루미늄 루버',woodlouver:'철골 + 목재 루버',terra:'철골 + 테라코타 바게트',perf:'철골 + 타공 메탈 이중 외피'})[s]||'철근콘크리트';
+const dnFmt=n=>n>=1e12?(n/1e12).toFixed(1)+'조':n>=1e8?Math.round(n/1e8).toLocaleString()+'억':n>=1e4?Math.round(n/1e4).toLocaleString()+'만':String(n);
+function dnComb(n,k){ let c=1; for(let i=0;i<k;i++) c=c*(n-i)/(i+1); return c; }
+/* 라이브 모형 */
+let dnLiveT=0;
+function dnaLive3D(){ const el=$('#dnLive3d'); if(!el) return; if(!DV.live) DV.live=PGV(el,{auto:true}); clearTimeout(dnLiveT);
+  dnLiveT=setTimeout(()=>{ const ex=!state.dna.length; const keys=ex?['마당','목재','박공지붕','따뜻한']:state.dna; const P=pgSpec(keys); DV.live.show(P,{keepCam:true});
+    const cap=$('#dnLiveCap'); if(cap) cap.innerHTML=ex?'<em>예시</em> 단어를 고르면 이 집이 바뀝니다':`<b>${esc(P.progName)}</b><span>${esc(PG_SKIN[P.skin][4])} · ${esc(PG_ROOFT[P.roof])} · ${P.F}층 · ${esc(PG_SITET[P.site])}</span>`; },ex0()?0:240); }
+const ex0=()=>!DV.live||!DV.live.spec();
+/* 결과 */
+function dnaStoryHTML(P){ return DN_STEPS.map(([k,no,t,sub],i)=>{ let items=P.log.filter(x=>x.step===k);
+    if(k==='site'&&!items.length) items=[{k:'',t:`대지는 ${PG_SITET[P.site]}`}];
+    if(k==='mass') items=[{k:'',t:`${P.progName} — ${DNA_ARCH[P.base].name}의 덩어리에서 시작했어요`},...items];
+    if(k==='life'&&!items.length) items=[{k:'',t:'사람과 나무를 두어 크기를 가늠하게 했어요'}];
+    return `<article class="dns-step" data-step="${k}"><div class="dns-no">${no}</div><h3>${t}</h3><p class="dns-sub">${sub}</p><ul>${items.map(x=>`<li>${x.k?`<span class="dns-k">${esc(x.k)}</span>`:''}${esc(x.t)}</li>`).join('')}</ul></article>`; }).join(''); }
+function dnaSpecHTML(P,N){ N=N||{}; const rows=[['프로그램',P.progName],['방향',DNA_ARCH[P.base].name+(P.mode==='mix'?' + 혼합':P.mode==='wild'?' (실험)':'')],['구조',PG_STRUCT(P.skin)],['외피',PG_SKIN[P.skin][4]+(P.skin2?` · ${PG_SKIN[P.skin2][4]}`:'')],['창',PG_WINT[P.win]],['지붕',PG_ROOFT[P.roof]],['대지',PG_SITET[P.site]],['조작',[...P.ops].map(o=>({court:'중정',pilotis:'필로티',cantilever:'캔틸레버',terrace:'테라스',split:'스킵플로어',void:'보이드',bridge:'브릿지',tower:'탑',twist:'비틀기',curve:'곡면',round:'원형',carve:'깎기',frame:'프레임',slabs:'슬래브',module:'모듈',village:'마을',gap:'틈',twin:'두 동',shift:'엇갈림',plinth:'기단',lightTop:'가벼운 상부',sink:'묻기',sunken:'선큰',roofgarden:'옥상 정원',canopy:'캐노피',yard:'마당',cloister:'회랑',wall:'담',pool:'물',bigtree:'큰 나무',deck:'데크',eaves:'처마',skylight:'천창',solar:'태양광',vines:'덩굴',shades:'차양',ramp:'램프',spiral:'나선 계단',stair:'바깥 계단',passage:'관통로',plaza:'공공 마당',nuru:'누마루',jars:'장독대',frameGrid:'격자'})[o]).filter(Boolean).join(' · ')||'—']];
+  return `<div class="dnsp-nums"><div><b class="dn-cnt" data-n="${N.gfa||0}">0</b><span>연면적 ㎡ (개략)</span></div><div><b class="dn-cnt" data-n="${N.foot||0}">0</b><span>건축면적 ㎡</span></div><div><b class="dn-cnt" data-n="${N.floors||P.F}">0</b><span>층</span></div><div><b class="dn-cnt" data-n="${Math.round(N.height||0)}">0</b><span>높이 m</span></div></div>
+   <table class="dnsp-t">${rows.map(([a,b])=>`<tr><th>${a}</th><td>${esc(String(b))}</td></tr>`).join('')}</table>
+   <h4>단어가 바꾼 것</h4><ul class="dnsp-log">${P.log.filter(x=>x.k).map(x=>`<li><span class="dns-k">${esc(x.k)}</span>${esc(x.t)}</li>`).join('')||'<li>고른 단어의 축과 방향으로 기본값을 정했어요.</li>'}</ul>`; }
+function dnCount(root){ (root||document).querySelectorAll('.dn-cnt').forEach(el=>{ const n=+el.dataset.n||0, t0=performance.now(); const f=now=>{ const k=Math.min(1,(now-t0)/900), e=1-Math.pow(1-k,3); el.textContent=Math.round(n*e).toLocaleString(); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }); }
+function dnaShowAlt(i,P){ DV.alt=i; P=P||DV.specs[i]; DV.cur=P; $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.alt===i)); if(!DV.main) return;
+  const st=$('#dnStory'); if(st){ st.innerHTML=dnaStoryHTML(P); dnStoryObserve(); }
+  const sp=$('#dnSpec'); if(sp) sp.innerHTML=dnaSpecHTML(P,{});
+  DV.main.show(P,{keepCam:!!DV.curB,stage:DV.stage});
+  const nm=$('#dnAltName'); if(nm){ const n=DV.names[i]||['V','갈래',P.name]; nm.innerHTML=`<em>${n[0]} · ${esc(n[1])}</em><b>${esc(n[2])}</b>`; } }
+let dnStoryIO=null;
+function dnStoryObserve(){ if(dnStoryIO) dnStoryIO.disconnect(); if(!('IntersectionObserver' in window)) return; dnStoryIO=new IntersectionObserver(es=>{ es.forEach(e=>{ if(!e.isIntersecting) return; const k=e.target.dataset.step; $$('.dns-step').forEach(s=>s.classList.toggle('on',s===e.target)); const [stg,cam]=DN_STAGE[k]; if(DV.main&&DV.stage!==stg){ DV.stage=stg; DV.main.stage(stg,cam); const lab=$('#dnStageLab'); if(lab){ const s=DN_STEPS.find(x=>x[0]===k); lab.textContent=s?s[1]+' '+s[2]:'완성'; } } }); },{rootMargin:innerWidth<900?'-60% 0px -22% 0px':'-40% 0px -45% 0px'}); $$('.dns-step').forEach(s=>dnStoryIO.observe(s));
+  const end=$('#dnStoryEnd'); if(end) dnStoryIO.observe(end); }
+function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'); if(!r.n){ box.hidden=true; return; } box.hidden=false; const A=r.arch[0], B2=r.arch[1]||A;
+  if(DV.main&&DV.main.dispose){ DV.main.dispose(); DV.main=null; } DV.curB=null; DV.stage='full';
+  DV.specs=[pgSpec(state.dna,{base:A.id,mode:'main'}),pgSpec(state.dna,{base:A.id,mode:'mix'}),pgSpec(state.dna,{base:B2.id,mode:'wild'})];
+  DV.names=[['A','정석안',A.name],['B','혼합안',`${A.name} + ${B2.name}`],['C','실험안',`${B2.name}, 더 과감하게`]];
+  const keepSg=$('#dnrSg'); if(keepSg) keepSg.remove();
+  const cases=(typeof CASES!=='undefined'?CASES:[]).map(c=>{ let s=0; for(const a of r.arch.slice(0,3)) if(a.cases.includes(c.id)) s+=a===A?3:1.5; for(const t of c.tags) if(state.dna.some(k=>k.includes(t)||t.includes(k))) s+=1; for(const a of r.arch.slice(0,2)) for(const t of a.tags) if(c.tags.includes(t)) s+=1; return {c,s}; }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4);
+  box.innerHTML=`
+  <div class="dnr-hero zrv"><div class="dnr-sg" id="dnrSg"></div>
+    <div class="dnr-l"><div class="dnk">나의 설계 DNA · ${esc(r.code)}</div><h2>${esc(dnaPersona(r))}</h2><p class="dnr-s">${dnaSentence(r)}</p>
+      <div class="dnr-act"><button class="btn big" id="dnToConcept">이 방향으로 컨셉 3안 만들기</button><button class="btn ghost" id="dnRec">이 결과 기록하기</button><button class="btn ghost" id="dnShare">결과 복사</button></div></div>
+    <div class="dnr-r"><div class="dnr-kw">${state.dna.slice(0,14).map((k,i)=>`<span style="--i:${i}">${esc(k)}</span>`).join('')}</div><div class="dnr-name"><b>${esc(A.name)}</b><em>${A.pct}% 맞음 · 단어 ${r.n}개</em></div></div></div>
+  <div class="dns" id="dnStoryWrap">
+    <div class="dns-stage"><div class="dns-sticky">
+      <div class="dns-3d" id="dnStage3d"></div>
+      <div class="dns-top"><div class="dns-alt" id="dnAltTabs" role="group" aria-label="대안">${DV.names.map((n,i)=>`<button data-alt="${i}" aria-pressed="${i===0}"><b>${n[0]}</b><span>${esc(n[1])}</span></button>`).join('')}</div><div class="dns-lab" id="dnStageLab">완성</div></div>
+      <div class="dns-name" id="dnAltName"></div>
+      <div class="dns-bar" role="group" aria-label="보기">
+        <button data-dv="clay" aria-pressed="false" title="흰 스터디 모형">흰 모형</button><button data-dv="night" aria-pressed="false">밤</button><button data-dv="explode" aria-pressed="false" title="층을 띄워 보기">층 펼치기</button>
+        <span class="dns-sep"></span><button data-dvv="spin">돌기</button><button data-dvv="aerial">조감</button><button data-dvv="front">정면</button><button data-dvv="eye">눈높이</button><button data-dvv="top">위</button>
+        <label class="dns-sun">해<input type="range" id="dnSun" min="-180" max="0" value="-52"></label><button data-dvx="png" title="그림으로 저장">PNG</button><button data-dvx="rec" class="pri">기록</button></div>
+    </div></div>
+    <div class="dns-steps"><div class="dns-intro"><span class="lab-k">SCROLL · 짓는 순서</span><h3>스크롤하면 집이 지어집니다</h3><p>고른 단어 ${r.n}개가 어떤 결정으로 이어졌는지, 땅에서 완성까지 다섯 장면으로 보여 드려요. 왼쪽 위에서 세 대안(정석·혼합·실험)을 바꿔 볼 수 있어요.</p></div><div id="dnStory"></div><div class="dns-end" id="dnStoryEnd" data-step="end"><b>완성</b><p>끌어서 돌려 보고, 흰 모형·밤·층 펼치기로 살펴보세요.</p></div></div>
+  </div>
+  <div class="dnsp zrv"><div class="dnsp-h"><span class="lab-k">SPEC · 개략 사양</span><h3>이 대안을 숫자로</h3></div><div id="dnSpec"></div></div>
+  <div class="dnv zrv"><div class="dnv-h"><div><span class="lab-k">ALL CASES · 경우의 수</span><h3>같은 단어, 아홉 갈래의 건물</h3><p>고른 단어를 열두 방향에 모두 대 보고, 잘 맞는 순서로 아홉 개를 지었어요. 눌러서 위 모형으로 불러오세요.</p></div></div><div class="dnv-row" id="dnVars">${r.arch.slice(0,9).map((a,i)=>`<button class="dnv-c" data-var="${a.id}" style="--i:${i}"><div class="dnv-th"><i></i></div><div class="dnv-b"><em>${a.pct}%</em><b>${esc(a.name)}</b><span>${esc(dnaLine(a,state.dna))}</span></div></button>`).join('')}</div></div>
+  <div class="dnr-grid">
+    <div class="dnr-card zrv"><h4>세 갈래</h4>${r.arch.slice(0,3).map((a,i)=>`<div class="dnr-alt"><div class="ico">${CTHUMB.kind(a.shape)}</div><div><b>${i+1}. ${esc(a.name)}</b><p>${esc(dnaLine(a,state.dna))}</p><span class="bar"><i style="width:${a.pct}%"></i></span></div></div>`).join('')}</div>
+    <div class="dnr-card zrv"><h4>이렇게 시작하세요</h4><ol class="dnr-moves">${A.moves.map(m=>`<li>${esc(m)}</li>`).join('')}</ol>${r.tens.length?`<div class="dnr-tens"><b>부딪히는 취향</b>${r.tens.map(t=>`<p>${esc(t.text)}</p>`).join('')}</div>`:''}</div>
+    <div class="dnr-card zrv"><h4>재료 팔레트</h4><div class="dnr-pal">${r.pal.map(k=>`<div><i style="background:${k.col}"></i><span>${esc(k.label)}</span></div>`).join('')||'<span class="muted">재료를 고르면 여기 칠해집니다.</span>'}</div><h4 style="margin-top:18px">빛</h4><p class="dnr-p">${esc(A.light)}</p></div>
+    <div class="dnr-card zrv"><h4>찾아볼 건축가</h4><div class="dnr-archs">${A.arch.map(n=>`<span>${esc(n)}</span>`).join('')}</div><h4 style="margin-top:18px">참고 건물</h4>${A.refs.map(f=>`<div class="dnr-ref"><b>${esc(f.name)}</b><span>${esc(f.arch)} · ${esc(f.note)}</span></div>`).join('')}</div>
+  </div>
+  ${cases.length?`<div class="dnr-cases zrv"><div class="dnr-ch"><h4>내 취향과 가까운 사례</h4><a href="#learn">사례 더 보기 ›</a></div><div class="dnr-cgrid">${cases.map(({c})=>`<a class="dnr-case" href="#learn" data-case="${esc(c.id)}"><div class="th" style="background:${CTHUMB.bg(c)}">${CTHUMB.svg(c)}</div><b>${esc(c.name)}</b><span>${esc(c.arch)}</span></a>`).join('')}</div></div>`:''}
+  <div class="dnr-sugg zrv"><h4>이 단어도 어울려요</h4><div class="dnchips">${r.sugg.map(k=>`<button type="button" class="dk" data-k="${esc(k)}">+ ${esc(k)}</button>`).join('')}</div></div>`;
+  if(keepSg) $('#dnrSg').replaceWith(keepSg);
+  DV.main=PGV($('#dnStage3d'),{auto:true,onBuilt:(B,P)=>{ DV.curB=B; const sp=$('#dnSpec'); if(sp){ sp.innerHTML=dnaSpecHTML(P,B.nums); dnCount(sp); } }}); dnaShowAlt(0); dnaReveal(); sgPaint($('#dnrSg'),r,{uSpeed:0.12,uStrength:2.2,uDensity:1.3,cDistance:3.4,positionX:0.8,rotationZ:-20});
+  dnVarThumbs(r); dnaLibRender(); }
+let dnVarJob=0;
+function dnVarThumbs(r){ const job=++dnVarJob; const cards=$$('#dnVars .dnv-c'); let i=0; const next=()=>{ if(job!==dnVarJob||i>=cards.length) return; const c=cards[i++]; const P=pgSpec(state.dna,{base:c.dataset.var}); pgThumb(P,520,360).then(url=>{ if(job!==dnVarJob) return; const th=c.querySelector('.dnv-th'); th.innerHTML=`<img src="${url}" alt="">`; c.querySelector('.dnv-b span').textContent=`${PG_SKIN[P.skin][4]} · ${PG_ROOFT[P.roof]} · ${P.F}층`; setTimeout(next,30); }).catch(()=>{}); }; setTimeout(next,600); }
+/* 내 기록 */
+function dnaLibGet(){ const a=lsGet('zip_dna_lib',[]); const b=Array.isArray(state.dnaLib)?state.dnaLib:[]; const m=new Map(); [...a,...b].forEach(x=>{ if(x&&x.id&&!m.has(x.id)) m.set(x.id,x); }); return [...m.values()].sort((x,y)=>y.t-x.t).slice(0,40); }
+function dnaLibSet(list){ lsSet('zip_dna_lib',list); state.dnaLib=list.slice(0,40); try{ touch('dna'); }catch(e){} }
+function dnaRecord(){ const P=DV.cur; if(!P) return; const r=dnaAnalyze(state.dna); const n=DV.names[DV.alt]||['V','갈래',P.name]; const id='d'+Date.now().toString(36);
+  const e={id,t:Date.now(),name:`${n[2]}`,alt:n[0]+' '+n[1],keys:state.dna.slice(),base:P.base,mode:P.mode,code:r.code,persona:dnaPersona(r),skin:P.skin,roof:P.roof,F:P.F};
+  try{ const url=DV.main.png(); const im=new Image(); im.onload=()=>{ const c=document.createElement('canvas'); c.width=420; c.height=Math.round(420*im.height/im.width); c.getContext('2d').drawImage(im,0,0,c.width,c.height); try{ localStorage.setItem('zip_dna_th_'+id,c.toDataURL('image/jpeg',.78)); }catch(err){} dnaLibRender(); }; im.src=url; }catch(err){}
+  dnaLibSet([e,...dnaLibGet()]); dnaLibRender(); const t=$('#dnToast'); if(t){ t.textContent='내 기록에 담았어요 — 페이지 아래 “내 기록”에서 다시 볼 수 있어요'; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2600); } }
+function dnaLibRender(){ const el=$('#dnLib'); const L=dnaLibGet(); const n=$('#dnLibN'); if(n) n.textContent=L.length; if(!el) return; el.hidden=false;
+  el.innerHTML=`<div class="dnlib-h"><div><span class="lab-k">MY ARCHIVE · 내 기록</span><h3>내가 만든 컨셉들</h3><p>${L.length?`${L.length}개를 모았어요. 눌러서 다시 열면 그때 고른 단어와 대안이 그대로 돌아와요.`:'결과 화면의 “기록” 버튼을 누르면 여기에 쌓입니다. 이 기기에 저장되고, 로그인하면 프로젝트와 함께 계정에도 저장돼요.'}</p></div></div>
+   ${L.length?`<div class="dnlib-g">${L.map(x=>{ let th=''; try{ th=localStorage.getItem('zip_dna_th_'+x.id)||''; }catch(e){} return `<div class="dnlib-c" data-lib="${x.id}"><button class="dnlib-th" data-libopen="${x.id}">${th?`<img src="${th}" alt="">`:'<i></i>'}</button><div class="dnlib-b"><input value="${esc(x.name)}" data-libname="${x.id}" aria-label="이름"><span>${esc(x.alt||'')} · ${new Date(x.t).toLocaleDateString('ko-KR')}</span><div class="dnlib-k">${(x.keys||[]).slice(0,6).map(k=>`<em>${esc(k)}</em>`).join('')}${(x.keys||[]).length>6?`<em>+${x.keys.length-6}</em>`:''}</div><div class="dnlib-a"><button class="btn sm" data-libopen="${x.id}">다시 열기</button><button class="btn sec sm" data-libdel="${x.id}">지우기</button></div></div></div>`; }).join('')}</div>`:''}`;
+  $$('#dnLib .dnlib-th:not(:has(img))').forEach(b=>{ const id=b.dataset.libopen; const x=L.find(y=>y.id===id); if(!x) return; pgThumb(pgSpec(x.keys,{base:x.base,mode:x.mode}),420,290).then(u=>{ b.innerHTML=`<img src="${u}" alt="">`; }).catch(()=>{}); }); }
+function dnaLibOpen(id){ const x=dnaLibGet().find(y=>y.id===id); if(!x) return; state.dna=x.keys.slice(); renderDnaLab(); renderDnaResult(); const i=DV.specs.findIndex(P=>P.base===x.base&&P.mode===x.mode); if(i>=0) dnaShowAlt(i); else { const P=pgSpec(x.keys,{base:x.base,mode:x.mode}); DV.names[3]=['V','갈래',DNA_ARCH[x.base].name]; dnaShowAlt(3,P); } setTimeout(()=>$('#dnStoryWrap').scrollIntoView({behavior:'smooth',block:'start'}),80); }
+/* 스크롤 효과: 히어로 시차 · 단어 띠 · 칩 등장 */
+let dnScrollOn=false;
+function dnScroll(){ if(location.hash!=='#dna') return; const v=$('#view-dna'); if(!v) return; const y=scrollY, h=innerHeight; v.style.setProperty('--dnp',Math.min(1,y/(h*.9)).toFixed(3)); const mq=$('#dnMarq'); if(mq) mq.style.transform=`translate3d(${-(y*.35)%2400}px,0,0)`; const mq2=$('#dnMarq2'); if(mq2) mq2.style.transform=`translate3d(${-2400+(y*.25)%2400}px,0,0)`; }
+function dnScrollInit(){ if(dnScrollOn) return; dnScrollOn=true; addEventListener('scroll',()=>requestAnimationFrame(dnScroll),{passive:true}); }
+function dnHeroInit(){ const n=DNA_KW.length; const c=$('#dnComb'); if(c) c.textContent=dnFmt(Math.round(dnComb(n,5))); const kn=$('#dnKwN'); if(kn) kn.textContent=n; const mq=$('#dnMarq'), mq2=$('#dnMarq2'); if(mq&&!mq.innerHTML){ const words=DNA_KW.map(k=>k.label); const pick=(o)=>Array.from({length:60},(_,i)=>words[(i*37+o)%words.length]); mq.innerHTML=pick(3).map(w=>`<span>${esc(w)}</span>`).join('<i>·</i>').repeat(2); mq2.innerHTML=pick(91).map(w=>`<span>${esc(w)}</span>`).join('<i>·</i>').repeat(2); } dnScrollInit(); dnScroll(); }
+document.addEventListener('click',e=>{ const v=e.target.closest('#view-dna'); if(!v) return;
+  const at=e.target.closest('#dnAltTabs [data-alt]'); if(at){ dnaShowAlt(+at.dataset.alt); return; }
+  const dv=e.target.closest('[data-dv]'); if(dv&&DV.main){ const on=dv.getAttribute('aria-pressed')!=='true'; dv.setAttribute('aria-pressed',on); DV.main[dv.dataset.dv](on); return; }
+  const dvv=e.target.closest('[data-dvv]'); if(dvv&&DV.main){ DV.main.view(dvv.dataset.dvv); return; }
+  const dx=e.target.closest('[data-dvx]'); if(dx&&DV.main){ if(dx.dataset.dvx==='png'){ const a=document.createElement('a'); a.href=DV.main.png(); a.download=`ZIPLAN-${(DV.cur&&DV.cur.name||'concept').replace(/\s+/g,'-')}.png`; a.click(); } else dnaRecord(); return; }
+  if(e.target.closest('#dnRec')){ dnaRecord(); return; }
+  const vr=e.target.closest('[data-var]'); if(vr){ const P=pgSpec(state.dna,{base:vr.dataset.var}); DV.names[3]=['V','갈래',DNA_ARCH[vr.dataset.var].name]; $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); dnaShowAlt(3,P); $$('#dnAltTabs [data-alt]').forEach(b=>b.setAttribute('aria-pressed','false')); $('#dnStoryWrap').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  const lo=e.target.closest('[data-libopen]'); if(lo){ dnaLibOpen(lo.dataset.libopen); return; }
+  const ld=e.target.closest('[data-libdel]'); if(ld){ const id=ld.dataset.libdel; dnaLibSet(dnaLibGet().filter(x=>x.id!==id)); try{ localStorage.removeItem('zip_dna_th_'+id); }catch(err){} dnaLibRender(); return; }
+  if(e.target.closest('#dnLibOpen')){ dnaLibRender(); $('#dnLib').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  const jp=e.target.closest('[data-dnjump]'); if(jp){ e.preventDefault(); $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+});
+document.addEventListener('input',e=>{ if(e.target.id==='dnSun'&&DV.main){ DV.main.sun(+e.target.value*Math.PI/180); } });
+document.addEventListener('change',e=>{ const nm=e.target.closest('[data-libname]'); if(nm){ const L=dnaLibGet(); const x=L.find(y=>y.id===nm.dataset.libname); if(x){ x.name=nm.value.slice(0,60); dnaLibSet(L); } } });
+document.addEventListener('mousemove',e=>{ const c=e.target.closest&&e.target.closest('.dnv-c'); if(!c) return; const r=c.getBoundingClientRect(); c.style.setProperty('--rx',((e.clientY-r.top)/r.height-.5)*-8+'deg'); c.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*10+'deg'); });
 
 /* ---------- 관리자 페이지 (#admin) — 숫자는 서버 함수 admin_stats()가 관리자일 때만 돌려준다 ---------- */
 let ADM=null;

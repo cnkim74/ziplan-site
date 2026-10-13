@@ -55,6 +55,9 @@
   - TPL 끝은 `].map(a=>({id:a[0],...}))` — `\n];`가 아님(TCOURSE와 헷갈리지 말 것)
 - 지도 v2: MapLibre GL 4.7.1(jsdelivr) + OpenFreeMap 벡터 스타일(키 없음; calm=positron/다크면 dark, color=liberty, sat=Esri 래스터). `tStyleJSON`이 스타일 JSON을 받아 text-field를 `name:ko→name:nonlatin→name`으로, 3D 건물 `b3d` fill-extrusion(z14+) 추가. `tMapGL`: 사진 마커(`.tvm.gl`, 줌 따라 z-lo/z-hi로 크기·이름표), MapLibre 팝업 `tPopHTML`, 경로 GeoJSON `tvr`(점선 흐름 애니메이션 `TDASH`), 3D 버튼(`#tv3d`, 피치 60), 투어는 피치·회전 비행. `tFly(p,z)`/`tResize()`가 GL/Leaflet 공용. WebGL 없거나 스타일 실패 → `tMapLeaflet`(기존) 자동 대체
   - 백그라운드 탭에선 rAF가 멈춰 지도 캔버스가 비어 보임(스크린샷 찍을 때만 그려짐) — 정상
+- 취향 랩 v2(2026-10-13 밤): 단어 274개(감각·동선·색·건축가처럼 4분류 추가). 생성기 PG: `pgSpec(keys,{base,mode})` → 프로그램(`PG_PROG`)·외피(`PG_SKIN` 24종, 캔버스 텍스처 `pgTex`)·창(`winRects` 9종)·지붕(평/풀/박공/가파른/외쪽/톱날/볼트/기와 곡선 `pgSurf`/큰 지붕/슬래브)·조작(`PG_OPT` 40여 개)·대지(평지/경사/물가/바다/숲/산/도심/골목/들판/마을)와 결정 로그 `P.log`. 단어→결정 표 `PGK`(같은 항목이면 재료·빛 분류가 건축가·감각 분류보다 우선). `pgBuild`가 층별 그룹(올라오는 애니메이션·층 펼치기)·인스턴스 창/핀·사람/나무까지 짓고, `PGV(el,opt)` 뷰어(흰 모형·밤·해·시점·PNG·dispose), `pgThumb` 화면 밖 썸네일
+  - 화면: 고르는 동안 오른쪽 라이브 모형(`dnaLive3D`, 모바일은 위에 붙음), 결과는 A 정석·B 혼합(둘째 방향 조작 추가)·C 실험(외피 반전·지붕·캔틸레버) + 스크롤 다섯 장면(대지→흰 덩어리→흰 모형→재료→사람, `DN_STAGE`), 개략 사양 표, 아홉 갈래 썸네일(`dnVarThumbs`), 내 기록(`zip_dna_lib` + 썸네일 `zip_dna_th_<id>`, state.dnaLib로 계정 동기화)
+  - 디버그: `window.__pgTest(keys,base,mode)` 전체 화면 모형
 - 힉스필드 크레딧: 무료 요금제 잔여 3.4 — 업스케일(2크레딧/장)으로 로컬 이미지(alt-*, p-*, pn-*) 개선은 보류
 - 로컬 저화질 AVIF(img/f-*) → 정식 사이트에선 `HF` 맵으로 힉스필드 원본 PNG를 /_vercel/image로(`hfUp` MutationObserver, 패널 시트는 `hqs`)
 - 사례 카드·모달: `casePh(c)`로 사진 + 아이소 썸네일 배지
