@@ -51,6 +51,10 @@
 - 컨셉 3D 매스(2026-10-13): 결과 카드 `.cw-viz`에 three.js r128(cdnjs, `t3Load` 지연) — `m3Build(THREE,id,prog)`가 DNA_ARCH 12갈래별 건물 생성기(중정·계단 테라스·필로티·마을·평지붕 판·벽돌·처마 등), `m3Mount`: 그림자·ACES·sRGB→linear 색, 드래그 회전·휠 줌·자동 회전, 버튼 회전/위/눈높이·낮밤·해 각도 슬라이더·PNG 저장. 디버그 `window.__m3`. 헤드리스 테스트는 three.min.js를 로컬로 라우팅 + `--use-gl=swiftshader`
 - 건축 사전 `ENC`(47개, 공간/구조/환경/법규/한옥/도면/재료) + SVG 도해(`ES/EG/ENCD`), `encFind(q)`·`encCard`. 챗봇 `zcAsk`가 먼저 사전 검색 → `{r:'b',enc:id}` 카드(도해+쉬운 설명+더 알아보기). 라이브러리 `#encLib`(검색·분류·모달)
 - 여행 상세(tv3): 카드·팝업 "자세히" / 카드 제목 → `tDetail(id)` 오른쪽 서랍(모바일은 아래 시트) — 사진, 평점, `TFEAT` 건축 포인트 3개, 매스 도식, 근처 맛집 `EAT`/`TEATP`(카카오맵 장소 ID는 PlayMCP 카카오맵 검색으로 확인한 것만 `KM(id)`, 나머지는 `KS(검색어)`), 카카오 길찾기 `map.kakao.com/link/to/이름,lat,lon`. 코스 점심 줄에 직전 장소 맛집. 지도 도구 `tMapTools`: 차분한/기본/위성(Esri World_Imagery) `tStyle`, ▶ 지도 투어 `tTour`, 전체 화면 `.tv-mapbox.full`. 헤드리스 테스트는 leaflet을 로컬 npm 패키지로 라우팅(cdnjs 막힘)
+- 여행 확장(2026-10-13 오후): `TPL` 61곳 — 지역 8개(`TREG`에 chungcheong 충청·대전, jeolla 전라·광주 추가). 새 29곳(국립중앙박물관·시청·경회루·석조전·명동성당·세운상가·북촌·남한산성 행궁·선교장·오죽헌·이응노미술관·돈암서원·외암마을·개심사·소쇄원·전동성당·전주한옥마을·선암사·화엄사 각황전·계산성당·동궁과 월지·석굴암·임청각·감천마을·통도사·촉석루·해동용궁사·클레이아크·성읍마을) 모두 Commons 사진 있음. 뮤지엄 산 사진 추가(Museum SAN.tif → lossy-page1-1920px 썸네일). 송은·미메시스·사유원·유민미술관은 상업 이용 가능한 자유 라이선스 사진이 없음(Openverse엔 NC/ND만) → 그림 썸네일 유지. 원본 데이터 스크립트는 세션 스크래치(newplaces.py)
+  - TPL 끝은 `].map(a=>({id:a[0],...}))` — `\n];`가 아님(TCOURSE와 헷갈리지 말 것)
+- 지도 v2: MapLibre GL 4.7.1(jsdelivr) + OpenFreeMap 벡터 스타일(키 없음; calm=positron/다크면 dark, color=liberty, sat=Esri 래스터). `tStyleJSON`이 스타일 JSON을 받아 text-field를 `name:ko→name:nonlatin→name`으로, 3D 건물 `b3d` fill-extrusion(z14+) 추가. `tMapGL`: 사진 마커(`.tvm.gl`, 줌 따라 z-lo/z-hi로 크기·이름표), MapLibre 팝업 `tPopHTML`, 경로 GeoJSON `tvr`(점선 흐름 애니메이션 `TDASH`), 3D 버튼(`#tv3d`, 피치 60), 투어는 피치·회전 비행. `tFly(p,z)`/`tResize()`가 GL/Leaflet 공용. WebGL 없거나 스타일 실패 → `tMapLeaflet`(기존) 자동 대체
+  - 백그라운드 탭에선 rAF가 멈춰 지도 캔버스가 비어 보임(스크린샷 찍을 때만 그려짐) — 정상
 - 힉스필드 크레딧: 무료 요금제 잔여 3.4 — 업스케일(2크레딧/장)으로 로컬 이미지(alt-*, p-*, pn-*) 개선은 보류
 - 로컬 저화질 AVIF(img/f-*) → 정식 사이트에선 `HF` 맵으로 힉스필드 원본 PNG를 /_vercel/image로(`hfUp` MutationObserver, 패널 시트는 `hqs`)
 - 사례 카드·모달: `casePh(c)`로 사진 + 아이소 썸네일 배지
