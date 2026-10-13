@@ -38,10 +38,17 @@
 - 흰색 블록 모형 `wmRender`(임의 각도 회전 등각, 끌어서 회전, `CTHUMB.boxes(kind)`) — 취향 랩 결과 `#dnWm`
 - 법규 볼륨 `drawLawLab`/`lawCheck`(모형 페이지): 건폐율·용적률·정북 일조 사선(주거지역: 10m 이하 1.5m, 초과 높이/2)·높이 — 개략
 - 콘타 `drawContour`/`ctExport`(대지 페이지): 합성 지형(경사·언덕·구릉·골짜기) → marching squares 등고선 → 적층 등각 + 레이저 커팅 레이어 SVG(mm, 빨강 자르기·파랑 새기기)·등고선 평면 SVG
-- 로고(2026-10-13): Z 마크 폐기 → 파란 그라데이션 타일 안의 흰 "P = 집" 마크(기둥+박공 지붕+벽, `markSVG(size,_,anim)`), favicon도 동일(build_public.py). 워드마크는 ZI**P**LAN(P 파랑) 유지
+- 로고(2026-10-13 2차): "집" 글자 마크로 복귀 — ㅈ을 용마루(가로선)+박공 지붕(∧)으로, ㅣ, 파란 ㅂ. 둥근 선(stroke 11). `markSVG(size,color,anim,pColor)`, 표지 `.hmtile` 검은 타일 + 선 그리기 애니메이션, favicon 동일(build_public.py). 사용자는 P-집 단독 마크보다 이 방향을 선호
 - 상단 메가 메뉴: `NAVG`(시작하기·설계하기·보여주기·둘러보기·함께하기) → `buildNav()`가 `.ngb` 버튼과 `#mega` 패널(아이콘·설명·오른쪽 특집 카드) 생성, 모바일 `#navMenu`도 같은 데이터. 현재 방 표시는 `navCurrent(h)`
 - 패널 랩: 레이아웃 9종(hero·band·process·grid·poster·split·axo·story·minimal), 무대 샘플 이미지 `PSAMPLE`, 수상작 공통점 `PLESSON` 10개, `panelDiag()` 3초 진단, 공모전 달력 `COMPS`(국내 4·해외 7, 일정은 해마다 바뀜 — 매년 갱신 필요). reveal IO는 threshold 0으로(키 큰 요소가 안 나타나던 버그 수정)
-- 건축 여행 `#travel`: `TPL` 32곳(위경도·건축가·연도·볼 것), 남한 근사 외곽 지도 `tMap`, 카드 `tCard`, 코스 짜기 `tPlan`(관심사 점수 → 가까운 순 → 하루 10:00~18:30, 점심 삽입, 하루 최대 perDay), 추천 코스 `TCOURSE` 4개, 카카오맵 검색 링크
+- 건축 여행 `#travel`(2026-10-13 개편): `TPL` 32곳, 사진 `PH`(Wikimedia Commons 자유 라이선스 37장 — [썸네일 URL, 파일 페이지, 작가, 라이선스], `phImg/phSrc/phCredit`, 정식 사이트에선 `/_vercel/image`로 최적화, 실패 시 원본). Commons는 컨테이너/WebFetch에서 막혀 있어 사용자 Chrome에서 `commons.wikimedia.org/w/api.php?...&origin=*`로 찾았음. 썸네일 폭은 표준값(330·1280 등)만 됨
+  - 표지 `#tvCover` 사진 기둥 시차, 숫자 세기, 챕터(지역별) 헤더 + 첫 카드 가로형(feat), 사진 clip-path 등장, 별·막대 채우기(`tObserve`)
+  - 지도: Leaflet 1.9.4(cdnjs, 지연 로드) + OSM 타일(CSS 필터로 흑백/다크). CARTO는 API 키 필요해서 안 됨. 사진 원형 마커, 팝업 카드, 경로 점선. `TV.focus` reg/route
+  - 별점: 에디터 주관 평가 `TSC`[공간,빛,재료,찾아가기] → `tScore`; 방문자 별점 `place_ratings`(회원만 upsert) + 공개 뷰 `place_rating_stats` — `supabase/ratings.sql` 적용됨(2026-10-13)
+  - AI 근처 코스 `tNear`(위치 or 출발역 `TORIG`, 반나절/하루/1박2일, 거리-평점 탐욕) + 소개 글 `tAiText`(claude.ai면 sample, 아니면 `tAiLocal` 템플릿)
+  - 코스 짜기 `tPlan`/`TCOURSE` 유지(사진 버튼·사진 타임라인)
+- 사례 카드·모달: `casePh(c)`로 사진 + 아이소 썸네일 배지
+- 홈: `#homeTrips` 사진 레일(무한 흐름), `#faq`(details), 전체 검색 `zsOpen`(⌘K / Ctrl+K / '/', 페이지·여행지·사례·공모전·용어)
 - 방문 통계: `supabase/analytics.sql` 적용됨(2026-10-13) — `page_views`(익명 vid/sid, 쿠키·IP 없음, DNT 존중, insert만) + `pv_channel()` + `admin_traffic(days)`. 클라이언트 `ZT`(정식 https 사이트에서만, claude/localhost 제외). 이벤트: signup_open, plan_click, chat_open, course_copy, course_preset
 - 관리자 탭: 개요(목표 링·깔때기·할 일) / 유입·채널(일별·채널 도넛·방·리퍼러·기기·캠페인·시간대·행동) / 수익(결제 연동 전 시뮬레이터, localStorage `zip_rev`) / 채널 관리(UTM 생성·저장 `zip_utm`, 채널 보드) / 회원·콘텐츠 / 문의함
 - 테스트 주의: nav-glass(html2canvas)가 헤드리스에서 큰 페이지 캡처 중 멈춤 → Playwright에선 /html2canvas/ 라우트 차단
