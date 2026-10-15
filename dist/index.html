@@ -1128,6 +1128,61 @@ html.is-student .plan .stl .ok{display:inline}
 /* 가독성·터치 (v8) */
 @media(max-width:700px){ .btn{min-height:42px;font-size:15px} .btn.sm{min-height:38px;font-size:13.5px} .modes button{min-height:38px;padding:8px 14px;font-size:14px} .zc-chips button,.zc-cat button{min-height:36px} .tv-abtabs button{min-height:52px} .cv-sw button{min-height:36px} .tv-infra a{min-height:36px;display:inline-flex;align-items:center} input,select,textarea{font-size:16px!important} }
 .lab-h p,.pf-h p{max-width:720px;line-height:1.6}
+/* ===== 리퀴드 글래스 (v9) ===== */
+.lg,.tv-bar,.pf-nav,.tv-mtools .modes,.tv-mtools>.btn,.pgt,.zc-panel,.tv-kittabs,.tv-abtabs button,.dnat-m .x,.tv-drx,.zs-box,.tv-dock{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--card) 62%,transparent),color-mix(in srgb,var(--card) 36%,transparent))!important;
+  backdrop-filter:blur(22px) saturate(1.9);-webkit-backdrop-filter:blur(22px) saturate(1.9);
+  border:1px solid color-mix(in srgb,#fff 55%,transparent)!important;
+  box-shadow:0 14px 40px -18px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.85),inset 0 -10px 22px -8px rgba(255,255,255,.28)!important}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) :is(.lg,.tv-bar,.pf-nav,.tv-mtools .modes,.tv-mtools>.btn,.pgt,.zc-panel,.tv-kittabs,.tv-abtabs button,.dnat-m .x,.tv-drx,.zs-box,.tv-dock){border-color:rgba(255,255,255,.16)!important;box-shadow:0 14px 40px -18px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.22),inset 0 -10px 22px -8px rgba(255,255,255,.06)!important} }
+:root[data-theme="dark"] :is(.lg,.tv-bar,.pf-nav,.tv-mtools .modes,.tv-mtools>.btn,.pgt,.zc-panel,.tv-kittabs,.tv-abtabs button,.dnat-m .x,.tv-drx,.zs-box,.tv-dock){border-color:rgba(255,255,255,.16)!important;box-shadow:0 14px 40px -18px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.22),inset 0 -10px 22px -8px rgba(255,255,255,.06)!important}
+.tv-abtabs button[aria-pressed="true"]{background:var(--fg)!important;border-color:var(--fg)!important}
+.lg-sheen{position:relative;overflow:hidden}.lg-sheen::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,rgba(63,123,255,.22),rgba(255,94,156,.18),rgba(138,107,255,.22),rgba(48,209,88,.14),rgba(63,123,255,.22));filter:blur(18px);opacity:0;transition:opacity .4s;animation:zcspin 9s linear infinite;pointer-events:none}.lg-sheen:hover::before{opacity:.6}
+.tv-dock{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,24px);display:flex;gap:2px;padding:5px;border-radius:999px;z-index:70;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s cubic-bezier(.3,1.3,.5,1)}
+.tv-dock.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}.tv-dock a{font-size:12.5px;font-weight:700;color:var(--fg);text-decoration:none;padding:8px 13px;border-radius:999px;white-space:nowrap}.tv-dock a.on{background:var(--fg);color:var(--bg)}
+@media(max-width:700px){.tv-dock{left:10px;right:74px;transform:translateY(24px);justify-content:space-between;padding:4px;overflow-x:auto;scrollbar-width:none}.tv-dock.show{transform:none}.tv-dock a{padding:8px 7px;font-size:11.5px;flex:0 0 auto}}
+@media print{.tv-dock{display:none}}
+/* 표지 셰이더 */
+.tv-cover .sgbg{position:absolute;inset:0;width:100%;height:100%;z-index:-3;opacity:.9}
+.tv-cover .tv-cols{-webkit-mask-image:radial-gradient(75% 70% at 50% 48%,#000 45%,transparent 100%);mask-image:radial-gradient(75% 70% at 50% 48%,#000 45%,transparent 100%)}
+/* 스크롤 줌·시차 (지원 브라우저만) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .tv-sec .lab-h,.pf-h{animation:zmIn linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+    .tv-coll .ph img{animation:parY linear both;animation-timeline:view();animation-range:entry 0% exit 100%;will-change:transform}
+    .tv-abmos figure img{animation:kb linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    .tv-mapbox,.tv-kit,.tv-collx,.cv-a4wrap{animation:zmIn2 linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+    .tv-card .tv-ph img,.pf-al,.cv-tip{animation:parY2 linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    .tv-cover .tv-cov-t{animation:covOut linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+    .tv-cover .tv-cols{animation:covZoom linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+  }
+}
+@keyframes zmIn{from{opacity:0;transform:scale(.94) translateY(26px)}to{opacity:1;transform:none}}
+@keyframes zmIn2{from{opacity:.4;transform:scale(.965)}to{opacity:1;transform:none}}
+@keyframes parY{from{transform:translateY(-8%) scale(1.12)}to{transform:translateY(8%) scale(1.12)}}
+@keyframes parY2{from{transform:translateY(-4%)}to{transform:translateY(4%)}}
+@keyframes kb{from{transform:scale(1.18) translateY(-3%)}to{transform:scale(1) translateY(3%)}}
+@keyframes covOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.14) translateY(-6%)}}
+@keyframes covZoom{from{transform:rotate(-6deg) scale(1)}to{transform:rotate(-6deg) scale(1.08)}}
+/* 컬렉션 이야기 */
+.tv-collstory{margin-top:14px;display:grid;gap:12px}.tv-collstory .st{margin:0;font-size:15px;line-height:1.7;word-break:keep-all;max-width:760px}
+.tv-collpts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}.tv-collpts>div{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--card) 70%,var(--bg));border:1px solid var(--card-line);font-size:13px;line-height:1.5;word-break:keep-all}.tv-collpts i{flex:0 0 22px;height:22px;border-radius:50%;background:var(--c);color:#111;font-style:normal;font-weight:800;font-size:11px;display:grid;place-items:center}
+.tv-collmeta{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px}.tv-collmeta>div{font-size:13px;line-height:1.5;word-break:keep-all}.tv-collmeta b{display:block;font-size:11px;letter-spacing:.08em;color:var(--fg-2);margin-bottom:4px}.tv-collmeta ol{margin:0;padding-left:18px;display:grid;gap:2px}
+@media(max-width:800px){.tv-collmeta{grid-template-columns:1fr}}
+/* 포트폴리오 v9 — 건축사 로드맵·스크롤 효과 */
+.pf-lic{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.pf-lic::before{content:"";position:absolute;left:4%;right:4%;top:30px;height:2px;background:linear-gradient(90deg,var(--accent),#8a6bff);opacity:.5}
+.pf-lic li{position:relative;background:var(--card);border:1px solid var(--card-line);border-radius:18px;padding:52px 16px 16px}
+.pf-lic em{position:absolute;top:14px;left:16px;width:34px;height:34px;border-radius:50%;background:var(--fg);color:var(--bg);font-style:normal;font-weight:900;font-size:12px;display:grid;place-items:center}
+.pf-lic b{display:block;font-size:16px;margin-bottom:6px}.pf-lic p{margin:0;font-size:13px;line-height:1.55;color:var(--fg-2);word-break:keep-all}
+.pf-licnote{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.pf-licnote>div{border-left:3px solid var(--accent);padding:4px 0 4px 12px;font-size:13px;line-height:1.5;word-break:keep-all}.pf-licnote b{display:block;margin-bottom:2px}.pf-licnote span{color:var(--fg-2)}
+@media(max-width:900px){.pf-lic,.pf-licnote{grid-template-columns:1fr 1fr}.pf-lic::before{display:none}}@media(max-width:560px){.pf-lic,.pf-licnote{grid-template-columns:1fr}}
+@supports (animation-timeline: view()){ @media (prefers-reduced-motion:no-preference){
+  .pf-pg{animation:pgIn linear both;animation-timeline:view();animation-range:entry 0% entry 50%}
+  .pf-per,.pf-path,.pf-card,.pf-lic li{animation:zmIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  .pf-bars{animation:zmIn2 linear both;animation-timeline:view();animation-range:entry 0% entry 50%}
+} }
+@keyframes pgIn{from{opacity:0;transform:perspective(900px) rotateX(22deg) translateY(30px)}to{opacity:1;transform:none}}
 @media print{#zchat{display:none}}
 
 /* ===== 흰색 블록 · 법규 볼륨 · 콘타 ===== */
@@ -2930,7 +2985,7 @@ html.dnat-lock{overflow:hidden}
       <p class="muted" style="font-size:12px;margin:0">거리는 직선거리, 이동 시간은 자동차 기준 어림값이에요.</p></div>
       <div class="tv-ai" id="tvAi"></div></div>
   </section>
-  <section class="lab tv-sec">
+  <section class="lab tv-sec" id="tvMapSec">
     <div class="lab-h"><span class="lab-k">MAP · 61 PLACES</span><h2>지도에서 고르고, 사진으로 읽기.</h2><p>별점은 ZIPLAN 에디터가 공간·빛·재료·찾아가기로 매긴 주관 평가예요. 다녀오셨다면 카드의 별을 눌러 직접 남겨 주세요.</p></div>
     <div class="tv-bar"><div class="tv-regs modes" role="group" aria-label="지역"><button data-treg="all" aria-pressed="true">전국</button><button data-treg="seoul">서울</button><button data-treg="gyeonggi">경기</button><button data-treg="gangwon">강원</button><button data-treg="chungcheong">충청</button><button data-treg="gyeongbuk">경북·대구</button><button data-treg="jeolla">전라</button><button data-treg="busan">부산·경남</button><button data-treg="jeju">제주</button></div>
       <div class="modes tv-sorts"><button data-tsort="rec" aria-pressed="true">지역별</button><button data-tsort="score">평점순</button><button data-tsort="vis">방문자 별점</button><button data-tsort="near">가까운 순</button></div><span class="tv-count" id="tvCount"></span></div>
@@ -5229,7 +5284,7 @@ function tCover(){ const el=$('#tvCover'); if(!el||el.dataset.done) return; el.d
   el.querySelector('.tv-cols').innerHTML=cols.map(c=>`<div class="tv-col">${c.concat(c.slice(0,2)).map(k=>`<figure>${phImg(k,960,'',(TPL.find(p=>p.id===k)||{}).n,'(max-width:900px) 64vw, 42vw')}<figcaption>${esc((TPL.find(p=>p.id===k)||{}).n||'')}</figcaption></figure>`).join('')}</div>`).join('');
   const st=$('#tvStats'); const n=k=>`<b class="tv-num" data-n="${k}">0</b>`; st.innerHTML=`<div>${n(TPL.length)}<span>곳</span></div><div>${n(Object.keys(TREG).length)}<span>지역</span></div><div>${n(TPL.filter(p=>p.tags.includes('세계유산')).length)}<span>세계유산</span></div><div>${n(TPL.filter(p=>p.tags.includes('거장')).length)}<span>거장의 건축</span></div>`;
   $('#tvOrig').innerHTML=TORIG.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join(''); }
-function drawTravel(){ if(!$('#view-travel')) return; tCover(); tv3Init(); tMap(); tList(); tAiDraw(); if(!TV.plan) tPlan(); if(!tRatings.done){ tRatings.done=1; tRatings(); } tObserve(); setTimeout(tResize,300); }
+function drawTravel(){ if(!$('#view-travel')) return; tCover(); try{ sgCover($('#tvCover'),['#122a5c','#3a8fe0','#0b1530','#9fd8ff']); tDockInit(); }catch(e){} tv3Init(); tMap(); tList(); tAiDraw(); if(!TV.plan) tPlan(); if(!tRatings.done){ tRatings.done=1; tRatings(); } tObserve(); setTimeout(tResize,300); }
 
 /* 코스 짜기: 관심도 점수 → 출발 지역에서 가까운 묶음 → 가까운 순서로 잇고 하루 7시간 안에서 자르기 */
 function tPlan(force){ const pool0=TPL.filter(p=>TV.start==='all'||p.r===TV.start||(TV.start==='gyeongbuk'&&p.r==='busan'&&p.id==='haein'));
@@ -6313,6 +6368,7 @@ function tCollRender(){ const el=$('#tvColls'); if(!el) return;
   const x=$('#tvCollX'); if(!x) return; const c=TV.coll&&TV_COLL_BY[TV.coll]; if(!c){ x.hidden=true; x.innerHTML=''; return; }
   const pl=(c.places||[]).map(id=>TPL.find(p=>p.id===id)).filter(Boolean); const ab=(c.abroad||[]).map(id=>TV_AB_BY[id]).filter(Boolean);
   x.hidden=false; x.style.setProperty('--c',c.color); x.innerHTML=`<div class="tv-collh"><span class="em">${c.emoji}</span><div><span class="lab-k">${esc(c.tag)} · ${esc(c.en)}</span><h3>${esc(c.name)}</h3><p>${esc(c.blurb)}</p></div><button type="button" class="btn sec sm" data-tcoll="">전체로</button></div>
+   ${tCollXHTML(c)}
    <div class="tv-collrail">${pl.map(p=>`<button type="button" class="tv-collp" data-tdet="${p.id}">${PH[p.id]?`<img src="${phSrc(p.id,384)}" alt="" loading="lazy">`:`<span class="tv-art">${CTHUMB.kind(p.sh,1)}</span>`}<b>${esc(p.n)}</b><span>${TREG[p.r][0]} · ${esc(p.a)}</span></button>`).join('')}${ab.map(a=>`<button type="button" class="tv-collp ab" data-tvabgo="${a.id}">${tAbPhoto(a,384)?`<img src="${tAbPhoto(a,384)}" alt="" loading="lazy">`:''}<i>✈</i><b>${esc(a.name)}</b><span>${esc(a.country)} · ${esc(a.days)}</span></button>`).join('')}</div>
    <div class="tv-collact"><button type="button" class="btn sm" data-tcollmap>지도에서 ${pl.length}곳 보기</button>${pl.length>=3?`<button type="button" class="btn sec sm" data-tcollcourse>이 테마로 코스 짜기</button>`:''}</div>`; }
 function tAbPhoto(a,w){ for(const s of a.stops){ const b=s.bld&&BLD_BY[s.bld]; if(b&&b.p) return bldImg(b,w||640); } return ''; }
@@ -6366,6 +6422,35 @@ document.addEventListener('click',e=>{
   if(e.target.closest('[data-tchkreset]')){ lsSet('zip_tvchk',{}); tKitRender(); return; } });
 document.addEventListener('change',e=>{ const c=e.target.closest('[data-tchk]'); if(c){ const d=lsGet('zip_tvchk',{}); d[c.dataset.tchk]=c.checked; lsSet('zip_tvchk',d); c.closest('label').classList.toggle('on',c.checked); const bar=$('.tv-kbar span'); if(bar) bar.textContent=`${Object.values(d).filter(Boolean).length} / ${TV_PLAN.checklist.length} 완료`; } });
 
+/* ===== 건축 여행 v4 — 컬렉션 이야기 · 표지 셰이더 · 섹션 독 ===== */
+const TV_COLLX={
+ mz_photo:{story:'건축 사진이 잘 나오는 조건은 세 가지예요. 반사(유리·물·금속), 반복(계단·루버·격자), 그리고 빛의 틈. 이 열두 곳은 그 셋 중 둘 이상을 가진 곳만 골랐어요.',points:['DDP 외피는 해 질 녘 30분, 알루미늄에 하늘색이 비칠 때','아모레퍼시픽은 1층 아트리움에서 위를 올려다본 루버','ECC는 계곡 바닥에서 양쪽 유리벽이 만나는 소실점'],when:'맑은 날 오후 4시~해 질 녘, 비 온 다음 날 바닥 반사',course:['11:00 아모레퍼시픽','13:30 리움·이태원 점심','15:30 서울시청 신청사','17:30 DDP 외피·옥상'],tip:'초광각보다 35mm 전후로 한 면만 정직하게 찍어 보세요. 건축 사진은 수직선이 생명이에요.'},
+ holiday_abroad:{story:'비행 두세 시간이면 거장의 도시가 있어요. 방학 한 번에 한 도시, 3박4일이면 열 곳을 걸어서 봅니다. 항공·물가·휴관일까지 아래 해외 편에 정리했어요.',points:['도쿄·교토는 미술관 월요일 휴관을 먼저 피해서 요일 배치','세토우치는 배 시간표가 곧 일정 — 테시마는 화·수·목 휴관','싱가포르·홍콩은 더위 때문에 오전 외부, 오후 실내'],when:'겨울방학(싸고 한산)·9~10월(맑음). 7~8월은 더위와 태풍',course:['Day 1 도쿄역→국제포럼→우에노','Day 2 오모테산도→네즈→21_21','Day 3 요요기→메이지신궁→성마리아','Day 4 보충·공항'],tip:'A5 스케치북과 3m 줄자. 난간 높이·계단 디딤판을 재는 습관이 답사를 설계 공부로 바꿔요.'},
+ seoul_walk:{story:'서울은 지하철 한 장으로 거장 열 명을 만날 수 있는 도시예요. 하디드·치퍼필드·김수근·김중업이 걸어서 이어져요.',points:['을지로~동대문: 세운상가 옥상길에서 DDP까지 걸어서 20분','한남~용산: 리움→아모레퍼시픽→국립중앙박물관은 버스 한 번','북촌 라인: 공간 사옥→국현 서울관→경동교회(장충)'],when:'사계절. 겨울엔 실내 미술관 비중을 높이고 여름엔 오전 외부',course:['10:00 공간 사옥','11:30 국립현대미술관 서울관','14:00 세운상가 옥상길','15:00 DDP','17:00 서울시청·경동교회 중 하나'],tip:'미술관 전시 티켓은 건축만 볼 땐 로비·카페까지 무료인 곳이 많아요. 리움·아모레는 로비가 핵심.'},
+ busan_sea:{story:'부산 건축은 경사와 바다가 만듭니다. 영화의전당의 세계 최장 캔틸레버 지붕, 절벽에 붙은 용궁사, 계단으로 이어진 감천. 땅이 건물을 어떻게 비트는지 보는 코스예요.',points:['영화의전당 지붕 아래 LED는 밤 8시 이후','감천은 입구 안내소에서 지도를 사면 골목 동선이 보여요','해동용궁사는 일출 직후가 가장 한산'],when:'봄·가을. 해무가 끼는 6~7월 아침은 피하기',course:['08:00 해동용궁사','11:00 영화의전당','13:00 센텀 점심','15:00 감천문화마을','19:30 영화의전당 야경'],tip:'감천은 주민이 사는 동네예요. 골목에서 큰 소리·창문 촬영은 금물.'},
+ jeju_ando:{story:'안도 다다오의 콘크리트와 이타미 준의 현무암은 같은 섬에서 다른 답을 냈어요. 서남쪽 반나절에 둘을 비교해 보는 코스입니다.',points:['방주교회는 아침 햇빛에 지붕 비늘이 물에 비칠 때','수풍석은 예약제 — 돌·바람·물 세 뮤지엄을 해설과 함께','본태는 콘크리트 담 사이 길이 곧 전시'],when:'4~6월·10~11월. 바람 센 날은 수풍석이 오히려 좋아요',course:['09:00 본태박물관','11:00 방주교회','13:00 비오토피아 점심','14:30 수풍석 뮤지엄(예약)','16:30 유민미술관·글라스하우스'],tip:'비오토피아 안은 주민 단지라 차량 통제가 있어요. 예약 확인서를 꼭 지참.'},
+ hanok_classic:{story:'한옥은 건물이 아니라 마당의 건축이에요. 종묘의 비움, 병산서원의 차경, 선교장의 열두 마당 — 공간이 어떻게 사람을 세우고 앉히는지 몸으로 익히는 코스.',points:['종묘 정전은 월대 끝에서 101m 지붕을 한 번에 보기','병산서원 만대루에 앉아 기둥 일곱 칸으로 잘린 강을 보기','선교장은 사랑채·안채·별당의 담 높이 차이를 세어 보기'],when:'가을(단풍·은행)과 초여름(배롱나무). 눈 온 다음 날 종묘',course:['Day 1 종묘→창덕궁 후원→북촌','Day 2 안동 하회→병산서원→도산서원','Day 3 영주 소수서원→부석사'],tip:'평면 한 장을 기억으로 그려 보세요. 칸 수와 마당 비율이 몸에 남아요.'},
+ light:{story:'빛이 재료인 건축은 하루 두 번 모습이 달라요. 경동교회의 벽돌 틈, 명동성당의 장미창, 방주교회의 물 반사. 같은 곳을 오전과 오후에 두 번 가는 코스입니다.',points:['경동교회는 오전 10시 무렵 동쪽 슬릿으로 빛이 떨어져요','석굴암 본존은 동짓날 해 뜰 때 이마에 빛이 닿도록 앉혀졌어요','뮤지엄 산 제임스 터렐관은 예약제, 흐린 날이 오히려 좋음'],when:'해가 낮은 11~2월, 맑은 날 오전 10시와 오후 4시',course:['09:30 경동교회','11:00 명동성당','14:00 리움','16:30 국립현대미술관 서울관 전시마당'],tip:'노출을 어두운 쪽에 맞추면 빛이 선으로 남아요. 플래시는 어디서도 금물.'},
+ water:{story:'물은 건축을 두 배로 만들어요. 경회루의 정면 기둥이 연못에 거꾸로 서고, 동궁과 월지의 밤은 반영이 본체보다 또렷해요. 바람 없는 날을 고르세요.',points:['경회루는 정면 서쪽 연못가에서 기둥 48개 반영','월지는 해 진 뒤 30분, 조명이 켜지고 하늘빛이 남을 때','소쇄원은 계곡물 소리가 건축의 일부 — 비 온 다음 날'],when:'바람 없는 아침·일몰 후. 장마 직후 수량이 많을 때',course:['Day 1 경복궁 경회루→선유도','Day 2 경주 동궁과 월지(야간)→다음 날 아침 불국사'],tip:'편광 필터를 돌리면 반영을 지우거나 살릴 수 있어요. 반영을 살릴 땐 수면과 눈높이를 낮게.'},
+ daytrip_capital:{story:'전철과 버스로 아침에 나가 저녁에 돌아오는 아홉 곳. 성곽 도시 수원, 출판도시 파주, 남한산성까지 — 서울에서 한 시간이면 건축의 폭이 넓어져요.',points:['수원 화성은 화서문에서 장안문까지 성곽 위 산책이 핵심','파주 출판도시는 미메시스 외에도 건물 수십 채가 한 동네','남한산성 행궁은 성곽 둘레길과 묶으면 반나절'],when:'사계절. 성곽은 겨울 맑은 날이 가장 선명',course:['수원: 09:30 화서문→장안문→행궁→통닭거리','파주: 10:00 미메시스→헤이리→지혜의숲','성남: 10:00 남한산성 행궁→수어장대'],tip:'광역버스 좌석은 앱에서 미리 예매하면 돌아올 때 서서 오지 않아요.'},
+ jeolla_2d:{story:'전주의 붉은 벽돌 성당에서 담양의 대숲 정원, 지리산의 큰 법당까지. 남도는 건축과 음식이 한 코스예요.',points:['전동성당은 한옥마을 쪽에서 비잔틴 돔과 기와 지붕을 한 화면에','소쇄원은 입구 대숲을 천천히 — 광풍각 마루에 앉아 계곡 소리','각황전은 2층 통층 내부가 핵심, 아침 예불 뒤 조용'],when:'5~6월 신록, 11월 단풍. 여름 소쇄원은 모기 대비',course:['Day 1 전주 전동성당→한옥마을→담양 소쇄원·죽녹원','Day 2 순천 선암사→구례 화엄사 각황전'],tip:'전주는 아침 콩나물국밥, 담양은 떡갈비, 구례는 산채. 답사 밥도 건축의 일부예요.'},
+ gyeongbuk_seowon:{story:'안동·영주·경주는 서원 세 곳과 마을 두 곳, 절 두 곳이 세계유산으로 묶인 벨트예요. 조선이 자연을 어떻게 빌려 지었는지(차경) 한 번에 읽혀요.',points:['병산서원은 강 쪽에서, 도산서원은 산 쪽에서 들어가 보기','부석사는 일주문부터 무량수전까지 축이 세 번 꺾이는 걸 세어 보기','하회는 부용대에서 마을 전체 지붕 방향을 보고 들어가기'],when:'10월 말~11월 초 단풍, 4월 벚꽃. 여름 한낮은 피하기',course:['Day 1 하회마을→병산서원→임청각','Day 2 도산서원→소수서원→부석사','Day 3 경주 양동마을→불국사'],tip:'서원은 강학 공간(앞)과 제향 공간(뒤)이 어떻게 나뉘는지 담을 따라가 보세요.'},
+ night:{story:'해가 진 뒤에 완성되는 건축이 있어요. DDP의 LED 장미, 영화의전당의 천장, 월지의 반영. 야간 개장 시간을 미리 확인하면 하루가 두 배가 돼요.',points:['DDP 외벽 조명은 일몰 후~23시, 옥상 잔디 언덕에서','경회루 야간 관람은 봄·가을 한정 예약제','영화의전당 빅루프 LED는 20~22시'],when:'일몰 후 30~60분 "블루아워"가 사진에 가장 좋아요',course:['17:30 서울시청 신청사','18:30 서울로 7017에서 노을','19:30 DDP 야경','21:00 세운상가 옥상에서 종로 야경'],tip:'삼각대 없이도 난간에 기대고 2초 셔터면 충분해요. ISO는 낮게.'},
+ temple_quiet:{story:'산사는 법당이 아니라 가는 길이 건축이에요. 일주문·천왕문·불이문을 지나며 몸이 어떻게 준비되는지, 마지막에 법당이 어떻게 나타나는지를 읽는 코스.',points:['부석사는 안양루 아래 계단에서 올려다볼 때 무량수전이 떠오르듯 나타나요','통도사는 금강계단 때문에 대웅전에 불상이 없어요 — 창으로 계단을 보기','해인사 장경판전은 바람길 — 창 크기가 앞뒤 다른 이유 보기'],when:'새벽 예불 뒤 7~9시, 눈 오는 날',course:['Day 1 통도사→부산','Day 2 해인사→불국사·석굴암','Day 3 부석사→봉정사'],tip:'법당 안 촬영 금지, 신발은 가지런히. 스님께 길을 물으면 건축 이야기가 돌아와요.'},
+ chungcheong_gangwon:{story:'차로 천천히 도는 1박2일. 산 위의 안도 다다오에서 강릉의 열두 마당 한옥, 아산의 돌담 마을, 서산의 작은 절까지 — 느리게 보는 사람을 위한 코스예요.',points:['뮤지엄 산은 입구 플라워가든부터 본관까지 700m 걷는 길이 설계의 반','선교장은 활래정 연못가에서 사랑채 지붕선을 보기','개심사는 벚꽃·배롱나무 철, 휘어진 기둥을 만져 보기'],when:'5월(개심사 왕벚), 10월(뮤지엄 산 단풍)',course:['Day 1 뮤지엄 산→강릉 선교장→오죽헌','Day 2 아산 외암마을→서산 개심사→논산 돈암서원'],tip:'뮤지엄 산 터렐관·명상관은 예약제. 시간대별 빛이 달라 오전 추천.'},
+};
+function tCollXHTML(c){ const X=TV_COLLX[c.id]; if(!X) return ''; return `<div class="tv-collstory"><p class="st">${esc(X.story)}</p><div class="tv-collpts">${X.points.map((p,i)=>`<div><i>${i+1}</i><span>${esc(p)}</span></div>`).join('')}</div><div class="tv-collmeta"><div><b>언제</b><span>${esc(X.when)}</span></div><div><b>하루·코스 예</b><ol>${X.course.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div><div><b>팁</b><span>${esc(X.tip)}</span></div></div></div>`; }
+/* 표지 셰이더(여행·도감·포트폴리오 공용) */
+function sgCover(el,pal){ if(!el||el.dataset.sg) return; if(!window.ShaderGradient){ if(document.readyState!=='complete') addEventListener('load',()=>sgCover(el,pal),{once:true}); return; } el.dataset.sg=1; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const SG=window.ShaderGradient;
+  const A={type:'waterPlane',color1:pal[0],color2:pal[1],color3:pal[2],cDistance:3.2,cPolarAngle:88,cAzimuthAngle:180,positionX:0,positionY:0,positionZ:0,rotationX:50,rotationY:0,rotationZ:-60,uDensity:1.3,uStrength:1.6,uSpeed:.18,brightness:1.05,grain:.05,grainMix:1,maxWidth:1280,background:'transparent',segments:80};
+  const B={cDistance:4,cPolarAngle:100,rotationX:34,rotationZ:-30,uStrength:2.2,color3:pal[3]||pal[2]};
+  let g=null; try{ g=SG.mount(el,A); }catch(e){ return; } if(!g||!g.ok||rm) return; el.__sg=g;
+  const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); let last=-1,tk=false; const tick=()=>{ tk=false; const r=el.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return; const k=Math.round(st(-r.top,0,r.height)*100)/100; if(k!==last){ last=k; g.set(SG.lerp(A,B,k)); } }; addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); tick(); }
+/* 섹션 독 */
+function tDockInit(){ if($('#tvDock')) return; const S=[['tvCollSec','컬렉션'],['tvNearSec','가까운 곳'],['tvMapSec','지도'],['tvBuild','코스'],['tvAbroad','해외'],['tvKit','키트']]; const d=document.createElement('div'); d.id='tvDock'; d.setAttribute('role','navigation'); d.className='lg tv-dock'; d.setAttribute('aria-label','건축 여행 바로가기'); d.innerHTML=S.map(s=>`<a href="#travel" data-tdock="${s[0]}">${s[1]}</a>`).join(''); document.body.appendChild(d);
+  d.addEventListener('click',e=>{ const a=e.target.closest('[data-tdock]'); if(!a) return; e.preventDefault(); const el=$('#'+a.dataset.tdock); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
+  const io=new IntersectionObserver(en=>{ en.forEach(x=>{ if(x.isIntersecting){ $$('#tvDock a').forEach(a=>a.classList.toggle('on',a.dataset.tdock===x.target.id)); } }); },{rootMargin:'-40% 0px -50% 0px'}); S.forEach(s=>{ const el=$('#'+s[0]); if(el) io.observe(el); });
+  const vis=()=>{ d.classList.toggle('show',location.hash==='#travel'&&scrollY>innerHeight*.6); }; addEventListener('scroll',vis,{passive:true}); addEventListener('hashchange',()=>setTimeout(vis,80)); vis(); }
 function tDetail(id){ const p=TPL.find(x=>x.id===id); if(!p) return; let d=$('#tvDrawer'); if(!d){ d=document.createElement('div'); d.id='tvDrawer'; d.className='tv-dr'; document.body.appendChild(d); d.addEventListener('click',e=>{ if(e.target===d||e.target.closest('[data-tdx]')) tDetailClose(); const g=e.target.closest('[data-tdmap]'); if(g){ tDetailClose(); const pp=TPL.find(x=>x.id===g.dataset.tdmap); $('#tvMap').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>tFly(pp,16.2),400); } const a=e.target.closest('[data-tdadd]'); if(a){ tDetailClose(); document.querySelector(`[data-tadd="${a.dataset.tdadd}"]`)?.click(); } }); }
   const c=TREG[p.r][1], sc=TSC[p.id]||[4,4,4,4], r=TRAT[p.id], F=TFEAT[p.id]||[], E=tEat(p.id); const nm=p.n.replace(/\s*\(.+\)/,'');
   d.innerHTML=`<aside class="tv-drb" style="--c:${c}"><button class="tv-drx" data-tdx aria-label="닫기">×</button>
@@ -8566,7 +8651,7 @@ function dnCoverHTML(){ const ph=BLDX.filter(b=>b.p); const cols=[[],[],[],[],[]
   return `<section class="tv-cover dnat-cov" id="dnatCover"><div class="tv-cols" aria-hidden="true">${cols.map(c=>`<div class="tv-col">${c.slice(0,8).map(b=>`<figure><img src="${bldImg(b,500)}" alt="" loading="lazy" decoding="async"><figcaption>${esc(b.name)}</figcaption></figure>`).join('')}</div>`).join('')}</div><div class="tv-cov-sh"></div>
     <div class="tv-cov-t"><span class="lab-k">ATLAS · 건축 도감</span><h2>세계의 건물 ${BLDX.length}채,<br>단어로 다시 읽다.</h2><p>기자의 피라미드부터 코펜힐까지 4,500년, ${new Set(BLDX.map(bldCountry)).size}개 나라의 건축을 이 랩의 단어로 풀었어요. 사진을 누르면 같은 단어로 지은 모형이 나타나고, 그대로 내 설계의 출발점이 됩니다.</p>
     <div class="tv-stats"><div><b class="dnc-n" data-n="${BLDX.length}">0</b><span>건물</span></div><div><b class="dnc-n" data-n="${archs}">0</b><span>건축가 · 시대</span></div><div><b class="dnc-n" data-n="${cities}">0</b><span>나라</span></div><div><b class="dnc-n" data-n="${DNA_KW.length}">0</b><span>읽는 단어</span></div></div></div></section>`; }
-function dnCoverPar(){ const cov=$('#dnatCover'); if(!cov||MQ.rm) return; const vh=innerHeight; const r=cov.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; const k=(vh-r.top)/(vh+r.height);
+function dnCoverPar(){ const cov=$('#dnatCover'); if(cov&&!cov.dataset.sg) try{ sgCover(cov,['#2a1a3a','#7a4fd6','#0a0b12','#ffb4e6']); }catch(e){} if(!cov||MQ.rm) return; const vh=innerHeight; const r=cov.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; const k=(vh-r.top)/(vh+r.height);
   $$('#dnatCover .tv-col').forEach((c,i)=>c.style.transform=`translate3d(0,${((i%2?-1:1)*(k-0.5)*(160+i*40)).toFixed(1)}px,0)`); const h=cov.querySelector('.tv-cov-t'); if(h) h.style.transform=`translate3d(0,${((k-0.5)*-60).toFixed(1)}px,0)`;
   if(!cov.dataset.cnt&&r.top<vh*.6){ cov.dataset.cnt=1; cov.querySelectorAll('.dnc-n').forEach(el=>{ const to=+el.dataset.n, t0=performance.now(); const f=t=>{ const q=Math.min(1,(t-t0)/1200); el.textContent=Math.round(to*(1-Math.pow(1-q,3))); if(q<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }); } }
 /* ===== 컨셉 → 도면: 배치도 · 층별 평면 · 단면 · 정면도 (개략, SVG) ===== */
@@ -8995,7 +9080,7 @@ const PF_PATHS=[
  {k:'abroad',ic:'globe',t:'해외 사무소 · 유학',d:'미국 M.Arch·영국 Part 2 등을 거쳐 해외 사무소로. 언어와 비자가 관건입니다.',need:['영문 포트폴리오','유학(M.Arch/AA 등)','비자·자격 계획'],pay:'미국 건축가 중위 연 $99,280 (BLS, 2025.5) · 영국 Part 2 £24,500~42,000',non:false}];
 const PF_ICO={pen:'<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',crane:'<path d="M4 21V5h10M4 5l10 0 6 3M14 5v4M8 21h-4"/><path d="M14 9v4h2"/>',check:'<path d="M4 12l5 5 11-11"/>',beam:'<path d="M3 7h18M3 17h18M7 7v10M17 7v10"/>',gov:'<path d="M3 21h18M5 10h14M4 10l8-6 8 6M7 10v8M12 10v8M17 10v8"/>',map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',cube:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/>',sofa:'<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M3 11h18v6H3zM5 17v2M19 17v2"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',roof:'<path d="M2 11l10-7 10 7"/><path d="M5 10v10h14V10"/>',camera:'<rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 7l2-3h4l2 3"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>'};
 const PF_PERSONA=[
- {n:'A',t:'5년제 건축학 → 아뜰리에 → 대형 사무소',steps:[['5년제 건축학과','졸업설계·포트폴리오'],['아뜰리에 2~3년','주택·근생 처음부터 끝까지'],['건축사 예비시험','실무수련 이어 가기'],['대형 사무소 경력 이직','큰 프로젝트 PM 보조']],tip:'작은 사무소에서 "끝까지 해 본 경험"이 경력 이직의 무기가 됩니다.'},
+ {n:'A',t:'5년제 건축학 → 아뜰리에 → 대형 사무소',steps:[['5년제 건축학과','졸업설계·포트폴리오'],['아뜰리에 2~3년','주택·근생 처음부터 끝까지'],['실무수련 3년 신고·완료','건축사 자격시험(연 1회)'],['대형 사무소 경력 이직','큰 프로젝트 PM 보조']],tip:'작은 사무소에서 "끝까지 해 본 경험"이 경력 이직의 무기가 됩니다.'},
  {n:'B',t:'건축공학 → 건설사 공채 → 현장 → 본사',steps:[['4년제 건축공학','건축기사 취득'],['건설사 공채','현장 공무·공사'],['현장 순환 5년','공정·원가 관리'],['본사 기술·개발','사업 기획으로']],tip:'자격증과 현장 경험이 그대로 연봉에 반영되는 길입니다.'},
  {n:'C',t:'건축학 → 공무원 건축직',steps:[['건축학·건축공학','법규 과목 미리'],['공무원 시험','지방직·국가직'],['구청 건축과','인허가 실무'],['도시·주택 정책','공공 프로젝트']],tip:'설계를 "허가하는 쪽"에서 보는 경험은 나중에 어디서든 통합니다.'},
  {n:'D',t:'건축학 → 해외 대학원 → 해외 사무소',steps:[['국내 건축학','영문 포트폴리오'],['M.Arch 2년','미국·영국·유럽'],['OPT·인턴','현지 사무소'],['해외 사무소 정규직','비자 스폰서']],tip:'학교 선택보다 "졸업 후 비자 경로"를 먼저 그려 두세요.'},
@@ -9142,7 +9227,7 @@ function renderPfPlus(){ const v=$('#view-portfolio'); if(!v||v.dataset.plus) re
    <div class="tv-cov-t"><span class="lab-k">PORTFOLIO · CAREER</span><h2>건축으로 일하는 법,<br>한눈에.</h2><p>설계사무소부터 건설사·공기업·도시·전통건축·공간 디자인까지. 공개된 자료로 연봉과 진로를 정리하고, 포트폴리오를 지원처 기준으로 봐 드려요. 전공이 아니어도 괜찮아요.</p>
    <div class="tv-stats"><div><b class="pf-n" data-n="${PF_PATHS.length}">0</b><span>진로</span></div><div><b class="pf-n" data-n="${PF_PAY.length}">0</b><span>직업 연봉 자료</span></div><div><b class="pf-n" data-n="5700">0</b><span>건축가 중위 연봉 (만원)</span></div><div><b class="pf-n" data-n="12">0</b><span>쪽 포트폴리오 해부</span></div></div></div></section>
   <div class="pf2">
-   <nav class="pf-nav"><a href="#pfMap" data-pfgo="pfMap">진로 지도</a><a data-pfgo="pfPay" href="#pfPay">연봉 자료</a><a data-pfgo="pfFlow" href="#pfFlow">예시 경로</a><a data-pfgo="pfAnat" href="#pfAnat">포트폴리오 해부</a><a data-pfgo="pfAll" href="#pfAll">비전공자의 길</a><a data-pfgo="pfCv" href="#pfCv">이력서 작성</a><a data-pfgo="pfPhoto" href="#pfPhoto">증명사진</a><a data-pfgo="pfReadsH" href="#pfReadsH">포트폴리오 크릿</a></nav>
+   <nav class="pf-nav"><a href="#pfMap" data-pfgo="pfMap">진로 지도</a><a data-pfgo="pfPay" href="#pfPay">연봉 자료</a><a data-pfgo="pfFlow" href="#pfFlow">예시 경로</a><a data-pfgo="pfLic" href="#pfLic">건축사 되기</a><a data-pfgo="pfAnat" href="#pfAnat">포트폴리오 해부</a><a data-pfgo="pfAll" href="#pfAll">비전공자의 길</a><a data-pfgo="pfCv" href="#pfCv">이력서 작성</a><a data-pfgo="pfPhoto" href="#pfPhoto">증명사진</a><a data-pfgo="pfReadsH" href="#pfReadsH">포트폴리오 크릿</a></nav>
    <section class="pf-sec" id="pfMap"><div class="pf-h"><span class="lab-k">MAP · 진로 지도</span><h2>건축을 공부하면, 갈 수 있는 곳</h2><p>설계만 있는 게 아니에요. 열세 갈래의 길과 각 길에 필요한 것, 공개된 연봉 자료를 모았어요. <span class="pf-non">비전공 OK</span> 표시는 다른 전공에서도 많이 들어오는 길이에요.</p></div>
     <div class="pf-fil" role="group"><button data-pff="" aria-pressed="true">전체</button><button data-pff="non" aria-pressed="false">비전공 OK</button><button data-pff="design" aria-pressed="false">설계</button><button data-pff="build" aria-pressed="false">시공·감리</button><button data-pff="public" aria-pressed="false">공공</button></div>
     <div class="pf-map" id="pfMapG">${PF_PATHS.map((p,i)=>`<article class="pf-path zrv" data-k="${p.k}" data-non="${p.non?1:0}" style="--i:${i}"><div class="pf-ic"><svg viewBox="0 0 24 24">${PF_ICO[p.ic]||''}</svg></div><h3>${esc(p.t)}${p.non?'<span class="pf-non">비전공 OK</span>':''}</h3><p>${esc(p.d)}</p><ul>${p.need.map(n=>`<li>${esc(n)}</li>`).join('')}</ul><div class="pf-pay">${esc(p.pay)}</div></article>`).join('')}</div></section>
@@ -9152,7 +9237,7 @@ function renderPfPlus(){ const v=$('#view-portfolio'); if(!v||v.dataset.plus) re
     <div class="pf-axis"><span>3,000만</span><span>5,000만</span><span>7,000만</span><span>9,000만원</span></div>
     <div class="pf-leg">${Object.entries(PF_FN).map(([k,n])=>`<span><i style="background:${PF_FC[k]}"></i>${n}</span>`).join('')}</div>
     <div class="pf-cards">
-     <div class="pf-card zrv"><em>대형 설계사무소 · 전 직원 평균 연봉</em><div class="pf-big"><b>7,600</b><span>만원 · 희림 (1,442명)</span></div><div class="pf-big"><b>6,613</b><span>만원 · 삼우 (817명)</span></div><p>신입 초봉이 아니라 전 직원 평균이에요. 2023년 업계 기사는 "대형 사무소 초봉 4,000만원 시대"를 전했어요.</p></div>
+     <div class="pf-card zrv"><em>대형 설계사무소 · 전 직원 평균 연봉</em><div class="pf-big"><b data-cn="7600">7,600</b><span>만원 · 희림 (1,442명)</span></div><div class="pf-big"><b data-cn="6613">6,613</b><span>만원 · 삼우 (817명)</span></div><p>신입 초봉이 아니라 전 직원 평균이에요. 2023년 업계 기사는 "대형 사무소 초봉 4,000만원 시대"를 전했어요.</p></div>
      <div class="pf-card zrv"><em>10대 건설사 · 2025 사업보고서 평균 연봉</em><div class="pf-bar2">${[['현대건설',11200],['GS건설',10500],['대우건설',9900],['DL이앤씨',9800],['포스코이앤씨',9700]].map(([n,v])=>`<div><span>${n}</span><i style="--w:${v/112}%"></i><b>${(v/10000).toFixed(2)}억</b></div>`).join('')}</div><p>10대 건설사 평균 약 9,922만원(삼성물산 제외). 현장 근무·성과급이 포함된 숫자예요.</p></div>
      <div class="pf-card zrv"><em>공무원 2026 봉급표 · 월 기본급</em><div class="pf-big"><b>213.3</b><span>만원 · 9급 1호봉</span></div><div class="pf-big"><b>231.7</b><span>만원 · 7급 1호봉</span></div><p>2026년 1~3호봉은 6.6% 올랐어요. 수당이 따로 붙고, 실수령은 공제 후 금액이에요.</p></div>
      <div class="pf-card zrv"><em>해외 비교</em><div class="pf-big"><b>$99,280</b><span>미국 건축가 중위 연봉 (BLS, 2025.5)</span></div><div class="pf-big"><b>£24.5k~42k</b><span>영국 Part 2 어시스턴트 (Dezeen Pay 100, 2024)</span></div><p>미국은 2023~25년 건축가 보수가 연 3% 미만으로 올랐고, 갓 졸업한 비자격자는 약 7% 올랐어요 (AIA, 2025).</p></div>
@@ -9160,6 +9245,10 @@ function renderPfPlus(){ const v=$('#view-portfolio'); if(!v||v.dataset.plus) re
     <p class="pf-src">출처: 한국고용정보원 고용24 직업정보(재직자 조사 2023, 대입정보포털 어디가 열람) · 캐치 기업정보(희림·삼우, 2026) · 아주경제 2026.4.29(10대 건설사 2025 평균) · 인사혁신처 2026 공무원 봉급표 · 미국 노동통계국 BLS OOH · Dezeen The Pay 100(2024) · AIA Compensation & Benefits Report 2025 보도자료 · 월간 SPACE 2022.11 좌담. 기업 평균 연봉은 전 직원 평균이라 신입 초봉과 달라요. 숫자는 해마다 바뀌니 지원 전 그해 공고와 공시를 꼭 확인하세요.</p></section>
    <section class="pf-sec" id="pfFlow"><div class="pf-h"><span class="lab-k">PATHS · 예시 경로</span><h2>이렇게 가는 사람들이 많아요</h2><p>실제 개인이 아니라 흔한 진로를 묶어 만든 <b>예시 경로</b>예요. 학교 이름보다 "무엇을 쌓았는지"가 다음 문을 엽니다.</p></div>
     <div class="pf-flow">${PF_PERSONA.map((p,i)=>`<article class="pf-per zrv" style="--i:${i}"><div class="pf-pn">${p.n}</div><h3>${esc(p.t)}</h3><ol>${p.steps.map((s,j)=>`<li style="--j:${j}"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></li>`).join('')}</ol><p>${esc(p.tip)}</p></article>`).join('')}</div></section>
+   <section class="pf-sec" id="pfLic"><div class="pf-h"><span class="lab-k">LICENSE · 건축사가 되는 길</span><h2>건축사 자격, 2026 개편 기준으로</h2><p>2026년 7월 국토교통부가 발표한 제도 개편을 반영했어요. 연도별로 적용 시점이 달라서 <b>내가 언제 수련을 시작하는지</b>에 따라 규칙이 달라요.</p></div>
+    <ol class="pf-lic">${[['01','인증 5년제 졸업','한국건축학교육인증원(KAAB) 인증을 받은 5년제 건축학과 또는 인증 건축대학원. 비인증 5년제·대학원은 실무수련이 4년.'],['02','실무수련 신고','건축사사무소에서 실무수련 신고 후 3년(인증 학위 기준). 2028년 신규 신고자부터는 최소 420일(종전 465일), 3개월마다 신고, 수련 과목 8개·항목 20개.'],['03','건축사 자격시험','2027년부터 연 1회(3월 초). 현행 3과목(대지계획·건축설계1·건축설계2) → 2032년부터 필기 2과목(법규·감리·안전·친환경·설비 등) + 실기 1과목(배치·평면·단면). 과목 합격 유효기간 2032년부터 3년 내 3회.'],['04','자격 등록·개업','합격 후 420일 수련·항목별 필수교육·인증학위를 모두 갖춰야 자격증 발급. 개업하려면 건축사사무소 개설 신고.']].map(s=>`<li class="zrv"><em>${s[0]}</em><b>${s[1]}</b><p>${s[2]}</p></li>`).join('')}</ol>
+    <div class="pf-licnote"><div><b>예비시험은 끝났어요</b><span>2019년까지 합격한 사람만 2026년까지 응시 가능. 2027년부터 예비시험 특별전형 폐지.</span></div><div><b>학과를 고를 때</b><span>4년제 건축공학·건축학은 인증 대학원을 거쳐야 수련 자격이 생겨요. 학교의 KAAB 인증 여부를 먼저 확인하세요.</span></div><div><b>시험 전에 응시 가능</b><span>3년을 채우면 420일을 다 못 채워도 시험은 볼 수 있어요. 자격증은 다 갖춘 뒤에.</span></div></div>
+    <p class="pf-src">출처: 국토교통부 「건축사 자격시험·실무수련 제도 개편」 발표(2026.7, 아시아경제 2026.7.24 보도) · 대한건축사협회 건축사시험 응시자격 안내(2026.10 열람). 제도는 바뀔 수 있으니 시험 전 건축사시험 사이트(exam.kira.or.kr)에서 다시 확인하세요.</p></section>
    <section class="pf-sec" id="pfAnat"><div class="pf-h"><span class="lab-k">ANATOMY · 포트폴리오 해부</span><h2>12쪽에 담는 법</h2><p>심사자는 한 권을 평균 몇 분 안에 넘깁니다. 첫 3쪽에서 결정되는 경우가 많아요. 마우스를 올리면 쪽마다 할 일을 보여 드려요.</p></div>
     <div class="pf-anat">${PF_ANAT.map((a,i)=>`<div class="pf-pg zrv" style="--i:${i}"><div class="pf-pgv">${pfAnatSVG(a[2])}</div><em>${String(i+1).padStart(2,'0')}</em><b>${esc(a[0])}</b><span>${esc(a[1])}</span></div>`).join('')}</div>
     <div class="pf-rule"><div><b>3초</b><span>첫 장에서 이 사람이 무엇을 잘하는지</span></div><div><b>1 · 1 · 1</b><span>프로젝트마다 킬링 이미지 하나, 종류는 다르게</span></div><div><b>20MB</b><span>지원처 용량·쪽수 제한을 먼저 확인</span></div><div><b>역할</b><span>팀 작업은 내가 한 부분을 분명히</span></div></div></section>
@@ -9168,7 +9257,7 @@ function renderPfPlus(){ const v=$('#view-portfolio'); if(!v||v.dataset.plus) re
    ${cvHTML()}
    <div class="pf-h" id="pfReadsH" style="max-width:1200px;margin:64px auto 0;padding:0 24px"><span class="lab-k">CRIT · 포트폴리오 읽기와 크릿</span><h2>지원처 기준으로 읽고, 내 것도 봐 드려요</h2></div>
   </div>`;
-  v.insertAdjacentHTML('afterbegin',html); pfBars('mid'); try{ phInit(); }catch(e){ console.warn('ph',e); } try{ dnaReveal(); }catch(e){} pfScrollInit(); }
+  v.insertAdjacentHTML('afterbegin',html); pfBars('mid'); try{ const io=new IntersectionObserver(en=>{ en.forEach(x=>{ if(!x.isIntersecting) return; const el=x.target; io.unobserve(el); const n=+el.dataset.cn; const t0=performance.now(); const f=now=>{ const k=Math.min(1,(now-t0)/1100); const e=1-Math.pow(1-k,3); el.textContent=Math.round(n*e).toLocaleString('ko-KR'); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }); },{threshold:.5}); $$('#view-portfolio [data-cn]').forEach(el=>io.observe(el)); }catch(e){} try{ phInit(); sgCover($('#pfCover'),['#1a2a1a','#2f8f6a','#0a0b12','#c8ffd9']); }catch(e){ console.warn('ph',e); } try{ dnaReveal(); }catch(e){} pfScrollInit(); }
 function pfBars(mode){ const el=$('#pfBars'); if(!el) return; let L=PF_PAY.slice(); if(mode==='mid') L.sort((a,b)=>b[2]-a[2]); else if(mode==='sat') L.sort((a,b)=>b[4]-a[4]); else L.sort((a,b)=>Object.keys(PF_FN).indexOf(a[5])-Object.keys(PF_FN).indexOf(b[5])||b[2]-a[2]);
   const x=v=>((v-3000)/(9200-3000)*100).toFixed(2); el.innerHTML=L.map((p,i)=>`<div class="pf-row" style="--c:${PF_FC[p[5]]};--i:${i}"><span class="pf-rn">${esc(p[0])}</span><div class="pf-rt"><i class="pf-rg" style="--l:${x(p[1])}%;--r:${x(p[3])}%"></i><i class="pf-rm" style="--m:${x(p[2])}%"><b>${p[2].toLocaleString()}</b></i></div><span class="pf-rs">만족 ${p[4]}%</span></div>`).join('');
   requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('go'))); }
