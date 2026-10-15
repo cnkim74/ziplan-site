@@ -122,3 +122,13 @@
 - **홈 스크롤**: `.build` 950→860vh(모바일 700vh), 패널 구동부 `P0` 0.3→0.22, 한눈에→줌 ease 0.08~0.22, 보드 구간 ease 0.06~0.94 — 집 완성 뒤 멈춰 보이던 구간 제거. 테스트 p29/thome2.js [m](40단계 스크롤, 패널 구간 연속 변화 확인).
 - 가독성/터치: 모바일 버튼 min-height 38~42px, 입력 16px(iOS 줌 방지), `.lab-h p` 폭 720px.
 - 사용자가 할 일: `supabase/plaza.sql`, `supabase/tiers.sql` 아직 미적용(SQL Editor에서 실행).
+
+## v9 — 정교 모형 2차 · 리퀴드 글래스 · 여행 효과 · 건축사 로드맵 (2026-10-15 오후, 2338fd2)
+- **정교 모형 2차(BSIG 41채 재작성)**: 서브에이전트 3조(A 현대 주택·파빌리온 / B 고전·전통·석조 / C 현대 아이콘)가 패치 파일(`scratch/sig2/A.js·B.js·C.js`, `const BSIG_PATCH={…}`)로 짓고 `p29/tsig2.js <patch|none> <ids> <views> <prefix>`(페이지 안에서 `Object.assign(__atlas.BSIG,BSIG_PATCH)`)로 eye/front/aerial 렌더 확인 → 병합 스크립트(노드: 기존 BSIG 평가 + 패치 병합 + `build.toString()` 직렬화)로 crit.html `const BSIG={…}` 블록 교체, `BSIG_SITE`에 byeongsan:forest. 스크래치 bsig.js도 갱신. 자평: 롱샹·낙수장·사보아·시드니·구겐하임·판테온·파르테논·타지마할·루브르 피라미드·센다이·소크 등 "상/중상", ddp·chichu·podo·gilardi·space "중". 추정 치수는 코드 주석에 표기. 남은 한계: 시드니 셸은 구 근사(타일 셰브런 없음), 루브르 아부다비 돔은 삼각 격자 근사, 치추·테시마·포도 치수 다수 추정.
+  - pgBuild 도심 사이트: `P.sig`면 이웃 건물 높이를 건물 높이×1.15로 제한하고 길 건너 줄은 생략(정면 뷰 가림 방지).
+  - `window.__atlas`에 `BSIG,BSIG_SITE` 노출(패치 테스트용).
+- **리퀴드 글래스 공용 스타일**(`/* ===== 리퀴드 글래스 (v9) */`): `.lg` + `.tv-bar,.pf-nav,.tv-mtools .modes/.btn,.pgt,.zc-panel,.tv-kittabs,.tv-abtabs button,.dnat-m .x,.tv-drx,.zs-box,.tv-dock`에 그라데이션 유리(blur 22·saturate 1.9·흰 테두리·inset 하이라이트), 다크 변형. `.lg-sheen`(conic 광택 hover). 상단 네비는 기존 WebGL liquid-glass-js 유지.
+- **여행 v4**(`/* ===== 건축 여행 v4 */`, tv3ui 뒤): `TV_COLLX` 컬렉션 14개 이야기(story·points 3·when·course·tip) → `tCollXHTML(c)`가 `#tvCollX` 헤더 아래 삽입. 표지 셰이더 `sgCover(el,[c1,c2,c3,c4])`(ShaderGradient.mount, 스크롤 따라 lerp; 로드 전이면 load 뒤 재시도) — 여행·도감(`dnCoverPar`에서 지연 마운트)·포트폴리오 표지 공용, `.tv-cols`는 radial mask로 가장자리에 셰이더 비침. 섹션 독 `#tvDock`(`tDockInit`, div — nav 태그 금지) 컬렉션/가까운 곳/지도(`#tvMapSec` id 추가)/코스/해외/키트, IO로 현재 표시, 표지 지나면 등장. 스크롤 줌·시차는 CSS `animation-timeline: view()`(@supports 안, reduced-motion 제외): `.lab-h/.pf-h` zmIn, 컬렉션 사진 parY, 해외 모자이크 kb, 지도/키트/컬렉션 상세 zmIn2, 카드 사진 parY2, 표지 글 covOut·사진 covZoom.
+- **포트폴리오 v9**: `#pfLic` 건축사 로드맵 4단계 + 주의 3 + 출처 — 2026.7 국토교통부 개편(2027~ 연 1회 3월, 예비시험 특별전형 폐지, 2028 신규 신고자부터 420일·3개월 신고·8과목 20항목, 2032~ 필기2+실기1·과목합격 3년 3회) 반영. 예시 경로 A의 "건축사 예비시험" → "실무수련 3년 신고·완료 / 자격시험". 연봉 큰 숫자 카운트업(`data-cn`), 12쪽 해부 카드 pgIn(회전 등장), 카드류 zmIn. 숫자 재검증: 2026 봉급표 9급 2,133,000·7급 2,317,100(인사혁신처, 6.6% 인상) ✓, BLS 5월 2025 건축가 중위 $99,280 ✓.
+- 사진 없는 여행지 4곳(송은·미메시스·사유원·유민미술관)은 여전히 상업 이용 가능한 자유 라이선스 사진이 없음(2026-10 재확인) → 모형 썸네일 유지. 해외 코스 64곳은 모두 도감 사진 있음.
+- 테스트: p29/ttv5.js [m] [hash](표지 셰이더·독·스크롤 프레임), tpf2.js, tsig2.js.
