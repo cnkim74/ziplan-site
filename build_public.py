@@ -35,7 +35,7 @@ s = head + s[:i] + '</head>\n<body>\n' + s[i:] + '\n</body>\n</html>\n'
 s = s.replace("const base=new URL('vendor/pdfjs/',location.href);", "const base='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/';")
 # 공개용 문구
 s = s.replace('<b>AI 준비 중</b> claude.ai 안에서 열면 AI 버튼이 켜집니다. 계산과 배치는 지금도 됩니다.',
-              '<b>베타</b> AI 제안·크릿, 로그인, 광장은 정식 오픈 때 열립니다. 내집코드·대지·도면·모형·패널·자료실은 지금 바로 됩니다.')
+              '<b>베타</b> AI 이미지 크릿과 광장은 정식 오픈 때 열립니다. 로그인·저장, 취향 랩·내집코드·설계 흐름·도면·DXF·아틀라스·건축 여행은 지금 바로 됩니다.')
 s = s.replace("title='claude.ai에서 열면 켜집니다'", "title='정식 오픈 때 열립니다'")
 s = s.replace('광장은 claude.ai 안에서 열면 보입니다. (공용 저장소 연결 필요)', '광장은 정식 오픈 때 열립니다. 지금은 패널·도면을 만들어 두세요.')
 s = s.replace('로그인된 claude.ai 안에서만 올릴 수 있고, 내 글은 나만 고치거나 지울 수 있습니다.', '정식 오픈 후 로그인하면 올릴 수 있고, 내 글은 나만 고치거나 지울 수 있습니다.')

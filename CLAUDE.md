@@ -212,3 +212,26 @@
 - **분해 액소 예시 갤러리**(`#exAx` 위 `.exax-ex`): `EXSAMPLES` 3종(3층 근생=동선 강조 / 계단식 테라스 오피스 5층=프로그램 / 중정 주택 2층=남동) — 가상 DXF 생성기 `exSampleDXF`·`exSampleTerrace`·`exSampleCourt`(`exDXFKit`), 미리 그린 그림 `img/exax-{retail,terrace,court}.webp`(스크래치 `ax/tex_ex.js`로 렌더), 누르면 `exLoadSample(k)`로 작업대에 열림. 테라스(TERR) 폴리곤도 격자 범위에 포함.
 - **취향 랩 AI 맞춤 조합** `#dnAi`(`#dnPick` 바로 위, `/* ===== 취향 랩 — AI 맞춤 조합 (v16) */`): 문장 → `dnaiSeeds`(단어 직접 일치 12점·건축가 이름 11점·개념 사전 `DNAI_LEX` 90여 개 8점~) → `dnaiCombos`: 슬롯(용도1·대지1·공간2·덩어리1·재료1·빛1·분위기1·동선1)을 씨앗으로 채우고 빈 칸은 씨앗 6축 벡터 코사인 + 갈래 가중으로 — A 컨셉 그대로 / B 한 걸음 옆(직접 언급 아닌 칸은 2순위) / C 의외의 한 수(덩어리·재료·빛을 약한 축 뒤집어 고르고 닮은 건축가 추가). 카드: 생성기 썸네일·페르소나·갈래 %·단어별 이유, "이 조합으로 짓기"(state.dna 교체 → 결과 열기) / "지금 고른 것에 더하기". 예시 문장 6개. 규칙 기반(ZIPLAN 엔진) — 외부 AI 호출 없음.
 - 테스트: `scratch/perf15/prof.js`(iPad 에뮬·CPU 4배 느리게, 긴 작업 합), `cpu.js`(CPU 프로필), `tai.js`(AI 조합·예시 갤러리).
+
+## v17 (2026-10-17) — 문 세 개 + 광장: 메뉴 4문 · 홈 재구성 · 모바일 탭 바 · 표지 소속 표시 · 쉬운 말 띠
+- 방향: 리뉴얼 설계서(프로젝트 문서 `claude/ZIPLAN_리뉴얼_설계서.md`) 3장. 사이트를 **집 구경(look) · 내 집 짓기(build) · 건축 공부(studio) · 광장(together)** 네 문으로 정리. 일반인 입구 = 취향 랩, 학생 입구 = 설계 흐름. 기존 기능은 지우지 않고 자리만 옮김. '고를수록 [단어] 당신을 닮는다' 장면 유지.
+- **메뉴 `NAVG`** 4그룹으로 교체(`const NAVG=[`). 항목 5번째 값이 `'soon'`이면 링크 대신 "곧" 배지(`.mg-a.soon`, `#navMenu .soon`, `.ts-a.soon`) — 건축 극장(cinema)·집 블록(game)·집 이야기(story)·건축주 가이드(buildguide)는 자리만. `NICO`에 film·blocks·steps 아이콘 추가. 컨셉 마법사·매스 도감·레시피는 메뉴에서 빠지고 '건축 공부 > 컨셉' 안에서만.
+- **모바일 하단 탭 바** `#tabBar`(div, nav 태그 아님) + 시트 `#tabSheet`: `buildTabBar()`/`tabCurrent()`(`/* ===== 모바일 하단 탭 바 (v17) */`, buildNav() 바로 뒤, setTimeout+try). 홈·구경·짓기·공부·광장 — 문을 누르면 그 묶음의 방이 아래 시트로, 현재 문 강조, `route()`에서 `tabCurrent()` 호출. ≤820px에서만 표시(`html.hasTab body{padding-bottom}`), visualViewport 높이가 150px 넘게 줄면(키보드) `.kb`로 숨김, 시트 열리면 `html.tabsheet-open`으로 채팅 FAB 숨김. lite 모드에선 backdrop-filter 없음.
+- **홈 순서**(`#view-home` 위→아래): `#photo`(표지 사진 장면 — 문구만 "집을 좋아하는 모든 사람의 공간"·문 세 개 링크) → `#homeDoors`(문 세 개 카드 + 광장) → `#homeToday`(01 오늘의 집 = 아틀라스 오늘의 명작 사진 / 02 이번 계절 가 볼 곳 = `TV_SEASON` 현재 계절 스팟, 날짜로 순환) → `#likeWrap`(닮는다 장면, "30초 취향 집 짓기" 링크 추가) → `#homeNow`(03 건축 극장 자리 — 마키 띠 + 명작 3채 예고편) → 리본 → `#homeTrips` → `#homeMeet`(04 광장 오늘 = `pzCh()` 주간 챌린지 / 05 집 블록 자리) → `#introHero`(06 내 집 짓기 띠 — 주소 폼·회전 단어·셰이더 유지, 키워드 칩 대신 "땅이 있어요/아직 없어요" `.hb-two`, 건축주 가이드 "곧") → `#homeStudio`(07 건축 공부 머리) → `#build` 스크롤 장면 → `.intro` → `#film` → 세 개의 집 story → `#alts` → `#pstrip` → 리본 → `#map`(한눈에 — 타일을 네 문으로 다시 묶음, 새 타일 `#tileAtlas`·`#tileTravel`·`#tileDna` 인라인 SVG) → `#pricing` → `#faq`. 채우기는 `homeV17Init()`(Boot 끝, `/* ===== 홈 v17 */`): 사진 썸네일(`bldImg`·`phImg`)만 쓰고 **3D·pgThumb는 만들지 않음**. `[data-atgo-b]` → #atlas 이동 후 `bldOpen`, `[data-tgo]` → #travel 이동 후 `tDetail`.
+- **표지 소속 문**: RHERO 렌더의 `.rh-k` 앞에 `.rh-door`(NAVG에서 그 방이 속한 그룹 이름·색). 방이 어느 그룹에도 없으면(home·admin) 표시 없음.
+- **쉬운 말 띠** `.ezwords`: `homeV17Init`이 `#view-zipcode`·`#view-dna` 표지 리본 아래에 삽입(건폐율·용적률·용도지역·일조 사선·연면적 / 대지·매스·외피·중정·필로티 한 줄 풀이). 건축 공부 쪽 용어는 그대로.
+- CSS는 `/* ===== v17 — 문 세 개 + 광장 */` 블록(`@media print{#zchat{display:none}}` 바로 앞).
+- `build_public.py` 공개용 배너 문구 수정: 로그인·저장은 이미 되므로 "AI 이미지 크릿과 광장은 정식 오픈 때"로.
+- **공개 빌드에서 막힌 기능 조사(2026-10-17)**:
+
+| 기능 | 막힌 이유 | 열려면 |
+|---|---|---|
+| 광장 올리기·댓글·좋아요 | `supabase/plaza.sql` 미적용(테이블 없음) | 사용자가 Supabase SQL Editor에서 plaza.sql 실행 → v21(P5)에서 공개 빌드 분기 열기 |
+| 회원 등급·플랜 저장 | `supabase/tiers.sql` 미적용 | tiers.sql 실행 |
+| AI 이미지 크릿(패널·사진 보내기) | claude.ai 아티팩트 전용 `sample` 이미지 API. 공개 사이트엔 AI 호출 경로 없음(규칙 기반 `LOCAL_AI`만) | 서버 함수(Vercel) + API 키 — 설계서 v22 이후 검토 |
+| 파일 저장 `downloads.save` | claude.ai 아티팩트 API | 공개 사이트는 PNG·SVG·DXF 직접 다운로드로 이미 대체됨(안내 문구만 남음) |
+| 학생증 인증 | 미구현(학교 메일만) | 결제(P6)와 함께 |
+| claude.ai 계정 자동 로그인 안내 문구 | 공개 사이트는 Supabase 이메일·Google 로그인이 이미 됨 | 문구 정리됨(build_public.py) |
+
+- 테스트(`/home/claude/_s/v17/`, 저장소 밖 스크래치): `t_home.js 1440|390` — 홈 섹션 순서·채움(오늘의 집/계절/극장 레일/챌린지)·메가 메뉴 4그룹·탭 바/시트·18개 라우트 `.rh-door`/현재 탭·pageerror 0·홈에서 three.js 요청 0 확인, 스크린샷 `shots/`. 헤드리스: html2canvas·liquid-glass·nav-glass 차단, cdnjs·jsdelivr·wikimedia 차단(이 세션은 네트워크가 막혀 three.min.js 로컬 라우팅을 못 했음 — 3D 화면은 onFail 경로로만 확인), `--use-gl=swiftshader`.
+- 남은 한계: 극장·집 블록·집 이야기·건축주 가이드는 자리만(메뉴 "곧", 홈 섹션 자리). 오늘의 집·극장 레일은 위키미디어 사진이라 오프라인·차단 환경에선 빈 카드(`.noimg` 그라데이션). 홈 상단 `#photo`는 여전히 사진 4장(각 ~1672px webp) 선로드 — 다음에 모바일용 960px만 먼저 받도록 손질 가능. 쉬운 말 띠는 다섯 단어씩만. 탭 바는 Supabase 관리자 화면에서도 보임(admin은 '홈' 강조).
