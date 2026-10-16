@@ -1453,6 +1453,30 @@ html.tabsheet-open .zc-fab{display:none}
   .ts-g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ts-a{display:flex;gap:9px;align-items:flex-start;padding:10px;border-radius:14px;background:var(--bg-alt);color:var(--fg);text-decoration:none}.ts-a span{display:flex;flex-direction:column;gap:2px}.ts-a b{font-size:13.5px}.ts-a em{font-style:normal;font-size:11.5px;color:var(--fg-2);line-height:1.35}
   .hd-grid,.ht-in,.hm-grid,.hb-two{grid-template-columns:1fr}.hn-rail{grid-template-columns:repeat(3,1fr);gap:8px}.hd{min-height:0}.hd b{font-size:22px}.ht-card,.ht-a{min-height:240px}.ht-skel{height:240px}
 }
+/* ===== v18 홈 표지 사진 */
+.hd.hasph{min-height:300px;justify-content:flex-end}
+.hd .hdph,.hnow .hnph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;opacity:0;transform:scale(1.04);transition:opacity .8s,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.hd .hdph.on,.hnow .hnph.on{opacity:1;transform:none}
+.hd.hasph::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(to top,color-mix(in srgb,var(--c) 55%,rgba(0,0,0,.82)) 0%,rgba(0,0,0,.35) 48%,rgba(0,0,0,0) 72%)}
+.hd.hasph:hover .hdph{transform:scale(1.05)}
+.hd.hasph p{text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.hm .hmph{display:block;width:calc(100% + 48px);margin:-24px -24px 8px;height:190px;object-fit:cover;border-radius:20px 20px 0 0;opacity:0;transition:opacity .8s}
+.hm .hmph.on{opacity:1}.hm.soon .hmph{filter:saturate(.9)}
+.hnow.hasph{position:relative;isolation:isolate}
+.hnow .hnph{z-index:-2}.hnow .hnph.on{opacity:.38}
+.hnow.hasph::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#0b0c10 0%,rgba(11,12,16,.55) 40%,#0b0c10 100%)}
+@media(max-width:700px){.hd.hasph{min-height:240px}.hm .hmph{height:150px}}
+/* ===== v18 매스 진화 다이어그램 */
+.mevo-ui{display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+.mevo-in{display:flex;flex-direction:column;gap:12px;position:sticky;top:90px}
+.mevo-ps{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mevo-ps button{display:flex;flex-direction:column;gap:3px;text-align:left;padding:10px 12px;border-radius:14px;border:1px solid var(--card-line);background:var(--card);color:inherit;font:inherit;cursor:pointer}
+.mevo-ps button b{font-size:13.5px}.mevo-ps button span{font-size:11.5px;opacity:.65;line-height:1.4}
+.mevo-ps button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.mevo-op{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;font-size:12.5px}.mevo-op label{display:flex;flex-direction:column;gap:4px}
+.mevo-op input,.mevo-op select{padding:7px 9px;border-radius:10px;border:1px solid var(--card-line);background:var(--bg);color:inherit;font:inherit}
+.mevo-out{border-radius:22px;background:#fff;border:1px solid var(--card-line);overflow:hidden}.mevo-out svg{display:block;width:100%;height:auto}
+@media(max-width:900px){.mevo-ui{grid-template-columns:1fr}.mevo-in{position:static}}
 @media print{#zchat{display:none}}
 
 /* ===== 흰색 블록 · 법규 볼륨 · 콘타 ===== */
@@ -5993,6 +6017,99 @@ function dnaiUse(i,add){ const R=window.__dnai; if(!R) return; const c=R.combos[
 document.addEventListener('click',e=>{ if(!e.target.closest) return; const ex=e.target.closest('[data-dnaiex]'); if(ex){ const q=$('#dnaiQ'); q.value=ex.dataset.dnaiex; dnaiRender(q.value); return; }
   if(e.target.closest('#dnaiGo')){ dnaiRender($('#dnaiQ').value); return; } const u=e.target.closest('[data-dnaiuse]'); if(u){ dnaiUse(u.dataset.dnaiuse,false); return; } const a=e.target.closest('[data-dnaiadd]'); if(a){ dnaiUse(a.dataset.dnaiadd,true); } });
 document.addEventListener('keydown',e=>{ if(e.target&&e.target.id==='dnaiQ'&&e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); dnaiRender(e.target.value); } });
+
+/* ===== 홈 표지 사진 (v18, 힉스필드 생성 이미지 — 정식 사이트에선 /_vercel/image로 줄여 받음) ===== */
+const HFC={look:'hf_20261016_191945_31bb1628-1891-43e4-9541-091b995f52c6',build:'hf_20261016_192037_c8d54f92-c2f1-42bb-8d03-03bea2047545',studio:'hf_20261016_192037_86c94c64-f2cb-4c08-b2df-fa2d8eccd0cb',plaza:'hf_20261016_192037_73adf19b-bfb2-4849-9a02-d2df3dd5b646',game:'hf_20261016_192037_3281c344-8cdd-433f-8203-81b4cc9b0e5f',cinema:'hf_20261016_192037_a86b998a-d6fd-4365-a9ec-c3559f3d7f7c'};
+function hfcSrc(k,w){ const id=HFC[k]; if(!id) return ''; const u=`https://d8j0ntlcm91z4.cloudfront.net/user_3KYJxPwfR2bbZUqGeHnWyiDQ4yS/${id}.png`; return (typeof onVercel!=='undefined'&&onVercel)?`/_vercel/image?url=${encodeURIComponent(u)}&w=${w||640}&q=72`:`https://d8j0ntlcm91z4.cloudfront.net/user_3KYJxPwfR2bbZUqGeHnWyiDQ4yS/${id}_min.webp`; }
+function hfcImg(k,w,cls){ const im=document.createElement('img'); im.className=cls; im.alt=''; im.loading='lazy'; im.decoding='async'; im.src=hfcSrc(k,w); im.onerror=()=>im.remove(); im.onload=()=>im.classList.add('on'); return im; }
+(function(){ setTimeout(()=>{ try{ const sm=innerWidth<700, W=sm?640:960;
+  [['#homeDoors a.hd[href="#atlas"]','look'],['#homeDoors a.hd[href="#dna"]','build'],['#homeDoors a.hd[href="#flow"]','studio']].forEach(([sel,k])=>{ const a=$(sel); if(a&&!a.querySelector('.hdph')){ a.classList.add('hasph'); a.prepend(hfcImg(k,W,'hdph')); } });
+  const hm=$$('#homeMeet .hm'); if(hm[0]&&!hm[0].querySelector('.hmph')) hm[0].prepend(hfcImg('plaza',W,'hmph')); if(hm[1]&&!hm[1].querySelector('.hmph')) hm[1].prepend(hfcImg('game',W,'hmph'));
+  const hn=$('#homeNow'); if(hn&&!hn.querySelector('.hnph')){ hn.classList.add('hasph'); hn.prepend(hfcImg('cinema',sm?960:1600,'hnph')); }
+ }catch(e){ console.warn('hfc',e); } },120); })();
+/* ===== 매스 진화 다이어그램 (v18): 대지 → 매스 → 조작 → 녹지 → 공공 → 연결, 6단계 아이소 선도 ===== */
+const MEVO={preset:'pass',W:30,D:24,F:4,acc:'#2fbf71',lang:'both'};
+const MEVO_P=[
+ {k:'pass',n:'관통길 · 중정',d:'덩어리를 갈라 길을 내고, 그 틈을 마당으로'},
+ {k:'terrace',n:'계단식 테라스',d:'남쪽으로 한 층씩 물러나며 옥상이 정원이 되는'},
+ {k:'lift',n:'들어 올리기',d:'1층을 비워 길과 광장을 건물 아래로'},
+ {k:'split',n:'두 동 + 브리지',d:'둘로 나누고 엇갈린 뒤 다리로 잇는'},
+ {k:'stack',n:'엇갈려 쌓기',d:'층을 밀고 당겨 틈마다 테라스를'},
+ {k:'court',n:'중정 링',d:'가운데를 비우고 한쪽을 낮춰 빛을 들이는'}];
+function mevoSteps(k,W,D,F){ const H=F*3.6, m=2, mw=W-2*m, md=D-2*m;
+  const S=[]; const st=()=>({b:[],ar:[],rd:[],tx:[],gh:[]}); const cp=o=>JSON.parse(JSON.stringify(o));
+  const B=(s,x,y,z,w,d,h,t)=>s.b.push({x,y,z,w,d,h,t:t||'m'}); const G=(s,x,y,w,d,z)=>s.b.push({x,y,z:z||0,w,d,h:.25,t:'g'});
+  const A=(s,pts,two)=>s.ar.push({pts,two:!!two}); const T=(s,p,t,c)=>s.tx.push({p,t,c}); const R=(s,x0,y0,x1,y1,t)=>s.rd.push({x0,y0,x1,y1,t:t||'ROAD'});
+  const push=(s,en,kr,sub)=>{ S.push({...cp(s),en,kr,sub}); s.tx=[]; s.ar=[]; };
+  let s=st(); B(s,m,m,0,mw,md,H); push(s,'INSERT','매스 놓기',`대지 ${W}×${D}m · ${F}층`);
+  s.b=[]; B(s,m,m,0,mw,md,H); R(s,-6,D+1,W+1,D+5); R(s,W+1,-6,W+5,D+1); push(s,'URBAN CONTEXT','도로와 맥락','두 면이 길에 닿음');
+  if(k==='pass'){ const g=W*.2, cx=W/2; s.b=[]; B(s,m,m,0,cx-g/2-m,md,H); B(s,cx+g/2,m,0,W-m-cx-g/2,md,H); s.gh=[{x:cx-g/2,y:m,z:0,w:g,d:md,h:H}]; A(s,[[cx,D+4,0.2],[cx,-3,0.2]],true); push(s,'PUBLIC SPACE','길을 내다','덩어리를 갈라 관통길');
+    s.gh=[]; G(s,cx-g/2+.5,D*.3,g-1,D*.4); T(s,[cx,D*.5,.4],'GARDEN','g'); push(s,'MAKE GARDEN','마당을 넣다','틈 가운데 녹지');
+    s.b=s.b.filter(b=>!(b.x>cx&&b.t==='m')); B(s,cx+g/2,m,0,W-m-cx-g/2,md*.55,H); B(s,cx+g/2,m+md*.55,0,W-m-cx-g/2,md*.45,H*.55); G(s,cx+g/2+.4,m+md*.55+.4,W-m-cx-g/2-.8,md*.45-.8,H*.55); T(s,[cx+g/2+(W-m-cx-g/2)/2,m+md*.78,H*.55+.5],'TERRACE','g'); push(s,'COMMUNITY','머무는 단','테라스 · 카페');
+    B(s,-14,-6,0,9,10,H*1.3,'c'); B(s,W+8,4,0,10,12,H*.9,'c'); B(s,6,D+8,0,12,8,H*.7,'c'); A(s,[[cx+2,D+6,.2],[cx+2,D*.5,.2],[cx+6,m+md*.7,H*.55+.3]]); A(s,[[W+6,D*.4,.2],[cx+g/2-1,D*.4,.2],[cx-g/2-3,D*.4,.2]],true); push(s,'CONNECTED','이어지다','길 · 마당 · 테라스가 한 줄'); }
+  else if(k==='terrace'){ s.b=[]; B(s,m,m,0,mw,md,H); T(s,[W*.5,D+8,H*1.3],'SUN','s'); A(s,[[W*.5,D+9,H*1.2],[W*.5,D*.7,H*.9]]); push(s,'SUNLIGHT','남쪽 빛','남쪽에서 빛을 받는 면');
+    s.ar=[]; s.tx=[]; s.b=[]; const n=4; for(let i=0;i<n;i++){ B(s,m,m+i*md/n,0,mw,md/n,H*(1-i*.2)); } s.gh=[{x:m,y:m,z:0,w:mw,d:md,h:H}]; push(s,'STEP BACK','물러나기','남쪽으로 한 층씩');
+    s.gh=[]; for(let i=1;i<n;i++) G(s,m+.4,m+i*md/n+.3,mw-.8,md/n*.75,H*(1-i*.2)); T(s,[W*.5,m+md*.85,H*.4+.5],'ROOF GARDEN','g'); push(s,'GREEN STEPS','계단 정원','물러난 지붕마다 녹지');
+    A(s,[[m+mw*.15,D+3,.2],[m+mw*.15,m+md*.88,H*.4],[m+mw*.15,m+md*.62,H*.6],[m+mw*.15,m+md*.38,H*.8],[m+mw*.15,m+md*.12,H]]); push(s,'CLIMB','오르는 길','정원을 따라 옥상까지');
+    B(s,-12,-6,0,8,10,H*1.2,'c'); B(s,W+8,0,0,9,D,H*.8,'c'); A(s,[[m+mw*.7,m+md*.2,H+.5],[m+mw*.7,D+12,H+3]]); T(s,[m+mw*.7,D+10,H+4],'VIEW','a'); push(s,'VIEW','풍경으로','꼭대기에서 남쪽 조망'); }
+  else if(k==='lift'){ s.b=[]; B(s,m,m,0,mw,md,H); A(s,[[-4,D*.5,.2],[W+4,D*.5,.2]],true); push(s,'OPEN GROUND','땅을 열다','지나가는 길을 그대로');
+    s.ar=[]; s.b=[]; const z0=4.5; B(s,m,m,z0,mw,md,H-z0+3.6); [[m,m],[m+mw-.6,m],[m,m+md-.6],[m+mw-.6,m+md-.6],[m+mw/2,m],[m+mw/2,m+md-.6]].forEach(([x,y])=>B(s,x,y,0,.6,.6,z0)); s.gh=[{x:m,y:m,z:0,w:mw,d:md,h:z0}]; push(s,'LIFT','들어 올리기','필로티 4.5m');
+    s.gh=[]; G(s,m+1,m+1,mw-2,md-2); T(s,[W*.5,D*.5,.4],'PLAZA','g'); push(s,'PLAZA','아래 광장','건물 밑이 마당');
+    B(s,m+mw*.62,m+md*.3,0,mw*.14,md*.3,z0,'k'); T(s,[m+mw*.69,m+md*.45,z0+.3],'CORE',''); push(s,'CORE','코어','계단·승강기 하나로');
+    B(s,-14,-6,0,9,10,H*1.1,'c'); B(s,W+8,2,0,10,D-4,H*.8,'c'); A(s,[[-6,D*.55,.2],[W+6,D*.55,.2]],true); A(s,[[W*.4,D+6,.2],[W*.4,D*.5,.2]]); push(s,'FLOW','흐름','길이 건물 아래로 지나감'); }
+  else if(k==='split'){ const g=W*.16; s.b=[]; B(s,m,m,0,(mw-g)/2,md,H); B(s,m+(mw+g)/2,m,0,(mw-g)/2,md,H); s.gh=[{x:m+(mw-g)/2,y:m,z:0,w:g,d:md,h:H}]; push(s,'SPLIT','둘로 나누기','두 동 사이 틈');
+    s.gh=[]; s.b=[]; B(s,m,m,0,(mw-g)/2,md*.8,H); B(s,m+(mw+g)/2,m+md*.2,0,(mw-g)/2,md*.8,H*.75); A(s,[[m+(mw+g)/2+3,m+md*.1,H*.8],[m+(mw+g)/2+3,m+md*.3,H*.8]]); push(s,'SHIFT','엇갈리기','앞뒤·높이를 다르게');
+    s.ar=[]; B(s,m+(mw-g)/2,m+md*.45,H*.75-3.6,g,md*.18,3.2,'b'); T(s,[W*.5,m+md*.54,H*.75+.3],'BRIDGE','a'); push(s,'BRIDGE','다리','두 동을 잇는 통로');
+    G(s,m+(mw-g)/2+.5,m+1,g-1,md*.4); G(s,m+(mw-g)/2+.5,m+md*.67,g-1,md*.3); T(s,[W*.5,m+md*.2,.4],'COURT','g'); push(s,'COURT','틈의 마당','다리 아래 마당');
+    B(s,-13,-6,0,8,10,H*1.2,'c'); B(s,W+8,0,0,10,D,H*.7,'c'); A(s,[[W*.5,D+6,.2],[W*.5,-4,.2]],true); A(s,[[m+3,m+md*.5,H*.6],[W-m-3,m+md*.5,H*.6]],true); push(s,'CONNECT','잇다','땅과 위층이 함께 이어짐'); }
+  else if(k==='stack'){ s.b=[]; const fh=H/F; for(let i=0;i<F;i++) B(s,m,m,i*fh+i*.8,mw,md,fh); s.gh=[]; push(s,'SLICE','층으로 나누기',`${F}개 판`);
+    s.b=[]; const DX=[-.12,.1,-.04,.14,-.1,.06], DY=[0,.1,-.06,.04,.12,-.04], sl=[]; for(let i=0;i<F;i++){ const x=m+mw*.12+DX[i%6]*mw, y=m+md*.06+DY[i%6]*md; sl.push([x,y]); B(s,x,y,i*fh,mw*.76,md*.86,fh); } push(s,'SHIFT','엇갈리기','층마다 밀고 당기기');
+    for(let i=1;i<F;i++){ const [a0,y0]=sl[i-1], [b0]=sl[i], w=mw*.76; if(b0>a0+.5) G(s,a0+.3,y0+.3,b0-a0-.6,md*.86-.6,i*fh); else if(b0<a0-.5) G(s,b0+w+.3,y0+.3,a0-b0-.6,md*.86-.6,i*fh); } T(s,[W*.5,D*.5,H+1],'TERRACE','g'); push(s,'TERRACE','틈마다 테라스','엇갈린 자리 = 바깥 방');
+    B(s,m+mw*.45,m+md*.4,0,mw*.1,md*.2,H+1.5,'k'); T(s,[m+mw*.5,m+md*.5,H+1.8],'CORE',''); push(s,'CORE','코어','한 줄로 꿰다');
+    B(s,-12,-6,0,8,10,H*1.1,'c'); B(s,W+8,0,0,9,D,H*.7,'c'); A(s,[[m+mw*.2,m+md*.5,fh*1.5],[-8,D*.6,fh*1.5]]); A(s,[[m+mw*.8,m+md*.5,fh*2.5],[W+10,D*.4,fh*2.5]]); push(s,'VIEW','사방 조망','층마다 다른 방향'); }
+  else { const r=Math.min(mw,md)*.24; s.b=[]; B(s,m,m,0,mw,r,H); B(s,m,m+md-r,0,mw,r,H); B(s,m,m+r,0,r,md-2*r,H); B(s,m+mw-r,m+r,0,r,md-2*r,H); s.gh=[{x:m+r,y:m+r,z:0,w:mw-2*r,d:md-2*r,h:H}]; push(s,'VOID','비우기','가운데 중정');
+    s.gh=[]; s.b=s.b.filter(b=>!(b.y>m+md-r-1)); B(s,m,m+md-r,0,mw,r,H*.45); A(s,[[W*.5,D+8,H*1.4],[W*.5,D*.5,H*.3]]); T(s,[W*.5,D+8,H*1.5],'SUN','s'); push(s,'LOWER','한쪽 낮추기','남쪽 동을 낮춰 빛을');
+    s.ar=[]; s.tx=[]; G(s,m+r+.5,m+r+.5,mw-2*r-1,md-2*r-1); T(s,[W*.5,D*.5,.4],'COURTYARD','g'); push(s,'GARDEN','중정 정원','가운데가 마당');
+    s.b=s.b.filter(b=>!(b.y>m+md-r-1)); B(s,m,m+md-r,0,mw*.42,r,H*.45); B(s,m+mw*.58,m+md-r,0,mw*.42,r,H*.45); A(s,[[W*.5,D+6,.2],[W*.5,D*.5,.2]]); push(s,'ENTRY','들어가는 틈','낮은 동 사이로 진입');
+    G(s,m+.4,m+md-r+.4,mw*.42-.8,r-.8,H*.45); G(s,m+mw*.58+.4,m+md-r+.4,mw*.42-.8,r-.8,H*.45); B(s,-13,-6,0,8,10,H*1.1,'c'); B(s,W+8,0,0,10,D,H*.75,'c'); A(s,[[W+6,D*.3,.2],[m+mw-r-1,D*.3,.2]]); T(s,[W*.3,m+md-r/2,H*.45+.5],'ROOF','g'); push(s,'CONNECTED','이어지다','옥상까지 열린 마당'); }
+  if(k!=='pass'){ const rd=S[1].rd; S.splice(1,1); S[0].rd=rd; }
+  return S; }
+function mevoSVG(S,opt){ const acc=opt.acc||'#2fbf71', CW=520, CH=430, cols=opt.cols||2, rows=Math.ceil(S.length/cols), PAD=36;
+  const c30=Math.cos(Math.PI/6), s30=.5; const P=(x,y,z)=>[(x-y)*c30,(x+y)*s30-z];
+  let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9; S.forEach(st=>{ const pts=[[-14,-8,0],[opt.W+18,-8,0],[opt.W+18,opt.D+12,0],[-14,opt.D+12,0]]; st.b.forEach(b=>pts.push([b.x,b.y,b.z+b.h],[b.x+b.w,b.y+b.d,b.z],[b.x+b.w,b.y,b.z+b.h],[b.x,b.y+b.d,b.z+b.h])); st.tx.forEach(t=>pts.push(t.p)); pts.forEach(p=>{ const q=P(...p); mnx=Math.min(mnx,q[0]); mxx=Math.max(mxx,q[0]); mny=Math.min(mny,q[1]); mxy=Math.max(mxy,q[1]); }); });
+  const sc=Math.min((CW-30)/(mxx-mnx),(CH-90)/(mxy-mny)); const ox=(CW-(mxx-mnx)*sc)/2-mnx*sc, oy=78-mny*sc;
+  const Q=(x,y,z)=>{ const p=P(x,y,z); return [ox+p[0]*sc,oy+p[1]*sc]; }; const pl=a=>a.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ');
+  const W=cols*CW+PAD*2, H=rows*CH+PAD*2+70; let out=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="Pretendard,'Noto Sans KR',sans-serif"><rect width="${W}" height="${H}" fill="#fff"/><defs><marker id="mvA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="${acc}"/></marker></defs>`;
+  S.forEach((st,i)=>{ const gx=PAD+(i%cols)*CW, gy=PAD+Math.floor(i/cols)*CH; let g=`<g transform="translate(${gx},${gy})">`;
+    // 대지
+    g+=`<polygon points="${pl([Q(0,0,0),Q(opt.W,0,0),Q(opt.W,opt.D,0),Q(0,opt.D,0)])}" fill="#f6f6f4" stroke="#999" stroke-width=".8" stroke-dasharray="4 3"/>`;
+    st.rd.forEach(r=>{ g+=`<polygon points="${pl([Q(r.x0,r.y0,0),Q(r.x1,r.y0,0),Q(r.x1,r.y1,0),Q(r.x0,r.y1,0)])}" fill="#ececec" stroke="#bbb" stroke-width=".6"/>`; const c=Q((r.x0+r.x1)/2,(r.y0+r.y1)/2,0); const ang=(r.x1-r.x0)>(r.y1-r.y0)?30:-30; g+=`<text x="${c[0]}" y="${c[1]+3}" font-size="11" letter-spacing="3" fill="#888" text-anchor="middle" transform="rotate(${ang} ${c[0]} ${c[1]})">${r.t}</text>`; });
+    // 지운 덩어리(점선)
+    st.gh.forEach(b=>{ const c=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.d],[b.x,b.y+b.d]]; g+=`<polygon points="${pl(c.map(([x,y])=>Q(x,y,b.z+b.h)))}" fill="none" stroke="#9a9a9a" stroke-dasharray="4 3" stroke-width=".9"/>`; c.forEach(([x,y])=>{ const a=Q(x,y,b.z), t=Q(x,y,b.z+b.h); g+=`<line x1="${a[0]}" y1="${a[1]}" x2="${t[0]}" y2="${t[1]}" stroke="#b5b5b5" stroke-dasharray="3 3" stroke-width=".8"/>`; }); });
+    // 상자(멀리서부터)
+    [...st.b].sort((a,b)=>(a.x+a.w/2+a.y+a.d/2+a.z*2.5)-(b.x+b.w/2+b.y+b.d/2+b.z*2.5)).forEach(b=>{ const z1=b.z+b.h; const top=[Q(b.x,b.y,z1),Q(b.x+b.w,b.y,z1),Q(b.x+b.w,b.y+b.d,z1),Q(b.x,b.y+b.d,z1)], rt=[Q(b.x+b.w,b.y,b.z),Q(b.x+b.w,b.y+b.d,b.z),Q(b.x+b.w,b.y+b.d,z1),Q(b.x+b.w,b.y,z1)], lf=[Q(b.x,b.y+b.d,b.z),Q(b.x+b.w,b.y+b.d,b.z),Q(b.x+b.w,b.y+b.d,z1),Q(b.x,b.y+b.d,z1)];
+      const C=b.t==='g'?['#8fd19e','#79c08a','#6fb27f','#3e8a52']:b.t==='c'?['#fbfbfb','#f1f1f1','#e8e8e8','#bdbdbd']:b.t==='k'?['#d9d9d9','#c9c9c9','#bdbdbd','#333']:b.t==='b'?[acc,acc,acc,'#222']:['#ffffff','#f0f0ef','#e3e3e1','#222'];
+      const sw=b.t==='c'?.7:1.1; g+=`<polygon points="${pl(lf)}" fill="${C[1]}" stroke="${C[3]}" stroke-width="${sw}" stroke-linejoin="round"/><polygon points="${pl(rt)}" fill="${C[2]}" stroke="${C[3]}" stroke-width="${sw}" stroke-linejoin="round"/><polygon points="${pl(top)}" fill="${C[0]}" stroke="${C[3]}" stroke-width="${sw}" stroke-linejoin="round"${b.t==='b'?' fill-opacity=".85"':''}/>`; });
+    st.ar.forEach(a=>{ const p=a.pts.map(q=>Q(...q)); g+=`<polyline points="${pl(p)}" fill="none" stroke="${acc}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".88" marker-end="url(#mvA)"${a.two?' marker-start="url(#mvA)"':''}/>`; });
+    st.tx.forEach(t=>{ const q=Q(...t.p); if(t.c==='s'){ g+=`<g transform="translate(${q[0]},${q[1]})"><circle r="11" fill="#ffc93c"/>${Array.from({length:10},(_,k)=>{const a=k/10*6.283;return `<line x1="${Math.cos(a)*15}" y1="${Math.sin(a)*15}" x2="${Math.cos(a)*21}" y2="${Math.sin(a)*21}" stroke="#ffc93c" stroke-width="2.4" stroke-linecap="round"/>`}).join('')}</g>`; return; } g+=`<text x="${q[0]}" y="${q[1]}" font-size="14" font-weight="800" letter-spacing="1.5" text-anchor="middle" fill="${t.c==='g'?'#2c8a4a':t.c==='a'?acc:'#333'}" paint-order="stroke" stroke="#fff" stroke-width="4">${t.t}</text>`; });
+    const lab=opt.lang==='kr'?st.kr:opt.lang==='en'?st.en:st.en; const sub=opt.lang==='en'?st.sub:(opt.lang==='kr'?st.sub:st.kr+' · '+st.sub);
+    g+=`<text x="14" y="30" font-size="19" font-weight="800" fill="#111">${i+1}. ${esc(lab)}</text><text x="14" y="50" font-size="12.5" fill="#666">${esc(sub)}</text></g>`; out+=g; });
+  out+=`<text x="${PAD}" y="${H-28}" font-size="12" fill="#888">${esc(opt.title||'MASS EVOLUTION')} — ZIPLAN 매스 진화 다이어그램 · 개략</text></svg>`; return out; }
+function mevoHTML(){ return `<section class="lab mevo" id="mevo"><div class="lab-h"><span class="lab-k">MASS EVOLUTION · 매스 진화</span><h2>덩어리가 어떻게 지금이 되었나.</h2><p>대지 → 매스 → 조작 → 녹지 → 공공 → 연결. 패널 첫 장에 들어가는 여섯 칸 다이어그램을 대지 크기만 넣으면 바로 그려요. 흐름을 고르고, 숫자를 바꾸고, SVG·PNG로 받아 패널에 붙이세요.</p></div>
+  <div class="mevo-ui"><div class="mevo-in"><div class="mevo-ps">${MEVO_P.map(p=>`<button type="button" data-mevo="${p.k}" aria-pressed="${p.k===MEVO.preset}"><b>${esc(p.n)}</b><span>${esc(p.d)}</span></button>`).join('')}</div>
+   <div class="mevo-op"><label>대지 가로 <input type="number" id="mvW" min="10" max="120" value="${MEVO.W}">m</label><label>대지 세로 <input type="number" id="mvD" min="10" max="120" value="${MEVO.D}">m</label><label>층수 <input type="number" id="mvF" min="1" max="15" value="${MEVO.F}"></label><label>화살표 색 <select id="mvAcc"><option value="#2fbf71">초록</option><option value="#e8553d">빨강</option><option value="#3f7bff">파랑</option><option value="#ff9f0a">주황</option></select></label><label>글 <select id="mvLang"><option value="both">영문 + 한글</option><option value="en">영문</option><option value="kr">한글</option></select></label><label>배치 <select id="mvCols"><option value="2">2열 × 3</option><option value="3">3열 × 2</option><option value="6">한 줄 6칸</option></select></label></div>
+   <div class="exax-act"><button type="button" class="btn sec sm" id="mvFromFlow">설계 흐름의 대지 가져오기</button><button type="button" class="btn sm" id="mvSvg">SVG 받기</button><button type="button" class="btn sec sm" id="mvPng">PNG 받기 (2배)</button></div>
+   <p class="exax-msg">개략 다이어그램이에요. 치수는 대지 크기와 층수로 비례만 맞춥니다.</p></div>
+   <div class="mevo-out" id="mvOut"></div></div></section>`; }
+function mevoDraw(){ const o=$('#mvOut'); if(!o) return; const g=id=>$(id); MEVO.W=Math.max(10,Math.min(120,+g('#mvW').value||30)); MEVO.D=Math.max(10,Math.min(120,+g('#mvD').value||24)); MEVO.F=Math.max(1,Math.min(15,+g('#mvF').value||4)); MEVO.acc=g('#mvAcc').value; MEVO.lang=g('#mvLang').value; MEVO.cols=+g('#mvCols').value;
+  const S=mevoSteps(MEVO.preset,MEVO.W,MEVO.D,MEVO.F); MEVO.svg=mevoSVG(S,{W:MEVO.W,D:MEVO.D,acc:MEVO.acc,lang:MEVO.lang,cols:MEVO.cols,title:(MEVO_P.find(p=>p.k===MEVO.preset)||{}).n}); o.innerHTML=MEVO.svg; }
+function mevoDl(png){ if(!MEVO.svg) mevoDraw(); const blob=new Blob([MEVO.svg],{type:'image/svg+xml'}); const name='mass_evolution_'+MEVO.preset; if(!png){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name+'.svg'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); return; }
+  const m=MEVO.svg.match(/viewBox="0 0 (\d+) (\d+)"/); const W=+m[1]*2,H=+m[2]*2; const img=new Image(); img.onload=()=>{ const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d'); x.drawImage(img,0,0,W,H); c.toBlob(b=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name+'.png'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); }); }; img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(MEVO.svg); }
+(function(){ setTimeout(()=>{ try{ const a=$('#exAx')||$('#pArch'); if(a&&!$('#mevo')){ a.insertAdjacentHTML('beforebegin',mevoHTML()); mevoDraw(); } }catch(e){ console.warn('mevo',e); } },60); })();
+document.addEventListener('click',e=>{ if(!e.target.closest) return; const p=e.target.closest('[data-mevo]'); if(p){ MEVO.preset=p.dataset.mevo; $$('[data-mevo]').forEach(b=>b.setAttribute('aria-pressed',b===p)); mevoDraw(); return; }
+  if(e.target.closest('#mvSvg')) return mevoDl(false); if(e.target.closest('#mvPng')) return mevoDl(true);
+  if(e.target.closest('#mvFromFlow')){ try{ const L=(typeof FW!=='undefined'&&FW.lot)||null; if(L&&L.w&&L.d){ $('#mvW').value=Math.round(L.w); $('#mvD').value=Math.round(L.d); mevoDraw(); } else alert('설계 흐름에 저장된 대지가 없어요. 설계 흐름 ① 컨셉에서 대지 크기를 먼저 넣어 주세요.'); }catch(err){} } });
+document.addEventListener('input',e=>{ if(e.target.closest&&e.target.closest('.mevo-op')) mevoDraw(); });
 
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-parch]'); if(!b) return; state.layout=b.dataset.parch; try{ syncConcepts(); redraw(); }catch(err){} const w=$('#concepts'); if(w) w.scrollIntoView({behavior:'smooth',block:'center'}); });
 document.addEventListener('click',e=>{ const f=e.target.closest('#compF [data-cf]'); if(f){ window.__compF=f.dataset.cf; $$('#compF button').forEach(b=>b.setAttribute('aria-pressed',b===f)); const c=$('#compCal'); c.dataset.done=''; drawPanelLab(); } });
