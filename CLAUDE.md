@@ -239,3 +239,23 @@
 ## v18a (2026-10-17 새벽, 이 세션) — 매스 진화 다이어그램 · 홈 카드 생성 사진
 - **매스 진화 다이어그램** `#mevo`(패널 페이지, `#exAx` 바로 위, `/* ===== 매스 진화 다이어그램 (v18) */`, CSS `.mevo-*`): 6단계 아이소 선도 SVG — 흐름 6종 `MEVO_P`(pass 관통길·중정 / terrace 계단식 테라스 / lift 들어 올리기 / split 두 동+브리지 / stack 엇갈려 쌓기 / court 중정 링). `mevoSteps(k,W,D,F)`가 단계별 상자(b: m 매스·g 녹지·c 주변·k 코어·b 브리지)·지운 덩어리 점선(gh)·도로(rd)·화살표(ar)·라벨(tx)을 만들고 `mevoSVG(S,opt)`가 화가 알고리즘(정렬 키 x+y+z*2.5)으로 그림. 옵션: 대지 가로·세로·층수, 화살표 색, 글(영문+한글/영문/한글), 배치(2×3/3×2/한 줄). SVG·PNG(2배) 받기, "설계 흐름의 대지 가져오기"(FW.lot.w/d). 스크래치 원본 `ax/mevo.js`, 렌더 확인 `ax/tmv.js`(`www/mv.html?k=`).
 - **홈 카드 사진**(`/* ===== 홈 표지 사진 (v18…) */`): 힉스필드 z_image로 생성한 6장(`HFC` look·build·studio·plaza·game·cinema, 2048×1536) — 문 카드 3장 배경(`.hd.hasph` + 아래 그라데이션), 광장/집 블록 카드 상단(`.hmph`), 극장 띠 배경(`.hnph`, 38%). 정식 사이트는 `/_vercel/image?url=…&w=640|960` (vercel.json remotePatterns에 cloudfront 있음), 그 외엔 `_min.webp`. 실패하면 이미지 제거(기존 그라데이션). 힉스필드 무료 요금제는 gpt_image·soul 모델이 막혀 있고 z_image만 됨(0.25크레딧 미만/장).
+
+## v18b (2026-10-17) — 검색 노출용 정적 페이지 · 앱 딥링크 · sitemap/robots/404
+- **무엇을**: `build_public.py`가 앱 빌드 뒤 node로 crit.html 데이터를 꺼내(BLD→BLDX, BSIG 메타 dims/desc/feats/see, TPL·PH·TFEAT·TV_SEASON·TV_ABROAD, KB2, ENC — 줄 범위로 const 블록을 잘라 `new Function`으로 평가, 스크립트는 `_EXTRACT`) 정적 HTML을 만든다. 맨 위 `SITE_URL`(지금 https://ziplan-site-dist.vercel.app) 하나만 바꾸면 canonical·OG·sitemap이 따라감.
+  - `/atlas/<id>/` 809 (LandmarksOrHistoricalBuildings) — 이름·건축가·연도·도시·한 줄·단어, 정교 모형 79채는 설명·치수·특징·볼 곳, 가 보기(같은 id의 국내 여행지·해외 코스 + 근처 4), 같은 건축가·같은 나라
+  - `/travel/<id>/` 144 = 국내 72 (TouristAttraction, geo, TFEAT·계절 추천·근처 6·같은 지역, 카카오맵 링크) + 해외 도시 코스 8 `/travel/tokyo/` 등 (TouristTrip) + 해외 스톱 64 `/travel/<bld id>/`
+  - `/ask/<slug>/` 550 (FAQPage) — KB2 559개 중 인사·잡담 9개 제외. 법규·도시(+법 언급한 시공·일상·진로·학업) 답에는 "개략·관할 관청 확인" 상자
+  - `/dict/<id>/` 47 (DefinedTerm) — ENC 도해 SVG 인라인, 실제 건물·같이 볼 말
+  - 목록 `/atlas/` `/travel/` `/ask/` `/dict/`, `404.html`(noindex), `sitemap.xml`(1555 URL = 홈 `/` + 정적 전부, lastmod=빌드 날짜, 앱 해시는 넣지 않음), `robots.txt`(Sitemap 줄), `static.css`(공용 ~7KB, 다크 모드·390 대응). 앱 JS 없음.
+  - 사진: 위키미디어 썸네일 직접 링크(bldImg 규칙: 500/1280, tif는 lossy-page1; PH는 같은 규칙으로 1920→1280/500 썸네일 계산). Vercel 이미지 최적화(/_vercel/image)는 일부러 안 씀 — 크롤러가 1,500쪽을 돌면 변환 한도를 먹기 때문. 사진 아래 작가·라이선스·파일 페이지 링크. 사진 없는 곳은 "자유 라이선스 사진 없음" 문구.
+  - 홈 index.html: `<title>` 보강, canonical·og:url·og:image 절대 주소·og:site_name·twitter:card 추가. vercel.json: cleanUrls·images·기존 headers 유지 + static.css 캐시·sitemap Content-Type.
+- **slug 규칙**(앱과 공유): crit.html `kbTopic(k)`(답이 `<b>용어</b>`로 시작하면 그 용어, 아니면 정규식의 평문 대안 3개, 없으면 정규식 정리; "~고르"→"~고르는 법" 등) + `kbSlugs(K)`(소문자·한글/영숫자·하이픈, 중복은 -2). build가 이 두 줄을 그대로 꺼내 쓰므로 **KB2 순서·정규식을 바꾸면 주소가 바뀔 수 있음**(바꾸면 옛 주소는 404 → 필요하면 vercel.json redirects).
+- **앱 딥링크**(crit.html, `/* ===== v18b 딥링크 */` — data-atgo-b 핸들러 바로 뒤 `zDeep()`; `route()` 첫 줄에서 호출, 해시는 `split('?')[0]`로 비교): `#atlas?b=<id>` → bldOpen, `#atlas?b=<id>&build=1` → bldBuild(취향 랩), `#travel?p=<id>` → tDetail, `#ask?q=<slug>` → 채팅 열고 그 KB2 답을 바로 넣음(slug 없으면 `zcAsk(slug의 - → 공백)`, q 비면 채팅만 열기). 처리 후 `history.replaceState`로 해시를 `#atlas`/`#travel`/`#home`으로 정리 → 기존 `location.hash==='#atlas'` 비교들 그대로 동작. 새 CSS 없음.
+- **테스트**(스크래치 `v18b/`): `t_static.js [static|dl] [m]` — 정적 6종 1440/390/390다크 스크린샷(`shots/`, 위키미디어는 자리표시 이미지로 대체), 가로 스크롤 0, JSON-LD 파싱, 딥링크 5종(데스크톱·모바일 모두 통과: 종묘 모달·창덕궁 후원 서랍·건폐율 답·없는 slug 폴백·savoye→#dna), 데스크톱 라우트 17 pageerror 0, `#atlas?x=1`→아틀라스. `t_sweep.js m` — 모바일 라우트 17 pageerror 0. `t_titles.py` — html 1558개 title 중복 0·canonical 중복 0·description 중복 0·h1·JSON-LD·이메일 없음. 로컬 서버는 `cd dist && python3 -m http.server 8790`(정적 페이지가 /static.css 절대 경로라 dist를 루트로).
+- **크기·시간**: 정적 페이지 1554쪽, 평균 6.6KB(gzip ~3.5KB), 합계 ~10MB; 목록 /atlas/ 91KB·/ask/ 54KB. 빌드 전체 ~2–5초. dist 총 ~17.6MB(1626 파일).
+- **남은 한계**: /ask/ 주소는 한글 slug(percent-encoding) — 배포 후 몇 개 열어 404 없는지 확인 필요. 정규식에서 뽑은 질문 제목 일부는 어색함(예: "축척 고르 도면", "코스 짜 건축", "좁은 넓어"). 해외 스톱은 위경도가 없어 geo 없음. 계절 추천 문구는 출처(TV_SEASON_SRC) 링크를 싣지 않음. 정적 페이지 사진은 헤드리스에서 실물 확인 못 함(자리표시). OG 이미지가 위키미디어 외부 URL이라 일부 SNS 미리보기에서 늦거나 안 보일 수 있음.
+- **사용자 할 일**:
+  1. 배포 후 `https://ziplan-site-dist.vercel.app/sitemap.xml`, `/robots.txt`, `/atlas/jongmyo/`, `/ask/건폐율/` 열어 확인.
+  2. Google Search Console → 속성 추가(URL 접두어 `https://ziplan-site-dist.vercel.app/`) → 소유 확인(HTML 태그 방식이면 메타 태그를 알려 주면 build_public.py head에 넣음) → Sitemaps에 `sitemap.xml` 제출 → URL 검사로 `/atlas/jongmyo/` 색인 요청.
+  3. 네이버 서치어드바이저 → 사이트 등록 → 소유 확인(HTML 태그/파일) → 요청 > 사이트맵 제출(`https://ziplan-site-dist.vercel.app/sitemap.xml`) → RSS는 선택, 웹 페이지 수집 요청으로 대표 페이지 몇 개.
+  4. (선택) Bing Webmaster Tools에서 Search Console 가져오기. 도메인을 바꾸면 `SITE_URL`만 고치고 다시 빌드·제출.

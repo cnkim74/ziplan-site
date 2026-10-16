@@ -3502,7 +3502,8 @@ setTimeout(()=>{ try{ buildTabBar(); tabCurrent(); }catch(e){ console.warn('tabb
 const VIEWS=['atlas','flow','travel','home','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
 let pendingScroll=null;
 function route(){
-  let h=(location.hash||'#home').slice(1); if(!VIEWS.includes(h)) h='home';
+  try{ zDeep(); }catch(e){ console.warn('deeplink',e); }
+  let h=(location.hash||'#home').slice(1).split('?')[0]; if(!VIEWS.includes(h)) h='home';
   $$('.view').forEach(v=>v.hidden=v.id!=='view-'+h);
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); navCurrent(h); try{ tabCurrent(); }catch(e){}
   if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
@@ -5455,6 +5456,9 @@ function zcQuiz(){ if(typeof BLDX==='undefined') return null; const pool=BLDX.fi
 function zcKB2(q){ if(typeof KB2==='undefined') return []; const hits=[]; KB2.forEach((k,i)=>{ let re=ZC_RE[i]; if(re===undefined){ try{ re=new RegExp(k[0],'i'); }catch(e){ re=null; } ZC_RE[i]=re; } if(!re) return; const m=q.match(re); if(m) hits.push({s:m[0].length+(k[4]==='용어'?.5:0),html:k[1],go:k[2]?[k[2],k[3]]:null,cat:k[4]}); }); hits.sort((a,b)=>b.s-a.s); return hits.slice(0,2); }
 const ZC_RE=[];
 window.__zcKB2=q=>zcKB2(q).map(h=>({cat:h.cat,s:h.s,html:h.html.slice(0,60)}));
+/* v18b: 물어보기 항목의 주제·주소(slug) — build_public.py가 이 두 줄을 그대로 꺼내 /ask/<slug>/ 정적 페이지를 만든다(앱 딥링크 #ask?q=<slug>와 같은 규칙) */
+function kbTopic(k){ const b=(String(k[1]||'').match(/^<b>([^<]{1,30})<\/b>/)||[])[1]; if(b) return b.replace(/\s+/g,' ').trim(); const re=k[0], A=[]; let d=0,c=''; for(let i=0;i<re.length;i++){ const ch=re[i]; if(ch==='\\'){ c+=ch+(re[i+1]||''); i++; continue; } if(ch==='('||ch==='[') d++; if(ch===')'||ch===']') d--; if(ch==='|'&&!d){ A.push(c); c=''; continue; } c+=ch; } A.push(c); const pl=a=>{ let s=a.replace(/\\s[*+?]?/g,' ').replace(/ \?/g,' ').replace(/\\b/g,''); if(/[\\.*+?()[\]{}^$|]/.test(s)) return ''; s=s.replace(/\s+/g,' ').trim(); return /^[a-z0-9 ]{0,2}$/i.test(s)?'':s; }; const cl=a=>{ let s=a.replace(/\(\?<?[!=][^()]*\)/g,'').replace(/[\^$]/g,'').replace(/\\s[*+?]?/g,' ').replace(/\\b/g,'').replace(/\\(.)/g,'$1').replace(/\[([^\]])[^\]]*\]/g,'$1'); for(let n=0;n<6&&/[()]/.test(s);n++) s=s.replace(/\(([^()|]*)(\|[^()]*)?\)\??/g,'$1'); return s.split('|')[0].replace(/\.\*|\.\+/g,' ').replace(/[?*+.]/g,'').replace(/\s+/g,' ').trim(); }; const P=A.map(pl).filter(Boolean), ko=P.filter(x=>/[가-힣]/.test(x)); return ((ko.length?ko:P).slice(0,3).join(' · ')||cl(A[0])||k[4]).replace(/ !$/,'').replace(/(고르|만드|찾|짜|넣)$/,'$1는 법').replace(/ 잘$/,' 잘하는 법').replace(/그리는$/,'그리는 법'); }
+function kbSlugs(K){ const seen={}; return K.map((k,i)=>{ let s=kbTopic(k).toLowerCase().replace(/[·,/()]+/g,' ').replace(/[^0-9a-z가-힣\s-]/g,'').trim().replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,60).replace(/-$/,'')||('q'+i); if(seen[s]){ seen[s]++; s+='-'+seen[s]; } else seen[s]=1; return s; }); }
 const ZC_LAST={bld:null,arch:null};
 async function zcAsk(q){ q=q.trim(); if(!q||ZC.busy) return; ZC.log.push({r:'u',h:esc(q)}); ZC.busy=true; zcRender(); await new Promise(r=>setTimeout(r,380));
   try{
@@ -20133,6 +20137,17 @@ function homeV17Init(){
 }
 document.addEventListener('click',e=>{ const a=e.target.closest('[data-atgo-b]'); if(a){ e.preventDefault(); const id=a.dataset.atgoB; const run=()=>{ try{ bldOpen(id); }catch(err){ console.warn(err); } }; if(location.hash!=='#atlas'){ location.hash='atlas'; setTimeout(run,400); } else run(); return; }
   const t=e.target.closest('[data-tgo]'); if(t){ e.preventDefault(); const id=t.dataset.tgo; if(location.hash!=='#travel'){ location.hash='travel'; setTimeout(()=>{ try{ tDetail(id); }catch(err){} },500); } else { try{ tDetail(id); }catch(err){} } } });
+/* ===== v18b 딥링크: 검색 노출용 정적 페이지(/atlas/<id>/ · /travel/<id>/ · /ask/<slug>/)의 버튼이 #atlas?b=<id>(&build=1이면 bldBuild) · #travel?p=<id> · #ask?q=<slug> 로 앱을 연다.
+   해시의 ? 뒤는 route()가 무시하고, 여기서 주소를 깨끗한 #atlas / #travel / #home 으로 바꾼 뒤 건물·여행지·질문을 연다 */
+var ZDEEP_SL=null;
+function zDeep(){ const m=/^#(atlas|travel|ask)\?(.*)$/.exec(location.hash||''); if(!m) return; const q=new URLSearchParams(m[2]); const v=m[1]==='ask'?'home':m[1];
+  try{ history.replaceState(null,'',location.pathname+location.search+'#'+v); }catch(e){}
+  let n=0; const run=fn=>{ setTimeout(()=>{ try{ fn(); }catch(e){ if(++n<6) run(fn); else console.warn('deeplink',e); } },n?400:550); };
+  if(m[1]==='atlas'){ const id=q.get('b'); if(id&&BLD_BY[id]) run(()=>{ if(q.get('build')) bldBuild(id); else bldOpen(id); }); }
+  else if(m[1]==='travel'){ const id=q.get('p'); if(id&&TPL.some(x=>x.id===id)) run(()=>tDetail(id)); }
+  else { const sl=(q.get('q')||'').trim(); run(()=>{ zcOpen(true); const t=$('[data-zt="ask"]'); if(t) t.click(); if(!sl) return; if(!ZDEEP_SL) ZDEEP_SL=kbSlugs(KB2); const i=ZDEEP_SL.indexOf(sl);
+      if(i<0){ zcAsk(sl.replace(/-/g,' ')); return; } const k=KB2[i]; ZC.log.push({r:'u',h:esc(kbTopic(k))}); zcPush({h:k[1],go:k[2]?[[k[2],k[3]]]:null}); }); }
+}
 setTimeout(()=>{ try{ homeV17Init(); }catch(e){ console.warn('home v17',e); } },0);
 })();
 </script>
