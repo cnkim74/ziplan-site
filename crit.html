@@ -1296,6 +1296,55 @@ body.fw-full{overflow:hidden}body.fw-full nav{display:none}
 .fw-tbi{grid-template-columns:1fr 1fr}
 @media (max-width:900px){.fw-top{top:70px;flex-direction:column;align-items:stretch;gap:6px;padding:8px}.fw-steps{order:2}.fw-act{order:1;justify-content:flex-end}.fw-act .btn{padding:7px 12px;font-size:13px}.fw-grid,.fw-c1,.fw-c2,.fw-c3,.fw-c5,.fw-c6{grid-template-columns:1fr}.fw-alts{grid-template-columns:repeat(2,1fr)}.fw-steps button{min-width:96px;padding:7px 10px}.fw-steps button em{display:none}.fw-card{padding:16px}.fw-3dv{height:56vh;min-height:300px}.fw-form{grid-template-columns:1fr 1fr}.fw.full{padding:8px 10px 30px}}
 @media (max-width:520px){.fw-alts{grid-template-columns:1fr}.fw-combo-a{margin-left:0}}
+/* ===== v13 표지 통일 · 아틀라스 ===== */
+.dnhero{background:#14161c}.dnhero .dnk,.dnhero .dnh1,.dnhero .rh-mini,.dnhero .dnhin>p{display:none}
+.dnhin{padding:36px 32px 32px!important;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;transform:none!important;opacity:1!important}
+.dnhin .dnstats{margin:0}.dnhin .dnhero-act{margin:0}
+.sthero{min-height:auto}.sthero .stin{padding:40px 32px 36px}.sthero .rh-mini{display:none}
+#view-travel .tv-cover,#pfCover{height:min(62vh,600px)}#view-travel .tv-cover .tv-cov-t h2,#pfCover .tv-cov-t h2{font-size:clamp(28px,4.2vw,58px)}
+.dnat-go{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:40px auto 0;max-width:1320px;padding:22px 26px;border-radius:22px;text-decoration:none;color:var(--fg);background:linear-gradient(120deg,color-mix(in srgb,#9a6a43 14%,var(--card)),color-mix(in srgb,#3f7bff 12%,var(--card)));border:1px solid var(--card-line)}
+.dnat-go b{font-size:18px;flex:1}.dnat-go em{font-style:normal;font-weight:800;color:var(--accent)}
+.atx-sh{max-width:1320px;margin:0 auto;padding:0 32px 22px}.atx-sh h2{font-size:clamp(28px,3.6vw,46px);letter-spacing:-.03em;margin:10px 0 8px;word-break:keep-all}.atx-sh p{margin:0;color:var(--fg-2);max-width:680px;line-height:1.6;word-break:keep-all}
+.atx-spot,.atx-halls,.atx-all{padding:72px 0 24px}
+.atx-sg{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:28px;align-items:stretch}
+.atx-sv{position:relative;border-radius:28px;overflow:hidden;background:#e9e6df;min-height:min(62vh,560px);box-shadow:0 30px 70px -40px rgba(0,0,0,.45)}
+.atx-3d{position:absolute;inset:0}
+.atx-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);font-size:26px;line-height:1;cursor:pointer;z-index:3;box-shadow:0 8px 20px rgba(0,0,0,.18);color:#111}.atx-nav.p{left:14px}.atx-nav.n{right:14px}
+.atx-big{position:absolute;right:14px;bottom:14px;z-index:3;border:0;padding:10px 16px;border-radius:999px;font-weight:800;font-size:13px;cursor:pointer;color:var(--fg)}
+.atx-si{border-left:3px solid var(--a);padding:6px 0 6px 22px;display:flex;flex-direction:column}
+.atx-si.in>*{animation:atIn .6s cubic-bezier(.2,.8,.2,1) both}.atx-si.in>*:nth-child(2){animation-delay:.05s}.atx-si.in>*:nth-child(3){animation-delay:.1s}.atx-si.in>*:nth-child(4){animation-delay:.15s}.atx-si.in>*:nth-child(5){animation-delay:.2s}.atx-si.in>*:nth-child(6){animation-delay:.25s}
+@keyframes atIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.atx-si .hl{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--a)}.atx-si h3{font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;margin:8px 0 4px;word-break:keep-all}.atx-si .who{margin:0;color:var(--fg-2);font-size:14px}.atx-si .dims{margin:12px 0 0;font-size:13px;font-weight:700;font-family:ui-monospace,Menlo,monospace;color:var(--fg)}
+.atx-si .desc{font-size:15px;line-height:1.7;margin:12px 0 0;word-break:keep-all}.atx-si .ft{margin:14px 0 0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;line-height:1.5;color:var(--fg-2);word-break:keep-all}.atx-si .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:18px}
+.atx-film{display:flex;gap:10px;overflow-x:auto;max-width:1320px;margin:20px auto 0;padding:6px 32px 12px;scroll-snap-type:x proximity;scrollbar-width:thin}
+.atx-fc{flex:0 0 132px;border:1px solid var(--card-line);background:var(--card);border-radius:14px;padding:0 0 8px;cursor:pointer;text-align:left;font-family:inherit;color:var(--fg);scroll-snap-align:center;transition:transform .2s,box-shadow .2s;overflow:hidden}
+.atx-fc .th{display:block;height:86px;background:#e9e6df center/cover no-repeat;transition:opacity .4s}.atx-fc .th:not(.on){opacity:.4}.atx-fc b{display:block;font-size:11.5px;padding:7px 9px 0;line-height:1.3;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.atx-fc[aria-selected="true"]{outline:2px solid var(--accent);outline-offset:2px;transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(0,0,0,.4)}
+.atx-hg{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.atx-h{position:relative;min-height:250px;border:0;border-radius:24px;overflow:hidden;text-align:left;padding:22px 22px 18px;cursor:pointer;color:#fff;font-family:inherit;background:linear-gradient(140deg,var(--a),var(--b));display:flex;flex-direction:column;isolation:isolate;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.atx-h:hover{transform:translateY(-5px);box-shadow:0 26px 50px -26px var(--a)}.atx-h[aria-pressed="true"]{outline:3px solid var(--fg);outline-offset:3px}
+.atx-h .en{font-size:11px;font-weight:800;letter-spacing:.14em;opacity:.85}.atx-h b{font-size:28px;letter-spacing:-.02em;margin:6px 0 6px}.atx-h .d{font-size:13px;line-height:1.5;opacity:.92;max-width:78%;word-break:keep-all}
+.atx-h .n{margin-top:auto;font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1}.atx-h .n small{font-size:14px;font-weight:700;margin-left:3px}
+.atx-h .pv{position:absolute;right:-18px;bottom:-14px;display:flex;flex-direction:column;gap:6px;z-index:-1;transform:rotate(-8deg)}.atx-h .pv i{display:block;width:150px;height:96px;border-radius:12px;background:rgba(255,255,255,.2) center/cover no-repeat;box-shadow:0 10px 24px rgba(0,0,0,.25);transition:transform .5s}
+.atx-h:hover .pv i:nth-child(1){transform:translateX(-10px)}.atx-h:hover .pv i:nth-child(2){transform:translateX(-22px)}.atx-h:hover .pv i:nth-child(3){transform:translateX(-34px)}
+.atx-room{max-width:1320px;margin:22px auto 0;padding:24px 32px 8px;scroll-margin-top:80px}
+.atx-rh{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:2px solid var(--a);padding-bottom:14px;margin-bottom:18px}.atx-rh .en{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--a)}.atx-rh h3{font-size:clamp(26px,3vw,38px);margin:4px 0 4px;letter-spacing:-.03em}.atx-rh p{margin:0;color:var(--fg-2)}
+.atx-rg{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:12px}
+.atx-rc{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--card-line);animation:atIn .6s calc(var(--i)*60ms) both}
+.atx-rc.big{grid-column:span 2;grid-row:span 2}
+.atx-rc .ph{position:absolute;inset:0;background:#e9e6df center/cover no-repeat}.atx-rc .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s}.atx-rc:hover .pic{opacity:0}
+.atx-rc .tx{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.72));color:#fff}.atx-rc b{display:block;font-size:15px;word-break:keep-all}.atx-rc.big b{font-size:24px}.atx-rc span{display:block;font-size:11.5px;opacity:.85}.atx-rc em{display:block;font-style:normal;font-size:11px;opacity:.7;font-family:ui-monospace,Menlo,monospace;margin-top:2px}
+.atx-rc::after{content:"↻ 모형";position:absolute;top:10px;right:10px;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.85);color:#111;opacity:.9}
+.atx-all .dnat{padding-top:0}
+@supports (animation-timeline: view()){ @media (prefers-reduced-motion:no-preference){
+  .atx-sh h2{animation:zmIn linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+  .atx-sv{animation:atZoom linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  .atx-h{animation:atRise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+} }
+@keyframes atZoom{from{transform:scale(.9);border-radius:60px;opacity:.5}to{transform:none;opacity:1}}
+@keyframes atRise{from{opacity:0;transform:translateY(60px) rotate(calc((var(--i) - 2.5)*1deg))}to{opacity:1;transform:none}}
+@media(max-width:900px){.atx-sg{grid-template-columns:1fr;padding:0 16px}.atx-sv{min-height:52vh}.atx-sh,.atx-hg,.atx-room{padding-left:16px;padding-right:16px}.atx-hg{grid-template-columns:1fr 1fr}.atx-h{min-height:200px}.atx-h b{font-size:21px}.atx-h .d{display:none}.atx-rg{grid-template-columns:1fr 1fr;grid-auto-rows:160px}.atx-film{padding:6px 16px 12px}.dnhin{padding:24px 18px!important}}
+@media(max-width:520px){.atx-hg{grid-template-columns:1fr}}
 @media print{#zchat{display:none}}
 
 /* ===== 흰색 블록 · 법규 볼륨 · 콘타 ===== */
@@ -3035,13 +3084,18 @@ html.dnat-lock{overflow:hidden}
   <div class="hero"><h1>설계 흐름</h1><div class="tag">컨셉 → 대안 → 매스 → 원라인 → 실·동선 → 평면도. 한 화면에서.</div><div class="sub">단어와 땅을 넣으면 여섯 안이 나오고, 의견을 적으면 안이 바뀌고, 벽을 한 줄로 그려 구성을 본 뒤 치수와 표제란이 붙은 평면도·DXF까지 이어집니다. 결정은 사람이, 지루한 반복은 ZIP이.</div></div>
   <div id="fwRoot"></div>
 </section>
+<section class="view" id="view-atlas" hidden>
+  <div class="hero"><h1>건축 아틀라스</h1><p class="tag">세계의 명작을, 사진과 다시 지은 모형으로.</p><p class="sub">정교 모형 62채는 실측 치수로 한 채씩 다시 지었고, 809채는 나라·시대·건축가·컨셉으로 찾아볼 수 있어요. 고르고, 고르고, 들어가 보세요.</p><div class="links"><a href="#atlas" data-atjump="atSpot">오늘의 명작</a><a href="#atlas" data-atjump="atHalls">전시실</a><a href="#atlas" data-atjump="atAll">전체 찾기</a></div></div>
+  <div id="atxHost"></div>
+</section>
 <section class="view" id="view-dna" hidden>
+  <div class="hero"><h1>설계 취향 랩</h1><p class="tag">고를수록, 집이 지어집니다.</p><p class="sub">마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p></div>
   <div class="dnhero"><div class="stsg" id="dnSg"></div><div class="dnhin">
     <div class="dnk">설계 취향 랩</div>
     <h1 class="dnh1"><span>고를수록,</span><br><span>집이 지어집니다.</span></h1>
     <p>마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p>
     <div class="dnstats"><div><b id="dnKwN">0</b><span>건축 단어</span></div><div><b>12</b><span>설계 방향</span></div><div><b id="dnComb">0</b><span>다섯 개만 골라도 나오는 조합</span></div><div><b id="dnBldN">0</b><span>단어로 읽은 실제 건물</span></div></div>
-    <div class="dnhero-act"><a class="btn big" href="#dnPick" data-dnjump>단어 고르러 가기</a><button class="btn ghost" id="dnAtlasOpen" type="button">건축 도감</button><button class="btn ghost" id="dnLibOpen" type="button">내 기록<em id="dnLibN">0</em></button></div>
+    <div class="dnhero-act"><a class="btn big" href="#dnPick" data-dnjump>단어 고르러 가기</a><a class="btn ghost" href="#atlas">건축 아틀라스</a><button class="btn ghost" id="dnLibOpen" type="button">내 기록<em id="dnLibN">0</em></button></div>
   </div></div>
   <div class="dnmarq" id="dnMarqBox"><div class="dnmq-row" id="dnMarq"></div><div class="dnmq-row r2" id="dnMarq2"></div><div class="dnmq-cap"><span>흐르는 단어를 눌러도 바로 골라져요</span><i></i><span id="dnMqSel">0개 고름</span></div></div>
   <div class="dnwrap sty-liquid" id="dnPick">
@@ -3063,9 +3117,10 @@ html.dnat-lock{overflow:hidden}
     </aside>
   </div>
   <div id="dnResult" hidden></div>
-  <div class="dnlib" id="dnLib" hidden></div><section class="dnat" id="dnAtlas" aria-label="건축 도감"></section><div class="dn-toast" id="dnToast" role="status"></div>
+  <div class="dnlib" id="dnLib" hidden></div><a class="dnat-go" href="#atlas"><span class="lab-k">ATLAS · 건축 아틀라스</span><b>이 단어들로 지은 실제 건물 809채</b><em>건축 아틀라스로 →</em></a><section class="dnat" id="dnAtlas" aria-label="건축 도감" hidden></section><div class="dn-toast" id="dnToast" role="status"></div>
 </section>
 <section class="view" id="view-studio" hidden>
+  <div class="hero"><h1>내 작업실</h1><p class="tag">저장하고, 이어서, 함께.</p><p class="sub">프로젝트마다 일곱 단계가 이어집니다. 지금 어디쯤인지, 다음은 무엇인지 여기서.</p></div>
   <div class="sthero"><div class="stsg" id="stSg"></div><div class="stin">
     <div class="stk">내 작업실 <span class="stsave" id="stSaveState"></span></div>
     <div><h1 id="stTitle" contenteditable="true" spellcheck="false" aria-label="프로젝트 이름 (눌러서 고치기)"></h1><div class="stmeta" id="stMeta"></div>
@@ -3219,18 +3274,18 @@ const typeName=t=>(IMG_TYPES.find(x=>x[0]===t)||[t,t])[1];
 
 /* ---------- 메가 메뉴: 큰 묶음에 올리면 아래로 펼쳐지는 메뉴 (모바일 메뉴도 같은 데이터) ---------- */
 const NAVG=[
-  {k:'start',t:'시작하기',c:'#3f7bff',items:[['flow','설계 흐름','컨셉 → 여섯 안 → 피드백 → 원라인 → 평면도·DXF 한 화면','flow'],['dna','설계 취향 랩','단어 532개로 내 설계 DNA · 건축 도감 809채','dna'],['zipcode','내집코드','주소 하나로 지을 수 있는 크기','code'],['guide','사용법','3분이면 흐름이 보인다','help']],
-    f:{w:'START',h:'일곱 단계면 한 학기 설계가 한 장으로.',p:'취향 → 대지 → 컨셉 → 도면 → 모형 → 패널 → 포트폴리오',a:'studio',b:'작업실 열기',g:'linear-gradient(135deg,#3f7bff,#8a6bff)'}},
+  {k:'start',t:'시작하기',c:'#3f7bff',items:[['flow','설계 흐름','컨셉 → 아홉 안 → 피드백 → 원라인 → 평면도·DXF 한 화면','flow'],['dna','설계 취향 랩','단어 532개로 내 설계 DNA','dna'],['zipcode','내집코드','주소 하나로 지을 수 있는 크기','code']],
+    f:{w:'START',h:'일곱 단계면 한 학기 설계가 한 장으로.',p:'취향 → 대지 → 컨셉 → 도면 → 모형 → 패널 → 포트폴리오',a:'flow',b:'설계 흐름 열기',g:'linear-gradient(135deg,#3f7bff,#8a6bff)'}},
   {k:'design',t:'방마다 깊게',c:'#30a46c',items:[['site','대지','일조·그림자·바람 · 답사 키트 · 콘타','site'],['concept','컨셉','한 줄에서 세 방향 · 12갈래 장면','spark'],['drawing','도면','관계 다이어그램 · 조닝 · 단면','plan'],['model','모형','층 펼치기 · 재료 · 법규 볼륨','cube']],
     f:{w:'CONTOUR',h:'등고선 모형, 레이저 커팅 파일까지.',p:'지형을 고르면 적층 모형과 mm 단위 SVG가 바로 나옵니다.',a:'site',b:'콘타 만들기',g:'linear-gradient(135deg,#1d8a4b,#7cc89a)'}},
-  {k:'show',t:'보여주기',c:'#ff5e9c',items:[['panel','패널','레이아웃 아홉 가지 · 3초 진단','panel'],['portfolio','포트폴리오','작업을 모아 한 권으로','folio']],
+  {k:'show',t:'보여주기',c:'#ff5e9c',items:[['panel','패널','레이아웃 아홉 가지 · 3초 진단 · 공모전 달력','panel'],['portfolio','포트폴리오 · 진로','12쪽 해부 · 이력서 · 건축사 되는 길','folio']],
     f:{w:'AWARDS',h:'수상작은 3초 안에 읽힌다.',p:'국내외 공모전 달력과 수상작 공통점 열 가지.',a:'panel',b:'공모전 달력 보기',g:'linear-gradient(135deg,#ff5e9c,#ff9f5a)'}},
-  {k:'explore',t:'둘러보기',c:'#ff9f0a',items:[['travel','건축 여행','한국 72곳 · 해외 8도시 · 계절별 스팟 · 코스 짜기','pin'],['learn','사례','아이소 썸네일로 보는 건축 사례','grid'],['library','자료실','자유 라이선스 자료 · 도면 규약 · 가입 없이','book']],
-    f:{w:'TRAVEL',h:'보러 가는 건축.',p:'뮤지엄 산부터 병산서원까지, 하루·이틀·사흘 코스를 짜 드려요.',a:'travel',b:'여행 코스 짜기',g:'linear-gradient(135deg,#ff9f0a,#ff5e5e)',img:'img/f-site.avif'}},
-  {k:'together',t:'함께하기',c:'#8a6bff',items:[['plaza','광장','다른 사람의 작업 보기','people'],['studio','내 작업실','프로젝트와 진행 상황','home'],['#ask','문의하기','관리자에게 바로 메시지','chat']],
+  {k:'explore',t:'둘러보기',c:'#ff9f0a',items:[['atlas','건축 아틀라스','정교 모형 62채 · 전시실 여섯 · 세계 809채','atlas'],['travel','건축 여행','한국 72곳 · 해외 8도시 · 계절별 스팟 · 코스 짜기','pin'],['learn','사례','아이소 썸네일로 보는 설계 사례','grid'],['library','자료실','건축 사전 · 도면 규약 · 자유 라이선스 자료','book']],
+    f:{w:'ATLAS',h:'명작을 한 채씩, 모형으로.',p:'경복궁에서 부르즈 할리파까지, 실측으로 다시 지은 62채.',a:'atlas',b:'아틀라스 열기',g:'linear-gradient(135deg,#9a6a43,#3f7bff)'}},
+  {k:'together',t:'함께하기',c:'#8a6bff',items:[['plaza','광장','다른 사람의 작업 보기','people'],['studio','내 작업실','프로젝트와 진행 상황','home'],['guide','사용법','3분이면 흐름이 보인다','help'],['#ask','문의하기','관리자에게 바로 메시지','chat']],
     f:{w:'STUDIO',h:'저장하고, 이어서, 함께.',p:'로그인하면 작업이 자동으로 저장되고 어느 기기에서나 이어집니다.',a:'studio',b:'시작하기',g:'linear-gradient(135deg,#8a6bff,#3f7bff)'}}
 ];
-const NICO={flow:'<path d="M3 6h5l3 6-3 6H3M10 6h5l3 6-3 6h-5M17 6h4v12h-4"/>',dna:'<path d="M7 3c0 6 10 6 10 12s-10 6-10 6M17 3c0 6-10 6-10 12M8 7h8M8 17h8"/>',code:'<path d="M3 11l9-7 9 7v9H3z"/><path d="M9 15l-2 2 2 2M15 15l2 2-2 2"/>',book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/>',
+const NICO={atlas:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',flow:'<path d="M3 6h5l3 6-3 6H3M10 6h5l3 6-3 6h-5M17 6h4v12h-4"/>',dna:'<path d="M7 3c0 6 10 6 10 12s-10 6-10 6M17 3c0 6-10 6-10 12M8 7h8M8 17h8"/>',code:'<path d="M3 11l9-7 9 7v9H3z"/><path d="M9 15l-2 2 2 2M15 15l2 2-2 2"/>',book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/>',
   site:'<circle cx="12" cy="7" r="3"/><path d="M2 20c3-5 6-7 10-7s7 2 10 7M6 20c2-3 4-4 6-4s4 1 6 4"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>',plan:'<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 11h9V3M12 11v4M16 11h5M12 19v2"/>',cube:'<path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/>',
   panel:'<rect x="4" y="2" width="16" height="20" rx="1"/><path d="M4 7h16M8 11h8v6H8z"/>',folio:'<path d="M3 7h18v13H3zM8 7V4h8v3"/>',pin:'<path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>',grid:'<path d="M12 2l8 4.5-8 4.5-8-4.5zM4 11.5l8 4.5 8-4.5M4 16.5l8 4.5 8-4.5"/>',
   people:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/>',home:'<path d="M3 11l9-8 9 8M5 9v12h14V9"/><path d="M10 21v-6h4v6"/>',chat:'<path d="M4 5h16v11H9l-5 4z"/>'};
@@ -3262,14 +3317,14 @@ function navCurrent(h){ $$('nav .ngb').forEach(b=>{ const g=NAVG.find(x=>x.k===b
 buildNav();
 
 /* ---------- Router ---------- */
-const VIEWS=['flow','travel','home','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
+const VIEWS=['atlas','flow','travel','home','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
 let pendingScroll=null;
 function route(){
   let h=(location.hash||'#home').slice(1); if(!VIEWS.includes(h)) h='home';
   $$('.view').forEach(v=>v.hidden=v.id!=='view-'+h);
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); navCurrent(h);
   if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
-  if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); try{ dwFromDna(); }catch(e){} } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='admin') renderAdmin(); if(h==='dna') renderDnaLab(); if(h==='flow'){ setTimeout(()=>{ try{ fwRender(); }catch(e){ console.warn(e); } },0); } try{ roomLabs(h); }catch(e){} if(h==='studio') renderStudio(); if(h==='site'){ drawSite(); setTimeout(()=>{ try{ svRender(); }catch(e){ console.warn(e); } },0); } if(h==='plaza') loadPosts(); if(h==='portfolio'){ renderPortfolio(); setTimeout(()=>{ try{ renderPfPlus(); }catch(e){ console.warn(e); } },0); } if(h==='library') renderLibrary();
+  if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); try{ dwFromDna(); }catch(e){} } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='admin') renderAdmin(); if(h==='dna') renderDnaLab(); if(h==='flow'){ setTimeout(()=>{ try{ fwRender(); }catch(e){ console.warn(e); } },0); } if(h==='atlas'){ setTimeout(()=>{ try{ atPageInit(); }catch(e){ console.warn(e); } },0); } else { try{ pgvDispose('atsp'); }catch(e){} } try{ roomLabs(h); }catch(e){} if(h==='studio') renderStudio(); if(h==='site'){ drawSite(); setTimeout(()=>{ try{ svRender(); }catch(e){ console.warn(e); } },0); } if(h==='plaza') loadPosts(); if(h==='portfolio'){ renderPortfolio(); setTimeout(()=>{ try{ renderPfPlus(); }catch(e){ console.warn(e); } },0); } if(h==='library') renderLibrary();
   if(pendingScroll){ const el=document.querySelector(`.wb[data-wb="${pendingScroll}"]`); pendingScroll=null; if(el){ el.scrollIntoView({block:'start'}); return; } }
   window.scrollTo({top:0,behavior:'auto'});
 }
@@ -4196,7 +4251,7 @@ function dnaChipsHTML(){ const sel=new Set(state.dna); const q=dnaQ.trim();
     const cc=DN_CATC[cid]||'#3f7bff'; return `<div class="dncat zrv" data-cat="${cid}" style="--c:${cc}"><div class="dnch"><span class="dnch-ic">${dnCatIcon(cid)}</span><div><h3>${esc(cname)}</h3><p>${esc(DN_CATTXT[cid]||'')}</p></div><span class="dnch-n">${on?on+'개 고름':ks.length+'개'}</span></div><div class="dnchips">${ks.map((k,ki)=>`<button type="button" class="dk${sel.has(k.label)?' on':''}" style="--i:${ki}" data-k="${esc(k.label)}" aria-pressed="${sel.has(k.label)}" title="${esc(dnHint(k.label))}">${dnIcon(k)}<span>${esc(k.label)}</span></button>`).join('')}</div></div>`; }).join('')||'<div class="dnempty">맞는 단어가 없습니다.</div>'; }
 function renderDnaLab(){ const tabs=$('#dnTabs'); if(!tabs) return;
   tabs.innerHTML=[['all','전체'],...DNA_CATS.map(c=>[c[0],c[1]])].map(([id,n])=>`<button type="button" data-cat="${id}" aria-pressed="${dnaCat===id}" style="--c:${DN_CATC[id]||'currentColor'}">${id==='all'?'':dnCatIcon(id)}${esc(n)}</button>`).join(''); dnStyleApply();
-  $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); try{ dnHeroInit(); dnaLibRender(); dnAtlasInit(); }catch(e){} }
+  $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); try{ dnHeroInit(); dnaLibRender(); }catch(e){} }
 function dnaLive(full){ const r=dnaAnalyze(state.dna); const el=$('#dnLive'); if(!el) return r;
   $('#dnCount').textContent=r.n; $('#dnCode').textContent=r.n?r.code:'····'; $('#dnPersona').textContent=r.n?dnaPersona(r):'단어를 고르면 이름이 생깁니다';
   dnaTweenRadar($('#dnRadar'),r.vec);
@@ -4344,6 +4399,9 @@ setTimeout(()=>{ if(PROJ.cur&&lsGet('zip_p_'+PROJ.cur,null)){ const d=lsGet('zip
 
 /* ---------- 방 표지: 가운데 글자 하나에서 양옆으로 완성되는 단어 + 색 띠 ---------- */
 const RHERO={
+  atlas:{w:'ATLAS',c:2,n:'',col:['#9a6a43','#3f7bff','#8a6bff'],rib:['경복궁','창덕궁','판테온','롱샹','낙수장','빛의 교회','시드니','부르즈 할리파','사보아','타지마할']},
+  dna:{w:'TASTE',c:2,n:'',col:['#c2703f','#e8577a','#7c5cff'],rib:['중정','노출 콘크리트','처마','벽돌','빛','마당','캔틸레버','기와','고요한','투명한']},
+  studio:{w:'STUDIO',c:3,n:'',col:['#8a6bff','#3f7bff','#30a46c'],rib:['프로젝트','취향','대지','컨셉','도면','모형','패널','포트폴리오']},
   flow:{w:'FLOW',c:1,n:'00',col:['#30a46c','#3f7bff','#8a6bff'],rib:['컨셉','대안','피드백','매스','원라인','실 구성','동선','평면도','DXF']},
   plaza:{w:'PLAZA',c:0,n:'',col:['#8a6bff','#ff5e9c','#3f7bff'],rib:['패널','도면','모형','사진','크릿','댓글','챌린지']},
   portfolio:{w:'FOLIO',c:2,n:'07',col:['#ff5e9c','#ff9f5a','#8a6bff'],rib:['진로 지도','연봉','12쪽','이력서','증명사진','건축사','비전공']},
@@ -4375,7 +4433,7 @@ function rhAssemble(el){ if(!el) return; const ls=[...el.querySelectorAll('i')];
   const asmAll=()=>{ const v=$('.view:not([hidden])'); if(v) v.querySelectorAll('.asm').forEach(rhAssemble); };
   addEventListener('hashchange',()=>setTimeout(()=>{ rr(); asmAll(); },40));
   setTimeout(()=>{ rr(); asmAll(); },120);
-  const dk=$('#view-dna .dnhin .dnk'); if(dk) dk.insertAdjacentHTML('afterend',rhWord('TASTE',2)); const sk=$('#view-studio .stin .stk'); if(sk) sk.insertAdjacentHTML('afterend',rhWord('STUDIO',3));
+  
 })();
 
 /* 공통 등각 투영 */
@@ -5673,7 +5731,7 @@ function tCourseText(){ return TV.plan.days.map((d,i)=>`[${i+1}일차]\n`+d.map(
 
 /* ---------- 관리자 2: 탭(개요·유입·수익·채널·회원·문의) + 방문 통계 + 수익 시뮬레이터 + UTM 링크 ---------- */
 const ATAB=[['over','개요'],['ops','운영 현황'],['traffic','유입·채널'],['rev','수익 시뮬레이터'],['plan','등급·요금'],['growth','수익화 전략'],['chan','채널 관리'],['members','회원·콘텐츠'],['inq','문의함'],['guide','운영 가이드북']];
-const PATHN={home:'홈',flow:'설계 흐름',dna:'취향 랩',zipcode:'내집코드',site:'대지',concept:'컨셉',drawing:'도면',model:'모형',panel:'패널',portfolio:'포트폴리오',learn:'사례',library:'자료실',plaza:'광장',studio:'작업실',guide:'사용법',travel:'건축 여행',admin:'관리자'};
+const PATHN={home:'홈',atlas:'건축 아틀라스',flow:'설계 흐름',dna:'취향 랩',zipcode:'내집코드',site:'대지',concept:'컨셉',drawing:'도면',model:'모형',panel:'패널',portfolio:'포트폴리오',learn:'사례',library:'자료실',plaza:'광장',studio:'작업실',guide:'사용법',travel:'건축 여행',admin:'관리자'};
 const EVN={signup_open:'로그인·가입 창 열기',plan_click:'요금제 버튼',chat_open:'채팅 열기',course_copy:'여행 코스 복사',course_preset:'추천 코스 선택',inquiry_sent:'문의 보냄',dna_done:'취향 결과 보기'};
 let ATR=null, ADMTAB=(()=>{ try{ return localStorage.getItem('zip_admtab')||'over'; }catch(e){ return 'over'; } })();
 const admLS=(k,v)=>{ try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||'null'); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; } };
@@ -10186,7 +10244,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
   if(SITE==='field'){ for(let i=-6;i<=6;i++) for(let j=-4;j<=3;j++){ const x=cx+i*16, z=cz+j*14-6; if(Math.abs(x-cx)<lotW/2+6&&z>padZ0-6&&z<padZ1+4) continue; const pd=new T.Mesh(new T.PlaneGeometry(14.6,12.6),(i+j)%4===0?M.water:M.paddy||M.grass); pd.rotation.x=-Math.PI/2; pd.position.set(x,H(x,z)+.04,z); pd.receiveShadow=true; site.add(pd); } }
   if(SITE==='water'||SITE==='sea'){ const wt=new T.Mesh(new T.PlaneGeometry(1400,SITE==='sea'?700:240),M.water); wt.rotation.x=-Math.PI/2; wt.position.set(cx,-.75,padZ0-(SITE==='sea'?350:120)); site.add(wt); const dock=new T.Mesh(pgBoxGeo(T,3,.3,16,1.6),M.deck); dock.position.set(cx-bw*.2,.05,padZ0-5); site.add(dock); for(let k=0;k<5;k++){ const pst=new T.Mesh(new T.CylinderGeometry(.12,.12,2,8),M.wood); pst.position.set(cx-bw*.2+(k%2?1.3:-1.3),-.6,padZ0-11+k*3.6); site.add(pst); }
     if(SITE==='water') for(let i=0;i<40;i++){ const x=cx-60+R()*120, z=padZ0-1-R()*3; const rd=new T.Mesh(new T.ConeGeometry(.12,1.2+R(),5),M.leaf3); rd.position.set(x,H(x,z)+.5,z); site.add(rd); } }
-  if(SITE==='mountain'||SITE==='sea'||SITE==='field'||SITE==='forest'){ const mm=new T.MeshStandardMaterial({color:0x8fa3a0,roughness:1,transparent:true,opacity:.72,fog:true}); mm.color.convertSRGBToLinear(); for(let i=0;i<8;i++){ const c=new T.Mesh(new T.ConeGeometry(50+R()*60,30+R()*45,8),mm); c.position.set(cx-280+i*80+R()*20,8,cz-230-R()*60); c.scale.z=.7; site.add(c); } }
+  if(!P.sig&&(SITE==='mountain'||SITE==='sea'||SITE==='field'||SITE==='forest')){ const mm=new T.MeshStandardMaterial({color:0xb9c7bb,roughness:1,fog:true}); mm.color.convertSRGBToLinear(); const mm2=new T.MeshStandardMaterial({color:0xcfd6cf,roughness:1,fog:true}); mm2.color.convertSRGBToLinear(); { const hg=new T.SphereGeometry(1,28,14,0,Math.PI*2,0,Math.PI/2); for(let i=0;i<9;i++){ const c=new T.Mesh(hg,mm); const rr=70+R()*90; const hy=26+R()*40; c.scale.set(rr*(1.4+R()*.8),hy,rr*.6); const ZB=cz-Math.max(bd||0,40)/2; const XS=Math.max(bw||0,60); c.position.set(cx-XS*1.6-160+i*(XS*3.2+320)/8+R()*30,-hy*.25,ZB-170-R()*90); c.receiveShadow=false; site.add(c); } for(let i=0;i<5;i++){ const c=new T.Mesh(hg,mm2); const rr=110+R()*80; c.scale.set(rr*1.8,40+R()*30,rr*.7); const ZB=cz-Math.max(bd||0,40)/2, XS=Math.max(bw||0,60); c.position.set(cx-XS*1.5-150+i*(XS*3+300)/4+R()*40,-4,ZB-330-R()*60); site.add(c); } } }
   // 나무 (지형 위)
   { const nT=SITE==='forest'?110:SITE==='mountain'?60:SITE==='slope'?34:SITE==='field'?10:SITE==='city'||SITE==='alley'?0:18;
     for(let i=0;i<nT;i++){ const a=R()*Math.PI*2, rr=Math.max(bw,bd)*.6+9+R()*(SITE==='forest'?70:50); const x=cx+Math.cos(a)*rr, z=cz+Math.sin(a)*rr*.95; if(away(x,z)<.08) continue; if((SITE==='water'||SITE==='sea')&&z<padZ0+3) continue; if(x>bb.max.x+4&&z>bb.max.z+4&&rr<45) continue;
@@ -10265,9 +10323,9 @@ let PGTH=null; const PGTC={};
 /* 썸네일 대기열(v12): 모형을 한 번에 하나씩만 지어 프레임이 길게 멈추지 않게 */
 const PGTQ={q:[],busy:false}; function pgThumbNext(){ if(PGTQ.busy||!PGTQ.q.length) return; if(performance.now()-(window.__zScrollT||0)<240){ setTimeout(pgThumbNext,260); return; } PGTQ.busy=true; const job=PGTQ.q.shift(); (window.requestIdleCallback||setTimeout)(()=>{ try{ job(); }catch(e){ console.warn('thumb',e); } PGTQ.busy=false; setTimeout(pgThumbNext,60); },{timeout:300}); }
 function pgThumb(P,w,h){ const key=[P.keys.join('|'),P.base,P.mode,P.site,P.tag||'',w].join('#'); if(PGTC[key]) return Promise.resolve(PGTC[key]); if(PGTC['#p'+key]) return PGTC['#p'+key];
-  return PGTC['#p'+key]=t3Load().then(T=>new Promise((res,rej)=>{ const go0=()=>{ if(PGTC[key]){ res(PGTC[key]); return; } if(!PGTH){ const R=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); R.setPixelRatio(1); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; const sc=new T.Scene(); const L=pgLights(T,sc); sc.add(pgSky(T,false)); sc.fog=new T.Fog(0xe6e3dc,200,600); PGTH={R,sc,L,cam:new T.PerspectiveCamera(32,1,.5,2000)}; }
-      const {R,sc,L,cam}=PGTH; R.setSize(w||480,h||340,false); cam.aspect=(w||480)/(h||340); cam.updateProjectionMatrix(); const B=pgBuild(T,P,{people:false}); sc.add(B.root);
-      const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); const r=Math.max(sz.x,sz.z,sz.y*1.5); const d=r*1.5+14, az=.75, el=.4; L.sun.position.set(c.x-50,62,c.z-40); L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+25); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+25; L.sun.shadow.camera.updateProjectionMatrix();
+  return PGTC['#p'+key]=t3Load().then(T=>new Promise((res,rej)=>{ const go0=()=>{ if(PGTC[key]){ res(PGTC[key]); return; } if(!PGTH){ const R=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); R.setPixelRatio(1); R.shadowMap.enabled=true; R.shadowMap.type=T.PCFSoftShadowMap; R.outputEncoding=T.sRGBEncoding; R.toneMapping=T.ACESFilmicToneMapping; const sc=new T.Scene(); const L=pgLights(T,sc); const sky=pgSky(T,false); sc.add(sky); sc.fog=new T.Fog(0xe6e3dc,200,600); PGTH={R,sc,L,sky,cam:new T.PerspectiveCamera(32,1,.5,2000)}; }
+      const {R,sc,L,cam,sky}=PGTH; R.setSize(w||480,h||340,false); cam.aspect=(w||480)/(h||340); cam.updateProjectionMatrix(); const B=pgBuild(T,P,{people:false}); sc.add(B.root);
+      const bb=B.bb, sz=bb.getSize(new T.Vector3()), c=bb.getCenter(new T.Vector3()); const r=Math.max(sz.x,sz.z,sz.y*1.5); const d=r*(P.sig?1.3:1.5)+14, az=.75, el=.4; sc.fog.near=Math.max(200,d*1.4); sc.fog.far=sc.fog.near*2.6; cam.far=Math.max(2000,sc.fog.far+400); cam.updateProjectionMatrix(); if(sky){ sky.scale.setScalar(Math.max(1,(d*1.3+sz.y)/560)); sky.position.set(c.x,0,c.z); } L.sun.position.set(c.x-Math.max(50,r*.6),Math.max(62,r*.8),c.z-Math.max(40,r*.5)); L.sun.target.position.set(c.x,0,c.z); L.sun.shadow.camera.left=L.sun.shadow.camera.bottom=-(r+25); L.sun.shadow.camera.right=L.sun.shadow.camera.top=r+25; L.sun.shadow.camera.far=Math.max(260,r*3+160); L.sun.shadow.camera.updateProjectionMatrix();
       cam.position.set(c.x+Math.cos(az)*Math.cos(el)*d,Math.max(2,sz.y*.42)+Math.sin(el)*d,c.z+Math.sin(az)*Math.cos(el)*d); cam.lookAt(c.x,Math.max(2,sz.y*.42),c.z); R.render(sc,cam); const url=R.domElement.toDataURL('image/jpeg',.82); sc.remove(B.root); B.root.traverse(x=>{ if(x.geometry) x.geometry.dispose(); }); PGTC[key]=url; delete PGTC['#p'+key]; res(url); };
     const go=()=>{ try{ go0(); }catch(e){ delete PGTC['#p'+key]; rej(e); } }; PGTQ.q.push(go); pgThumbNext(); })); }
 
@@ -11551,7 +11609,7 @@ function renderPfPlus(){ const v=$('#view-portfolio'); if(!v||v.dataset.plus) re
    ${cvHTML()}
    <div class="pf-h" id="pfReadsH" style="max-width:1200px;margin:64px auto 0;padding:0 24px"><span class="lab-k">CRIT · 포트폴리오 읽기와 크릿</span><h2>지원처 기준으로 읽고, 내 것도 봐 드려요</h2></div>
   </div>`;
-  v.insertAdjacentHTML('afterbegin',html); pfBars('mid'); try{ const io=new IntersectionObserver(en=>{ en.forEach(x=>{ if(!x.isIntersecting) return; const el=x.target; io.unobserve(el); const n=+el.dataset.cn; const t0=performance.now(); const f=now=>{ const k=Math.min(1,(now-t0)/1100); const e=1-Math.pow(1-k,3); el.textContent=Math.round(n*e).toLocaleString('ko-KR'); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }); },{threshold:.5}); $$('#view-portfolio [data-cn]').forEach(el=>io.observe(el)); }catch(e){} try{ phInit(); sgCover($('#pfCover'),['#1a2a1a','#2f8f6a','#0a0b12','#c8ffd9']); }catch(e){ console.warn('ph',e); } try{ dnaReveal(); }catch(e){} pfScrollInit(); }
+  { const rib=v.querySelector(':scope > .ribbonx.rroom'); if(rib) rib.insertAdjacentHTML('afterend',html); else v.insertAdjacentHTML('afterbegin',html); } pfBars('mid'); try{ const io=new IntersectionObserver(en=>{ en.forEach(x=>{ if(!x.isIntersecting) return; const el=x.target; io.unobserve(el); const n=+el.dataset.cn; const t0=performance.now(); const f=now=>{ const k=Math.min(1,(now-t0)/1100); const e=1-Math.pow(1-k,3); el.textContent=Math.round(n*e).toLocaleString('ko-KR'); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }); },{threshold:.5}); $$('#view-portfolio [data-cn]').forEach(el=>io.observe(el)); }catch(e){} try{ phInit(); sgCover($('#pfCover'),['#1a2a1a','#2f8f6a','#0a0b12','#c8ffd9']); }catch(e){ console.warn('ph',e); } try{ dnaReveal(); }catch(e){} pfScrollInit(); }
 function pfBars(mode){ const el=$('#pfBars'); if(!el) return; let L=PF_PAY.slice(); if(mode==='mid') L.sort((a,b)=>b[2]-a[2]); else if(mode==='sat') L.sort((a,b)=>b[4]-a[4]); else L.sort((a,b)=>Object.keys(PF_FN).indexOf(a[5])-Object.keys(PF_FN).indexOf(b[5])||b[2]-a[2]);
   const x=v=>((v-3000)/(9200-3000)*100).toFixed(2); el.innerHTML=L.map((p,i)=>`<div class="pf-row" style="--c:${PF_FC[p[5]]};--i:${i}"><span class="pf-rn">${esc(p[0])}</span><div class="pf-rt"><i class="pf-rg" style="--l:${x(p[1])}%;--r:${x(p[3])}%"></i><i class="pf-rm" style="--m:${x(p[2])}%"><b>${p[2].toLocaleString()}</b></i></div><span class="pf-rs">만족 ${p[4]}%</span></div>`).join('');
   requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('go'))); }
@@ -12949,7 +13007,7 @@ function atRefresh(ev){ const ch=$('#dnatChips'); if(ch) ch.innerHTML=atChipsHTM
 document.addEventListener('click',e=>{ if(!e.target.closest) return;
   const tb=e.target.closest('[data-attab]'); if(tb){ if(ATG.tab===tb.dataset.attab) return; ATG.tab=tb.dataset.attab; ATG.sel=''; atRefresh(e); return; }
   const sl=e.target.closest('[data-atsel]'); if(sl){ ATG.sel=ATG.sel===sl.dataset.atsel?'':sl.dataset.atsel; atRefresh(e); const th=$('#dnatTheme'); if(th){ const r=th.getBoundingClientRect(); if(r.top<0||r.top>innerHeight*.5) th.scrollIntoView({behavior:AT_RM?'auto':'smooth',block:'start'}); } return; }
-  const ac=e.target.closest('[data-atgo]'); if(ac){ const [t,s]=ac.dataset.atgo.split('|'); bldClose(); ATG.tab=t; ATG.sel=s; dnAtlasInit(); atRefresh(); setTimeout(()=>{ const th=$('#dnatTheme'); if(th) th.scrollIntoView({behavior:'smooth',block:'start'}); },60); return; }
+  const ac=e.target.closest('[data-atgo]'); if(ac){ const [t,s]=ac.dataset.atgo.split('|'); bldClose(); if(location.hash!=='#atlas'){ location.hash='atlas'; setTimeout(()=>{ ATG.tab=t; ATG.sel=s; try{ atRefresh(); const th=$('#dnatTheme'); if(th) th.scrollIntoView({behavior:'smooth',block:'start'}); }catch(err){} },500); return; } ATG.tab=t; ATG.sel=s; dnAtlasInit(); atRefresh(); setTimeout(()=>{ const th=$('#dnatTheme'); if(th) th.scrollIntoView({behavior:'smooth',block:'start'}); },60); return; }
 });
 
 /* 도감 */
@@ -12957,7 +13015,7 @@ const ATL={reg:'',era:'',q:'',n:36};
 function bldFiltered(){ const q=ATL.q.trim().toLowerCase(); return BLDX.filter(b=>atMatch(b)&&(!q||[b.name,b.arch,b.city,bldCountry(b),b.year,b.line,...b.keys].join(' ').toLowerCase().includes(q))); }
 function dnAtlasInit(){ const el=$('#dnAtlas'); if(!el||el.dataset.on) return; el.dataset.on='1'; const archs=new Set(BLDX.flatMap(b=>b.arch.split(/\s*[·+]\s*/))).size, cities=new Set(BLDX.map(b=>b.city.split(',').pop().trim())).size, ph=BLDX.filter(b=>b.p).length;
   const hn=$('#dnBldN'); if(hn) hn.textContent=BLDX.length;
-  el.innerHTML=dnCoverHTML()+`<div class="dnat-in">
+  el.hidden=false; el.innerHTML=`<div class="dnat-in">
    ${atCatHTML()}
    <div class="dnat-f"><span class="atcur" id="dnatCur" hidden></span><input type="search" id="dnatQ" placeholder="건물 · 건축가 · 나라 · 단어로 찾기 — 안도, 벽돌, 서울, 1960…" autocomplete="off"></div>
    <div class="dnat-g" id="dnatG"></div><div class="dnat-more"><button class="btn ghost" type="button" id="dnatMore">더 보기</button><span id="dnatN"></span></div>
@@ -12969,6 +13027,48 @@ function bldGenObserve(root){ if(!bldIO) bldIO=new IntersectionObserver(es=>{ es
 function bldPump(){ if(bldBusy||!bldQ.length) return; bldBusy=true; const ph=bldQ.shift(); const b=BLD_BY[ph.closest('[data-bld]').dataset.bld]; bldModel(b,520,360).then(u=>{ ph.querySelector('.ld')?.remove(); if(!ph.querySelector('img')) ph.insertAdjacentHTML('afterbegin',`<img src="${u}" alt="">`); }).catch(()=>{}).finally(()=>{ bldBusy=false; setTimeout(bldPump,40); }); }
 /* 사진 위에 마우스를 올리면 → 단어로 지은 모형 */
 document.addEventListener('pointerover',e=>{ const c=e.target.closest&&e.target.closest('.dnat-c'); if(!c||c._m) return; const ph=c.querySelector('.ph'); if(ph.classList.contains('gen')) return; c._m=1; bldModel(BLD_BY[c.dataset.bld],520,360).then(u=>{ c.querySelector('.mdl').innerHTML=`<img src="${u}" alt=""><span>단어로 지은 모형</span>`; }).catch(()=>{}); });
+/* ===== 건축 아틀라스 (v13) — 오늘의 명작 → 전시실 → 전체 809채 ===== */
+const AT_HALLS=[
+ {k:'kold',n:'궁궐과 서원',en:'KOREAN HERITAGE',c:['#9a6a43','#d9a066'],d:'월대와 처마, 마당과 담. 조선의 공간 문법을 한 채씩 다시 지었어요.',ids:['gyeongbok','changdeok','jongmyo','geunjeongjeon','byeongsan','bulguksa','hwaseong']},
+ {k:'knew',n:'서울의 현대',en:'SEOUL MODERN',c:['#3f7bff','#7cc5ff'],d:'벽돌 성당에서 알루미늄 곡면까지, 한국 현대건축의 백 년.',ids:['myeongdong','space','nmk','ddp','cityhall','nseoultower','podo','bangju']},
+ {k:'temple',n:'신전과 대성당',en:'TEMPLES & CATHEDRALS',c:['#b08a5a','#e8d4b0'],d:'기둥과 돔, 버트레스와 장미창. 이천오백 년의 돌.',ids:['parthenon','pantheon','colosseum','hagiasophia','notredame','chartres','stpeters','rotonda','angkor','tajmahal','byodoin','kinkakuji']},
+ {k:'master',n:'근대의 거장들',en:'MODERN MASTERS',c:['#30a46c','#a7e3c0'],d:'필로티와 띠창, 캔틸레버와 유리 상자. 교과서 속 그 집들.',ids:['savoye','barcelona','fallingwater','farnsworth','glasshouse','ronchamp','unite','kimbell','salk','guggenheimny','seagram','sagrada','casamila','eiffel','hiroshima','habitat','nakagin']},
+ {k:'poetic',n:'빛 · 물 · 땅',en:'LIGHT · WATER · LAND',c:['#8a6bff','#d4c8ff'],d:'십자 슬릿, 물방울 셸, 땅에 묻은 미술관. 현대의 시.',ids:['churchlight','sumiyoshi','waterchurch','chichu','teshima','sendai','gilardi','louvrepyramid','louvreabu','bilbao','sydney','onecentralpark']},
+ {k:'sky',n:'하늘로',en:'SKYSCRAPERS',c:['#0f2a4a','#5aa0e0'],d:'셋백과 왕관, 마디와 첨탑. 높이를 다투던 탑들.',ids:['empirestate','chrysler','petronas','taipei101','burj','lotte']},
+];
+const AT_HALL_OF={}; AT_HALLS.forEach(h=>h.ids.forEach(id=>AT_HALL_OF[id]=h));
+const ATX={i:0,hall:null,order:[]};
+function atSpotOrder(){ if(ATX.order.length) return ATX.order; ATX.order=AT_HALLS.flatMap(h=>h.ids).filter(id=>BSIG[id]&&BLD_BY[id]); const d=Math.floor(Date.now()/864e5); ATX.i=d%ATX.order.length; return ATX.order; }
+function atPageHTML(){ const L=atSpotOrder();
+  return `<section class="atx-spot" id="atSpot" aria-label="오늘의 명작"><div class="atx-sh"><span class="lab-k">01 · 오늘의 명작</span><h2>한 채씩, 천천히.</h2><p>실측 치수와 사진으로 다시 지은 정교 모형 <b>${L.length}채</b>. 끌어서 돌리고, 넘기며 보세요.</p></div>
+   <div class="atx-sg"><div class="atx-sv lg-sheen"><div class="atx-3d" id="atSpot3d"></div><button type="button" class="atx-nav p" data-atsp="-1" aria-label="이전 건물">‹</button><button type="button" class="atx-nav n" data-atsp="1" aria-label="다음 건물">›</button><button type="button" class="atx-big lg" data-atspopen title="자세히">자세히 보기 ↗</button></div><div class="atx-si" id="atSpotInfo"></div></div>
+   <div class="atx-film" id="atFilm" role="listbox" aria-label="정교 모형 목록">${L.map((id,i)=>{ const b=BLD_BY[id]; return `<button type="button" role="option" class="atx-fc" data-atspi="${i}" aria-selected="${i===ATX.i}"><span class="th" data-atth="${id}"></span><b>${esc(b.name)}</b></button>`; }).join('')}</div></section>
+  <section class="atx-halls" id="atHalls" aria-label="전시실"><div class="atx-sh"><span class="lab-k">02 · 전시실</span><h2>여섯 개의 방으로 나눠 걸었어요.</h2><p>방을 고르면, 그 방의 건물들이 펼쳐집니다.</p></div>
+   <div class="atx-hg">${AT_HALLS.map((h,i)=>`<button type="button" class="atx-h" data-athall="${h.k}" style="--a:${h.c[0]};--b:${h.c[1]};--i:${i}" aria-pressed="false"><span class="en">${h.en}</span><b>${esc(h.n)}</b><span class="d">${esc(h.d)}</span><span class="n">${h.ids.filter(id=>BSIG[id]).length}<small>채</small></span><span class="pv">${h.ids.slice(0,3).map(id=>`<i data-atth="${id}"></i>`).join('')}</span></button>`).join('')}</div>
+   <div class="atx-room" id="atRoom" hidden></div></section>
+  <section class="atx-all" id="atAll" aria-label="전체 건물"><div class="atx-sh"><span class="lab-k">03 · 전체 ${BLDX.length}채</span><h2>세계를 기준 하나로 좁혀 보기.</h2><p><b>① 기준</b>(나라·지역·건축가·컨셉·시대·용도)을 고르고 → <b>② 항목</b>을 고르면 → <b>③ 건물</b>이 남아요. 검색창에 바로 써도 돼요.</p></div></section>`; }
+function atSpotRender(){ const L=atSpotOrder(); ATX.i=(ATX.i+L.length)%L.length; const id=L[ATX.i], b=BLD_BY[id], S=BSIG[id], H=AT_HALL_OF[id]; const info=$('#atSpotInfo'); if(!info) return;
+  info.style.setProperty('--a',H.c[0]); info.innerHTML=`<span class="hl">${esc(H.n)} · ${String(ATX.i+1).padStart(2,'0')} / ${L.length}</span><h3>${esc(b.name)}</h3><p class="who">${esc(b.arch)} · ${esc(String(b.year))} · ${esc(b.city)}</p><p class="dims">${esc(S.dims||'')}</p><p class="desc">${esc(S.desc||b.line||'')}</p>${S.feats&&S.feats.length?`<ol class="ft">${S.feats.slice(0,4).map(f=>`<li>${esc(f)}</li>`).join('')}</ol>`:''}<div class="act"><button type="button" class="btn" data-bld="${id}">사진 · 도면 · 메모</button><button type="button" class="btn sec" data-atbuild="${id}">이 건물처럼 지어 보기</button></div>`;
+  info.classList.remove('in'); void info.offsetWidth; info.classList.add('in');
+  $$('#atFilm .atx-fc').forEach((c,i)=>c.setAttribute('aria-selected',i===ATX.i)); const cur=$(`#atFilm [data-atspi="${ATX.i}"]`); if(cur){ const f=$('#atFilm'); f.scrollTo({left:cur.offsetLeft-f.clientWidth/2+cur.clientWidth/2,behavior:'smooth'}); }
+  const el=$('#atSpot3d'); if(el){ try{ pgvMount('atsp',el,site=>bldSpec(b,site||undefined)); }catch(e){ console.warn('atsp',e); } } }
+let atThIO=null; function atThumbs(root){ if(!atThIO) atThIO=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; atThIO.unobserve(e.target); const b=BLD_BY[e.target.dataset.atth]; if(!b) return; bldModel(b,360,240).then(u=>{ e.target.style.backgroundImage=`url(${u})`; e.target.classList.add('on'); }).catch(()=>{}); }),{rootMargin:'300px'}); (root||document).querySelectorAll('[data-atth]:not(.on)').forEach(x=>atThIO.observe(x)); }
+function atRoomRender(k){ const H=AT_HALLS.find(h=>h.k===k), el=$('#atRoom'); if(!el) return; $$('[data-athall]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.athall===k)); if(!H){ el.hidden=true; return; }
+  const L=H.ids.filter(id=>BSIG[id]&&BLD_BY[id]).map(id=>BLD_BY[id]);
+  el.hidden=false; el.style.setProperty('--a',H.c[0]); el.style.setProperty('--b',H.c[1]);
+  el.innerHTML=`<div class="atx-rh"><div><span class="en">${H.en}</span><h3>${esc(H.n)}</h3><p>${esc(H.d)}</p></div><button type="button" class="btn sec sm" data-athall="">닫기</button></div>
+   <div class="atx-rg">${L.map((b,i)=>`<article class="atx-rc${i===0?' big':''}" data-bld="${b.id}" style="--i:${i%8}"><div class="ph" data-atth="${b.id}">${b.p?`<img class="pic" src="${bldImg(b,i===0?1280:640)}" alt="" loading="lazy">`:''}</div><div class="tx"><b>${esc(b.name)}</b><span>${esc(b.arch)} · ${esc(String(b.year))}</span><em>${esc((BSIG[b.id].dims||'').split('·')[0])}</em></div></article>`).join('')}</div>`;
+  atThumbs(el); setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60); }
+function atPageInit(){ const v=$('#view-atlas'); if(!v) return; let host=$('#atxHost'); if(!host) return;
+  if(!host.dataset.on){ host.dataset.on='1'; host.innerHTML=atPageHTML(); const at=$('#dnAtlas'); const all=$('#atAll'); if(at&&all) all.appendChild(at); try{ dnAtlasInit(); }catch(e){ console.warn(e); } atThumbs(host); }
+  setTimeout(()=>{ try{ atSpotRender(); }catch(e){ console.warn('spot',e); } },60); }
+document.addEventListener('click',e=>{ if(!e.target.closest) return;
+  const sp=e.target.closest('[data-atsp]'); if(sp){ ATX.i+=+sp.dataset.atsp; atSpotRender(); return; }
+  const si=e.target.closest('[data-atspi]'); if(si){ ATX.i=+si.dataset.atspi; atSpotRender(); return; }
+  if(e.target.closest('[data-atspopen]')){ const id=atSpotOrder()[ATX.i]; bldOpen(id); return; }
+  const h=e.target.closest('[data-athall]'); if(h){ const k=h.dataset.athall; atRoomRender(k&&h.getAttribute('aria-pressed')!=='true'?k:''); if(!k) $('#atHalls').scrollIntoView({behavior:'smooth',block:'start'}); return; } });
+document.addEventListener('click',e=>{ const j=e.target.closest&&e.target.closest('[data-atjump]'); if(!j) return; e.preventDefault(); const el=$('#'+j.dataset.atjump); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
+document.addEventListener('keydown',e=>{ if(location.hash!=='#atlas'||e.target.closest('input,textarea,[contenteditable]')||$('#dnatM:not([hidden])')) return; const r=$('#atSpot'); if(!r) return; const b=r.getBoundingClientRect(); if(b.bottom<0||b.top>innerHeight) return; if(e.key==='ArrowRight'){ ATX.i++; atSpotRender(); } if(e.key==='ArrowLeft'){ ATX.i--; atSpotRender(); } });
 function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!m){ document.body.insertAdjacentHTML('beforeend','<div class="dnat-m" id="dnatM" role="dialog" aria-modal="true" aria-label="건물 보기" hidden></div>'); m=$('#dnatM'); }
   const img=bldImg(b,1280); const same=BLDX.filter(x=>x.id!==b.id&&x.arch===b.arch).slice(0,4); const sim=bldSimilar(b.keys,4,b.id).map(x=>x.b).filter(x=>!same.includes(x)).slice(0,4);
   m.innerHTML=`<div class="dnat-mb"><button class="x" type="button" data-atclose aria-label="닫기">✕</button>
@@ -12994,10 +13094,10 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return;
   const r=e.target.closest('[data-atreg]'); if(r){ ATL.reg=r.dataset.atreg; ATL.n=36; $$('[data-atreg]').forEach(x=>x.setAttribute('aria-pressed',x===r)); dnAtlasRender(); return; }
   const er=e.target.closest('[data-atera]'); if(er){ ATL.era=er.dataset.atera; ATL.n=36; $$('[data-atera]').forEach(x=>x.setAttribute('aria-pressed',x===er)); dnAtlasRender(); return; }
   if(e.target.closest('#dnatMore')){ ATL.n+=36; dnAtlasRender(); return; }
-  if(e.target.closest('#dnAtlasOpen')){ dnAtlasInit(); $('#dnAtlas').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  
 });
 document.addEventListener('input',e=>{ if(e.target.id==='dnatQ'){ ATL.q=e.target.value; ATL.n=36; clearTimeout(dnAtlasRender._t); dnAtlasRender._t=setTimeout(dnAtlasRender,120); } });
-window.__atlas={BLDX,bldOpen,bldClose,BSIG,BSIG_SITE,get dna(){ return state.dna; },get PGVR(){ return PGVR; }};
+window.__atlas={BLDX,bldOpen,bldClose,BSIG,BSIG_SITE,bldModelInto,bldSpec,pgThumb,get dna(){ return state.dna; },get PGVR(){ return PGVR; }};
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ const m=$('#dnatM'); if(m&&!m.hidden) bldClose(); } });
 document.addEventListener('click',e=>{ const v=e.target.closest('#view-dna'); if(!v) return;
   const at=e.target.closest('#dnAltTabs [data-alt]'); if(at){ dnaShowAlt(+at.dataset.alt); return; }
@@ -13265,7 +13365,7 @@ document.addEventListener('click',async e=>{ if(!e.target.closest) return; const
   const cs=e.target.closest('[data-svcs]'); if(cs){ const d=svS(); d.cs[cs.dataset.svcs]=!d.cs[cs.dataset.svcs]; svSave(d); cs.setAttribute('aria-pressed',!!d.cs[cs.dataset.svcs]); return; }
   const sh=e.target.closest('[data-svshot]'); if(sh){ const d=svS(); const id=sh.dataset.svshot; d.shot[id]=Math.max(0,(d.shot[id]||0)+(+sh.dataset.d)); svSave(d); svRender(); return; }
   const dl=e.target.closest('[data-svdel]'); if(dl){ const d=svS(); d.notes=d.notes.filter(n=>String(n.at)!==dl.dataset.svdel); svSave(d); svRender(); return; }
-  if(e.target.closest('[data-dngo-atlas]')){ go('dna',true); setTimeout(()=>{ try{ dnAtlasInit(); $('#dnAtlas').scrollIntoView({behavior:'smooth'}); }catch(err){} },500); return; }
+  if(e.target.closest('[data-dngo-atlas]')){ go('atlas'); return; }
   if(e.target.closest('[data-svreset]')){ const d=svS(); d.ck={}; d.shot={}; d.prep={}; d.memo={}; d.cs={}; svSave(d); svRender(); return; }
   if(e.target.closest('[data-svprint]')){ const w=window.open('','_blank'); if(!w) return; const d=svS(); w.document.write(`<!doctype html><meta charset="utf-8"><title>대지 답사 체크리스트</title><style>body{font:13px/1.6 -apple-system,'Noto Sans KR',sans-serif;margin:28px;color:#111}h1{font-size:20px;margin:0 0 4px}h2{font-size:14px;margin:18px 0 6px;border-bottom:1px solid #ccc}li{list-style:none;margin:3px 0}li::before{content:'☐ ';}small{color:#666}</style><h1>대지 답사 체크리스트</h1><small>ZIPLAN · ${new Date().toLocaleDateString('ko-KR')} · 대지: ${esc(state.site||'')}</small>${SV_CK.map(([id,n,items])=>`<h2>${n}</h2><ul>${items.map((it,i)=>`<li>${esc(it[0])} ______________ ${esc(d.memo[id+i]||'')}</li>`).join('')}</ul>`).join('')}<h2>촬영 리스트</h2><ul>${SV_SHOT.map(s=>`<li>${esc(s[1])} — ${esc(s[2])}</li>`).join('')}</ul>`); w.document.close(); setTimeout(()=>{ try{ w.print(); }catch(err){} },300); return; }
   if(e.target.closest('[data-svcopy]')){ const t=svSummary()||'아직 기록이 없어요.'; try{ await navigator.clipboard.writeText(t); e.target.textContent='복사했어요'; }catch(err){ const o=$('#svOut'); if(o) o.textContent=t; } return; }
