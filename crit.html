@@ -1,5 +1,7 @@
 <meta charset="utf-8">
 <title>ZIPLAN</title>
+<script>/* 가벼운 모드(v16): 터치 기기(아이패드·폰)·저사양에서는 무거운 효과를 줄인다 — ?lite=0/1로 강제 */
+(function(){ try{ var q=/[?&]lite=([01])/.exec(location.search), ua=navigator.userAgent, touch=matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Macintosh/.test(ua)), low=(navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory&&navigator.deviceMemory<=4); var on=q?q[1]==='1':(touch||low); window.ZLITE=on; if(on) document.documentElement.classList.add('lite'); }catch(e){} })();</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&family=Gothic+A1:wght@800;900&family=Gowun+Batang:wght@400&display=swap">
 <!-- 효과: liquid-glass-js (상단 내비게이션 유리 패널 1개) -->
 <link rel="stylesheet" href="vendor/liquid-glass/glass.css">
@@ -1352,6 +1354,29 @@ body.fw-full{overflow:hidden}body.fw-full nav{display:none}
 .parch-b em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent)}.parch-b h3{margin:4px 0 2px;font-size:20px}.parch-b .ex{margin:0 0 8px;color:var(--fg-2);font-size:13px}
 .parch-b ol{margin:0 0 8px;padding-left:18px;display:grid;gap:4px;font-size:13px;line-height:1.5;word-break:keep-all}.parch-b .why{font-size:13px;line-height:1.55;margin:0 0 10px;word-break:keep-all}.parch-b .why b{color:var(--accent);margin-right:4px}
 @media(max-width:640px){.parch-g{grid-template-columns:1fr}.parch-c{grid-template-columns:96px 1fr;gap:12px;padding:14px}}
+.dnai{max-width:1240px;margin:clamp(30px,5vh,60px) auto 10px;padding:clamp(22px,3vw,34px);border-radius:28px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 9%,var(--card)),var(--card) 60%);border:1px solid var(--card-line)}
+.dnai-h h2{font-size:clamp(24px,3.2vw,38px);margin:6px 0 8px;letter-spacing:-.02em}.dnai-h p{max-width:760px;opacity:.8;line-height:1.6;margin:0}
+.dnai-in{display:flex;gap:10px;margin-top:18px;align-items:stretch}.dnai-in textarea{flex:1;font:inherit;font-size:16px;padding:14px 16px;border-radius:16px;border:1px solid var(--card-line);background:var(--bg);color:inherit;resize:vertical;min-height:54px}
+.dnai-in .btn{white-space:nowrap}
+.dnai-ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.dnai-ex button{font:inherit;font-size:12.5px;padding:6px 11px;border-radius:999px;border:1px solid var(--card-line);background:var(--card);color:inherit;cursor:pointer}.dnai-ex button:hover{border-color:var(--accent);color:var(--accent)}
+.dnai-seed{margin:18px 0 10px;font-size:13px;opacity:.85}.dnai-seed i{font-style:normal;display:inline-block;margin:2px 4px 2px 0;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.dnai-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dnai-c{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:var(--card);border:1px solid var(--card-line)}
+.dnai-c .th{height:200px;background:#eef1f4 center/cover no-repeat;position:relative}.dnai-c .th .ld{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:dnaiLd 1.2s infinite}.dnai-c .th.on .ld{display:none}
+@keyframes dnaiLd{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.dnai-c .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}.dnai-c em{font-style:normal;font-size:12px;font-weight:700;color:var(--accent)}.dnai-c h3{margin:0;font-size:18px}.dnai-c .d{margin:0;font-size:12.5px;opacity:.75}
+.dnai-c ul{list-style:none;margin:6px 0 4px;padding:0;display:flex;flex-direction:column;gap:4px}.dnai-c li{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:baseline;font-size:12px}
+.dnai-c li b{font-size:12.5px;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--c) 16%,transparent);color:color-mix(in srgb,var(--c) 80%,var(--fg));white-space:nowrap}.dnai-c li span{opacity:.65}
+.dnai-c .act{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+@media(max-width:900px){.dnai-g{grid-template-columns:1fr}.dnai-in{flex-direction:column}}
+.exax-ex{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 26px}
+.exax-exc{display:flex;flex-direction:column;gap:6px;text-align:left;padding:12px 12px 14px;border-radius:20px;background:var(--card);border:1px solid var(--card-line);cursor:pointer;color:inherit;font:inherit;transition:transform .25s,box-shadow .25s}
+.exax-exc:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.35)}
+.exax-exc .ph{display:block;height:260px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--card-line)}
+.exax-exc .ph img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.exax-exc:hover .ph img{transform:scale(1.06)}
+.exax-exc b{font-size:15px;margin-top:4px}.exax-exc span{font-size:12.5px;opacity:.75;line-height:1.45}.exax-exc em{font-style:normal;font-size:12px;color:var(--accent)}.exax-exc i{font-style:normal;font-size:12.5px;font-weight:700;margin-top:2px}
+@media(max-width:900px){.exax-ex{grid-template-columns:1fr}.exax-exc .ph{height:220px}}
 .exax-ui{display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
 .exax-in{display:flex;flex-direction:column;gap:12px;position:sticky;top:90px}
 .exax-drop{display:flex;flex-direction:column;gap:4px;padding:22px 18px;border:1.5px dashed var(--card-line);border-radius:18px;background:var(--card);cursor:pointer;text-align:center}
@@ -1365,6 +1390,11 @@ body.fw-full{overflow:hidden}body.fw-full nav{display:none}
 .exax-ph{display:grid;place-items:center;min-height:420px;color:#888;font-size:14px;padding:20px;text-align:center}
 .exax-pic{position:relative}.exax-pic img{display:block;width:100%;height:auto}.exax-pic svg{position:absolute;inset:0;width:100%;height:100%}
 @media(max-width:900px){.exax-ui{grid-template-columns:1fr}.exax-in{position:static}}
+/* 가벼운 모드(v16, 터치 기기): 화면 전체를 흐리는 backdrop-filter는 스크롤마다 다시 그려져 아이패드에서 버벅임 → 상단 바만 남기고 끈다 */
+html.lite *:not(nav):not(.nav-glass){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lite nav .in{-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important}
+html.lite .lg,html.lite .tv-bar,html.lite .pf-nav,html.lite .tv-dock,html.lite .zc-panel,html.lite .zs-box,html.lite .pgt,html.lite .tv-kittabs,html.lite .tv-mtools .modes,html.lite .dnat-m .x,html.lite .tv-drx{background:color-mix(in srgb,var(--card) 94%,transparent)!important}
+html.lite .lg-sheen::after,html.lite .lg-sheen::before{display:none!important}
 @media print{#zchat{display:none}}
 
 /* ===== 흰색 블록 · 법규 볼륨 · 콘타 ===== */
@@ -5554,7 +5584,7 @@ function exAnalyze(F,org,sc){
     const keep=wlines.filter((l,i)=>ok[i]); wlines.length=0; wlines.push(...keep); }
   // 범위: 닫힌 벽 폴리곤 기준(없으면 선 포함). 그 밖 1m 넘게 떨어진 선(담장·대지선 등)은 버림
   let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; const ext=q=>{ x0=Math.min(x0,q[0]); y0=Math.min(y0,q[1]); x1=Math.max(x1,q[0]); y1=Math.max(y1,q[1]); };
-  walls.forEach(p=>p.forEach(ext)); if(x0>x1){ wlines.forEach(l=>l.forEach(ext)); glass.forEach(l=>l.forEach(ext)); }
+  walls.forEach(p=>p.forEach(ext)); terr.forEach(p=>p.forEach(ext)); if(x0>x1){ wlines.forEach(l=>l.forEach(ext)); glass.forEach(l=>l.forEach(ext)); }
   else { const inB=q=>q[0]>x0-1&&q[0]<x1+1&&q[1]>y0-1&&q[1]<y1+1; const keep=l=>inB(l[0])&&inB(l[1]); const w2=wlines.filter(keep), g2=glass.filter(keep); wlines.length=0; wlines.push(...w2); glass.length=0; glass.push(...g2); wlines.forEach(l=>l.forEach(ext)); glass.forEach(l=>l.forEach(ext)); }
   if(x0>x1) throw new Error('벽 레이어를 찾지 못했어요 (레이어 이름에 WALL·벽 등을 넣어 주세요)');
   x0-=1.5; y0-=1.5; x1+=1.5; y1+=1.5; const nx=Math.ceil((x1-x0)/G), ny=Math.ceil((y1-y0)/G);
@@ -5718,6 +5748,41 @@ function exSampleDXF(level){ const E=[]; const L=(l,a,b)=>E.push(`0\nLINE\n8\n${
   TX(N[0],4,3); TX(N[1],12,3); TX(N[2],20,3); TX(level===3?'복도':'회랑',12,7.1); TX(N[3],4.5,11.5); TX(N[4],19.5,11.5); TX('계단',12,13.5);
   if(level===3) R('A-TERR',15.2,8.4,W-t,D-t);
   return `0\nSECTION\n2\nHEADER\n9\n$INSUNITS\n70\n6\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n${E.join('\n')}\n0\nENDSEC\n0\nEOF\n`; }
+
+/* 예시 2·3: 계단식 테라스 사무소(5층) · 중정 주택(2층) */
+function exDXFKit(){ const E=[]; const K={E,
+  L:(l,a,b)=>E.push(`0\nLINE\n8\n${l}\n10\n${a[0]}\n20\n${a[1]}\n11\n${b[0]}\n21\n${b[1]}`),
+  PL:(l,p)=>E.push(`0\nLWPOLYLINE\n8\n${l}\n90\n${p.length}\n70\n1\n`+p.map(q=>`10\n${q[0]}\n20\n${q[1]}`).join('\n')),
+  TX:(t,x,y)=>E.push(`0\nTEXT\n8\nA-ROOM\n10\n${x}\n20\n${y}\n40\n0.4\n1\n${t}`),
+  AR:(x,y,r,a0,a1)=>E.push(`0\nARC\n8\nA-DOOR\n10\n${x}\n20\n${y}\n40\n${r}\n50\n${a0}\n51\n${a1}`),
+  R:(l,x0,y0,x1,y1)=>K.PL(l,[[x0,y0],[x1,y0],[x1,y1],[x0,y1]]),
+  ring:(x0,y0,x1,y1,t)=>{ K.R('A-WALL',x0,y0,x1,y0+t); K.R('A-WALL',x0,y1-t,x1,y1); K.R('A-WALL',x0,y0,x0+t,y1); K.R('A-WALL',x1-t,y0,x1,y1); },
+  glassX:(x0,x1,y)=>{ for(let x=x0+.6;x<x1-1;x+=2.4) K.L('A-GLASS',[x,y],[x+2,y]); },
+  glassY:(y0,y1,x)=>{ for(let y=y0+.6;y<y1-1;y+=2.4) K.L('A-GLASS',[x,y],[x,y+2]); },
+  stair:(x0,y0,x1,y1)=>{ const m=(x0+x1)/2; for(let y=y0+.9;y<y1-1.2;y+=.28){ K.L('A-STAIR',[x0+.15,y],[m-.1,y]); K.L('A-STAIR',[m+.1,y],[x1-.15,y]); } },
+  out:()=>`0\nSECTION\n2\nHEADER\n9\n$INSUNITS\n70\n6\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n${E.join('\n')}\n0\nENDSEC\n0\nEOF\n` }; return K; }
+function exSampleTerrace(n){ const K=exDXFKit(), t=.25, W=26, y0=(n-1)*2.6, D=18; // 층마다 남쪽이 2.6m씩 물러나며 아래층 지붕이 테라스가 된다
+  K.ring(0,y0,W,D,t); K.glassX(0,W,y0+.12); K.glassY(y0,D,.12); K.glassY(y0,D,W-.12);
+  K.R('A-CORE',10,D-6,10.2,D-t); K.R('A-CORE',16,D-6,16.2,D-t); K.R('A-CORE',10,D-6,13,D-5.8); K.R('A-CORE',14,D-6,16.2,D-5.8); K.stair(10.2,D-5.8,13,D-t); K.TX('계단',11.5,D-1.5); K.TX('EV 홀',14.6,D-3);
+  K.R('A-WALL',t,D-6,10,D-5.85); K.R('A-WALL',16.2,D-6,W-t,D-5.85); K.R('A-WALL',5,D-5.85,5.15,D-t); K.R('A-WALL',21,D-5.85,21.15,D-t);
+  [3,8,18,23].forEach(x=>K.AR(x,D-5.9,.9,270,360));
+  const prog=[['카페','공용 라운지','화장실','편의점'],['사무실','회의실','화장실','라운지'],['사무실','회의실','화장실','라운지'],['공유 오피스','스튜디오','화장실','회의실'],['라운지','게스트 라운지','화장실','주방']][n-1];
+  K.TX(prog[0],8,y0+(D-6-y0)/2); if(n<5) K.R('A-WALL',17,y0+t,17.15,D-6); K.TX(prog[1],21.5,y0+(D-6-y0)/2); K.TX(prog[2],2.5,D-3); K.TX(prog[3],23.5,D-3);
+  if(n>1){ K.R('A-TERR',0,y0-2.6,W,y0); K.TX(n===5?'옥상 정원':'테라스',W/2,y0-1.3); } return K.out(); }
+function exSampleCourt(n){ const K=exDXFKit(), t=.25, W=18, D=16, c=[6,5,12,11];
+  K.ring(0,0,W,D,t); K.glassX(0,W,.12);
+  if(n===1){ K.R('A-WALL',c[0],c[1],c[2],c[1]+.15); K.R('A-WALL',c[0],c[3]-.15,c[2],c[3]); K.R('A-WALL',c[0],c[1],c[0]+.15,c[3]); K.R('A-WALL',c[2]-.15,c[1],c[2],c[3]); K.R('A-TERR',c[0]+.15,c[1]+.15,c[2]-.15,c[3]-.15); K.TX('중정',9,8);
+    for(let x=6.6;x<11.6;x+=1.8) K.L('A-GLASS',[x,c[1]+.08],[x+1.4,c[1]+.08]);
+    K.R('A-WALL',c[2],8,W-t,8.15); K.R('A-WALL',t,8,c[0],8.15); K.R('A-WALL',t,c[1],c[0],c[1]+.15); K.R('A-WALL',c[2],c[1],W-t,c[1]+.15); [3,15].forEach(x=>K.AR(x,c[1]+.07,.8,270,360)); K.R('A-WALL',9,c[3],9.15,D-t);
+    K.TX('거실',9,2.5); K.TX('부엌 · 식당',15,12); K.TX('현관',3,12); K.TX('서재',15,6.5); K.TX('욕실',3,6.5); K.R('A-CORE',4,c[3],4.15,D-t); K.stair(4.15,c[3],6,D-t); K.TX('계단',5,12);
+    [3,15].forEach(x=>K.AR(x,8.07,.8,0,90)); }
+  else { K.R('A-WALL',t,c[1],W-t,c[1]+.15); K.R('A-WALL',9,c[1],9.15,D-t); K.R('A-WALL',c[2],c[1],c[2]+.15,D-t); K.R('A-CORE',4,c[3],4.15,D-t); K.stair(4.15,c[3],6,D-t);
+    K.TX('테라스',9,2.5); K.TX('침실',7,11); K.TX('아이방',10.5,11); K.TX('드레스룸',15,11); K.TX('계단',5,12.5); K.R('A-TERR',t,t,W-t,c[1]); }
+  return K.out(); }
+const EXSAMPLES=[{k:'retail',n:'3층 근린생활시설',d:'1층 카페·편의점 / 2층 스터디·북카페 / 3층 객실·옥상 정원',files:()=>[1,2,3].map(i=>({name:`근생_0${i}F.dxf`,text:exSampleDXF(i)})),opt:{mode:'route',az:-38},img:'img/exax-retail.webp',tip:'동선 강조 — 회랑을 빨강 하나로, 나머지는 무채색'},
+ {k:'terrace',n:'계단식 테라스 오피스 5층',d:'층마다 남쪽이 물러나 아래층 지붕이 테라스가 되는 업무 시설',files:()=>[1,2,3,4,5].map(i=>({name:`오피스_0${i}F.dxf`,text:exSampleTerrace(i)})),opt:{mode:'program',az:-38},img:'img/exax-terrace.webp',tip:'프로그램 구분 — 근생·업무·공용 색으로 층별 구성 읽기'},
+ {k:'court',n:'중정 주택 2층',d:'가운데 중정을 둘러싼 방들 / 2층 침실과 남쪽 테라스',files:()=>[1,2].map(i=>({name:`중정주택_0${i}F.dxf`,text:exSampleCourt(i)})),opt:{mode:'program',az:38,gap:16},img:'img/exax-court.webp',tip:'남동에서 — 중정과 테라스의 초록이 위아래로 이어짐'}];
+function exLoadSample(k){ const S=EXSAMPLES.find(x=>x.k===k)||EXSAMPLES[0]; exLoad(S.files()); Object.assign(EXAX.opt,{gap:23},S.opt); try{ $('#exMode').value=EXAX.opt.mode; $('#exAz').value=String(EXAX.opt.az); $('#exGap').value=EXAX.opt.gap; $('#exTitle').value=S.n; }catch(e){} exFloorsUI(); exDraw(); }
 /* ---- 파일 → 층 ---- */
 function exLoad(list){ // list: [{name, text}]
   const parsed=list.map(f=>{ const d=exParseDXF(f.text); const fn=exFloorName(f.name); return {file:f.name,name:fn.n,o:fn.o,d}; }).sort((a,b)=>a.o-b.o);
@@ -5728,6 +5793,7 @@ function exLoad(list){ // list: [{name, text}]
   EXAX.floors=parsed.map(P=>{ const A=exAnalyze(P.d,[ox,oy],sc); const h=/^1F$/.test(P.name)?5:(/^B/.test(P.name)?4:3.6); return {file:P.file,name:P.name,h,A,fu:exFurnish(A,rnd)}; });
   return EXAX.floors; }
 function exaxHTML(){ return `<section class="lab exax" id="exAx"><div class="lab-h"><span class="lab-k">EXPLODED AXO · 도면 → 분해 액소</span><h2>평면도를 넣으면, 층이 떠오른다.</h2><p>층별 DXF 평면도를 올리면 벽·유리·문·계단을 읽고, 실 이름으로 용도를 나눠 색을 칠하고, 가구·사람·나무까지 놓아 <b>분해 액소메트릭</b>으로 그려요. 파일 이름의 층수(1F, 02F, B1…)로 순서를 정합니다.</p></div>
+  <div class="exax-ex">${EXSAMPLES.map((x,i)=>`<button type="button" class="exax-exc zrv" style="--i:${i}" data-exsample="${x.k}"><span class="ph"><img src="${x.img}" alt="${esc(x.n)} 분해 액소 예시" loading="lazy" decoding="async"></span><b>${esc(x.n)}</b><span>${esc(x.d)}</span><em>${esc(x.tip)}</em><i>이 예시로 열기 →</i></button>`).join('')}</div>
   <div class="exax-ui"><div class="exax-in"><label class="exax-drop" id="exDrop"><input type="file" id="exFile" accept=".dxf" multiple hidden><b>DXF 평면도 올리기</b><span>층마다 파일 하나 · 여러 개 한 번에 · ASCII DXF(R12~2018)</span></label>
    <button type="button" class="btn sec sm" id="exSample">예시 도면으로 보기</button>
    <div class="exax-fl" id="exFl"></div>
@@ -5740,13 +5806,71 @@ async function exDraw(){ const out=$('#exOut'), msg=$('#exMsg'); if(!out||!EXAX.
   out.innerHTML='<div class="exax-ph">그리는 중…</div>'; try{ const r=await exRender(1400,1); const url=r.canvas.toDataURL('image/png'); r.rd.dispose(); out.innerHTML=`<div class="exax-pic"><img src="${url}" alt="분해 액소메트릭">${r.svg}</div>`; $('#exPng').disabled=false; $('#exGo').disabled=false; msg.textContent=`${EXAX.floors.length}개 층 · 실 ${EXAX.floors.reduce((a,F)=>a+F.A.rooms.filter(r=>r.name).length,0)}개를 읽었어요. 이름이 없는 실은 흰색, 바깥으로 이어진 빈 곳은 바닥에서 빠져요.`; }catch(e){ console.warn(e); out.innerHTML=`<div class="exax-ph">그리지 못했어요: ${esc(e.message||e)}</div>`; } }
 async function exPNG(){ try{ const r=await exRender(1500,2); const W=r.W*2,H=r.H*2; const c=document.createElement('canvas'); c.width=W; c.height=H; const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,W,H); g.drawImage(r.canvas,0,0,W,H); r.rd.dispose();
   const img=new Image(); img.onload=()=>{ g.drawImage(img,0,0,W,H); c.toBlob(b=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='exploded_axo.png'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); }); }; img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(r.svg); }catch(e){ alert('저장하지 못했어요: '+e.message); } }
-(function(){ setTimeout(()=>{ try{ const anchor=$('#pArch')||($('#view-panel .plessons')&&$('#view-panel .plessons').closest('section')); if(anchor&&!$('#exAx')) anchor.insertAdjacentHTML('afterend',exaxHTML()); }catch(e){ console.warn('exax',e); } },30); })();
+(function(){ setTimeout(()=>{ try{ const anchor=$('#pArch')||($('#view-panel .plessons')&&$('#view-panel .plessons').closest('section')); if(anchor&&!$('#exAx')) anchor.insertAdjacentHTML('afterend',exaxHTML()); try{ dnaReveal(); }catch(e){} }catch(e){ console.warn('exax',e); } },30); })();
 document.addEventListener('change',async e=>{ if(e.target.id==='exFile'){ const fs=[...e.target.files]; if(!fs.length) return; try{ const list=await Promise.all(fs.map(f=>f.text().then(text=>({name:f.name,text})))); exLoad(list); exFloorsUI(); exDraw(); }catch(err){ $('#exMsg').textContent='읽지 못했어요: '+err.message; } }
   else if(e.target.dataset&&e.target.dataset.exh){ const F=EXAX.floors[+e.target.dataset.exh]; if(F) F.h=+e.target.value; }
   else if(e.target.closest&&e.target.closest('.exax-op')&&EXAX.floors.length) exDraw(); });
-document.addEventListener('click',e=>{ if(!e.target.closest) return; if(e.target.closest('#exSample')){ exLoad([1,2,3].map(n=>({name:`예시_0${n}F.dxf`,text:exSampleDXF(n)}))); exFloorsUI(); exDraw(); } else if(e.target.closest('#exGo')) exDraw(); else if(e.target.closest('#exPng')) exPNG(); });
+document.addEventListener('click',e=>{ if(!e.target.closest) return; const xs=e.target.closest('[data-exsample]'); if(xs){ exLoadSample(xs.dataset.exsample); const o=$('#exOut'); if(o) o.scrollIntoView({behavior:'smooth',block:'start'}); return; } if(e.target.closest('#exSample')){ exLoadSample('retail'); } else if(e.target.closest('#exGo')) exDraw(); else if(e.target.closest('#exPng')) exPNG(); });
 document.addEventListener('dragover',e=>{ if(e.target.closest&&e.target.closest('#exDrop')) e.preventDefault(); });
 document.addEventListener('drop',async e=>{ const d=e.target.closest&&e.target.closest('#exDrop'); if(!d) return; e.preventDefault(); const fs=[...e.dataTransfer.files].filter(f=>/\.dxf$/i.test(f.name)); if(!fs.length) return; const list=await Promise.all(fs.map(f=>f.text().then(text=>({name:f.name,text})))); try{ exLoad(list); exFloorsUI(); exDraw(); }catch(err){ $('#exMsg').textContent='읽지 못했어요: '+err.message; } });
+
+/* ===== 취향 랩 — AI 맞춤 조합 (v16): 컨셉 한 문장 → 단어 8개 조합 3안 → 바로 지어 보기 ===== */
+const DNAI_LEX=[
+ [/숲|나무|수목|녹음/,['숲','나무 그늘','큰 나무 지키기','목재']],[/바다|해변|수평선|파도/,['바다 조망','멀리 보이는 수평선','물가']],[/강|하천|천변/,['강변','물가','물소리']],[/호수|연못/,['호숫가','물에 비친 빛']],
+ [/산|능선/,['산자락','산 조망','지형 순응']],[/언덕|경사|비탈/,['경사지','언덕 위','계단형','지형 따라 접기']],[/들판|논|밭|시골|전원/,['들판','논 한가운데','주말 주택']],[/섬/,['외딴 섬']],
+ [/도심|도시|번화|빌딩/,['도심 협소지','도시적']],[/골목|동네|마을/,['골목','골목 잇기','오래된 마을']],[/협소|좁은 땅|작은 땅/,['도심 협소지','스킵플로어','수직 동선 하나']],[/코너|모퉁이/,['코너 대지','모서리 비움']],
+ [/조용|고요|정적|침묵/,['고요한','한낮의 정적','고요한 소리']],[/명상|사색|쉼|힐링|치유|휴식/,['명상적','느린','수도원 같은']],[/따뜻|포근|아늑/,['따뜻한','낮고 아늑한 천장','발바닥 온기']],
+ [/밝은|환한|햇살|햇볕/,['햇볕 드는 창가','남쪽 큰 창','남향']],[/빛/,['한 줄기 빛','천창','빛 우물','빛을 따라 걷는']],[/어둠|그늘|그림자/,['깊은 그늘','어둠과 대비','그림자 놀이']],
+ [/밤|별|하늘/,['밤하늘 보기','별 보이는 천창','위로 열린 방']],[/비|장마/,['비 오는 날','깊은 처마']],[/눈|겨울/,['눈 쌓인 마당','첫눈','눈 많은 곳']],[/바람/,['바람길','바람이 지나가는','자연 환기']],[/물/,['물소리','물에 비친 빛','물가']],
+ [/아이|어린이|육아|키즈/,['아이 키우는 집','숨바꼭질']],[/노인|부모님|어르신|노부부/,['노부부의 집','문턱 없는 집','한 층에 다 있는 집']],[/1인|혼자|싱글/,['1인 가구','원룸 같은 집']],[/반려|강아지|고양이|펫/,['반려동물과 사는 집']],
+ [/가족|식구/,['두 개의 거실','부엌 중심','안마당']],[/함께|공유|셰어|코리빙/,['함께 사는 집','쉐어하우스','공공 마당 열기']],[/커뮤니티|주민|공동체|모임/,['주민 센터','공공 마당 열기','복합 문화 공간']],
+ [/책|도서관|독서/,['도서관','서가 벽','긴 창가 벤치']],[/카페|커피/,['카페']],[/갤러리|전시|미술관|예술/,['갤러리','작은 미술관']],[/작업실|공방|작가|아틀리에/,['작업실 겸 집','공방']],[/스테이|숙소|호텔|게스트|펜션/,['스테이','게스트하우스']],
+ [/학교|교육|캠퍼스/,['학교','캠퍼스 센터']],[/유치원|어린이집/,['유치원']],[/사무|오피스|업무|회사/,['사무실']],[/근생|상가|가게|상점|매장/,['근린생활시설','상가 주택']],[/교회|성당|명상 공간|종교/,['교회 · 명상 공간']],
+ [/식당|레스토랑|음식/,['레스토랑']],[/공연|음악|극장/,['공연장','극장']],[/박물관|기념/,['박물관','기념관']],
+ [/한옥|전통|한국적|한국스러/,['현대 한옥','마당','처마','대청']],[/마당|안뜰|정원|중정/,['중정형','안마당','안쪽 테라스']],[/옥상|루프탑/,['옥상 정원','지붕 위 산책로']],[/테라스|발코니/,['테라스','계단형']],
+ [/계단|오르/,['오르며 보이는 풍경','머무는 계단','빛 드는 계단']],[/산책|걷|거닐/,['산책하듯 걷는 길','옆으로 긴 산책','한 바퀴 도는 회랑']],[/숨은|비밀|은밀/,['숨은','숨었다 열리는','비껴 들어가기']],
+ [/열린|개방|탁 트인|트인/,['열린','오픈 플랜','통창']],[/프라이버시|사생활|가려|외부 시선/,['사생활 지키기','담장','중정형']],[/소음|시끄/,['소음 막기','두꺼운 기단']],
+ [/미니멀|단순|심플|깔끔/,['미니멀','단순한 박스','깨끗한']],[/대담|강렬|파격|과감/,['대담한','비정형','캔틸레버']],[/가벼|떠 있|띄운/,['가벼운','필로티','들어 올리기']],[/무거|단단|견고|육중/,['묵직한','단단한','두꺼운 기단']],
+ [/곡선|부드러운|둥근|유선/,['곡면','원형']],[/거친|날것|투박/,['거친','거친 콘크리트','원초적']],[/섬세|정교/,['섬세한','정제된']],[/웅장|기념비|랜드마크/,['웅장한','랜드마크','기념비적']],[/작은|아담/,['아담한','작은 덩어리 여럿']],
+ [/콘크리트/,['노출 콘크리트']],[/벽돌/,['붉은 벽돌']],[/나무|목재|우드/,['목재','나무색']],[/돌|석재|화강/,['석재','돌의 서늘함']],[/유리|투명/,['유리','투명한']],[/금속|철|메탈/,['검은 철','금속 패널']],[/흙/,['흙벽','따뜻한 흙']],
+ [/친환경|지속|에너지|탄소|패시브/,['패시브 하우스','태양광 지붕','빗물 모으기']],[/모듈|조립|프리패브/,['모듈러','프리패브']],[/리모델링|재생|오래된 건물|창고/,['리모델링','창고 리노베이션','재사용 재료']],
+ [/하얀|흰/,['하얀 집']],[/검은|블랙/,['검은 집']],[/붉은|빨간/,['붉은 집']],[/파스텔/,['파스텔']]];
+const DNAI_EX=['숲속에 숨은 작은 도서관, 위에서 떨어지는 빛','골목 안 붉은 벽돌 카페 겸 작업실','바다가 보이는 언덕 위 명상 스테이','아이 셋 키우는 중정 있는 따뜻한 집','도심 협소지의 대담한 근린생활시설','노부부가 사는 한옥 같은 단층집'];
+const DNAI_SLOTS=[['life',1],['site',1],['space',2],['form',1],['mat',1],['light',1],['mood',1],['move',1]];
+function dnaiHash(s){ let h=2166136261; for(const c of s) h=Math.imul(h^c.charCodeAt(0),16777619); return h>>>0; }
+function dnaiCos(a,b){ let d=0,na=0,nb=0; for(const k of ['o','v','l','n','f','x']){ d+=(a[k]||0)*(b[k]||0); na+=(a[k]||0)**2; nb+=(b[k]||0)**2; } return na&&nb?d/Math.sqrt(na*nb):0; }
+function dnaiSeeds(text){ const t=String(text||'').replace(/\s+/g,' ').trim(); const seeds=new Map(); const add=(k,w,why)=>{ if(!DNA_BY[k]) return; const o=seeds.get(k); if(!o||o.w<w) seeds.set(k,{k,w,why}); };
+  DNA_KW.forEach(k=>{ const L=k.label; if(L.length>=2&&t.includes(L)) add(L,12,`‘${L}’ 그대로`); else if(/처럼$/.test(L)){ const nm=L.replace(/처럼$/,'').split(/[\s&]/)[0]; if(nm.length>=2&&t.includes(nm)) add(L,11,`‘${nm}’에서`); } });
+  DNAI_LEX.forEach(([re,ks])=>{ const m=t.match(re); if(m) ks.forEach((k,i)=>add(k,8-i*1.5,`‘${m[0]}’에서`)); });
+  return [...seeds.values()].sort((a,b)=>b.w-a.w); }
+function dnaiCombos(text){ const seeds=dnaiSeeds(text); const H=dnaiHash(text||'ziplan');
+  const vec={o:0,v:0,l:0,n:0,f:0,x:0}, ar={}; seeds.forEach(s=>{ const k=DNA_BY[s.k]; for(const a in k.v) vec[a]+=k.v[a]*s.w; for(const a in k.a) ar[a]=(ar[a]||0)+k.a[a]*s.w; });
+  const archTop=Object.entries(ar).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+  const score=(k,flip)=>{ let s=dnaiCos(k.v,flip?Object.fromEntries(Object.entries(vec).map(([a,v])=>[a,a===flip?-v:v])):vec)*3; archTop.slice(0,3).forEach((a,i)=>{ s+=(k.a[a]||0)*(.6-i*.15); }); return s+((dnaiHash(k.label+H)%1000)/1000)*.35; };
+  const flipAx=Object.entries(vec).filter(([a,v])=>v!==0).sort((a,b)=>Math.abs(a[1])-Math.abs(b[1]))[0]; const flip=flipAx?flipAx[0]:'x';
+  const make=(mode)=>{ const keys=[], why={}; const bySeed=(cat)=>seeds.filter(s=>DNA_BY[s.k].cat===cat&&!keys.includes(s.k));
+    DNAI_SLOTS.forEach(([cat,n])=>{ let need=n; const strict=mode!=='A'&&!['life','site'].includes(cat); const flipCat=mode==='C'&&['form','mat','light'].includes(cat); const sd=bySeed(cat).filter(s=>!strict||s.w>=11||(mode==='B'&&s.w>=8&&cat==='mood')); for(const s of sd){ if(need<=0) break; keys.push(s.k); why[s.k]=s.why; need--; }
+      if(need>0){ const pool=DNA_KW.filter(k=>k.cat===cat&&!keys.includes(k.label)).map(k=>[k,score(k,flipCat?flip:null)]).sort((a,b)=>b[1]-a[1]); const off=mode==='B'?1:0; for(let i=off;i<pool.length&&need>0;i++){ keys.push(pool[i][0].label); why[pool[i][0].label]=flipCat?'의외의 한 수 — 컨셉을 한 번 뒤집는 단어':`${pool[i][0].catName} — 컨셉과 결이 가장 맞는 단어`; need--; } } });
+    // 남은 씨앗(다른 분류)도 최대 3개 더
+    seeds.filter(s=>!keys.includes(s.k)&&(mode==='A'||['life','site','korea','sense','master'].includes(DNA_BY[s.k].cat))).slice(0,mode==='A'?3:2).forEach(s=>{ keys.push(s.k); why[s.k]=s.why; });
+    if(mode==='C'){ const m=DNA_KW.filter(k=>k.cat==='master').map(k=>[k,score(k)]).sort((a,b)=>b[1]-a[1])[0]; if(m&&!keys.includes(m[0].label)){ keys.push(m[0].label); why[m[0].label]='이 조합과 가장 닮은 건축가의 방식'; } }
+    return {keys,why}; };
+  return {seeds,combos:[['A','컨셉 그대로','쓴 문장을 가장 충실하게 옮긴 조합'],['B','한 걸음 옆','같은 방향, 다른 단어로 — 비교해 보기 좋은 대안'],['C','의외의 한 수','덩어리·재료 하나를 뒤집고 건축가 한 명을 더한 실험안']].map(([m,n,d])=>({m,n,d,...make(m)}))}; }
+function dnaiHTML(){ return `<section class="dnai" id="dnAi"><div class="dnai-h"><span class="lab-k">AI 맞춤 조합 · 단어가 너무 많다면</span><h2>컨셉을 한 문장으로 쓰면, 조합은 AI가.</h2><p>${DNA_KW.length}개 단어를 다 볼 필요 없어요. 하고 싶은 집을 한 문장으로 쓰면 그 말에서 단어를 뽑고, 빈 자리(대지·공간·덩어리·재료·빛·분위기·동선)는 컨셉과 결이 맞는 단어로 채워 <b>세 가지 조합</b>으로 지어 보여 드려요.</p></div>
+  <div class="dnai-in"><textarea id="dnaiQ" rows="2" placeholder="예) 숲속에 숨은 작은 도서관, 위에서 떨어지는 빛"></textarea><button type="button" class="btn" id="dnaiGo">AI 조합 만들기</button></div>
+  <div class="dnai-ex">${DNAI_EX.map(x=>`<button type="button" data-dnaiex="${esc(x)}">${esc(x)}</button>`).join('')}</div>
+  <div class="dnai-out" id="dnaiOut"></div></section>`; }
+function dnaiRender(text){ const out=$('#dnaiOut'); if(!out) return; const R=dnaiCombos(text);
+  const seedTxt=R.seeds.length?`문장에서 찾은 단어 <b>${R.seeds.length}</b>개 — ${R.seeds.slice(0,8).map(s=>`<i>${esc(s.k)}</i>`).join('')}`:'문장에서 바로 맞는 단어를 못 찾아, 결이 비슷한 단어로 채웠어요. 장소·용도·분위기를 넣어 보세요.';
+  out.innerHTML=`<p class="dnai-seed">${seedTxt}</p><div class="dnai-g">${R.combos.map((c,i)=>{ const r=dnaAnalyze(c.keys); const A=r.arch[0]; return `<article class="dnai-c zrv" style="--i:${i}"><div class="th" data-dnaith="${i}"><i class="ld"></i></div><div class="bd"><em>${c.m} · ${esc(c.n)}</em><h3>${esc(r.n?dnaPersona(r):'')}</h3><p class="d">${esc(c.d)}${A?` · <b>${esc(A.name)} ${A.pct}%</b>`:''}</p><ul>${c.keys.map(k=>`<li><b style="--c:${DN_CATC[DNA_BY[k].cat]||'#888'}">${esc(k)}</b><span>${esc(c.why[k]||'')}</span></li>`).join('')}</ul><div class="act"><button type="button" class="btn" data-dnaiuse="${i}">이 조합으로 짓기</button><button type="button" class="btn sec sm" data-dnaiadd="${i}">지금 고른 것에 더하기</button></div></div></article>`; }).join('')}</div>`;
+  window.__dnai=R; try{ dnaReveal(); }catch(e){}
+  R.combos.forEach((c,i)=>{ const el=out.querySelector(`[data-dnaith="${i}"]`); try{ pgThumb(pgSpec(c.keys,{}),420,280).then(u=>{ if(el&&el.isConnected){ el.style.backgroundImage=`url(${u})`; el.classList.add('on'); } }).catch(()=>{}); }catch(e){} }); }
+function dnaiUse(i,add){ const R=window.__dnai; if(!R) return; const c=R.combos[+i]; if(!c) return; if(!add) state.dna.length=0; c.keys.forEach(k=>{ if(!state.dna.includes(k)) state.dna.push(k); }); touch('dna'); try{ renderDnaLab(); }catch(e){}
+  const go=$('#dnGo'); setTimeout(()=>{ if(go&&!go.disabled) go.click(); else { const p=$('#dnPick'); if(p) p.scrollIntoView({behavior:'smooth',block:'start'}); } },120); }
+(function(){ setTimeout(()=>{ try{ const pick=$('#dnPick'); if(pick&&!$('#dnAi')){ pick.insertAdjacentHTML('beforebegin',dnaiHTML()); } }catch(e){ console.warn('dnai',e); } },40); })();
+document.addEventListener('click',e=>{ if(!e.target.closest) return; const ex=e.target.closest('[data-dnaiex]'); if(ex){ const q=$('#dnaiQ'); q.value=ex.dataset.dnaiex; dnaiRender(q.value); return; }
+  if(e.target.closest('#dnaiGo')){ dnaiRender($('#dnaiQ').value); return; } const u=e.target.closest('[data-dnaiuse]'); if(u){ dnaiUse(u.dataset.dnaiuse,false); return; } const a=e.target.closest('[data-dnaiadd]'); if(a){ dnaiUse(a.dataset.dnaiadd,true); } });
+document.addEventListener('keydown',e=>{ if(e.target&&e.target.id==='dnaiQ'&&e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); dnaiRender(e.target.value); } });
 
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-parch]'); if(!b) return; state.layout=b.dataset.parch; try{ syncConcepts(); redraw(); }catch(err){} const w=$('#concepts'); if(w) w.scrollIntoView({behavior:'smooth',block:'center'}); });
 document.addEventListener('click',e=>{ const f=e.target.closest('#compF [data-cf]'); if(f){ window.__compF=f.dataset.cf; $$('#compF button').forEach(b=>b.setAttribute('aria-pressed',b===f)); const c=$('#compCal'); c.dataset.done=''; drawPanelLab(); } });
@@ -15853,7 +15977,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
   // 테라스 난간
 
   // ---------- 대지 ----------
-  const SIGB=P.sig&&typeof BSIG!=='undefined'&&BSIG[P.sig]; if(SIGB){ bldg.clear(); mass.clear(); floors.length=0; for(const k in inst) if(!site.getObjectById(inst[k].grp.id)) delete inst[k]; try{ SIGB.build(bsigKit(T,M,R,bldg,life,floors)); }catch(e){ console.warn('BSIG',e); } const cl=bldg.clone(); cl.traverse(o=>{ if(o.isMesh) o.material=o.userData.glass?M.clayGlass:M.clay; }); mass.add(cl); }
+  const SIGB=P.sig&&typeof BSIG!=='undefined'&&BSIG[P.sig]&&BSIG[P.sig].build?BSIG[P.sig]:null; if(SIGB){ bldg.clear(); mass.clear(); floors.length=0; for(const k in inst) if(!site.getObjectById(inst[k].grp.id)) delete inst[k]; try{ SIGB.build(bsigKit(T,M,R,bldg,life,floors)); }catch(e){ console.warn('BSIG',e); } const cl=bldg.clone(); cl.traverse(o=>{ if(o.isMesh) o.material=o.userData.glass?M.clayGlass:M.clay; }); mass.add(cl); }
   const bb=new T.Box3().setFromObject(bldg); const bw=bb.max.x-bb.min.x, bd=bb.max.z-bb.min.z; const cx=(bb.min.x+bb.max.x)/2, cz=(bb.min.z+bb.max.z)/2;
   const yardD=(P.ops.has('yard')||P.ops.has('pool')||P.ops.has('plaza')||P.ops.has('sunken'))?20:13; const roadZ=bb.max.z+yardD; const lotW=Math.max(bw+16,34); const lotZ0=bb.min.z-9, lotZ1=roadZ-7.5; const lotD=lotZ1-lotZ0; const front=lotZ1;
   const SITE=P.site||'flat'; const hasRoad=!['forest','mountain'].includes(SITE);
@@ -16667,7 +16791,7 @@ function tDeckAuto(on){ clearInterval(TDK.t); TDK.t=null; if(on&&!matchMedia('(p
 document.addEventListener('click',e=>{ if(!e.target.closest) return; const b=e.target.closest('#tvDeck [data-dk]'); if(b){ tDeckGo(TDK.i+(b.dataset.dk==='next'?1:-1)); return; } const g=e.target.closest('#tvDeck [data-dkgo]'); if(g){ tDeckGo(+g.dataset.dkgo); return; } const pl=e.target.closest('[data-dkplan]'); if(pl){ TV.coll=pl.dataset.dkplan; TV.force=true; try{ tCollRender(); }catch(err){} const t=$('#tvBuild'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); } });
 document.addEventListener('keydown',e=>{ if(!TDK.on||/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return; if(e.key==='ArrowRight') tDeckGo(TDK.i+1); else if(e.key==='ArrowLeft') tDeckGo(TDK.i-1); });
 /* ===== 사진 대체 (v12): 위키미디어 썸네일이 실패하면 원본 → 그래도 실패하면 단어로 지은 모형 썸네일 ===== */
-function bldModelInto(el,b,w,h){ if(!el||!b) return; try{ const P=bldSpec(b); pgThumb(P,w||320,h||200).then(url=>{ if(!el.isConnected) return; if(el.tagName==='IMG'){ el.src=url; el.dataset.fb='model'; } else { el.style.backgroundImage=`url(${url})`; el.style.backgroundSize='cover'; el.classList.add('mth'); } }).catch(()=>{}); }catch(e){} }
+function bldModelInto(el,b,w,h){ if(!el||!b) return; if(bsigNeed(b.id)){ bsigLoad().then(()=>bldModelInto(el,b,w,h),()=>{}); return; } try{ const P=bldSpec(b); pgThumb(P,w||320,h||200).then(url=>{ if(!el.isConnected) return; if(el.tagName==='IMG'){ el.src=url; el.dataset.fb='model'; } else { el.style.backgroundImage=`url(${url})`; el.style.backgroundSize='cover'; el.classList.add('mth'); } }).catch(()=>{}); }catch(e){} }
 document.addEventListener('error',e=>{ const im=e.target; if(!im||im.tagName!=='IMG'||im.dataset.fb==='model') return; const src=im.getAttribute('src')||''; if(!/upload\.wikimedia\.org|_vercel\/image/.test(src)) return;
   if(!im.dataset.fb&&/\/thumb\//.test(src)){ im.dataset.fb='orig'; const m=src.match(/\/thumb\/([^/]+)\/([^/]+)\/([^/]+)\//); if(m){ im.src='https://upload.wikimedia.org/wikipedia/commons/'+m[1]+'/'+m[2]+'/'+m[3]; return; } }
   const host=im.closest('[data-bld],[data-tvabgo],[data-tdet]'); const id=host&&host.dataset.bld; const b=id&&BLD_BY[id]; if(b){ im.dataset.fb='model'; bldModelInto(im,b,im.width>400?640:320,im.height>250?400:200); } else { im.dataset.fb='x'; im.classList.add('img-x'); } },true);
@@ -18362,7 +18486,12 @@ function bldImg(b,w){ if(!b.p) return ''; const seg=b.p.split('/'), n=seg[2], en
   if(b.w<=w&&!tif) return base+seg[0]+'/'+seg[1]+'/'+en; return base+'thumb/'+seg[0]+'/'+seg[1]+'/'+en+'/'+(tif?'lossy-page1-':'')+w+'px-'+en+(tif?'.jpg':''); }
 function bldFile(b){ return 'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(b.p.split('/')[2]); }
 const BLDA={}; function bldArch(b){ if(!BLDA[b.id]){ const r=dnaAnalyze(b.keys); BLDA[b.id]=r.arch[0]?r.arch[0].id:'court'; } return BLDA[b.id]; }
-const BLDTH={}; function bldModel(b,w,h){ const k=b.id+'@'+w; if(BLDTH[k]) return Promise.resolve(BLDTH[k]); const P=bldSpec(b); return pgThumb(P,w||520,h||360).then(u=>BLDTH[k]=u); }
+/* 정교 모형 build는 공개 빌드에서 data/bsig.js로 분리(build_public.py) — 필요할 때 한 번 불러온다 */
+const BSIG_V='src'; let BSIG_P=null;
+function bsigLoad(){ if(BSIG_P) return BSIG_P; if(!Object.keys(BSIG).some(k=>!BSIG[k].build)) return (BSIG_P=Promise.resolve());
+  BSIG_P=new Promise((res,rej)=>{ window.__bsigFill=o=>{ for(const k in o) if(BSIG[k]) BSIG[k].build=o[k]; }; const sc=document.createElement('script'); sc.src='data/bsig.js?v='+BSIG_V; sc.async=true; sc.onload=()=>res(); sc.onerror=e=>{ BSIG_P=null; rej(e); }; document.head.appendChild(sc); }); return BSIG_P; }
+const bsigNeed=id=>BSIG[id]&&!BSIG[id].build;
+const BLDTH={}; function bldModel(b,w,h){ const k=b.id+'@'+w; if(BLDTH[k]) return Promise.resolve(BLDTH[k]); return (bsigNeed(b.id)?bsigLoad():Promise.resolve()).catch(()=>{}).then(()=>{ const P=bldSpec(b); return pgThumb(P,w||520,h||360).then(u=>BLDTH[k]=u); }); }
 function bldSpec(b,site){ const P=pgSpec(b.keys,{base:bldArch(b),mode:'main',site:site||undefined}); if(typeof BSIG!=='undefined'&&BSIG[b.id]){ P.sig=b.id; if(!site) P.site=BSIG_SITE[b.id]||P.site; P.tag='sig:'+b.id+':'+(P.site||''); } return P; }
 function bldShared(b,keys){ return b.keys.filter(k=>keys.includes(k)); }
 function bldSimilar(keys,n,skip){ const r=dnaAnalyze(keys); const A=r.arch[0], B2=r.arch[1];
@@ -18708,7 +18837,7 @@ function atSpotRender(){ const L=atSpotOrder(); ATX.i=(ATX.i+L.length)%L.length;
   info.style.setProperty('--a',H.c[0]); info.innerHTML=`<span class="hl">${esc(H.n)} · ${String(ATX.i+1).padStart(2,'0')} / ${L.length}</span><h3>${esc(b.name)}</h3><p class="who">${esc(b.arch)} · ${esc(String(b.year))} · ${esc(b.city)}</p><p class="dims">${esc(S.dims||'')}</p><p class="desc">${esc(S.desc||b.line||'')}</p>${S.feats&&S.feats.length?`<ol class="ft">${S.feats.slice(0,4).map(f=>`<li>${esc(f)}</li>`).join('')}</ol>`:''}<div class="act"><button type="button" class="btn" data-bld="${id}">사진 · 도면 · 메모</button><button type="button" class="btn sec" data-atbuild="${id}">이 건물처럼 지어 보기</button></div>`;
   info.classList.remove('in'); void info.offsetWidth; info.classList.add('in');
   $$('#atFilm .atx-fc').forEach((c,i)=>c.setAttribute('aria-selected',i===ATX.i)); const cur=$(`#atFilm [data-atspi="${ATX.i}"]`); if(cur){ const f=$('#atFilm'); f.scrollTo({left:cur.offsetLeft-f.clientWidth/2+cur.clientWidth/2,behavior:'smooth'}); }
-  const el=$('#atSpot3d'); if(el){ try{ pgvMount('atsp',el,site=>bldSpec(b,site||undefined)); }catch(e){ console.warn('atsp',e); } } }
+  const el=$('#atSpot3d'); if(el){ const go=()=>{ if(atSpotOrder()[ATX.i]!==id) return; try{ pgvMount('atsp',el,site=>bldSpec(b,site||undefined)); }catch(e){ console.warn('atsp',e); } }; bsigNeed(id)?bsigLoad().then(go,()=>{}):go(); } }
 let atThIO=null; function atThumbs(root){ if(!atThIO) atThIO=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; atThIO.unobserve(e.target); const b=BLD_BY[e.target.dataset.atth]; if(!b) return; bldModel(b,360,240).then(u=>{ e.target.style.backgroundImage=`url(${u})`; e.target.classList.add('on'); }).catch(()=>{}); }),{rootMargin:'300px'}); (root||document).querySelectorAll('[data-atth]:not(.on)').forEach(x=>atThIO.observe(x)); }
 function atRoomRender(k){ const H=AT_HALLS.find(h=>h.k===k), el=$('#atRoom'); if(!el) return; $$('[data-athall]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.athall===k)); if(!H){ el.hidden=true; return; }
   const L=H.ids.filter(id=>BSIG[id]&&BLD_BY[id]).map(id=>BLD_BY[id]);
@@ -18738,7 +18867,7 @@ function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!
     ${sim.length?`<h4>단어가 닮은 건물</h4><div class="dnat-mini">${sim.map(x=>`<button type="button" data-bld="${x.id}">${esc(x.name)}</button>`).join('')}</div>`:''}
     ${bsigHTML(b.id,b)}</div></div>`;
   m.hidden=false; document.documentElement.classList.add('dnat-lock'); m.querySelector('.x').focus({preventScroll:true});
-  try{ pgvDispose('bld'); pgvMount('bld',m.querySelector('#bld3d'),site=>bldSpec(b,site||undefined)); }catch(e){ console.warn(e); }
+  const mnt=()=>{ try{ if(!m.querySelector('#bld3d')) return; pgvDispose('bld'); pgvMount('bld',m.querySelector('#bld3d'),site=>bldSpec(b,site||undefined)); }catch(e){ console.warn(e); } }; bsigNeed(b.id)?bsigLoad().then(mnt,mnt):mnt();
   if(!img) bldModel(b,720,500).then(u=>{ const p=m.querySelector('.pic'); if(p) p.innerHTML=`<img src="${u}" alt="">`; }).catch(()=>{}); }
 function bldClose(){ const m=$('#dnatM'); if(m) m.hidden=true; document.documentElement.classList.remove('dnat-lock'); try{ pgvDispose('bld'); }catch(e){} }
 function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); if(location.hash!=='#dna'){ location.hash='#dna'; setTimeout(()=>bldBuild(id,add),350); return; } state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
@@ -19764,12 +19893,8 @@ $('#tileZip').innerHTML=zcMassSVG(state.zc,state.zc.area*state.zc.bcr/100,Math.r
 drawSite(); $('#tileSite').innerHTML=siteSVG(); redraw(); renderCases(); renderPosts(); route();
 })();
 </script>
-<!-- 효과: liquid-glass-js — README 순서(html2canvas → container.js → button.js) 그대로, 그다음 연결 코드 -->
-<script src="vendor/html2canvas.min.js"></script><!-- README의 jsdelivr html2canvas@1.4.1과 같은 파일, 로컬 복사본 -->
-<script>if(typeof html2canvas!=='function'){document.write('<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"><\/script>')}</script>
-<script src="vendor/liquid-glass/container.js"></script>
-<script src="vendor/liquid-glass/button.js"></script>
-<script src="effects/nav-glass.js"></script>
+<!-- 효과: liquid-glass-js — 데스크톱(정밀 포인터)에서만. 아이패드·폰 등 터치 기기는 html2canvas 전체 화면 캡처가 무거워 CSS 글래스로 (v16) -->
+<script>(function(){ if(window.ZLITE) return; var L=['vendor/html2canvas.min.js','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','effects/nav-glass.js']; var i=0; function next(){ if(i>=L.length) return; var s=document.createElement('script'); s.src=L[i++]; s.onload=next; s.onerror=next; document.body.appendChild(s); } if(document.readyState==='complete') setTimeout(next,600); else addEventListener('load',function(){ setTimeout(next,600); }); })();</script>
 <script src="effects/shader-gradient.js"></script>
 <script>/* 움직이는 그라데이션 배경: 히어로(파스텔) · "닮는다" 띠(깊은 남색) */
 const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));

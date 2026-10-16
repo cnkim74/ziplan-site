@@ -48,6 +48,28 @@ s = s.replace('로그인된 claude.ai 안에서만 됩니다.', '정식 오픈 �
 s = s.replace('로그인된 claude.ai 안에서만 올릴 수 있습니다.', '올리기는 정식 오픈 때 열립니다.')
 s = s.replace('이미지를 보낼 수 없는 화면입니다. claude.ai 안에서 열어 주세요.', 'AI 크릿은 정식 오픈 때 열립니다.')
 s = s.replace('(프로토타입)', '(베타)')
+# 정교 모형(BSIG) build 함수는 따로 떼어 data/bsig.js로 (첫 화면 JS를 1.4MB 줄임 — 아이패드 등에서 파싱·메모리 부담)
+import subprocess, json as _json, hashlib as _hl
+_BSIG_SPLIT = r'''// build_public.py가 부른다: stdin = 전체 HTML, stdout = JSON {html, data}
+// BSIG 블록(const BSIG={ … };)에서 build 함수만 떼어 data/bsig.js로, 페이지엔 메타(치수·설명·도면)만 남긴다.
+let s=require('fs').readFileSync(0,'utf8'); const L=s.split('\n');
+const a=L.findIndex(l=>l.startsWith('const BSIG={')); let b=a+1; while(!/^};\s*$/.test(L[b])) b++;
+const B=new Function(L.slice(a,b+1).join('\n')+';return BSIG')();
+const meta={}, fns=[];
+for(const id of Object.keys(B)){ const o=B[id]; const {build,...m}=o; meta[id]=m; let f=build.toString(); if(/^build\s*\(/.test(f)) f='function'+f.slice(5); else if(/^\(/.test(f)) f='function'+f; fns.push(JSON.stringify(id)+':'+f); }
+const data='__bsigFill({'+fns.join(',\n')+'});\n';
+L.splice(a,b-a+1,'const BSIG='+JSON.stringify(meta)+';');
+process.stdout.write(JSON.stringify({html:L.join('\n'),data}));
+'''
+_r = subprocess.run(['node', '-e', _BSIG_SPLIT], input=s.encode('utf-8'), capture_output=True)
+if _r.returncode == 0:
+    _o = _json.loads(_r.stdout.decode('utf-8'))
+    (dist / 'data').mkdir(exist_ok=True)
+    (dist / 'data' / 'bsig.js').write_text(_o['data'], encoding='utf-8')
+    _v = _hl.md5(_o['data'].encode('utf-8')).hexdigest()[:8]
+    s = _o['html'].replace("const BSIG_V='src';", "const BSIG_V='%s';" % _v)
+else:
+    print('경고: BSIG 분리 실패 — 한 파일로 둡니다', _r.stderr.decode('utf-8')[:400])
 (dist / 'index.html').write_text(s, encoding='utf-8')
 
 # favicon: 마크 SVG
@@ -58,7 +80,7 @@ for _f in (root / 'brand').glob('ziplan-*'):
     _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
-for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
+for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
     if not (root / rel).exists():
         print('WARNING missing', rel); continue
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)

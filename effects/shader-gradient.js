@@ -102,7 +102,7 @@
   // shadergradient.co/customize?… URL → 옵션 (숫자는 숫자로)
   function parseURL(u) { var o = {}; var q = String(u).indexOf('?'); if (q < 0) return o; String(u).slice(q + 1).split('&').forEach(function (kv) { var p = kv.split('='); if (!p[0]) return; var v = decodeURIComponent((p[1] || '').replace(/\+/g, ' ')); if (v === '') return; var n = Number(v); o[p[0]] = isNaN(n) ? v : n; }); return o; }
   function ShaderGradient(canvas, opts) {
-    opts = opts || {}; this.c = canvas; this.o = Object.assign({}, DEF, opts.url ? parseURL(opts.url) : {}, opts); delete this.o.url; if (this.o.bg !== undefined) this.o.background = this.o.bg;
+    opts = opts || {}; this.c = canvas; this.o = Object.assign({}, DEF, opts.url ? parseURL(opts.url) : {}, opts); delete this.o.url; if (this.o.bg !== undefined) this.o.background = this.o.bg; if (window.ZLITE) { this.o.maxWidth = Math.min(this.o.maxWidth || 1400, 720); this.o.pixelDensity = Math.min(this.o.pixelDensity || 1, 1); }
     var transparent = this.o.background === 'transparent';
     var gl = this.gl = canvas.getContext('webgl', { antialias: true, alpha: transparent, premultipliedAlpha: true, powerPreference: 'low-power' }) || canvas.getContext('experimental-webgl', { alpha: transparent });
     if (!gl) { this.ok = false; return; }
@@ -144,7 +144,7 @@
   ShaderGradient.prototype.resize = function () { var r = this.c.getBoundingClientRect(); var s = Math.min(window.devicePixelRatio || 1, this.o.pixelDensity) * Math.min(1, this.o.maxWidth / Math.max(1, r.width)); var w = Math.max(2, Math.round(r.width * s)), h = Math.max(2, Math.round(r.height * s)); if (this.c.width !== w || this.c.height !== h) { this.c.width = w; this.c.height = h; this.gl.viewport(0, 0, w, h); this.camDirty = true; } };
   ShaderGradient.prototype.time = function () { return this.o.uTime + (this.o.animate === 'on' ? (performance.now() - this.t0) / 1000 : 0); };
   ShaderGradient.prototype.frame = function () { var gl = this.gl; if (this.camDirty) this.camera(); var t = this.time(); gl.uniform1f(this.u.uTime, t); gl.uniform1f(this.u.uT, t); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_SHORT, 0); };
-  ShaderGradient.prototype.start = function () { var self = this; if (!this.ok) return; if (this.rm || this.o.animate !== 'on') { this.frame(); return; } if (this.raf) return; var loop = function () { self.raf = 0; if (!self.visible || document.hidden) return; self.frame(); self.raf = requestAnimationFrame(loop); }; this.raf = requestAnimationFrame(loop); };
+  ShaderGradient.prototype.start = function () { var self = this; if (!this.ok) return; if (this.rm || this.o.animate !== 'on') { this.frame(); return; } if (this.raf) return; var last = 0, gap = window.ZLITE ? 33 : 0; var loop = function (now) { self.raf = 0; if (!self.visible || document.hidden) return; if (!gap || !now || now - last >= gap) { last = now || 0; self.frame(); } self.raf = requestAnimationFrame(loop); }; this.raf = requestAnimationFrame(loop); };
   ShaderGradient.prototype.stop = function () { if (this.raf) cancelAnimationFrame(this.raf); this.raf = 0; };
   document.addEventListener('visibilitychange', function () { if (!document.hidden) ShaderGradient.all.forEach(function (g) { g.start(); }); });
   ShaderGradient.all = [];
