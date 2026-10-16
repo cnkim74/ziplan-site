@@ -284,7 +284,8 @@ def _build_static(D):
         cn = country(b); sig = BSIG.get(b['id'])
         img = _bld_img(b, 1280) if b.get('p') else None
         title = T('%s — %s · %s | ZIPLAN 건축 아틀라스' % (b['name'], b['arch'], b['year']), '%s(%s) — %s · %s | ZIPLAN 건축 아틀라스' % (b['name'], b['city'], b['arch'], b['year']))
-        desc = _clip('%s(%s, %s년, %s) — %s. 사진 출처·3D 모형·같은 건축가의 다른 건물까지.' % (b['name'], b['arch'], b['year'], b['city'], b['line'].rstrip('.')), 155)
+        _yr = str(b['year']); _yr = _yr + '년' if _yr.strip().isdigit() else _yr
+        desc = _clip('%s(%s, %s, %s) — %s. 사진 출처·3D 모형·같은 건축가의 다른 건물까지.' % (b['name'], b['arch'], _yr, b['city'], b['line'].rstrip('.')), 155)
         m = ['<p class="kick">%s · %s</p>' % (' · '.join(_esc(x) for x in dict.fromkeys([REG.get(b['reg'], ''), cn]) if x), _esc(ERA.get(b['era'], ''))),
              '<h1>%s</h1>' % _esc(b['name']), '<p class="sub">%s · %s · %s</p>' % (_esc(b['arch']), _esc(b['year']), _esc(b['city']))]
         if img:
