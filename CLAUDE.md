@@ -196,3 +196,12 @@
 - **도감 사진 검증**: 752장 전부 썸네일을 눈으로 확인(서브에이전트, 사용자 PC 브라우저로 Commons API·카테고리 조회). 결과 `scratch/v14/photo_fix.json`. 다른 것을 찍은 사진 11장 교체(lloyds 자동차, staatsgaleriestg 구관, kait 교문, acropolis 반대 방향, seonyudo 간판, philharmonieparis 실내 파티, confluenceslyon 트램, ptpavilion 다른 탑, zonnestraal 나무만, serralves 실내 아이, maritimedk 조형물) + 같은 건물이지만 약한 사진 18장 교체(hwaseong·soswaewon·heydar·brion·burj·incheonair·miho·louisiana·hassan2·gyeonghuigung·seoulwall·flametowers·monahobart·aarhuscityhall·ermtartu·vuoksenniska·otaniemichapel·nmaust). 모두 CC BY/BY-SA/CC0/PD. nseoultower 대체 후보는 라이선스 "Attribution"·작가 미상이라 적용 안 함. 유지(대안 없음) 13건: museumsan(.tif) 등.
 - **패널**: `LAYOUTS`에 사례 기반 4종 추가 → 13종 — mood(분위기 히어로: 풀블리드 투시도+분석 줄+분해 액소+입면 띠), index(픽토그램 색인: 왼쪽 아이콘 기둥 6+큰 투시도), illust(일러스트 서사: 큰 조감+번호 6칸), systems(시스템 다이어그램: 환경 장치 연속 3+평면 기둥+단면 띠). `PLESSON` 10→15(계절·날씨 분위기, 강조색 하나, 사람의 하루, 번호 순서, 시스템 연속 다이어그램 + 아이콘). 새 섹션 `#pArch` 「패널 사례 해부」(`PARCH` 5 뼈대: 위 4 + 가로 세 띠형 → band) — 사용자가 준 네이버 패널 5장을 구조만 읽어 정리(원본 이미지 미사용), 카드 버튼 `data-parch`로 작업대 레이아웃 즉시 변경. `.zrv` 카드는 삽입 뒤 `dnaReveal()` 필요.
 - 테스트: `scratch/v14/tpanel.js`, `tpn3.js`(#sheet 슬롯 위치 확인).
+
+## v15 (2026-10-17) — 도면→분해 액소 · 정교 모형 19채
+- **도면 → 분해 액소** (패널 페이지, `#pArch` 뒤 `section#exAx`, 코드 `/* ===== 도면 → 분해 액소메트릭 (v15)` 블록, CSS `.exax-*`)
+  - DXF(ASCII) 층별 업로드 → `exParseDXF`(LINE/LWPOLYLINE/POLYLINE/ARC/SOLID/TEXT/MTEXT, $INSUNITS) → `exAnalyze`(0.12m 격자에 벽·유리·문호·테라스선 래스터 → 바깥 채우기 → 연결성분=실, TEXT로 실 이름·용도 `exCat`/`exKind`) → `exFurnish`(용도별 가구·사람·나무 격자 배치) → `exSteps`(계단 디딤판 선 → 단) → `exBuild`(three.js 직교 카메라, 슬래브 상판 캔버스 텍스처 색칠) + `exSVG`(층 라벨·실 번호 태그·범례).
+  - 레이어 인식은 이름 정규식(EXL): WALL/POCHE/CORE/벽, GLASS/WIN/창, DOOR, STAIR, TERR, VOID, ROOM/TEXT. DIM/GRID/TB/SITE/CTX/PARK/HIDDEN은 무시. 건물 벽 폴리곤과 이어지지 않은 벽 선(대지 담장)은 제거.
+  - 층 순서: 파일 이름의 1F/02F/B1/층. 옵션: 색(동선 강조/프로그램), 방향 4, 층 간격, 벽 높이(기본 1.2m), 가구 토글, 제목. PNG 2배 저장(canvas + SVG 합성). 예시 도면(가상 3층) 버튼.
+  - 스크래치 원본: `S/ax/exax.js` → `python3 S/ax/inject.py`로 crit.html 블록 교체. 테스트 `S/ax/tex.js`(예시 + HOUSE PARK 8층 DXF).
+- **아틀라스 정교 모형 19채**(BSIG 79채): 신규 buseoksa, seokguram, soswaewon, haein, hahoe, kyungdong, leeum, mmca, sewoon, bonte, seoullo, museumsan, forbidden, himeji, katsura, kanazawa / 개선 space, lotte, churchlight. 패치 `S/sig15/{A,B,C,D}.js`, 브리프 `S/sig15/BRIEF.md`. AT_HALLS에 배치(전통 12·서울 현대 16·신전 15·빛물땅 13·하늘 6). 63bldg는 서울의 현대 방에.
+- 다음 버전 시작 기준: v15 커밋 이후 origin/main.
