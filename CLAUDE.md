@@ -259,3 +259,12 @@
   2. Google Search Console → 속성 추가(URL 접두어 `https://ziplan-site-dist.vercel.app/`) → 소유 확인(HTML 태그 방식이면 메타 태그를 알려 주면 build_public.py head에 넣음) → Sitemaps에 `sitemap.xml` 제출 → URL 검사로 `/atlas/jongmyo/` 색인 요청.
   3. 네이버 서치어드바이저 → 사이트 등록 → 소유 확인(HTML 태그/파일) → 요청 > 사이트맵 제출(`https://ziplan-site-dist.vercel.app/sitemap.xml`) → RSS는 선택, 웹 페이지 수집 요청으로 대표 페이지 몇 개.
   4. (선택) Bing Webmaster Tools에서 Search Console 가져오기. 도메인을 바꾸면 `SITE_URL`만 고치고 다시 빌드·제출.
+
+## S1 (2026-10-17, 이 세션) — 정교 모형 +21 → 100채 · 전시실 8방
+- 서브에이전트 3조 패치 `scratch/sig18/{A,B,C}.js`(소스·조립 `A_src/`·`B_src/`·`C_work/`, `node gen.js`), 브리프는 `scratch/sig15/BRIEF.md` 재사용, 병합 `scratch/v13/merge.js`.
+  - A 전통: wolji 동궁과 월지 · cheomseong 첨성대 · tongdosa 통도사 · sudeoksa 수덕사 대웅전 · bongjeong 봉정사 · dosan 도산서원 · yangdong 양동마을
+  - B 궁·성곽·근대: changgyeong 창경궁 · namhan 남한산성 · sungnyemun 숭례문 · seokjojeon 덕수궁 석조전 · jeondong 전동성당 · gyesan 계산성당 · yakhyeon 약현성당
+  - C 현대: amore 아모레퍼시픽 · acc 국립아시아문화전당 · seoulstation 문화역서울284 · busancinema 영화의전당 · incheonair 인천공항 T1 · ewha 이화여대 ECC(도감엔 'ecc'와 'ewha' 두 항목이 겹쳐 있음 — 모형은 ewha에) · sejong 세종문화회관
+  - 모두 BSIG_SITE 'town', 출처·추정은 각 build 주석. 사실 메모: 계산성당 설계자는 자료마다 달라 이름 생략, 숭례문 복원 성곽 동 53m·서 16m, 첨성대 9.17m(1997 실측 9.11m 병기), 봉정사 1363 중수.
+- AT_HALLS 재편 8방: 궁궐과 성곽(kold 10) · 산사와 서원(ktemple 12, 새) · 한국의 근대(kmod 8, 새 — myeongdong·cityhall 옮김) · 서울의 현대(19) · 신전과 대성당 · 근대의 거장들 · 빛·물·땅 · 하늘로. 전시실 문구는 `AT_HALLS.length`로.
+- dist/data/bsig.js 2.4MB(지연 로드), dist/index.html 2.66MB. 남은 한계: 공용 env 코드가 build마다 복제됨(BSIG_ENV 공용화 여지), 월지·통도사·양동 먼 산이 안개로 희게, 남한산성 eye 뷰는 숲이 성벽 일부를 가림.
