@@ -191,3 +191,8 @@
   - 세계 그룹의 `W.own()`은 모형이 떠 있는 동안 렌더러 기본 바닥(잔디·포장·길)의 visible을 getter로 숨김 — 다른 건물로 바꾸면 복구됨(검증: colosseum→savoye→burj→fallingwater). 공용 env 코드가 건물마다 복제돼 crit.html이 3.45MB(gzip 1.15MB)로 커짐 — 나중에 `BSIG_ENV` 공용 함수로 빼면 줄일 수 있음.
   - 남은 한계: 63빌딩 사다리꼴 실루엣은 기억 기반 추정(원본 직육면체는 `scratch/v13/sig/K_work/src/63bldg.orig.js`), 하기아 소피아의 블루 모스크는 기본 뷰 밖, 빌바오 곡면은 덩어리감, 도시 블록은 단순 상자, 렌더러 가로등·벤치가 town 사이트 모형 앞에 보임.
 - 테스트(`scratch/v13/`): `tatl.js [m]`(아틀라스 3막·전시실·모달·표지 4곳), `tthumb.js ids`(배포 빌드 썸네일), `tswap.js`(바닥 복구), `tops.js`(모든 방 표지 스크린샷), `tdbg.js`(모바일 뷰어 크기).
+
+## v14 — 도감 사진 전수 검증 · 패널 사례 해부 · 레이아웃 13 (2026-10-16 밤)
+- **도감 사진 검증**: 752장 전부 썸네일을 눈으로 확인(서브에이전트, 사용자 PC 브라우저로 Commons API·카테고리 조회). 결과 `scratch/v14/photo_fix.json`. 다른 것을 찍은 사진 11장 교체(lloyds 자동차, staatsgaleriestg 구관, kait 교문, acropolis 반대 방향, seonyudo 간판, philharmonieparis 실내 파티, confluenceslyon 트램, ptpavilion 다른 탑, zonnestraal 나무만, serralves 실내 아이, maritimedk 조형물) + 같은 건물이지만 약한 사진 18장 교체(hwaseong·soswaewon·heydar·brion·burj·incheonair·miho·louisiana·hassan2·gyeonghuigung·seoulwall·flametowers·monahobart·aarhuscityhall·ermtartu·vuoksenniska·otaniemichapel·nmaust). 모두 CC BY/BY-SA/CC0/PD. nseoultower 대체 후보는 라이선스 "Attribution"·작가 미상이라 적용 안 함. 유지(대안 없음) 13건: museumsan(.tif) 등.
+- **패널**: `LAYOUTS`에 사례 기반 4종 추가 → 13종 — mood(분위기 히어로: 풀블리드 투시도+분석 줄+분해 액소+입면 띠), index(픽토그램 색인: 왼쪽 아이콘 기둥 6+큰 투시도), illust(일러스트 서사: 큰 조감+번호 6칸), systems(시스템 다이어그램: 환경 장치 연속 3+평면 기둥+단면 띠). `PLESSON` 10→15(계절·날씨 분위기, 강조색 하나, 사람의 하루, 번호 순서, 시스템 연속 다이어그램 + 아이콘). 새 섹션 `#pArch` 「패널 사례 해부」(`PARCH` 5 뼈대: 위 4 + 가로 세 띠형 → band) — 사용자가 준 네이버 패널 5장을 구조만 읽어 정리(원본 이미지 미사용), 카드 버튼 `data-parch`로 작업대 레이아웃 즉시 변경. `.zrv` 카드는 삽입 뒤 `dnaReveal()` 필요.
+- 테스트: `scratch/v14/tpanel.js`, `tpn3.js`(#sheet 슬롯 위치 확인).
