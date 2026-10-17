@@ -1,6 +1,7 @@
 __bsigFill({"hahoe":function(K){
 // 출처: 서울신문 2010-08-01 「세계유산 하회마을과 양동마을」 — 연화부수형, 양진당(풍산유씨 종가)·충효당(서애 유성룡 생가), 중요민속자료 122호, 2010-07-31 세계유산 등재 · 한국관광공사 여행 코스 — 부용대 높이 64 m 절벽, 만송정 숲
-// 추정: 강 중심선·폭(약 120 m)·백사장, 마을 크기, 가옥 수·위치·향(지도 감각으로 배치), 양진당·충효당 위치와 칸 구성(개략), 삼신당 위치, 부용대 위치·모양, 산 높이
+// 배치: 화산 = 마을 동쪽(주산, 마을이 화산 자락에 기댐) · 남산 = 남쪽 · 원지산 = 서쪽 · 부용대 = 강 건너 북쪽 절벽(매일신문 2007-04-17 하회마을 기사, 한국관광공사)
+// 추정: 강 중심선·폭(약 120 m)·백사장, 마을 크기, 가옥 수·위치·향(지도 감각으로 배치), 양진당·충효당 위치와 칸 구성(개략), 삼신당 위치, 부용대 폭·모양, 산 높이(화산은 마을보다 약 200 m 높은 둥근 능선으로, 나머지는 낮게 — 추정)
     const T=K.T; const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
     // --- 공용 헬퍼(이 build 안에서만): 인스턴스·병합·한옥 지붕면(roofHF: dt 0 우진각 · 0<dt<1 팔작 · 1 맞배) ---
     const inst=(geo,mat,items,cast,grp,fit)=>{ if(!items.length) return null; if(fit) geo=geo.clone(); const m=new T.InstancedMesh(geo,mat,items.length); m.frustumCulled=false; const M4=new T.Matrix4(),Q=new T.Quaternion(),S=new T.Vector3(),V=new T.Vector3(),Eu=new T.Euler(); items.forEach((it,i)=>{ V.set(it[0],it[1],it[2]); Eu.set(it[7]||0,it[3]||0,it[8]||0); Q.setFromEuler(Eu); S.set(it[4]||1,it[5]||1,it[6]||1); M4.compose(V,Q,S); m.setMatrixAt(i,M4); }); m.instanceMatrix.needsUpdate=true; if(fit){ if(!geo.boundingBox) geo.computeBoundingBox(); const gb=geo.boundingBox.clone(), bb=new T.Box3(); for(let i=0;i<items.length;i++){ m.getMatrixAt(i,M4); bb.union(gb.clone().applyMatrix4(M4)); } geo.boundingBox=bb; geo.boundingSphere=bb.getBoundingSphere(new T.Sphere()); } if(grp){ m.castShadow=!!cast; m.receiveShadow=true; grp.add(m); return m; } return put(m,cast); };
@@ -83,20 +84,32 @@ __bsigFill({"hahoe":function(K){
     // ---------- 0: 지형·강·백사장·만송정·부용대·논밭 ----------
     K.layer(0); E.own();
     let TR;
-    { const hf=(x,z)=>{ const d=rdist(x,z), inside=inLoop(x,z); const rr0=Math.hypot(x,z); let h=inside?((E.fbm(x*.01,z*.01,2)-.5)*1.6+Math.max(0,x-120)*.01+.6)*E.ss((rr0-100)/70)-.04:2;
-        if(!inside){ // 강 바깥: 산·언덕
-          h+=E.peaks(x,z,[[BUY[0],BUY[1]-90,260,120,92,1.2],[-560,-80,240,300,150,1.3],[-300,560,300,220,130,1.3],[700,60,300,320,190,1.25],[200,-720,360,200,180,1.3],[-700,-500,300,300,170,1.3]])*E.ss((d-70)/60);
-          // 부용대: 강가에서 곧바로 서는 남향 절벽
-          const bx0=x-BUY[0]; if(Math.abs(bx0)<170&&z<BUY[1]+40&&z>BUY[1]-260){ const zz=z+(E.fbm(x*.03,3.3,2)-.5)*22; const cl=E.ss((BUY[1]+38-zz)/8)*E.ss((170-Math.abs(bx0))/70)*(.85+.3*E.fbm(x*.02,7.1,2)); h=Math.max(h,64*cl+(BUY[1]-z)*.12*cl); } }
+    { // 산: 둥근 숲 능선(뾰족 봉우리·맨 바위 없음). 화산(花山) = 마을 동쪽 목에 길게 누운 주산, 원지산(서)·남산(남)은 낮고 부드럽게, 부용대만 강 건너 북쪽에서 곧게 선 약 64 m 절벽
+      const mound=(x,z,M)=>{ let h=0; for(const q of M){ let ax,az; if(q.length>6){ // 능선(선분 q[0..3], 반폭 q[4], 높이 q[5])
+            const dx=q[2]-q[0], dz=q[3]-q[1]; const t=Math.max(0,Math.min(1,((x-q[0])*dx+(z-q[1])*dz)/(dx*dx+dz*dz))); const d=Math.hypot(x-q[0]-t*dx,z-q[1]-t*dz)/q[4]; if(d<1){ const e=Math.pow(1-d*d,1.6)*(1-.18*Math.pow(Math.abs(t-.5)*2,2)); h=Math.max(h,q[5]*e); } continue; }
+          ax=(x-q[0])/q[2]; az=(z-q[1])/q[3]; const d2=ax*ax+az*az; if(d2<1) h=Math.max(h,q[4]*Math.pow(1-d2,q[5]||1.6)); } return h; };
+      const HILL=[[640,-140,760,400,280,205,'화산'],[760,120,320,300,215,1.7],[-600,-60,260,330,80,1.8],[-760,-400,320,300,80,1.7],[-260,600,360,220,72,1.8],[160,640,300,200,60,1.8],[-60,-610,270,150,66,1.8],[320,-920,440,260,90,1.7],
+        [-1500,-900,600,420,150,1.6],[-700,-1500,520,360,125,1.6],[100,-1750,560,380,140,1.6],[800,-1500,520,420,160,1.6],[1600,-500,520,600,175,1.6],[1400,900,600,420,150,1.6],[300,1700,700,400,130,1.6],[-800,1500,600,420,135,1.6],[-1750,400,450,620,145,1.6]];
+      const hf=(x,z)=>{ const d=rdist(x,z), inside=inLoop(x,z); const rr0=Math.hypot(x,z); let h=inside?((E.fbm(x*.01,z*.01,2)-.5)*1.6+Math.max(0,x-120)*.01+.6)*E.ss((rr0-100)/70)-.04:2;
+        if(!inside){ // 강 바깥: 둥근 숲 언덕 + 약한 기복
+          const neck=x>=380?1-(1-E.ss((x-380)/240))*(1-E.ss((Math.hypot(x*.95,z)-450)/160)):1; // 동쪽 목: 마을 땅에서 화산 자락으로 천천히 오름
+          h+=mound(x,z,HILL)*(.88+.24*E.fbm(x*.004+2,z*.004,3))*E.ss((d-70)/220)*neck;
+          // 부용대: 강가에서 곧바로 서는 남향 절벽 하나(가운데가 가장 높고 양옆으로 낮아짐), 위는 솔숲 덮인 평탄면 → 뒤 능선으로 이어짐
+          const bx0=x-BUY[0]; if(Math.abs(bx0)<190&&z<BUY[1]+40&&z>BUY[1]-260){ const zz=z+(E.fbm(x*.035,3.3,2)-.5)*16; const ed=Math.pow(E.ss((190-Math.abs(bx0))/160),.8); const top=58+8*E.fbm(x*.02,7.1,2); const cl=E.ss((BUY[1]+36-zz)/5); h=Math.max(h,top*ed*cl+(BUY[1]-z)*.04*cl*ed); } }
         if(d<62) h=Math.min(h,-6+d*.03); else if(d<100&&inside) h=Math.min(h,-3.2+(d-62)*.11); else if(d<110&&!inside) h=Math.min(h,-3.4+Math.pow((d-62)/48,1.5)*14);
         return h; };
-      TR=E.terrain(0,0,0,0,E.axis(3200,230,3.1,0),E.axis(3200,230,3.1,0),hf,(x,z,h,ny)=>{ const d=rdist(x,z), inside=inLoop(x,z); if(h<-2.4&&d<105&&inside) return [.86,.82,.7]; if(d<90&&!inside) return [.42,.47,.33]; if(inside){ const f=x>130||Math.hypot(x,z)>240?1:0; if(f){ const q=E.vn(x*.03,z*.03); return [.5+.12*q,.58+.06*q,.3+.04*q]; } const n=E.fbm(x*.05,z*.05,2); return [.5+.06*n,.54+.04*n,.38]; } const bx0=x-BUY[0]; if(Math.abs(bx0)<170&&z<BUY[1]+40&&z>BUY[1]-30&&ny<.7){ const q=E.vn(x*.25,h*.05)*.5+E.vn(x*.9,h*.3)*.5; return [.33+.1*q,.30+.08*q,.26+.06*q]; } return E.mcol(x,z,h,ny,{far:600,farW:900,cliff:.7}); });
+      const isCliff=(x,z,ny)=>Math.abs(x-BUY[0])<175&&z<BUY[1]+44&&z>BUY[1]-12&&ny<.62;
+      TR=E.terrain(0,0,0,0,E.axis(3200,230,3.1,0),E.axis(3200,230,3.1,0),hf,(x,z,h,ny)=>{ const d=rdist(x,z), inside=inLoop(x,z); if(h<-2.4&&d<105&&inside) return [.86,.82,.7]; if(d<90&&!inside&&!isCliff(x,z,ny)) return [.42,.47,.33]; if(inside){ const f=x>130||Math.hypot(x,z)>240?1:0; if(f){ const q=E.vn(x*.03,z*.03); return [.5+.12*q,.58+.06*q,.3+.04*q]; } const n=E.fbm(x*.05,z*.05,2); return [.5+.06*n,.54+.04*n,.38]; } if(isCliff(x,z,ny)){ const q=E.vn(x*.22,h*.09)*.55+E.vn(x*.7,h*.35)*.45, s=.5+.5*Math.sin(h*.55+E.vn(x*.05,1)*3); return [.47+.09*q+.03*s,.42+.07*q+.025*s,.35+.05*q]; } return E.mcol(x,z,h,ny,{far:650,farW:1100,cliff:0}); });
       const wm=new T.Mesh(new T.PlaneGeometry(5000,5000),E.WATER); wm.rotation.x=-Math.PI/2; wm.position.y=-3.6; wm.receiveShadow=true; K.life.add(wm);
       // 만송정 솔숲(마을 북서쪽 강가) · 산 숲
       E.forest(E.scatter(-360,40,-370,-150,6,TR.h,(x,z,h)=>{ const d=rdist(x,z); return inLoop(x,z)&&d>100&&d<150&&h>-1; },(x,z,h)=>13+E.r()*5,1),{trunks:true});
-      E.forest(E.scatter(-1100,1100,-1100,1100,11,TR.h,(x,z,h)=>!inLoop(x,z)&&rdist(x,z)>85&&h>3&&Math.hypot(x,z)<1150&&E.r()<.9&&!(Math.abs(x-BUY[0])<170&&z>BUY[1]-40),(x,z,h)=>9+E.vn(x*.05,z*.05)*7,(x,z,h)=>E.vn(x*.03+3,z*.03)<.55?1:0),{trunks:false});
+      E.forest(E.scatter(-1100,1100,-1100,1100,11,TR.h,(x,z,h)=>!inLoop(x,z)&&rdist(x,z)>85&&h>3&&Math.hypot(x,z)<1250&&E.r()<.93&&!(Math.abs(x-BUY[0])<185&&z>BUY[1]-14),(x,z,h)=>9+E.vn(x*.05,z*.05)*7,(x,z,h)=>E.vn(x*.03+3,z*.03)<.55?1:0),{trunks:false});
       E.forest(E.scatter(-300,200,-280,280,14,TR.h,(x,z,h)=>inLoop(x,z)&&rdist(x,z)>125&&Math.hypot(x,z)<240&&E.r()<.12,(x,z,h)=>7+E.r()*4,0),{trunks:true,cast:true}); // 마을 안 나무
-      E.forest(E.scatter(-230,110,BUY[1]-240,BUY[1]-46,10,TR.h,(x,z,h)=>Math.abs(x-BUY[0])<165&&E.r()<.85,(x,z,h)=>9+E.r()*5,1),{trunks:false}); }
+      E.forest(E.scatter(-250,130,BUY[1]-240,BUY[1]-16,8,TR.h,(x,z,h)=>Math.abs(x-BUY[0])<185&&h>8&&E.r()<.9,(x,z,h)=>9+E.r()*5,1),{trunks:false});
+      // 절벽 턱에 붙은 소나무 몇 그루(바위 면이 한 장 벽처럼 보이지 않게)
+      { const L=[]; for(let i=0;i<46;i++){ const x=BUY[0]-150+E.r()*300, z=BUY[1]+8+E.r()*28; const h0=TR.h(x,z); if(h0<10||h0>60) continue; L.push([x,h0-.6,z,5+E.r()*4,1,E.r(),.9]); } E.forest(L,{trunks:true}); }
+      // 먼 산 숲(겹 능선 — 대기색으로 옅어짐)
+      E.forest(E.scatter(-2000,2000,-2000,2000,26,TR.h,(x,z,h)=>Math.hypot(x,z)>1250&&Math.hypot(x,z)<2100&&h>25&&E.r()<.8,(x,z,h)=>22+E.r()*10,(x,z)=>E.vn(x*.01,z*.01)<.5?1:0),{trunks:false}); }
     // ---------- 마을: 가옥 인스턴스(기와집·초가) — 한가운데는 bldg(K.layer 1·2), 바깥은 life ----------
     // 기와 지붕 단위 형상(팔작, 평면 1.8×1 · 높이 1) · 초가 단위 형상(둥근 우진각)
     const surfG=(fn,nu,nv)=>{ const pos=[],idx=[]; for(let j=0;j<=nv;j++) for(let i=0;i<=nu;i++){ const p=fn(i/nu,j/nv); pos.push(p[0],p[1],p[2]); } for(let j=0;j<nv;j++) for(let i=0;i<nu;i++){ const a=j*(nu+1)+i, b=a+1, c=a+nu+1, d=c+1; idx.push(a,c,b,b,c,d); } const g=new T.BufferGeometry(); g.setAttribute('position',new T.Float32BufferAttribute(pos,3)); g.setIndex(idx); g.computeVertexNormals(); return g; };

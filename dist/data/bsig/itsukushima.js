@@ -181,7 +181,6 @@ __bsigFill({"itsukushima":function(K){
       const beam=(o0,o1,hz,mat,top)=>{ const y0=x=>base(x)+o0, y1=x=>base(x)+o1+(top?.25*pw(x):0); K.surf((u,v)=>{ const x=-kl/2+kl*u; return [x,y0(x),tz-hz+2*hz*v,x/2,v]; },30,1,mat); for(const d of [-1,1]) K.surf((u,v)=>{ const x=-kl/2+kl*u; return [x,y0(x)+(y1(x)-y0(x))*v,tz+d*hz,x/2,v]; },30,1,mat); if(top) K.surf((u,v)=>{ const x=-kl/2+kl*u; return [x,y1(x),tz-hz+2*hz*v,x/2,v]; },30,1,mat); for(const sx of [-1,1]) K.b(sx*kl/2,y0(sx*kl/2),tz,.05,y1(sx*kl/2)-y0(sx*kl/2),2*hz,mat); };
       beam(0,.7,.7,VER,false); beam(.7,1.3,.85,BLK,true);
       K.b(0,gy+13.4,tz,2*PX+3.5,.35,.8,VER); }
-    // 배치 전체를 약 40° 돌림: 기본·눈높이 시점이 바다 쪽에서 오토리이 너머로 사전을 보도록(정면 축 = 오토리이 방향)
-    { const PHI=.7; K.floors.forEach(f=>{ if(f.userData&&f.userData.sig!==undefined) f.rotation.y=PHI; }); const G=new T.Group(); G.rotation.y=PHI; K.life.children.slice(n0).forEach(o=>G.add(o)); K.life.add(G); }
+    // 사전 축 = +z(정면). 오토리이는 축 위 바다(z≈198). 눈높이 시점은 BSIG eye 힌트로 바다 쪽에서 오토리이 너머 사전을 봄
     tidy(0);
   }});
