@@ -155,7 +155,7 @@ __bsigFill({"domerock":function(K){
     // ---------- 배경(K.life): 위 단(+0) · 아래 에스플러네이드(−4 m) · 계단과 카나티르 · 알아크사 · 구시가 · 동쪽 성벽 · 올리브산 ----------
     LIFE(()=>{
       B(0,-4.4,40,320,.4,500,flat(K.col(0xcfc3a8,{roughness:.95}))); // 하람 에스플러네이드(아래 단)
-      B(0,-4,0,150,4,130,ST2); B(0,-.05,0,150,.05,130,PAV); // 위 단(높이 약 4 m)
+      B(0,-4,0,150,4,130,ST2); B(0,-.03,0,150,.05,130,PAV); // 위 단(높이 약 4 m)
       // 계단 + 카나티르(아치 문): 북 · 남 · 서
       const qan=(x,z,ry,n)=>{ const c=Math.cos(ry), s=Math.sin(ry); const P=(lx,lz)=>[x+lx*c+lz*s,z-lx*s+lz*c]; const W=n*4.2; for(let k=0;k<10;k++){ const p=P(0,1+k*.6); B(p[0],-4,p[1],W,4-(k+1)*.4,.6,ST,ry); } for(let i=0;i<=n;i++){ const p=P(-W/2+i*W/n,0); C(p[0],0,p[1],.3,4.4,COL,10,.28); } const sh=new T.Shape(); sh.moveTo(-W/2-.4,0); sh.lineTo(W/2+.4,0); sh.lineTo(W/2+.4,2.4); sh.lineTo(-W/2-.4,2.4); sh.lineTo(-W/2-.4,0); for(let i=0;i<n;i++){ const cxx=-W/2+(i+.5)*W/n; sh.holes.push(new T.Path(opPts('a',W/n-.7,2.0).map(([a,b])=>new T.Vector2(cxx+a,b-.0)))); } const g=new T.ExtrudeGeometry(sh,{depth:.8,bevelEnabled:false,curveSegments:8}); g.translate(0,3.0,-.4); g.rotateY(ry); g.translate(x,0,z); Q(ST,g); const p=P(0,0); B(p[0],5.4,p[1],W+1,.5,1.2,ST,ry); };
       qan(0,-65,Math.PI,4); qan(-30,-65,Math.PI,3); qan(0,65,0,4); qan(-30,65,0,3); qan(-75,0,-Math.PI/2,4); qan(-75,30,-Math.PI/2,3);

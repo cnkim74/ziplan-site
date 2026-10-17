@@ -175,15 +175,15 @@ __bsigFill({"incheonair":function(K){
     // ---- 배경: 계류장·유도로·평행 활주로(3,750 m) · 교통센터 · 영종도 바다 ----
     { const site=[-XL-20,XL+20,-150,140]; const inS=(x,z,m)=>x>site[0]-m&&x<site[1]+m&&z>site[2]-m&&z<site[3]+m;
       const RG=(x,z)=>E.peaks(x,z,[[-2600,2600,900,700,250,1.3],[3200,3000,800,700,180,1.3]]);
-      const hf=(x,z)=>inS(x,z,0)?0:(Math.hypot(x/1.3,z)>4200?-2:Math.max(0,RG(x,z)))+.02;
+      const hf=(x,z)=>{ if(inS(x,z,0)) return 0; const e=Math.max(Math.abs(x)-(XL+20),z-140,-150-z); return (Math.hypot(x/1.3,z)>4200?-2:Math.max(0,RG(x,z)))-.45*E.ss(e/25); }; // v19: 활주로·계류장 판과 지형이 2 cm 차이로 깜빡이던 것 — 지형을 대지 밖에서 45 cm 낮춤
       const TR=E.terrain(-6000,6000,-6000,6000,120,120,hf,(x,z,h,ny)=>{ const n=E.fbm(x*.02,z*.02,2); if(h<-1) return [.3,.42,.5]; if(z<-150&&z>-1300) return [.56+.03*n,.6+.04*n,.45+.03*n]; if(h<2) return [.55+.04*n,.56+.04*n,.5+.03*n]; return E.mcol(x,z,h,ny,{rock:.2,rockH:220,low:5,lowc:[.45,.5,.38]}); },site);
       B(0,-1.2,0,14000,.02,14000,K.M.water); // 바다(섬 바깥)
       // 계류장(포장) · 유도로 · 활주로 두 줄
-      B(0,0,-280,2400,.04,260,APR); for(const z of [-460,-620]) B(0,.02,z,4200,.05,24,K.col(0x55575a)); for(const z of [-760,-1180]){ B(0,.03,z,3750,.05,60,K.col(0x47494c)); for(let x=-1800;x<=1800;x+=60) B(x,.06,z,30,.01,.9,K.col(0xf2f2ee)); for(const e of [-28,28]) B(0,.06,z+e,3750,.01,.6,K.col(0xf2f2ee)); }
-      for(let x=-1400;x<=1400;x+=280) B(x,.03,-540,24,.04,160,K.col(0x55575a));
+      B(0,-.5,-280,2400,.6,260,APR); for(const z of [-460,-620]) B(0,-.5,z,4200,.75,24,K.col(0x55575a)); for(const z of [-760,-1180]){ B(0,-.5,z,3750,.8,60,K.col(0x47494c)); for(let x=-1800;x<=1800;x+=60) B(x,.3,z,30,.06,.9,K.col(0xf2f2ee)); for(const e of [-28,28]) B(0,.3,z+e,3750,.06,.6,K.col(0xf2f2ee)); } // v19: 계류장 .10 · 유도로 .25 · 활주로 .30 · 표시선 .36 — 층마다 5 cm 이상 띄움
+      for(let x=-1400;x<=1400;x+=280) B(x,-.5,-540,24,.7,160,K.col(0x55575a));
       // 교통센터(앞쪽, 긴 유리 지붕 — 추정) · 주차장
       { const z=260; B(0,0,z,300,14,90,K.col(0xb9bec2,{roughness:.4,metalness:.3})); const g=new T.CylinderGeometry(60,60,300,32,1,false,-Math.PI/2.6,Math.PI/1.3); g.rotateZ(Math.PI/2); g.scale(1,.35,.75); g.translate(0,14,z); Q(K.col(0x9fb6c2,{roughness:.05,metalness:.5,transparent:true,opacity:.75}),g); for(const s of [-1,1]) B(s*330,0,z,240,16,110,K.col(0xb2aea6,{roughness:.9})); }
-      B(0,.01,180,2400,.03,30,K.col(0x3a3c3f)); for(let i=0;i<20;i++) car(-900+i*95,i%2?172:188,i%2?Math.PI:0,i);
+      B(0,-.5,180,2400,.58,30,K.col(0x3a3c3f)); for(let i=0;i<20;i++) car(-900+i*95,i%2?172:188,i%2?Math.PI:0,i);
       E.forest(E.scatter(-3000,3000,360,3000,30,TR.h,(x,z,h)=>h>-0.5&&E.r()<.35,(x,z,h)=>10+E.vn(x*.02,z*.02)*6,0),{trunks:false});
       flushLife(); }
     skyDome(0,0,0,5200);

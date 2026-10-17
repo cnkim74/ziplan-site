@@ -301,3 +301,9 @@
 - 전시실 16방: 새 latam·mideast·africa·southasia·oceania, 한국 현대 6채는 '서울의 현대'(knew)에.
 - 사유원 명정 안벽은 자료의 "붉은 벽"에 맞춰 붉은 톤(0x9b4a36, 색조 추정). 올림픽주경기장은 1984 원래 모습 기준(2023~26 리모델링 중).
 - 자평 약한 것: tepapa(중하, 형태 대부분 추정), dhaka·fedsquare·mia·sayuwon·seoularts·kyobo·peacegate(중).
+
+## S5 · v18h (2026-10-18 새벽) — 주변 환경 보강 53채 · 바닥 깜빡임
+- **뷰어 일반 보정**(`pgDeflicker`, pgBuild의 SIGB.build 직후): 얇은 판(≤0.35 m, ≥4 ㎡)이 같은 높이에서 다른 재료와 겹치면 나중 것을 1.2 cm씩 올림, 땅 높이 판은 bldg +1.5 cm·life +0.6 cm, 이 빌드에서 만든 재료는 첫 사용 순서대로 polygonOffsetUnits(−0.5×순번, 최대 60). 카메라 near = 거리×0.008(0.5~6). 로그 깊이 버퍼는 polygonOffset을 무력화해서 안 씀. 검사 스크립트 `scratch/p29/zf.js` → `scratch/zf/report.json`(겹침 면적 약 80% 감소).
+- **환경 보강 53채**(5조 패치 `scratch/s5/G0~G4.js`, 브리프 `s5/ENV.md`): glasshouse·barcelona·rotonda·sydney·eiffel·myeongdong·podo·cityhall·watarun·lalibela·pompidou·birdsnest·domerock·yokohama / sumiyoshi·gilardi·pantheon·unite·ronchamp·kinkakuji·hiroshima·geunjeongjeon·burj·cctv / savoye·kimbell·louvrepyramid·parthenon·tajmahal·ddp·byodoin·nseoultower·incheonair·shanghaitower·heydar·roseseidler / farnsworth·guggenheimny·sendai·habitat·teshima·louvreabu·sagrada / fallingwater·salk·waterchurch·seagram·nakagin·chichu·bangju·casamila·lotte·kagawa. 방식: 건물 본체 그대로, build 끝에 v15 E + v13 W 헬퍼 복사본 블록으로 지형·숲·물·이웃을 K.life에, `E.own()`(뷰어 기본 바닥 숨김) + `tidy(1)`. 가가와 방위 오류(북쪽이 바다) 수정, 판테온 드럼 3 cm 내림, 인천공항 활주로 층 분리. 새 eye 힌트: pantheon·nseoultower·sagrada.
+- 주의(다음 작업자): 엔트리가 tidySite()/tidy()를 먼저 부르면 그 뒤에 life에 더한 것은 숨겨짐 → 환경 블록 뒤로 옮길 것. 렌더 서버 메모리 ~7 GB라 동시 브라우저 많으면 OOM — 한 번에 몇 개씩. pkill -f로 자기 셸까지 죽이지 말 것.
+- 남은 약한 환경: busancinema·sewoon(흰 상자), sejong·acc·leeum, taipei101·angkor 바닥, cityhall 광장 흰 바닥. dist/data/bsig 6.0MB(건물당 평균 36KB).

@@ -76,7 +76,7 @@ __bsigFill({"lalibela":function(K){
       const e=inPit(x,z); let h=e<0?0:Math.min(top,(e/1.0)*H*1.0); if(e>=0&&e<1.0) h=H*e/1.0; if(e>=1.0) h=top;
       if(x<-9&&x>-46&&Math.abs(z)<1.3){ const t=E.ss((-x-9)/37); h=Math.min(h,H*t); } return h; };
     const axD=(R,n,k,a,b,st)=>{ const L=E.axis(R,n,k,(a+b)/2).filter(v=>v<a||v>b); for(let v=a;v<=b;v+=st) L.push(v); return L.sort((p,q)=>p-q); };
-    const TR=E.terrain(0,0,0,0,axD(3200,170,4.8,-48,16,.35),axD(3200,170,4.8,-16,16,.35),hf,(x,z,h,ny)=>{ const n=E.fbm(x*.06,z*.06,2); if(ny<.8||h<H-.2) return [.56+.06*n,.35+.04*n,.26+.03*n]; const d=Math.hypot(x,z); if(d<18) return [.58+.05*n,.42+.04*n,.30+.03*n]; const g=E.vn(x*.02,z*.02); let c=g>.5?[.58+.05*n,.50+.04*n,.33+.03*n]:[.45+.05*n,.46+.04*n,.29+.03*n]; if(ny<.85) c=[.50,.38,.30]; const f=E.ss((d-500)/1400)*.6; return c.map((v,i)=>v+([.66,.70,.76][i]-v)*f); });
+    const TR=E.terrain(0,0,0,0,axD(3200,170,4.8,-48,16,.35),axD(3200,170,4.8,-16,16,.35),hf,(x,z,h,ny)=>{ const n=E.fbm(x*.06,z*.06,2); if(ny<.8||h<H-.2) return [.56+.06*n,.35+.04*n,.26+.03*n]; const d=Math.hypot(x,z); if(x<-14&&x>-140&&Math.abs(z-(x+14)*.12)<1.6) return [.62+.04*n,.50+.03*n,.38]; if(d<18) return [.58+.05*n,.42+.04*n,.30+.03*n]; if(d<30) return (E.vn(x*.3,z*.3)>.55?[.47+.05*n,.48+.04*n,.30]:[.60+.05*n,.45+.04*n,.32+.03*n]); const g=E.vn(x*.02,z*.02); let c=g>.5?[.58+.05*n,.50+.04*n,.33+.03*n]:[.45+.05*n,.46+.04*n,.29+.03*n]; if(ny<.85) c=[.50,.38,.30]; const f=E.ss((d-500)/1400)*.6; return c.map((v,i)=>v+([.66,.70,.76][i]-v)*f); });
     // 구덩이 바닥(바위판) · 세례 물웅덩이
     K.b(0,-.05,0,21,.1,21,TUFd); K.water(7.2,.08,-7.4,2.2,1.6);
     // ---- 0: 3단 기단 ----
@@ -94,7 +94,7 @@ __bsigFill({"lalibela":function(K){
     const L2=H-PL-L1;
     K.ex(crossPts(HA,AW),L2,TUF,[0,PL+L1,0]);
     faces.forEach(([x,z,ry])=>winOn(x,PL+L1+1.0,z,ry,1));
-    K.ex(crossPts(HA+.1,AW+.2),.3,TUFl,[0,H-.3,0]);
+    K.ex(crossPts(HA+.1,AW+.2),.3,TUFl,[0,H-.28,0]);
     // 지붕: 세 겹 십자(바깥 띠 → 안쪽 튀어나온 십자 2단)
     K.ex(crossPts(HA-.5,AW-1.0),.18,TUFl,[0,H,0]); K.ex(crossPts(HA-1.0,AW-2.0),.18,TUF,[0,H+.18,0]); K.ex(crossPts(HA-1.5,AW-3.0),.18,TUFl,[0,H+.36,0]);
     // 구덩이 벽의 굴(은수자 방·무덤) — 어두운 입
@@ -102,9 +102,9 @@ __bsigFill({"lalibela":function(K){
     // 참호 끝의 굴 입구 · 나무 문
     K.b(-9.6,0,0,1.0,2.6,2.0,DK);
     // ---- 맥락(K.life): 가장자리 낮은 담 · 둥근 돌집(초가 원뿔) · 유칼립투스 ----
-    { const st=[], rf=[]; for(let i=0;i<70;i++){ const a=E.r()*6.28, r=60+E.r()*260; const x=Math.cos(a)*r, z=Math.sin(a)*r; if(x<-30&&Math.abs(z)<12) continue; const y=TR.h(x,z); const R=2.4+E.r()*1.6, h=E.r()<.4?5.5:3.0; st.push([x,y-.3,z,0,R,h,R]); rf.push([x,y-.3+h,z,0,R*1.25,R*1.1,R*1.25]); }
+    { const st=[], rf=[]; for(let i=0;i<96;i++){ const a=E.r()*6.28, r=i<26?24+E.r()*34:60+E.r()*260; const x=Math.cos(a)*r, z=Math.sin(a)*r; if(x<-20&&Math.abs(z)<12) continue; { const aa=Math.atan2(z,x); if(aa>.3&&aa<1.95&&r<70) continue; } const y=TR.h(x,z); const R=2.4+E.r()*1.6, h=E.r()<.4?5.5:3.0; st.push([x,y-.3,z,0,R,h,R]); rf.push([x,y-.3+h,z,0,R*1.25,R*1.1,R*1.25]); }
       inst((()=>{ const g=new T.CylinderGeometry(1,1,1,12); g.translate(0,.5,0); return g; })(),K.col(0x8a6a55,{roughness:.95}),st,true,K.life); inst((()=>{ const g=new T.ConeGeometry(1,1,12); g.translate(0,.5,0); return g; })(),K.col(0x9c8a5a,{roughness:1}),rf,true,K.life);
       const wl=[]; for(let i=0;i<44;i++){ const a=i/44*Math.PI*2; const r=15.5; const x=Math.cos(a)*r, z=Math.sin(a)*r; if(x<-12&&Math.abs(z)<4) continue; wl.push(bx(x,TR.h(x,z)-.2,z,2.4,.9,.5,-a+Math.PI/2)); } merge(wl,K.col(0x7d5a46,{roughness:.95}),true,K.life);
-      const tr=E.scatter(-700,700,-700,700,13,TR.h,(x,z,h)=>Math.hypot(x,z)>45&&!(x<-20&&Math.abs(z)<6)&&E.r()<.35,(x,z)=>12+E.vn(x*.05,z*.05)*12,(x,z)=>E.r()<.7?2:0); E.forest(tr.map(t=>{ t[6]=(t[4]===2?.55:1); return t; }),{trunks:true,pal:[null,null,['#5d7448','#6d8152','#536a42','#788c5c']]}); }
+      const tr=E.scatter(-700,700,-700,700,9,TR.h,(x,z,h)=>{ const d=Math.hypot(x,z), aa=Math.atan2(z,x); if(d<22) return false; if(x<-20&&Math.abs(z)<6) return false; if(aa>.3&&aa<1.95&&d<70) return false; return E.r()<(d<120?.42:.3); },(x,z)=>12+E.vn(x*.05,z*.05)*12,(x,z)=>E.r()<.7?2:0); E.forest(tr.map(t=>{ t[6]=(t[4]===2?.55:1); return t; }),{trunks:true,pal:[null,null,['#5d7448','#6d8152','#536a42','#788c5c']]}); }
     tidy(1);
   }});

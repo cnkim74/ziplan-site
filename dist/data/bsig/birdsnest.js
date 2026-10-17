@@ -123,7 +123,7 @@ __bsigFill({"birdsnest":function(K){
     K.layer(0);
     { const g=new T.CylinderGeometry(1,1.04,1.6,96); g.scale(AX*1.16,1,AZ*1.14); g.translate(0,.8,0); Q(STN,g); const g2=new T.CylinderGeometry(1,1,.02,96); g2.scale(AX*1.14,1,AZ*1.12); g2.translate(0,1.61,0); Q(K.col(0xcac6bd,{roughness:.9}),g2); }
     for(const a of [0,Math.PI/2,Math.PI,-Math.PI/2]){ const c=Math.cos(a), s=Math.sin(a); for(let i=0;i<5;i++){ const r=1.16+i*.012; B(c*AX*r,0,s*AZ*r,Math.abs(s)>.5?40:4,1.6-i*.32,Math.abs(s)>.5?4:40,STN2); } } // 기단 계단(네 방향)
-    { const g=new T.CylinderGeometry(1,1,.12,64); g.scale(64,1,104); g.translate(0,1.6,0); Q(TRACK,g); const f=new T.CylinderGeometry(1,1,.14,64); f.scale(48,1,86); f.translate(0,1.6,0); Q(GRASS,f); B(0,1.75,0,68,.02,105,K.col(0x5c9a45,{roughness:1})); }
+    { const g=new T.CylinderGeometry(1,1,.12,64); g.scale(64,1,104); g.translate(0,1.6,0); Q(TRACK,g); const f=new T.CylinderGeometry(1,1,.18,64); f.scale(48,1,86); f.translate(0,1.6,0); Q(GRASS,f); B(0,1.75,0,68,.02,105,K.col(0x5c9a45,{roughness:1})); }
     // 관람석 그릇(붉은 좌석 띠 3층) — 필드에서 바깥으로 올라감
     const bowl=(k0,k1,y0,y1,mat)=>S(mat,(u,v)=>{ const th=u*Math.PI*2, k=k0+(k1-k0)*v; return [Math.cos(th)*AX*k,1.6+y0+(y1-y0)*v,Math.sin(th)*AZ*k]; },96,1);
     bowl(.47,.62,0,14,SEAT); bowl(.62,.63,14,16,REDC); bowl(.63,.74,16,30,SEAT); bowl(.74,.75,30,32,REDC); bowl(.75,.84,32,44,SEAT);

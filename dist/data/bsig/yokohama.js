@@ -111,7 +111,7 @@ __bsigFill({"yokohama":function(K){
     const GRS=K.col(0x6d8f4a,{roughness:1}), STL=K.col(0x9aa0a5,{roughness:.4,metalness:.65}), STD=K.col(0x5a6066,{roughness:.45,metalness:.6}), GLW=K.col(0x3a4a54,{roughness:.05,metalness:.75}), GLR=K.col(0xbfd6de,{roughness:.04,metalness:.4,transparent:true,opacity:.35,depthWrite:false,side:T.DoubleSide}), CONP=TX.ando('osp','#aaa49a'), PAV=K.col(0xb7b1a6,{roughness:.95}), WH=K.col(0xf2f2ee,{roughness:.5});
     // ---- 0: 부두(콘크리트 에이프런) · 1층 몸(유리 + 접힌 강판 옆면) ----
     B(10,-3.4,0,490,3.4,110,CONP); B(10,0,0,490,.05,110,PAV);
-    for(const s of [-1,1]){ B(10,-.2,s*54.6,490,.25,.6,K.col(0xd9b44a,{roughness:.6})); const it=[]; for(let x=-230;x<250;x+=15) it.push([x,0,s*53.8,0,1,1,1]); inst(cylG(.35,.8,8,.3),STD,it); } // 계선주·노란 연석
+    for(const s of [-1,1]){ B(10,-.2,s*54.6,490,.27,.6,K.col(0xd9b44a,{roughness:.6})); const it=[]; for(let x=-230;x<250;x+=15) it.push([x,0,s*53.8,0,1,1,1]); inst(cylG(.35,.8,8,.3),STD,it); } // 계선주·노란 연석
     // 옆면: 지붕 가장자리 높이를 따라가는 유리벽(안으로 2 m) + 기울어진 강판 지느러미
     for(const s of [-1,1]){ S(GLW,(u,v)=>{ const x=-HL+60+(2*HL-60)*u; const h=hf(x,s*HW); return [x,v*(h-1.2),s*(HW-2.2)]; },80,1);
       S(STD,(u,v)=>{ const x=-HL+60+(2*HL-60)*u; const h=hf(x,s*HW); return [x,h-1.2+v*1.2,s*(HW+.2)]; },120,1); // 가장자리 띠(강판)
