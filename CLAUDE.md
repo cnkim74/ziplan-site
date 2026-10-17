@@ -268,3 +268,9 @@
   - 모두 BSIG_SITE 'town', 출처·추정은 각 build 주석. 사실 메모: 계산성당 설계자는 자료마다 달라 이름 생략, 숭례문 복원 성곽 동 53m·서 16m, 첨성대 9.17m(1997 실측 9.11m 병기), 봉정사 1363 중수.
 - AT_HALLS 재편 8방: 궁궐과 성곽(kold 10) · 산사와 서원(ktemple 12, 새) · 한국의 근대(kmod 8, 새 — myeongdong·cityhall 옮김) · 서울의 현대(19) · 신전과 대성당 · 근대의 거장들 · 빛·물·땅 · 하늘로. 전시실 문구는 `AT_HALLS.length`로.
 - dist/data/bsig.js 2.4MB(지연 로드), dist/index.html 2.66MB. 남은 한계: 공용 env 코드가 build마다 복제됨(BSIG_ENV 공용화 여지), 월지·통도사·양동 먼 산이 안개로 희게, 남한산성 eye 뷰는 숲이 성벽 일부를 가림.
+
+## v18c (2026-10-17)
+- 물어보기 제목: `const KB_TITLE={첫 정규식 대안: 자연스러운 제목}` (crit.html kbTopic 바로 위). kbTopic이 가장 먼저 참조 → 정적 /ask/ 페이지 제목·슬러그도 바뀜. 207개(정규식 추출 203 + 중복 4) 수동 제목. 새 KB2 항목 추가 시 제목이 어색하면 여기에 추가. build_public.py `_EXTRACT`도 KB_TITLE 줄을 함께 읽음.
+- kbSlugs가 자모(ㄱ-ㅎ) 허용 (예: 한옥-배치-ㄱ자-ㄷ자-ㅁ자).
+- 안개: `pgFogLife(T,sc,B,c)` — 정교 모형(P.sig)은 K.life 바운딩 반경까지 fog.far 확장(최대 4200), near=far*.28. 월지·통도사 배경 산이 하얗게 날아가던 문제 해결. PGV fit + 썸네일 두 곳에서 호출.
+- v15 공용 배경 헬퍼의 WATER(12개 모형): roughness .05, metalness .02, color 0x4f7d8c → 큰 하얀 태양 반사 얼룩 대신 작은 반사점.
