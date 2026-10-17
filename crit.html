@@ -2667,6 +2667,81 @@ html.dnat-lock{overflow:hidden}
   #homeDoors .hd{min-height:220px}
   .hmeet.solo .hm-grid{grid-auto-columns:100%} }
 @media (prefers-reduced-motion:reduce){ .build[data-mode]{height:auto} .pcta{box-shadow:none} }
+/* v19b U2 취향 랩 3단계 */
+#view-dna:not(.dn-adv)>:not(#dnQuick):not(.dn-toast){display:none!important}
+#view-dna.dn-adv #dnQuick{display:none}
+#view-dna .dnmarq{display:none!important}
+.dnadv-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1200px;margin:18px auto 0;padding:12px 18px;border:1px solid var(--card-line);border-radius:14px;background:var(--bg-alt);font-size:15px}
+.dnadv-bar b{font-weight:700}.dnadv-bar span{color:var(--muted,#6e6e73)}
+.dnadv-bar button{margin-left:auto;background:none;border:0;color:var(--accent);font:inherit;font-weight:600;cursor:pointer;padding:6px 0}
+#dnQuick{padding:clamp(20px,4vw,48px) 16px 64px;scroll-margin-top:72px}
+.dnq-h h1,.dnq-nm,.dnq-ln,.dnq-tx{word-break:keep-all}
+.dnq-in{max-width:1120px;margin:0 auto}
+.dnq-top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.dnq-k{font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--accent)}
+.dnq-link{margin-left:auto;background:none;border:0;color:var(--accent);font:inherit;font-size:15px;font-weight:600;cursor:pointer;padding:6px 0}
+.dnq-prog{display:flex;gap:8px;list-style:none;margin:0 0 22px;padding:0}
+.dnq-prog li{flex:1;display:flex;align-items:center;gap:8px;padding-top:10px;border-top:4px solid var(--line);color:var(--muted,#86868b);font-size:14px;transition:border-color .3s}
+.dnq-prog li b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--bg-alt);font-size:12px}
+.dnq-prog li.cur,.dnq-prog li.dn{border-color:var(--accent);color:var(--fg)}
+.dnq-prog li.cur b,.dnq-prog li.dn b{background:var(--accent);color:var(--accent-fg)}
+.dnq-h{margin-bottom:22px}.dnq-n{font-size:14px;color:var(--muted,#86868b)}
+.dnq-h h1{font-size:clamp(28px,4.4vw,44px);line-height:1.15;margin:6px 0 8px;letter-spacing:-.02em}
+.dnq-h p{margin:0;color:var(--muted,#6e6e73)}
+.dnq-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.dnq-c{position:relative;display:flex;flex-direction:column;text-align:left;padding:0;border:2px solid var(--card-line);border-radius:18px;background:var(--card);color:var(--fg);font:inherit;cursor:pointer;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s}
+.dnq-c:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.dnq-c:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.dnq-c.on{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.dnq-ph{position:relative;display:block;aspect-ratio:4/3;background:linear-gradient(135deg,#e9e6df,#d7dde6)}
+.dnq-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:dnqIn .4s ease both}
+.dnq-ph.fb{display:grid;place-items:center;background:color-mix(in srgb,var(--c) 18%,var(--bg-alt));color:var(--c)}
+.dnq-ph.fb svg{width:56px;height:56px}
+.dnq-ld{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);background-size:200% 100%;animation:dnqSh 1.2s linear infinite}
+.dnq-ck{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);border:2px solid rgba(0,0,0,.15);display:grid;place-items:center;transition:background .2s}
+.dnq-ck svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:3;opacity:0}
+.dnq-c.on .dnq-ck{background:var(--accent);border-color:var(--accent)}.dnq-c.on .dnq-ck svg{opacity:1}
+.dnq-tx{display:flex;flex-direction:column;gap:2px;padding:12px 14px 14px}
+.dnq-tx b{font-size:17px}.dnq-tx em{font-style:normal;font-size:14px;color:var(--muted,#6e6e73)}
+.dnq-bar{position:sticky;bottom:12px;z-index:3;display:flex;align-items:center;gap:12px;margin-top:22px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-line);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.dnq-cnt{flex:1;font-size:15px;color:var(--muted,#6e6e73)}
+.dnq-skip{background:none;border:0;color:var(--muted,#6e6e73);font:inherit;font-size:15px;cursor:pointer;padding:8px}
+.dnq-bar .btn[disabled]{opacity:.45;cursor:not-allowed}
+.dnq-prev[disabled]{visibility:hidden}
+.dnq-rw{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+.dnq-3d{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:var(--bg-alt)}
+.dnq-3dv{position:absolute;inset:0}
+.dnq-fb{position:absolute;inset:0;display:flex;align-items:flex-end}.dnq-fb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dnq-fb span{position:relative;margin:12px;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.55);color:#fff;font-size:13px}
+.dnq-nm{font-size:clamp(30px,4vw,46px);line-height:1.12;letter-spacing:-.02em;margin:0 0 10px}
+.dnq-ln{font-size:19px;margin:0 0 8px}.dnq-ps{margin:0 0 18px;color:var(--muted,#6e6e73)}
+.dnq-pk{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.dnq-pk span{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:999px;background:var(--bg-alt);font-size:14px}
+.dnq-pk i{width:32px;height:32px;border-radius:50%;overflow:hidden;background:var(--line)}.dnq-pk i img{width:100%;height:100%;object-fit:cover}
+.dnq-sh{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.dnq-next{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dnq-next .btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center}
+.dnq-next small{font-size:12px;font-weight:500;opacity:.8}
+.dnq-bl{margin-top:44px}.dnq-bl h2{font-size:26px;margin:0 0 4px}.dnq-bl>p{margin:0 0 16px;color:var(--muted,#6e6e73)}
+.dnq-blr{display:grid!important;grid-template-columns:repeat(3,1fr);gap:14px;overflow:visible!important}
+.dnq-blr .dnat-c{width:auto!important}
+.dk .dkj{display:inline-flex;align-items:center;margin-left:6px;padding:1px 6px;border-radius:6px;font-size:10.5px;font-weight:700;background:color-mix(in srgb,currentColor 12%,transparent);cursor:help}
+.dncat.fold .dnchips,.dncat.fold .dnmore{display:none}
+.dncat .dnch{cursor:pointer}.dncat .dnch-fold{margin-left:8px;transition:transform .2s;display:inline-block}.dncat:not(.fold) .dnch-fold{transform:rotate(180deg)}
+.dnmore{margin:10px 0 0;background:none;border:1px dashed var(--line);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;color:var(--fg);cursor:pointer}
+.dnl-wait{padding:14px;border-radius:12px;background:var(--bg-alt);color:var(--muted,#6e6e73);font-size:14px;margin:10px 0}
+.dnenc-m{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.45)}
+.dnenc-m[hidden]{display:none}
+.dnenc-b{position:relative;width:min(520px,100%);max-height:86vh;overflow:auto;border-radius:20px;background:var(--card);padding:22px}
+.dnenc-x{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:var(--bg-alt);font-size:22px;cursor:pointer;color:var(--fg)}
+@keyframes dnqIn{from{opacity:0}to{opacity:1}}
+@keyframes dnqSh{from{background-position:200% 0}to{background-position:-200% 0}}
+@media (max-width:820px){ .dnq-rw{grid-template-columns:1fr} .dnq-blr{grid-template-columns:1fr} }
+@media (max-width:640px){ .dnq-g{grid-template-columns:1fr 1fr;gap:10px} .dnq-tx{padding:10px} .dnq-tx b{font-size:15px} .dnq-tx em{font-size:12.5px} .dnq-bar{gap:6px;padding:10px} .dnq-cnt{font-size:13px} .dnq-next{grid-template-columns:1fr} .dnq-prog li span{display:none} }
+html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
+@media (max-width:820px){ html.hasTab .dnq-bar{bottom:calc(76px + env(safe-area-inset-bottom,0px))} }
+@media (prefers-reduced-motion:reduce){ .dnq-c,.dnq-prog li,.dnq-ck{transition:none} .dnq-c:hover{transform:none} .dnq-ph img{animation:none} .dnq-ld{animation:none} }
+
 </style>
 
 <nav>
@@ -3306,6 +3381,8 @@ html.dnat-lock{overflow:hidden}
   <div id="atxHost"></div>
 </section>
 <section class="view" id="view-dna" hidden>
+  <div id="dnQuick" class="dnq"></div>
+  <div class="dnadv-bar"><b>고급 · 건축 단어로 세밀하게</b><span>3단계에서 고른 단어가 이미 담겨 있어요</span><button type="button" data-dnback>← 3단계 결과로</button></div>
   <div class="hero"><h1>설계 취향 랩</h1><p class="tag">고를수록, 집이 지어집니다.</p><p class="sub">마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p></div>
   <div class="dnhero"><div class="stsg" id="dnSg"></div><div class="dnhin">
     <div class="dnk">설계 취향 랩</div>
@@ -3562,7 +3639,7 @@ function route(){
   try{ placeBuild(h); }catch(e){ console.warn('placeBuild',e); }
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); navCurrent(h); try{ tabCurrent(); }catch(e){}
   if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
-  if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); try{ dwFromDna(); }catch(e){} } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='admin') renderAdmin(); if(h==='dna') renderDnaLab(); if(h==='flow'){ setTimeout(()=>{ try{ fwRender(); }catch(e){ console.warn(e); } },0); } if(h==='atlas'){ setTimeout(()=>{ try{ atPageInit(); }catch(e){ console.warn(e); } },0); } else { try{ pgvDispose('atsp'); }catch(e){} } try{ roomLabs(h); }catch(e){} if(h==='studio') renderStudio(); if(h==='site'){ drawSite(); setTimeout(()=>{ try{ svRender(); }catch(e){ console.warn(e); } },0); } if(h==='plaza') loadPosts(); if(h==='portfolio'){ renderPortfolio(); setTimeout(()=>{ try{ renderPfPlus(); }catch(e){ console.warn(e); } },0); } if(h==='library') renderLibrary();
+  if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); try{ dwFromDna(); }catch(e){} } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='admin') renderAdmin(); if(h==='dna'){ try{ dnqEnter(); }catch(e){ console.warn(e); } renderDnaLab(); } if(h==='flow'){ setTimeout(()=>{ try{ fwRender(); }catch(e){ console.warn(e); } },0); } if(h==='atlas'){ setTimeout(()=>{ try{ atPageInit(); }catch(e){ console.warn(e); } },0); } else { try{ pgvDispose('atsp'); }catch(e){} } try{ roomLabs(h); }catch(e){} if(h==='studio') renderStudio(); if(h==='site'){ drawSite(); setTimeout(()=>{ try{ svRender(); }catch(e){ console.warn(e); } },0); } if(h==='plaza') loadPosts(); if(h==='portfolio'){ renderPortfolio(); setTimeout(()=>{ try{ renderPfPlus(); }catch(e){ console.warn(e); } },0); } if(h==='library') renderLibrary();
   if(pendingScroll){ const el=document.querySelector(`.wb[data-wb="${pendingScroll}"]`); pendingScroll=null; if(el){ el.scrollIntoView({block:'start'}); return; } }
   window.scrollTo({top:0,behavior:'auto'});
 }
@@ -4484,20 +4561,143 @@ function dnaSentence(r){ if(!r.n) return ''; const A=r.arch[0], B=r.arch[1]; con
 function dnaLine(A,keys){ const cats=A.kcat||[]; const pick=(keys||[]).map(k=>DNA_BY[k]).filter(k=>k&&cats.includes(k.cat)&&k.label.length<=6&&(k.cat!=='site'||k.v.n>=1||k.v.o>=1))[0]; const w=pick?pick.label:(A.kw||'풍경'); return A.line.replace('{k}을',w+jo(w,'을','를')).replace('{k}이',w+jo(w,'이','가')).replace('{k}과',w+jo(w,'과','와')).replace('{k}',w); }
 function dnaConcepts(keys,offset){ const r=dnaAnalyze(keys); const list=r.arch.slice(offset||0,(offset||0)+3); const site=state.site||''; return list.map(A=>({name:A.name,line:dnaLine(A,keys),why:A.why+(site?` 대지(${site.split('·')[0].trim()})에서는 ${A.moves[0]}부터 시작하세요.`:''),mass:A.mass,moves:A.moves.slice(0,3),refs:A.refs.slice(0,2),dna:A.id})); }
 
+/* ===== v19b U2: 취향 랩 3단계(기본) + 결과 공유 카드. 532단어 화면은 '고급'으로 — 결과의 "더 세밀하게"에서 진입 ===== */
+/* 카드 → DNA_KW 단어 매핑 표 (CLAUDE.md v19b 표와 같음). site = 주변 환경 값(PG_SITET) */
+const DNQ_STEPS=[
+ {k:'mood',n:'분위기',q:'어떤 분위기가 좋아요?',s:'마음 가는 집을 2~3장 골라 주세요.',cards:[
+  {id:'wood',t:'따뜻한 나무 집',d:'나뭇결과 경사 지붕',w:['목재','따뜻한','노출 목구조','박공지붕']},
+  {id:'conc',t:'차분한 콘크리트',d:'조용하고 단단하게',w:['노출 콘크리트','고요한','단순한 박스','미니멀']},
+  {id:'white',t:'밝은 흰 집',d:'깨끗한 면과 평평한 지붕',w:['흰 회벽','깨끗한','하얀 집','평지붕']},
+  {id:'hanok',t:'한옥',d:'기와와 처마, 마당',w:['한옥','기와','처마','마당']},
+  {id:'cabin',t:'자연 속 오두막',d:'깊은 처마 아래 쉼',w:['오두막 같은','자연스러운','적삼목','깊은 처마 지붕']},
+  {id:'urban',t:'도시적인 집',d:'금속과 유리, 층층이',w:['도시적','금속 패널','유리','적층']},
+  {id:'brick',t:'붉은 벽돌집',d:'소박하고 오래가는',w:['붉은 벽돌','소박한','벽돌']},
+  {id:'glass',t:'가볍고 투명한 집',d:'들어 올린 유리 상자',w:['투명한','유리','들어 올리기','가벼운']}]},
+ {k:'place',n:'사는 곳',q:'어디에 살고 싶어요?',s:'살아 보고 싶은 곳을 골라 주세요.',cards:[
+  {id:'city',t:'도심',d:'좁아도 편리하게',w:['도심 협소지','소음 막기'],site:'city'},
+  {id:'alley',t:'좁은 골목',d:'담장 너머 이웃',w:['골목','담장'],site:'alley'},
+  {id:'suburb',t:'주택가',d:'남향 반듯한 땅',w:['신도시 필지','남향'],site:'suburb'},
+  {id:'village',t:'오래된 마을',d:'돌담길 사이',w:['오래된 마을','골목 마을'],site:'village'},
+  {id:'forest',t:'숲 속',d:'나무 그늘 아래',w:['숲','나무 그늘','큰 나무 지키기'],site:'forest'},
+  {id:'mountain',t:'산자락',d:'땅 생긴 대로',w:['산자락','산 조망','지형 순응'],site:'mountain'},
+  {id:'sea',t:'바닷가',d:'바람과 수평선',w:['바다 조망','바람길','물가'],site:'sea'},
+  {id:'lake',t:'호숫가',d:'물에 비친 빛',w:['호숫가','물에 비친 빛'],site:'water'},
+  {id:'field',t:'들판',d:'멀리까지 트인',w:['들판','멀리 보이는 수평선'],site:'field'}]},
+ {k:'need',n:'중요한 것',q:'무엇이 제일 중요해요?',s:'꼭 있었으면 하는 것을 골라 주세요.',cards:[
+  {id:'light',t:'빛',d:'하루 종일 밝게',w:['남쪽 큰 창','천창','햇볕 드는 창가']},
+  {id:'yard',t:'마당',d:'안에서 보이는 하늘',w:['안마당','중정형','나무 그늘']},
+  {id:'living',t:'넓은 거실',d:'다 같이 모이는',w:['오픈 플랜','복층 거실','큰 방 하나']},
+  {id:'storage',t:'수납',d:'숨겨서 깔끔하게',w:['벽 속 수납','다락','서가 벽']},
+  {id:'quiet',t:'조용함',d:'밖과 거리 두기',w:['사생활 지키기','고요한 소리','안쪽 깊은 집']},
+  {id:'ceiling',t:'높은 천장',d:'시원하게 트인',w:['높은 천장','보이드','노출 천장']},
+  {id:'studio',t:'작업실',d:'집에서 일하기',w:['작업실 겸 집','반지하 작업실']},
+  {id:'kids',t:'아이 키우기',d:'뛰어도 괜찮은',w:['아이 키우는 집','숨바꼭질','문턱 없는 집']},
+  {id:'pet',t:'반려동물',d:'함께 뛰는 마당',w:['반려동물과 사는 집','앞마당','맨발로 걷는 바닥']}]}];
+(function(){ const miss=[]; DNQ_STEPS.forEach(s=>s.cards.forEach(c=>{ c.w=c.w.filter(w=>{ if(DNA_BY[w]) return true; miss.push(w); return false; }); })); if(miss.length) console.warn('DNQ 매핑에 없는 단어',miss); })();
+const DNQ_CARD=Object.fromEntries(DNQ_STEPS.flatMap(s=>s.cards.map(c=>[c.id,c])));
+const DNQ={step:0,view:'steps',th:{},adv:false,v:null,keep:false}; window.__dnq={st:()=>state,DNQ,lib:()=>dnaLibGet(),site:()=>DV.site};
+const dnqRM=()=>{ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } };
+function dnqPicks(){ const q=state.dnq&&Array.isArray(state.dnq.p)?state.dnq.p:null; if(!q||q.length!==3){ state.dnq={p:[[],[],[]],t:0}; } return state.dnq.p; }
+function dnMode(m){ const v=$('#view-dna'); if(!v) return; DNQ.adv=m==='adv'; v.classList.toggle('dn-adv',DNQ.adv); if(DNQ.adv){ try{ DNQ.v&&DNQ.v.dispose&&DNQ.v.dispose(); }catch(e){} DNQ.v=null; } }
+function dnqEnter(){ if(DNQ.keep){ DNQ.keep=false; return; } dnMode('quick'); DNQ.view='steps'; DNQ.step=0; dnqRender(); }
+function dnqWords(){ const P=dnqPicks(); const out=[]; P.forEach(l=>l.forEach(id=>{ const c=DNQ_CARD[id]; if(c) c.w.forEach(w=>{ if(!out.includes(w)) out.push(w); }); })); return out; }
+function dnqSite(){ const p=dnqPicks()[1]; const c=p.map(id=>DNQ_CARD[id]).find(c=>c&&c.site); return c?c.site:''; }
+function dnqCardHTML(c,on,i){ return `<button type="button" class="dnq-c${on?' on':''}" data-dnq="${c.id}" aria-pressed="${on}" style="--i:${i}"><span class="dnq-ph" data-dnqth="${c.id}"><i class="dnq-ld"></i></span><span class="dnq-ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="dnq-tx"><b>${esc(c.t)}</b><em>${esc(c.d)}</em></span></button>`; }
+function dnqRender(){ const box=$('#dnQuick'); if(!box) return; const P=dnqPicks();
+  if(DNQ.view==='result'){ dnqResult(); return; }
+  const st=DNQ_STEPS[DNQ.step], sel=P[DNQ.step]; const done=P.every(l=>l.length);
+  box.innerHTML=`<div class="dnq-in">
+   <div class="dnq-top"><span class="dnq-k">취향 랩 · 1분이면 충분해요</span>${done&&DNQ.step===0?'<button type="button" class="dnq-link" data-dnqgo="result">지난 결과 보기 ›</button>':''}</div>
+   <ol class="dnq-prog" aria-label="진행">${DNQ_STEPS.map((s,i)=>`<li class="${i<DNQ.step?'dn':i===DNQ.step?'cur':''}"><b>${i+1}</b><span>${esc(s.n)}</span></li>`).join('')}</ol>
+   <div class="dnq-h"><span class="dnq-n">${DNQ.step+1} / 3</span><h1>${esc(st.q)}</h1><p>${esc(st.s)}</p></div>
+   <div class="dnq-g">${st.cards.map((c,i)=>dnqCardHTML(c,sel.includes(c.id),i)).join('')}</div>
+   <div class="dnq-bar"><button type="button" class="btn sec dnq-prev" data-dnqprev ${DNQ.step?'':'disabled'}>이전</button><span class="dnq-cnt">${sel.length?`${sel.length}장 골랐어요`:'2~3장을 골라 주세요'}</span><button type="button" class="dnq-skip" data-dnqskip>건너뛰기</button><button type="button" class="btn" data-dnqnext ${sel.length?'':'disabled'}>${DNQ.step===2?'내 집 보기':'다음'}</button></div>
+  </div>`;
+  dnqThumbs(st); }
+function dnqThumb(c){ if(DNQ.th[c.id]) return Promise.resolve(DNQ.th[c.id]); const P=pgSpec(c.w,{site:c.site||undefined}); return pgThumb(P,420,315).then(u=>DNQ.th[c.id]=u); }
+function dnqThumbs(st){ st.cards.forEach(c=>{ const fill=u=>{ $$(`[data-dnqth="${c.id}"]`).forEach(ph=>{ if(ph.querySelector('img')) return; ph.querySelector('.dnq-ld')?.remove(); ph.insertAdjacentHTML('afterbegin',`<img src="${u}" alt="">`); }); };
+  if(DNQ.th[c.id]){ fill(DNQ.th[c.id]); return; }
+  dnqThumb(c).then(fill).catch(()=>{ $$(`[data-dnqth="${c.id}"]`).forEach(ph=>{ ph.classList.add('fb'); ph.style.setProperty('--c',DN_CATC[(DNA_BY[c.w[0]]||{}).cat]||'#3f7bff'); const k=DNA_BY[c.w[0]]; ph.innerHTML=k?dnIcon(k):''; }); }); }); }
+function dnqToggle(id){ const P=dnqPicks(), l=P[DNQ.step]; const i=l.indexOf(id); if(i>=0) l.splice(i,1); else { if(l.length>=3) l.shift(); l.push(id); }
+  const g=$('#dnQuick .dnq-g'); if(g) $$('.dnq-c',g).forEach(b=>{ const on=l.includes(b.dataset.dnq); b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
+  const cnt=$('#dnQuick .dnq-cnt'); if(cnt) cnt.textContent=l.length?`${l.length}장 골랐어요`:'2~3장을 골라 주세요'; const nx=$('#dnQuick [data-dnqnext]'); if(nx) nx.disabled=!l.length; }
+function dnqFinish(){ const w=dnqWords(); if(!w.length){ DNQ.step=0; dnqRender(); return; } state.dna=w; state.dnq.t=Date.now(); DV.site=dnqSite()||''; try{ touch('dna'); }catch(e){} try{ saveSoon(); }catch(e){}
+  const r=dnaAnalyze(state.dna); const A=r.arch[0]; if(A){ try{ dnaLibSet([{id:'q'+Date.now().toString(36),t:Date.now(),name:A.name,alt:'3단계',keys:state.dna.slice(),base:A.id,mode:'main',code:r.code,persona:dnaPersona(r)},...dnaLibGet().filter(x=>x.alt!=='3단계'||x.keys.join()!==state.dna.join())]); }catch(e){} }
+  DNQ.view='result'; dnqRender(); try{ $('#dnQuick').scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); }catch(e){} }
+function dnqName(r){ const A=r.arch[0]; return A?`${DNA_MOOD(r.vec)} ${A.name}`:'나의 집'; }
+function dnqBlds(){ const L=bldSimilar(state.dna,60); const isS=x=>typeof BSIG!=='undefined'&&BSIG[x.b.id]; const s=L.filter(isS); return [...s,...L.filter(x=>!isS(x))].slice(0,3); }
+function dnqResult(){ const box=$('#dnQuick'); if(!state.dna.length){ DNQ.view='steps'; dnqRender(); return; } const r=dnaAnalyze(state.dna); const A=r.arch[0]; const P=dnqPicks(); const ids=P.flat(); const L=dnqBlds();
+  box.innerHTML=`<div class="dnq-in dnq-res">
+   <div class="dnq-top"><span class="dnq-k">나의 취향 집</span><button type="button" class="dnq-link" data-dnqgo="steps">다시 고르기</button></div>
+   <div class="dnq-rw">
+    <div class="dnq-3d"><div class="dnq-3dv" id="dnq3d"></div><div class="dnq-fb" id="dnqFb" hidden></div></div>
+    <div class="dnq-rt">
+     <h1 class="dnq-nm">${esc(dnqName(r))}</h1>
+     <p class="dnq-ln">${esc(dnaLine(A,state.dna))}.</p>
+     <p class="dnq-ps">이런 집을 고르는 당신은 <b>${esc(dnaPersona(r))}</b></p>
+     <div class="dnq-pk">${ids.slice(0,6).map(id=>{ const c=DNQ_CARD[id]; return c?`<span><i data-dnqth="${c.id}">${DNQ.th[c.id]?`<img src="${DNQ.th[c.id]}" alt="">`:''}</i>${esc(c.t)}</span>`:''; }).join('')}</div>
+     <div class="dnq-sh"><button type="button" class="btn sec" data-dnqpng>이미지 저장</button><button type="button" class="btn sec" data-dnqcopy>링크 복사</button></div>
+     <div class="dnq-next"><a class="btn big" href="#zipcode">내 땅에 지어 보기<small>내집코드</small></a><button type="button" class="btn big sec" data-dnqadv>더 세밀하게 고르기<small>건축 단어 ${DNA_KW.length}개</small></button></div>
+    </div>
+   </div>
+   ${L.length?`<div class="dnq-bl"><h2>이 취향의 실제 건물</h2><p>고른 집과 닮은 건물이에요. 눌러서 사진과 3D 모형으로 보세요.</p><div class="dnat-row dnq-blr">${L.map(({b,sh})=>bldCard(b,`<div class="ks">${sh.slice(0,3).map(k=>`<em class="on">${esc(k)}</em>`).join('')}</div>`)).join('')}</div></div>`:''}
+  </div>`;
+  ids.forEach(id=>{ const c=DNQ_CARD[id]; if(c&&!DNQ.th[c.id]) dnqThumb(c).then(u=>{ $$(`#dnQuick .dnq-pk [data-dnqth="${c.id}"]`).forEach(i=>{ if(!i.querySelector('img')) i.innerHTML=`<img src="${u}" alt="">`; }); }).catch(()=>{}); });
+  try{ bldGenObserve(box); }catch(e){}
+  try{ DNQ.v&&DNQ.v.dispose&&DNQ.v.dispose(); }catch(e){} DNQ.v=null;
+  const fb=()=>{ const f=$('#dnqFb'); if(!f) return; f.hidden=false; const u=ids.map(id=>DNQ.th[id]).find(Boolean); f.innerHTML=`${u?`<img src="${u}" alt="">`:''}<span>이 기기에서는 3D를 열 수 없어 그림으로 보여 드려요</span>`; const v=$('#dnq3d'); if(v) v.hidden=true; };
+  try{ const Ps=pgSpec(state.dna,{base:A.id,mode:'main',site:DV.site||undefined}); DNQ.P=Ps; DNQ.v=PGV($('#dnq3d'),{auto:!dnqRM(),onFail:fb}); DNQ.v.show(Ps); }catch(e){ console.warn(e); fb(); } }
+function dnqImg(src){ return new Promise(res=>{ if(!src){ res(null); return; } const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=src; }); }
+async function dnqPNG(){ const r=dnaAnalyze(state.dna); const A=r.arch[0]; const ids=dnqPicks().flat().slice(0,3); const W=1080,H=1350; const c=document.createElement('canvas'); c.width=W; c.height=H; const g=c.getContext('2d'); const F=getComputedStyle(document.body).fontFamily;
+  g.fillStyle='#f4efe6'; g.fillRect(0,0,W,H);
+  let main=null; try{ main=await dnqImg(DNQ.v&&DNQ.v.png&&DNQ.v.png()); }catch(e){} if(!main) main=await dnqImg(ids.map(id=>DNQ.th[id]).find(Boolean));
+  const rr=(x,y,w,h,rad)=>{ g.beginPath(); g.moveTo(x+rad,y); g.arcTo(x+w,y,x+w,y+h,rad); g.arcTo(x+w,y+h,x,y+h,rad); g.arcTo(x,y+h,x,y,rad); g.arcTo(x,y,x+w,y,rad); g.closePath(); };
+  const cover=(im,x,y,w,h,rad)=>{ g.save(); rr(x,y,w,h,rad); g.clip(); if(im){ const s=Math.max(w/im.width,h/im.height); g.drawImage(im,x+(w-im.width*s)/2,y+(h-im.height*s)/2,im.width*s,im.height*s); } else { const gr=g.createLinearGradient(x,y,x+w,y+h); gr.addColorStop(0,'#cfd8e6'); gr.addColorStop(1,'#8aa0c0'); g.fillStyle=gr; g.fillRect(x,y,w,h); } g.restore(); };
+  g.fillStyle='#1b2532'; g.font=`800 34px ${F}`; g.fillText('ZIPLAN',60,92); g.fillStyle='#2b6cff'; g.fillText('P',60+g.measureText('ZI').width,92); g.fillStyle='#6b6f76'; g.font=`500 26px ${F}`; g.textAlign='right'; g.fillText('모두의 건축 · 취향 랩',W-60,92); g.textAlign='left';
+  cover(main,60,130,W-120,620,28);
+  g.fillStyle='#6b6f76'; g.font=`600 28px ${F}`; g.fillText('나의 취향 집',60,820);
+  const nm=dnqName(r); g.fillStyle='#1b2532'; let fs=72; g.font=`800 ${fs}px ${F}`; while(g.measureText(nm).width>W-120&&fs>44){ fs-=4; g.font=`800 ${fs}px ${F}`; } g.fillText(nm,60,820+fs+10);
+  g.fillStyle='#3d434c'; g.font=`500 30px ${F}`; const ln=dnaLine(A,state.dna)+'.'; let line='',yy=820+fs+70; for(const ch of ln){ if(g.measureText(line+ch).width>W-120){ g.fillText(line,60,yy); line=ch; yy+=42; } else line+=ch; } g.fillText(line,60,yy);
+  const ims=await Promise.all(ids.map(id=>dnqImg(DNQ.th[id]))); const tw=(W-120-40)/3, ty=H-300; ids.forEach((id,i)=>{ const x=60+i*(tw+20); cover(ims[i],x,ty,tw,170,18); g.fillStyle='#1b2532'; g.font=`700 26px ${F}`; g.fillText((DNQ_CARD[id]||{}).t||'',x+4,ty+210); });
+  g.fillStyle='#8a8f96'; g.font=`500 24px ${F}`; g.fillText(`나도 1분 만에 해 보기 → ${location.host||'ZIPLAN'}`,60,H-40);
+  const url=c.toDataURL('image/png'); const a=document.createElement('a'); a.href=url; a.download='ziplan-취향집.png'; document.body.appendChild(a); a.click(); a.remove(); window.__dnqPng=url.length; return url; }
+function dnqToast(t){ const el=$('#dnToast'); if(!el) return; el.textContent=t; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),2400); }
+/* 고급: 전문어 → 건축 사전 */
+const DN_JARGON=new Set(['메자닌','보이드','스킵플로어','캔틸레버','필로티','아트리움','코어 집중','코어 노출','브릿지','램프','선큰 가든','전이 공간','슬래브 적층','매스 깎기','분절된 매스','차경','고측창','CLT','유글라스','코르텐강','루버 스크린','이중 외피','라멘 구조','RC 벽식','장스팬','패시브 하우스','모듈러','프리패브','저층 고밀','중2층','회랑','천창','툇마루','대청','누마루','서까래','처마','중정형','테라코타','폴리카보네이트','타공 메탈','트러스 지붕','내진 코어','건물 녹화','지열','이중 외피','옥상 정원','반 외부 거실','경사로 중심','슬릿 창','간접광','빛 우물','외쪽지붕','톱날 지붕','반원 볼트','격자 프레임']);
+const DN_ENC={}; function dnEnc(label){ if(!DN_JARGON.has(label)) return null; if(label in DN_ENC) return DN_ENC[label]; let e=null; try{ e=encFind(label); }catch(err){} return DN_ENC[label]=e; }
+function dnEncOpen(label){ const e=dnEnc(label); let m=$('#dnEncM'); if(!m){ document.body.insertAdjacentHTML('beforeend','<div class="dnenc-m" id="dnEncM" role="dialog" aria-modal="true" aria-label="건축 용어" hidden><div class="dnenc-b"><button type="button" class="dnenc-x" data-dnencx aria-label="닫기">×</button><div class="dnenc-c"></div></div></div>'); m=$('#dnEncM'); }
+  m.querySelector('.dnenc-c').innerHTML=e?encCard(e):`<div class="enc"><b class="enc-t">${esc(label)}</b><p>${esc(dnHint(label))}</p></div>`; m.hidden=false; }
+const DN_OPEN=new Set(), DN_MORE=new Set();
+document.addEventListener('click',e=>{ if(!e.target.closest) return;
+  const en=e.target.closest('[data-dnenc]'); if(en){ e.preventDefault(); e.stopPropagation(); dnEncOpen(en.dataset.dnenc); return; }
+  const mx=e.target.closest('#dnEncM'); if(mx&&(e.target===mx||e.target.closest('[data-dnencx]'))){ mx.hidden=true; return; }
+  const fo=e.target.closest('[data-dnfold]'); if(fo){ e.stopPropagation(); const c=fo.dataset.dnfold; DN_OPEN.has(c)?DN_OPEN.delete(c):DN_OPEN.add(c); $('#dnChips').innerHTML=dnaChipsHTML(); dnaReveal(); return; }
+  const mo=e.target.closest('[data-dnmore]'); if(mo){ e.stopPropagation(); DN_MORE.add(mo.dataset.dnmore); $('#dnChips').innerHTML=dnaChipsHTML(); dnaReveal(); return; }
+  if(!e.target.closest('#view-dna')) return;
+  const q=e.target.closest('[data-dnq]'); if(q){ dnqToggle(q.dataset.dnq); return; }
+  if(e.target.closest('[data-dnqnext]')){ if(DNQ.step<2){ DNQ.step++; dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); } else dnqFinish(); return; }
+  if(e.target.closest('[data-dnqskip]')){ dnqPicks()[DNQ.step].length=0; if(DNQ.step<2){ DNQ.step++; dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); } else dnqFinish(); return; }
+  if(e.target.closest('[data-dnqprev]')){ if(DNQ.step>0){ DNQ.step--; dnqRender(); } return; }
+  const gg=e.target.closest('[data-dnqgo]'); if(gg){ if(gg.dataset.dnqgo==='result'){ state.dna=dnqWords(); DV.site=dnqSite()||''; DNQ.view='result'; } else { DNQ.view='steps'; DNQ.step=0; } dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); return; }
+  if(e.target.closest('[data-dnqpng]')){ dnqPNG().then(()=>dnqToast('이미지를 저장했어요')).catch(err=>{ console.warn(err); dnqToast('이미지를 만들지 못했어요'); }); return; }
+  if(e.target.closest('[data-dnqcopy]')){ const r=dnaAnalyze(state.dna); const txt=`나의 취향 집: ${dnqName(r)}\n${dnaLine(r.arch[0],state.dna)}.\n나도 1분 만에 해 보기 → ${location.origin}/#dna`; try{ navigator.clipboard.writeText(txt).then(()=>dnqToast('링크를 복사했어요'),()=>dnqToast('복사하지 못했어요')); }catch(err){ dnqToast('복사하지 못했어요'); } return; }
+  if(e.target.closest('[data-dnqadv]')){ dnMode('adv'); DN_OPEN.clear(); const r=dnaAnalyze(state.dna); (r.ks||[]).forEach(k=>DN_OPEN.add(k.cat)); renderDnaLab(); setTimeout(()=>{ const t=$('#dnPick'); if(t) t.scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); },60); return; }
+  if(e.target.closest('[data-dnback]')){ dnMode('quick'); DNQ.view=dnqPicks().some(l=>l.length)?'result':'steps'; if(DNQ.view==='result'){ /* 고급에서 고친 단어를 그대로 보여 준다 */ } dnqRender(); window.scrollTo(0,0); return; }
+},true);
+
 /* ---------- 취향 랩 화면 ---------- */
 if(!Array.isArray(state.dna)) state.dna=[];
 let dnaCat='all', dnaQ='', dnaPrevPts=null;
 function dnaChipsHTML(){ const sel=new Set(state.dna); const q=dnaQ.trim();
   return DNA_CATS.filter(c=>dnaCat==='all'||c[0]===dnaCat).map(([cid,cname])=>{ const ks=DNA_KW.filter(k=>k.cat===cid&&(!q||k.label.includes(q))); if(!ks.length) return '';
-    const on=ks.filter(k=>sel.has(k.label)).length;
-    const cc=DN_CATC[cid]||'#3f7bff'; return `<div class="dncat zrv" data-cat="${cid}" style="--c:${cc}"><div class="dnch"><span class="dnch-ic">${dnCatIcon(cid)}</span><div><h3>${esc(cname)}</h3><p>${esc(DN_CATTXT[cid]||'')}</p></div><span class="dnch-n">${on?on+'개 고름':ks.length+'개'}</span></div><div class="dnchips">${ks.map((k,ki)=>`<button type="button" class="dk${sel.has(k.label)?' on':''}" style="--i:${ki}" data-k="${esc(k.label)}" aria-pressed="${sel.has(k.label)}" title="${esc(dnHint(k.label))}">${dnIcon(k)}<span>${esc(k.label)}</span></button>`).join('')}</div></div>`; }).join('')||'<div class="dnempty">맞는 단어가 없습니다.</div>'; }
+    const on=ks.filter(k=>sel.has(k.label)).length; const open=!!q||dnaCat!=='all'||DN_OPEN.has(cid); const all=!!q||DN_MORE.has(cid); const vis=all?ks:ks.filter((k,i)=>i<12||sel.has(k.label)); const rest=ks.length-vis.length;
+    const cc=DN_CATC[cid]||'#3f7bff'; return `<div class="dncat zrv${open?'':' fold'}" data-cat="${cid}" style="--c:${cc}"><div class="dnch" data-dnfold="${cid}" role="button" tabindex="0" aria-expanded="${open}"><span class="dnch-ic">${dnCatIcon(cid)}</span><div><h3>${esc(cname)}</h3><p>${esc(DN_CATTXT[cid]||'')}</p></div><span class="dnch-n">${on?on+'개 고름':ks.length+'개'}<i class="dnch-fold" aria-hidden="true">▾</i></span></div><div class="dnchips">${vis.map((k,ki)=>{ const j=DN_JARGON.has(k.label)&&!!dnEnc(k.label); return `<button type="button" class="dk${sel.has(k.label)?' on':''}" style="--i:${ki}" data-k="${esc(k.label)}" aria-pressed="${sel.has(k.label)}" title="${esc(dnHint(k.label))}">${dnIcon(k)}<span>${esc(k.label)}</span>${j?`<span class="dkj" data-dnenc="${esc(k.label)}" title="건축 용어 — 눌러서 뜻 보기">건축 용어</span>`:''}</button>`; }).join('')}</div>${rest>0?`<button type="button" class="dnmore" data-dnmore="${cid}">${rest}개 더 보기</button>`:''}</div>`; }).join('')||'<div class="dnempty">맞는 단어가 없습니다.</div>'; }
 function renderDnaLab(){ const tabs=$('#dnTabs'); if(!tabs) return;
   tabs.innerHTML=[['all','전체'],...DNA_CATS.map(c=>[c[0],c[1]])].map(([id,n])=>`<button type="button" data-cat="${id}" aria-pressed="${dnaCat===id}" style="--c:${DN_CATC[id]||'currentColor'}">${id==='all'?'':dnCatIcon(id)}${esc(n)}</button>`).join(''); dnStyleApply();
   $('#dnChips').innerHTML=dnaChipsHTML(); dnaLive(true); dnaReveal(); try{ dnHeroInit(); dnaLibRender(); }catch(e){} }
 function dnaLive(full){ const r=dnaAnalyze(state.dna); const el=$('#dnLive'); if(!el) return r;
-  $('#dnCount').textContent=r.n; $('#dnCode').textContent=r.n?r.code:'····'; $('#dnPersona').textContent=r.n?dnaPersona(r):'단어를 고르면 이름이 생깁니다';
-  dnaTweenRadar($('#dnRadar'),r.vec);
-  $('#dnTop').innerHTML=r.n?r.arch.slice(0,3).map((a,i)=>`<div class="dntop${i?'':' first'}"><div class="ico">${CTHUMB.kind(a.shape)}</div><div class="t"><b>${esc(a.name)}</b><span><i style="width:${a.pct}%"></i></span></div><em>${a.pct}%</em></div>`).join(''):'<div class="dnhint">다섯 개 이상 고르면 방향이 선명해집니다.</div>';
+  $('#dnCount').textContent=r.n; $('#dnCode').textContent=r.n?r.code:'····'; $('#dnPersona').textContent=r.n>=3?dnaPersona(r):'세 개를 고르면 이름이 생깁니다'; const rd=$('#dnRadar'); if(r.n>=3){ rd.hidden=false; dnaTweenRadar(rd,r.vec); } else { rd.hidden=true; dnaPrevPts=null; rd.innerHTML=''; }
+  $('#dnTop').innerHTML=r.n>=3?r.arch.slice(0,3).map((a,i)=>`<div class="dntop${i?'':' first'}"><div class="ico">${CTHUMB.kind(a.shape)}</div><div class="t"><b>${esc(a.name)}</b><span><i style="width:${a.pct}%"></i></span></div><em>${a.pct}%</em></div>`).join(''):(r.n?`<div class="dnl-wait">${3-r.n}개 더 고르면 방향과 그래프가 나타나요.</div>`:'<div class="dnhint">다섯 개 이상 고르면 방향이 선명해집니다.</div>');
   $('#dnGo').disabled=r.n<3; $('#dnGo').textContent=r.n<3?`${3-r.n}개 더 고르세요`:'분석 결과 보기';
   const sel=$('#dnSel'); if(sel) sel.innerHTML=state.dna.map(k=>`<button type="button" class="dk on sm" data-k="${esc(k)}">${esc(k)} ×</button>`).join('');
   if(full!==false&&!$('#dnResult').hidden){ clearTimeout(window.__dnrT); window.__dnrT=setTimeout(()=>renderDnaResult(),450); }
@@ -38065,7 +38265,7 @@ function dnaShowAlt(i,P){ DV.alt=i; P=P||DV.specs[i]; DV.cur=P; $$('#dnAltTabs [
 let dnStoryIO=null;
 function dnStoryObserve(){ if(dnStoryIO) dnStoryIO.disconnect(); if(!('IntersectionObserver' in window)) return; dnStoryIO=new IntersectionObserver(es=>{ es.forEach(e=>{ if(!e.isIntersecting) return; const k=e.target.dataset.step; $$('.dns-step').forEach(s=>s.classList.toggle('on',s===e.target)); const [stg,cam]=DN_STAGE[k]; if(DV.main&&DV.stage!==stg){ DV.stage=stg; DV.main.stage(stg,cam); const lab=$('#dnStageLab'); if(lab){ const s=DN_STEPS.find(x=>x[0]===k); lab.textContent=s?s[1]+' '+s[2]:'완성'; } } }); },{rootMargin:innerWidth<900?'-60% 0px -22% 0px':'-40% 0px -45% 0px'}); $$('.dns-step').forEach(s=>dnStoryIO.observe(s));
   const end=$('#dnStoryEnd'); if(end) dnStoryIO.observe(end); }
-function renderDnaResult(r){ r=r||dnaAnalyze(state.dna); const box=$('#dnResult'); if(!r.n){ box.hidden=true; return; } box.hidden=false; const A=r.arch[0], B2=r.arch[1]||A;
+function renderDnaResult(r){ try{ dnMode('adv'); }catch(e){} r=r||dnaAnalyze(state.dna); const box=$('#dnResult'); if(!r.n){ box.hidden=true; return; } box.hidden=false; const A=r.arch[0], B2=r.arch[1]||A;
   if(DV.main&&DV.main.dispose){ DV.main.dispose(); DV.main=null; } DV.curB=null; DV.stage='full';
   DV.specs=[pgSpec(state.dna,{base:A.id,mode:'main',site:DV.site}),pgSpec(state.dna,{base:A.id,mode:'mix',site:DV.site}),pgSpec(state.dna,{base:B2.id,mode:'wild',site:DV.site})];
   DV.names=[['A','정석안',A.name],['B','혼합안',`${A.name} + ${B2.name}`],['C','실험안',`${B2.name}, 더 과감하게`]];
@@ -40707,7 +40907,7 @@ function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!
   const mnt=()=>{ try{ if(!m.querySelector('#bld3d')) return; pgvDispose('bld'); pgvMount('bld',m.querySelector('#bld3d'),site=>bldSpec(b,site||undefined)); }catch(e){ console.warn(e); } }; bsigNeed(b.id)?bsigLoad(b.id).then(mnt,mnt):mnt();
   if(!img) bldModel(b,720,500).then(u=>{ const p=m.querySelector('.pic'); if(p) p.innerHTML=`<img src="${u}" alt="">`; }).catch(()=>{}); }
 function bldClose(){ const m=$('#dnatM'); if(m) m.hidden=true; document.documentElement.classList.remove('dnat-lock'); try{ pgvDispose('bld'); }catch(e){} }
-function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); if(location.hash!=='#dna'){ location.hash='#dna'; setTimeout(()=>bldBuild(id,add),350); return; } state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
+function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); if(location.hash!=='#dna'){ location.hash='#dna'; setTimeout(()=>bldBuild(id,add),350); return; } try{ dnMode('adv'); }catch(e){} state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
   const t=$('#dnToast'); if(t){ t.textContent=add?`${b.name}의 단어를 더했어요`:`${b.name}의 단어 ${b.keys.length}개로 지었어요`; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2400); } }
 document.addEventListener('click',e=>{ if(!e.target.closest) return;
   const mb=e.target.closest('#dnatM'); if(mb&&(e.target===mb||e.target.closest('[data-atclose]'))){ bldClose(); return; }
