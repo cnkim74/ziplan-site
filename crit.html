@@ -90,7 +90,7 @@ nav .sp{flex:1}
 @media (prefers-reduced-motion:reduce){ .nhl,.nhl::before,nav a.nl{transition:none} }
 
 /* opening 1: 애플식 표지 — 불 꺼진 집 → 스크롤하며 불이 켜지고 → 선이 그려지며 → 현관으로 들어간다 */
-.photo{height:540vh;position:relative;background:#0b0e14;margin-top:-64px} /* 표지가 떠 있는 바 아래까지 올라와 바와 페이지가 한 장면이 된다 */ /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
+.photo{height:210vh;position:relative;background:#0b0e14;margin-top:-64px} /* 표지가 떠 있는 바 아래까지 올라와 바와 페이지가 한 장면이 된다 */ /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
 .pstage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0b0e14}
 .pl{position:absolute;inset:0;transform-origin:46.4% 66%;will-change:transform}   /* 세 겹: 배경·집·앞풀. 확대 중심은 현관 */
 .pdrift{position:absolute;inset:0;transform-origin:50% 58%;animation:pdrift 52s ease-in-out infinite alternate}
@@ -139,7 +139,7 @@ nav.on-dark .in::after{background:radial-gradient(42% 120% at var(--mx,50%) -20%
 nav.on-dark .nhl::before{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.09));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.2),0 4px 10px -3px rgba(0,0,0,.5)}
 nav.on-dark .nhl::after{opacity:.45}
 nav.on-dark .userchip.signin{background:#fff;color:#0b0c10}
-@media (max-width:860px){ .photo{height:430vh} .phead{top:calc(64px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
+@media (max-width:860px){ .photo{height:190vh} .phead{top:calc(64px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pl,.pdrift{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
 .build+.mod{position:relative}.build+.mod::before{content:'';position:absolute;left:0;right:0;top:-150px;height:150px;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(11,12,16,0),var(--bg))}
@@ -232,7 +232,7 @@ nav.on-dark .userchip.signin{background:#fff;color:#0b0c10}
 .pc:nth-child(2){transition-delay:.08s}.pc:nth-child(3){transition-delay:.16s}
 @media (max-width:820px){ .pcs{grid-template-columns:1fr;gap:26px} .pstrip{margin-top:40px} }
 @media (prefers-reduced-motion:reduce){ .pc{--r:1} .pcimg img{transform:none} }
-.likewrap{height:280vh;background:#0b0c10}
+.likewrap{height:150vh;background:#0b0c10}
 .mod.gradband{position:sticky;top:0;height:100vh;box-sizing:border-box;overflow:hidden;isolation:isolate;color:#fff;padding:0 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#0b0c10}
 .mod.gradband .tag{color:rgba(255,255,255,.78);max-width:560px;margin-top:22px;font-size:clamp(16px,1.6vw,20px)}
 .mod.gradband .links{margin-top:18px}
@@ -245,7 +245,7 @@ nav.on-dark .userchip.signin{background:#fff;color:#0b0c10}
 .lk-b{white-space:nowrap}
 .lkbar{position:absolute;left:50%;bottom:28px;width:min(240px,60vw);height:2px;background:rgba(255,255,255,.18);transform:translateX(-50%);border-radius:1px;overflow:hidden}
 .lkbar i{position:absolute;left:0;top:0;bottom:0;width:100%;background:#fff;transform-origin:0 50%;transform:scaleX(var(--p,0))}
-@media (max-width:720px){ .likeline{flex-direction:column;gap:.1em} .lk-words{min-width:4em} .likewrap{height:220vh} }
+@media (max-width:720px){ .likeline{flex-direction:column;gap:.1em} .lk-words{min-width:4em} .likewrap{height:140vh} }
 @media (prefers-reduced-motion:reduce){ .likewrap{height:auto} .mod.gradband{position:relative;height:auto;padding:120px 16px} .lk-words .lkw{transition:none} .lkbar{display:none} }
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) #introHero .sgbg{display:none} }
 .hero h1{font-size:clamp(52px,9vw,96px);line-height:1;letter-spacing:-0.045em}
@@ -2625,6 +2625,48 @@ html.dnat-lock{overflow:hidden}
 @media(max-width:900px){.dnr-nav{position:relative;top:0;margin:14px 0 0;width:auto}}
 .dns-site{display:flex;align-items:center;gap:6px;font-size:12px;color:#333;padding:0 4px}.dns-site select,.dnl-site select{font:inherit;font-size:12.5px;border:1px solid rgba(0,0,0,.15);border-radius:10px;padding:5px 8px;background:rgba(255,255,255,.85);color:#111}
 .dnl-site{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;font-size:12px;color:var(--fg-2)}.dnl-site select{background:var(--card);color:var(--fg);border-color:var(--card-line)}
+
+/* ===== v19 (U1) 홈 다이어트 + 시각 언어 통일 — 바탕 2가지(어두운 사진 · 밝은 면), 강조색은 로고 파랑 하나 ===== */
+:root{--u-accent:#2997ff;--u-dark:#0b0c10}
+.pcta{display:inline-block;margin-top:22px;padding:14px 26px;border-radius:999px;background:var(--u-accent);color:#fff;font-weight:800;font-size:16px;text-decoration:none;box-shadow:0 10px 30px -10px rgba(41,151,255,.7)}
+.pcta:hover{filter:brightness(1.08)}
+.hd{background:#1d1d1f}.hd::after{display:none}
+.hd.hasph::before{background:linear-gradient(to top,rgba(11,12,16,.86) 0%,rgba(11,12,16,.42) 50%,rgba(11,12,16,.08) 78%)}
+.hd .hd-k{color:#9fcbff;opacity:1}
+#homeDoors{padding-top:56px}
+.hm-grid .hm{--c:var(--u-accent)}
+.hm.hm-cine{background:var(--u-dark);color:#fff;border-color:transparent}.hm.hm-cine p{color:rgba(255,255,255,.75)}.hm.hm-cine em{color:#9fcbff}.hm.hm-cine .lab-k{background:#fff;color:var(--u-dark)}
+.hmeet.solo .hm-grid{grid-template-columns:1fr;max-width:720px}
+.hbuild{padding:64px 16px;background:var(--bg-alt)}
+.hbd-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;max-width:1100px;margin:0 auto;text-align:left}
+.hbd-t h2{margin:10px 0 4px}.hbd-t .rotline{margin:0 0 10px;font-size:clamp(18px,1.8vw,22px);font-weight:800}
+.hbd-sub{color:var(--fg-2);margin:0;font-size:16px;line-height:1.6}
+.hbd-t .hb-two{margin:20px 0 0;max-width:none}.hbd-t .addr{margin:16px 0 0;width:100%;height:52px}
+.hbd-fig{margin:0;border-radius:24px;overflow:hidden;position:relative;aspect-ratio:4/3;background:#1d1d1f}
+.hbd-fig img{width:100%;height:100%;object-fit:cover;display:block}
+.hbd-fig figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 14px;color:#fff;font-size:13px;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,0))}
+.hstud{padding:64px 16px}
+.hs-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;max-width:1100px;margin:0 auto;text-align:left}
+.hs-fig{margin:0;border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:#1d1d1f}.hs-fig img{width:100%;height:100%;object-fit:cover;display:block}
+.hs-t h2{margin:10px 0 8px}.hs-t .tag{margin:0;max-width:none}
+.hs-act{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:22px}.hs-more{color:var(--fg-2);font-size:14.5px;text-decoration:none}.hs-more:hover{color:var(--fg)}
+#view-home .lab-k{background:var(--fg);color:var(--bg)}
+#view-pricing{padding-top:72px}
+.stx{margin-top:56px;border-top:1px solid var(--line)}.stx-h{padding-top:64px}
+.build[data-mode="line"]{height:400vh}.build[data-mode="panel"]{height:430vh}
+.build[data-mode="line"] .pnhead,.build[data-mode="line"] .pnview,.build[data-mode="line"] .pnfoot{display:none}
+.build[data-mode="panel"] #buildSvg,.build[data-mode="panel"] .bcap,.build[data-mode="panel"] .bhint{display:none}
+@media (max-width:860px){ .build[data-mode="line"]{height:330vh}.build[data-mode="panel"]{height:370vh}
+  .hbd-in,.hs-in{grid-template-columns:1fr;gap:22px}.hbuild,.hstud{padding:44px 16px}.hbd-fig,.hs-fig{aspect-ratio:16/9}
+  .hd{min-height:150px;padding:18px}.hd p{font-size:13.5px}.hd-grid{gap:10px;margin-top:22px}#homeDoors{padding:40px 16px 24px}
+  .hmeet{padding:36px 16px}.hm .hmph{height:120px}
+  /* 폰: 문 세 개 · 오늘의 집 · 광장/극장은 옆으로 넘기는 레일 — 세로 길이를 줄인다 */
+  #homeDoors .hd-grid,#homeToday .ht-in,#homeMeet .hm-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-16px;margin-right:-16px;padding:0 16px 6px;gap:12px}
+  #homeDoors .hd-grid::-webkit-scrollbar,#homeToday .ht-in::-webkit-scrollbar,#homeMeet .hm-grid::-webkit-scrollbar{display:none}
+  #homeDoors .hd,#homeToday .ht-col,#homeMeet .hm{scroll-snap-align:start}
+  #homeDoors .hd{min-height:220px}
+  .hmeet.solo .hm-grid{grid-auto-columns:100%} }
+@media (prefers-reduced-motion:reduce){ .build[data-mode]{height:auto} .pcta{box-shadow:none} }
 </style>
 
 <nav>
@@ -2652,9 +2694,9 @@ html.dnat-lock{overflow:hidden}
   <div class="authbg" data-close></div>
   <div class="authcard">
     <button class="authx" type="button" data-close aria-label="닫기">×</button>
-    <div class="authside" aria-hidden="true"><div class="asg" id="authSg"></div><div class="asw"><b>모두의 건축.</b><span>고를수록 당신을 닮는 작업대.</span><em>재학생 <strong>월 3,900원</strong></em></div></div>
+    <div class="authside" aria-hidden="true"><div class="asg" id="authSg"></div><div class="asw"><b>모두의 건축.</b><span>고를수록 당신을 닮는 집.</span></div></div>
     <div class="authbody">
-      <div class="authtabs" role="tablist"><button type="button" data-tab="in" aria-pressed="true">로그인</button><button type="button" data-tab="up" aria-pressed="false">가입하기</button><button type="button" data-tab="stu" aria-pressed="false">재학생 인증</button></div>
+      <div class="authtabs" role="tablist"><button type="button" data-tab="in" aria-pressed="true">로그인</button><button type="button" data-tab="up" aria-pressed="false">가입하기</button><button type="button" data-tab="stu" aria-pressed="false" hidden>재학생 인증</button></div>
       <form id="authForm" novalidate>
         <h3 id="authTitle">다시 오셨네요.</h3><p class="authsub" id="authSub"></p>
         <button type="button" class="oauth" id="auGoogle"><svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.6 9.2c0-.6-.1-1.2-.2-1.7H9v3.3h4.8a4.1 4.1 0 0 1-1.8 2.7v2.2h2.9c1.7-1.6 2.7-3.9 2.7-6.5z"/><path fill="#34A853" d="M9 18c2.4 0 4.5-.8 5.9-2.2l-2.9-2.2c-.8.5-1.8.9-3 .9-2.3 0-4.3-1.6-5-3.7H1v2.3A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M4 10.8a5.4 5.4 0 0 1 0-3.6V4.9H1a9 9 0 0 0 0 8.2z"/><path fill="#EA4335" d="M9 3.6c1.3 0 2.5.5 3.4 1.3l2.6-2.6A9 9 0 0 0 1 4.9l3 2.3c.7-2.1 2.7-3.6 5-3.6z"/></svg>Google로 계속하기</button>
@@ -2662,7 +2704,7 @@ html.dnat-lock{overflow:hidden}
         <label id="auNameRow">이름<input id="auName" autocomplete="name" placeholder="김건축"></label>
         <label>이메일<input id="auEmail" type="email" autocomplete="email" placeholder="you@example.com" required></label>
         <label id="auPwRow">비밀번호<input id="auPw" type="password" minlength="6" autocomplete="current-password" placeholder="6자 이상"></label>
-        <label class="chk" id="auStuRow"><input type="checkbox" id="auIsStu"> 건축학과 재학생이에요 — 가입 후 학교 메일로 학생가 받기</label>
+        <label class="chk" id="auStuRow" hidden><input type="checkbox" id="auIsStu"> 건축학과 재학생이에요 — 가입 후 학교 메일로 학생가 받기</label>
         <button class="btn" type="submit" id="auGo">로그인</button>
         <div class="status" id="auStatus" role="status"></div>
         <p class="authnote" id="auNote"></p>
@@ -2705,6 +2747,7 @@ html.dnat-lock{overflow:hidden}
         <h1 class="term" aria-label="ZIPLAN"><span class="word"><span class="t">ZI</span><span class="t pz2" id="termP">P</span><span class="lan" id="termLan"><span id="termLanIn">LAN</span></span></span><span class="gloss" id="termGloss">구경하고 · 상상하고 · 짓고 · 배우는, 집을 좋아하는 모든 사람의 공간</span></h1>
         <p class="slogan">생각이 집이 되는 곳.</p>
         <div class="plinks"><a href="#atlas">집 구경 <span>›</span></a><a href="#dna">내 집 짓기 <span>›</span></a><a href="#flow">건축 공부 <span>›</span></a></div>
+        <a class="pcta" href="#dna">30초 취향 집 짓기</a>
       </div>
       <div class="pcap" data-i="1"><div class="w">LIGHT</div><div class="k">빛</div></div>
       <div class="pcap" data-i="2"><div class="w">LINE</div><div class="k">선</div></div>
@@ -2715,15 +2758,14 @@ html.dnat-lock{overflow:hidden}
   </div>
 
   <section class="mod hdoors" id="homeDoors" aria-label="문 세 개">
-    <span class="lab-k">ZIPLAN · 모두의 건축</span>
-    <h2>집을 좋아하는 모든 사람의 공간.</h2>
+    <span class="lab-k">세 개의 문</span>
+    <h2>어느 문으로 들어갈까요?</h2>
     <div class="tag">구경하고, 상상하고, 짓고, 배웁니다. 어느 문으로 들어가도 괜찮아요 — 전부 무료로 시작합니다.</div>
     <div class="hd-grid">
-      <a class="hd" href="#atlas" style="--c:#ff9f0a;--c2:#ff5e5e"><span class="hd-k">LOOK</span><b>집 구경</b><p>세계 809채를 3D 모형으로, 한국 72곳 건축 여행, 곧 개봉하는 건축 극장.</p><em>구경하러 가기 ›</em></a>
-      <a class="hd" href="#dna" style="--c:#3f7bff;--c2:#8a6bff"><span class="hd-k">BUILD</span><b>내 집 짓기</b><p>단어 몇 개로 30초 만에 내 취향 집. 주소 하나로 이 땅에 지을 수 있는 크기.</p><em>내 집 지어 보기 ›</em></a>
-      <a class="hd" href="#flow" style="--c:#30a46c;--c2:#7cc89a"><span class="hd-k">STUDIO</span><b>건축 공부</b><p>설계 흐름 한 화면 — 컨셉에서 치수 붙은 평면도·DXF까지. 학생과 실무자의 작업대.</p><em>작업대 열기 ›</em></a>
+      <a class="hd" href="#atlas"><span class="hd-k">LOOK</span><b>집 구경</b><p>세계 809채와 정교 모형 166채, 한국 72곳 건축 여행.</p><em>구경하러 가기 ›</em></a>
+      <a class="hd" href="#dna"><span class="hd-k">BUILD</span><b>내 집 짓기</b><p>단어 몇 개로 30초 만에 내 취향 집. 주소 하나로 이 땅에 지을 수 있는 크기.</p><em>내 집 지어 보기 ›</em></a>
+      <a class="hd" href="#flow"><span class="hd-k">STUDIO</span><b>건축 공부</b><p>설계 흐름 한 화면 — 컨셉에서 치수 붙은 평면도·DXF까지. 학생과 실무자의 작업대.</p><em>작업대 열기 ›</em></a>
     </div>
-    <a class="hd-plaza" href="#plaza">… 그리고 모두가 만나는 <b>광장</b> ›</a>
   </section>
 
   <section class="mod htoday" id="homeToday" aria-label="오늘의 집">
@@ -2734,164 +2776,59 @@ html.dnat-lock{overflow:hidden}
   </section>
   <div class="likewrap" id="likeWrap">
   <div class="mod gradband" id="likeBand">
-    <h2 class="likeline" aria-label="고를수록 당신을 닮는다"><span class="lk-a">고를수록</span><span class="lk-words" id="lkWords" aria-hidden="true"><span class="lkw" style="--j:0">사례</span><span class="lkw" style="--j:1">대안</span><span class="lkw" style="--j:2">재료</span><span class="lkw" style="--j:3">창</span><span class="lkw" style="--j:4">마당</span><span class="lkw" style="--j:5">지붕</span></span><span class="lk-b">당신을 닮는다.</span></h2>
-    <div class="tag">좋아요 한 사례, 고른 대안, 바꾼 재료 하나까지 — 전부 스타일 프로필에 쌓입니다. 다음 대안은 그만큼 당신을 닮아 갑니다. 결정은 늘 당신 것입니다.</div>
-    <div class="links"><a href="#dna">30초 취향 집 짓기</a><a href="#learn">사례 보러 가기</a><a href="#studio">내 작업실</a></div>
+    <h2 class="likeline" aria-label="고를수록 당신을 닮는다"><span class="lk-a">고를수록</span><span class="lk-words" id="lkWords" aria-hidden="true"><span class="lkw" style="--j:0">집</span><span class="lkw" style="--j:1">빛</span><span class="lkw" style="--j:2">재료</span><span class="lkw" style="--j:3">창</span><span class="lkw" style="--j:4">마당</span><span class="lkw" style="--j:5">지붕</span></span><span class="lk-b">당신을 닮는다.</span></h2>
+    <div class="tag">마음에 든 집, 고른 창, 바꾼 재료 하나까지 — 고를수록 다음 집이 당신을 닮아 갑니다. 결정은 늘 당신 것입니다.</div>
+    <div class="links"><a href="#dna">30초 취향 집 짓기</a><a href="#atlas">명작 보러 가기</a></div>
     <div class="lkbar" aria-hidden="true"><i></i></div>
   </div>
   </div>
 
-
-  <section class="mod hnow" id="homeNow" aria-label="건축 극장">
-    <div class="hn-in">
-      <div class="hn-marq" aria-hidden="true"><div class="hn-mx"><span>NOW SHOWING</span><span class=o>건축 극장</span><span>COMING SOON</span><span class=o>ZIPLAN CINEMA</span><span>NOW SHOWING</span><span class=o>건축 극장</span><span>COMING SOON</span><span class=o>ZIPLAN CINEMA</span></div></div>
-      <span class="lab-k">03 · 건축 극장</span>
-      <h2>영화 속 그 집, 곧 개봉.</h2>
-      <div class="tag">작품 속 장소를 영화관처럼 둘러보는 건축 극장을 준비하고 있어요. 개봉 전엔 아틀라스의 명작으로 예고편을.</div>
-      <div class="hn-rail" id="hnRail"></div>
-    </div>
-  </section>
-  <div class="ribbonx" aria-hidden="true" data-dir="-1"><div class="rx"><span>모두의 건축</span><span class=o>ZIPLAN</span><span>모두의 설계</span><span class=o>ZIPLAN</span><span>모두의 패널</span><span class=o>ZIPLAN</span><span>모두의 건축</span><span class=o>ZIPLAN</span><span>모두의 설계</span><span class=o>ZIPLAN</span><span>모두의 패널</span><span class=o>ZIPLAN</span><span>모두의 건축</span><span class=o>ZIPLAN</span><span>모두의 설계</span><span class=o>ZIPLAN</span><span>모두의 패널</span><span class=o>ZIPLAN</span></div></div>
-  <section class="mod hrail" id="homeTrips"><div class="in"><span class="lab-k">ARCHITECTURE TRIP</span><h2>보러 가는 건축.</h2><div class="tag">종묘의 수평선, 병산서원의 만대루, 방주교회의 지붕. 72곳의 사진과 지도, AI 코스.</div><div class="links"><a href="#travel">건축 여행 열기</a></div></div>
+  <section class="mod hrail" id="homeTrips"><div class="in"><span class="lab-k">건축 여행</span><h2>보러 가는 건축.</h2><div class="tag">종묘의 수평선, 병산서원의 만대루, 방주교회의 지붕. 72곳의 사진과 지도, AI 코스.</div><div class="links"><a href="#travel">건축 여행 열기</a></div></div>
   <div class="hr-rail" aria-label="건축 여행 사진"><div class="hr-track" id="hrTrack"></div></div></section>
 
-  <section class="mod hmeet" id="homeMeet" aria-label="광장과 놀이">
+  <section class="mod hmeet" id="homeMeet" aria-label="광장과 극장">
     <div class="hm-grid">
-      <a class="hm" href="#plaza" style="--c:#8a6bff"><span class="lab-k">04 · 광장 오늘</span><b id="hmCh">이번 주 챌린지</b><p id="hmChP">만든 것을 올리고, 서로의 사례가 됩니다.</p><em>광장 들어가기 ›</em></a>
-      <div class="hm soon" style="--c:#ff5e9c"><span class="lab-k">05 · 집 블록</span><b>1분 퍼즐로 짓는 집 <i class="soon-b">곧</i></b><p>방 조각을 땅에 끼워 한 줄을 채우면 집 완성. 날마다 같은 판, 주간 순위.</p><em>준비 중</em></div>
+      <a class="hm hm-plaza" href="#plaza"><span class="lab-k">광장 오늘</span><b id="hmCh">이번 주 챌린지</b><p id="hmChP">만든 것을 올리고, 서로의 사례가 됩니다.</p><em>광장 들어가기 ›</em></a>
+      <a class="hm hm-cine" href="#atlas"><span class="lab-k">건축 극장 · 예고</span><b>영화 속 그 집, 곧 개봉.</b><p>작품 속 장소를 영화관처럼 둘러보는 극장을 준비하고 있어요. 개봉 전엔 아틀라스의 명작으로 예고편을.</p><em>예고편 보기 ›</em></a>
     </div>
   </section>
-  <div class="hero" id="introHero">
-    <div class="heroveil" aria-hidden="true"></div>
-    <div class="heromark" id="heroMark"></div>
-    <span class="lab-k">06 · 내 집 짓기</span>
-    <h1 class="brand"><span class="zl">ZI</span><span class="pz">P</span><span class="zr">LAN</span></h1>
-    <div class="tag rotline">모두의 <span class="rot" id="rotWord">건축</span></div>
-    <div class="sub">땅이 있다면 주소부터, 아직 없다면 취향부터. 지을 집이 보이면 건축사·시공사 상담까지 이어 드릴게요.</div>
-    <form class="addr" id="homeAddr"><input type="text" id="homeAddrIn" placeholder="주소를 넣으면 이 땅에 뭘 지을 수 있는지 알려드려요" aria-label="주소"><button type="submit">읽어 보기</button></form>
-    <div class="hb-two"><a class="hb" href="#zipcode"><b>땅이 있어요</b><p>주소 하나로 지을 수 있는 크기·층수</p></a><a class="hb" href="#dna"><b>아직 없어요</b><p>단어로 먼저 내 취향 집부터</p></a></div>
-    <div class="links"><span class="soon-l">건축주 가이드 — 땅부터 입주까지 8단계 <i class="soon-b">곧</i></span><a href="#guide">어떻게 쓰나</a></div>
-  </div>
 
-
-  <div class="mod hstud" id="homeStudio">
-    <span class="lab-k">07 · 건축 공부</span>
-    <h2>학생과 실무자의 작업대.</h2>
-    <div class="tag">선이 집이 되는 과정을 먼저 보고, 설계 흐름으로 들어가세요. 아래는 한 학기 설계가 한 장이 되는 길입니다.</div>
-    <div class="links"><a href="#flow">설계 흐름 열기</a><a href="#guide">사용법</a></div>
-  </div>
-  <div class="build" id="build">
-    <div class="bstage">
-      <svg id="buildSvg" viewBox="0 0 800 600" role="img" aria-label="어둠 속에서 선, 평면, 입체, 불 켜진 창, 사진, 그리고 패널 한 장으로 이어지는 집이 되는 과정 장면"></svg>
-      <div class="bcap" data-i="0"><div class="w">LINE</div><div class="k">선 — 어둠 속에 땅과 집의 윤곽이 한 선으로</div></div>
-      <div class="bcap" data-i="1"><div class="w">PLAN</div><div class="k">평면 — 벽이 서고, 남쪽은 유리, 가운데 현관과 굴뚝</div></div>
-      <div class="bcap" data-i="2"><div class="w">RISE</div><div class="k">입체 — 선이 일어서서 덩어리가 된다</div></div>
-      <div class="bcap" data-i="3"><div class="w">LIGHT</div><div class="k">빛 — 창에 불이 든다</div></div>
-      <div class="bcap" data-i="4"><div class="w">HOUSE</div><div class="k">집 — 카메라가 내려오면, 이렇게 집이 된다</div></div>
-      <div class="bhint">내리면서 보세요 ↓</div>
-      <div class="pnhead"><div class="w">PANEL</div><div class="k">여섯 장이 한 세트 — 컨셉 · 대지 · 평면 · 단면 · 분해도 · 투시. 자리를 먼저 잡고, 내리면 채워집니다.</div></div>
-      <div class="pnview"><div class="pntrack" id="pnTrack"></div></div>
-      <div class="pnfoot"><div class="now" id="pnNow" data-i="0">01 컨셉 — 한 줄의 생각이 그림이 된다</div><div class="pndots" id="pnDots"></div><a class="pncta" href="#panel">내 패널 만들기 ›</a></div>
-    </div>
-  </div>
-
-  <div class="intro">
-    <p class="lead">건축은 어렵습니다. 땅을 읽는 법, 법규의 숫자, 도면의 선, 패널 한 장. 배워야 할 것이 많고 시간은 늘 모자랍니다.</p>
-    <p>ZIPLAN은 그 시간을 돌려주는 작업대입니다. 표현과 정보와 시각자료는 AI가 압도적으로 빠릅니다. 그 부분을 AI에 맡기고, 사람은 보고, 고르고, 결정합니다.</p>
-    <p>좋은 건축가는 많은 건물을 보고 배웁니다. ZIPLAN은 하나의 답 대신 세 개의 대안을 내고, 당신이 고른 것을 기억합니다. 고를수록 당신을 닮아 갑니다.</p>
-    <div class="trio"><span>모두의 건축</span><span>모두의 설계</span><span>모두의 집</span><span>모두의 도면</span><span>모두의 패널</span></div>
-  </div>
-
-    <!-- 땅에서 집까지: 세로 스크롤이 가로로 바뀌는 과정 필름. 장면마다 배경 그라데이션 색이 바뀐다 -->
-  <div class="film" id="film">
-    <div class="fstage">
-      <div class="fsg" id="filmSg" aria-hidden="true"></div>
-      <div class="fhead"><span class="fk">PROCESS · 7 SCENES</span><h2>땅에서 집까지,<br>일곱 장면.</h2><p>내리면, 한 장씩 넘어갑니다.</p></div>
-      <div class="ftrack" id="filmTrack"><i class="fspine" aria-hidden="true"></i>
-      <figure class="fr" data-i="0"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-site.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="안개 낀 숲 앞 경사지에 말뚝과 실로 집의 윤곽을 표시한 모습" loading="eager" decoding="async"></div><figcaption><span class="fn">01</span><div><b>땅</b><p>말뚝과 실로, 집이 앉을 자리를 먼저 그린다.</p></div></figcaption></figure>
-      <figure class="fr" data-i="1"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-sketch.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="트레이싱지 위 펠트펜 평면 스케치와 빨간 조닝 동그라미" loading="eager" decoding="async"></div><figcaption><span class="fn">02</span><div><b>스케치</b><p>트레이싱지 위에 한 줄 — 방들의 자리를 동그라미로.</p></div></figcaption></figure>
-      <figure class="fr" data-i="2"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-plan.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="안마당을 감싼 단층집 선 도면(등각)" loading="eager" decoding="async"></div><figcaption><span class="fn">03</span><div><b>도면</b><p>동그라미가 벽이 된다. 안마당을 감싸는 한 겹의 집.</p></div></figcaption></figure>
-      <figure class="fr" data-i="3"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-mass.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="커팅 매트 위 흰 스터디 모형 세 개" loading="eager" decoding="async"></div><figcaption><span class="fn">04</span><div><b>매스</b><p>같은 땅에 세 개의 덩어리. 고르는 건 당신.</p></div></figcaption></figure>
-      <figure class="fr" data-i="4"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-model.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="등고선 대지 모형 위 돌과 유리의 집 모형" loading="eager" decoding="async"></div><figcaption><span class="fn">05</span><div><b>모형</b><p>돌과 유리의 비율을, 손으로 들어 확인한다.</p></div></figcaption></figure>
-      <figure class="fr" data-i="5"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-build.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="숲 경사지에서 올라가는 콘크리트 벽과 나무 골조" loading="eager" decoding="async"></div><figcaption><span class="fn">06</span><div><b>현장</b><p>선이 콘크리트가 되고, 그림자가 생긴다.</p></div></figcaption></figure>
-      <figure class="fr" data-i="6"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-home.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="계곡을 향한 큰 유리창이 있는 저녁의 거실" loading="eager" decoding="async"></div><figcaption><span class="fn">07</span><div><b>집</b><p>저녁, 계곡 쪽 유리에 불이 든다.</p></div></figcaption></figure>
+  <section class="mod hbuild" id="homeBuild" aria-label="내 집 짓기">
+    <div class="hbd-in">
+      <div class="hbd-t"><span class="lab-k">내 집 짓기</span>
+        <h2>땅이 있나요?</h2>
+        <div class="tag rotline">모두의 <span class="rot" id="rotWord">집</span></div>
+        <p class="hbd-sub">땅이 있다면 주소부터, 아직 없다면 취향부터. 지을 집이 보이면 건축사·시공사 상담까지 이어 드릴게요.</p>
+        <div class="hb-two"><a class="hb" href="#zipcode"><b>땅이 있어요</b><p>주소 하나로 지을 수 있는 크기·층수</p></a><a class="hb" href="#dna"><b>아직 없어요</b><p>단어로 먼저 내 취향 집부터</p></a></div>
+        <form class="addr" id="homeAddr"><input type="text" id="homeAddrIn" placeholder="주소를 넣으면 이 땅에 뭘 지을 수 있는지 알려드려요" aria-label="주소"><button type="submit">읽어 보기</button></form>
       </div>
-      <div class="fbar" aria-hidden="true"><span class="fcount" id="filmCount">01 / 07</span><i><b id="filmBar"></b></i><span class="fname" id="filmName">땅</span></div>
+      <figure class="hbd-fig"><img src="img/alt-c.webp" width="720" height="540" alt="ㄱ자로 안마당을 감싼 집 — 예시 이미지" loading="lazy" decoding="async"><figcaption>예시 — 마당 · 큰 지붕 · 나무로 고른 집</figcaption></figure>
     </div>
-  </div>
+  </section>
 
-  <div class="mod">
-    <h2>한 줄에서 세 개의 집이 나온다.</h2>
-    <div class="tag">AI는 설계하지 않습니다. 대안을 냅니다. 고르는 건 당신입니다.</div>
-  </div>
-  <div class="story" id="homeStory">
-    <div class="stage"><div class="board" id="homeStage"></div></div>
-    <div class="steps">
-      <div class="step"><div class="n">01 · 컨셉</div><h3>대지와 한 줄을 넣는다.</h3><p>주소 하나로 용도지역·건폐율·용적률을 읽고, 한 줄 — "숲 앞 경사지, 4인 가족, 돌과 유리" — 과 키워드로 방향을 정합니다. 이 한 줄이 아래 모든 그림의 재료가 됩니다.</p></div>
-      <div class="step"><div class="n">02 · 대안</div><h3>세 개의 매스가 나온다.</h3><p>같은 땅에 세 가지 답 — A 길게 낮게(조망), B 두 동과 마당(프라이버시), C ㄱ자 안마당(바람막이). 각각 한 줄 이유, 참고 건물, 대략의 면적과 층수가 붙습니다.</p></div>
-      <div class="step"><div class="n">03 · 선택</div><h3>하나를 고른다.</h3><p>고르면 그 선택이 스타일 프로필(수평성·재료 대비·개방감…)에 쌓입니다. 다음에 내는 대안은 이 프로필을 반영해 점점 당신을 닮아 갑니다. 결정은 언제나 당신의 것입니다.</p></div>
-      <div class="step"><div class="n">04 · 패널</div><h3>패널까지 이어진다.</h3><p>고른 매스가 1층 평면·단면이 되고, 사진과 함께 A1 한 장에 자리 잡습니다. PNG·SVG·PDF로 내려받아 크릿에 들고 가고, 포트폴리오에는 그대로 한 페이지가 됩니다.</p></div>
+  <section class="mod hstud" id="homeStudio" aria-label="건축 공부">
+    <div class="hs-in">
+      <figure class="hs-fig"><img src="img/p-crit.webp" width="760" height="570" alt="벽에 걸린 A1 패널들" loading="lazy" decoding="async"></figure>
+      <div class="hs-t"><span class="lab-k">건축 공부</span><h2>학생과 실무자의 작업대.</h2><div class="tag">컨셉에서 치수 붙은 평면도·DXF, A1 패널까지 — 한 흐름으로 이어집니다.</div>
+        <div class="hs-act"><a class="btn" href="#flow">작업대 열기</a><a class="hs-more" href="#pricing">요금 · 얼리버드 사전 신청 ›</a></div></div>
     </div>
-  </div>
-  </div>
+  </section>
 
-  <!-- 같은 땅, 세 개의 답: 대지 한 장 + 대안 셋(렌더). 하나를 고르면 스타일 프로필에 쌓이는 흐름을 미리 보여 준다 -->
-  <div class="alts" id="alts">
-    <div class="ahead"><h2>같은 땅, 세 개의 답.</h2><div class="tag">같은 한 줄 — "숲 앞 경사지, 4인 가족, 돌과 유리" — 에서 나온 세 집입니다. 하나를 골라 보세요.</div></div>
-    <div class="agrid">
-      <figure class="acard site"><div class="aimg"><img src="img/alt-site.webp" alt="숲 앞 경사지의 빈 대지, 남쪽으로 길" loading="lazy" decoding="async"><span class="ab">SITE</span></div><figcaption><b>대지 — 숲 앞 경사지</b><p>북쪽은 숲, 남쪽은 길. 내집코드가 읽어 준 땅 위에 한 줄을 올립니다.</p></figcaption></figure>
-      <figure class="acard" data-alt="A" tabindex="0"><div class="aimg"><img src="img/alt-a.webp" alt="대안 A: 길게 낮게 펼친 단층집" loading="lazy" decoding="async"><span class="ab">A</span><span class="achk">✓</span></div><figcaption><b>A · 길게 낮게</b><p>경사를 따라 길게 눕히고, 골짜기 쪽을 전면 유리로. <em>조망</em>이 먼저인 집.</p></figcaption></figure>
-      <figure class="acard" data-alt="B" tabindex="0"><div class="aimg"><img src="img/alt-b.webp" alt="대안 B: 두 동 사이 마당과 유리 연결" loading="lazy" decoding="async"><span class="ab">B</span><span class="achk">✓</span></div><figcaption><b>B · 두 동과 마당</b><p>두 덩어리 사이에 마당을 두고 유리로 잇습니다. <em>프라이버시</em>가 먼저인 집.</p></figcaption></figure>
-      <figure class="acard" data-alt="C" tabindex="0"><div class="aimg"><img src="img/alt-c.webp" alt="대안 C: ㄱ자로 안마당을 감싼 집" loading="lazy" decoding="async"><span class="ab">C</span><span class="achk">✓</span></div><figcaption><b>C · ㄱ자 안마당</b><p>ㄱ자로 안마당을 감싸 바람을 막고, 안쪽만 엽니다. <em>바람막이</em>가 먼저인 집.</p></figcaption></figure>
-    </div>
-    <div class="anote" id="altNote">세 집 모두 같은 재료 — 돌, 유리, 어두운 나무. 다른 건 <b>땅을 읽는 방식</b>입니다.</div>
+<section class="mod faq" id="faq"><div class="in"><span class="lab-k">FAQ</span><h2>자주 묻는 질문.</h2>
+  <div class="faql">
+   <details><summary>가입하지 않아도 쓸 수 있나요?</summary><p>네. 취향 랩, 내집코드, 해와 바람·콘타, 컨셉 장면, 관계 다이어그램, 모형·법규 볼륨, 패널 진단, 건축 여행은 로그인 없이 쓸 수 있어요. 로그인하면 작업이 자동 저장되고 다른 기기에서 이어집니다.</p></details>
+   <details><summary>건축학과 학생이 아니어도 괜찮나요?</summary><p>물론이에요. “모두의 건축”이라는 이름처럼, 집을 짓고 싶은 사람·건축을 보러 다니는 사람 누구나 쓰도록 만들었어요. 어려운 용어에는 풀이가 붙어 있어요.</p></details>
+   <details><summary>법규 검토 결과를 그대로 믿어도 되나요?</summary><p>아니요. 건폐율·용적률·정북 일조 사선은 개략 검토예요. 지구단위계획과 지자체 조례에 따라 달라지니, 실제 설계·허가 전에는 건축사와 관할 관청에서 꼭 확인하세요.</p></details>
+   <details><summary>건축 여행의 사진과 별점은 어디서 왔나요?</summary><p>사진은 Wikimedia Commons의 자유 라이선스 사진이고, 각 사진의 ⓘ에 작가와 라이선스가 있어요. 별점은 ZIPLAN 에디터의 주관 평가이고, 방문자 별점은 회원이 직접 남긴 점수의 평균이에요.</p></details>
+   <details><summary>내 작업과 위치 정보는 어떻게 다뤄지나요?</summary><p>작업은 로그인한 본인만 볼 수 있어요. 건축 여행의 위치는 브라우저 안에서만 쓰고 저장하지 않아요. 방문 통계는 쿠키 없이 익명으로만 모읍니다. 자세한 건 <a href="privacy.html">개인정보처리방침</a>을 봐 주세요.</p></details>
   </div>
+  <div class="faqcta"><span>더 궁금한 게 있나요?</span><button class="btn" data-ask>문의하기</button></div></div></section>
+</section>
 
-  <!-- 손에서 벽까지: 과정 사진 셋 — 스크롤에 맞춰 아래서 드러나고, 사진은 천천히 떠오른다 -->
-  <div class="pstrip" id="pstrip">
-    <div class="phead2"><h2>손에서 벽까지.</h2><div class="tag">ZIPLAN은 화면 안에서 끝나지 않습니다. 스케치로 시작해, 모형으로 확인하고, 벽에 걸어 말합니다.</div></div>
-    <div class="pcs">
-      <figure class="pc"><div class="pcimg"><img src="img/p-sketch.webp" alt="트레이싱지 위 펠트펜 스케치" loading="lazy" decoding="async"></div><figcaption><span class="n">01 · 스케치</span><b>손으로 시작한다.</b><p>한 줄과 지도 위 몇 개의 선. 내집코드가 읽어 준 땅 위에 첫 생각을 올립니다.</p></figcaption></figure>
-      <figure class="pc"><div class="pcimg"><img src="img/p-model.webp" alt="흰 스터디 모형" loading="lazy" decoding="async"></div><figcaption><span class="n">02 · 모형</span><b>손으로 확인한다.</b><p>세 개의 매스 중 하나를 고르면 도면이 됩니다. 도면은 손으로 들어 볼 때 비로소 집이 됩니다.</p></figcaption></figure>
-      <figure class="pc"><div class="pcimg"><img src="img/p-crit.webp" alt="벽에 걸린 A1 패널들" loading="lazy" decoding="async"></div><figcaption><span class="n">03 · 크릿</span><b>벽에 걸고 말한다.</b><p>A1 한 장에 과정이 담깁니다. 광장에 올리면 다른 사람의 눈이 더해집니다.</p></figcaption></figure>
-    </div>
-  </div>
-
-  <div class="ribbonx" aria-hidden="true" data-dir="1"><div class="rx"><span>대지</span><span class=o>컨셉</span><span>평면</span><span class=o>단면</span><span>모형</span><span class=o>패널</span><span>크릿</span><span class=o>대지</span><span>컨셉</span><span class=o>평면</span><span>단면</span><span class=o>모형</span><span>패널</span><span class=o>크릿</span><span>대지</span><span class=o>컨셉</span><span>평면</span><span class=o>단면</span><span>모형</span><span class=o>패널</span><span>크릿</span></div></div>
-  <div class="mod alt" id="map" style="margin-top:40px">
-    <h2>한눈에 보는 ZIPLAN.</h2>
-    <div class="tag">문 세 개와 광장, 열다섯 개의 방. 구경에서 시작해 짓기와 공부로 건너갑니다.</div>
-    <div class="flow" aria-label="순서"><span><b>1</b> 집 구경</span><i></i><span><b>2</b> 내 집 짓기</span><i></i><span><b>3</b> 건축 공부</span><i></i><span><b>4</b> 광장</span></div>
-    <div class="rooms">
-      <section class="rgrp"><header><span class="rn">01</span><h3>집 구경</h3><p>보고, 다니고, 읽는다. 전부 무료.</p></header><div class="tiles">
-        <a class="tile" href="#atlas"><h3>건축 아틀라스</h3><p>세계 809채, 정교 모형 166채.</p><span class="go">보러 가기</span><div class="art" id="tileAtlas"><svg viewBox="0 0 260 120" aria-hidden="true"><g fill="none" stroke="#1d1d1f" stroke-width="1.6"><path d="M20 100V60l30-22 30 22v40zM90 100V40h40v60zM150 100V70l25-30 25 30v30z"/><path d="M35 100V80h10v20M110 55h0M100 60h20M100 75h20"/></g><circle cx="215" cy="40" r="14" fill="none" stroke="#0a58ca" stroke-width="1.6"/><path d="M201 40h28M215 26c6 6 6 22 0 28M215 26c-6 6-6 22 0 28" fill="none" stroke="#0a58ca" stroke-width="1.6"/></svg></div></a>
-        <a class="tile" href="#travel"><h3>건축 여행</h3><p>한국 72곳, 해외 8도시, 코스 짜기.</p><span class="go">떠나 보기</span><div class="art" id="tileTravel"><svg viewBox="0 0 260 120" aria-hidden="true"><path d="M20 90C60 70 90 95 130 75S200 60 240 80" fill="none" stroke="#1d1d1f" stroke-width="1.6" stroke-dasharray="4 3"/><g fill="#0a58ca"><path d="M60 72c-6-7-6-15 0-20s12 0 12 6-6 14-12 14z"/><path d="M130 62c-6-7-6-15 0-20s12 0 12 6-6 14-12 14z"/><path d="M200 70c-6-7-6-15 0-20s12 0 12 6-6 14-12 14z"/></g></svg></div></a>
-        <a class="tile" href="#learn"><h3>사례 배우기</h3><p>좋은 건축가는 많이 봅니다.</p><span class="go">보러 가기</span><div class="art" id="tileLearn"></div></a>
-        <a class="tile" href="#library"><h3>자료실</h3><p>핀터레스트 대신. 써도 되는 자료만.</p><span class="go">열어 보기</span><div class="art" id="tileLibrary"></div></a>
-      </div></section>
-      <section class="rgrp"><header><span class="rn">02</span><h3>내 집 짓기</h3><p>취향으로 시작해 땅을 읽고, 지을 집이 보이면 상담까지.</p></header><div class="tiles">
-        <a class="tile" href="#dna"><h3>취향 랩</h3><p>단어 몇 개로 30초 만에 내 취향 집.</p><span class="go">지어 보기</span><div class="art" id="tileDna"><svg viewBox="0 0 260 120" aria-hidden="true"><g font-size="11" fill="#6e6e73"><text x="14" y="30">중정</text><text x="60" y="52">벽돌</text><text x="110" y="28">큰 지붕</text><text x="22" y="80">마당</text><text x="86" y="98">빛</text></g><g fill="none" stroke="#1d1d1f" stroke-width="1.6"><path d="M160 96V58l35-24 35 24v38z"/><path d="M175 96V76h14v20M205 70h14v10h-14z"/></g><path d="M118 40 150 66" stroke="#0a58ca" stroke-width="1.4" stroke-dasharray="3 3"/></svg></div></a>
-        <a class="tile" href="#zipcode"><h3>내집코드</h3><p>주소 하나로 지을 수 있는 것.</p><span class="go">읽어 보기</span><div class="art" id="tileZip"></div></a>
-      </div></section>
-      <section class="rgrp"><header><span class="rn">03</span><h3>건축 공부</h3><p>설계 흐름 한 화면, 그리고 대지 → 컨셉 → 도면 → 모형 → 패널 → 포트폴리오.</p></header><div class="tiles">
-        <a class="tile" href="#flow"><h3>설계 흐름</h3><p>단어 → 여섯 안 → 피드백 → 원라인 → 치수 붙은 평면도·DXF.</p><span class="go">한 화면에서</span><div class="art" id="tileFlow"><svg viewBox="0 0 260 120" aria-hidden="true"><g fill="none" stroke="#1d1d1f" stroke-width="1.6"><rect x="10" y="30" width="50" height="60" rx="4"/><rect x="80" y="20" width="60" height="70" rx="4"/><path d="M160 90V30h80v60zM160 60h40M200 30v60"/></g><g fill="#0a58ca"><circle cx="35" cy="60" r="3"/><circle cx="110" cy="55" r="3"/><circle cx="180" cy="75" r="3"/></g><path d="M35 60C60 60 80 55 110 55S150 75 180 75" fill="none" stroke="#0a58ca" stroke-width="1.6" stroke-dasharray="4 3"/><text x="10" y="112" font-size="9" fill="#6e6e73">컨셉 · 대안 · 원라인 · 평면도</text></svg></div></a>
-        <a class="tile" href="#site"><h3>대지 분석</h3><p>해·바람·길·조망. 땅이 먼저 말합니다.</p><span class="go">시작하기</span><div class="art" id="tileSite"></div></a>
-        <a class="tile" href="#concept"><h3>컨셉 잡기</h3><p>한 줄에서 세 개의 방향.</p><span class="go">시작하기</span><div class="art" id="tileConcept"></div></a>
-        <a class="tile" href="#drawing"><h3>도면 짜기</h3><p>실 구성표가 조닝과 단면이 됩니다.</p><span class="go">시작하기</span><div class="art" id="tileDrawing"></div></a>
-        <a class="tile" href="#model"><h3>모형 보기</h3><p>평면이 일어서서 3D 매스가 됩니다.</p><span class="go">시작하기</span><div class="art" id="tileModel"></div></a>
-        <a class="tile" href="#panel"><h3>패널 만들기</h3><p>컨셉 하나 고르면 A1 한 장.</p><span class="go">만들기</span><div class="art" id="tilePanel"></div></a>
-        <a class="tile" href="#portfolio"><h3>포트폴리오</h3><p>보여주는 법과 공고가 요구하는 것.</p><span class="go">보러 가기</span><div class="art" id="tilePortfolio"></div></a>
-      </div></section>
-      <section class="rgrp"><header><span class="rn">04</span><h3>광장</h3><p>올리고, 묻고, 내 것은 모아 둔다.</p></header><div class="tiles">
-        <a class="tile" href="#plaza"><h3>광장</h3><p>올리고, 묻고, 서로의 사례가 됩니다.</p><span class="go">들어가 보기</span><div class="art" id="tilePlaza"></div></a>
-        <a class="tile" href="#studio"><h3>내 작업실</h3><p>프로젝트·스타일 프로필·저장.</p><span class="go">열어 보기</span><div class="art" id="tileStudio"><svg viewBox="0 0 280 120" aria-hidden="true"><g fill="var(--bg-alt)" stroke="var(--line)"><rect x="20" y="22" width="110" height="90" rx="8"/><rect x="150" y="22" width="110" height="90" rx="8"/></g><g fill="var(--line)"><rect x="34" y="40" width="60" height="5" rx="2"/><rect x="34" y="52" width="80" height="5" rx="2"/><rect x="164" y="40" width="50" height="5" rx="2"/><rect x="164" y="52" width="82" height="5" rx="2"/></g><g fill="var(--accent)" opacity=".8"><rect x="34" y="76" width="36" height="22" rx="4"/><rect x="164" y="76" width="36" height="22" rx="4"/></g><rect x="20" y="12" width="46" height="12" rx="4" fill="var(--fg)"/><rect x="150" y="12" width="46" height="12" rx="4" fill="var(--fg)"/></svg></div></a>
-      </div></section>
-    </div>
-  </div>
-
+<section class="view" id="view-pricing" hidden>
 <div class="mod alt" id="pricing">
     <h2>무료로 시작, 필요할 때 올리기.</h2>
-    <div class="tag">금액은 가정입니다. 첫 테스트 뒤에 정합니다.</div>
+    <div class="tag">정식 금액은 오픈 때 안내해 드려요. 지금 가입하면 얼리버드 혜택을 먼저 알려 드립니다.</div>
     <div class="stuband" id="stuBand">
       <div class="sbg" id="stuSg" aria-hidden="true"></div>
       <div class="sbl"><span class="sbadge">재학생 −60%</span><h3>건축학과 재학생이면<br><b>월 3,900원.</b></h3><p id="stuState">학교 메일 하나로 30초. 졸업 전까지 매년 한 번만 다시 확인합니다.</p></div>
@@ -2901,20 +2838,10 @@ html.dnat-lock{overflow:hidden}
       <div class="plan"><div class="n">무료</div><div class="pr">0원</div><ul><li>내집코드 무제한</li><li>프로젝트 1개</li><li>AI 대안 월 10회</li><li>PNG 작은 크기</li></ul><button class="btn sec" data-auth="up">무료로 가입</button></div>
       <div class="plan hi stu"><div class="ribbon">재학생 −60%</div><div class="n">스튜디오</div><div class="pr"><s>월 9,900원</s><span class="now">월 3,900원</span></div><div class="stl">재학생 인증 시 · <span class="ok">적용됨 ✓</span></div><ul><li>프로젝트 무제한</li><li>AI 대안 월 300회</li><li>SVG · DXF · PDF</li><li>크리틱 · 스타일 프로필</li></ul><button class="btn" data-auth="stu">학생가로 시작</button></div>
       <div class="plan stu"><div class="ribbon soft">재학생 −50%</div><div class="n">프로</div><div class="pr"><s>월 29,000원</s><span class="now">월 14,500원</span></div><div class="stl">재학생 인증 시 · <span class="ok">적용됨 ✓</span></div><ul><li>스튜디오 전부</li><li>매스 3D · 렌더 톤</li><li>팀 공유 3인</li><li>법규 한도 자동 조회</li></ul><button class="btn sec" data-auth="up">가입하기</button></div>
-      <div class="plan"><div class="n">학교</div><div class="pr">연 계약</div><ul><li>한 반 전체 스튜디오</li><li>교수 비교 뷰</li><li>크리틱 기록</li></ul><span class="btn sec ghost" aria-disabled="true">곧 열립니다</span></div>
+      <div class="plan" hidden><div class="n">학교</div><div class="pr">연 계약</div><ul><li>한 반 전체 스튜디오</li><li>교수 비교 뷰</li><li>크리틱 기록</li></ul><span class="btn sec ghost" aria-disabled="true">곧 열립니다</span></div>
     </div>
     <div id="zGradeBox"></div>
   </div>
-<section class="mod faq" id="faq"><div class="in"><span class="lab-k">FAQ</span><h2>자주 묻는 질문.</h2>
-  <div class="faql">
-   <details><summary>가입하지 않아도 쓸 수 있나요?</summary><p>네. 취향 랩, 내집코드, 해와 바람·콘타, 컨셉 장면, 관계 다이어그램, 모형·법규 볼륨, 패널 진단, 건축 여행은 로그인 없이 쓸 수 있어요. 로그인하면 작업이 자동 저장되고 다른 기기에서 이어집니다.</p></details>
-   <details><summary>건축학과 학생이 아니어도 괜찮나요?</summary><p>물론이에요. “모두의 건축”이라는 이름처럼, 집을 짓고 싶은 사람·건축을 보러 다니는 사람 누구나 쓰도록 만들었어요. 어려운 용어에는 풀이가 붙어 있어요.</p></details>
-   <details><summary>재학생 할인은 어떻게 받나요?</summary><p>학교 메일(ac.kr·edu 등)로 인증하면 스튜디오·프로 요금이 60% 할인돼요. 요금 영역의 “재학생 인증”에서 바로 할 수 있어요.</p></details>
-   <details><summary>법규 검토 결과를 그대로 믿어도 되나요?</summary><p>아니요. 건폐율·용적률·정북 일조 사선은 개략 검토예요. 지구단위계획과 지자체 조례에 따라 달라지니, 실제 설계·허가 전에는 건축사와 관할 관청에서 꼭 확인하세요.</p></details>
-   <details><summary>건축 여행의 사진과 별점은 어디서 왔나요?</summary><p>사진은 Wikimedia Commons의 자유 라이선스 사진이고, 각 사진의 ⓘ에 작가와 라이선스가 있어요. 별점은 ZIPLAN 에디터의 주관 평가이고, 방문자 별점은 회원이 직접 남긴 점수의 평균이에요.</p></details>
-   <details><summary>내 작업과 위치 정보는 어떻게 다뤄지나요?</summary><p>작업은 로그인한 본인만 볼 수 있어요. 건축 여행의 위치는 브라우저 안에서만 쓰고 저장하지 않아요. 방문 통계는 쿠키 없이 익명으로만 모읍니다. 자세한 건 <a href="privacy.html">개인정보처리방침</a>을 봐 주세요.</p></details>
-  </div>
-  <div class="faqcta"><span>더 궁금한 게 있나요?</span><button class="btn" data-ask>문의하기</button></div></div></section>
 </section>
 
 <!-- ============ 내집코드 ============ -->
@@ -3147,7 +3074,23 @@ html.dnat-lock{overflow:hidden}
 
 <!-- ============ 패널 만들기 ============ -->
 <section class="view" id="view-panel" hidden>
-  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">패널 만들기</h1><div class="tag">컨셉 하나 고르면, A1 한 장이 잡힙니다.</div><div class="links"><a href="#panel" data-wb="panel">바로 만들기</a></div></div>
+  <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">패널 만들기</h1><div class="tag">컨셉 하나 고르면, A1 한 장이 잡힙니다.</div><div class="links"><a href="#panel" data-wb="panel">바로 만들기</a><a href="#panel" data-jump="pnSlot">여섯 장 한 세트 보기 ↓</a></div></div>
+  <div id="pnSlot">
+  <div class="build" id="build" data-mode="panel">
+    <div class="bstage">
+      <svg id="buildSvg" viewBox="0 0 800 600" role="img" aria-label="어둠 속에서 선, 평면, 입체, 불 켜진 창, 사진, 그리고 패널 한 장으로 이어지는 집이 되는 과정 장면"></svg>
+      <div class="bcap" data-i="0"><div class="w">LINE</div><div class="k">선 — 어둠 속에 땅과 집의 윤곽이 한 선으로</div></div>
+      <div class="bcap" data-i="1"><div class="w">PLAN</div><div class="k">평면 — 벽이 서고, 남쪽은 유리, 가운데 현관과 굴뚝</div></div>
+      <div class="bcap" data-i="2"><div class="w">RISE</div><div class="k">입체 — 선이 일어서서 덩어리가 된다</div></div>
+      <div class="bcap" data-i="3"><div class="w">LIGHT</div><div class="k">빛 — 창에 불이 든다</div></div>
+      <div class="bcap" data-i="4"><div class="w">HOUSE</div><div class="k">집 — 카메라가 내려오면, 이렇게 집이 된다</div></div>
+      <div class="bhint">내리면서 보세요 ↓</div>
+      <div class="pnhead"><div class="w">PANEL</div><div class="k">여섯 장이 한 세트 — 컨셉 · 대지 · 평면 · 단면 · 분해도 · 투시. 자리를 먼저 잡고, 내리면 채워집니다.</div></div>
+      <div class="pnview"><div class="pntrack" id="pnTrack"></div></div>
+      <div class="pnfoot"><div class="now" id="pnNow" data-i="0">01 컨셉 — 한 줄의 생각이 그림이 된다</div><div class="pndots" id="pnDots"></div><a class="pncta" href="#panel">내 패널 만들기 ›</a></div>
+    </div>
+  </div>
+  </div>
   <div class="story">
     <div class="stage"><div class="sheet" id="panelStageSheet"></div></div>
     <div class="steps">
@@ -3260,8 +3203,103 @@ html.dnat-lock{overflow:hidden}
 
 <!-- ============ 내 작업실 ============ -->
 <section class="view" id="view-flow" hidden>
-  <div class="hero"><h1>설계 흐름</h1><div class="tag">컨셉 → 대안 → 매스 → 원라인 → 실·동선 → 평면도. 한 화면에서.</div><div class="sub">단어와 땅을 넣으면 여섯 안이 나오고, 의견을 적으면 안이 바뀌고, 벽을 한 줄로 그려 구성을 본 뒤 치수와 표제란이 붙은 평면도·DXF까지 이어집니다. 결정은 사람이, 지루한 반복은 ZIP이.</div></div>
+  <div class="hero"><h1>설계 흐름</h1><div class="tag">컨셉 → 대안 → 매스 → 원라인 → 실·동선 → 평면도. 한 화면에서.</div><div class="sub">단어와 땅을 넣으면 여섯 안이 나오고, 의견을 적으면 안이 바뀌고, 벽을 한 줄로 그려 구성을 본 뒤 치수와 표제란이 붙은 평면도·DXF까지 이어집니다. 결정은 사람이, 지루한 반복은 ZIP이.</div><div class="links"><a href="#flow" data-jump="studyTour">선이 집이 되는 과정 먼저 보기 ↓</a></div></div>
   <div id="fwRoot"></div>
+  <div class="stx" id="studyTour">
+  <div class="mod stx-h"><span class="lab-k">건축 공부 둘러보기</span><h2>선이 집이 되기까지.</h2><div class="tag">한 학기 설계가 패널 한 장이 되는 길 — 위 작업대에서 하는 일을 장면으로 먼저 봅니다.</div></div>
+  <div id="lineSlot"></div>
+  <div class="intro">
+    <p class="lead">건축은 어렵습니다. 땅을 읽는 법, 법규의 숫자, 도면의 선, 패널 한 장. 배워야 할 것이 많고 시간은 늘 모자랍니다.</p>
+    <p>ZIPLAN은 그 시간을 돌려주는 작업대입니다. 표현과 정보와 시각자료는 AI가 압도적으로 빠릅니다. 그 부분을 AI에 맡기고, 사람은 보고, 고르고, 결정합니다.</p>
+    <p>좋은 건축가는 많은 건물을 보고 배웁니다. ZIPLAN은 하나의 답 대신 세 개의 대안을 내고, 당신이 고른 것을 기억합니다. 고를수록 당신을 닮아 갑니다.</p>
+    <div class="trio"><span>모두의 건축</span><span>모두의 설계</span><span>모두의 집</span><span>모두의 도면</span><span>모두의 패널</span></div>
+  </div>
+
+    <!-- 땅에서 집까지: 세로 스크롤이 가로로 바뀌는 과정 필름. 장면마다 배경 그라데이션 색이 바뀐다 -->
+  <div class="film" id="film">
+    <div class="fstage">
+      <div class="fsg" id="filmSg" aria-hidden="true"></div>
+      <div class="fhead"><span class="fk">PROCESS · 7 SCENES</span><h2>땅에서 집까지,<br>일곱 장면.</h2><p>내리면, 한 장씩 넘어갑니다.</p></div>
+      <div class="ftrack" id="filmTrack"><i class="fspine" aria-hidden="true"></i>
+      <figure class="fr" data-i="0"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_4a94975d-8416-452c-b7fd-3a6770f88b45.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-site.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="안개 낀 숲 앞 경사지에 말뚝과 실로 집의 윤곽을 표시한 모습" loading="eager" decoding="async"></div><figcaption><span class="fn">01</span><div><b>땅</b><p>말뚝과 실로, 집이 앉을 자리를 먼저 그린다.</p></div></figcaption></figure>
+      <figure class="fr" data-i="1"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124129_5c1d8797-4eb1-499b-91bf-88f5756d8b48.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-sketch.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="트레이싱지 위 펠트펜 평면 스케치와 빨간 조닝 동그라미" loading="eager" decoding="async"></div><figcaption><span class="fn">02</span><div><b>스케치</b><p>트레이싱지 위에 한 줄 — 방들의 자리를 동그라미로.</p></div></figcaption></figure>
+      <figure class="fr" data-i="2"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124813_4c20e256-2897-4cc0-874c-c432a15f426e.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-plan.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="안마당을 감싼 단층집 선 도면(등각)" loading="eager" decoding="async"></div><figcaption><span class="fn">03</span><div><b>도면</b><p>동그라미가 벽이 된다. 안마당을 감싸는 한 겹의 집.</p></div></figcaption></figure>
+      <figure class="fr" data-i="3"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124910_da07ac12-ddba-42a5-a319-fc6214a1a947.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-mass.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="커팅 매트 위 흰 스터디 모형 세 개" loading="eager" decoding="async"></div><figcaption><span class="fn">04</span><div><b>매스</b><p>같은 땅에 세 개의 덩어리. 고르는 건 당신.</p></div></figcaption></figure>
+      <figure class="fr" data-i="4"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_124740_e9bed0fc-aa7c-41de-b55a-7e63f3fcf677.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-model.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="등고선 대지 모형 위 돌과 유리의 집 모형" loading="eager" decoding="async"></div><figcaption><span class="fn">05</span><div><b>모형</b><p>돌과 유리의 비율을, 손으로 들어 확인한다.</p></div></figcaption></figure>
+      <figure class="fr" data-i="5"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125153_41ef5eed-75ba-406d-a4c7-de1508802e2a.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-build.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="숲 경사지에서 올라가는 콘크리트 벽과 나무 골조" loading="eager" decoding="async"></div><figcaption><span class="fn">06</span><div><b>현장</b><p>선이 콘크리트가 되고, 그림자가 생긴다.</p></div></figcaption></figure>
+      <figure class="fr" data-i="6"><div class="fimg"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=1920&amp;q=78" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=960&amp;q=78 960w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=1280&amp;q=78 1280w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3KYJxPwfR2bbZUqGeHnWyiDQ4yS%2Fhf_20261012_125337_6d3763f0-faa1-41d1-99b0-3976de25ee03.png&amp;w=1920&amp;q=78 1920w" sizes="(max-width:760px) 92vw, min(58vw,1020px)" data-fb="img/f-home.avif" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.fb" alt="계곡을 향한 큰 유리창이 있는 저녁의 거실" loading="eager" decoding="async"></div><figcaption><span class="fn">07</span><div><b>집</b><p>저녁, 계곡 쪽 유리에 불이 든다.</p></div></figcaption></figure>
+      </div>
+      <div class="fbar" aria-hidden="true"><span class="fcount" id="filmCount">01 / 07</span><i><b id="filmBar"></b></i><span class="fname" id="filmName">땅</span></div>
+    </div>
+  </div>
+
+  <div class="mod">
+    <h2>한 줄에서 세 개의 집이 나온다.</h2>
+    <div class="tag">AI는 설계하지 않습니다. 대안을 냅니다. 고르는 건 당신입니다.</div>
+  </div>
+  <div class="story" id="homeStory">
+    <div class="stage"><div class="board" id="homeStage"></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">01 · 컨셉</div><h3>대지와 한 줄을 넣는다.</h3><p>주소 하나로 용도지역·건폐율·용적률을 읽고, 한 줄 — "숲 앞 경사지, 4인 가족, 돌과 유리" — 과 키워드로 방향을 정합니다. 이 한 줄이 아래 모든 그림의 재료가 됩니다.</p></div>
+      <div class="step"><div class="n">02 · 대안</div><h3>세 개의 매스가 나온다.</h3><p>같은 땅에 세 가지 답 — A 길게 낮게(조망), B 두 동과 마당(프라이버시), C ㄱ자 안마당(바람막이). 각각 한 줄 이유, 참고 건물, 대략의 면적과 층수가 붙습니다.</p></div>
+      <div class="step"><div class="n">03 · 선택</div><h3>하나를 고른다.</h3><p>고르면 그 선택이 스타일 프로필(수평성·재료 대비·개방감…)에 쌓입니다. 다음에 내는 대안은 이 프로필을 반영해 점점 당신을 닮아 갑니다. 결정은 언제나 당신의 것입니다.</p></div>
+      <div class="step"><div class="n">04 · 패널</div><h3>패널까지 이어진다.</h3><p>고른 매스가 1층 평면·단면이 되고, 사진과 함께 A1 한 장에 자리 잡습니다. PNG·SVG·PDF로 내려받아 크릿에 들고 가고, 포트폴리오에는 그대로 한 페이지가 됩니다.</p></div>
+    </div>
+  </div>
+
+  <!-- 같은 땅, 세 개의 답: 대지 한 장 + 대안 셋(렌더). 하나를 고르면 스타일 프로필에 쌓이는 흐름을 미리 보여 준다 -->
+  <div class="alts" id="alts">
+    <div class="ahead"><h2>같은 땅, 세 개의 답.</h2><div class="tag">같은 한 줄 — "숲 앞 경사지, 4인 가족, 돌과 유리" — 에서 나온 세 집입니다. 하나를 골라 보세요.</div></div>
+    <div class="agrid">
+      <figure class="acard site"><div class="aimg"><img src="img/alt-site.webp" alt="숲 앞 경사지의 빈 대지, 남쪽으로 길" loading="lazy" decoding="async"><span class="ab">SITE</span></div><figcaption><b>대지 — 숲 앞 경사지</b><p>북쪽은 숲, 남쪽은 길. 내집코드가 읽어 준 땅 위에 한 줄을 올립니다.</p></figcaption></figure>
+      <figure class="acard" data-alt="A" tabindex="0"><div class="aimg"><img src="img/alt-a.webp" alt="대안 A: 길게 낮게 펼친 단층집" loading="lazy" decoding="async"><span class="ab">A</span><span class="achk">✓</span></div><figcaption><b>A · 길게 낮게</b><p>경사를 따라 길게 눕히고, 골짜기 쪽을 전면 유리로. <em>조망</em>이 먼저인 집.</p></figcaption></figure>
+      <figure class="acard" data-alt="B" tabindex="0"><div class="aimg"><img src="img/alt-b.webp" alt="대안 B: 두 동 사이 마당과 유리 연결" loading="lazy" decoding="async"><span class="ab">B</span><span class="achk">✓</span></div><figcaption><b>B · 두 동과 마당</b><p>두 덩어리 사이에 마당을 두고 유리로 잇습니다. <em>프라이버시</em>가 먼저인 집.</p></figcaption></figure>
+      <figure class="acard" data-alt="C" tabindex="0"><div class="aimg"><img src="img/alt-c.webp" alt="대안 C: ㄱ자로 안마당을 감싼 집" loading="lazy" decoding="async"><span class="ab">C</span><span class="achk">✓</span></div><figcaption><b>C · ㄱ자 안마당</b><p>ㄱ자로 안마당을 감싸 바람을 막고, 안쪽만 엽니다. <em>바람막이</em>가 먼저인 집.</p></figcaption></figure>
+    </div>
+    <div class="anote" id="altNote">세 집 모두 같은 재료 — 돌, 유리, 어두운 나무. 다른 건 <b>땅을 읽는 방식</b>입니다.</div>
+  </div>
+
+  <!-- 손에서 벽까지: 과정 사진 셋 — 스크롤에 맞춰 아래서 드러나고, 사진은 천천히 떠오른다 -->
+  <div class="pstrip" id="pstrip">
+    <div class="phead2"><h2>손에서 벽까지.</h2><div class="tag">ZIPLAN은 화면 안에서 끝나지 않습니다. 스케치로 시작해, 모형으로 확인하고, 벽에 걸어 말합니다.</div></div>
+    <div class="pcs">
+      <figure class="pc"><div class="pcimg"><img src="img/p-sketch.webp" alt="트레이싱지 위 펠트펜 스케치" loading="lazy" decoding="async"></div><figcaption><span class="n">01 · 스케치</span><b>손으로 시작한다.</b><p>한 줄과 지도 위 몇 개의 선. 내집코드가 읽어 준 땅 위에 첫 생각을 올립니다.</p></figcaption></figure>
+      <figure class="pc"><div class="pcimg"><img src="img/p-model.webp" alt="흰 스터디 모형" loading="lazy" decoding="async"></div><figcaption><span class="n">02 · 모형</span><b>손으로 확인한다.</b><p>세 개의 매스 중 하나를 고르면 도면이 됩니다. 도면은 손으로 들어 볼 때 비로소 집이 됩니다.</p></figcaption></figure>
+      <figure class="pc"><div class="pcimg"><img src="img/p-crit.webp" alt="벽에 걸린 A1 패널들" loading="lazy" decoding="async"></div><figcaption><span class="n">03 · 크릿</span><b>벽에 걸고 말한다.</b><p>A1 한 장에 과정이 담깁니다. 광장에 올리면 다른 사람의 눈이 더해집니다.</p></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="mod alt" id="map" style="margin-top:40px">
+    <h2>한눈에 보는 ZIPLAN.</h2>
+    <div class="tag">문 세 개와 광장, 열다섯 개의 방. 구경에서 시작해 짓기와 공부로 건너갑니다.</div>
+    <div class="flow" aria-label="순서"><span><b>1</b> 집 구경</span><i></i><span><b>2</b> 내 집 짓기</span><i></i><span><b>3</b> 건축 공부</span><i></i><span><b>4</b> 광장</span></div>
+    <div class="rooms">
+      <section class="rgrp"><header><span class="rn">01</span><h3>집 구경</h3><p>보고, 다니고, 읽는다. 전부 무료.</p></header><div class="tiles">
+        <a class="tile" href="#atlas"><h3>건축 아틀라스</h3><p>세계 809채, 정교 모형 166채.</p><span class="go">보러 가기</span><div class="art" id="tileAtlas"><svg viewBox="0 0 260 120" aria-hidden="true"><g fill="none" stroke="#1d1d1f" stroke-width="1.6"><path d="M20 100V60l30-22 30 22v40zM90 100V40h40v60zM150 100V70l25-30 25 30v30z"/><path d="M35 100V80h10v20M110 55h0M100 60h20M100 75h20"/></g><circle cx="215" cy="40" r="14" fill="none" stroke="#0a58ca" stroke-width="1.6"/><path d="M201 40h28M215 26c6 6 6 22 0 28M215 26c-6 6-6 22 0 28" fill="none" stroke="#0a58ca" stroke-width="1.6"/></svg></div></a>
+        <a class="tile" href="#travel"><h3>건축 여행</h3><p>한국 72곳, 해외 8도시, 코스 짜기.</p><span class="go">떠나 보기</span><div class="art" id="tileTravel"><svg viewBox="0 0 260 120" aria-hidden="true"><path d="M20 90C60 70 90 95 130 75S200 60 240 80" fill="none" stroke="#1d1d1f" stroke-width="1.6" stroke-dasharray="4 3"/><g fill="#0a58ca"><path d="M60 72c-6-7-6-15 0-20s12 0 12 6-6 14-12 14z"/><path d="M130 62c-6-7-6-15 0-20s12 0 12 6-6 14-12 14z"/><path d="M200 70c-6-7-6-15 0-20s12 0 12 6-6 14-12 14z"/></g></svg></div></a>
+        <a class="tile" href="#learn"><h3>사례 배우기</h3><p>좋은 건축가는 많이 봅니다.</p><span class="go">보러 가기</span><div class="art" id="tileLearn"></div></a>
+        <a class="tile" href="#library"><h3>자료실</h3><p>핀터레스트 대신. 써도 되는 자료만.</p><span class="go">열어 보기</span><div class="art" id="tileLibrary"></div></a>
+      </div></section>
+      <section class="rgrp"><header><span class="rn">02</span><h3>내 집 짓기</h3><p>취향으로 시작해 땅을 읽고, 지을 집이 보이면 상담까지.</p></header><div class="tiles">
+        <a class="tile" href="#dna"><h3>취향 랩</h3><p>단어 몇 개로 30초 만에 내 취향 집.</p><span class="go">지어 보기</span><div class="art" id="tileDna"><svg viewBox="0 0 260 120" aria-hidden="true"><g font-size="11" fill="#6e6e73"><text x="14" y="30">중정</text><text x="60" y="52">벽돌</text><text x="110" y="28">큰 지붕</text><text x="22" y="80">마당</text><text x="86" y="98">빛</text></g><g fill="none" stroke="#1d1d1f" stroke-width="1.6"><path d="M160 96V58l35-24 35 24v38z"/><path d="M175 96V76h14v20M205 70h14v10h-14z"/></g><path d="M118 40 150 66" stroke="#0a58ca" stroke-width="1.4" stroke-dasharray="3 3"/></svg></div></a>
+        <a class="tile" href="#zipcode"><h3>내집코드</h3><p>주소 하나로 지을 수 있는 것.</p><span class="go">읽어 보기</span><div class="art" id="tileZip"></div></a>
+      </div></section>
+      <section class="rgrp"><header><span class="rn">03</span><h3>건축 공부</h3><p>설계 흐름 한 화면, 그리고 대지 → 컨셉 → 도면 → 모형 → 패널 → 포트폴리오.</p></header><div class="tiles">
+        <a class="tile" href="#flow"><h3>설계 흐름</h3><p>단어 → 여섯 안 → 피드백 → 원라인 → 치수 붙은 평면도·DXF.</p><span class="go">한 화면에서</span><div class="art" id="tileFlow"><svg viewBox="0 0 260 120" aria-hidden="true"><g fill="none" stroke="#1d1d1f" stroke-width="1.6"><rect x="10" y="30" width="50" height="60" rx="4"/><rect x="80" y="20" width="60" height="70" rx="4"/><path d="M160 90V30h80v60zM160 60h40M200 30v60"/></g><g fill="#0a58ca"><circle cx="35" cy="60" r="3"/><circle cx="110" cy="55" r="3"/><circle cx="180" cy="75" r="3"/></g><path d="M35 60C60 60 80 55 110 55S150 75 180 75" fill="none" stroke="#0a58ca" stroke-width="1.6" stroke-dasharray="4 3"/><text x="10" y="112" font-size="9" fill="#6e6e73">컨셉 · 대안 · 원라인 · 평면도</text></svg></div></a>
+        <a class="tile" href="#site"><h3>대지 분석</h3><p>해·바람·길·조망. 땅이 먼저 말합니다.</p><span class="go">시작하기</span><div class="art" id="tileSite"></div></a>
+        <a class="tile" href="#concept"><h3>컨셉 잡기</h3><p>한 줄에서 세 개의 방향.</p><span class="go">시작하기</span><div class="art" id="tileConcept"></div></a>
+        <a class="tile" href="#drawing"><h3>도면 짜기</h3><p>실 구성표가 조닝과 단면이 됩니다.</p><span class="go">시작하기</span><div class="art" id="tileDrawing"></div></a>
+        <a class="tile" href="#model"><h3>모형 보기</h3><p>평면이 일어서서 3D 매스가 됩니다.</p><span class="go">시작하기</span><div class="art" id="tileModel"></div></a>
+        <a class="tile" href="#panel"><h3>패널 만들기</h3><p>컨셉 하나 고르면 A1 한 장.</p><span class="go">만들기</span><div class="art" id="tilePanel"></div></a>
+        <a class="tile" href="#portfolio"><h3>포트폴리오</h3><p>보여주는 법과 공고가 요구하는 것.</p><span class="go">보러 가기</span><div class="art" id="tilePortfolio"></div></a>
+      </div></section>
+      <section class="rgrp"><header><span class="rn">04</span><h3>광장</h3><p>올리고, 묻고, 내 것은 모아 둔다.</p></header><div class="tiles">
+        <a class="tile" href="#plaza"><h3>광장</h3><p>올리고, 묻고, 서로의 사례가 됩니다.</p><span class="go">들어가 보기</span><div class="art" id="tilePlaza"></div></a>
+        <a class="tile" href="#studio"><h3>내 작업실</h3><p>프로젝트·스타일 프로필·저장.</p><span class="go">열어 보기</span><div class="art" id="tileStudio"><svg viewBox="0 0 280 120" aria-hidden="true"><g fill="var(--bg-alt)" stroke="var(--line)"><rect x="20" y="22" width="110" height="90" rx="8"/><rect x="150" y="22" width="110" height="90" rx="8"/></g><g fill="var(--line)"><rect x="34" y="40" width="60" height="5" rx="2"/><rect x="34" y="52" width="80" height="5" rx="2"/><rect x="164" y="40" width="50" height="5" rx="2"/><rect x="164" y="52" width="82" height="5" rx="2"/></g><g fill="var(--accent)" opacity=".8"><rect x="34" y="76" width="36" height="22" rx="4"/><rect x="164" y="76" width="36" height="22" rx="4"/></g><rect x="20" y="12" width="46" height="12" rx="4" fill="var(--fg)"/><rect x="150" y="12" width="46" height="12" rx="4" fill="var(--fg)"/></svg></div></a>
+      </div></section>
+    </div>
+  </div>
+  </div>
 </section>
 <section class="view" id="view-atlas" hidden>
   <div class="hero"><h1>건축 아틀라스</h1><p class="tag">세계의 명작을, 사진과 다시 지은 모형으로.</p><p class="sub">정교 모형 166채는 실측 치수로 한 채씩 다시 지었고, 809채는 나라·시대·건축가·컨셉으로 찾아볼 수 있어요. 고르고, 고르고, 들어가 보세요.</p><div class="links"><a href="#atlas" data-atjump="atSpot">오늘의 명작</a><a href="#atlas" data-atjump="atHalls">전시실</a><a href="#atlas" data-atjump="atAll">전체 찾기</a></div></div>
@@ -3423,7 +3461,7 @@ function markSVG(size,color,anim,pColor){ color=color||'currentColor'; pColor=pC
   return `<svg class="zmark" viewBox="-6 -6 112 112" width="${size}" height="${size}" aria-hidden="true"><g fill="${color}"><path${c(0)} d="M4 6H56V16L23 38H56V48H4V38L37 16H4Z"/><rect${c(1)} x="76" y="6" width="12" height="42"/></g><g fill="${pColor}"><rect${c(2)} x="4" y="54" width="12" height="44"/><rect${c(3)} x="4" y="54" width="92" height="10"/><rect${c(4)} x="84" y="54" width="12" height="34"/><rect${c(5)} x="4" y="78" width="92" height="10"/></g></svg>`; }
 function wordSVG(h,ink,blue){ ink=ink||'currentColor'; blue=blue||'#2b6cff'; return `<svg class="zword" viewBox="-2 -2 252 52" height="${h}" width="${Math.round(h*252/52)}" role="img" aria-label="ZIPLAN"><g fill="${ink}"><path d="M0 0H40V10L14 38H40V48H0V38L26 10H0Z"/><rect x="49" y="0" width="11" height="48"/></g><path fill="${blue}" d="M69 0H107V30H80V48H69ZM80 10V20H96V10Z" fill-rule="evenodd"/><g fill="${ink}"><path d="M116 0H127V38H150V48H116Z"/><path d="M159 0H199V48H188V30H170V48H159ZM170 10V20H188V10Z" fill-rule="evenodd"/><path d="M208 0H220L237 30V0H248V48H236L219 18V48H208Z"/></g></svg>`; }
 $$('[data-mark]').forEach(el=>el.innerHTML=markSVG(+el.dataset.mark));
-$('#heroMark').innerHTML=`<div class="hmtile">${markSVG(100,'#fff',true,'#4f8dff')}</div>`;
+{ const hm=$('#heroMark'); if(hm) hm.innerHTML=`<div class="hmtile">${markSVG(100,'#fff',true,'#4f8dff')}</div>`; }
 
 /* ---------- Example project (두 상자 집 — 표지 사진의 집을 가상 프로젝트로) ---------- */
 const EXAMPLE={
@@ -3454,7 +3492,7 @@ const typeName=t=>(IMG_TYPES.find(x=>x[0]===t)||[t,t])[1];
 /* ---------- 메가 메뉴: 큰 묶음에 올리면 아래로 펼쳐지는 메뉴 (모바일 메뉴도 같은 데이터) ---------- */
 const NAVG=[
   {k:'look',t:'집 구경',c:'#ff9f0a',items:[['atlas','건축 아틀라스','정교 모형 166채 · 세계 809채를 3D로','atlas'],['travel','건축 여행','한국 72곳 · 해외 8도시 · 계절별 스팟 · 코스 짜기','pin'],['cinema','건축 극장','영화·드라마 속 그 집을 영화관처럼','film','soon'],['game','집 블록','1분 퍼즐로 짓는 집 · 오늘의 판','blocks','soon'],['story','집 이야기','물어보기 549문답을 읽을거리로','book','soon']],
-    f:{w:'LOOK',h:'명작을 한 채씩, 모형으로.',p:'경복궁에서 부르즈 할리파까지, 실측으로 다시 지은 79채. 그리고 보러 가는 건축 72곳.',a:'atlas',b:'아틀라스 열기',g:'linear-gradient(135deg,#ff9f0a,#ff5e5e)'}},
+    f:{w:'LOOK',h:'명작을 한 채씩, 모형으로.',p:'경복궁에서 부르즈 할리파까지, 실측으로 다시 지은 166채. 그리고 보러 가는 건축 72곳.',a:'atlas',b:'아틀라스 열기',g:'linear-gradient(135deg,#ff9f0a,#ff5e5e)'}},
   {k:'build',t:'내 집 짓기',c:'#3f7bff',items:[['dna','취향 랩','단어 몇 개로 30초 만에 내 취향 집','dna'],['zipcode','내집코드','주소 하나로 이 땅에 지을 수 있는 크기','code'],['buildguide','건축주 가이드','땅 고르기부터 입주까지 8단계','steps','soon'],['#ask','상담 요청','지을 집이 보이면, 물어보세요','chat']],
     f:{w:'BUILD',h:'30초면 내 취향 집이 보인다.',p:'단어를 고르면 집이 지어지고 도면까지 나옵니다. 땅이 있다면 주소부터.',a:'dna',b:'취향 랩 열기',g:'linear-gradient(135deg,#3f7bff,#8a6bff)'}},
   {k:'studio',t:'건축 공부',c:'#30a46c',items:[['flow','설계 흐름','컨셉 → 아홉 안 → 피드백 → 원라인 → 평면도·DXF 한 화면','flow'],['site','대지','일조·그림자·바람 · 답사 키트 · 콘타','site'],['concept','컨셉','마법사 · 매스 도감 · 레시피 58','spark'],['drawing','도면','관계 다이어그램 · 조닝 · 단면','plan'],['model','모형','층 펼치기 · 재료 · 법규 볼륨','cube'],['panel','패널','레이아웃 13 · 분해 액소 · 공모전 달력','panel'],['portfolio','포트폴리오 · 진로','12쪽 해부 · 이력서 · 건축사 되는 길','folio'],['learn','사례','아이소 썸네일로 보는 설계 사례','grid'],['library','자료실','건축 사전 · 도면 규약 · 자유 라이선스 자료','book']],
@@ -3508,13 +3546,20 @@ function buildTabBar(){ const bar=$('#tabBar'), sh=$('#tabSheet'), shin=$('#tabS
 function tabCurrent(){ const h=(location.hash||'#home').slice(1); const bar=$('#tabBar'); if(!bar) return; let k='home'; if(h!=='home'){ const g=NAVG.find(g=>g.items.some(i=>i[0]===h)); if(g) k=g.k; } $$('.tb',bar).forEach(b=>b.classList.toggle('cur',b.dataset.tab===k)); }
 setTimeout(()=>{ try{ buildTabBar(); tabCurrent(); }catch(e){ console.warn('tabbar',e); } },0);
 
+/* ---------- v19: 화면 안 숨김 판정 · 과정 필름(#build) 자리 옮기기 · 같은 화면 안 점프 ---------- */
+window.vOff=function(el){ const v=el&&el.closest&&el.closest('.view'); return !v||v.hidden; };
+/* #build 하나를 두 방이 나눠 쓴다: 패널 방(#pnSlot)에서는 PANEL 여섯 장만, 건축 공부(#lineSlot)에서는 LINE→HOUSE만 */
+function placeBuild(h){ const b=$('#build'); if(!b) return; const slot=h==='flow'?$('#lineSlot'):h==='panel'?$('#pnSlot'):null; if(!slot) return; const mode=h==='flow'?'line':'panel'; if(b.parentElement!==slot) slot.appendChild(b); b.dataset.mode=mode; setTimeout(()=>{ try{ if(typeof pnApi!=='undefined'&&pnApi) pnApi.measure(); }catch(e){} window.dispatchEvent(new Event('resize')); },90); }
+document.addEventListener('click',e=>{ const a=e.target.closest('[data-jump]'); if(!a) return; const t=document.getElementById(a.dataset.jump); if(!t) return; e.preventDefault(); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); });
+NAVG.forEach(g=>{ g.items=g.items.filter(i=>!(i[4]&&['game','buildguide'].includes(i[0]))); });   /* v19: 홈·메뉴의 '곧'은 건축 극장만 */
 /* ---------- Router ---------- */
-const VIEWS=['atlas','flow','travel','home','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
+const VIEWS=['atlas','flow','travel','home','pricing','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
 let pendingScroll=null;
 function route(){
   try{ zDeep(); }catch(e){ console.warn('deeplink',e); }
   let h=(location.hash||'#home').slice(1).split('?')[0]; if(!VIEWS.includes(h)) h='home';
   $$('.view').forEach(v=>v.hidden=v.id!=='view-'+h);
+  try{ placeBuild(h); }catch(e){ console.warn('placeBuild',e); }
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); navCurrent(h); try{ tabCurrent(); }catch(e){}
   if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
   if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); try{ dwFromDna(); }catch(e){} } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='admin') renderAdmin(); if(h==='dna') renderDnaLab(); if(h==='flow'){ setTimeout(()=>{ try{ fwRender(); }catch(e){ console.warn(e); } },0); } if(h==='atlas'){ setTimeout(()=>{ try{ atPageInit(); }catch(e){ console.warn(e); } },0); } else { try{ pgvDispose('atsp'); }catch(e){} } try{ roomLabs(h); }catch(e){} if(h==='studio') renderStudio(); if(h==='site'){ drawSite(); setTimeout(()=>{ try{ svRender(); }catch(e){ console.warn(e); } },0); } if(h==='plaza') loadPosts(); if(h==='portfolio'){ renderPortfolio(); setTimeout(()=>{ try{ renderPfPlus(); }catch(e){ console.warn(e); } },0); } if(h==='library') renderLibrary();
@@ -3670,7 +3715,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('#userPop')&&!e.targ
 let authTab='in', authReturn=null;
 function openAuth(tab){ authReturn=document.activeElement; const m=$('#authM'); m.hidden=false; requestAnimationFrame(()=>m.classList.add('on')); setAuthTab(tab||'in'); document.documentElement.classList.add('modal-open'); }
 function closeAuth(){ const m=$('#authM'); m.classList.remove('on'); setTimeout(()=>{ m.hidden=true; },260); document.documentElement.classList.remove('modal-open'); if(authReturn&&authReturn.focus) authReturn.focus(); }
-function setAuthTab(t){ if(t==='stu'&&!acct) t='up'; authTab=t; const mode=authMode(); $$('#authM [data-tab]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===t)); $('#authForm').hidden=t==='stu'; $('#stuForm').hidden=t!=='stu';
+function setAuthTab(t){ if(t==='stu'&&!acct) t='up'; authTab=t; { const sbt=$('#authM [data-tab="stu"]'); if(sbt) sbt.hidden=!acct; } const mode=authMode(); $$('#authM [data-tab]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===t)); $('#authForm').hidden=t==='stu'; $('#stuForm').hidden=t!=='stu';
   const local=mode==='local';
   $('#authTitle').textContent=t==='in'?'다시 오셨네요.':(t==='up'?'ZIPLAN 회원 되기.':'재학생 인증');
   $('#authSub').textContent=t==='in'?'저장한 사례와 프로젝트가 기다리고 있어요.':(t==='up'?'가입은 무료. 프로젝트·저장한 사례·스타일 프로필이 계정에 쌓입니다.':'');
@@ -6141,7 +6186,7 @@ function hfcSrc(k,w){ const id=HFC[k]; if(!id) return ''; const u=`https://d8j0n
 function hfcImg(k,w,cls){ const im=document.createElement('img'); im.className=cls; im.alt=''; im.loading='lazy'; im.decoding='async'; im.src=hfcSrc(k,w); im.onerror=()=>im.remove(); im.onload=()=>im.classList.add('on'); return im; }
 (function(){ setTimeout(()=>{ try{ const sm=innerWidth<700, W=sm?640:960;
   [['#homeDoors a.hd[href="#atlas"]','look'],['#homeDoors a.hd[href="#dna"]','build'],['#homeDoors a.hd[href="#flow"]','studio']].forEach(([sel,k])=>{ const a=$(sel); if(a&&!a.querySelector('.hdph')){ a.classList.add('hasph'); a.prepend(hfcImg(k,W,'hdph')); } });
-  const hm=$$('#homeMeet .hm'); if(hm[0]&&!hm[0].querySelector('.hmph')) hm[0].prepend(hfcImg('plaza',W,'hmph')); if(hm[1]&&!hm[1].querySelector('.hmph')) hm[1].prepend(hfcImg('game',W,'hmph'));
+  const hm=$$('#homeMeet .hm'); if(hm[0]&&!hm[0].querySelector('.hmph')) hm[0].prepend(hfcImg('plaza',W,'hmph')); if(hm[1]&&!hm[1].querySelector('.hmph')) hm[1].prepend(hfcImg('cinema',W,'hmph'));
   const hn=$('#homeNow'); if(hn&&!hn.querySelector('.hnph')){ hn.classList.add('hasph'); hn.prepend(hfcImg('cinema',sm?960:1600,'hnph')); }
  }catch(e){ console.warn('hfc',e); } },120); })();
 /* ===== 매스 진화 다이어그램 (v18): 대지 → 매스 → 조작 → 녹지 → 공공 → 연결, 6단계 아이소 선도 ===== */
@@ -41320,7 +41365,8 @@ const BUILD=(function(){
   function peLoad(){ peLoaded=true; [pe1,pe2,pe3,pe4].forEach((im,k)=>{ if(!im) return; im.onerror=()=>{ im.remove(); }; im.sizes='100vw'; im.srcset=[640,1080,1920].map(w=>peSrc(PE[k],w)+' '+w+'w').join(', '); im.src=peSrc(PE[k],1920); }); }
   const termP=$('#termP'), termLan=$('#termLan'), termLanIn=$('#termLanIn'), termGloss=$('#termGloss'); let lanW=0; const measure=()=>{ lanW=termLanIn.getBoundingClientRect().width; }; measure(); window.addEventListener('resize',measure); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ measure(); paint(cur); });
   const mix=(a,b,t)=>Math.round(a+(b-a)*t);
-  function paint(p){
+  const RMAP=[[0,0],[0.2,0.3],[0.38,0.56],[1,1]]; const remap=q=>{ for(let k=1;k<RMAP.length;k++){ const a=RMAP[k-1], b=RMAP[k]; if(q<=b[0]) return a[1]+(b[1]-a[1])*(q-a[0])/(b[0]-a[0]); } return 1; };
+  function paint(p){ p=remap(p);
     const m=ease(st(p,0.05,0.26));                                                     // 불이 켜지며 ZIP → ZIPLAN
     lits.forEach(el=>{ el.style.opacity=m.toFixed(3); });
     termLan.style.width=(lanW*m).toFixed(1)+'px'; termLan.style.opacity=Math.min(1,m*1.6).toFixed(3);
@@ -41347,14 +41393,14 @@ const BUILD=(function(){
 let pnApi=null;   // 패널 구동부가 채운다(아래)
 (function(){ const sec=$('#build'), svg=$('#buildSvg'), caps=$$('.bcap'), hint=$('#build .bhint'), pnv=$('#build .pnview'), pnh=$('#build .pnhead'), pnf=$('#build .pnfoot'); if(!sec||!svg) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; let last=-1, ticking=false; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
   // 한 섹션 안에서: 0~0.56 집이 되는 과정(끝에 사진이 보드 자리로 줄어듦) · 0.50~1 패널 여섯 장
-  function paint(P){ const p=st(P,0,0.56), pp=st(P,0.50,1); const T=pnApi?pnApi.target():null;
-    const svgOn=1-st(P,0.545,0.6); svg.style.opacity=svgOn.toFixed(3); svg.style.display=svgOn>0?'':'none'; svg.style.transform=svgOn<1?`scale(${(1-0.06*(1-svgOn)).toFixed(4)})`:''; svg.style.filter=svgOn<1?`blur(${(6*(1-svgOn)).toFixed(1)}px)`:''; if(svgOn>0) svg.innerHTML=BUILD.scene(p,T);
-    const i=P<0.545?BUILD.capIndex(p):-1; caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=P>0.03?0:1;
-    const on0=st(P,0.515,0.585), on=on0<.5?2*on0*on0:1-Math.pow(-2*on0+2,2)/2; pnv.style.opacity=on.toFixed(3); pnh.style.opacity=on.toFixed(3); pnf.style.opacity=on.toFixed(3); if(pnApi) pnApi.paint(pp); }
+  function paint(P){ const md=sec.dataset.mode; if(md==='line') P=P*0.5; else if(md==='panel') P=0.5+0.5*P; const p=st(P,0,0.56), pp=st(P,0.50,1); const T=(md!=='line'&&pnApi)?pnApi.target():null;
+    const svgOn=md==='panel'?0:1-st(P,0.545,0.6); svg.style.opacity=svgOn.toFixed(3); svg.style.display=svgOn>0?'':'none'; svg.style.transform=svgOn<1?`scale(${(1-0.06*(1-svgOn)).toFixed(4)})`:''; svg.style.filter=svgOn<1?`blur(${(6*(1-svgOn)).toFixed(1)}px)`:''; if(svgOn>0) svg.innerHTML=BUILD.scene(p,T);
+    const i=(md!=='panel'&&P<0.545)?BUILD.capIndex(p):-1; caps.forEach(c=>c.classList.toggle('on',+c.dataset.i===i)); if(hint) hint.style.opacity=P>0.03?0:1;
+    const on0=md==='panel'?1:md==='line'?0:st(P,0.515,0.585), on=on0<.5?2*on0*on0:1-Math.pow(-2*on0+2,2)/2; pnv.style.opacity=on.toFixed(3); pnh.style.opacity=on.toFixed(3); pnf.style.opacity=on.toFixed(3); if(pnApi) pnApi.paint(pp); }
   // 관성 스무딩: 스크롤 위치(목표)를 바로 그리지 않고 프레임마다 16%씩 따라간다 — 휠의 계단이 사라지고 패널 전환이 미끄러진다
   let cur=-1, raf=0, lt=0;
   function measureP(){ const r=sec.getBoundingClientRect(); const vh=window.innerHeight; return Math.max(0,Math.min(1,-r.top/(r.height-vh))); }
-  function tick(t){ raf=0; if($('#view-home').hidden) return; const tg=measureP(); const dt=lt?Math.min(64,(t||performance.now())-lt):16; lt=t||performance.now(); const far=Math.abs(tg-cur); const k=1-Math.pow(1-(far>0.12?0.3:far>0.05?0.22:0.16),dt/16.7);   // 멀수록 빨리 따라붙되(지연감 없이) 튀지 않게
+  function tick(t){ raf=0; if(vOff(sec)) return; const tg=measureP(); const dt=lt?Math.min(64,(t||performance.now())-lt):16; lt=t||performance.now(); const far=Math.abs(tg-cur); const k=1-Math.pow(1-(far>0.12?0.3:far>0.05?0.22:0.16),dt/16.7);   // 멀수록 빨리 따라붙되(지연감 없이) 튀지 않게
     if(cur<0||last<0||far>0.5) cur=tg; else cur+=(tg-cur)*k; if(Math.abs(tg-cur)<0.0003) cur=tg;
     if(Math.abs(cur-last)>=0.0003){ last=cur; paint(cur); } if(cur!==tg) raf=requestAnimationFrame(tick); else lt=0; }
   if(rm){ svg.innerHTML=BUILD.scene(0.8,null); return; } paint(0); window.addEventListener('scroll',()=>{ if(!raf) raf=requestAnimationFrame(tick); },{passive:true}); window.addEventListener('resize',()=>{ last=-1; if(pnApi) pnApi.measure(); cur=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; cur=-1; setTimeout(tick,50); }); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ last=-1; cur=-1; if(pnApi) pnApi.measure(); tick(); }); })();
@@ -41608,7 +41654,7 @@ const HOMESTORY=(function(){
 /* 홈 스토리 구동: 스크롤 진행도로 한 장면이 이어지고, 오른쪽 글은 해당 단계만 밝아진다 */
 (function(){ const root=$('#homeStory'), stage=$('#homeStage'); if(!root||!stage) return; const steps=Array.from(root.querySelectorAll('.step')); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=HOMESTORY.st; let last=-1, cur=-1, tk=false;
   function paint(p){ stage.innerHTML=HOMESTORY.scene(p); const i=Math.min(3,Math.floor(p*4)); if(i!==cur){ cur=i; steps.forEach((s,j)=>s.classList.toggle('on',j===i)); } }
-  function tick(){ tk=false; if($('#view-home').hidden) return; const r=root.getBoundingClientRect(); const vh=innerHeight; if(r.bottom<-vh||r.top>vh*2) return; const p=st(vh*0.5-r.top-40,0,vh*2.88); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
+  function tick(){ tk=false; if(vOff(root)) return; const r=root.getBoundingClientRect(); const vh=innerHeight; if(r.bottom<-vh||r.top>vh*2) return; const p=st(vh*0.5-r.top-40,0,vh*2.88); if(Math.abs(p-last)<0.002) return; last=p; paint(p); }
   if(rm){ paint(0.98); steps.forEach(s=>s.classList.add('on')); return; } paint(0); window.addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,60); }); })();
 
 /* 스크롤 등장: 섹션·카드·문단을 화면에 들어올 때 띄우고, 격자는 순서대로 */
@@ -41639,11 +41685,11 @@ const HOMESTORY=(function(){
 
 /* 제목은 글자가 한 자씩 솟고(--p), 서문은 단어가 차례로 밝아진다 — 전부 스크롤 위치로 (shadergradient.co 의 word-scroll-appear) */
 (function(){ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
-  const heads=$$('#view-home .mod > h2, #view-home .pstrip h2, #view-home .alts h2'); const paras=$$('#view-home .intro p');
+  const heads=$$('#view-home .mod > h2, #studyTour .mod > h2, #studyTour .pstrip h2, #studyTour .alts h2'); const paras=$$('#studyTour .intro p');
   heads.forEach(h=>{ if(h.classList.contains('lt')||h.classList.contains('likeline')) return; const words=h.textContent.split(/(\s+)/); h.textContent=''; let i=0; words.forEach(w=>{ if(!w.trim()){ h.appendChild(document.createTextNode(w)); return; } const g=document.createElement('span'); g.className='w'; Array.from(w).forEach(ch=>{ const sp=document.createElement('span'); sp.textContent=ch; sp.style.setProperty('--i',i++); g.appendChild(sp); }); h.appendChild(g); }); h.style.setProperty('--n',i); h.classList.add('lt'); });
   paras.forEach(pg=>{ if(pg.classList.contains('wd')) return; const words=pg.textContent.split(/(\s+)/); pg.textContent=''; let n=0; words.forEach(w=>{ if(!w.trim()){ pg.appendChild(document.createTextNode(w)); return; } const sp=document.createElement('span'); sp.textContent=w; sp.style.setProperty('--i',n++); pg.appendChild(sp); }); pg.style.setProperty('--n',n); pg.classList.add('wd'); });
   if(rm){ heads.forEach(h=>h.style.setProperty('--p',1)); paras.forEach(pg=>pg.style.setProperty('--p',1)); return; }
-  let tk=false; function tick(){ tk=false; if($('#view-home').hidden) return; const vh=innerHeight;
+  let tk=false; function tick(){ tk=false; const vh=innerHeight;
     heads.forEach(h=>{ const r=h.getBoundingClientRect(); if(r.bottom<-200||r.top>vh*1.5) return; h.style.setProperty('--p',st(vh*0.92-r.top,0,vh*0.38).toFixed(3)); });
     paras.forEach(pg=>{ const r=pg.getBoundingClientRect(); if(r.bottom<-200||r.top>vh*1.5) return; pg.style.setProperty('--p',st(vh*0.88-r.top,0,vh*0.42+r.height*0.6).toFixed(3)); }); }
   addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
@@ -41653,7 +41699,7 @@ const HOMESTORY=(function(){
   const note=$('#altNote'); const base=note.innerHTML; const NOTE={A:'<b>A</b>를 골랐습니다 — 스타일 프로필에 <b>수평성 · 개방감 · 조망 우선</b>이 쌓입니다. 다음 대안은 더 낮고 길어집니다.',B:'<b>B</b>를 골랐습니다 — 스타일 프로필에 <b>분절 · 마당 · 프라이버시</b>가 쌓입니다. 다음 대안은 덩어리를 나누는 쪽으로 기웁니다.',C:'<b>C</b>를 골랐습니다 — 스타일 프로필에 <b>위요 · 바람막이 · 안으로 열림</b>이 쌓입니다. 다음 대안은 안마당을 먼저 그립니다.'};
   cards.forEach(c=>{ if(!c.dataset.alt) return; const pick=()=>{ const on=!c.classList.contains('pick'); cards.forEach(x=>x.classList.remove('pick')); if(on){ c.classList.add('pick'); note.innerHTML=NOTE[c.dataset.alt]; } else note.innerHTML=base; }; c.addEventListener('click',pick); c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } }); });
   if(rm){ cards.forEach(c=>c.style.setProperty('--r',1)); return; }
-  let tk=false; function tick(){ tk=false; if($('#view-home').hidden) return; const vh=innerHeight; cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.bottom<-vh||r.top>vh*2) return; c.style.setProperty('--r',eo(st(vh-r.top-i*50,30,vh*0.5)).toFixed(3)); }); }
+  let tk=false; function tick(){ tk=false; if(vOff(cards[0])) return; const vh=innerHeight; cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.bottom<-vh||r.top>vh*2) return; c.style.setProperty('--r',eo(st(vh-r.top-i*50,30,vh*0.5)).toFixed(3)); }); }
   addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
 
 /* 고를수록 [ ] 당신을 닮는다: 고정 화면 안에서 단어가 한 줄씩 넘어가고, 뒤의 3D 면은 천천히 돈다 (shadergradient.co 'Simply change …' 장면) */
@@ -41664,7 +41710,7 @@ const HOMESTORY=(function(){
   addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
 
 /* rotating word in the hero */
-(function(){ const el=$('#rotWord'); const words=['건축','설계','집','도면','모형','패널','크리틱']; let i=0; if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; setInterval(()=>{ el.classList.add('fade'); setTimeout(()=>{ i=(i+1)%words.length; el.textContent=words[i]; el.classList.remove('fade'); },300); },2200); })();
+(function(){ const el=$('#rotWord'); const words=['집','마당','지붕','창','방','건축']; let i=0; if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; setInterval(()=>{ el.classList.add('fade'); setTimeout(()=>{ i=(i+1)%words.length; el.textContent=words[i]; el.classList.remove('fade'); },300); },2200); })();
 
 /* tile art */
 $('#tilePanel').innerHTML=conceptThumb('hero',0.3);
@@ -41703,6 +41749,7 @@ function homeV17Init(){
     if(p){ sea.innerHTML=`<a class="ht-a" href="#travel" data-tgo="${p.id}">${PH[p.id]?phImg(p.id,640,'',p.n):''}<span class="ht-t"><span class="ht-k">${esc(S.name)} · ${esc(sp.when||'')}</span><b>${esc(p.n)}</b><em>${esc(p.a||'')}${p.y?' · '+esc(String(p.y)):''}</em><i>${esc(sp.why||'')}</i></span></a>`; } }
   if(rail&&order.length){ const ids=[1,2,3].map(k=>order[(d+k)%order.length]); rail.innerHTML=ids.map(id=>{ const b=BLD_BY[id]; if(!b) return ''; const u=bldImg(b,500); return `<a class="hn-c" href="#atlas" data-atgo-b="${b.id}">${u?`<img src="${u}" alt="${esc(b.name)}" loading="lazy" decoding="async">`:''}<span><b>${esc(b.name)}</b><em>${esc(b.arch||'')}</em></span></a>`; }).join(''); }
   const ch=$('#hmCh'), chp=$('#hmChP'); if(ch&&typeof pzCh==='function'){ const c=pzCh(); ch.textContent='이번 주 챌린지 · '+c[1]; chp.textContent=c[2]; }
+  setTimeout(async()=>{ try{ if(typeof sb==='undefined'||!sb||!sb.from) return; const r=await sb.from('plaza_posts').select('id',{head:true,count:'exact'}).limit(1); if(r&&r.error){ const a=$('#homeMeet .hm-plaza'); if(a) a.hidden=true; const m=$('#homeMeet'); if(m) m.classList.add('solo'); } }catch(e){} },1800);
   /* 쉬운 말 띠: 내집코드·취향 랩 표지 아래 */
   const EZ={zipcode:[['건폐율','땅 넓이 중 건물 바닥이 덮는 비율'],['용적률','땅 넓이에 견준 모든 층 바닥 넓이의 합'],['용도지역','나라가 정한 이 땅의 쓰임새 등급'],['일조 사선','북쪽 이웃집 햇빛을 위해 높이를 깎는 규칙'],['연면적','모든 층 바닥 넓이를 더한 값']],
             dna:[['대지','집이 앉을 땅'],['매스','집의 덩어리 — 모양과 크기'],['외피','바깥 벽의 재료와 표정'],['중정','집 안에 둔 마당'],['필로티','1층을 기둥만 남기고 비운 것']]};
@@ -41732,7 +41779,7 @@ const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll
 /* 과정 사진 띠: 보이는 정도(--r)와 시차(--py)를 스크롤로 */
 (function(){ const cards=$$('#pstrip .pc'); if(!cards.length) return; const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; if(rm){ cards.forEach(c=>c.style.setProperty('--r',1)); return; }
   const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const eo=t=>1-Math.pow(1-t,3); let tk=false;
-  function tick(){ tk=false; if($('#view-home').hidden) return; const vh=innerHeight; cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.bottom<-vh||r.top>vh*2) return; const reveal=eo(st(vh-r.top-i*40,40,vh*0.55)); const py=st(vh-r.top,0,vh+r.height); c.style.setProperty('--r',reveal.toFixed(3)); c.style.setProperty('--py',py.toFixed(3)); }); }
+  function tick(){ tk=false; if(vOff(cards[0])) return; const vh=innerHeight; cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.bottom<-vh||r.top>vh*2) return; const reveal=eo(st(vh-r.top-i*40,40,vh*0.55)); const py=st(vh-r.top,0,vh+r.height); c.style.setProperty('--r',reveal.toFixed(3)); c.style.setProperty('--py',py.toFixed(3)); }); }
   addEventListener('scroll',()=>{ if(!tk){ tk=true; requestAnimationFrame(tick); } },{passive:true}); addEventListener('resize',tick); addEventListener('hashchange',()=>setTimeout(tick,60)); tick(); })();
 /* ShaderGradient(ruucm, MIT) 포팅판 — 두 곳에 깔고, 스크롤에 따라 카메라·색이 천천히 바뀐다 (shadergradient.co 홈의 전환 느낌) */
 (function(){ if(!window.ShaderGradient) return; var SG=window.ShaderGradient; var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41770,7 +41817,7 @@ const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll
       var fi2=q, a=Math.floor(fi2), b=Math.min(N-1,a+1), t=sm(fi2-a);
       if(g&&g.set){ var A=PAL[a], B=PAL[b]; g.set(SG.lerp({color1:A[0],color2:A[1],color3:A[2],cAzimuthAngle:180+a*14,cPolarAngle:82-a*1.5},{color1:B[0],color2:B[1],color3:B[2],cAzimuthAngle:180+b*14,cPolarAngle:82-b*1.5},t)); }
       var best=Math.min(N-1,Math.round(q)); if(bar) bar.style.setProperty('--p',p.toFixed(4)); if(best!==lastI){ lastI=best; if(cnt) cnt.textContent=('0'+(best+1)).slice(-2)+' / '+('0'+N).slice(-2); if(nm) nm.textContent=NAMES[best]; } }
-    function tick(t){ raf=0; if(homeHidden()) return; var r=sec.getBoundingClientRect(); if(r.bottom<-200||r.top>window.innerHeight+200){ return; } var tg=P(); var now=t||performance.now(); var dt=lt?Math.min(64,now-lt):16; lt=now; var k=1-Math.pow(1-0.14,dt/16.7);
+    function tick(t){ raf=0; if(window.vOff(sec)) return; var r=sec.getBoundingClientRect(); if(r.bottom<-200||r.top>window.innerHeight+200){ return; } var tg=P(); var now=t||performance.now(); var dt=lt?Math.min(64,now-lt):16; lt=now; var k=1-Math.pow(1-0.14,dt/16.7);
       if(cur<0||Math.abs(tg-cur)>0.3) cur=tg; else cur+=(tg-cur)*k; if(Math.abs(tg-cur)<0.0004) cur=tg; if(Math.abs(cur-last)>0.0002){ last=cur; paint(cur); } if(cur!==tg) raf=requestAnimationFrame(tick); else lt=0; }
     window.addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(tick); },{passive:true});
     window.addEventListener('resize',function(){ W=0; last=-1; cur=-1; tick(); });
