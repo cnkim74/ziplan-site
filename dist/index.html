@@ -107,7 +107,7 @@ nav .sp{flex:1}
 @media (prefers-reduced-motion:reduce){ .nhl,.nhl::before,nav a.nl{transition:none} }
 
 /* opening 1: 애플식 표지 — 불 꺼진 집 → 스크롤하며 불이 켜지고 → 선이 그려지며 → 현관으로 들어간다 */
-.photo{height:460vh;position:relative;background:#0b0e14;margin-top:-64px} /* 표지가 떠 있는 바 아래까지 올라와 바와 페이지가 한 장면이 된다 */ /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
+.photo{height:540vh;position:relative;background:#0b0e14;margin-top:-64px} /* 표지가 떠 있는 바 아래까지 올라와 바와 페이지가 한 장면이 된다 */ /* 배경을 어둡게: 유리 바가 캡처한 페이지에서 이 구간이 어둡게 비치도록 */
 .pstage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0b0e14}
 .pl{position:absolute;inset:0;transform-origin:46.4% 66%;will-change:transform}   /* 세 겹: 배경·집·앞풀. 확대 중심은 현관 */
 .pdrift{position:absolute;inset:0;transform-origin:50% 58%;animation:pdrift 52s ease-in-out infinite alternate}
@@ -124,6 +124,8 @@ nav .sp{flex:1}
 .pe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:transform,opacity,filter;backface-visibility:hidden}
 .pe1{object-position:50% 62%;transform-origin:50% 64%}
 .pe2{object-position:56% 50%;transform-origin:58% 52%}
+.pe3{object-position:48% 55%;transform-origin:47% 58%}
+.pe4{object-position:40% 50%;transform-origin:35% 45%}
 .pglow{position:absolute;inset:0;opacity:0;background:radial-gradient(60% 70% at 50% 60%,rgba(255,214,150,.75),rgba(255,190,120,.25) 45%,rgba(255,180,110,0) 75%);mix-blend-mode:screen}
 @media (prefers-reduced-motion: reduce){.pent{display:none}}
 .pvig{position:absolute;inset:0;background:radial-gradient(ellipse 52% 50% at 50% 54%,rgba(11,12,16,0) 48%,rgba(11,12,16,.5) 78%,rgba(11,12,16,.97) 100%);pointer-events:none}
@@ -154,7 +156,7 @@ nav.on-dark .in::after{background:radial-gradient(42% 120% at var(--mx,50%) -20%
 nav.on-dark .nhl::before{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.09));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.2),0 4px 10px -3px rgba(0,0,0,.5)}
 nav.on-dark .nhl::after{opacity:.45}
 nav.on-dark .userchip.signin{background:#fff;color:#0b0c10}
-@media (max-width:860px){ .photo{height:360vh} .phead{top:calc(64px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
+@media (max-width:860px){ .photo{height:430vh} .phead{top:calc(64px + 7vh)} .phead .gloss{letter-spacing:.12em;padding-left:.12em} .plinks{gap:18px} .pcap{max-width:calc(100% - 32px)} }
 @media (prefers-reduced-motion:reduce){ .photo{height:auto} .pstage{position:static;height:72vh} .pl,.pdrift{transform:none !important;animation:none} .pimg.on{opacity:1} .pveil{display:none} .ptrace{display:none} .phead{animation:none} .pcap{display:none} .pbhint{display:none} }
 /* opening 2: scroll-driven build */
 .build+.mod{position:relative}.build+.mod::before{content:'';position:absolute;left:0;right:0;top:-150px;height:150px;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(11,12,16,0),var(--bg))}
@@ -2714,7 +2716,7 @@ html.dnat-lock{overflow:hidden}
         </div></div>
       <div class="pl pl-fg" aria-hidden="true"><div class="pdrift"><img class="pimg off" src="img/l-fg-off.webp" srcset="img/l-fg-off-960.webp 960w, img/l-fg-off.webp 1672w" sizes="100vw" alt="" decoding="async"><img class="pimg on" data-src="img/l-fg-on.webp" data-srcset="img/l-fg-on-960.webp 960w, img/l-fg-on.webp 1672w" sizes="100vw" alt="" decoding="async"><script>(function(){var done=0;function go(){if(done)return;done=1;document.querySelectorAll("#photo img[data-srcset]").forEach(function(i){i.srcset=i.dataset.srcset;i.src=i.dataset.src;i.removeAttribute("data-srcset");});}if(matchMedia("(prefers-reduced-motion: reduce)").matches)go();else{addEventListener("scroll",go,{once:true,passive:true});addEventListener("touchstart",go,{once:true,passive:true});if(document.readyState==="complete")setTimeout(go,1200);else addEventListener("load",function(){setTimeout(go,1200);},{once:true});}})();</script>
         </div></div>
-      <div class="pent" aria-hidden="true"><img class="pe pe1" alt="" decoding="async"><img class="pe pe2" alt="" decoding="async"><div class="pglow"></div></div>
+      <div class="pent" aria-hidden="true"><img class="pe pe1" alt="" decoding="async"><img class="pe pe2" alt="" decoding="async"><img class="pe pe3" alt="" decoding="async"><img class="pe pe4" alt="" decoding="async"><div class="pglow"></div></div>
       <div class="pvig"></div><div class="pveil"></div>
       <div class="pshade"></div>
       <div class="phead" id="phead">
@@ -2726,6 +2728,7 @@ html.dnat-lock{overflow:hidden}
       <div class="pcap" data-i="1"><div class="w">LIGHT</div><div class="k">빛</div></div>
       <div class="pcap" data-i="2"><div class="w">LINE</div><div class="k">선</div></div>
       <div class="pcap" data-i="3"><div class="w">INSIDE</div><div class="k">안으로</div></div>
+      <div class="pcap" data-i="4"><div class="w">HOME</div><div class="k">아침, 집</div></div>
       <div class="bhint pbhint">내리면서 보세요 ↓</div>
     </div>
   </div>
@@ -8080,7 +8083,7 @@ function PGV(el,opt){ opt=opt||{}; const api={ready:false}; let T,R,sc,cam,L,sky
   api.nums=()=>B&&B.nums; api.spec=()=>P;
   api.stage=(s,cam)=>{ st.stage=s; applyStage(); if(cam) api.view(cam); };
   api.clay=v=>{ st.clay=v; applyStage(); }; api.night=v=>{ st.night=v; light(); }; api.sun=a=>{ st.sunA=a; light(); }; api.explode=v=>{ st.gapT=v?2.6:0; poke(); };
-  api.view=k=>{ if(!B) return; st.auto=k==='spin'; const b=st.base||30; const to={az:st.az,el:st.el,dist:st.dist,cy:st.cy}; const A=st.asp||1; if(k==='top'){ to.el=1.38; to.dist=(b*1.6+18)*A; } else if(k==='eye'){ to.el=.07; to.dist=(b*.95+10)*A; to.cy=1.7+b*.05; const EH=P&&P.sig&&typeof BSIG!=='undefined'&&BSIG[P.sig]&&BSIG[P.sig].eye; if(EH){ if(EH.az!=null){ const TAU=Math.PI*2; to.az=st.az+((((EH.az-st.az)%TAU)+TAU*1.5)%TAU-Math.PI); } if(EH.el!=null) to.el=EH.el; if(EH.dist!=null) to.dist=(b*EH.dist+10)*A; if(EH.cy!=null) to.cy=EH.cy; } } else if(k==='front'){ to.az=Math.PI/2; to.el=.18; to.dist=(b*1.3+12)*A; } else if(k==='aerial'){ to.el=.62; to.dist=(b*(P&&P.sig?1.4:1.75)+(P&&P.sig?10:20))*A; } else { to.el=.32; to.dist=(b*(P&&P.sig?1.35:1.7)+(P&&P.sig?10:22))*A; to.cy=Math.max(2,(B.bb.max.y-B.bb.min.y)*.42); }
+  api.view=k=>{ if(!B) return; st.auto=k==='spin'; const b=st.base||30; const to={az:st.az,el:st.el,dist:st.dist,cy:st.cy}; const A=st.asp||1; if(k==='top'){ to.el=1.38; to.dist=(b*1.6+18)*A; } else if(k==='eye'){ to.el=.07; to.dist=(b*.95+10)*A; to.cy=1.7+b*.05; const EH=P&&P.sig&&typeof BSIG!=='undefined'&&BSIG[P.sig]&&BSIG[P.sig].eye; if(EH){ if(EH.az!=null){ const TAU=Math.PI*2; to.az=st.az+((((EH.az-st.az)%TAU)+TAU*1.5)%TAU-Math.PI); } if(EH.el!=null) to.el=EH.el; if(EH.dist!=null) to.dist=(b*EH.dist+10)*A; if(EH.cy!=null) to.cy=EH.cy; } } else if(k==='front'){ to.az=Math.PI/2; to.el=.18; to.dist=(b*1.3+12)*A; } else if(k==='aerial'){ to.el=.62; to.dist=(b*(P&&P.sig?1.4:1.75)+(P&&P.sig?10:20))*A; const Hh=B.bb.max.y-B.bb.min.y, Wd=Math.max(B.bb.max.x-B.bb.min.x,B.bb.max.z-B.bb.min.z); if(Hh>Wd*.9){ to.cy=Hh*.46; to.el=.46; to.dist*=1.1; } } else { to.el=.32; to.dist=(b*(P&&P.sig?1.35:1.7)+(P&&P.sig?10:22))*A; to.cy=Math.max(2,(B.bb.max.y-B.bb.min.y)*.42); }
     st.tz={t0:performance.now(),dur:1100,from:{az:st.az,el:st.el,dist:st.dist,cy:st.cy},to}; poke(); };
   api.png=()=>{ if(!R) return ''; if(B){ if(st.tz){ for(const key of ['az','el','dist','cy']) st[key]=st.tz.to[key]; st.tz=null; } floorsAt(1e6); placeCam(); } R.shadowMap.needsUpdate=true; R.render(sc,cam); const u=R.domElement.toDataURL('image/png'); poke(2); return u; };
   api.rebuildAnim=()=>{ st.t0=performance.now(); poke(); };
@@ -11513,10 +11516,10 @@ const BUILD=(function(){
 /* 표지: 불 꺼진 집 → 스크롤하며 불이 켜지고(사진 크로스페이드) → 윤곽이 선으로 그려지고 → 현관으로 확대해 들어가며 하얘진다 */
 (function(){ const sec=$('#photo'); if(!sec) return; const L={bg:$('.pl-bg'),mid:$('.pl-mid'),fg:$('.pl-fg')}, lits=$$('.pimg.on'), veil=$('.pveil'), vig=$('.pvig'), tw=$('#ptraceW'), tk=$('#ptraceK'), head=$('#phead'), caps=$$('.pcap'), hint=$('.pbhint'), nav=$('nav'); const rm=matchMedia('(prefers-reduced-motion: reduce)').matches; const st=(p,a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a))); const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; let last=-1, ticking=false, target=0, cur=0, raf=0;
   head.addEventListener('animationend',()=>{ head.style.animation='none'; last=-1; tick(); },{once:true});
-  const pe1=sec.querySelector('.pe1'), pe2=sec.querySelector('.pe2'), pglow=sec.querySelector('.pglow'); let peLoaded=false;
+  const pe1=sec.querySelector('.pe1'), pe2=sec.querySelector('.pe2'), pe3=sec.querySelector('.pe3'), pe4=sec.querySelector('.pe4'), pglow=sec.querySelector('.pglow'); let peLoaded=false;
   const peSrc=(id,w)=>{ const u=`https://d8j0ntlcm91z4.cloudfront.net/user_3KYJxPwfR2bbZUqGeHnWyiDQ4yS/${id}.png`; return /vercel\.app$|ziplan/.test(location.hostname)&&location.protocol==='https:'?`/_vercel/image?url=${encodeURIComponent(u)}&w=${w}&q=74`:u; };
-  const PE=['hf_20261017_081101_143b4a41-7448-4685-97bc-dc07e727d513','hf_20261017_081234_3094bb6e-cf43-40f7-8276-f9e393ef41e4'];
-  function peLoad(){ peLoaded=true; [pe1,pe2].forEach((im,k)=>{ if(!im) return; im.onerror=()=>{ im.remove(); }; im.sizes='100vw'; im.srcset=[640,1080,1920].map(w=>peSrc(PE[k],w)+' '+w+'w').join(', '); im.src=peSrc(PE[k],1920); }); }
+  const PE=['hf_20261017_081101_143b4a41-7448-4685-97bc-dc07e727d513','hf_20261017_081234_3094bb6e-cf43-40f7-8276-f9e393ef41e4','hf_20261017_082859_318a1157-4123-4207-8da3-416c8f16ceff','hf_20261017_083137_206fef76-4737-40de-8bd1-5e480668ecdb'];
+  function peLoad(){ peLoaded=true; [pe1,pe2,pe3,pe4].forEach((im,k)=>{ if(!im) return; im.onerror=()=>{ im.remove(); }; im.sizes='100vw'; im.srcset=[640,1080,1920].map(w=>peSrc(PE[k],w)+' '+w+'w').join(', '); im.src=peSrc(PE[k],1920); }); }
   const termP=$('#termP'), termLan=$('#termLan'), termLanIn=$('#termLanIn'), termGloss=$('#termGloss'); let lanW=0; const measure=()=>{ lanW=termLanIn.getBoundingClientRect().width; }; measure(); window.addEventListener('resize',measure); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ measure(); paint(cur); });
   const mix=(a,b,t)=>Math.round(a+(b-a)*t);
   function paint(p){
@@ -11528,18 +11531,18 @@ const BUILD=(function(){
     const h=1-st(p,0.30,0.42); head.style.opacity=h.toFixed(3); head.style.transform=`translateY(${(-40*(1-h)).toFixed(1)}px)`; head.style.pointerEvents=h>0.3?'auto':'none';
     const d=st(p,0.42,0.66); tw.style.strokeDashoffset=(1-d).toFixed(3); tk.style.strokeDashoffset=(1-d).toFixed(3);   // 선이 그려진다
     // 안으로(v18e): 정면이 현관 쪽으로 다가가다 → 현관 앞 사진(같은 집, 힉스필드)으로 넘어가 한 걸음 더 → 문 안 홀 사진으로 들어서며 따뜻한 빛 → 어둡게
-    const go=ease(st(p,0.60,0.80)), e1=ease(st(p,0.64,0.715)), e1z=st(p,0.63,0.92), e2=ease(st(p,0.80,0.90)); const v=st(p,0.93,0.995); veil.style.opacity=(v*0.985).toFixed(3);
-    const tr=1-st(p,0.58,0.66); tw.style.opacity=tr.toFixed(3); tk.style.opacity='0';
-    if(p>0.3&&!peLoaded) peLoad();
-    if(pe1){ pe1.style.opacity=e1.toFixed(3); pe1.style.transform=`scale(${(1.06+0.42*ease(e1z)).toFixed(4)}) translateY(${(-1.2*e1z).toFixed(2)}%)`; pe1.style.filter=e1<1?`blur(${(5*(1-e1)).toFixed(1)}px)`:''; }
-    if(pe2){ pe2.style.opacity=e2.toFixed(3); pe2.style.transform=`scale(${(1.14-0.08*e2+0.12*st(p,0.88,1.0)).toFixed(4)})`; pe2.style.filter=e2<1?`blur(${(6*(1-e2)).toFixed(1)}px) brightness(${(1+0.35*(1-e2)).toFixed(3)})`:''; }
-    if(pglow){ const g=Math.max(0,Math.sin(Math.PI*st(p,0.78,0.94))); pglow.style.opacity=(0.85*g).toFixed(3); }
-    const p0=st(p,0,0.62);  // 세 겹이 다른 속도로 커지며 현관으로 — 앞풀이 가장 빨리 지나가고 배경은 천천히
+    const go=ease(st(p,0.56,0.72)), e1=ease(st(p,0.585,0.65)), e1z=st(p,0.585,0.78), e2=ease(st(p,0.70,0.76)), e2z=st(p,0.70,0.85), e3=ease(st(p,0.80,0.86)), e3z=st(p,0.80,0.93), e4=ease(st(p,0.885,0.94)), e4z=st(p,0.885,1.0); const v=st(p,0.975,1.0); veil.style.opacity=(v*0.9).toFixed(3);
+    const tr=1-st(p,0.55,0.62); tw.style.opacity=tr.toFixed(3); tk.style.opacity='0';
+    if(p>0.28&&!peLoaded) peLoad();
+    const fade=(im,o,sc,bl,br)=>{ if(!im) return; im.style.opacity=o.toFixed(3); im.style.transform=`scale(${sc.toFixed(4)})`; im.style.filter=o<1?`blur(${(bl*(1-o)).toFixed(1)}px)${br?` brightness(${(1+br*(1-o)).toFixed(3)})`:''}`:''; };
+    fade(pe1,e1,1.06+0.42*ease(e1z),5); fade(pe2,e2,1.12-0.06*e2+0.10*e2z,6,.35); fade(pe3,e3,1.10-0.05*e3+0.10*e3z,6,.2); fade(pe4,e4,1.14-0.08*e4+0.08*e4z,8,.6);
+    if(pglow){ const g=Math.max(0,Math.sin(Math.PI*st(p,0.66,0.80))), g2=Math.max(0,Math.sin(Math.PI*st(p,0.87,0.97))); pglow.style.opacity=(0.85*Math.max(g,g2*0.7)).toFixed(3); }
+    const p0=st(p,0,0.58);  // 세 겹이 다른 속도로 커지며 현관으로 — 앞풀이 가장 빨리 지나가고 배경은 천천히
     L.bg.style.transform=`scale(${(0.86+0.10*p0+0.32*go).toFixed(4)})`;
     L.mid.style.transform=`scale(${(0.86+0.14*p0+0.75*go).toFixed(4)})`;
     L.fg.style.transform=`scale(${(0.86+0.20*p0+2.4*go).toFixed(4)}) translateY(${(4*go).toFixed(2)}%)`;
-    if(vig) vig.style.opacity=(1-0.6*p0+0.5*e1*(1-e2)).toFixed(3);
-    const i=p<0.06?0:(p<0.42?1:(p<0.66?2:3)); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); }); if(hint) hint.style.opacity=p>0.03?0:1; }
+    if(vig) vig.style.opacity=(1-0.6*p0+0.5*e1*(1-e2)-0.4*e4).toFixed(3);
+    const i=p<0.06?0:(p<0.42?1:(p<0.6?2:(p<0.88?3:4))); caps.forEach(c=>{ c.classList.toggle('on',+c.dataset.i===i&&v<0.9); }); if(hint) hint.style.opacity=p>0.03?0:1; }
   let tPrev=0; function animate(ts){ raf=0; const dt=tPrev?Math.min(80,ts-tPrev):16; tPrev=ts; const diff=target-cur; if(Math.abs(diff)<0.0006){ cur=target; tPrev=0; paint(cur); return; } cur+=diff*(1-Math.exp(-dt/110)); paint(cur); raf=requestAnimationFrame(animate); }   // 시간 기준 감쇠: 어떤 화면 주사율에서도 약 0.4초 안에 따라붙는다   // 스크롤 관성: 영상처럼 부드럽게 따라온다
   function tick(){ ticking=false; if($('#view-home').hidden){ nav.classList.remove('on-dark'); return; } const r=sec.getBoundingClientRect(); const vh=window.innerHeight; const p=Math.max(0,Math.min(1,-r.top/(r.height-vh))); const under=[sec,$('#build'),$('#panels'),$('#likeBand')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; }); nav.classList.toggle('on-dark',under&&!rm); if(Math.abs(p-last)<0.0005) return; last=p; target=p; if(!raf) raf=requestAnimationFrame(animate); }
   if(rm){ nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ const r=sec.getBoundingClientRect(); nav.classList.toggle('on-dark',[sec,$('#build'),$('#panels'),$('#likeBand')].some(el=>{ if(!el) return false; const q=el.getBoundingClientRect(); return q.top<=36&&q.bottom>36; })&&!$('#view-home').hidden); },{passive:true}); return; } paint(0); nav.classList.toggle('on-dark',!$('#view-home').hidden); window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(tick); } },{passive:true}); window.addEventListener('resize',()=>{ last=-1; tick(); }); window.addEventListener('hashchange',()=>{ last=-1; setTimeout(tick,50); }); })();
