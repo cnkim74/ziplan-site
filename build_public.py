@@ -109,7 +109,7 @@ function block(a,b){const i=idx(a); let j=i; while(j<L.length&&!b.test(L[j])) j+
 function line(a){return L[idx(a)];}
 const ev=(src,names)=>new Function(src+';return {'+names+'}')();
 const out=ev([line(/^const PH=\{/),line(/^const TREG=\{/),block(/^const TPL=\[/,/^\]\.map\(a=>\(\{id:a\[0\]/),block(/^const TFEAT=\{/,/^\};/),line(/^const TV_SEASON=\[/),block(/^const TV_ABROAD = \[/,/^\];/)].join('\n'),'PH,TREG,TPL,TFEAT,TV_SEASON,TV_ABROAD');
-const kb=ev(block(/^const KB2=\[/,/^\];/)+'\n'+line(/^function kbTopic\(/)+'\n'+line(/^function kbSlugs\(/),'KB2,kbTopic,kbSlugs');
+const kb=ev(block(/^const KB2=\[/,/^\];/)+'\n'+line(/^const KB_TITLE=/)+'\n'+line(/^function kbTopic\(/)+'\n'+line(/^function kbSlugs\(/),'KB2,kbTopic,kbSlugs');
 const sl=kb.kbSlugs(kb.KB2);
 out.KB2=kb.KB2.map((k,i)=>({re:k[0],html:k[1],go:k[2],gol:k[3],cat:k[4],topic:kb.kbTopic(k),alt:kb.kbTopic([k[0],'',k[2],k[3],k[4]]),slug:sl[i]}));
 const enc=ev([line(/^const ENCD=/),line(/^const EG=/),line(/^const ES=/),block(/^const ENC=\[/,/^\];/)].join('\n'),'ENC');
