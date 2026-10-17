@@ -289,3 +289,9 @@
 - (같은 날 저녁 추가) 사진 2장 더(z_image): 거실(벽난로·숲 유리벽) `.pe3`, 아침(안개 낀 숲·데크) `.pe4` → 흐름: 현관(0.585–0.65) → 홀(0.70–0.76) → 거실(0.80–0.86) → 아침(0.885–0.94), 따뜻한 빛 두 번, 마지막 캡션 `HOME 아침, 집`(data-i=4), 어둡게는 0.975–1.0만(아침이 다음 밝은 섹션으로 이어짐). `.photo` 높이 460→540vh(모바일 360→430vh).
 - 남은 힉스필드 크레딧 0.05 — 더 못 만듦. 영상(이미지→영상)은 5크레딧부터.
 - 고층 모형 aerial: 건물 높이가 폭의 0.9배 넘으면 cy=높이×0.46, el .46, 거리 ×1.1(63빌딩·롯데 꼭대기 잘림 해결).
+
+## S3 · v18f (2026-10-17 밤)
+- **정교 모형 +18 → 130채**(서브에이전트 3조, 패치 `scratch/s3/{CN,US,EU}.js`, 원본 `s3/cn|us|eu/`, 브리프 `s3/BRIEF.md`): 중국 templeheaven·potala·suzhoumuseum·birdsnest·cctv·shanghaitower / 미국 robie·eames·disneyhall·seattle·getty·onewtc / 유럽 bauhaus·pompidou·tatemodern·elbphil·therme·oslo. 모두 'town', eye 힌트 있음, 추정은 build 주석.
+- 전시실 11방: 새 `china` '중국의 축과 그물'(forbidden 옮김 + 6), `icons` '도시의 현대 아이콘'(pompidou·tatemodern·elbphil·disneyhall·seattle·getty). master에 robie·bauhaus·eames, poetic에 therme·oslo, sky에 onewtc.
+- 고친 모형(`s3/FIX.js`): hahoe 산을 둥근 숲 능선으로(절벽은 부용대 하나), itsukushima 40° 회전 제거 + eye 힌트.
+- **물어보기 +100 → 659**(`scratch/kb3/KB3.js`, KB2 끝 `/* v18f 추가 100 */`, 출처 표 `kb3/report.md`): 용어20·법규15(조문·개략 문구)·구조재료환경15·역사거장15·한옥8·시공인테리어12·학업진로10·도시5. 정적 /ask/ 650쪽, 전체 1,658쪽.
