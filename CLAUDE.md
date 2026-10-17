@@ -295,3 +295,9 @@
 - 전시실 11방: 새 `china` '중국의 축과 그물'(forbidden 옮김 + 6), `icons` '도시의 현대 아이콘'(pompidou·tatemodern·elbphil·disneyhall·seattle·getty). master에 robie·bauhaus·eames, poetic에 therme·oslo, sky에 onewtc.
 - 고친 모형(`s3/FIX.js`): hahoe 산을 둥근 숲 능선으로(절벽은 부용대 하나), itsukushima 40° 회전 제거 + eye 힌트.
 - **물어보기 +100 → 659**(`scratch/kb3/KB3.js`, KB2 끝 `/* v18f 추가 100 */`, 출처 표 `kb3/report.md`): 용어20·법규15(조문·개략 문구)·구조재료환경15·역사거장15·한옥8·시공인테리어12·학업진로10·도시5. 정적 /ask/ 650쪽, 전체 1,658쪽.
+
+## S4 · v18g (2026-10-17 밤)
+- **정교 모형 +36 → 166채**(서브에이전트 6조, 패치 `scratch/s4/{LA,ME,AF,SA,OC,KR}.js`, 원본 `s4/<그룹 소문자>/`, 브리프 `s4/BRIEF.md`): 중남미 brasilia·niteroi·masp·barragan·machupicchu·elcastillo / 중동 mia·heydar·zayed·shahmosque·domerock·petra / 아프리카 giza·abusimbel·djenne·lalibela·alexandrina·hassan2 / 남·동남아 marinabay·borobudur·watarun·dhaka·chandigarh·lotustemple / 오세아니아 parliamentau·fedsquare·tepapa·roseseidler·cardboard·eurekatower / 한국 현대 frembassy·seoularts·kyobo·peacegate·olympicstadium·sayuwon. 모두 'town' + eye 힌트, 추정은 build 주석.
+- 전시실 16방: 새 latam·mideast·africa·southasia·oceania, 한국 현대 6채는 '서울의 현대'(knew)에.
+- 사유원 명정 안벽은 자료의 "붉은 벽"에 맞춰 붉은 톤(0x9b4a36, 색조 추정). 올림픽주경기장은 1984 원래 모습 기준(2023~26 리모델링 중).
+- 자평 약한 것: tepapa(중하, 형태 대부분 추정), dhaka·fedsquare·mia·sayuwon·seoularts·kyobo·peacegate(중).
