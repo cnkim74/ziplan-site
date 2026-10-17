@@ -1,0 +1,179 @@
+__bsigFill({"kagawa":function(K){
+// 사실: 단게 겐조 설계 · 1958 준공(현 가가와현청 동관) · 고층동 1~8층 + 옥탑, 저층동 필로티 + 2·3층 · 철근콘크리트 · 센터 코어(가운데 내력벽에 엘리베이터·계단) · 콘크리트 작은 보 두께 114 mm, 같은 간격 · 남쪽 정원(아지석 등 현산 석재로 세토 내해·산줄기) · 1층 유리 로비에 이노쿠마 겐이치로 벽화 「和敬清寂」 · 2019 기초 면진 개수 완료
+// 출처: 가가와현 「docomomo 자료」(층수·필로티·남쪽 정원·벽화·면진) · Panasonic 건축 리포트 vol.37(작은 보 114 mm·센터 코어·아지석 정원)
+// 추정: 고층동 평면 34 × 26 m, 1층 높이 5.4 m, 기준층 3.75 m, 발코니 깊이 1.5 m, 작은 보 2개 한 쌍·간격 1.8 m, 저층동 62 × 18 m·높이 약 14 m, 옥탑 크기, 정원·광장 배치, 서쪽 본관(2000년 고층 청사) 모양과 주변 시가
+    const T=K.T; const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
+    // 큐: 재료별로 상자(숫자 배열)·지오메트리를 모았다가 flush()에서 메시 하나로 병합 — 수백 개 부재가 메시 10여 개로. 상자는 toNonIndexed 없이 36정점을 바로 써서 빠름
+    const Qs=new Map(); const bk=mat=>{ let a=Qs.get(mat); if(!a){ a={bx:[],gs:[]}; Qs.set(mat,a); } return a; }; const Q=(mat,g)=>bk(mat).gs.push(g);
+    const FN=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+    const boxInto=(P,N,U,o,b)=>{ const [x,y,z,w,h,d,ry,tm]=b; const hw=w/2,hh=h/2,hd=d/2, cy=y+hh; const c=ry?Math.cos(ry):1, s=ry?Math.sin(ry):0; let k=o*3, ku=o*2;
+      const put3=(px,py,pz,nx,ny,nz,u,v)=>{ const rx=px*c+pz*s, rz=-px*s+pz*c; P[k]=x+rx; P[k+1]=cy+py; P[k+2]=z+rz; const nX=nx*c+nz*s, nZ=-nx*s+nz*c; N[k]=nX; N[k+1]=ny; N[k+2]=nZ; k+=3; U[ku]=u; U[ku+1]=v; ku+=2; };
+      for(let f=0;f<6;f++){ const n=FN[f]; const ax=f>>1; // 면 네 꼭짓점(반시계)
+        const ua=ax===0?2:0, va=ax===1?2:1; const sgn=n[ax]; const tw=[w,h,d][ua], th=[w,h,d][va]; const su=tm?tw/tm:1, sv=tm?th/tm:1;
+        const corner=(i,j)=>{ const q=[0,0,0]; q[ax]=sgn*[hw,hh,hd][ax]; q[ua]=(i?1:-1)*[hw,hh,hd][ua]; q[va]=(j?1:-1)*[hw,hh,hd][va]; return q; };
+        const ccw=(sgn>0)===(ax===2); const quad=ccw?[[0,0],[1,0],[1,1],[0,1]]:[[0,0],[0,1],[1,1],[1,0]];
+        for(const t of [[0,1,2],[0,2,3]]) for(const ii of t){ const [i,j]=quad[ii]; const q=corner(i,j); put3(q[0],q[1],q[2],n[0],n[1],n[2],i*su,j*sv); } } };
+    const merge=(bucket,mat)=>{ const G=bucket.gs.map(g=>g.index?g.toNonIndexed():g); let n=bucket.bx.length*36; for(const g of G) n+=g.attributes.position.count; if(!n) return null; const Pa=new Float32Array(n*3),Na=new Float32Array(n*3),Ua=new Float32Array(n*2); let o=0; for(const b of bucket.bx){ boxInto(Pa,Na,Ua,o,b); o+=36; } for(const g of G){ Pa.set(g.attributes.position.array,o*3); Na.set(g.attributes.normal.array,o*3); if(g.attributes.uv) Ua.set(g.attributes.uv.array,o*2); o+=g.attributes.position.count; } const g=new T.BufferGeometry(); g.setAttribute('position',new T.BufferAttribute(Pa,3)); g.setAttribute('normal',new T.BufferAttribute(Na,3)); g.setAttribute('uv',new T.BufferAttribute(Ua,2)); const m=put(new T.Mesh(g,mat),!mat.userData.nocast); m.userData.glass=!!(mat.transparent&&mat.opacity<.6); return m; };
+    const flush=()=>{ for(const [mat,b] of Qs) merge(b,mat); Qs.clear(); };
+    const B=(x,y,z,w,h,d,mat,ry)=>bk(mat).bx.push([x,y,z,w,h,d,ry||0,mat.map?(mat.userData.tm||3):0]);
+    const bx=(x,y,z,w,h,d,ry)=>{ const g=new T.BoxGeometry(w,h,d); if(ry) g.rotateY(ry); g.translate(x,y+h/2,z); return g; };
+    const cylG=(r,h,seg,r2)=>{ const g=new T.CylinderGeometry(r2===undefined?r*.9:r2,r,h,seg||10); g.translate(0,h/2,0); return g; };
+    const C=(x,y,z,r,h,mat,seg,r2)=>{ const g=cylG(r,h,seg,r2); g.translate(x,y,z); Q(mat,g); };
+    const surfG=(fn,nu,nv)=>{ const pos=[],uvs=[],idx=[]; for(let j=0;j<=nv;j++) for(let i=0;i<=nu;i++){ const p=fn(i/nu,j/nv); pos.push(p[0],p[1],p[2]); uvs.push(p[3]!==undefined?p[3]:i/nu,p[4]!==undefined?p[4]:j/nv); } for(let j=0;j<nv;j++) for(let i=0;i<nu;i++){ const a=j*(nu+1)+i, b=a+1, c=a+nu+1, d=c+1; idx.push(a,c,b,b,c,d); } const g=new T.BufferGeometry(); g.setAttribute('position',new T.Float32BufferAttribute(pos,3)); g.setAttribute('uv',new T.Float32BufferAttribute(uvs,2)); g.setIndex(idx); g.computeVertexNormals(); return g; };
+    const S=(mat,fn,nu,nv)=>Q(mat,surfG(fn,nu,nv));
+    const inst=(geo,mat,items,cast)=>{ if(!items.length) return null; const m=new T.InstancedMesh(geo,mat,items.length); const M4=new T.Matrix4(),Qt=new T.Quaternion(),Sc=new T.Vector3(),V=new T.Vector3(),E=new T.Euler(); items.forEach((it,i)=>{ V.set(it[0],it[1],it[2]); E.set(0,it[3]||0,0); Qt.setFromEuler(E); Sc.set(it[4]||1,it[5]||1,it[6]||1); M4.compose(V,Qt,Sc); m.setMatrixAt(i,M4); }); m.instanceMatrix.needsUpdate=true; return put(m,cast); };
+    let seed=7; const rnd=()=>{ seed=(seed*9301+49297)%233280; return seed/233280; };
+    const archG=(r,len,axisZ)=>{ const g=new T.CylinderGeometry(r,r,len,14,1,false,0,Math.PI); g.rotateZ(Math.PI/2); if(axisZ) g.rotateY(Math.PI/2); return g; }; // 반원 통(윗반쪽, 축 x 또는 z) — 홍예
+    const DS=o=>Object.assign({side:T.DoubleSide},o||{});
+    const flat=m=>{ m.userData.nocast=1; return m; }; // 바닥 판처럼 큰 평면은 그림자를 안 던지게(그림자 카메라 클리핑 얼룩 방지)
+    const pine=(x,y,z,h)=>{ C(x,y,z,.14+h*.012,h*.55,K.M.trunk,6,.1); for(let k=0;k<3;k++){ const g=new T.ConeGeometry(h*(.3-k*.07),h*.3,7); g.translate(x,y+h*(.33+k*.2)+h*.15,z); Q(K.M.leaf3,g); } };
+    const tree=(x,y,z,h,leaf)=>{ C(x,y,z,.16+h*.01,h*.45,K.M.trunk,6,.12); const g=new T.SphereGeometry(h*.4,8,6); g.scale(1,.85,1); g.translate(x,y+h*.72,z); Q(leaf||K.M.leaf2,g); };
+    const skyDome=(cx,cy,cz,R)=>{ const g=new T.SphereGeometry(R,32,16); const p=g.attributes.position; const mkCol=night=>{ const col=[]; const top=new T.Color(night?0x0b1226:0x9fc0de).convertSRGBToLinear(), hor=new T.Color(night?0x2a3350:0xeee9df).convertSRGBToLinear(), c=new T.Color(); for(let i=0;i<p.count;i++){ const t=Math.max(0,Math.min(1,p.getY(i)/(R*.63))); c.copy(hor).lerp(top,Math.pow(t,.65)); col.push(c.r,c.g,c.b); } return new T.Float32BufferAttribute(col,3); }; const cD=mkCol(false), cN=mkCol(true); g.setAttribute('color',cD); const m=new T.Mesh(g,new T.MeshBasicMaterial({vertexColors:true,side:T.BackSide,fog:false,depthWrite:false})); m.position.set(cx,cy,cz); m.renderOrder=-1; m.frustumCulled=false; let cur=0; m.onBeforeRender=(r,sc)=>{ const n=sc.fog&&sc.fog.color&&sc.fog.color.r<.3?1:0; if(n!==cur){ cur=n; g.setAttribute('color',n?cN:cD); } }; K.life.add(m); return m; };
+    const TX=(()=>{ const CC=(typeof window!=='undefined')?(window.__kTex15||(window.__kTex15={})):{};
+      const tex=(key,px,draw)=>{ if(CC[key]) return CC[key]; if(typeof document==='undefined') return null; const cv=document.createElement('canvas'); cv.width=cv.height=px; const g=cv.getContext('2d'); let s=17; const rr=()=>{ s=(s*16807)%2147483647; return s/2147483647; }; draw(g,px,rr); const t=new T.CanvasTexture(cv); t.wrapS=t.wrapT=T.RepeatWrapping; t.encoding=T.sRGBEncoding; t.anisotropy=8; return CC[key]=t; };
+      const mk=(t,tm,o,hex)=>{ const m=new T.MeshStandardMaterial(Object.assign({color:t?0xffffff:(hex||0xcccccc),map:t||null,roughness:.86},o||{})); if(!t) m.color.convertSRGBToLinear(); m.userData.tm=tm; return m; };
+      // 안도 콘크리트: 512 px = 3.6 m → 패널 1.8 × 0.9 m(가로 2 × 세로 4), 패널마다 구멍 3 × 2, 패널 이음 줄눈, 얼룩·물자국 약간
+      const ando=(key,base,o)=>mk(tex('ando'+key,512,(g,N,rr)=>{ const pw=N/2, ph=N/4; g.fillStyle=base; g.fillRect(0,0,N,N);
+          for(let j=0;j<4;j++) for(let i=0;i<2;i++){ const v=(rr()-.5)*14; g.fillStyle=`rgba(${v>0?255:0},${v>0?255:0},${v>0?250:0},${Math.abs(v)/100})`; g.fillRect(i*pw,j*ph,pw,ph); }
+          for(let k=0;k<2600;k++){ g.fillStyle=rr()<.5?'rgba(255,255,255,.05)':'rgba(30,30,30,.05)'; const z=1+rr()*2; g.fillRect(rr()*N,rr()*N,z,z); }
+          for(let k=0;k<5;k++){ const x=rr()*N; const gr=g.createLinearGradient(0,0,0,N); gr.addColorStop(0,'rgba(90,88,82,.08)'); gr.addColorStop(1,'rgba(90,88,82,0)'); g.fillStyle=gr; g.fillRect(x,0,6+rr()*14,N*(.3+rr()*.6)); }
+          g.fillStyle='rgba(70,68,64,.55)'; for(let i=0;i<=2;i++) g.fillRect(i*pw-1,0,2,N); for(let j=0;j<=4;j++) g.fillRect(0,j*ph-1,N,2);
+          for(let j=0;j<4;j++) for(let i=0;i<2;i++) for(const fx of [1/6,.5,5/6]) for(const fy of [.25,.75]){ const x=i*pw+fx*pw, y=j*ph+fy*ph; g.fillStyle='rgba(235,233,228,.6)'; g.beginPath(); g.arc(x,y,5.5,0,7); g.fill(); g.fillStyle='#55534f'; g.beginPath(); g.arc(x,y,3.6,0,7); g.fill(); } }),3.6,Object.assign({roughness:.78},o||{}));
+      // 커튼월 세로 결(멀리언 + 층 띠 + 반사 얼룩) — 512 px = tm m
+      const cw=(key,base,mull,band,nx,ny,tm,o)=>mk(tex('cw'+key,512,(g,N,rr)=>{ g.fillStyle=base; g.fillRect(0,0,N,N); const pw=N/nx, ph=N/ny; for(let j=0;j<ny;j++) for(let i=0;i<nx;i++){ const v=(rr()-.5)*30; g.fillStyle=`rgba(${v>0?255:20},${v>0?255:30},${v>0?255:40},${Math.abs(v)/160})`; g.fillRect(i*pw,j*ph,pw,ph); } const gr=g.createLinearGradient(0,0,N,N); gr.addColorStop(0,'rgba(255,255,255,.10)'); gr.addColorStop(.5,'rgba(255,255,255,0)'); gr.addColorStop(1,'rgba(255,255,255,.08)'); g.fillStyle=gr; g.fillRect(0,0,N,N); g.fillStyle=band; for(let j=0;j<ny;j++) g.fillRect(0,j*ph,N,Math.max(2,ph*.12)); g.fillStyle=mull; for(let i=0;i<nx;i++) g.fillRect(i*pw,0,Math.max(2,pw*.09),N); }),tm,Object.assign({metalness:.35,roughness:.25},o||{}));
+      return {tex,mk,ando,cw}; })();
+    // ---- 배경·바닥(v15): 캔버스 질감 · 높이장 지형(K.life — bbox 밖) · 인스턴스 숲 · 뷰어 기본 바닥 숨김 ----
+    const E=(()=>{ const TT=T; let sd=131; const r=()=>{ sd=(sd*16807)%2147483647; return sd/2147483647; };
+      const C=(typeof window!=='undefined')?(window.__kTex15||(window.__kTex15={})):{};
+      const tex=(key,px,draw)=>{ if(C[key]) return C[key]; if(typeof document==='undefined') return null; const cv=document.createElement('canvas'); cv.width=cv.height=px; const g=cv.getContext('2d'); let s=31; const rr=()=>{ s=(s*16807)%2147483647; return s/2147483647; }; draw(g,px,rr); const t=new TT.CanvasTexture(cv); t.wrapS=t.wrapT=TT.RepeatWrapping; t.encoding=TT.sRGBEncoding; t.anisotropy=8; return C[key]=t; };
+      // 막돌·다듬돌 석축(2 m 한 장) — 돌 크기·색이 제각각, 줄눈 어둡게
+      const wallTex=(key,base,tones,rowH,wMin,wMax)=>tex(key,512,(g,N,rr)=>{ g.fillStyle=base; g.fillRect(0,0,N,N); let y=0; while(y<N){ let h=Math.round(rowH*(.7+rr()*.6)); if(N-y<rowH*.6) h=N-y; let x=-rr()*wMax; while(x<N){ const w=wMin+rr()*(wMax-wMin); const j=()=>(rr()-.5)*12; g.fillStyle=tones[Math.floor(rr()*tones.length)]; for(const ox of [0,-N,N]){ g.beginPath(); g.moveTo(ox+x+4+j(),y+3+j()); g.lineTo(ox+x+w*.5+j(),y+2+j()); g.lineTo(ox+x+w-4+j(),y+4+j()); g.lineTo(ox+x+w-3+j(),y+h*.5+j()); g.lineTo(ox+x+w-4+j(),y+h-3+j()); g.lineTo(ox+x+w*.45+j(),y+h-2+j()); g.lineTo(ox+x+3+j(),y+h-4+j()); g.lineTo(ox+x+2+j(),y+h*.5+j()); g.closePath(); g.fill(); g.fillStyle='rgba(255,255,255,.07)'; g.fillRect(ox+x+6,y+5,w-14,3); } x+=w; } y+=h; } for(let i=0;i<5000;i++){ g.fillStyle=rr()<.5?'rgba(255,255,255,.09)':'rgba(30,28,24,.12)'; g.fillRect(rr()*N,rr()*N,1.6,1.6); } for(let i=0;i<40;i++){ g.fillStyle='rgba(70,90,50,.10)'; g.beginPath(); g.arc(rr()*N,rr()*N,6+rr()*18,0,7); g.fill(); } });
+      const masTex=()=>tex('mas15',512,(g,N,rr)=>{ g.fillStyle='#cdbf9e'; g.fillRect(0,0,N,N); const cs=['#bfae88','#dacfb4','#ae9d77','#9c8d6f','#c8b997']; for(let i=0;i<7000;i++){ g.fillStyle=cs[Math.floor(rr()*cs.length)]; const z=rr()<.85?1.2:2.4; g.fillRect(rr()*N,rr()*N,z,z); } });
+      const tmat=(t,hex,o)=>{ const oo=Object.assign({},o||{}); delete oo.tint; const m=new TT.MeshStandardMaterial(Object.assign({color:t?0xffffff:hex,map:t||null,roughness:.95},oo)); m.color.convertSRGBToLinear(); if(t&&o&&o.tint) m.color.setHex(o.tint).convertSRGBToLinear(); return m; };
+      const axis=(R,n,k,c)=>{ const L=[]; for(let i=0;i<=n;i++){ const t=-1+2*i/n; L.push((c||0)+R*Math.sinh(k*t)/Math.sinh(k)); } return L; };
+      const terrain=(x0,x1,z0,z1,nx,nz,hf,cf,hole)=>{
+        const ax=(a0,a1,n,e)=>{ const L=[]; for(let i=0;i<=n;i++) L.push(a0+(a1-a0)*i/n); if(e) e.forEach(v=>{ if(v>a0&&v<a1) L.push(v); }); L.sort((a,b)=>a-b); return L.filter((v,i)=>i===0||v-L[i-1]>.01); };
+        const XS=Array.isArray(nx)?nx:ax(x0,x1,nx,hole&&[hole[0],hole[1]]), ZS=Array.isArray(nz)?nz:ax(z0,z1,nz,hole&&[hole[2],hole[3]]); const W=XS.length, H=ZS.length, n=W*H; const Y=new Float32Array(n), P=new Float32Array(n*3), N=new Float32Array(n*3), Cc=new Float32Array(n*3);
+        for(let j=0;j<H;j++) for(let i=0;i<W;i++){ const k=j*W+i, x=XS[i], z=ZS[j]; Y[k]=hf(x,z); P[k*3]=x; P[k*3+1]=Y[k]; P[k*3+2]=z; }
+        const lc=v=>v<.04045?v*.0773993808:Math.pow(v*.9478672986+.0521327014,2.4);
+        for(let j=0;j<H;j++) for(let i=0;i<W;i++){ const k=j*W+i, i0=Math.max(0,i-1), i1=Math.min(W-1,i+1), j0=Math.max(0,j-1), j1=Math.min(H-1,j+1); const hx=(Y[j*W+i1]-Y[j*W+i0])/(XS[i1]-XS[i0]), hz=(Y[j1*W+i]-Y[j0*W+i])/(ZS[j1]-ZS[j0]); const L=Math.sqrt(hx*hx+1+hz*hz); N[k*3]=-hx/L; N[k*3+1]=1/L; N[k*3+2]=-hz/L; const v=cf(P[k*3],P[k*3+2],Y[k],1/L); Cc[k*3]=lc(v[0]); Cc[k*3+1]=lc(v[1]); Cc[k*3+2]=lc(v[2]); }
+        const I=[]; for(let j=0;j<H-1;j++) for(let i=0;i<W-1;i++){ if(hole){ const cx=(XS[i]+XS[i+1])/2, cz=(ZS[j]+ZS[j+1])/2; if(cx>hole[0]&&cx<hole[1]&&cz>hole[2]&&cz<hole[3]) continue; } const a=j*W+i, b=a+1, c=a+W, d=c+1; I.push(a,c,b,b,c,d); }
+        const g=new TT.BufferGeometry(); g.setAttribute('position',new TT.BufferAttribute(P,3)); g.setAttribute('normal',new TT.BufferAttribute(N,3)); g.setAttribute('color',new TT.BufferAttribute(Cc,3)); g.setIndex(new TT.BufferAttribute(new Uint32Array(I),1)); g.computeBoundingSphere();
+        const m=new TT.Mesh(g,new TT.MeshStandardMaterial({vertexColors:true,roughness:1})); m.receiveShadow=true; m.castShadow=false; K.life.add(m);
+        const bs=(A,v)=>{ let lo=0, hi=A.length-2; if(v<=A[0]) return 0; if(v>=A[hi+1]) return hi; while(lo<hi){ const md=(lo+hi+1)>>1; if(A[md]<=v) lo=md; else hi=md-1; } return lo; };
+        m.h=(x,z)=>{ const i=bs(XS,x), j=bs(ZS,z); const u=Math.min(1,Math.max(0,(x-XS[i])/(XS[i+1]-XS[i]))), v=Math.min(1,Math.max(0,(z-ZS[j])/(ZS[j+1]-ZS[j]))); const a=Y[j*W+i], b=Y[j*W+i+1], c=Y[(j+1)*W+i], d=Y[(j+1)*W+i+1]; return (a*(1-u)+b*u)*(1-v)+(c*(1-u)+d*u)*v; }; return m; };
+      const mergeG=gs=>{ const G=gs.map(g=>g.index?g.toNonIndexed():g); let n=0; for(const g of G) n+=g.attributes.position.count; const P=new Float32Array(n*3), N=new Float32Array(n*3); let o=0; for(const g of G){ P.set(g.attributes.position.array,o*3); N.set(g.attributes.normal.array,o*3); o+=g.attributes.position.count; } const g=new TT.BufferGeometry(); g.setAttribute('position',new TT.BufferAttribute(P,3)); g.setAttribute('normal',new TT.BufferAttribute(N,3)); return g; };
+      const crownG=[ (()=>{ const a=new TT.IcosahedronGeometry(.5,1); a.scale(1,.78,1); a.translate(0,.62,0); const b=new TT.IcosahedronGeometry(.3,0); b.translate(.22,.78,.1); return mergeG([a,b]); })(),
+        (()=>{ const a=new TT.IcosahedronGeometry(.5,0); a.scale(1.15,.42,1.0); a.translate(0,.82,0); const b=new TT.IcosahedronGeometry(.32,0); b.scale(1.1,.45,1); b.translate(-.25,.66,.12); return mergeG([a,b]); })(),
+        (()=>{ const a=new TT.ConeGeometry(.36,.62,7); a.translate(0,.55,0); const b=new TT.ConeGeometry(.26,.45,7); b.translate(0,.85,0); return mergeG([a,b]); })(),
+        (()=>{ const a=new TT.CylinderGeometry(.05,.05,1,5); a.translate(0,.5,0); const b=new TT.ConeGeometry(.16,.5,5); b.translate(0,.95,0); return mergeG([a,b]); })() ];
+      const trunkG=(()=>{ const g=new TT.CylinderGeometry(.03,.05,.6,5); g.translate(0,.3,0); return g; })();
+      const LEAF=[['#46663a','#567a43','#3a5833','#62824a','#4d6e3e'],['#34502f','#3f5d36','#2e482b','#4a6739'],['#2a432b','#344f33','#243a25'],['#6f8f45','#7c9a4c','#5f8040','#86a356']];
+      // items [x,y,z,h,kind(0 활엽·1 소나무·2 침엽·3 대나무), tone, 폭배율]
+      const forest=(items,o)=>{ o=o||{}; const byK=[[],[],[],[]]; items.forEach(it=>byK[it[4]||0].push(it)); const M4=new TT.Matrix4(), Qt=new TT.Quaternion(), V=new TT.Vector3(), Sc=new TT.Vector3(), Eu=new TT.Euler(), c=new TT.Color(); const out=[];
+        byK.forEach((L,k)=>{ if(!L.length) return; const cm=new TT.MeshStandardMaterial({color:0xffffff,roughness:.92,flatShading:true}); const im=new TT.InstancedMesh(crownG[k],cm,L.length); const tm=(o.trunks!==false&&k!==3)?new TT.InstancedMesh(trunkG,K.M.trunk,L.length):null;
+          L.forEach((it,i)=>{ const h=it[3], w=h*(it[6]||1)*(k===3?.35:1); Eu.set(k===3?(((it[0]*3.1)%1)-.5)*.12:0,(it[0]*13.1+it[2]*7.7)%6.28,0); Qt.setFromEuler(Eu); V.set(it[0],it[1],it[2]); Sc.set(w,h,w); M4.compose(V,Qt,Sc); im.setMatrixAt(i,M4); if(tm) tm.setMatrixAt(i,M4); const P=(o.pal&&o.pal[k])||LEAF[k]; const t=it[5]===undefined?((it[0]*.37+it[2]*.61)%1+1)%1:it[5]; c.set(P[Math.floor(t*P.length)%P.length]).convertSRGBToLinear(); im.setColorAt(i,c); });
+          im.instanceMatrix.needsUpdate=true; if(im.instanceColor) im.instanceColor.needsUpdate=true; im.castShadow=!!o.cast; im.receiveShadow=true; (o.grp||K.life).add(im); out.push(im); if(tm){ tm.instanceMatrix.needsUpdate=true; tm.castShadow=!!o.cast; (o.grp||K.life).add(tm); } }); return out; };
+      const scatter=(x0,x1,z0,z1,sp,hf,ok,hs,kind)=>{ const L=[]; for(let z=z0;z<z1;z+=sp) for(let x=x0;x<x1;x+=sp){ const xx=x+(r()-.5)*sp*.9, zz=z+(r()-.5)*sp*.9; const h=hf(xx,zz); if(ok&&!ok(xx,zz,h)) continue; const s=hs?hs(xx,zz,h):sp*1.2; const kd=typeof kind==='function'?kind(xx,zz,h):(kind===undefined?(r()<.45?1:0):kind); L.push([xx,h-s*.08,zz,s*(.8+r()*.45),kd,r(),.85+r()*.4]); } return L; };
+      const hsh=(x,z)=>{ let n=Math.imul(x|0,374761393)+Math.imul(z|0,668265263)|0; n=Math.imul(n^(n>>>13),1274126177); return ((n^(n>>>16))>>>0)/4294967296; };
+      const vn=(x,z)=>{ const xi=Math.floor(x), zi=Math.floor(z), xf=x-xi, zf=z-zi; const u=xf*xf*(3-2*xf), v=zf*zf*(3-2*zf); const a=hsh(xi,zi), b=hsh(xi+1,zi), c=hsh(xi,zi+1), d=hsh(xi+1,zi+1); return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v; };
+      const fbm=(x,z,o)=>{ let s=0, a=.5, f=1; for(let i=0;i<(o||4);i++){ s+=a*vn(x*f,z*f); a*=.5; f*=2.03; } return s; };
+      const ridged=(x,z)=>{ let s=0,a=.5,f=1; for(let i=0;i<3;i++){ s+=a*(1-Math.abs(vn(x*f,z*f)*2-1)); a*=.5; f*=2.1; } return s; };
+      const ss=t=>{ t=Math.min(1,Math.max(0,t)); return t*t*(3-2*t); };
+      const peaks=(x,z,pk)=>{ let h=0; for(let i=0;i<pk.length;i++){ const q=pk[i]; const ax=(x-q[0])/q[2], az=(z-q[1])/q[3]; const d2=ax*ax+az*az; if(d2<1){ const d=Math.sqrt(d2); const e=1-ss(d); h=Math.max(h,q[4]*Math.pow(e,q[5]||1.3))+q[4]*.04*(1-d)*(1-d); } } return h; };
+      // 산색: 숲 녹색 변주 + 급경사 바위 + 거리에 따라 푸른 대기색(겹겹 능선)
+      const mcol=(x,z,h,ny,o)=>{ o=o||{}; const n=fbm(x*.02,z*.02,2), m=vn(x*.006+5,z*.006); let c=[.2+.07*n,.29+.08*n,.16+.05*n]; if(m>.6) c=[c[0]*.85+.05,c[1]*.9+.04,c[2]*.85]; const rock=(o.cliff||0)*ss((.62-ny)/.14); if(rock>0){ const rc=[.55+.08*n,.53+.07*n,.49+.06*n]; c=c.map((v,i)=>v+(rc[i]-v)*Math.min(1,rock)); } if(o.far){ const d=Math.hypot(x-(o.cx||0),z-(o.cz||0)); const f=ss((d-o.far)/(o.farW||700))*.62; const bc=o.haze||[.62,.69,.76]; c=c.map((v,i)=>v+(bc[i]-v)*f); } return c; };
+      // 뷰어 기본 대지(잔디판·길)를 이 모형이 떠 있는 동안만 숨김(다른 모형으로 바뀌면 원상)
+      const own=()=>{ const root=K.bldg.parent; if(!root) return; const site=root.children[0]; if(!site||site===K.bldg||site===K.life||!site.isGroup) return; const mk=new TT.Object3D(); K.life.add(mk); const on=()=>mk.parent===K.life&&!!K.life.parent&&K.life.visible;
+        const hide=o=>{ try{ Object.defineProperty(o,'visible',{configurable:true,get(){ return !on(); },set(v){}}); }catch(e){} }; site.children.forEach(hide); const add0=site.add; site.add=function(...a){ if(mk.parent===K.life&&K.life.parent) a.forEach(hide); return add0.apply(this,a); }; };
+      // 물(계곡·강): 반사·투명 — 지형 위 평면 또는 폴리곤
+      const WATER=new TT.MeshStandardMaterial({color:0x4f7d8c,roughness:.05,metalness:.02,transparent:true,opacity:.86}); WATER.color.convertSRGBToLinear();
+      return {axis,r,tex,wallTex,masTex,tmat,terrain,forest,scatter,fbm,ridged,vn,ss,peaks,mcol,own,WATER,mergeG}; })();
+    const tidy=keep=>{ const L=K.life, add0=L.add; L.add=function(...a){ a.forEach(o=>{ if(keep&&o.isMesh&&!o.isInstancedMesh&&o.material===K.M.people) return; o.visible=false; }); return add0.apply(this,a); }; };
+    const BLK=(()=>{ const TT=T;
+      const blocks=(list)=>{ if(!list.length) return; const n=list.length*30, P=new Float32Array(n*3), N=new Float32Array(n*3), Cc=new Float32Array(n*3); let o=0; const c=new TT.Color();
+        const quad=(a,b,cc,d,nx,ny,nz,k)=>{ for(const q of [a,b,cc,a,cc,d]){ P[o*3]=q[0]; P[o*3+1]=q[1]; P[o*3+2]=q[2]; N[o*3]=nx; N[o*3+1]=ny; N[o*3+2]=nz; Cc[o*3]=c.r*k; Cc[o*3+1]=c.g*k; Cc[o*3+2]=c.b*k; o++; } };
+        for(const [x,z,w,d,h,hex] of list){ c.set(hex).convertSRGBToLinear(); const X0=x-w/2,X1=x+w/2,Z0=z-d/2,Z1=z+d/2; quad([X0,h,Z1],[X1,h,Z1],[X1,h,Z0],[X0,h,Z0],0,1,0,1.06); quad([X0,0,Z1],[X1,0,Z1],[X1,h,Z1],[X0,h,Z1],0,0,1,.95); quad([X1,0,Z0],[X0,0,Z0],[X0,h,Z0],[X1,h,Z0],0,0,-1,.9); quad([X1,0,Z1],[X1,0,Z0],[X1,h,Z0],[X1,h,Z1],1,0,0,.86); quad([X0,0,Z0],[X0,0,Z1],[X0,h,Z1],[X0,h,Z0],-1,0,0,.86); }
+        const g=new TT.BufferGeometry(); g.setAttribute('position',new TT.BufferAttribute(P,3)); g.setAttribute('normal',new TT.BufferAttribute(N,3)); g.setAttribute('color',new TT.BufferAttribute(Cc,3)); const m=new TT.Mesh(g,new TT.MeshStandardMaterial({vertexColors:true,roughness:.9})); m.receiveShadow=true; K.life.add(m); return m; };
+      return blocks; })();
+    const LIFE=f=>{ const pc=K.cur; K.cur=K.life; f(); flush(); K.cur=pc; };
+    const boxG=(w,h,d)=>{ const g=new T.BoxGeometry(w,h,d); g.translate(0,h/2,0); return g; };
+    K.layer(0); E.own();
+    const CON=TX.ando('kg','#aaa498'), CON2=TX.ando('kg2','#9c968a'), CON3=TX.ando('kg3','#b8b2a5'), FR=K.col(0x2c2f31,{roughness:.5,metalness:.5}), GLW=K.col(0x34434b,{roughness:.06,metalness:.72}), GLL=K.col(0x9fb7bf,{roughness:.05,metalness:.5,transparent:true,opacity:.5,depthWrite:false}), PAV=K.col(0xb9b2a5,{roughness:.95}), GRV=K.col(0xd6d0c2,{roughness:1}), GRS=K.col(0x6f8a52,{roughness:1}), STN=K.col(0x8f8b84,{roughness:.9}), STD=K.col(0x6e6a64,{roughness:.9}), WTR=K.col(0x4f6f78,{roughness:.06,metalness:.1,transparent:true,opacity:.85});
+    const TX0=-10, TZ0=-5, TW=34, TD=26, H1=5.4, FH=3.75, NF=8, BD=1.5;
+    const yF=f=>f===0?0:H1+(f-1)*FH, ROOF=H1+(NF-1)*FH;
+    // 땅: 광장 포장 + 남쪽 정원(자갈·잔디)
+    B(15,-.3,0,120,.3,80,PAV);
+    // ---- 고층동 ----
+    // 1층: 유리 로비(안으로 들임) + 둘레 기둥
+    B(TX0,0,TZ0,TW-4,.15,TD-4,K.col(0x7e7a73,{roughness:.7}));
+    for(const [x,z,w,d] of [[TX0,TZ0+TD/2-2,TW-4,.08],[TX0,TZ0-TD/2+2,TW-4,.08],[TX0+TW/2-2,TZ0,.08,TD-4],[TX0-TW/2+2,TZ0,.08,TD-4]]) B(x,0,z,w,H1-.3,d,GLW);
+    { const items=[]; for(let x=TX0-TW/2+2;x<=TX0+TW/2-1.9;x+=1.9){ items.push([x,0,TZ0+TD/2-1.95,0,1,1,1]); items.push([x,0,TZ0-TD/2+1.95,0,1,1,1]); } for(let z=TZ0-TD/2+2;z<=TZ0+TD/2-1.9;z+=1.9){ items.push([TX0+TW/2-1.95,0,z,0,1,1,1]); items.push([TX0-TW/2+1.95,0,z,0,1,1,1]); } inst(boxG(.08,H1-.3,.1),FR,items); }
+    { const items=[]; for(const fx of [-.5,-.25,0,.25,.5]) for(const fz of [-.5,.5]) items.push([TX0+fx*(TW-2),0,TZ0+fz*(TD-2),0,1,1,1]); for(const fz of [-.25,.25]) for(const fx of [-.5,.5]) items.push([TX0+fx*(TW-2),0,TZ0+fz*(TD-2),0,1,1,1]); inst(boxG(.7,H1,.9),CON,items); }
+    B(TX0,0,TZ0,10,H1,8,CON2); // 코어(로비 가운데)
+    flush();
+    // 2~8층: 층마다 바닥판 + 발코니 + 작은 보(한 쌍씩) + 난간 + 안쪽 유리벽
+    const beams=[], rails=[], posts=[], mull=[];
+    for(let f=1;f<NF;f++){ K.layer(f); const y=yF(f), yb=y-.28; // 바닥판 윗면 y
+      B(TX0,yb,TZ0,TW+2*BD,.28,TD+2*BD,CON3);
+      // 안쪽 유리벽(발코니 뒤)
+      for(const [x,z,w,d] of [[TX0,TZ0+TD/2,TW,.08],[TX0,TZ0-TD/2,TW,.08],[TX0+TW/2,TZ0,.08,TD],[TX0-TW/2,TZ0,.08,TD]]) B(x,y,z,w,FH-.3,d,GLW);
+      B(TX0,y+FH-.75,TZ0,TW+.2,.45,TD+.2,CON2); // 유리 위 보(문틀 위 인방)
+      // 작은 보: 바닥판 아래로 내민 서까래(두께 .114, 깊이 .38, 길이 = 발코니 깊이 + .3)
+      const sp=1.8;
+      for(let x=TX0-TW/2-BD+.6;x<=TX0+TW/2+BD-.5;x+=sp) for(const o of [-.17,.17]) for(const s of [-1,1]) beams.push([x+o,yb-.38,TZ0+s*(TD/2+BD/2-.15),0,.114,.38,BD+.3]);
+      for(let z=TZ0-TD/2+.6;z<=TZ0+TD/2-.5;z+=sp) for(const o of [-.17,.17]) for(const s of [-1,1]) beams.push([TX0+s*(TW/2+BD/2-.15),yb-.38,z+o,0,BD+.3,.38,.114]);
+      // 난간: 가는 콘크리트 기둥 + 가로대 2줄
+      for(const [x,z,w,d] of [[TX0,TZ0+TD/2+BD-.08,TW+2*BD,.14],[TX0,TZ0-TD/2-BD+.08,TW+2*BD,.14],[TX0+TW/2+BD-.08,TZ0,.14,TD+2*BD],[TX0-TW/2-BD+.08,TZ0,.14,TD+2*BD]]){ rails.push([x,y+.95,z,0,w,.16,d]); rails.push([x,y+.45,z,0,w,.1,d]); }
+      for(let x=TX0-TW/2-BD+.1;x<=TX0+TW/2+BD;x+=1.8) for(const s of [-1,1]) posts.push([x,y,TZ0+s*(TD/2+BD-.08),0,1,1,1]);
+      for(let z=TZ0-TD/2-BD+.1;z<=TZ0+TD/2+BD;z+=1.8) for(const s of [-1,1]) posts.push([TX0+s*(TW/2+BD-.08),y,z,0,1,1,1]);
+      for(let x=TX0-TW/2+1.9;x<TX0+TW/2;x+=1.9) for(const s of [-1,1]) mull.push([x,y,TZ0+s*(TD/2+.05),0,1,1,1]);
+      for(let z=TZ0-TD/2+1.9;z<TZ0+TD/2;z+=1.9) for(const s of [-1,1]) mull.push([TX0+s*(TW/2+.05),y,z,0,1,1,1]);
+      flush(); }
+    K.layer(NF);
+    inst(boxG(1,1,1),CON3,beams); inst(boxG(1,1,1),CON3,rails); inst(boxG(.14,1.05,.14),CON3,posts); inst(boxG(.07,FH-.3,.1),FR,mull);
+    // 지붕: 처마 깊은 지붕판(작은 보 포함) + 옥탑(코어 위 2층, 조형적인 콘크리트 테)
+    B(TX0,ROOF-.32,TZ0,TW+2*BD+.6,.45,TD+2*BD+.6,CON3);
+    { const items=[]; for(let x=TX0-TW/2-BD;x<=TX0+TW/2+BD;x+=1.8) for(const o of [-.17,.17]) for(const s of [-1,1]) items.push([x+o,ROOF-.72,TZ0+s*(TD/2+BD/2),0,.114,.4,BD+.6]); inst(boxG(1,1,1),CON3,items); }
+    B(TX0,ROOF+.13,TZ0,TW+2*BD+.6,.9,.2,CON2);
+    B(TX0,ROOF+.13,TZ0,14,6.4,10,CON); B(TX0,ROOF+6.5,TZ0,17,.5,13,CON3); for(const s of [-1,1]) B(TX0+s*8.2,ROOF+.13,TZ0,.5,6.4,12,CON2);
+    { const items=[]; for(let x=TX0-8;x<=TX0+8;x+=1.6) for(const s of [-1,1]) items.push([x,ROOF+6.1,TZ0+s*6,0,.114,.4,2]); inst(boxG(1,1,1),CON3,items); }
+    flush();
+    // ---- 저층동: 필로티(1층 비움) + 2·3층 — 같은 발코니·작은 보 언어 ----
+    K.layer(0);
+    const LX=38, LZ=-3, LW=62, LD=18, LH1=5.4, LF=3.9;
+    { const items=[]; for(let x=LX-LW/2+3;x<=LX+LW/2-2;x+=6.2) for(const z of [LZ-LD/2+2.5,LZ+LD/2-2.5]) items.push([x,0,z,0,1,1,1]); inst(boxG(.8,LH1,1.1),CON,items); }
+    B(LX-LW/2+8,0,LZ,9,LH1,7,GLW); B(LX-LW/2+8,0,LZ,9.2,.15,7.2,K.col(0x7e7a73)); B(LX+14,0,LZ,6,LH1,5,CON2); // 1층 작은 유리 홀·계단실(추정)
+    flush();
+    for(let f=0;f<2;f++){ K.layer(1+f); const y=LH1+f*LF; B(LX,y-.28,LZ,LW+2*BD,.28,LD+2*BD,CON3);
+      for(const [x,z,w,d] of [[LX,LZ+LD/2,LW,.08],[LX,LZ-LD/2,LW,.08],[LX+LW/2,LZ,.08,LD],[LX-LW/2,LZ,.08,LD]]) B(x,y,z,w,LF-.3,d,GLW);
+      B(LX,y+LF-.75,LZ,LW+.2,.45,LD+.2,CON2);
+      const bm=[], rl=[], ms=[];
+      for(let x=LX-LW/2-BD+.6;x<=LX+LW/2+BD-.5;x+=1.8) for(const o of [-.17,.17]) for(const s of [-1,1]) bm.push([x+o,y-.66,LZ+s*(LD/2+BD/2-.15),0,.114,.38,BD+.3]);
+      for(let z=LZ-LD/2+.6;z<=LZ+LD/2-.5;z+=1.8) for(const o of [-.17,.17]) for(const s of [-1,1]) bm.push([LX+s*(LW/2+BD/2-.15),y-.66,z+o,0,BD+.3,.38,.114]);
+      for(const [x,z,w,d] of [[LX,LZ+LD/2+BD-.08,LW+2*BD,.14],[LX,LZ-LD/2-BD+.08,LW+2*BD,.14],[LX+LW/2+BD-.08,LZ,.14,LD+2*BD]]){ rl.push([x,y+.95,z,0,w,.16,d]); rl.push([x,y+.45,z,0,w,.1,d]); }
+      for(let x=LX-LW/2+1.9;x<LX+LW/2;x+=1.9) for(const s of [-1,1]) ms.push([x,y,LZ+s*(LD/2+.05),0,1,1,1]);
+      inst(boxG(1,1,1),CON3,bm); inst(boxG(1,1,1),CON3,rl); inst(boxG(.07,LF-.3,.1),FR,ms); flush(); }
+    K.layer(3); B(LX,LH1+2*LF-.3,LZ,LW+2*BD+.6,.45,LD+2*BD+.6,CON3); { const items=[]; for(let x=LX-LW/2-BD;x<=LX+LW/2+BD;x+=1.8) for(const o of [-.17,.17]) for(const s of [-1,1]) items.push([x+o,LH1+2*LF-.7,LZ+s*(LD/2+BD/2),0,.114,.4,BD+.6]); inst(boxG(1,1,1),CON3,items); } flush();
+    // ---- 남쪽 정원: 둔덕(쓰키야마)·자갈 물결·아지석·소나무·연못(추정 배치) ----
+    K.layer(0);
+    B(-8,0,25,56,.06,22,GRV); B(-8,0,25,56.4,.25,.3,STN);
+    { const items=[]; for(let z=16;z<36;z+=.9) items.push([-8,.06,z,0,52,.02,.08]); inst(boxG(1,1,1),K.col(0xc4bdae,{roughness:1}),items,false); }
+    { const g=new T.SphereGeometry(1,20,10,0,Math.PI*2,0,Math.PI/2); for(const [x,z,w,d,h] of [[-26,22,14,9,2.6],[-18,31,9,6,1.6],[8,20,10,7,2.0]]){ const gg=g.clone(); gg.scale(w/2,h,d/2); gg.translate(x,.06,z); Q(GRS,gg); } }
+    S(WTR,(u,v)=>{ const a=u*Math.PI*2; const r=v*(5+1.2*Math.sin(a*3)); return [2+Math.cos(a)*r*1.5,.12,30+Math.sin(a)*r]; },24,2);
+    { let sd=5; const rr=()=>{ sd=(sd*16807)%2147483647; return sd/2147483647; }; const items=[]; for(let i=0;i<26;i++){ const x=-32+rr()*48, z=16+rr()*19; items.push([x,0,z,rr()*3,.6+rr()*1.4,.4+rr()*1.1,.5+rr()*1.0]); } const g=new T.DodecahedronGeometry(.6,0); g.translate(0,.35,0); inst(g,STD,items); }
+    for(const [x,z,h] of [[-28,20,6.5],[-14,33,5.2],[10,18,6],[18,32,5]]) pine(x,.0,z,h);
+    flush();
+    // ---- 배경(K.life): 다카마쓰 시가 — 서쪽 본관(2000년 고층 청사, 개략), 넓은 도로, 중저층 블록, 멀리 산(시운산·야시마 방향) ----
+    LIFE(()=>{
+      const LOT=[-45,76,-30,40];
+      const MT=[[-900,-1500,700,400,180,1.4],[1200,-1300,600,350,220,1.4],[300,-1700,700,300,260,1.5]];
+      E.terrain(-2200,2200,-2200,2200,80,80,(x,z)=>E.peaks(x,z,MT),(x,z,h,ny)=>h>3?E.mcol(x,z,h,ny,{far:600,cx:0,cz:0}):[.55,.55,.53],LOT);
+      const ASP=K.col(0x4f5255,{roughness:.95}); B(0,.03,52,3200,.05,22,ASP); B(90,.03,0,16,.05,3200,ASP); B(-150,.03,0,14,.05,3200,ASP);
+      // 서쪽 본관(2000): 고층 타워 + 저층부 — 개략
+      B(-95,0,-10,80,16,50,K.col(0xb7b3ab,{roughness:.8})); B(-100,0,-12,38,110,30,K.col(0xc4c2bc,{roughness:.6})); for(let y=20;y<108;y+=4.2) B(-100,y,3.05,36,1.6,.1,GLW); B(-100,110,-12,30,6,22,K.col(0x9b9892));
+      const BL=[]; for(let x=-1400;x<1400;x+=36) for(let z=-1400;z<1400;z+=36){ const xx=x+(E.r()-.5)*8, zz=z+(E.r()-.5)*8; if(xx>-150&&xx<90&&zz>-50&&zz<64) continue; if(Math.abs(zz-52)<16||Math.abs(xx-90)<14||Math.abs(xx+150)<12) continue; if(Math.hypot(xx,zz)>1300) continue; if(Math.abs(xx)<260&&zz>64&&zz<420) continue; BL.push([xx,zz,22+E.r()*12,20+E.r()*12,8+E.r()*30,E.r()<.4?'#a9adb2':E.r()<.6?'#c4bfb6':'#8f9399']); } BLK(BL);
+      for(let x=-100;x<=90;x+=12) tree(x,0,66,8);
+    });
+    tidy(1);
+  }});

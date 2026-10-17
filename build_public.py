@@ -59,13 +59,13 @@ s = s.replace('(프로토타입)', '(베타)')
 # 정교 모형(BSIG) build 함수는 따로 떼어 data/bsig.js로 (첫 화면 JS를 1.4MB 줄임 — 아이패드 등에서 파싱·메모리 부담)
 import subprocess, json as _json, hashlib as _hl
 _BSIG_SPLIT = r'''// build_public.py가 부른다: stdin = 전체 HTML, stdout = JSON {html, data}
-// BSIG 블록(const BSIG={ … };)에서 build 함수만 떼어 data/bsig.js로, 페이지엔 메타(치수·설명·도면)만 남긴다.
+// BSIG 블록(const BSIG={ … };)에서 build 함수만 떼어 data/bsig/<id>.js로(건물마다 한 파일), 페이지엔 메타(치수·설명·도면)만 남긴다.
 let s=require('fs').readFileSync(0,'utf8'); const L=s.split('\n');
 const a=L.findIndex(l=>l.startsWith('const BSIG={')); let b=a+1; while(!/^};\s*$/.test(L[b])) b++;
 const B=new Function(L.slice(a,b+1).join('\n')+';return BSIG')();
 const meta={}, fns=[];
 for(const id of Object.keys(B)){ const o=B[id]; const {build,...m}=o; meta[id]=m; let f=build.toString(); if(/^build\s*\(/.test(f)) f='function'+f.slice(5); else if(/^\(/.test(f)) f='function'+f; fns.push(JSON.stringify(id)+':'+f); }
-const data='__bsigFill({'+fns.join(',\n')+'});\n';
+const data={}; for(const x of fns){ const i=x.indexOf(':'); data[JSON.parse(x.slice(0,i))]='__bsigFill({'+x+'});\n'; }
 L.splice(a,b-a+1,'const BSIG='+JSON.stringify(meta)+';');
 process.stdout.write(JSON.stringify({html:L.join('\n'),data}));
 '''
@@ -73,8 +73,15 @@ _r = subprocess.run(['node', '-e', _BSIG_SPLIT], input=s.encode('utf-8'), captur
 if _r.returncode == 0:
     _o = _json.loads(_r.stdout.decode('utf-8'))
     (dist / 'data').mkdir(exist_ok=True)
-    (dist / 'data' / 'bsig.js').write_text(_o['data'], encoding='utf-8')
-    _v = _hl.md5(_o['data'].encode('utf-8')).hexdigest()[:8]
+    import shutil as _shb
+    _bd = dist / 'data' / 'bsig'
+    if _bd.exists(): _shb.rmtree(_bd)
+    _bd.mkdir()
+    if (dist / 'data' / 'bsig.js').exists(): (dist / 'data' / 'bsig.js').unlink()
+    _hh = _hl.md5()
+    for _id, _src in sorted(_o['data'].items()):
+        (_bd / (_id + '.js')).write_text(_src, encoding='utf-8'); _hh.update(_src.encode('utf-8'))
+    _v = _hh.hexdigest()[:8]
     s = _o['html'].replace("const BSIG_V='src';", "const BSIG_V='%s';" % _v)
 else:
     print('경고: BSIG 분리 실패 — 한 파일로 둡니다', _r.stderr.decode('utf-8')[:400])

@@ -274,3 +274,11 @@
 - kbSlugs가 자모(ㄱ-ㅎ) 허용 (예: 한옥-배치-ㄱ자-ㄷ자-ㅁ자).
 - 안개: `pgFogLife(T,sc,B,c)` — 정교 모형(P.sig)은 K.life 바운딩 반경까지 fog.far 확장(최대 4200), near=far*.28. 월지·통도사 배경 산이 하얗게 날아가던 문제 해결. PGV fit + 썸네일 두 곳에서 호출.
 - v15 공용 배경 헬퍼의 WATER(12개 모형): roughness .05, metalness .02, color 0x4f7d8c → 큰 하얀 태양 반사 얼룩 대신 작은 반사점.
+
+## S2 · v18d (2026-10-17 오후)
+- **정교 모형 +12 → 112채**(서브에이전트 2조, 패치 `scratch/s2/JA.js`·`JB.js`, 원본 `s2/ja/`·`s2/jb/`, 브리프 `s2/BRIEF.md`): 일본 전통 horyuji·todaiji·ise·kiyomizu·itsukushima·ginkakuji / 일본 현대 yoyogi·nmwa·tokyoforum·kagawa·yokohama·moriyama. 모두 BSIG_SITE 'town', 추정 치수는 build 주석 "// 추정:". itsukushima는 eye 뷰가 바다 쪽 오토리이 너머로 보이도록 배치 전체를 약 40° 돌려 둠(front 뷰 비스듬).
+- 전시실 9방: 새 `japan` '일본의 나무와 콘크리트'(16채 — byodoin·kinkakuji·himeji·katsura를 신전과 대성당에서 옮김).
+- **개선 3채**(`s2/FIX.js`): 63bldg 재작성(기도하는 손 곡선 테이퍼 78→50m, 2층마다 단, 금빛 커튼월 텍스처, 옥탑·안테나, 둔치), namhan 성벽 앞 숲 비움, bongjeong 시점 힌트.
+- **eye 시점 힌트**: BSIG 항목에 선택 `eye:{az,el,dist,cy}`(az π/2=정면 +z, dist는 기본식 b*0.95 대신 배율) → PGV `api.view('eye')`가 읽음(가까운 방향으로 회전). 지금 63bldg·namhan·bongjeong. `scratch/v13/merge.js`가 eye 키를 직렬화하도록 고침.
+- **정교 모형 파일을 건물마다**: build_public.py가 `dist/data/bsig/<id>.js` 112개(평균 25KB, 최대 58KB)로 쪼갬 — 한 건물 열 때 2.8MB 대신 그 건물 파일만. 런타임 `bsigLoad(id)`(id 없으면 전부). `data/bsig.js`는 더 안 만듦. (BSIG_ENV 공용화로 소스 자체를 줄이는 건 여전히 남은 일 — 이제 급하지 않음)
+- **홈 표지 사진**: 불 켜진 레이어 `.pimg.on` 3장은 data-src로 두고 첫 스크롤·터치 또는 load+1.2초 뒤에 불러옴(reduced-motion이면 즉시) → 첫 화면 다운로드 약 650KB(데스크톱)/250KB(모바일 960) 감소.

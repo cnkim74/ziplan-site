@@ -1,0 +1,143 @@
+__bsigFill({"geunjeongjeon":function(K){
+// 실측: 정면 5칸 도리칸 17·21·22·21·17척(≈29.7 m) · 측면 5칸 보칸 17·11·11·11·17척(≈20.3 m) · 기둥 높이 16척(≈4.85 m, 1척≈0.303 m) · 내9포·외7포 다포 · 추녀마루 잡상 7
+// 출처: 한국어 위키백과 「경복궁 근정전」(기둥 높이·주칸·공포·잡상) · 한국민족문화대백과 E0002441 「경복궁 근정문 및 행각」(근정문 정면 3칸 측면 2칸 중층 우진각, 행각 복랑·맞배, 일화문·월화문은 근정문 좌우, 융문루·융무루는 동·서 회랑 앞쪽 1/3 지점)
+// 추정 치수: 하월대 54×44 m·상월대 42×32 m(각 1.5 m), 기단 0.9 m, 용마루 약 23 m, 행각 안쪽 마당 약 100×97 m, 품계석 24(동서 12씩, 3 m 간격), 공포 띠 높이 1.3 m
+    const T=K.T; const RED=K.col(0x9a3b2a,{roughness:.8}), GRN=K.col(0x2f6b4f), BLU=K.col(0x2b5a8a), WH=K.col(0xe9e2d2), GW=K.M.giwa, RU=K.col(0x5a4a3c), DK=K.col(0x2e3a30,{roughness:.6}), ST=K.M.stone.clone(), PV=K.M.pave, BR=K.col(0x6b4b36), DR=K.col(0x3a3a3a), OC=K.col(0xc9a86a), SG=K.col(0xbdb6a8,{roughness:.95}), SG2=K.col(0xa8a194,{roughness:.95}), SG3=K.col(0xd4cfc3,{roughness:.9}), WLB=K.col(0x7d7466,{roughness:.95}), DOOR=K.col(0x7a4a2c,{roughness:.8}); ST.color.set(0xd9d3c6); ST.color.convertSRGBToLinear();
+    const roofHF=(cx,ye,cz,E,D,H,o)=>{ o=o||{}; const dt=o.dt||0, so=o.sori||0, thk=o.thk||.3, sw=!!o.swap, mt=o.mat, um=o.under||mt; const EE=sw?D:E, DD=sw?E:D; const R=Math.max(0,EE-DD*(1-dt));
+      const g=t=>1-Math.pow(1-Math.min(1,Math.max(0,t)),1.7); const y0=ye+H*(1-g(dt));
+      const yf=(a,b)=>{ const aa=Math.abs(a)/(EE/2), bb=Math.abs(b)/(DD/2); const ta=Math.abs(a)>R/2?(Math.abs(a)-R/2)/(DD/2)+dt:0; return ye+H*(1-g(Math.max(bb,ta)))+so*Math.pow(aa,3)*Math.pow(bb,3); };
+      const P=(a,b,y)=>sw?[cx+b,y,cz+a,b/2,a/2]:[cx+a,y,cz+b,a/2,b/2];
+      const sheet=(a0,a1,m,dy,n)=>K.surf((u,v)=>{ const a=a0+(a1-a0)*u, b=-DD/2+DD*v; return P(a,b,yf(a,b)+dy); },n,o.nv||12,m);
+      const segs=(dt>0&&dt<1)?[[-EE/2,-R/2,8],[-R/2,R/2,20],[R/2,EE/2,8]]:[[-EE/2,EE/2,o.nu||32]];
+      for(const [a0,a1,n] of segs){ sheet(a0,a1,mt,0,n); sheet(a0,a1,um,-thk,n); }
+      K.surf((u,v)=>{ const s=u*4, k=Math.floor(s), f=s-k; let a,b; if(k===0){a=-EE/2+EE*f;b=-DD/2;} else if(k===1){a=EE/2;b=-DD/2+DD*f;} else if(k===2){a=EE/2-EE*f;b=DD/2;} else {a=-EE/2;b=DD/2-DD*f;} const y=yf(a,b); return P(a,b,y-thk+thk*v); },64,1,um);
+      if(dt>0){ for(const s of [-1,1]){ const a=s*R/2; K.surf((u,v)=>{ const b=-dt*DD/2+dt*DD*u; const yt=yf(a-s*.02,b), yb=y0-thk; return P(a-s*.05,b,yb+(yt-yb)*v); },12,1,o.gmat||um); } }
+      if(R>.6&&o.ridge!==false) K.b(cx,ye+H-.15,cz,sw?(o.rw||.8):R+.5,o.rh||.5,sw?R+.5:(o.rw||.8),o.rmat||K.col(0x2b2a28)); return yf; };
+    const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
+    const inst=(geo,mat,items,cast)=>{ if(!items.length) return null; const m=new T.InstancedMesh(geo,mat,items.length); const M4=new T.Matrix4(),Q=new T.Quaternion(),S=new T.Vector3(),V=new T.Vector3(),E=new T.Euler(); items.forEach((it,i)=>{ V.set(it[0],it[1],it[2]); E.set(0,it[3]||0,0); Q.setFromEuler(E); S.set(it[4]||1,it[5]||1,it[6]||1); M4.compose(V,Q,S); m.setMatrixAt(i,M4); }); m.instanceMatrix.needsUpdate=true; return put(m,cast); };
+    const bx=(x,y,z,w,h,d,ry)=>{ const g=new T.BoxGeometry(w,h,d); if(ry) g.rotateY(ry); g.translate(x,y+h/2,z); return g; };
+    const merge=(geos,mat,cast)=>{ if(!geos.length) return null; let n=0; const G=geos.map(g=>g.index?g.toNonIndexed():g); for(const g of G) n+=g.attributes.position.count; const Pa=new Float32Array(n*3),Na=new Float32Array(n*3),Ua=new Float32Array(n*2); let o=0; for(const g of G){ Pa.set(g.attributes.position.array,o*3); Na.set(g.attributes.normal.array,o*3); if(g.attributes.uv) Ua.set(g.attributes.uv.array,o*2); o+=g.attributes.position.count; } const g=new T.BufferGeometry(); g.setAttribute('position',new T.BufferAttribute(Pa,3)); g.setAttribute('normal',new T.BufferAttribute(Na,3)); g.setAttribute('uv',new T.BufferAttribute(Ua,2)); return put(new T.Mesh(g,mat),cast); };
+    const cylG=(r,h,seg,r2)=>{ const g=new T.CylinderGeometry(r2===undefined?r*.9:r2,r,h,seg||10); g.translate(0,h/2,0); return g; };
+    const boxG=(w,h,d)=>{ const g=new T.BoxGeometry(w,h,d); g.translate(0,h/2,0); return g; };
+    const stairs=(x,z,yt,yb,w,n,axis,dir,mat)=>{ const rise=(yt-yb)/n, run=.42; const gs=[]; for(let k=0;k<n-1;k++){ const h=yt-yb-(k+1)*rise, off=dir*(k+.5)*run; if(axis==='z') gs.push(bx(x,yb,z+off,w,h,run)); else gs.push(bx(x+off,yb,z,run,h,w)); } for(const s of [-1,1]){ const L=(n-1)*run; if(axis==='z') gs.push(bx(x+s*(w/2+.22),yb,z+dir*L/2,.44,yt-yb+.3,L+.3)); else gs.push(bx(x+dir*L/2,yb,z+s*(w/2+.22),L+.3,yt-yb+.3,.44)); } return merge(gs,mat||ST); };
+    const paving=(cx,y,cz,w,d,sx,sz,seed)=>{ const gs=[]; let r=seed||3; const rnd=()=>{ r=(r*9301+49297)%233280; return r/233280; }; for(let x=-w/2+sx*(.6+rnd()*.5);x<w/2-.5;x+=sx*(.75+rnd()*.5)) gs.push(bx(cx+x,y,cz,.09,.025,d)); for(let z=-d/2+sz*(.6+rnd()*.5);z<d/2-.5;z+=sz*(.75+rnd()*.5)) gs.push(bx(cx,y,cz+z,w,.025,.09)); return merge(gs,SG2,false); };
+    // 돌 난간: 변(x0,z0→x1,z1)에 법수(기둥)+난간대, gaps=[[t0,t1]] 비율 구간(계단 자리) 제외 — 법수는 인스턴스로 모음
+    const posts=[], beasts=[]; const railG=[];
+    const srail=(y,x0,z0,x1,z1,gaps)=>{ const L=Math.hypot(x1-x0,z1-z0), n=Math.round(L/3.2); const ax=Math.abs(x1-x0)>0; const segs=[]; let t=0; for(const [g0,g1] of (gaps||[])){ segs.push([t,g0]); t=g1; } segs.push([t,1]);
+      for(const [a,b] of segs){ if(b-a<.01) continue; const mx=x0+(x1-x0)*(a+b)/2, mz=z0+(z1-z0)*(a+b)/2, l=L*(b-a); railG.push(bx(mx,y+.62,mz,ax?l:.28,.22,ax?.28:l)); railG.push(bx(mx,y+.3,mz,ax?l:.2,.12,ax?.2:l)); const nb=Math.floor(l/.8); for(let i=0;i<nb;i++){ const tt=(i+.5)/nb; railG.push(bx(x0+(x1-x0)*(a+(b-a)*tt),y+.42,z0+(z1-z0)*(a+(b-a)*tt),.1,.2,.1)); } }
+      for(let i=0;i<=n;i++){ const t=i/n; const ing=(gaps||[]).some(([g0,g1])=>t>g0+.001&&t<g1-.001); if(ing) continue; posts.push([x0+(x1-x0)*t,y,z0+(z1-z0)*t]); if(i===0||i===n||(gaps||[]).some(([g0,g1])=>Math.abs(t-g0)<.001||Math.abs(t-g1)<.001)) beasts.push([x0+(x1-x0)*t,y+1.0,z0+(z1-z0)*t]); } };
+    // 다포 공포 띠: 처마선 따라 일정 간격으로 색 블록(녹·청 번갈아) + 살미 끝(황)
+    const dapo=(cx,y,cz,w,d,step)=>{ const a=[],b=[],c=[]; const ring=[]; for(let x=-w/2+step/2;x<w/2;x+=step){ ring.push([cx+x,cz-d/2,0],[cx+x,cz+d/2,0]); } for(let z=-d/2+step/2;z<d/2;z+=step){ ring.push([cx-w/2,cz+z,Math.PI/2],[cx+w/2,cz+z,Math.PI/2]); } ring.forEach((p,i)=>{ (i%2?a:b).push([p[0],y,p[1],p[2]]); c.push([p[0],y+.75,p[1],p[2]]); }); inst(boxG(.55,1.05,.9),GRN,a); inst(boxG(.55,1.05,.9),BLU,b); inst(boxG(.7,.3,1.4),OC,c); };
+    // ---- 0: 마당·행각·근정문·2단 월대 ----
+    // ---- 배경·바닥 공용(v13): 캔버스 질감(박석·마사토) · 높이장 지형(K.life — bbox 밖이라 썸네일 거리에 영향 없음) · 인스턴스 숲 ----
+    const E=(()=>{ const TT=K.T; let sd=97; const r=()=>{ sd=(sd*16807)%2147483647; return sd/2147483647; };
+      const C=(typeof window!=='undefined')?(window.__kTex13||(window.__kTex13={})):{};
+      const tex=(key,px,draw)=>{ if(C[key]) return C[key]; if(typeof document==='undefined') return null; const cv=document.createElement('canvas'); cv.width=cv.height=px; const g=cv.getContext('2d'); let s=31; const rr=()=>{ s=(s*16807)%2147483647; return s/2147483647; }; draw(g,px,rr); const t=new TT.CanvasTexture(cv); t.wrapS=t.wrapT=TT.RepeatWrapping; t.encoding=TT.sRGBEncoding; t.anisotropy=8; return C[key]=t; };
+      // 박석: 회색 화강석을 가로줄로 불규칙하게(줄 높이·돌 너비가 제각각), 줄눈은 어둡게 — 512 px = 9 m
+      const bakTex=()=>tex('bak',512,(g,N,rr)=>{ g.fillStyle='#6f6a61'; g.fillRect(0,0,N,N); const tones=['#a8a296','#b3ad9f','#9a9488','#a39d90','#aea89a','#958f83','#b8b2a4']; let y=0; while(y<N){ let h=Math.round(26+rr()*26); if(N-y<40) h=N-y; let x=-rr()*60; while(x<N){ const w=38+rr()*70; const j=()=>(rr()-.5)*5; g.fillStyle=tones[Math.floor(rr()*tones.length)]; for(const ox of [0,-N]){ g.beginPath(); g.moveTo(ox+x+2+j(),y+2+j()); g.lineTo(ox+x+w-2+j(),y+2+j()); g.lineTo(ox+x+w-2+j(),y+h-2+j()); g.lineTo(ox+x+2+j(),y+h-2+j()); g.closePath(); g.fill(); } x+=w; } y+=h; }
+        for(let i=0;i<4000;i++){ g.fillStyle=rr()<.5?'rgba(255,255,255,.10)':'rgba(40,36,30,.10)'; g.fillRect(rr()*N,rr()*N,1.5,1.5); } });
+      // 마사토: 옅은 황토 바탕(#d9cdb0) + 모래 알갱이 점 — 512 px = 7 m
+      const masTex=()=>tex('mas',512,(g,N,rr)=>{ g.fillStyle='#cfc1a0'; g.fillRect(0,0,N,N); for(let i=0;i<0;i++){ g.fillStyle=`rgba(${rr()<.5?'190,172,135':'232,224,204'},.07)`; const x=rr()*N,y=rr()*N,w=30+rr()*90; g.beginPath(); g.ellipse(x,y,w,w*.6,rr()*3,0,7); g.fill(); } const cs=['#bfae88','#dacfb4','#ae9d77','#9c8d6f','#c8b997']; for(let i=0;i<7000;i++){ g.fillStyle=cs[Math.floor(rr()*cs.length)]; const z=rr()<.85?1.2:2.4; g.fillRect(rr()*N,rr()*N,z,z); } });
+      const lin=(h)=>new TT.Color(h).convertSRGBToLinear();
+      const mat=(t,hex,tm,o)=>{ const m=new TT.MeshStandardMaterial(Object.assign({color:t?0xffffff:hex,map:t||null,roughness:.96},o||{})); if(!t) m.color.convertSRGBToLinear(); m.userData.tm=tm; m.userData.nocast=1; return m; };
+      const BAK=mat(bakTex(),0xb9b3a6,9), MAS=mat(masTex(),0xd9cdb0,7); if(BAK.map) BAK.color.setHex(0xd2cec6).convertSRGBToLinear(); if(MAS.map) MAS.color.setHex(0xd8d0c0).convertSRGBToLinear();
+      // 평면 바닥 한 장(월드 좌표 UV) → 병합 큐 Q가 있으면 그쪽으로
+      const plane=(m,x,y,z,w,d,q)=>{ const g=new TT.PlaneGeometry(w,d,1,1); g.rotateX(-Math.PI/2); g.translate(x,y,z); const p=g.attributes.position, uv=g.attributes.uv, tm=m.userData.tm||5; for(let i=0;i<p.count;i++) uv.setXY(i,p.getX(i)/tm,-p.getZ(i)/tm); if(q){ q(m,g); return null; } const me=new TT.Mesh(g,m); me.receiveShadow=true; (K.cur||K.layer(0)).add(me); return me; };
+      // 지형: hf(x,z) 높이, cf(x,z,h,ny) → [r,g,b](sRGB 0~1). life 그룹(그림자 안 던짐)
+      const terrain=(x0,x1,z0,z1,nx,nz,hf,cf,hole)=>{ // hole [hx0,hx1,hz0,hz1]: 그 사각형만 비움(격자선을 구멍 모서리에 맞춤) — 모형 바닥을 그대로 보이게
+        const ax=(a0,a1,n,e)=>{ const L=[]; for(let i=0;i<=n;i++) L.push(a0+(a1-a0)*i/n); if(e) e.forEach(v=>{ if(v>a0&&v<a1) L.push(v); }); L.sort((a,b)=>a-b); return L.filter((v,i)=>i===0||v-L[i-1]>.01); };
+        const XS=ax(x0,x1,nx,hole&&[hole[0],hole[1]]), ZS=ax(z0,z1,nz,hole&&[hole[2],hole[3]]); const W=XS.length, H=ZS.length, n=W*H; const Y=new Float32Array(n), P=new Float32Array(n*3), N=new Float32Array(n*3), Cc=new Float32Array(n*3);
+        for(let j=0;j<H;j++) for(let i=0;i<W;i++){ const k=j*W+i, x=XS[i], z=ZS[j]; Y[k]=hf(x,z); P[k*3]=x; P[k*3+1]=Y[k]; P[k*3+2]=z; }
+        const lc=v=>v<.04045?v*.0773993808:Math.pow(v*.9478672986+.0521327014,2.4);
+        for(let j=0;j<H;j++) for(let i=0;i<W;i++){ const k=j*W+i, i0=Math.max(0,i-1), i1=Math.min(W-1,i+1), j0=Math.max(0,j-1), j1=Math.min(H-1,j+1); const hx=(Y[j*W+i1]-Y[j*W+i0])/(XS[i1]-XS[i0]), hz=(Y[j1*W+i]-Y[j0*W+i])/(ZS[j1]-ZS[j0]); const L=Math.sqrt(hx*hx+1+hz*hz); N[k*3]=-hx/L; N[k*3+1]=1/L; N[k*3+2]=-hz/L; const v=cf(P[k*3],P[k*3+2],Y[k],1/L); Cc[k*3]=lc(v[0]); Cc[k*3+1]=lc(v[1]); Cc[k*3+2]=lc(v[2]); }
+        const I=[]; for(let j=0;j<H-1;j++) for(let i=0;i<W-1;i++){ if(hole){ const cx=(XS[i]+XS[i+1])/2, cz=(ZS[j]+ZS[j+1])/2; if(cx>hole[0]&&cx<hole[1]&&cz>hole[2]&&cz<hole[3]) continue; } const a=j*W+i, b=a+1, c=a+W, d=c+1; I.push(a,c,b,b,c,d); }
+        const g=new TT.BufferGeometry(); g.setAttribute('position',new TT.BufferAttribute(P,3)); g.setAttribute('normal',new TT.BufferAttribute(N,3)); g.setAttribute('color',new TT.BufferAttribute(Cc,3)); g.setIndex(new TT.BufferAttribute(new Uint32Array(I),1)); g.computeBoundingSphere();
+        const m=new TT.Mesh(g,new TT.MeshStandardMaterial({vertexColors:true,roughness:1})); m.receiveShadow=true; m.castShadow=false; K.life.add(m);
+        const bs=(A,v)=>{ let lo=0, hi=A.length-2; if(v<=A[0]) return 0; if(v>=A[hi+1]) return hi; while(lo<hi){ const md=(lo+hi+1)>>1; if(A[md]<=v) lo=md; else hi=md-1; } return lo; };
+        m.h=(x,z)=>{ const i=bs(XS,x), j=bs(ZS,z); const u=Math.min(1,Math.max(0,(x-XS[i])/(XS[i+1]-XS[i]))), v=Math.min(1,Math.max(0,(z-ZS[j])/(ZS[j+1]-ZS[j]))); const a=Y[j*W+i], b=Y[j*W+i+1], c=Y[(j+1)*W+i], d=Y[(j+1)*W+i+1]; return (a*(1-u)+b*u)*(1-v)+(c*(1-u)+d*u)*v; }; return m; };
+      // 숲: 나무 무리 — items [x,y,z,h,kind(0 활엽 둥근 수관,1 소나무 납작 수관,2 침엽 원뿔), tone 0~1]. 수관 + 줄기 InstancedMesh, 색은 인스턴스마다 다르게
+      const mergeG=gs=>{ const G=gs.map(g=>g.index?g.toNonIndexed():g); let n=0; for(const g of G) n+=g.attributes.position.count; const P=new Float32Array(n*3), N=new Float32Array(n*3); let o=0; for(const g of G){ P.set(g.attributes.position.array,o*3); N.set(g.attributes.normal.array,o*3); o+=g.attributes.position.count; } const g=new TT.BufferGeometry(); g.setAttribute('position',new TT.BufferAttribute(P,3)); g.setAttribute('normal',new TT.BufferAttribute(N,3)); return g; };
+      const crownG=[ (()=>{ const a=new TT.IcosahedronGeometry(.5,1); a.scale(1,.78,1); a.translate(0,.62,0); const b=new TT.IcosahedronGeometry(.3,0); b.translate(.22,.78,.1); return mergeG([a,b]); })(),
+        (()=>{ const a=new TT.IcosahedronGeometry(.5,0); a.scale(1.15,.42,1.0); a.translate(0,.82,0); const b=new TT.IcosahedronGeometry(.32,0); b.scale(1.1,.45,1); b.translate(-.25,.66,.12); return mergeG([a,b]); })(),
+        (()=>{ const a=new TT.ConeGeometry(.36,.62,7); a.translate(0,.55,0); const b=new TT.ConeGeometry(.26,.45,7); b.translate(0,.85,0); return mergeG([a,b]); })() ];
+      const trunkG=(()=>{ const g=new TT.CylinderGeometry(.03,.05,.6,5); g.translate(0,.3,0); return g; })();
+      const LEAF=[['#46663a','#567a43','#3a5833','#62824a','#4d6e3e'],['#34502f','#3f5d36','#2e482b','#4a6739'],['#2a432b','#344f33','#243a25']];
+      const forest=(items,o)=>{ o=o||{}; const byK=[[],[],[]]; items.forEach(it=>byK[it[4]||0].push(it)); const M4=new TT.Matrix4(), Qt=new TT.Quaternion(), V=new TT.Vector3(), Sc=new TT.Vector3(), Eu=new TT.Euler(), c=new TT.Color(); const out=[];
+        byK.forEach((L,k)=>{ if(!L.length) return; const cm=new TT.MeshStandardMaterial({color:0xffffff,roughness:.92,flatShading:true}); const im=new TT.InstancedMesh(crownG[k],cm,L.length); const tm=o.trunks!==false?new TT.InstancedMesh(trunkG,K.M.trunk,L.length):null;
+          L.forEach((it,i)=>{ const h=it[3], w=h*(it[6]||1); Eu.set(0,(it[0]*13.1+it[2]*7.7)%6.28,0); Qt.setFromEuler(Eu); V.set(it[0],it[1],it[2]); Sc.set(w,h,w); M4.compose(V,Qt,Sc); im.setMatrixAt(i,M4); if(tm) tm.setMatrixAt(i,M4); const P=LEAF[k]; const t=it[5]===undefined?((it[0]*.37+it[2]*.61)%1+1)%1:it[5]; c.set(P[Math.floor(t*P.length)%P.length]).convertSRGBToLinear(); im.setColorAt(i,c); });
+          im.instanceMatrix.needsUpdate=true; if(im.instanceColor) im.instanceColor.needsUpdate=true; im.castShadow=!!o.cast; im.receiveShadow=true; (o.grp||K.life).add(im); out.push(im); if(tm){ tm.instanceMatrix.needsUpdate=true; tm.castShadow=!!o.cast; (o.grp||K.life).add(tm); } }); return out; };
+      // 숲 흩뿌리기: 영역 [x0,x1,z0,z1], 간격 sp, 높이 함수 hf, 조건 ok(x,z,h)→false면 생략, 나무 크기 hs(x,z,h)
+      const scatter=(x0,x1,z0,z1,sp,hf,ok,hs,kind)=>{ const L=[]; for(let z=z0;z<z1;z+=sp) for(let x=x0;x<x1;x+=sp){ const xx=x+(r()-.5)*sp*.9, zz=z+(r()-.5)*sp*.9; const h=hf(xx,zz); if(ok&&!ok(xx,zz,h)) continue; const s=hs?hs(xx,zz,h):sp*1.2; const kd=typeof kind==='function'?kind(xx,zz,h):(kind===undefined?(r()<.45?1:0):kind); L.push([xx,h-s*.08,zz,s*(.8+r()*.45),kd,r(),.85+r()*.4]); } return L; };
+      // 도시 블록(멀리, 낮게): 한 메시 · 꼭짓점 색
+      const blocks=(list)=>{ if(!list.length) return; const n=list.length*30, P=new Float32Array(n*3), N=new Float32Array(n*3), Cc=new Float32Array(n*3); let o=0; const c=new TT.Color();
+        const quad=(a,b,cc,d,nx,ny,nz,k)=>{ for(const q of [a,b,cc,a,cc,d]){ P[o*3]=q[0]; P[o*3+1]=q[1]; P[o*3+2]=q[2]; N[o*3]=nx; N[o*3+1]=ny; N[o*3+2]=nz; Cc[o*3]=c.r*k; Cc[o*3+1]=c.g*k; Cc[o*3+2]=c.b*k; o++; } };
+        for(const [x,z,w,d,h,hex] of list){ c.set(hex).convertSRGBToLinear(); const X0=x-w/2,X1=x+w/2,Z0=z-d/2,Z1=z+d/2; quad([X0,h,Z1],[X1,h,Z1],[X1,h,Z0],[X0,h,Z0],0,1,0,1.06); quad([X0,0,Z1],[X1,0,Z1],[X1,h,Z1],[X0,h,Z1],0,0,1,.95); quad([X1,0,Z0],[X0,0,Z0],[X0,h,Z0],[X1,h,Z0],0,0,-1,.9); quad([X1,0,Z1],[X1,0,Z0],[X1,h,Z0],[X1,h,Z1],1,0,0,.86); quad([X0,0,Z0],[X0,0,Z1],[X0,h,Z1],[X0,h,Z0],-1,0,0,.86); }
+        const g=new TT.BufferGeometry(); g.setAttribute('position',new TT.BufferAttribute(P,3)); g.setAttribute('normal',new TT.BufferAttribute(N,3)); g.setAttribute('color',new TT.BufferAttribute(Cc,3)); const m=new TT.Mesh(g,new TT.MeshStandardMaterial({vertexColors:true,roughness:.9})); m.receiveShadow=true; K.life.add(m); return m; };
+      // 값 잡음(능선 질감)
+      const hsh=(x,z)=>{ let n=Math.imul(x|0,374761393)+Math.imul(z|0,668265263)|0; n=Math.imul(n^(n>>>13),1274126177); return ((n^(n>>>16))>>>0)/4294967296; };
+      const vn=(x,z)=>{ const xi=Math.floor(x), zi=Math.floor(z), xf=x-xi, zf=z-zi; const u=xf*xf*(3-2*xf), v=zf*zf*(3-2*zf); const a=hsh(xi,zi), b=hsh(xi+1,zi), c=hsh(xi,zi+1), d=hsh(xi+1,zi+1); return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v; };
+      const fbm=(x,z,o)=>{ let s=0, a=.5, f=1; for(let i=0;i<(o||4);i++){ s+=a*vn(x*f,z*f); a*=.5; f*=2.03; } return s; };
+      const ridged=(x,z)=>{ let s=0,a=.5,f=1; for(let i=0;i<3;i++){ s+=a*(1-Math.abs(vn(x*f,z*f)*2-1)); a*=.5; f*=2.1; } return s; };
+      const ss=t=>{ t=Math.min(1,Math.max(0,t)); return t*t*(3-2*t); };
+      // 산 봉우리 합: pk [x,z,rx,rz,h,pow]
+      const peaks=(x,z,pk)=>{ let h=0; for(let i=0;i<pk.length;i++){ const q=pk[i]; const ax=(x-q[0])/q[2], az=(z-q[1])/q[3]; const d2=ax*ax+az*az; if(d2<1){ const d=Math.sqrt(d2); const e=1-ss(d); h=Math.max(h,q[4]*Math.pow(e,q[5]||1.3))+q[4]*.04*(1-d)*(1-d); } } return h; };
+      // 기본 산색: 숲(짙은 녹색 변주) · 바위(높은 곳·급경사) · 아래 풀
+      const mcol=(x,z,h,ny,o)=>{ o=o||{}; const n=fbm(x*.02,z*.02,2), m=vn(x*.006+5,z*.006); let c=[.2+.07*n,.29+.08*n,.16+.05*n]; if(m>.6) c=[c[0]*.85+.05,c[1]*.9+.04,c[2]*.85]; const rock=Math.min(1,(h>(o.rockH||150)-50?(o.rock||0)*ss((h-(o.rockH||150))/50)*ss((.9-ny)/.12)*ss((vn(x*.012,z*.012)-.35)/.2):0)+(o.cliff||0)*ss((.62-ny)/.12)); if(rock>0){ const rc=[.58+.08*n,.56+.07*n,.52+.06*n]; c=c.map((v,i)=>v+(rc[i]-v)*Math.min(1,rock)); } const low=ss((o.low||6)-h); if(low>0){ const gc=o.lowc||[.62,.66,.5]; c=c.map((v,i)=>v+(gc[i]-v)*low); } return c; };
+      return {BAK,MAS,mat,plane,terrain,forest,scatter,blocks,fbm,ridged,vn,ss,peaks,mcol,r,lin,tex}; })();
+
+    K.layer(0);
+    // 배경(v13, K.life): 근정전 뒤 북악산 — 근정문에서 보면 지붕 위로 북악이 솟는 축. 실제 북악 342 m · 근정전에서 약 1.5 km를 높이 105 m · 거리 330 m로 압축(추정) · 출처: 국토지리정보원 북악산 표고
+    { const H0=[-57,57,-45,69]; const dOut=(x,z)=>Math.hypot(Math.max(H0[0]-x,0,x-H0[1]),Math.max(H0[2]-z,0,z-H0[3]));
+      const MT=[[-10,-370,330,210,105,1.7],[-250,-300,200,170,62,1.3],[230,-320,220,170,55,1.3],[-420,-170,190,230,88,1.4],[420,-260,240,200,48,1.3]];
+      const hf=(x,z)=>{ const h=E.peaks(x,z,MT); return .09+(h<.3?0:h*(.84+.3*E.ridged(x*.008,z*.008))*E.ss((dOut(x,z)-90)/120)); };
+      const TR=E.terrain(-900,900,-900,900,90,90,hf,(x,z,h,ny)=>{ const n=E.fbm(x*.03,z*.03,2); if(h<1){ const d=dOut(x,z); if(Math.abs(x)<135&&z>-125&&z<145) return [.75+.02*n,.7+.02*n,.58+.02*n]; return [.55+.05*n,.6+.05*n,.45]; } return E.mcol(x,z,h,ny,{rock:1,rockH:70,cliff:.5,low:-1}); },H0);
+      // 행각 밖 마당(마사토 질감) — 앞 근정문 쪽과 좌우
+      E.plane(E.MAS,0,.2,104,260,70); E.plane(E.MAS,0,.2,-82,260,74); E.plane(E.MAS,-93.5,.2,12,73,114); E.plane(E.MAS,93.5,.2,12,73,114);
+      const fr=(x,z)=>(Math.abs(x)<140&&z>-130&&z<150)||(Math.hypot(x,z-12)<200&&z>-60&&Math.abs(x)<110);
+      E.forest(E.scatter(-700,700,-750,500,9,TR.h,(x,z,h)=>dOut(x,z)>40&&!fr(x,z)&&(h>3||E.fbm(x*.02,z*.02,2)>.48)&&E.r()<.9,(x,z,h)=>8+E.vn(x*.05,z*.05)*6,(x,z,h)=>h>60||E.vn(x*.02,z*.02)<.5?1:0),{trunks:false}); }
+    K.b(0,-.02,12,112,.1,112,PV); paving(0,.08,12,100,97,2.8,2.4,5); // 박석 마당(행각 안쪽) + 줄눈
+    K.b(0,.08,40,2.4,.22,36,SG3); K.b(-3.1,.08,40,2.0,.14,36,SG); K.b(3.1,.08,40,2.0,.14,36,SG); // 삼도(가운데 어도 한 단 더 높음)
+    inst(boxG(.34,1.0,.3),DR,Array.from({length:24},(_,i)=>[(i<12?-1:1)*5.2,.08,26+(i%12)*3])); inst(boxG(.9,.18,.8),SG2,Array.from({length:24},(_,i)=>[(i<12?-1:1)*5.2,.08,26+(i%12)*3])); // 품계석 24(동서 12)
+    // 행각(복랑, 맞배): 기단 + 바깥 회벽 + 기둥 3열 + 지붕
+    const corr=(cx,cz,len,axis,out)=>{ const ax=axis==='x'; K.b(cx,0,cz,ax?len:7.4,.6,ax?7.4:len,ST); const n=Math.round(len/4.2); const cs=[]; for(let i=0;i<=n;i++){ const t=-len/2+i*len/n; for(const r of [-2.7,0,2.7]) cs.push(ax?[cx+t,.6,cz+r]:[cx+r,.6,cz+t]); } inst(cylG(.3,3.7,10,.27),RED,cs);
+      K.b(ax?cx:cx+out*3.1,.6,ax?cz+out*3.1:cz,ax?len:.5,3.7,ax?.5:len,WH); K.b(ax?cx:cx+out*3.1,.6,ax?cz+out*3.1:cz,ax?len+.1:.56,.9,ax?.56:len+.1,WLB); K.b(cx,4.3,cz,ax?len+.4:7.8,.45,ax?7.8:len+.4,RED); K.b(cx,4.75,cz,ax?len+.6:8.2,.6,ax?8.2:len+.6,BR); roofHF(cx,5.35,cz,ax?len+2.4:9.8,ax?9.8:len+2.4,2.4,{swap:!ax,dt:1,mat:GW,under:RU,thk:.3,sori:.3,gmat:OC}); };
+    corr(-53,10,104,'z',-1); corr(53,10,104,'z',1); corr(0,-42,113,'x',-1); corr(-32.5,62,41,'x',1); corr(32.5,62,41,'x',1);
+    // 융문루(동)·융무루(서): 동·서 회랑 앞쪽 1/3 지점에 바깥으로 돌출한 2층 누각
+    for(const s of [-1,1]){ const xc=s*56.5, zc=62-104/3; K.b(xc,0,zc,10,.8,9.5,ST); inst(cylG(.28,3.4,10,.25),RED,[-3.5,0,3.5].flatMap(x=>[-3.2,3.2].map(z=>[xc+x,.8,zc+z]))); K.b(xc,.8,zc,7.4,3.4,6.8,WH); K.b(xc,4.2,zc,8.6,.5,8,RED); K.b(xc,4.7,zc,9.2,.4,8.6,BR); K.b(xc,5.1,zc,8.6,.3,8,RED); inst(cylG(.26,3.0,10,.23),RED,[-3.5,0,3.5].flatMap(x=>[-3.2,3.2].map(z=>[xc+x,5.4,zc+z]))); K.b(xc,5.4,zc,7.2,3.0,6.6,DK); K.b(xc,8.4,zc,8.6,.5,8,RED); K.b(xc,8.9,zc,9.2,.7,8.6,BR); roofHF(xc,9.6,zc,13.5,12,2.9,{dt:.42,mat:GW,under:RU,thk:.35,sori:.5,gmat:OC,rh:.45}); }
+    // 근정문: 정면 3칸 측면 2칸, 중층 우진각 · 좌우 일화문(동)·월화문(서)
+    K.b(0,0,62,19,1.2,12,ST); stairs(0,68,1.2,0,7,4,'z',1); stairs(0,56,1.2,0,7,4,'z',-1); for(const s of [-1,1]) stairs(s*9.5,62,1.2,0,8,4,'x',s);
+    inst(cylG(.42,4.4,12,.38),RED,[-6.6,-2.2,2.2,6.6].flatMap(x=>[-3.3,3.3].map(z=>[x,1.2,62+z]))); for(let i=0;i<3;i++) K.b(-4.4+i*4.4,1.2,62,3.9,4.0,.3,DOOR); K.b(0,1.2,62,.3,4.4,6.6,DK); for(const s of [-1,1]) K.b(s*6.6,1.2,62,.3,4.4,6.6,DK);
+    K.b(0,5.6,62,14,.5,7.2,RED); dapo(0,6.1,62,14.2,7.4,1.6); K.b(0,7.2,62,15,.5,8.2,BR); roofHF(0,7.7,62,21,14,2.6,{mat:GW,under:RU,thk:.35,sori:.7,ridge:false});
+    inst(cylG(.34,2.6,10,.3),RED,[-6.6,-2.2,2.2,6.6].flatMap(x=>[-3.3,3.3].map(z=>[x,9.2,62+z]))); K.b(0,9.2,62,13.4,2.6,6.6,DK); K.b(0,11.8,62,14,.5,7.2,RED); dapo(0,12.3,62,14.2,7.4,1.6); K.b(0,13.4,62,15,.5,8.2,BR); roofHF(0,13.9,62,20,13,3.4,{mat:GW,under:RU,thk:.4,sori:.8,rh:.5,rw:.9});
+    for(const s of [-1,1]){ const xg=s*13.2; K.b(xg,0,62,6,1.0,7.4,ST); inst(cylG(.26,3.2,10,.23),RED,[-2,2].flatMap(x=>[-2.4,2.4].map(z=>[xg+x,1.0,62+z]))); K.b(xg,1.0,62,3.6,2.9,.24,DOOR); K.b(xg,4.2,62,5.6,.4,5.6,RED); K.b(xg,4.6,62,6,.5,6,BR); roofHF(xg,5.1,62,7.6,9,1.8,{swap:true,dt:1,mat:GW,under:RU,thk:.25,sori:.2,gmat:OC}); }
+    // 하월대 54×44 (y 0→1.5), 상월대 42×32 (1.5→3.0), 기단 37×27 (3.0→3.9)
+    K.b(0,0,0,54,1.5,44,ST); K.b(0,1.5,0,42,1.5,32,ST); K.b(0,3.0,0,37,.9,27,ST); paving(0,1.5,0,54,44,2.6,2.4,9); paving(0,3.0,0,42,32,2.6,2.4,13);
+    for(const x of [-5,0,5]) stairs(x,22,1.5,0,4.2,5,'z',1); for(const x of [-16,16]) stairs(x,22,1.5,0,3.6,5,'z',1); for(const s of [-1,1]) stairs(s*27,4,1.5,0,3.6,5,'x',s); stairs(0,-22,1.5,0,4,5,'z',-1);
+    for(const x of [-5,0,5]) stairs(x,16,3.0,1.5,4.2,5,'z',1); for(const s of [-1,1]) stairs(s*21,2,3.0,1.5,3.6,5,'x',s); stairs(0,-16,3.0,1.5,4,5,'z',-1);
+    for(const x of [-5,0,5]) stairs(x,13.5,3.9,3.0,3.6,3,'z',1); for(const s of [-1,1]) stairs(s*18.5,0,3.9,3.0,3,3,'x',s);
+    // 답도(어도 계단 가운데 봉황 돌판 — 경사 판 + 테두리 + 봉황 양각 자리)
+    const dapdo=(z,y0,y1,len)=>{ const sl=(y1-y0)/len; K.b(0,y0-.02,z,2.2,.24,len,SG3,0,{slope:-sl}); K.b(0,y0+.2,z,1.6,.06,len*.8,SG2,0,{slope:-sl}); K.b(0,y0+.24,z,.9,.05,len*.5,SG3,0,{slope:-sl}); };
+    dapdo(23.0,.05,1.4,2.1); dapdo(17.0,1.55,2.9,2.1); dapdo(14.1,3.05,3.85,1.3);
+    srail(1.5,-27,22,27,22,[[.17,.24],[.37,.63],[.76,.83]]); srail(1.5,27,22,27,-22,[[.36,.46]]); srail(1.5,27,-22,-27,-22,[[.45,.55]]); srail(1.5,-27,-22,-27,22,[[.54,.64]]);
+    srail(3.0,-21,16,21,16,[[.31,.69]]); srail(3.0,21,16,21,-16,[[.38,.5]]); srail(3.0,21,-16,-21,-16,[[.44,.56]]); srail(3.0,-21,-16,-21,16,[[.5,.62]]);
+    merge(railG,SG,false); inst(boxG(.36,1.0,.36),SG,posts); inst(boxG(.46,.12,.46),SG2,posts.map(p=>[p[0],p[1]+1.0,p[2]])); { const g=new T.SphereGeometry(.28,8,6); g.scale(1,.9,1.3); g.translate(0,.3,0); inst(g,SG2,beasts); } // 난간대·법수·서수(약식)
+    // ---- 1: 하층(붉은 기둥 20·분합문·단청 띠·다포 공포) ----
+    K.layer(1); const B1=3.9, CH=4.85; const XS=[-14.85,-9.7,-3.34,3.34,9.7,14.85], ZS=[-10.15,-5.0,-1.67,1.67,5.0,10.15];
+    const ring=[]; for(let i=0;i<6;i++) for(let j=0;j<6;j++){ if(i>0&&i<5&&j>0&&j<5) continue; ring.push([XS[i],B1,ZS[j]]); } inst(cylG(.5,CH,12,.44),RED,ring); inst(cylG(.6,.12,10,.58),SG2,ring);
+    K.b(0,B1,0,29.4,CH,20.0,DK); // 몸체(분합문 뒤)
+    // 분합문: 칸마다 살창 문(세로 살 + 가로 띠) — 세로 살은 인스턴스
+    const bars=[]; for(let i=0;i<5;i++){ const x0=XS[i],x1=XS[i+1], nb=Math.round((x1-x0)/.42); for(let k=1;k<nb;k++) for(const s of [-1,1]) bars.push([x0+(x1-x0)*k/nb,B1+.9,s*10.1]); } for(let j=0;j<5;j++){ const z0=ZS[j],z1=ZS[j+1], nb=Math.round((z1-z0)/.42); for(let k=1;k<nb;k++) for(const s of [-1,1]) bars.push([s*14.8,B1+.9,z0+(z1-z0)*k/nb]); } inst(boxG(.07,3.2,.07),OC,bars);
+    K.b(0,B1,0,29.6,.9,20.2,RED); K.b(0,B1+2.3,0,29.55,.14,20.15,OC); K.b(0,B1+4.1,0,29.6,.35,20.2,GRN); K.b(0,B1+4.45,0,29.6,.4,20.2,WH); // 머름·중방·상인방 단청 띠
+    K.b(0,B1+CH,0,30.8,.5,21.4,RED); dapo(0,B1+CH+.5,0,30.9,21.5,1.5); K.b(0,B1+CH+1.8,0,32,.5,22.6,BR); // 창방·다포 띠·도리
+    // ---- 2: 하층 지붕(우진각 치마) + 상층 몸체(3×3칸) ----
+    K.layer(2); const RY1=B1+CH+2.3; const yfL=roofHF(0,RY1,0,41,31,4.7,{mat:GW,under:RU,thk:.45,sori:.9,ridge:false});
+    for(const s of [-1,1]) for(const t of [-1,1]) for(let k=0;k<7;k++){ const q=.32+.11*k, a=s*(9.0+11.5*q), b=t*15.5*q; K.b(a,yfL(a,b)-.05,b,.4,.42,.4,DR); } // 하층 추녀마루 잡상 7
+    const B2=RY1+1.55; const XU=[-9.1,-3.1,3.1,9.1], ZU=[-6.4,-2.1,2.1,6.4]; const ringU=[]; for(let i=0;i<4;i++) for(let j=0;j<4;j++){ if(i>0&&i<3&&j>0&&j<3) continue; ringU.push([XU[i],B2,ZU[j]]); } inst(cylG(.42,3.6,12,.38),RED,ringU);
+    K.b(0,B2,0,18,3.6,12.6,DK); const barsU=[]; for(let i=0;i<3;i++){ const x0=XU[i],x1=XU[i+1], nb=Math.round((x1-x0)/.42); for(let k=1;k<nb;k++) for(const s of [-1,1]) barsU.push([x0+(x1-x0)*k/nb,B2+.7,s*6.35]); } for(let j=0;j<3;j++){ const z0=ZU[j],z1=ZU[j+1], nb=Math.round((z1-z0)/.42); for(let k=1;k<nb;k++) for(const s of [-1,1]) barsU.push([s*9.05,B2+.7,z0+(z1-z0)*k/nb]); } inst(boxG(.07,2.3,.07),OC,barsU);
+    K.b(0,B2,0,18.2,.7,12.8,RED); K.b(0,B2+3.0,0,18.2,.3,12.8,GRN); K.b(0,B2+3.3,0,18.2,.3,12.8,WH);
+    K.b(0,B2+3.6,0,19.2,.5,13.8,RED); dapo(0,B2+4.1,0,19.3,13.9,1.5); K.b(0,B2+5.4,0,20.4,.5,15,BR);
+    // ---- 3: 상층 팔작지붕 · 용마루 취두 · 잡상 7 ----
+    K.layer(3); const RY2=B2+5.9; const yfU=roofHF(0,RY2,0,39,29,5.6,{dt:.42,mat:GW,under:RU,thk:.5,sori:1.1,gmat:OC,rh:.7,rw:1.0}); for(const s of [-1,1]) K.b(s*11.3,RY2+5.0,0,1.0,1.6,1.2,DR);
+    for(const s of [-1,1]) for(const t of [-1,1]) for(let k=0;k<7;k++){ const q=.3+.115*k, a=s*(11.2+7.9*q), b=t*14.0*q; K.b(a,yfU(a,b)-.05,b,.42,.5,.42,DR); } // 추녀마루 잡상 7
+    for(const s of [-1,1]) for(const t of [-1,1]){ const gs=[]; for(let k=0;k<12;k++){ const q=.06+.08*k, a=s*(11.2+7.9*q), b=t*14.0*q; gs.push(bx(a,yfU(a,b)-.1,b,.5,.32,.5)); } merge(gs,DR); } // 추녀마루(내림마루) 선
+  }});
