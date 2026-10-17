@@ -138,5 +138,7 @@ __bsigFill({"63bldg":function(K){
       const BL=[]; for(let x=-1700;x<1700;x+=36) for(let z=ZR1-30;z>-1500;z-=36){ const xx=x+(E.r()-.5)*6, zz=z+(E.r()-.5)*6; if(TR.h(xx,zz)>.8||TR.h(xx+15,zz+15)>.8) continue; if(E.r()<.15) continue; const tall=zz>ZR1-160&&E.r()<.35; BL.push([xx,zz,20+E.r()*14,18+E.r()*12,tall?28+E.r()*36:8+E.r()*E.r()*30,E.r()<.35?'#8e9ba5':E.r()<.5?'#aaa69e':'#9c988f']); }
       for(let x=-1700;x<1700;x+=40) for(let z=320;z<1300;z+=40){ if(Math.abs(x)<420&&z<700) continue; if(E.r()<.25) continue; BL.push([x+(E.r()-.5)*8,z+(E.r()-.5)*8,22+E.r()*12,20+E.r()*12,15+E.r()*E.r()*80,E.r()<.4?'#8e9ba5':'#a6a299']); } // 여의도 업무지구(앞·옆)
       E.blocks(BL); }
+    // v18i: 뷰어 기본 대지(잔디·포장·길)를 이 모형이 떠 있는 동안 숨김 — 둔치 잔디·여의도 땅판과 겹쳐 깜빡이던 것 정리(W.own과 같은 방식)
+    { const root=K.bldg.parent; const site=root&&root.children[0]; if(site&&site!==K.bldg&&site!==K.life&&site.isGroup){ const mk=new T.Object3D(); K.life.add(mk); const on=()=>mk.parent===K.life&&!!K.life.parent&&K.life.visible; const hide=o=>{ try{ Object.defineProperty(o,'visible',{configurable:true,get(){ return !on(); },set(v){}}); }catch(e){} }; site.children.forEach(hide); const add0=site.add; site.add=function(...a){ if(mk.parent===K.life&&K.life.parent) a.forEach(hide); return add0.apply(this,a); }; } }
     skyDome(0,0,0,820);
   }});

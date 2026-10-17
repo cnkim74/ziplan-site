@@ -7932,6 +7932,26 @@ function pgDeflicker(T,groups,MM){ try{ const SH=new Set(MM?Object.values(MM):[]
   for(let i=0;i<P.length;i++){ const a=P[i]; let k=0; for(let j=i-1;j>=0&&a.y-P[j].y<.012;j--){ const c=P[j]; if(c.m===a.m) continue; if(Math.min(a.x1,c.x1)-Math.max(a.x0,c.x0)>.2&&Math.min(a.z1,c.z1)-Math.max(a.z0,c.z0)>.2) k=Math.max(k,(c.k||0)+1); } if(k){ a.k=k; a.o.position.y+=.012*k; a.y+=.012*k; } }
   const g=groups[2]; if(g){ const seen=new Set(); let r=0; g.traverse(o=>{ if(!o.isMesh) return; const ms=Array.isArray(o.material)?o.material:[o.material]; for(const m of ms){ if(!m||seen.has(m)||SH.has(m)||(m.userData&&m.userData.pgShared)) continue; seen.add(m); if(m.transparent&&m.opacity<.6) continue; r++; m.polygonOffset=true; m.polygonOffsetFactor=0; m.polygonOffsetUnits=-Math.min(r,60)*.5; } }); }
   }catch(e){} }
+/* v18i 면 단위 깜빡임 정리: 병합 메시·지형·질감 바닥처럼 덩어리째 들 수 없는 경우, 같은 높이(1.2 cm 안)에서 다른 재료와 겹치는 위쪽 수평면만 골라 그 꼭짓점을 올린다(바깥 배경판은 크기에 비례해 최대 20 cm). */
+function pgDeflicker2(T,groups){ try{ const tris=[]; const v=[new T.Vector3(),new T.Vector3(),new T.Vector3()], e1=new T.Vector3(), e2=new T.Vector3(), n=new T.Vector3(); const meshes=[]; const useG=new Map();
+  groups.forEach((g,gi)=>{ if(!g) return; g.updateMatrixWorld(true); g.traverse(o=>{ if(!o.isMesh||o.isInstancedMesh) return; let q=o, vis=true; while(q){ if(q.visible===false){ vis=false; break; } q=q.parent; } if(!vis) return; const geo=o.geometry; const pos=geo&&geo.attributes&&geo.attributes.position; if(!pos) return; const m=Array.isArray(o.material)?o.material[0]:o.material; if(!m||(m.transparent&&m.opacity<.5)) return; const W=o.matrixWorld.elements; if(Math.abs(W[1])>1e-6||Math.abs(W[9])>1e-6||Math.abs(W[4])>1e-6||Math.abs(W[6])>1e-6) return; useG.set(geo,(useG.get(geo)||0)+1); const idx=geo.index?geo.index.array:null; const cnt=idx?idx.length:pos.count; if(cnt>400000) return; const mi=meshes.length; if(!geo.boundingBox) geo.computeBoundingBox(); const bx=geo.boundingBox; meshes.push({o,gi,m,sy:W[5],ext:Math.max((bx.max.x-bx.min.x)*Math.abs(W[0]||1),(bx.max.z-bx.min.z)*Math.abs(W[10]||1))});
+    for(let i=0;i<cnt;i+=3){ const j0=idx?idx[i]:i, j1=idx?idx[i+1]:i+1, j2=idx?idx[i+2]:i+2; v[0].fromBufferAttribute(pos,j0).applyMatrix4(o.matrixWorld); v[1].fromBufferAttribute(pos,j1).applyMatrix4(o.matrixWorld); v[2].fromBufferAttribute(pos,j2).applyMatrix4(o.matrixWorld); e1.subVectors(v[1],v[0]); e2.subVectors(v[2],v[0]); n.crossVectors(e1,e2); const L=n.length(); if(L<.1) continue; if(n.y/L<.995) continue; tris.push([(v[0].y+v[1].y+v[2].y)/3,Math.min(v[0].x,v[1].x,v[2].x),Math.max(v[0].x,v[1].x,v[2].x),Math.min(v[0].z,v[1].z,v[2].z),Math.max(v[0].z,v[1].z,v[2].z),mi,j0,j1,j2]); } }); });
+  if(!tris.length) return 0; tris.sort((a,b)=>a[0]-b[0]);
+  // 조각(patch) = 같은 메시 · 같은 높이(1 mm) — 조각마다 올릴 단계 k
+  const PK=new Map(); const pk=t=>{ const key=t[5]+'|'+Math.round(t[0]*1000); let p=PK.get(key); if(!p){ p={mi:t[5],y:t[0],k:0,ts:[],x0:1e9,x1:-1e9,z0:1e9,z1:-1e9}; PK.set(key,p); } return p; };
+  tris.forEach(t=>{ const p=pk(t); p.ts.push(t); t.p=p; if(t[1]<p.x0) p.x0=t[1]; if(t[2]>p.x1) p.x1=t[2]; if(t[3]<p.z0) p.z0=t[3]; if(t[4]>p.z1) p.z1=t[4]; });
+  // 조각끼리 비교(높이순, 1.2 cm 창): 둘 다 작으면(삼각형 300개 이하) 삼각형 단위로 겹침 확인, 크면 조각 상자 겹침으로 판단
+  const PL=[...PK.values()].sort((a,b)=>a.y-b.y); const ov=(a,b)=>Math.min(a.x1,b.x1)-Math.max(a.x0,b.x0)>.3&&Math.min(a.z1,b.z1)-Math.max(a.z0,b.z0)>.3;
+  const triOv=(A,B)=>{ for(const a of A.ts){ for(const c of B.ts){ if(Math.min(a[2],c[2])-Math.max(a[1],c[1])>.3&&Math.min(a[4],c[4])-Math.max(a[3],c[3])>.3) return true; } } return false; };
+  for(let i=0;i<PL.length;i++){ const A=PL[i]; for(let j=i-1;j>=0&&A.y-PL[j].y<.012;j--){ const B=PL[j]; if(A.mi===B.mi||meshes[A.mi].m===meshes[B.mi].m||!ov(A,B)) continue; if(A.ts.length*B.ts.length<=90000&&!triOv(A,B)) continue;
+      const la=meshes[A.mi].gi===1, lc=meshes[B.mi].gi===1;
+      if(!la&&!lc){ const hi=Math.abs(A.y-B.y)>.002?(A.y>B.y?A:B):(A.mi>B.mi?A:B), lo=hi===A?B:A; hi.k=Math.max(hi.k,lo.k+1); }
+      else if(la!==lc){ const l=la?A:B; l.k=Math.max(l.k,1); }
+      else { const ea=meshes[A.mi].ext, ec=meshes[B.mi].ext; const big=ea>ec||(ea===ec&&A.mi<B.mi)?A:B, sm=big===A?B:A; big.k=Math.max(big.k,sm.k+1); } } }
+  let moved=0; const done=new Map();
+  [...PK.values()].filter(p=>p.k>0).forEach(p=>{ const M=meshes[p.mi]; const o=M.o; if(M.gi===1&&o.userData.dfkL&&o.userData.dfkL!==PK) return; if(M.gi===1) o.userData.dfkL=PK; if(useG.get(o.geometry)>1&&!o.userData.dfkOwn){ o.geometry=o.geometry.clone(); o.userData.dfkOwn=1; useG.set(o.geometry,1); } const geo=o.geometry, pos=geo.attributes.position; const step=M.gi===1?Math.max(.03,Math.min(.2,M.ext*.0002)):.012; const dy=(M.gi===1?-1:1)*step*p.k/(M.sy||1); let S=done.get(geo); if(!S){ S=new Set(); done.set(geo,S); }
+    for(const t of p.ts) for(const j of [t[6],t[7],t[8]]){ if(S.has(j)) continue; S.add(j); pos.setY(j,pos.getY(j)+dy); moved++; } pos.needsUpdate=true; geo.computeBoundingBox(); geo.computeBoundingSphere(); });
+  return moved; }catch(e){ console.warn("dfk2",e&&e.message); return -1; } }
 function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,P); const fh=P.fh; M.trim=(P.skin==='stone'||P.skin==='stucco')?M.white:M.skinMat('stone'); const OLD=P.era==='old';
   const root=new T.Group(); const bldg=new T.Group(), site=new T.Group(), life=new T.Group(), mass=new T.Group(); root.add(site,bldg,life,mass); mass.visible=false;
   const floors=[]; const panesLit=[]; const lights=[];
@@ -8162,6 +8182,7 @@ function pgBuild(T,P,opt){ opt=opt||{}; const R=pgRng(P.seed); const M=pgMats(T,
   if(lift) for(let i=0;i<3;i++){ const m=new T.Mesh(PPL[(i+3)%PPL.length],M.people); m.position.set(cx+(R()-.5)*bw*.5,0,cz+(R()-.5)*bd*.4); m.rotation.y=R()*6; m.castShadow=true; life.add(m); }
   // 인스턴스 메시 만들기
   const iMeshes=[]; for(const k in inst){ const it=inst[k]; const im=new T.InstancedMesh(it.geo,it.mat,it.list.length); it.list.forEach((m,i)=>im.setMatrixAt(i,m)); im.instanceMatrix.needsUpdate=true; im.castShadow=!!it.shadow; im.receiveShadow=true; im.userData.m0=it.mat; if(k.startsWith('pL')) im.userData.lit=1; if(k.startsWith('pD')||k.startsWith('pL')) im.userData.glass=true; it.grp.add(im); iMeshes.push(im); }
+  if(SIGB) for(let i=0;i<3&&pgDeflicker2(T,[site,life,bldg])>0;i++);
   // 숫자
   const height=Math.round((maxTop+(['gable','steep','hanok','big'].includes(P.roof)?2.5:.6))*10)/10;
   const nums={foot:Math.round(foot),gfa:Math.round(gfa),floors:Math.max(...V.map(v=>Math.ceil(v.y0+v.n))),height,vols:V.length};
@@ -10601,7 +10622,7 @@ function bldImg(b,w){ if(!b.p) return ''; const seg=b.p.split('/'), n=seg[2], en
 function bldFile(b){ return 'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(b.p.split('/')[2]); }
 const BLDA={}; function bldArch(b){ if(!BLDA[b.id]){ const r=dnaAnalyze(b.keys); BLDA[b.id]=r.arch[0]?r.arch[0].id:'court'; } return BLDA[b.id]; }
 /* 정교 모형 build는 공개 빌드에서 data/bsig/<id>.js로 건물마다 분리(build_public.py) — 그 건물을 열 때만 불러온다 */
-const BSIG_V='6b0d66e5'; let BSIG_P=null;
+const BSIG_V='72011424'; let BSIG_P=null;
 function bsigLoad(id){ if(id==null){ return Promise.all(Object.keys(BSIG).filter(k=>!BSIG[k].build).map(k=>bsigLoad(k))); } BSIG_P=BSIG_P||{}; if(BSIG_P[id]) return BSIG_P[id]; if(!BSIG[id]||BSIG[id].build) return (BSIG_P[id]=Promise.resolve());
   window.__bsigFill=window.__bsigFill||(o=>{ for(const k in o) if(BSIG[k]) BSIG[k].build=o[k]; });
   BSIG_P[id]=new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src='data/bsig/'+encodeURIComponent(id)+'.js?v='+BSIG_V; sc.async=true; sc.onload=()=>res(); sc.onerror=e=>{ delete BSIG_P[id]; rej(e); }; document.head.appendChild(sc); }); return BSIG_P[id]; }
@@ -11008,7 +11029,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return;
   
 });
 document.addEventListener('input',e=>{ if(e.target.id==='dnatQ'){ ATL.q=e.target.value; ATL.n=36; clearTimeout(dnAtlasRender._t); dnAtlasRender._t=setTimeout(dnAtlasRender,120); } });
-window.__atlas={BLDX,bldOpen,bldClose,BSIG,BSIG_SITE,bldModelInto,bldSpec,pgThumb,pgBuild,bsigLoad,get dna(){ return state.dna; },get PGVR(){ return PGVR; }};
+window.__atlas={BLDX,bldOpen,bldClose,BSIG,BSIG_SITE,bldModelInto,bldSpec,pgThumb,pgBuild,bsigLoad,pgDeflicker2,get dna(){ return state.dna; },get PGVR(){ return PGVR; }};
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ const m=$('#dnatM'); if(m&&!m.hidden) bldClose(); } });
 document.addEventListener('click',e=>{ const v=e.target.closest('#view-dna'); if(!v) return;
   const at=e.target.closest('#dnAltTabs [data-alt]'); if(at){ dnaShowAlt(+at.dataset.alt); return; }

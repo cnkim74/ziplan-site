@@ -307,3 +307,10 @@
 - **환경 보강 53채**(5조 패치 `scratch/s5/G0~G4.js`, 브리프 `s5/ENV.md`): glasshouse·barcelona·rotonda·sydney·eiffel·myeongdong·podo·cityhall·watarun·lalibela·pompidou·birdsnest·domerock·yokohama / sumiyoshi·gilardi·pantheon·unite·ronchamp·kinkakuji·hiroshima·geunjeongjeon·burj·cctv / savoye·kimbell·louvrepyramid·parthenon·tajmahal·ddp·byodoin·nseoultower·incheonair·shanghaitower·heydar·roseseidler / farnsworth·guggenheimny·sendai·habitat·teshima·louvreabu·sagrada / fallingwater·salk·waterchurch·seagram·nakagin·chichu·bangju·casamila·lotte·kagawa. 방식: 건물 본체 그대로, build 끝에 v15 E + v13 W 헬퍼 복사본 블록으로 지형·숲·물·이웃을 K.life에, `E.own()`(뷰어 기본 바닥 숨김) + `tidy(1)`. 가가와 방위 오류(북쪽이 바다) 수정, 판테온 드럼 3 cm 내림, 인천공항 활주로 층 분리. 새 eye 힌트: pantheon·nseoultower·sagrada.
 - 주의(다음 작업자): 엔트리가 tidySite()/tidy()를 먼저 부르면 그 뒤에 life에 더한 것은 숨겨짐 → 환경 블록 뒤로 옮길 것. 렌더 서버 메모리 ~7 GB라 동시 브라우저 많으면 OOM — 한 번에 몇 개씩. pkill -f로 자기 셸까지 죽이지 말 것.
 - 남은 약한 환경: busancinema·sewoon(흰 상자), sejong·acc·leeum, taipei101·angkor 바닥, cityhall 광장 흰 바닥. dist/data/bsig 6.0MB(건물당 평균 36KB).
+
+## S6 · v18i (2026-10-18 아침) — 남은 깜빡임 일괄 정리 · 도시 바닥 길 읽히게
+- **뷰어 2차 보정 `pgDeflicker2`**(pgBuild 끝, SIGB일 때 최대 3회 반복): 병합 메시·지형·질감 바닥처럼 판째 들 수 없는 경우, 위를 보는 수평 삼각형을 (메시, 높이 1 mm) 조각으로 묶어 1.2 cm 안에서 다른 재료와 겹치는 조각만 꼭짓점을 옮김 — 모형 쪽(site·bldg)은 높은 쪽을 1.2 cm씩 위로, 배경(life)은 아래로(메시 크기×0.0002, 0.03~0.2 m; life 메시는 한 번만). 큰 조각은 상자 겹침, 작은 조각끼리는 삼각형 겹침으로 판단. 공유 지오메트리는 복제 후 수정. 비용: 무거운 모형도 1회 100 ms 안(상하이타워 84 ms).
+- **검사 스크립트 `scratch/s6/zf6.js [ids] [patch|none] [out]`**: 예전 zf.js와 같되 위를 보는 면만·1.05 cm 창(밑면 겹침은 안 보이므로 제외). 대상 14채 모두 0(프랑스대사관 길 일부만 남음). 전체 결과 `scratch/s6/zfAll.json`.
+- **도시 블록 바닥판**: `cityGrid`(25채 공용 헬퍼)와 W `ring`(30채)이 블록마다 보도·필지 판(밝은 포장, 빈 칸 일부 공원 녹색)을 깔아 사이가 길로 읽힘. ring은 `pads:false`로 끌 수 있음.
+- **환경 개별**: acc·busancinema·sejong·leeum·sewoon 평지 지형색을 아스팔트 톤(0.40)으로, taipei101 바닥판 0x8f8e8a, busancinema 센텀 가로수 줄(추정), cityhall 서울광장 잔디·포장 색 짙게, angkor 들판 0x6c8048, 63bldg 뷰어 기본 바닥 숨김(둔치·여의도 판과 겹침), frembassy 도로 아래 지형 평탄화.
+- `__atlas`에 `pgDeflicker2` 노출(디버그용). 렌더 확인: 대상 8채 전/후 + cityGrid·ring 사용 47채 aerial — 깨짐 없음, ERR [].
