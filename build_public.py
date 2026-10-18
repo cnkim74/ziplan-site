@@ -41,21 +41,15 @@ s = head + s[:i] + '</head>\n<body>\n' + s[i:] + '\n</body>\n</html>\n'
 
 # pdf.js → CDN
 s = s.replace("const base=new URL('vendor/pdfjs/',location.href);", "const base='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/';")
-# 공개용 문구
+# 공개용 문구 (v19c: '정식 오픈 때' 같은 미완성 문구 없이, 지금 되는 것만 안내)
 s = s.replace('<b>AI 준비 중</b> claude.ai 안에서 열면 AI 버튼이 켜집니다. 계산과 배치는 지금도 됩니다.',
-              '<b>베타</b> AI 이미지 크릿과 광장은 정식 오픈 때 열립니다. 로그인·저장, 취향 랩·내집코드·설계 흐름·도면·DXF·아틀라스·건축 여행은 지금 바로 됩니다.')
-s = s.replace("title='claude.ai에서 열면 켜집니다'", "title='정식 오픈 때 열립니다'")
-s = s.replace('광장은 claude.ai 안에서 열면 보입니다. (공용 저장소 연결 필요)', '광장은 정식 오픈 때 열립니다. 지금은 패널·도면을 만들어 두세요.')
-s = s.replace('로그인된 claude.ai 안에서만 올릴 수 있고, 내 글은 나만 고치거나 지울 수 있습니다.', '정식 오픈 후 로그인하면 올릴 수 있고, 내 글은 나만 고치거나 지울 수 있습니다.')
-s = s.replace('로그인된 claude.ai 안에서만 저장됩니다.', '저장은 정식 오픈 때 열립니다.')
-s = s.replace('저장은 claude.ai 안에서 열었을 때 됩니다.', '파일 저장은 정식 오픈 때 열립니다.')
-s = s.replace('이 화면에선 이미지를 보낼 수 없습니다. claude.ai 안에서 열어 주세요.', 'AI 크릿은 정식 오픈 때 열립니다.')
-s = s.replace('claude.ai 안에서 이 페이지를 열면 그 계정으로 자동 로그인되어 프로젝트가 계정에 저장됩니다.', '정식 오픈 때 이메일 로그인이 열립니다.')
-s = s.replace('claude.ai 안에서 열면 그 계정으로 자동 로그인됩니다. 내 작업실에서 저장·불러오기. 올린 사진은 용량 때문에 이 브라우저에만 남습니다. 정식 서비스에서는 이메일 로그인과 결제가 들어갑니다.', '정식 오픈 때 이메일 로그인과 계정 저장이 열립니다. 지금 만든 것은 PNG·SVG로 내려받아 두세요.')
-s = s.replace('로그인된 claude.ai 안에서만 됩니다.', '정식 오픈 때 열립니다.')
-s = s.replace('로그인된 claude.ai 안에서만 올릴 수 있습니다.', '올리기는 정식 오픈 때 열립니다.')
-s = s.replace('이미지를 보낼 수 없는 화면입니다. claude.ai 안에서 열어 주세요.', 'AI 크릿은 정식 오픈 때 열립니다.')
-s = s.replace('(프로토타입)', '(베타)')
+              '<b>ZIPLAN 엔진</b> 계산·배치·문장 초안까지 모두 됩니다.')
+s = s.replace('저장은 claude.ai 안에서 열었을 때 됩니다.', 'PNG·SVG·DXF 버튼으로 내려받아 주세요.')
+s = s.replace('로그인된 claude.ai 안에서만 저장됩니다.', '로그인하면 계정에 저장돼요.')
+s = s.replace('이 화면에선 이미지를 보낼 수 없습니다. claude.ai 안에서 열어 주세요.', '이 화면에서는 이미지 크릿을 쓸 수 없어요.')
+s = s.replace('이미지를 보낼 수 없는 화면입니다. claude.ai 안에서 열어 주세요.', '이 화면에서는 이미지 크릿을 쓸 수 없어요.')
+s = s.replace('claude.ai 안에서 열면 그 계정으로 자동 로그인됩니다. 내 작업실에서 저장·불러오기. 올린 사진은 용량 때문에 이 브라우저에만 남습니다. 정식 서비스에서는 이메일 로그인과 결제가 들어갑니다.', 'Google이나 이메일로 로그인하면 내 작업실에서 저장·불러오기가 돼요. 만든 것은 PNG·SVG·DXF로 내려받을 수 있어요.')
+assert '정식 오픈' not in s, '공개 빌드에 정식 오픈 문구가 남음'
 # 정교 모형(BSIG) build 함수는 따로 떼어 data/bsig.js로 (첫 화면 JS를 1.4MB 줄임 — 아이패드 등에서 파싱·메모리 부담)
 import subprocess, json as _json, hashlib as _hl
 _BSIG_SPLIT = r'''// build_public.py가 부른다: stdin = 전체 HTML, stdout = JSON {html, data}
@@ -95,7 +89,7 @@ for _f in (root / 'brand').glob('ziplan-*'):
     _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
-for rel in ['privacy.html','terms.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
+for rel in ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
     if not (root / rel).exists():
         print('WARNING missing', rel); continue
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)

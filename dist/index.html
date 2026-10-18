@@ -584,6 +584,15 @@ textarea{min-height:96px;resize:vertical;line-height:1.5}
 .morelinks a::after{content:" ›"}
 footer{padding:28px 16px 40px;background:var(--bg-alt);color:var(--fg-2);font-size:12px}
 footer .in{max-width:1024px;margin:0 auto;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer.zft{padding:40px 16px calc(40px + env(safe-area-inset-bottom));font-size:13px;line-height:1.6}
+footer.zft .in{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.6fr;gap:28px 24px;padding-top:28px}
+.zft-logo{display:inline-flex;align-items:center;gap:8px;color:var(--fg);font-family:"Archivo Black",sans-serif;font-size:18px;letter-spacing:.02em;text-decoration:none}.zft-logo b{font-weight:400}.zft-logo .pz{color:#2b6cff}
+.zft-b p{margin:8px 0 0;color:var(--fg-2)}
+.zft-c h6{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--fg);letter-spacing:.02em}
+.zft-c a{display:block;color:var(--fg-2);text-decoration:none;padding:3px 0}.zft-c a:hover{color:var(--fg);text-decoration:underline}
+.zft-biz p{margin:0 0 6px;color:var(--fg-2)}.zft-note{font-size:12px;opacity:.85}
+.zft-bt{max-width:1024px;margin:20px auto 0;color:var(--fg-2);font-size:12px}
+@media (max-width:820px){footer.zft .in{grid-template-columns:1fr 1fr;gap:22px 16px}.zft-b,.zft-biz{grid-column:1/-1}.zft-c a{padding:7px 0}}
 /* ---------- 회원 · 재학생 · 사례 카드 (v29) ---------- */
 .userchip .ava{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#5b7cfa,#a777e3);color:#fff;font-size:11px;font-weight:700}
 .userchip .unm{max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -2046,6 +2055,21 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
  .dnv-row{grid-auto-columns:78%}.dnlib{padding:20px 16px 80px}.dnstats{gap:20px}
 }
 @media (prefers-reduced-motion:reduce){.dnhin{transform:none!important;opacity:1!important}.dnmq-row{transform:none!important}.dnmq-s{animation:none}.dncat .dk{opacity:1;transform:none;animation:none}}
+/* v19c: 물어보기 버튼 — 폰에선 작게, 스크롤 중엔 더 작고 옅게, 키보드·모달·검색·서랍이 열리면 숨김 */
+@media (max-width:820px){.zc-fab{height:44px;padding:0 12px}.zc-fab svg{width:20px;height:20px}.zc-fab em{display:none}#zchat.open .zc-fab{padding:0 12px}
+  html.zscroll #zchat:not(.open) .zc-fab{transform:scale(.8);opacity:.6;transition:transform .2s,opacity .2s}}
+html.kbopen #zchat:not(.open),html:has([aria-modal="true"]:not([hidden])) #zchat:not(.open),html:has(#zs:not([hidden])) #zchat:not(.open),html:has(.tv-dr.on) #zchat:not(.open),html:has(#authM:not([hidden])) #zchat{display:none}
+/* v19c: 폰 고급 화면 — '지금 짓는 집'을 한 줄짜리 띠로(단어 칩을 가리지 않게). 띠를 누르면 크게 */
+@media(max-width:900px){
+ .dnlive:not(.big){display:grid;grid-template-columns:76px 1fr auto;grid-template-areas:"v t a" "v h a";column-gap:10px;align-items:center;padding:6px 10px 6px 8px}
+ .dnlive:not(.big) .dnl-3d{grid-area:v;height:58px;margin:0;border-radius:10px;overflow:hidden}
+ .dnlive:not(.big) .dnl-tag{grid-area:t;margin:0;font-size:12px}.dnlive:not(.big) .dnl-tag span:last-child{display:none}
+ .dnlive:not(.big) .dnl-h{grid-area:h;margin:0}.dnlive:not(.big) .dnl-h b{font-size:18px}
+ .dnlive:not(.big) .dnl-act{grid-area:a;margin:0}.dnlive:not(.big) .dnl-act .btn{flex:none;padding:8px 12px;font-size:13px;min-height:36px}
+ .dnlive:not(.big) .dnl-site,.dnlive:not(.big) .dnl-cap,.dnlive:not(.big) #dnClear{display:none}
+ .dnl-tag{cursor:pointer}.dnl-tag::after{content:'크게 ▾';font-size:11px;color:var(--fg-2);margin-left:auto}.dnlive.big .dnl-tag::after{content:'작게 ▴'}
+}
+@media(min-width:901px){.dnl-tag::after{content:none}}
 /* ===== 취향 랩: 아이콘 칩 · 리퀴드 글래스 ===== */
 .dnpick-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:6px 0 4px}
 .dnpick-h h2{font-family:var(--brand);font-size:clamp(26px,3vw,40px);letter-spacing:-.02em;margin:6px 0 0;line-height:1.05}
@@ -2922,17 +2946,17 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
 <section class="view" id="view-pricing" hidden>
 <div class="mod alt" id="pricing">
     <h2>무료로 시작, 필요할 때 올리기.</h2>
-    <div class="tag">정식 금액은 오픈 때 안내해 드려요. 지금 가입하면 얼리버드 혜택을 먼저 알려 드립니다.</div>
+    <div class="tag">지금 가입하면 얼리버드 혜택과 정식 금액을 가장 먼저 알려 드려요.</div>
     <div class="stuband" id="stuBand">
       <div class="sbg" id="stuSg" aria-hidden="true"></div>
       <div class="sbl"><span class="sbadge">재학생 −60%</span><h3>건축학과 재학생이면<br><b>월 3,900원.</b></h3><p id="stuState">학교 메일 하나로 30초. 졸업 전까지 매년 한 번만 다시 확인합니다.</p></div>
-      <div class="sbr"><div class="sbp"><s>9,900원</s><b>3,900</b><span>원 / 월</span></div><button class="btn" id="stuCta" data-auth="stu">재학생 인증하기</button><div class="sbs">커피 한 잔 값으로 크릿까지 · 언제든 해지</div></div>
+      <div class="sbr"><div class="sbp"><s>9,900원</s><b>3,900</b><span>원 / 월</span></div><button class="btn" id="stuCta" data-auth="stu">재학생 인증하기</button><div class="sbs">커피 한 잔 값으로 작업 피드백까지 · 언제든 해지</div></div>
     </div>
     <div class="plans">
       <div class="plan"><div class="n">무료</div><div class="pr">0원</div><ul><li>내집코드 무제한</li><li>프로젝트 1개</li><li>AI 대안 월 10회</li><li>PNG 작은 크기</li></ul><button class="btn sec" data-auth="up">무료로 가입</button></div>
-      <div class="plan hi stu"><div class="ribbon">재학생 −60%</div><div class="n">스튜디오</div><div class="pr"><s>월 9,900원</s><span class="now">월 3,900원</span></div><div class="stl">재학생 인증 시 · <span class="ok">적용됨 ✓</span></div><ul><li>프로젝트 무제한</li><li>AI 대안 월 300회</li><li>SVG · DXF · PDF</li><li>크리틱 · 스타일 프로필</li></ul><button class="btn" data-auth="stu">학생가로 시작</button></div>
-      <div class="plan stu"><div class="ribbon soft">재학생 −50%</div><div class="n">프로</div><div class="pr"><s>월 29,000원</s><span class="now">월 14,500원</span></div><div class="stl">재학생 인증 시 · <span class="ok">적용됨 ✓</span></div><ul><li>스튜디오 전부</li><li>매스 3D · 렌더 톤</li><li>팀 공유 3인</li><li>법규 한도 자동 조회</li></ul><button class="btn sec" data-auth="up">가입하기</button></div>
-      <div class="plan" hidden><div class="n">학교</div><div class="pr">연 계약</div><ul><li>한 반 전체 스튜디오</li><li>교수 비교 뷰</li><li>크리틱 기록</li></ul><span class="btn sec ghost" aria-disabled="true">곧 열립니다</span></div>
+      <div class="plan hi stu"><div class="ribbon">재학생 −60%</div><div class="n">스튜디오</div><div class="pr"><s>월 9,900원</s><span class="now">월 3,900원</span></div><div class="stl">재학생 인증 시 · <span class="ok">적용됨 ✓</span></div><ul><li>프로젝트 무제한</li><li>AI 대안 월 300회</li><li>SVG · DXF · PDF</li><li>작업 피드백 · 스타일 프로필</li></ul><button class="btn" data-auth="stu">학생가로 시작</button></div>
+      <div class="plan stu"><div class="ribbon soft">재학생 −50%</div><div class="n">프로</div><div class="pr"><s>월 29,000원</s><span class="now">월 14,500원</span></div><div class="stl">재학생 인증 시 · <span class="ok">적용됨 ✓</span></div><ul><li>스튜디오 전부</li><li>3D 덩어리 모형 · 렌더 톤</li><li>팀 공유 3인</li><li>법규 한도 자동 조회</li></ul><button class="btn sec" data-auth="up">가입하기</button></div>
+      <div class="plan" hidden><div class="n">학교</div><div class="pr">연 계약</div><ul><li>한 반 전체 스튜디오</li><li>교수 비교 뷰</li><li>크리틱 기록</li></ul><button class="btn sec" data-ask>학교 단위 문의</button></div>
     </div>
     <div id="zGradeBox"></div>
   </div>
@@ -2942,7 +2966,7 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
 <section class="view" id="view-zipcode" hidden>
   <div class="hero"><h1 style="font-size:clamp(40px,6.5vw,72px);font-weight:900">내집코드</h1><div class="tag">모든 땅에는 코드가 있다.</div><div class="sub">주소 하나로 이 땅에 지을 수 있는 크기·층수·용도를 쉬운 말로. 로그인 없이, 무료.</div></div>
   <div class="zc2" id="zc2">
-    <div class="banner" id="aiBanner" hidden><b>베타</b> AI 이미지 크릿과 광장은 정식 오픈 때 열립니다. 로그인·저장, 취향 랩·내집코드·설계 흐름·도면·DXF·아틀라스·건축 여행은 지금 바로 됩니다.</div>
+    <div class="banner" id="aiBanner" hidden><b>ZIPLAN 엔진</b> 계산·배치·문장 초안까지 모두 됩니다.</div>
     <ol class="zc2-steps" aria-label="내집코드 쓰는 순서"><li><b>01</b><span>땅 고르기</span><em>주소·면적·용도지역</em></li><li><b>02</b><span>짓고 싶은 것</span><em>집·상가·카페·사무실</em></li><li><b>03</b><span>코드 읽기</span><em>크기·층수·주차·모형</em></li><li><b>04</b><span>AI에게 묻기</span><em>버튼 한 번으로</em></li></ol>
     <div class="zc2-g">
       <aside class="zc2-in">
@@ -2962,7 +2986,7 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
           <div class="zc2-uses" id="zcUses" role="group" aria-label="용도"></div>
           <label for="zcWant">한 줄로 바라는 것 <em>(선택)</em></label><input type="text" id="zcWant" autocomplete="off">
         </div>
-        <details class="zc2-card zc2-adv"><summary><b>세부 조건</b><span>조례 값 · 대지 치수 · 도로 · 필로티</span></summary>
+        <details class="zc2-card zc2-adv"><summary><b>세부 조건</b><span>조례 값 · 땅 치수 · 도로 · 1층 주차(필로티)</span></summary>
           <div class="row"><div><label for="zcBcr">건폐율 한도 %</label><input type="number" id="zcBcr"></div><div><label for="zcFar">용적률 한도 %</label><input type="number" id="zcFar"></div></div>
           <div class="zc2-mini"><button type="button" class="btn sec sm" id="zcLaw">법정 상한으로</button><button type="button" class="btn sec sm" id="zcSeoul">서울시 조례 예로</button></div>
           <div class="row"><div><label for="zcW">대지 폭 m (도로 쪽)</label><input type="number" id="zcW"></div><div><label for="zcD">대지 깊이 m</label><input type="number" id="zcD"></div></div>
@@ -2970,7 +2994,7 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
           <label class="zc2-chk"><input type="checkbox" id="zcPil"> 1층을 필로티 주차로 (다가구·다세대 층수에서 빠짐)</label>
           <label class="zc2-chk"><input type="checkbox" id="zcBase"> 지하층 만들기 (용적률에 안 들어감)</label>
         </details>
-        <div class="zc2-act"><button class="btn" id="zcExplain">쉬운 말로 설명</button><button class="btn sec" id="zcBrief">건축가 브리프</button><button class="btn sec" id="zcToConcept">컨셉 잡기로</button><button class="btn sec" id="zcToSite">대지 답사로</button></div>
+        <div class="zc2-act"><button class="btn" id="zcExplain">쉬운 말로 설명</button><button class="btn sec" id="zcBrief">건축가 브리프</button><button class="btn sec" id="zcToConcept">설계 아이디어 잡기로</button><button class="btn sec" id="zcToSite">땅 답사 키트로</button></div>
         <div class="status" id="zcStatus"></div>
       </aside>
       <div class="zc2-out">
@@ -2983,7 +3007,7 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
           <div id="zc3dTools"></div>
           <p class="zc2-3c" id="zc3dCap"></p>
         </section>
-        <div class="zc2-two"><div class="zc2-panel"><h4>단면 — 법이 허락하는 그릇</h4><div id="zcMass"></div></div><div class="zc2-panel"><h4>층별로 쌓으면</h4><div id="zcStack"></div></div></div>
+        <div class="zc2-two"><div class="zc2-panel"><h4>잘라 본 모습 — 법이 허락하는 그릇</h4><div id="zcMass"></div></div><div class="zc2-panel"><h4>층별로 쌓으면</h4><div id="zcStack"></div></div></div>
         <div class="zc2-checks" id="zcChecks"></div>
         <section class="zc2-ai" id="zcLandAi">
           <div class="zc2-aih"><span class="zc2-orb" aria-hidden="true"></span><div><span class="lab-k">ASK · 내 땅에게 물어보기</span><h4>궁금한 걸 누르면, 이 땅의 숫자로 답해요.</h4></div></div>
@@ -3396,7 +3420,7 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
   </div>
 </section>
 <section class="view" id="view-atlas" hidden>
-  <div class="hero"><h1>건축 아틀라스</h1><p class="tag">세계의 명작을, 사진과 다시 지은 모형으로.</p><p class="sub">정교 모형 166채는 실측 치수로 한 채씩 다시 지었고, 809채는 나라·시대·건축가·컨셉으로 찾아볼 수 있어요. 고르고, 고르고, 들어가 보세요.</p><div class="links"><a href="#atlas" data-atjump="atSpot">오늘의 명작</a><a href="#atlas" data-atjump="atHalls">전시실</a><a href="#atlas" data-atjump="atAll">전체 찾기</a></div></div>
+  <div class="hero"><h1>건축 아틀라스</h1><p class="tag">세계의 명작을, 사진과 다시 지은 모형으로.</p><p class="sub">정교 모형 166채는 실측 치수로 한 채씩 다시 지었고, 809채는 나라·시대·건축가·테마로 찾아볼 수 있어요. 고르고, 고르고, 들어가 보세요.</p><div class="links"><a href="#atlas" data-atjump="atSpot">오늘의 명작</a><a href="#atlas" data-atjump="atHalls">전시실</a><a href="#atlas" data-atjump="atAll">전체 찾기</a></div></div>
   <div id="atxHost"></div>
 </section>
 <section class="view" id="view-dna" hidden>
@@ -3420,7 +3444,7 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
     </div>
     <aside class="dnlive" id="dnLive" aria-live="polite">
       <div class="dnl-tag"><span><i></i>지금 짓는 집</span><span>끌어서 돌려 보기</span></div>
-      <div class="dnl-3d" id="dnLive3d"></div><div class="dnl-site"><span>주변 환경</span><select data-dnsite><option value="">단어대로</option><option value="flat">평평한 대지</option><option value="city">도심</option><option value="alley">좁은 골목</option><option value="suburb">신도시 주택가</option><option value="village">오래된 마을</option><option value="forest">숲 속</option><option value="slope">경사지</option><option value="mountain">산자락</option><option value="water">호숫가</option><option value="sea">바닷가</option><option value="field">들판 · 논</option></select></div><div class="dnl-cap" id="dnLiveCap"></div>
+      <div class="dnl-3d" id="dnLive3d"></div><div class="dnl-site"><span>주변 환경</span><select data-dnsite><option value="">단어대로</option><option value="flat">평평한 땅</option><option value="city">도심</option><option value="alley">좁은 골목</option><option value="suburb">신도시 주택가</option><option value="village">오래된 마을</option><option value="forest">숲 속</option><option value="slope">경사지</option><option value="mountain">산자락</option><option value="water">호숫가</option><option value="sea">바닷가</option><option value="field">들판 · 논</option></select></div><div class="dnl-cap" id="dnLiveCap"></div>
       <div class="dnl-h"><b id="dnCode">····</b><span><em id="dnCount">0</em>개 고름</span></div>
       <div id="dnPersona"></div>
       <div id="dnRadar"></div>
@@ -3533,13 +3557,18 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
       <li><b>사례 배우기</b>에서 좋아요를 누르면 스타일 프로필이 쌓이고, 다음 대안이 그것을 따릅니다.</li>
     </ol>
     <h2>로그인과 저장</h2>
-    <p>정식 오픈 때 이메일 로그인과 계정 저장이 열립니다. 지금 만든 것은 PNG·SVG로 내려받아 두세요.</p>
+    <p>Google이나 이메일로 로그인하면 내 작업실에서 저장·불러오기가 돼요. 만든 것은 PNG·SVG·DXF로 내려받을 수 있어요.</p>
     <h2>AI가 하는 것, 하지 않는 것</h2>
     <p>AI는 대안을 내고, 문장을 다듬고, 블록을 놓고, 면적을 검토합니다. 설계를 대신하지 않고 법규를 단정하지 않습니다. 결과는 언제나 사람이 고칩니다.</p>
   </div>
 </section>
 
-<footer><div class="in"><span><span class="mark" data-mark="14"></span> ZIPLAN — 모두의 건축 (베타) · 움직이는 그라데이션: <a href="https://github.com/ruucm/shadergradient" target="_blank" rel="noopener">ShaderGradient</a>(MIT) 포팅</span><span>예시 프로젝트: 두 상자 집(작업실) · 숲의 집(표지) · 내보내기: PNG · SVG</span></div></footer>
+<footer class="zft"><div class="in">
+  <div class="zft-b"><a href="#home" class="zft-logo"><span class="mark" data-mark="18"></span><b>ZI<span class="pz">P</span>LAN</b></a><p>집을 좋아하는 모든 사람의 공간 — 모두의 건축</p></div>
+  <div class="zft-c"><h6>둘러보기</h6><a href="#atlas">집 구경</a><a href="#zipcode">내 집 짓기</a><a href="#flow">건축 공부</a><a href="#plaza">광장</a><a href="#pricing">요금</a></div>
+  <div class="zft-c"><h6>안내</h6><a href="terms.html">이용약관</a><a href="privacy.html"><b>개인정보처리방침</b></a><a href="licenses.html">출처·라이선스</a><a href="#" data-ask>문의하기</a></div>
+  <div class="zft-c zft-biz"><h6>사업자 정보</h6><p>상호 · 대표 · 사업자등록번호 · 통신판매업 신고번호 — 정식 서비스 시작 때 표기합니다.</p><p class="zft-note">법규·면적·비용 수치는 참고용이며, 실제 인허가와 계약은 관할 기관·전문가와 확인하세요.</p></div>
+</div><div class="zft-bt"><span>© 2026 ZIPLAN</span></div></footer>
 
 <script>/* 정식 회원 서버(Supabase) — url·key를 넣으면 이메일·구글 로그인과 모두의 조회수·좋아요가 켜집니다. 비어 있으면 체험 계정. */
 window.ZIPLAN_AUTH=window.ZIPLAN_AUTH||{url:'https://zxxcpbzlwxfqgzqcealg.supabase.co',key:'sb_publishable_9q8x0Tlj2JlFuGyX3D1fbw_T96hfiyc'};</script>
@@ -3562,11 +3591,11 @@ $$('[data-mark]').forEach(el=>el.innerHTML=markSVG(+el.dataset.mark));
 /* ---------- Example project (두 상자 집 — 표지 사진의 집을 가상 프로젝트로) ---------- */
 const EXAMPLE={
   title:'두 상자 집', concept:'숲을 향해 연 두 상자, 돌벽이 잇는다',
-  site:'강원 평창 (예시 대지) · 660㎡ · 계획관리지역', use:'단독주택', scale:'지상 2층 · 연면적 238㎡',
+  site:'강원 평창 (예시 땅) · 660㎡ · 계획관리지역', use:'단독주택', scale:'지상 2층 · 연면적 238㎡',
   keys:'숲, 돌벽, 테라스',
   notes:'남쪽 길에서 올라와 돌 코어(현관·굴뚝)를 지나면 좌우로 두 상자가 열린다. 1층은 숲을 향한 유리 — 거실과 식당·부엌이 각각 한 상자를 차지하고, 2층 흰 콘크리트 상자가 그 위에 얹혀 남쪽으로 1m 내민다. 서쪽 상자 2층은 침실, 동쪽 상자 2층은 가족실과 테라스. 돌 굴뚝이 두 상자를 한 집으로 묶는다. 재료는 흰 콘크리트, 검은 금속 외장, 현장 돌, 유리.',
   layout:'hero', ai:{title:'',subtitle:'',statement:'',captions:{},highlights:[]},
-  zc:{addr:'강원 평창군 (예시 대지)',area:660,zone:'plan',bcr:40,far:100,w:30,d:22,want:'숲을 보는 거실, 2층엔 침실과 테라스. 돌 굴뚝이 있는 집.'},
+  zc:{addr:'강원 평창군 (예시 땅)',area:660,zone:'plan',bcr:40,far:100,w:30,d:22,want:'숲을 보는 거실, 2층엔 침실과 테라스. 돌 굴뚝이 있는 집.'},
   zFloor:'1F · 숲을 보는 층', zW:30, zH:22,
   zRooms:`거실, 48, public, 현관·홀|정원
 식당·부엌, 42, public, 현관·홀|테라스 데크
@@ -3637,7 +3666,9 @@ function buildTabBar(){ const bar=$('#tabBar'), sh=$('#tabSheet'), shin=$('#tabS
   sh.addEventListener('click',e=>{ if(e.target.closest('.ts-x')||e.target===sh||e.target.closest('a')) close(); });
   addEventListener('hashchange',close); document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&cur) close(); });
   /* 키보드가 올라오면 숨김(visualViewport 높이가 줄어들면) */
-  if(window.visualViewport){ const vv=window.visualViewport; const chk=()=>{ bar.classList.toggle('kb', innerHeight-vv.height>150); }; vv.addEventListener('resize',chk); chk(); }
+  document.addEventListener('click',e=>{ const t=e.target.closest&&e.target.closest('#dnLive .dnl-tag'); if(t&&innerWidth<=900) t.parentElement.classList.toggle('big'); });
+  { let zst=0; addEventListener('scroll',()=>{ const d=document.documentElement; if(!d.classList.contains('zscroll')) d.classList.add('zscroll'); clearTimeout(zst); zst=setTimeout(()=>d.classList.remove('zscroll'),450); },{passive:true}); }
+  if(window.visualViewport){ const vv=window.visualViewport; const chk=()=>{ const k=innerHeight-vv.height>150; bar.classList.toggle('kb', k); document.documentElement.classList.toggle('kbopen', k); }; vv.addEventListener('resize',chk); chk(); }
 }
 function tabCurrent(){ const h=(location.hash||'#home').slice(1); const bar=$('#tabBar'); if(!bar) return; let k='home'; if(h!=='home'){ const g=NAVG.find(g=>g.items.some(i=>i[0]===h)); if(g) k=g.k; } $$('.tb',bar).forEach(b=>b.classList.toggle('cur',b.dataset.tab===k)); }
 setTimeout(()=>{ try{ buildTabBar(); tabCurrent(); }catch(e){ console.warn('tabbar',e); } },0);
@@ -3647,7 +3678,7 @@ window.vOff=function(el){ const v=el&&el.closest&&el.closest('.view'); return !v
 /* #build 하나를 두 방이 나눠 쓴다: 패널 방(#pnSlot)에서는 PANEL 여섯 장만, 건축 공부(#lineSlot)에서는 LINE→HOUSE만 */
 function placeBuild(h){ const b=$('#build'); if(!b) return; const slot=h==='flow'?$('#lineSlot'):h==='panel'?$('#pnSlot'):null; if(!slot) return; const mode=h==='flow'?'line':'panel'; if(b.parentElement!==slot) slot.appendChild(b); b.dataset.mode=mode; setTimeout(()=>{ try{ if(typeof pnApi!=='undefined'&&pnApi) pnApi.measure(); }catch(e){} window.dispatchEvent(new Event('resize')); },90); }
 document.addEventListener('click',e=>{ const a=e.target.closest('[data-jump]'); if(!a) return; const t=document.getElementById(a.dataset.jump); if(!t) return; e.preventDefault(); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); });
-NAVG.forEach(g=>{ g.items=g.items.filter(i=>!(i[4]&&['game','buildguide'].includes(i[0]))); });   /* v19: 홈·메뉴의 '곧'은 건축 극장만 */
+NAVG.forEach(g=>{ g.items=g.items.filter(i=>!(i[4]&&['game','buildguide','story'].includes(i[0]))); });   /* v19: 홈·메뉴의 '곧'은 건축 극장만 */
 /* ---------- Router ---------- */
 const VIEWS=['atlas','flow','travel','home','pricing','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
 let pendingScroll=null;
@@ -3754,7 +3785,7 @@ const aiButtons=['#aiFill','#zAi','#aAi','#tAi','#cAi','#cMore','#zcExplain','#z
 let imgMax=0;
 (async()=>{
   try{ sample=await window.claude?.use?.('sample'); }catch(e){ sample=null; }
-  if(!sample){ sample=LOCAL_AI; const bn=$('#aiBanner'); if(bn){ bn.hidden=false; bn.innerHTML='<b>ZIPLAN 엔진</b> 지금은 규칙 기반 엔진이 답합니다. 계산·배치·문장 초안까지 모두 됩니다. 이미지 크릿만 준비 중이에요.'; } ['#critBtn','#pfCrit'].forEach(s=>{const b=$(s); if(b){b.disabled=true;b.title='이미지 크릿은 준비 중입니다'}}); }
+  if(!sample){ sample=LOCAL_AI; const bn=$('#aiBanner'); if(bn){ bn.hidden=false; bn.innerHTML='<b>ZIPLAN 엔진</b> 규칙 기반 엔진이 답합니다. 계산·배치·문장 초안까지 모두 됩니다.'; } ['#critBtn','#pfCrit'].forEach(s=>{const b=$(s); if(b){b.disabled=true;b.hidden=true;}}); }
   else { try{ const lim=await sample.limits(); canImages=!!(lim&&lim.images); imgMax=(lim&&lim.images&&lim.images.maxCount)||1; }catch(e){ canImages=false; } }
   try{ downloads=await window.claude?.use?.('downloads'); }catch(e){ downloads=null; }
   try{ user=await window.claude?.use?.('user'); }catch(e){ user=null; }
@@ -3765,7 +3796,7 @@ let imgMax=0;
   if(me&&me.id&&db){ try{ const snap=await db.collection('data/users/'+me.id).doc('ziplan').get(); if(snap.exists){ applySaved(snap.data()); $('#stStatus').textContent='저장된 프로젝트를 불러왔습니다.'; } }catch(e){} }
 })();
 const errCopy=c=>({local_unavailable:'이 기능은 AI 연결 후 열립니다.',not_granted:'AI 사용이 허용되지 않았습니다.',rate_limited:'요청이 많습니다. 잠시 뒤 다시 눌러 주세요.',invalid_json:'형식이 맞지 않게 돌아왔습니다. 다시 눌러 주세요.',refused:'이 내용은 처리할 수 없다고 합니다. 내용을 바꿔 보세요.',cancelled:''}[c]||'잠시 문제가 생겼습니다. 다시 눌러 주세요.');
-async function save(filename,data,statusEl){ if(!downloads){ statusEl.textContent='파일 저장은 정식 오픈 때 열립니다.'; return; } try{ await downloads.save({filename,data}); statusEl.textContent=filename+' 저장됨'; }catch(e){ statusEl.textContent=e.code==='cancelled'?'':'저장하지 못했습니다.'; } }
+async function save(filename,data,statusEl){ if(!downloads){ statusEl.textContent='PNG·SVG·DXF 버튼으로 내려받아 주세요.'; return; } try{ await downloads.save({filename,data}); statusEl.textContent=filename+' 저장됨'; }catch(e){ statusEl.textContent=e.code==='cancelled'?'':'저장하지 못했습니다.'; } }
 /* ---------- 회원 · 계정 ----------
    세 가지 방식: claude.ai 안(그 계정) · 정식 사이트(Supabase 이메일/구글, window.ZIPLAN_AUTH 설정 시) · 체험 계정(이 브라우저에만).
    재학생 인증: 학교 메일(…ac.kr/.edu) → 학생가. */
@@ -3832,7 +3863,7 @@ $('#authForm').addEventListener('submit',async e=>{ e.preventDefault(); const st
   catch(err){ st.className='status err'; const m=String(err&&err.message||''); st.textContent=/Invalid login/i.test(m)?'이메일이나 비밀번호가 맞지 않습니다.':(/registered/i.test(m)?'이미 가입된 메일입니다. 로그인해 주세요.':(/Password/i.test(m)?'비밀번호는 6자 이상이어야 합니다.':'잠시 문제가 생겼습니다. 다시 눌러 주세요.')); }
   finally{ $('#auGo').disabled=false; } });
 $('#stuForm').addEventListener('submit',async e=>{ e.preventDefault(); const st=$('#svStatus'); st.className='status'; const email=$('#svEmail').value.trim(), school=$('#svSchool').value.trim(); if(!acct){ setAuthTab('up'); return; }
-  if(!SCHOOL_RE.test(email)){ st.className='status err'; st.textContent='학교에서 받은 메일(…ac.kr, …edu)로 넣어 주세요. 학생증 인증은 정식 오픈 때 열립니다.'; return; }
+  if(!SCHOOL_RE.test(email)){ st.className='status err'; st.textContent='학교에서 받은 메일(…ac.kr, …edu)로 넣어 주세요.'; return; }
   const rec={email,school:school||email.split('@')[1].split('.')[0].toUpperCase(),at:Date.now()};
   if(sb&&acct.mode==='server'){ try{ const {error}=await sb.from('profiles').upsert({id:acct.id,name:acct.name,school:rec.school,student_email:email,student_at:new Date().toISOString()}); if(error) throw error; }catch(err){ st.className='status err'; st.textContent='저장하지 못했습니다. 잠시 뒤 다시 눌러 주세요.'; return; } }
   else lsSet('zip_student_'+acct.id,rec);
@@ -3842,7 +3873,7 @@ initServer();
 function snapshot(){ return {v:2,title:state.title,concept:state.concept,site:state.site,use:state.use,scale:state.scale,keys:state.keys,notes:state.notes,layout:state.layout,ai:state.ai,zc:readZc(),zFloor:$('#zFloor').value,zRooms:$('#zRooms').value,zones:state.zones,secHeights:$('#secHeights').value,floors:floors,tMode:tMode,tOut:$('#tOut').textContent,conceptPick:state.conceptPick,concepts:state.concepts,likes:state.likes,svgImages:state.images.filter(i=>i.svg).map(i=>({name:i.name,type:i.type,svg:i.svg})),savedAt:Date.now()}; }
 function applySaved(d){ if(!d||typeof d!=='object') return; for(const k of ['title','concept','site','use','scale','keys','notes','layout','zFloor','zRooms','secHeights','tMode','tOut','conceptPick']) if(d[k]!=null) state[k]=d[k]; if(!LAYOUTS[state.layout]) state.layout='hero'; if(d.ai&&typeof d.ai==='object') state.ai=Object.assign({title:'',subtitle:'',statement:'',captions:{},highlights:[]},d.ai); if(d.zc&&typeof d.zc==='object') state.zc=Object.assign({},EXAMPLE.zc,d.zc); if(Array.isArray(d.floors)&&d.floors.length){ floors=d.floors.map(f=>[String(f[0]),+f[1]||0,String(f[2])]); state.floors=floors; } state.zones=Array.isArray(d.zones)&&d.zones.length?d.zones:null; state.concepts=Array.isArray(d.concepts)?d.concepts:[]; state.likes=Array.isArray(d.likes)?d.likes:[]; state.images=state.images.filter(i=>!i.svg).concat((Array.isArray(d.svgImages)?d.svgImages:[]).map(i=>({name:String(i.name||''),type:String(i.type||'diagram'),svg:String(i.svg||''),url:''}))); fillInputs(); renderFloors(); if(!state.zones) state.zones=localLayout(parseRooms()); drawZones(); drawSection(); renderConceptCards(); redraw(); }
 function resetExample(){ const ex=JSON.parse(JSON.stringify(EXAMPLE)); Object.assign(state,ex); state.images=[]; floors=state.floors; state.zones=null; fillInputs(); renderFloors(); state.zones=localLayout(parseRooms()); drawZones(); drawSection(); renderConceptCards(); redraw(); }
-async function stSaveLoad(which){ const st=$('#stStatus'); if(!db||!me||!me.id){ st.textContent='저장은 정식 오픈 때 열립니다.'; return; }
+async function stSaveLoad(which){ const st=$('#stStatus'); if(!db||!me||!me.id){ st.textContent='로그인하면 계정에 저장돼요.'; return; }
   try{ if(which==='save'){ await db.collection('data/users/'+me.id).doc('ziplan').set(snapshot()); st.textContent='저장했습니다.'; } else { const snap=await db.collection('data/users/'+me.id).doc('ziplan').get(); if(snap.exists){ applySaved(snap.data()); st.textContent='불러왔습니다.'; } else st.textContent='저장된 프로젝트가 없습니다.'; } renderStudio(); }
   catch(err){ st.textContent='저장소에 닿지 못했습니다. 잠시 뒤 다시 눌러 주세요.'; } }
 
@@ -3882,7 +3913,7 @@ function pfRenderPages(){ $('#pfPages').innerHTML=pfPages.map((p,i)=>`<img src="
 $('#pfClear').addEventListener('click',()=>{ pfPages.forEach(p=>URL.revokeObjectURL(p.url)); pfPages=[]; pfRenderPages(); $('#pfStatus').textContent=''; $('#pfOut').textContent='강점 3 · 고칠 점 3 · 구성안 3안이 여기에 나옵니다.'; $('#pfOut').style.color='var(--fg-2)'; });
 $('#pfCrit').addEventListener('click',async()=>{ const st=$('#pfStatus'); st.className='status'; const out=$('#pfOut');
   if(!pfPages.length){ st.className='status err'; st.textContent='먼저 PDF나 쪽 이미지를 올려 주세요.'; return; }
-  if(!canImages){ st.className='status err'; st.textContent='AI 크릿은 정식 오픈 때 열립니다.'; return; }
+  if(!canImages){ st.className='status err'; st.textContent='이 화면에서는 이미지 크릿을 쓸 수 없어요.'; return; }
   st.textContent='쪽을 보고 있는 중…'; out.textContent='생각하는 중…'; out.style.color='var(--fg)'; $('#pfCrit').disabled=true;
   const target=pfTo?PF_TO[pfTo]:'미정'; const rules=PF.jobs.filter(j=>!pfTo||j.type===pfTo).slice(0,3).map(j=>`${j.org}: ${j.format} / ${j.rule}`).join('\n');
   const liked=PF.tips.filter(t=>pfLiked.has(t.id)).map(t=>'- '+t.text).join('\n');
@@ -3901,7 +3932,7 @@ ${liked||'(선택 없음)'}
 5) 양식 체크 한 줄 (쪽수·용량·블라인드)
 총 700자 이내.`;
   try{ const r=await sample(prompt,{modelTier:'default',cache:false,images:pfPages.map(p=>p.blob),onText:({text})=>{out.textContent=text}}); out.textContent=r.text; st.textContent=''; }
-  catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=e.code==='images_unavailable'?'AI 크릿은 정식 오픈 때 열립니다.':e.code==='image_rejected'?'읽을 수 없는 이미지가 있습니다. JPG·PNG로 다시 올려 주세요.':errCopy(e.code); }
+  catch(e){ out.textContent=e.text||''; st.className='status err'; st.textContent=e.code==='images_unavailable'?'이 화면에서는 이미지 크릿을 쓸 수 없어요.':e.code==='image_rejected'?'읽을 수 없는 이미지가 있습니다. JPG·PNG로 다시 올려 주세요.':errCopy(e.code); }
   finally{ $('#pfCrit').disabled=false; } });
 $('#pfToPlaza').addEventListener('click',async()=>{ if(!pfPages.length){ $('#pfStatus').className='status err'; $('#pfStatus').textContent='먼저 쪽을 올려 주세요.'; return; } try{ const img=await shrinkImage(pfPages[0].url,1080); go('plaza',true); setTimeout(()=>pzCompose({imgs:[img],kind:'크릿 요청',crit:true,anon:true,title:'포트폴리오 첫 쪽 — 의견 부탁',caption:'지원처: '+(pfTo?PF_TO[pfTo]:'미정')+'. 첫 장에서 무엇이 읽히는지 알려 주세요. #포트폴리오'}),350); }catch(e){ $('#pfStatus').className='status err'; $('#pfStatus').textContent='이미지를 옮기지 못했습니다.'; } });
 $('#tilePortfolio').innerHTML=`<svg viewBox="0 0 280 120" aria-hidden="true"><g fill="var(--card)" stroke="var(--fg)" stroke-width="1.2"><rect x="30" y="14" width="64" height="90" rx="4"/><rect x="108" y="8" width="64" height="96" rx="4"/><rect x="186" y="14" width="64" height="90" rx="4"/></g><g fill="var(--fg)" opacity=".85"><rect x="38" y="22" width="48" height="34" rx="2"/><rect x="116" y="16" width="48" height="52" rx="2"/><rect x="194" y="22" width="48" height="34" rx="2"/></g><g fill="var(--fg-2)" opacity=".5"><rect x="38" y="62" width="36" height="3"/><rect x="38" y="69" width="28" height="3"/><rect x="116" y="74" width="40" height="3"/><rect x="116" y="81" width="30" height="3"/><rect x="194" y="62" width="36" height="3"/><rect x="194" y="69" width="24" height="3"/></g><rect x="116" y="90" width="20" height="4" fill="var(--accent)"/></svg>`;
@@ -4068,7 +4099,7 @@ function zcSpec(M,alt){ const U=M.U; const base={box:(['retail','office','cafe']
   P.tag='zc:'+alt+':'+[Math.round(P.W),Math.round(P.D),P.F,U[0],M.z.zone].join('/'); return P; }
 function zc3D(M){ const el=$('#zc3d'); if(!el||typeof pgvMount!=='function') return; const alt=ZC_ALT[ZC_ST.alt]||ZC_ALT[0];
   $('#zcAlt').innerHTML=ZC_ALT.map((a,i)=>`<button type="button" data-zcalt="${i}" aria-pressed="${i===ZC_ST.alt}">${a[1]}</button>`).join('');
-  $('#zc3dT').textContent=`${M.U[1]} · ${M.n}층 — ${alt[1]}`; $('#zc3dCap').textContent=`${alt[2]}. 폭 ${fmt(M.bw)}m × 깊이 ${fmt(M.bd0)}m 바닥, 층고 ${M.U[4]}m. 모형은 개략이며 일조 사선으로 물러나는 층은 단면에서 확인하세요.`;
+  $('#zc3dT').textContent=`${M.U[1]} · ${M.n}층 — ${alt[1]}`; $('#zc3dCap').textContent=`${alt[2]}. 폭 ${fmt(M.bw)}m × 깊이 ${fmt(M.bd0)}m 바닥, 층고 ${M.U[4]}m. 모형은 개략이며 일조 사선으로 물러나는 층은 아래 잘라 본 그림에서 확인하세요.`;
   if(!$('#zc3dTools').innerHTML) $('#zc3dTools').innerHTML=pgToolsHTML('zc');
   pgvMount('zc',el,site=>{ const P=zcSpec(M,alt[0]); if(site) P.site=site; return P; }); }
 document.addEventListener('click',e=>{ if(!e.target.closest) return; const v=e.target.closest('#view-zipcode'); if(!v) return;
@@ -5430,8 +5461,8 @@ const KB2=[
 ['광장|커뮤니티|게시판|작업.*올리|피드|챌린지|다른 ?사람.*작업.*보', "<b>광장</b>은 작업을 올리고 서로 크릿을 주고받는 피드예요. 사진 4장까지, 익명 가능, AI 크릿·해설, 댓글·저장·공유 링크가 되고 주간 챌린지도 열려요.<br>탐색 그리드에서 다른 사람의 도면과 모형을 보며 자극을 받아 보세요. 올리려면 로그인이 필요해요.", '#plaza', '광장', '사이트'],
 ['여행 ?방|건축 ?여행.*(사이트|기능|지도)|지도.*건축.*보기|여행.*별점', "<b>건축 여행 방</b>은 전국 60곳 넘는 건축 답사지를 지도(3D 건물 포함)와 사진, 에디터 별점·방문자 별점, 건축 포인트, 근처 맛집과 함께 보여 줘요.<br>출발지와 시간을 넣으면 코스를 짜 주고, 지도 투어 재생도 있어요.", '#travel', '건축 여행', '사이트'],
 ['포트폴리오 ?방|진로 ?지도|연봉.*(사이트|어디서 ?봐)|포트폴리오.*해부', "<b>포트폴리오 방</b>에는 진로 지도 13갈래(비전공 가능 표시), 직군별 연봉 범위, 예시 경로 6개, 12쪽 포트폴리오 해부, 비전공자의 길이 정리돼 있어요.<br>연봉 숫자는 공개 통계 기준 개략이라 해마다 갱신돼요.", '#portfolio', '포트폴리오 방', '사이트'],
-['요금|이용 ?가격|유료|무료.*(뭐|어디까지|범위)|플랜.*(얼마|가격)|구독|결제', "ZIPLAN은 <b>무료</b>로 취향 랩, 대지 실험실, 컨셉 마법사, 도감, 여행 등 대부분을 쓸 수 있어요. <b>스튜디오</b>와 <b>프로</b> 플랜은 프로젝트 저장 개수, AI 크릿, 고해상도 내보내기 같은 작업실 기능이 늘어나요.<br>정확한 금액과 포함 내용은 요금 페이지에서 확인하세요. 학교 플랜은 준비 중이에요.", '#pricing', '요금 보기', '사이트'],
-['학생 ?할인|재학생|학교 ?메일|ac\\.kr|학생.*싸게|학생.*혜택', "재학생은 <b>학교 메일(ac.kr·edu 등)</b>로 가입하면 자동으로 학생 할인(60% 수준)이 적용돼요. 요금 페이지의 재학생 띠에서 확인할 수 있죠.<br>졸업 후에도 일정 기간 유지되고, 학교 단위 플랜은 곧 열릴 예정이에요.", '#pricing', '학생 할인', '사이트'],
+['요금|이용 ?가격|유료|무료.*(뭐|어디까지|범위)|플랜.*(얼마|가격)|구독|결제', "ZIPLAN은 <b>무료</b>로 취향 랩, 대지 실험실, 컨셉 마법사, 도감, 여행 등 대부분을 쓸 수 있어요. <b>스튜디오</b>와 <b>프로</b> 플랜은 프로젝트 저장 개수, AI 크릿, 고해상도 내보내기 같은 작업실 기능이 늘어나요.<br>정확한 금액과 포함 내용은 요금 페이지에서 확인하세요. 학교·학과 단위 이용은 문의하기로 알려 주세요.", '#pricing', '요금 보기', '사이트'],
+['학생 ?할인|재학생|학교 ?메일|ac\\.kr|학생.*싸게|학생.*혜택', "재학생은 <b>학교 메일(ac.kr·edu 등)</b>로 가입하면 자동으로 학생 할인(60% 수준)이 적용돼요. 요금 페이지의 재학생 띠에서 확인할 수 있죠.<br>졸업 후에도 일정 기간 유지돼요. 학교 단위 이용은 문의하기로 알려 주세요.", '#pricing', '학생 할인', '사이트'],
 ['로그인|회원 ?가입|가입.*(어떻게|해야)|구글.*로그인|계정|비밀번호', "오른쪽 위 버튼으로 <b>구글 로그인</b> 또는 이메일 가입을 할 수 있어요. 로그인하면 프로젝트·취향 기록·저장·별점이 계정에 동기화되고 광장에 글을 올릴 수 있죠.<br>로그인 없이도 실험실과 도감, 여행은 자유롭게 쓸 수 있어요. 문제가 있으면 챗봇의 문의하기로 알려 주세요.", '', '', '사이트'],
 ['작업실.*(사이트|기능|어디|뭐|여정)|작업실(이|은|에서|로|$)|스튜디오 ?(방|기능)|프로젝트.*(저장|관리|여러)|7단계|여정', "<b>작업실</b>은 프로젝트 여정 7단계(취향 → 대지 → 컨셉 → 도면 → 모형 → 패널 → 포트폴리오)를 한눈에 보며 진행하는 곳이에요. 여러 프로젝트를 만들고 자동 저장되죠.<br>로그인하면 계정에 동기화되고, 아니면 이 기기에만 저장돼요.", '#studio', '작업실', '사이트'],
 ['가이드(?!라인)|사용법|어떻게 ?쓰|처음.*뭐부터|시작.*어디서|튜토리얼', "처음이라면 이 순서를 권해요. ① <b>취향 랩</b>에서 단어 고르기(5분) → ② 결과 모형을 <b>도면 작업대</b>로 보내기 → ③ <b>컨셉 마법사</b>로 이름과 다이어그램 만들기 → ④ <b>작업실</b>에서 프로젝트로 저장.<br>비전공자는 <b>내집코드</b>와 <b>건축 여행</b>부터 둘러보면 재미있어요. 가이드 페이지에 자세한 안내가 있어요.", '#guide', '가이드', '사이트'],
@@ -7957,7 +7988,7 @@ const PG_ARCH_OP={court:'court',terrace:'terrace',pilotis:'pilotis',village:'gap
 const PG_OPT={court:'가운데를 비워 마당을 만들고, 모든 방이 마당을 보게 했어요',pilotis:'1층을 기둥만 남기고 들어 올려 아래를 비웠어요',cantilever:'위층 한 덩어리를 밖으로 4m 내밀어 그늘과 표정을 만들었어요',terrace:'층마다 한 칸씩 물러나 아래층 지붕을 정원으로 썼어요',split:'반 층씩 어긋난 두 덩어리를 유리 계단으로 이었어요',void:'가운데를 위아래로 뚫어 빛이 내려오는 보이드를 냈어요',bridge:'두 동을 유리 다리로 연결했어요',tower:'한 부분만 두 층 더 솟게 했어요',twist:'층마다 조금씩 돌려 비틀린 매스를 만들었어요',curve:'모서리를 둥글게 굴렸어요',round:'원형 평면으로 바꿨어요',carve:'매스 모서리를 깎아 입구와 테라스로 썼어요',frame:'매스를 굵은 프레임으로 감싸 풍경을 액자처럼 담았어요',slabs:'바닥판을 1m씩 내밀어 층이 드러나게 했어요',module:'같은 모듈을 반복해 조립했어요',village:'방마다 작은 집으로 나눠 마을처럼 놓았어요',gap:'매스 사이에 틈을 내 바람과 빛이 지나가게 했어요',twin:'두 동으로 나눴어요',shift:'판을 밀고 당겨 엇갈려 쌓았어요',plinth:'묵직한 돌 기단 위에 집을 얹었어요',lightTop:'위층은 가벼운 유리로 띄웠어요',sink:'땅에 반쯤 묻어 지붕을 정원으로 덮었어요',sunken:'앞마당을 낮춰 선큰 가든을 만들었어요',roofgarden:'옥상을 정원으로 썼어요',canopy:'입구에 깊은 캐노피를 걸었어요',yard:'앞쪽에 넓은 마당을 남겼어요',cloister:'마당 둘레에 회랑을 둘렀어요',wall:'대지 둘레를 담으로 감싸 안쪽을 지켰어요',pool:'건물 앞에 얕은 물을 두어 빛을 반사하게 했어요',bigtree:'큰 나무 한 그루를 중심에 남겼어요',deck:'툇마루 같은 데크를 둘러 안팎을 이었어요',eaves:'처마를 깊게 내어 비와 여름 해를 막았어요',skylight:'지붕에 천창을 뚫어 빛을 떨어뜨렸어요',solar:'남쪽 지붕에 태양광 패널을 얹었어요',vines:'벽을 덩굴로 덮었어요',shades:'창 위에 수평 차양을 달아 그림자를 그렸어요',ramp:'바깥 경사로로 지붕까지 걸어 올라가게 했어요',spiral:'나선 계단을 밖으로 드러냈어요',stair:'계단을 밖으로 드러내 머무는 자리로 만들었어요',passage:'1층을 뚫어 골목이 지나가게 했어요',plaza:'1층 앞을 공공 마당으로 열었어요',nuru:'한쪽을 누마루처럼 기둥 위로 들어 올렸어요',jars:'마당 한쪽에 장독대를 두었어요',frameGrid:'기둥·보 격자를 외관에 드러냈어요'};
 const PG_ROOFT={flat:'평지붕',green:'풀로 덮은 지붕',gable:'박공지붕',steep:'가파른 박공지붕',shed:'한쪽으로 기운 외쪽지붕',saw:'북쪽 빛을 받는 톱날 지붕',vault:'둥근 볼트 지붕',hanok:'처마 끝이 들리는 기와지붕',big:'모든 방을 덮는 하나의 큰 지붕',slab:'얇게 떠 있는 슬래브 지붕',roofgarden:'옥상 정원'};
 const PG_WINT={ribbon:'수평 띠창',full:'바닥부터 천장까지 통창',slit:'좁고 긴 슬릿 창',punch:'벽에 뚫은 창',deep:'깊게 판 창',corner:'모서리를 감싸는 코너 창',frame:'풍경을 자르는 큰 액자창',clere:'천장 가까운 고측창',lattice:'살대 있는 창호'};
-const PG_SITET={flat:'평평한 대지',slope:'뒤로 올라가는 경사지',water:'잔잔한 물가',sea:'바다를 향한 대지',forest:'숲 속 공터',mountain:'산을 마주한 대지',alley:'좁은 골목 안',city:'도심 필지',field:'넓은 들판',village:'오래된 마을',suburb:'신도시 필지'};
+const PG_SITET={flat:'평평한 땅',slope:'뒤로 올라가는 경사지',water:'잔잔한 물가',sea:'바다를 향한 대지',forest:'숲 속 공터',mountain:'산을 마주한 대지',alley:'좁은 골목 안',city:'도심 필지',field:'넓은 들판',village:'오래된 마을',suburb:'신도시 필지'};
 const pgHash=s=>{ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; };
 const pgRng=seed=>{ let a=seed>>>0||1; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; };
 
@@ -8639,7 +8670,7 @@ function renderDnaResult(r){ try{ dnMode('adv'); }catch(e){} r=r||dnaAnalyze(sta
       <div class="dns-bar" role="group" aria-label="보기">
         <button data-dv="clay" aria-pressed="false" title="흰 스터디 모형">흰 모형</button><button data-dv="night" aria-pressed="false">밤</button><button data-dv="explode" aria-pressed="false" title="층을 띄워 보기">층 펼치기</button>
         <span class="dns-sep"></span><button data-dvv="spin">돌기</button><button data-dvv="aerial">조감</button><button data-dvv="front">정면</button><button data-dvv="eye">눈높이</button><button data-dvv="top">위</button>
-        <label class="dns-site">대지<select data-dnsite><option value="">단어대로</option><option value="flat">평평한 대지</option><option value="city">도심</option><option value="alley">좁은 골목</option><option value="suburb">신도시 주택가</option><option value="village">오래된 마을</option><option value="forest">숲 속</option><option value="slope">경사지</option><option value="mountain">산자락</option><option value="water">호숫가</option><option value="sea">바닷가</option><option value="field">들판 · 논</option></select></label><label class="dns-sun">해<input type="range" id="dnSun" min="-180" max="0" value="-52"></label><button data-dvx="png" title="그림으로 저장">PNG</button><button data-dvx="rec" class="pri">기록</button></div>
+        <label class="dns-site">대지<select data-dnsite><option value="">단어대로</option><option value="flat">평평한 땅</option><option value="city">도심</option><option value="alley">좁은 골목</option><option value="suburb">신도시 주택가</option><option value="village">오래된 마을</option><option value="forest">숲 속</option><option value="slope">경사지</option><option value="mountain">산자락</option><option value="water">호숫가</option><option value="sea">바닷가</option><option value="field">들판 · 논</option></select></label><label class="dns-sun">해<input type="range" id="dnSun" min="-180" max="0" value="-52"></label><button data-dvx="png" title="그림으로 저장">PNG</button><button data-dvx="rec" class="pri">기록</button></div>
     </div></div>
     <div class="dns-steps"><div class="dns-intro"><span class="lab-k">SCROLL · 짓는 순서</span><h3>스크롤하면 집이 지어집니다</h3><p>고른 단어 ${r.n}개가 어떤 결정으로 이어졌는지, 땅에서 완성까지 다섯 장면으로 보여 드려요. 왼쪽 위에서 세 대안(정석·혼합·실험)을 바꿔 볼 수 있어요.</p></div><div id="dnStory"></div><div class="dns-end" id="dnStoryEnd" data-step="end"><b>완성</b><p>끌어서 돌려 보고, 흰 모형·밤·층 펼치기로 살펴보세요.</p></div></div>
   </div>
@@ -9339,7 +9370,7 @@ window.__dxf={pgDxf,pgPlanGeom,pgSchedule,dwSetOpen,dxfWrite,spec:(k,o)=>pgSpec(
 
 /* ===== 컨셉 방: 실제 건물처럼 짓는 3D + 도구 (취향 랩 생성기 공용) ===== */
 const PGVR={};
-const PG_SITE_OPTS=[['','단어대로'],['flat','평평한 대지'],['city','도심'],['alley','좁은 골목'],['suburb','신도시 주택가'],['village','오래된 마을'],['forest','숲 속'],['slope','경사지'],['mountain','산자락'],['water','호숫가'],['sea','바닷가'],['field','들판 · 논']];
+const PG_SITE_OPTS=[['','단어대로'],['flat','평평한 땅'],['city','도심'],['alley','좁은 골목'],['suburb','신도시 주택가'],['village','오래된 마을'],['forest','숲 속'],['slope','경사지'],['mountain','산자락'],['water','호숫가'],['sea','바닷가'],['field','들판 · 논']];
 function archKeys(id){ const sc=DNA_KW.filter(k=>k.a&&k.a[id]&&k.cat!=='master'&&k.cat!=='color').map(k=>[k.label,k.a[id],k.cat]).sort((a,b)=>b[1]-a[1]); const out=[], cats={}; for(const [l,w,c] of sc){ if(out.length>=6) break; if((cats[c]||0)>=2) continue; cats[c]=(cats[c]||0)+1; out.push(l); } return out; }
 function pgToolsHTML(id,o){ o=o||{}; return `<div class="pgt" data-pgt="${id}"><div class="pgt-g"><button type="button" data-pgm="clay" aria-pressed="false">흰 모형</button><button type="button" data-pgm="night" aria-pressed="false">밤</button><button type="button" data-pgm="explode" aria-pressed="false">층 펼치기</button></div><div class="pgt-g"><button type="button" data-pgv="spin">돌기</button><button type="button" data-pgv="aerial">조감</button><button type="button" data-pgv="front">정면</button><button type="button" data-pgv="eye">눈높이</button><button type="button" data-pgv="top">위</button></div>${o.noSite?'':`<label class="pgt-s"><span>주변</span><select data-pgsite>${PG_SITE_OPTS.map(([v,n])=>`<option value="${v}">${n}</option>`).join('')}</select></label>`}<label class="pgt-s"><span>해</span><input type="range" min="-180" max="0" value="-52" data-pgsun aria-label="해 방향"></label><button type="button" class="btn sec sm" data-pgpng>PNG</button></div>`; }
 function pgvMount(id,el,make,onBuilt){ const old=PGVR[id]; if(old&&old.v&&old.el===el){ old.make=make; old.onBuilt=onBuilt; const P=make(old.site); old.P=P; old.v.show(P,{keepCam:true}); return old; } if(old&&old.v) try{ old.v.dispose(); }catch(e){}
@@ -10967,7 +10998,7 @@ const AT_PAT={
 /* ---- 테마 정의: [제목, 영문, 한 줄, [배경1, 배경2, 포인트, 잉크], 패턴, 효과, 효과색] ---- */
 const T_KR=['#0f3d3a','#1b2d55','#e0473a','#f6edd8'], T_JP=['#141c33','#2b2f4a','#e2584b','#f4ece0'], T_CN=['#5a0f12','#2a0608','#f2c14e','#fde9c2'];
 const AT_TH={
- all:['세계 건축 도감','WORLD ATLAS',`4,500년, ${new Set(BLDX.map(bldCountry)).size}개 나라 ${BLDX.length}채의 건물을`+' 같은 단어로 읽어 둔 도감이에요. 나라·건축가·컨셉으로 골라 보면 그 세계의 색과 무늬가 펼쳐져요.',['#14161d','#22283a','#7cc4ff','#f2f4f8'],'globe','plexus',['#7cc4ff','#ffb341','#ff7a45']],
+ all:['세계 건축 도감','WORLD ATLAS',`4,500년, ${new Set(BLDX.map(bldCountry)).size}개 나라 ${BLDX.length}채의 건물을`+' 같은 단어로 읽어 둔 도감이에요. 나라·건축가·테마로 골라 보면 그 세계의 색과 무늬가 펼쳐져요.',['#14161d','#22283a','#7cc4ff','#f2f4f8'],'globe','plexus',['#7cc4ff','#ffb341','#ff7a45']],
  /* 나라 */
  '한국':['한국','KOREA · 韓國','단청의 오방색, 처마의 곡선, 비워 둔 마당. 자연을 빌려 오는 차경(借景)과 땅을 거스르지 않는 배치 — 오래된 지혜가 지금의 벽돌과 콘크리트로 이어져요.',T_KR,'dancheong','petal',['#ffffff','#ffd9e2','#f7a8bb','#ffe9a8'],['#e0473a','#2f8a74','#2b4c8c','#f0c040']],
  '일본':['일본','JAPAN · 日本','목조의 정밀함과 여백의 미(間, 마). 신사의 나무 기둥에서 안도 다다오의 노출 콘크리트까지 — 비움으로 빛과 계절을 담아요.',T_JP,'seigaiha','petal',['#ffd1dc','#ffb7c8','#fff0f4'],['#e2584b','#f4ece0','#8fa3c8']],
@@ -11085,7 +11116,7 @@ const AT_TH={
  u_palace:['궁궐 · 성 · 유적','PALACES & RUINS','권력과 신앙이 남긴 돌과 나무의 기록.',['#2a1c10','#3a2a14','#f2c14e','#fbf1dc'],'stone','gold',['#ffd86a']],
  u_move:['교통 · 인프라','INFRASTRUCTURE','역과 공항, 다리 — 움직임을 위한 거대한 지붕.',['#0b1020','#141c34','#7cc4ff','#eef2fa'],'tracks','streak',['#9cc8ff','#ffd27a']]};
 AT_TH.r_kr=AT_TH['한국'].slice(); AT_TH.c_hanok[2]=AT_TH.c_hanok[2];
-const AT_TAB=[['country','나라'],['region','지역'],['arch','건축가'],['concept','컨셉'],['era','시대'],['use','용도']];
+const AT_TAB=[['country','나라'],['region','지역'],['arch','건축가'],['concept','테마'],['era','시대'],['use','용도']];
 const AT_ARCH={'안도 다다오':'노출 콘크리트와 빛, 물로 침묵을 짓는 건축가.','헤르조그 & 드 뫼롱':'재료의 피부를 새로 발명하는 스위스 듀오.','자하 하디드':'중력을 거스르는 흐르는 곡선의 건축.','미스 반 데어 로에':'“적을수록 많다.” 철과 유리의 고전.','I. M. 페이':'기하학으로 빛을 다듬은 모더니스트.','르 코르뷔지에':'필로티·자유로운 평면·수평창 — 근대건축의 문법을 쓴 사람.','프랭크 로이드 라이트':'땅에서 자라난 듯한 유기적 건축.','장 누벨':'빛과 그림자, 반사로 장면을 연출하는 건축가.','SANAA':'얇고 하얗고 투명한 — 경계가 사라지는 공간.','OMA':'도시의 프로그램을 뒤섞어 새 형태를 만드는 렘 콜하스의 사무소.','SOM':'초고층의 교과서를 써 온 미국의 설계 조직.','루이스 칸':'침묵과 빛 — 벽돌과 콘크리트로 만든 기념비.','오스카 니마이어':'브라질의 곡선, 자유로운 콘크리트의 시인.','렌조 피아노':'가볍고 정교한 구조, 하이테크의 장인.','단게 겐조':'전후 일본 모더니즘을 이끈 거장.','김수근':'벽돌과 스킵플로어 — 한국 현대건축 1세대.','이토 도요':'바람처럼 가벼운 건축.','안토니 가우디':'자연을 닮은 곡선과 모자이크, 바르셀로나의 신화.','알바 알토':'북유럽의 나무와 빛, 인간을 위한 모더니즘.','프랭크 게리':'금속 곡면으로 도시의 풍경을 바꾼 건축가.','노먼 포스터':'투명한 구조와 하이테크의 미학.','BIG':'산이 되는 건물, 스키 타는 발전소 — 실용적 유토피아.','쿠마 겐고':'건축을 지우는 건축 — 나무 루버와 자연 재료.','산티아고 칼라트라바':'뼈처럼 하얀 구조, 움직이는 조각 같은 건축.','김중업':'르 코르뷔지에에게 배운 곡선의 건축가.','MVRDV':'적층과 데이터로 만드는 대담한 네덜란드 건축.','알바로 시자':'포르투갈의 흰 벽과 빛, 땅과 바다 사이의 시.','모셰 사프디':'쌓아 올린 집들의 도시를 그리는 건축가.','에로 사리넨':'날아오르는 콘크리트 지붕의 건축가.','루이스 바라간':'분홍과 노랑의 벽, 고요한 멕시코의 정원.','피터 줌터':'재료와 분위기의 건축.','딜러 스코피디오':'도시를 무대로 바꾸는 뉴욕의 스튜디오.','마리오 보타':'벽돌과 원통 — 기하학의 무게.','이타미 준':'제주의 바람과 돌, 재료의 정직함.','카를로 스카르파':'디테일과 물, 시간의 층을 다룬 장인.','리처드 로저스':'구조와 설비를 밖으로 드러낸 하이테크.','다니엘 리베스킨트':'기억을 새긴 날카로운 선.','스뇌헤타':'풍경이 되는 지붕을 짓는 노르웨이 스튜디오.','토머스 헤더윅':'디자인과 건축의 경계를 지우는 영국 스튜디오.','반 시게루':'종이관 구조로 재난 현장을 짓는 건축가.','아돌프 로스':'“장식은 죄악.” 라움플란의 공간.','리나 보 바르디':'브라질 대중을 위한 콘크리트.','제프리 바와':'열대 모더니즘 — 정원과 건축의 경계를 지우다.','니시자와 류에':'물방울 같은 하나의 공간.','이시가미 준야':'구름처럼 가벼운 건축.','하라 히로시':'도시 속의 거대한 지형을 만드는 건축가.','렘 콜하스':'도시를 다시 생각하게 만드는 이론가이자 건축가.'};
 const ATG={tab:'country',sel:''};
 let AT_IDX=null;
@@ -11203,15 +11234,15 @@ const AT_HALLS=[
  {k:'temple',n:'신전과 대성당',en:'TEMPLES & CATHEDRALS',c:['#b08a5a','#e8d4b0'],d:'기둥과 돔, 버트레스와 장미창. 이천오백 년의 돌.',ids:['parthenon','pantheon','colosseum','hagiasophia','notredame','chartres','stpeters','rotonda','angkor','tajmahal']},
  {k:'china',n:'중국의 축과 그물',en:'CHINA · AXIS & MESH',c:['#b8322a','#f2a65a'],d:'자금성과 천단의 축선에서 새둥지의 강철 그물, 비틀며 오르는 상하이 타워까지.',ids:['forbidden','templeheaven','potala','suzhoumuseum','birdsnest','cctv','shanghaitower']},
  {k:'japan',n:'일본의 나무와 콘크리트',en:'JAPAN · WOOD & CONCRETE',c:['#b5402a','#f0b49a'],d:'호류지의 오중탑에서 단게의 현수 지붕까지. 나무 결구와 노출 콘크리트로 읽는 일본 건축 천삼백 년.',ids:['horyuji','todaiji','ise','itsukushima','byodoin','kiyomizu','kinkakuji','ginkakuji','himeji','katsura','yoyogi','nmwa','kagawa','tokyoforum','yokohama','moriyama']},
- {k:'master',n:'근대의 거장들',en:'MODERN MASTERS',c:['#30a46c','#a7e3c0'],d:'필로티와 띠창, 캔틸레버와 유리 상자. 교과서 속 그 집들.',ids:['savoye','barcelona','fallingwater','farnsworth','glasshouse','ronchamp','unite','kimbell','salk','guggenheimny','seagram','sagrada','casamila','eiffel','hiroshima','habitat','nakagin','robie','bauhaus','eames']},
+ {k:'master',n:'근대의 거장들',en:'MODERN MASTERS',c:['#30a46c','#a7e3c0'],d:'기둥 위에 뜬 집과 띠창, 허공으로 내민 바닥과 유리 상자. 교과서 속 그 집들.',ids:['savoye','barcelona','fallingwater','farnsworth','glasshouse','ronchamp','unite','kimbell','salk','guggenheimny','seagram','sagrada','casamila','eiffel','hiroshima','habitat','nakagin','robie','bauhaus','eames']},
  {k:'poetic',n:'빛 · 물 · 땅',en:'LIGHT · WATER · LAND',c:['#8a6bff','#d4c8ff'],d:'십자 슬릿, 물방울 셸, 땅에 묻은 미술관. 현대의 시.',ids:['churchlight','sumiyoshi','waterchurch','chichu','teshima','kanazawa','sendai','gilardi','louvrepyramid','louvreabu','bilbao','sydney','onecentralpark','therme','oslo']},
  {k:'sky',n:'하늘로',en:'SKYSCRAPERS',c:['#0f2a4a','#5aa0e0'],d:'셋백과 왕관, 마디와 첨탑. 높이를 다투던 탑들.',ids:['empirestate','chrysler','petronas','taipei101','burj','lotte','onewtc']},
  {k:'icons',n:'도시의 현대 아이콘',en:'CITY ICONS',c:['#e0442e','#5b8def'],d:'배관을 밖으로 꺼낸 미술관, 발전소를 바꾼 갤러리, 창고 위 유리 왕관, 스테인리스 돛.',ids:['pompidou','tatemodern','elbphil','disneyhall','seattle','getty']},
  {k:'latam',n:'중남미의 곡선과 돌',en:'LATIN AMERICA',c:['#e0662e','#f7c948'],d:'니마이어의 흰 곡선과 리나 보 바르디의 붉은 프레임, 안데스와 유카탄의 돌.',ids:['brasilia','niteroi','masp','barragan','machupicchu','elcastillo']},
- {k:'mideast',n:'사막의 돔과 빛',en:'MIDDLE EAST',c:['#1f6f8b','#e8c27a'],d:'청색 타일 이완, 흰 대리석 돔, 붉은 사암에 새긴 파사드, 흘러내리는 흰 곡면.',ids:['domerock','shahmosque','zayed','petra','mia','heydar']},
+ {k:'mideast',n:'사막의 돔과 빛',en:'MIDDLE EAST',c:['#1f6f8b','#e8c27a'],d:'청색 타일 이완, 흰 대리석 돔, 붉은 사암에 새긴 정면, 흘러내리는 흰 곡면.',ids:['domerock','shahmosque','zayed','petra','mia','heydar']},
  {k:'africa',n:'흙과 돌의 대륙',en:'AFRICA',c:['#a0522d','#e6b980'],d:'피라미드와 바위 신전, 흙벽돌 모스크와 바위를 파낸 교회, 바다로 기운 도서관.',ids:['giza','abusimbel','djenne','lalibela','alexandrina','hassan2']},
  {k:'southasia',n:'남·동남아시아',en:'SOUTH & SOUTHEAST ASIA',c:['#2f8f5b','#f2c14e'],d:'종 모양 스투파와 도자기 탑, 루이스 칸과 르 코르뷔지에의 의사당, 하늘의 배.',ids:['borobudur','watarun','lotustemple','dhaka','chandigarh','marinabay']},
- {k:'oceania',n:'오세아니아',en:'OCEANIA',c:['#1b7fb3','#9fd8cb'],d:'언덕 속 의사당, 판지 튜브 성당, 숲 속 필로티 주택, 금빛 왕관 타워.',ids:['parliamentau','fedsquare','tepapa','roseseidler','cardboard','eurekatower']},
+ {k:'oceania',n:'오세아니아',en:'OCEANIA',c:['#1b7fb3','#9fd8cb'],d:'언덕 속 의사당, 판지 튜브 성당, 숲 속 기둥 위의 주택, 금빛 왕관 타워.',ids:['parliamentau','fedsquare','tepapa','roseseidler','cardboard','eurekatower']},
 ];
 const AT_HALL_OF={}; AT_HALLS.forEach(h=>h.ids.forEach(id=>AT_HALL_OF[id]=h));
 const ATX={i:0,hall:null,order:[]};
@@ -11223,7 +11254,7 @@ function atPageHTML(){ const L=atSpotOrder();
   <section class="atx-halls" id="atHalls" aria-label="전시실"><div class="atx-sh"><span class="lab-k">02 · 전시실</span><h2>방 ${AT_HALLS.length}개로 나눠 걸었어요.</h2><p>방을 고르면, 그 방의 건물들이 펼쳐집니다.</p></div>
    <div class="atx-hg">${AT_HALLS.map((h,i)=>`<button type="button" class="atx-h" data-athall="${h.k}" style="--a:${h.c[0]};--b:${h.c[1]};--i:${i}" aria-pressed="false"><span class="en">${h.en}</span><b>${esc(h.n)}</b><span class="d">${esc(h.d)}</span><span class="n">${h.ids.filter(id=>BSIG[id]).length}<small>채</small></span><span class="pv">${h.ids.slice(0,3).map(id=>`<i data-atth="${id}"></i>`).join('')}</span></button>`).join('')}</div>
    <div class="atx-room" id="atRoom" hidden></div></section>
-  <section class="atx-all" id="atAll" aria-label="전체 건물"><div class="atx-sh"><span class="lab-k">03 · 전체 ${BLDX.length}채</span><h2>세계를 기준 하나로 좁혀 보기.</h2><p><b>① 기준</b>(나라·지역·건축가·컨셉·시대·용도)을 고르고 → <b>② 항목</b>을 고르면 → <b>③ 건물</b>이 남아요. 검색창에 바로 써도 돼요.</p></div></section>`; }
+  <section class="atx-all" id="atAll" aria-label="전체 건물"><div class="atx-sh"><span class="lab-k">03 · 전체 ${BLDX.length}채</span><h2>세계를 기준 하나로 좁혀 보기.</h2><p><b>① 기준</b>(나라·지역·건축가·테마·시대·용도)을 고르고 → <b>② 항목</b>을 고르면 → <b>③ 건물</b>이 남아요. 검색창에 바로 써도 돼요.</p></div></section>`; }
 function atSpotRender(){ const L=atSpotOrder(); ATX.i=(ATX.i+L.length)%L.length; const id=L[ATX.i], b=BLD_BY[id], S=BSIG[id], H=AT_HALL_OF[id]; const info=$('#atSpotInfo'); if(!info) return;
   info.style.setProperty('--a',H.c[0]); info.innerHTML=`<span class="hl">${esc(H.n)} · ${String(ATX.i+1).padStart(2,'0')} / ${L.length}</span><h3>${esc(b.name)}</h3><p class="who">${esc(b.arch)} · ${esc(String(b.year))} · ${esc(b.city)}</p><p class="dims">${esc(S.dims||'')}</p><p class="desc">${esc(S.desc||b.line||'')}</p>${S.feats&&S.feats.length?`<ol class="ft">${S.feats.slice(0,4).map(f=>`<li>${esc(f)}</li>`).join('')}</ol>`:''}<div class="act"><button type="button" class="btn" data-bld="${id}">사진 · 도면 · 메모</button><button type="button" class="btn sec" data-atbuild="${id}">이 건물처럼 지어 보기</button></div>`;
   info.classList.remove('in'); void info.offsetWidth; info.classList.add('in');
@@ -11614,7 +11645,7 @@ async function pzLoad(){ PZ.mode=pzModeNow(); PZ.note=''; const L=pzLocal(); PZ.
      const ids=[...new Set(arr.map(p=>p.uid))]; let prof={}; if(user&&ids.length){ try{ prof=await user.profiles(ids); }catch(e){} } arr.forEach(p=>p.name=(prof[p.uid]&&prof[p.uid].name)||'회원'); PZ.posts=arr;
      const ls=await db.collection('likes').get(); PZ.likeN={}; PZ.mine=new Set(); for(const d of ls.docs){ for(const id of (d.data().postIds||[])){ PZ.likeN[id]=(PZ.likeN[id]||0)+1; if(d.id===me.id) PZ.mine.add(id); } }
      const cs=await db.collection('comments').get(); PZ.cm={}; for(const d of cs.docs){ for(const c of (d.data().list||[])) (PZ.cm[c.postId]=PZ.cm[c.postId]||[]).push({id:d.id+c.at,uid:d.id,name:(prof[d.id]&&prof[d.id].name)||'회원',text:c.text,at:c.at}); } Object.values(PZ.cm).forEach(a=>a.sort((x,y)=>x.at-y.at)); ok=true; }
-  }catch(e){ PZ.note=PZ.mode==='server'?'광장 서버 테이블이 아직 준비되지 않았어요 — 지금은 이 기기에 저장돼요. (관리자: supabase/plaza.sql 실행)':'공용 저장소에 닿지 못했어요 — 지금은 이 기기에 저장돼요.'; PZ.mode='local'; }
+  }catch(e){ PZ.note='지금은 이 기기에 저장돼요.'; try{ if(PZ.mode==='server') console.info('[plaza] plaza_posts 없음 — supabase/plaza.sql 실행 필요'); }catch(_){} PZ.mode='local'; }
   if(!ok){ PZ.posts=L.posts; PZ.likeN={}; PZ.mine=new Set(L.likes); L.likes.forEach(id=>PZ.likeN[id]=1); PZ.cm=L.cm; }
   POSTS=PZ.posts.map(p=>({id:p.id,title:p.title||(p.caption||'').slice(0,24),kind:p.kind,tags:p.tags,text:p.caption||'',img:p.imgs[0]||'',useAsCase:p.useAsCase,anon:p.anon,school:p.school,year:p.year,author:p.uid,at:p.at}));
   PZ.loaded=true; pzRender(); try{ renderCases(); }catch(e){}
@@ -11659,7 +11690,7 @@ function pzRender(){ const tb=$('#pzTabs'); if(!tb) return;
   tb.innerHTML=PZ_TABS.map(([k,n,ic])=>`<button type="button" data-pztab="${k}" aria-pressed="${PZ.tab===k}">${pzI(ic)}<span>${n}</span></button>`).join('');
   $('#pzKinds').innerHTML=['',...PZ_KINDS].map(k=>`<button type="button" data-pzkind="${k}" aria-pressed="${PZ.kind===k}">${k||'전체'}</button>`).join('');
   const cnt={}; pzAll().forEach(p=>p.tags.forEach(t=>cnt[t]=(cnt[t]||0)+(p.official?0.3:1))); $('#pzTags').innerHTML=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,14).map(([t])=>`<button type="button" data-pztag="${esc(t)}" aria-pressed="${PZ.tag===t}">#${esc(t)}</button>`).join('');
-  $('#pzMode').textContent=PZ.note||({server:'ZIPLAN 회원 광장 — 올린 글은 모두에게 보여요.',claude:'claude.ai 공용 광장 — 같은 앱 사용자에게 보여요.',local:'지금은 이 기기에만 저장돼요. 정식 광장이 열리면 옮겨 드려요.'})[PZ.mode];
+  $('#pzMode').textContent=PZ.note||({server:'ZIPLAN 회원 광장 — 올린 글은 모두에게 보여요.',claude:'claude.ai 공용 광장 — 같은 앱 사용자에게 보여요.',local:'지금은 이 기기에만 저장돼요.'})[PZ.mode];
   $('#pzMeAva').textContent=pzMeName().slice(0,1);
   pzStories(); pzSide();
   const L=pzList(); const head=$('#pzHead'), feed=$('#pzFeed');
@@ -11673,7 +11704,7 @@ function pzStories(){ const box=$('#pzStories'); if(!box) return; const off=pzOf
 function pzSide(){ const meb=$('#pzMe'); if(!meb) return; let G=null; try{ G=zGrade(); }catch(e){}
   meb.innerHTML=`<div class="pz-mec">${pzAva({name:pzMeName(),uid:acct&&acct.id},true)}<div><b>${esc(pzMeName())}</b><span>${acct?(acct.student?esc(acct.student.school||'재학생'):'ZIPLAN 회원'):'로그인하면 모두에게 보여요'}</span></div>${acct?'':'<button type="button" class="btn sm" data-auth-open>로그인</button>'}</div>${G?`<div class="pz-gbar" style="--c:${G.g.c}"><span>${esc(G.g.n)} 등급 · ${G.p}점</span><i><i style="width:${G.pct}%"></i></i><em>${G.nx?`${esc(G.nx.n)}까지 ${G.nx.min-G.p}점`:'최고 등급'}</em></div>`:''}`;
   const c=pzCh(); const end=new Date(); end.setDate(end.getDate()+((5-end.getDay()+7)%7)); $('#pzCh').innerHTML=`<span class="lab-k">CHALLENGE</span><h5>#${esc(c[0])}</h5><b>${esc(c[1])}</b><p>${esc(c[2])}</p><div class="pz-chm"><span>${end.toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 금요일 마감</span><button type="button" class="btn sm" data-pzcompose="ch">참여</button></div>`;
-  let comps=[]; try{ const m=new Date().getMonth()+1; comps=COMPS.filter(x=>x.m&&x.m.some(k=>k>=m&&k<=m+2)).slice(0,4); }catch(e){} $('#pzDl').innerHTML=comps.length?`<h5>곧 열리는 공모전</h5>${comps.map(x=>`<a href="#panel"><b>${esc(x.n)}</b><span>${esc(x.when)}</span></a>`).join('')}`:''; }
+  let comps=[]; try{ const m=new Date().getMonth()+1; comps=COMPS.filter(x=>x.m&&x.m.some(k=>k>=m&&k<=m+2)).slice(0,4); }catch(e){} $('#pzDl').innerHTML=comps.length?`<h5>다가오는 공모전</h5>${comps.map(x=>`<a href="#panel"><b>${esc(x.n)}</b><span>${esc(x.when)}</span></a>`).join('')}`:''; }
 function renderPosts(){ try{ pzRender(); }catch(e){} const t=$('#tilePlaza'); if(t){ const L=pzAll().filter(p=>p.imgs.length).slice(0,6); t.innerHTML=`<div class="pz-tile">${L.map(p=>`<img src="${esc(p.thumb||p.imgs[0])}" alt="" loading="lazy">`).join('')}</div>`; } }
 async function loadPosts(){ try{ await pzLoad(); }catch(e){ console.warn(e); } }
 function allCases(){ const community=POSTS.filter(p=>p.useAsCase).map(p=>({id:'post:'+p.id,name:p.title,arch:p.anon?'익명':'광장 회원',city:p.kind+' · 광장',type:p.kind,mat:'—',scale:'—',tags:p.tags||[],note:(p.text||'').slice(0,90),img:p.img||'',community:true})); return CASES.concat(community); }
