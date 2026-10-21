@@ -89,7 +89,7 @@ for _f in (root / 'brand').glob('ziplan-*'):
     _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
-for rel in ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
+for rel in ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
     if not (root / rel).exists():
         print('WARNING missing', rel); continue
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)
@@ -156,7 +156,7 @@ def _ph_img(p, w):    # PH[0](1920 썸네일 또는 원본)를 bldImg와 같은 
 _MARK = '<svg viewBox="-6 -6 112 112" width="24" height="24" aria-hidden="true"><g fill="currentColor"><path d="M4 6H56V16L23 38H56V48H4V38L37 16H4Z"/><rect x="76" y="6" width="12" height="42"/></g><g fill="#2b6cff"><rect x="4" y="54" width="92" height="10"/><rect x="4" y="54" width="12" height="44"/><rect x="84" y="54" width="12" height="34"/><rect x="4" y="78" width="92" height="10"/></g></svg>'
 _TOP = ('<div class="top"><a class="logo" href="/" aria-label="ZIPLAN 홈">' + _MARK + '<span>ZI<b>P</b>LAN</span></a>'
         '<div class="doors"><a href="/#atlas">집 구경</a><a href="/#dna">내 집 짓기</a><a href="/#flow">건축 공부</a><a href="/#plaza">광장</a></div></div>')
-_FOOT = ('<div class="foot"><div class="fl"><a href="/atlas/">건축 아틀라스</a><a href="/travel/">건축 여행</a><a href="/ask/">건축 물어보기</a><a href="/dict/">건축 사전</a><a href="/">ZIPLAN 앱</a></div>'
+_FOOT = ('<div class="foot"><div class="fl"><a href="/atlas/">건축 아틀라스</a><a href="/travel/">건축 여행</a><a href="/ask/">건축 물어보기</a><a href="/dict/">건축 사전</a><a href="/contests/">공모·행사</a><a href="/">ZIPLAN 앱</a></div>'
          '<p>ZIPLAN 집플랜 — 모두의 건축. 사진은 위키미디어 공용(Wikimedia Commons)의 자유 라이선스 이미지이며, 작가와 라이선스를 사진 아래에 적었습니다. '
          '법규·비용 정보는 개략이며 실제 적용은 관할 관청과 공식 자료로 확인하세요. <a href="/privacy">개인정보 처리방침</a> · <a href="/terms">이용약관</a></p></div>')
 _DEF_IMG = SITE_URL + '/img/house-dusk.jpg'
@@ -247,7 +247,8 @@ ul.pts{padding-left:20px}ul.pts li{margin:4px 0}
 .stop{padding:12px 0;border-bottom:1px solid var(--line)}.stop b a{color:var(--fg)}.stop p{margin:2px 0;color:var(--fg2);font-size:15px}
 .foot{border-top:1px solid var(--line);padding:22px max(16px,calc(50vw - 430px)) 40px;color:var(--fg3);font-size:13px}.foot .fl{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:8px}.foot a{color:var(--fg2)}
 @media (max-width:520px){.top{gap:8px}.logo{font-size:16px;gap:6px}.logo svg{width:20px;height:20px}.doors a{padding:6px 7px;font-size:13px}.facts{grid-template-columns:1fr;gap:2px}.facts dd{margin-bottom:8px}.lead{font-size:18px}.btn{flex:1 1 auto}}
-'''
+
+.ct{padding:16px 0 18px;border-bottom:1px solid var(--line)}.ct h3{margin:4px 0 2px;font-size:18px}.ct p{margin:4px 0}'''
 
 def _build_static(D):
     (dist / 'static.css').write_text(_STATIC_CSS, encoding='utf-8')
@@ -481,6 +482,57 @@ def _build_static(D):
     _page('/dict/', 'ZIPLAN 건축 사전 — 그림으로 보는 건축 용어 %d개' % len(ENC), _clip('공간·구조·환경·법규·한옥·도면·재료 — 건축 용어 %d개를 그림 한 장과 쉬운 설명으로.' % len(ENC), 155),
           ''.join(m), ld={'@type': 'DefinedTermSet', 'name': 'ZIPLAN 건축 사전', 'url': _url('/dict/')}, crumbs=[('ZIPLAN', '/'), ('건축 사전', '/dict/')], og_type='website')
 
+    # ---------- N1 v19d: 공모·행사 캘린더 (/contests/ + contests.ics) ----------
+    _cs = (root / 'data' / 'contests.js').read_text(encoding='utf-8')
+    _cj = _sj.loads(_cs[_cs.index('{', _cs.rindex('window.ZCONTESTS')):_cs.rindex('}') + 1])
+    CK = _cj.get('checked', BUILD_DATE); _today = _sd.date.today().isoformat()
+    _EVT = ('전시·행사', '세미나')
+    def _sk(x): return x['start'] if x.get('start') and x['type'] in _EVT and x['start'] > _today else x['deadline']
+    CI = sorted([x for x in _cj['items'] if x.get('ongoing') or x['deadline'] >= _today], key=lambda x: (_sk(x), x['title']))
+    _lab = {'학생공모전': '학생 공모전', '아이디어공모': '아이디어 공모', '세미나': '강연·세미나'}
+    def _md(d): return '%d.%d' % (int(d[5:7]), int(d[8:10]))
+    rows, ev = [], []
+    for x in CI:
+        isev = x['type'] in _EVT and x.get('start')
+        when = ('%s ~ %s' % (_md(x['start']), _md(x['end'])) if x.get('end') and x['end'] != x['start'] else _md(x['start']) + (' 개막' if x.get('ongoing') else '')) if isev else _md(x['deadline']) + ' 마감'
+        rows.append('<li class="ct"><p class="kick">%s · %s · %s</p><h3>%s</h3><p class="sub">%s%s</p><p>%s</p><p class="cap">%s<a href="%s" rel="noopener nofollow">원문 보기 ↗</a></p></li>' % (
+            _esc(_lab.get(x['type'], x['type'])), _esc('·'.join(x.get('audience', []))), _esc(when), _esc(x['title']), _esc(x['org']),
+            (' · ' + _esc(x['region'])) if x.get('region') else '', _esc(x['summary']), (_esc(x['benefit']) + ' · ') if x.get('benefit') else '', _esc(x['url'])))
+        if isev:
+            e = {'@type': 'Event', 'name': x['title'], 'startDate': x['start'], 'eventStatus': 'https://schema.org/EventScheduled',
+                 'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode', 'organizer': {'@type': 'Organization', 'name': x['org']},
+                 'description': x['summary'], 'url': x['url'], 'location': {'@type': 'Place', 'name': x.get('region') or x['org'], 'address': x.get('region') or '대한민국'}}
+            if x.get('end'): e['endDate'] = x['end']
+            ev.append(e)
+    m = ['<p class="kick">건축 공부 · 공모·행사</p><h1>건축 공모전·행사 일정</h1>',
+         '<p class="lead">설계공모, 학생 공모전, 아이디어 공모, 건축 전시와 강연을 마감(행사는 시작)이 가까운 순서로 모았어요. 마지막 확인: %s · 일정은 바뀔 수 있으니 지원·참석 전 원문을 꼭 확인하세요.</p>' % _esc(CK.replace('-', '.')),
+         '<div class="cta"><a class="btn" href="/#contests">앱에서 걸러 보기</a><a class="btn ghost" href="/contests.ics">캘린더(.ics) 받기</a></div>',
+         '<section class="grp"><h2>다가오는 일정 <span class="cap">%d</span></h2><ol class="pts" style="list-style:none;padding:0">%s</ol></section>' % (len(CI), ''.join(rows)),
+         '<p class="cap">요약은 ZIPLAN이 원문을 읽고 쓴 것이며, ZIPLAN은 공모·행사의 주최가 아닙니다.</p>']
+    _page('/contests/', '건축 공모전·행사 일정 — ZIPLAN', _clip('설계공모·학생 건축 공모전·아이디어 공모·건축 전시·강연 일정 %d건을 마감순으로. 마지막 확인 %s.' % (len(CI), CK), 155),
+          ''.join(m), ld=[{'@type': 'CollectionPage', 'name': '건축 공모전·행사 일정', 'url': _url('/contests/')}] + ev,
+          crumbs=[('ZIPLAN', '/'), ('공모·행사', '/contests/')], og_type='website')
+    def _ics(s): return str(s).replace('\\', '\\\\').replace(';', '\;').replace(',', '\\,').replace('\n', '\\n')
+    def _fold(l):
+        b = l.encode('utf-8'); out = []
+        while len(b) > 74:
+            cut = 74
+            while cut > 0 and (b[cut] & 0xC0) == 0x80: cut -= 1
+            out.append(b[:cut].decode('utf-8')); b = b' ' + b[cut:]
+        out.append(b.decode('utf-8')); return '\r\n'.join(out)
+    _st0 = _sd.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+    ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ZIPLAN//contests//KO', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:ZIPLAN 건축 공모·행사']
+    for x in CI:
+        isev = x['type'] in _EVT and x.get('start')
+        d0 = (x['start'] if isev else x['deadline']).replace('-', '')
+        d1 = (_sd.date.fromisoformat(x.get('end') or x['start'] if isev else x['deadline']) + _sd.timedelta(days=1)).strftime('%Y%m%d')
+        ics += ['BEGIN:VEVENT', 'UID:%s@ziplan' % x['id'], 'DTSTAMP:' + _st0, 'DTSTART;VALUE=DATE:' + d0, 'DTEND;VALUE=DATE:' + d1,
+                _fold('SUMMARY:' + _ics(('' if isev else '[마감] ') + x['title'])), _fold('DESCRIPTION:' + _ics(x['summary'] + '\n원문: ' + x['url'] + '\n마지막 확인: ' + CK)),
+                _fold('URL:' + x['url']), 'END:VEVENT']
+    ics.append('END:VCALENDAR')
+    (dist / 'contests.ics').write_bytes(('\r\n'.join(ics) + '\r\n').encode('utf-8'))
+    print('공모·행사: %d건(확인 %s) · /contests/ · contests.ics' % (len(CI), CK))
+
     # ---------- 404 · sitemap · robots ----------
     _page('/404.html', '페이지를 찾을 수 없어요 | ZIPLAN', '요청한 페이지가 없어요. 건축 아틀라스·건축 여행·물어보기·사전에서 찾아보세요.',
           '<p class="kick">404</p><h1>페이지를 찾을 수 없어요</h1><p class="lead">주소가 바뀌었거나 없는 페이지예요. 아래에서 다시 찾아보세요.</p>'
@@ -502,7 +554,7 @@ else:
     print('경고: 정적 페이지 데이터 추출 실패 — 정적 페이지 없이 진행', _r2.stderr.decode('utf-8')[:600])
 
 # vercel.json: 정적 사이트, 캐시
-(dist / 'vercel.json').write_text('{"images":{"sizes":[128,256,384,640,960,1280,1920],"formats":["image/avif","image/webp"],"minimumCacheTTL":2678400,"remotePatterns":[{"protocol":"https","hostname":"d8j0ntlcm91z4.cloudfront.net"},{"protocol":"https","hostname":"upload.wikimedia.org","pathname":"/wikipedia/commons/**"}]},"cleanUrls":true,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"}]},{"source":"/(vendor|effects|data)/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]},{"source":"/static.css","headers":[{"key":"Cache-Control","value":"public, max-age=3600"}]},{"source":"/sitemap.xml","headers":[{"key":"Content-Type","value":"application/xml; charset=utf-8"}]}]}', encoding='utf-8')
+(dist / 'vercel.json').write_text('{"images":{"sizes":[128,256,384,640,960,1280,1920],"formats":["image/avif","image/webp"],"minimumCacheTTL":2678400,"remotePatterns":[{"protocol":"https","hostname":"d8j0ntlcm91z4.cloudfront.net"},{"protocol":"https","hostname":"upload.wikimedia.org","pathname":"/wikipedia/commons/**"}]},"cleanUrls":true,"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"}]},{"source":"/(vendor|effects|data)/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]},{"source":"/static.css","headers":[{"key":"Cache-Control","value":"public, max-age=3600"}]},{"source":"/sitemap.xml","headers":[{"key":"Content-Type","value":"application/xml; charset=utf-8"}]},{"source":"/contests.ics","headers":[{"key":"Content-Type","value":"text/calendar; charset=utf-8"},{"key":"Cache-Control","value":"public, max-age=3600"}]}]}', encoding='utf-8')
 files = [str(p.relative_to(dist)) for p in dist.rglob('*') if p.is_file()]
 total = sum((dist / f).stat().st_size for f in files)
 print(len(files), 'files,', round(total/1024), 'KB'); print('\n'.join(sorted(f for f in files if not re.match(r'(atlas|travel|ask|dict)/', f))))
