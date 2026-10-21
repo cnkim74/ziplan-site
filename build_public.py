@@ -254,7 +254,10 @@ ul.pts{padding-left:20px}ul.pts li{margin:4px 0}
 .foot{border-top:1px solid var(--line);padding:22px max(16px,calc(50vw - 430px)) 40px;color:var(--fg3);font-size:13px}.foot .fl{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:8px}.foot a{color:var(--fg2)}
 @media (max-width:520px){.top{gap:8px}.logo{font-size:16px;gap:6px}.logo svg{width:20px;height:20px}.doors a{padding:6px 7px;font-size:13px}.facts{grid-template-columns:1fr;gap:2px}.facts dd{margin-bottom:8px}.lead{font-size:18px}.btn{flex:1 1 auto}}
 
-.ct{padding:16px 0 18px;border-bottom:1px solid var(--line)}.ct h3{margin:4px 0 2px;font-size:18px}.ct p{margin:4px 0}'''
+.ct{padding:16px 0 18px;border-bottom:1px solid var(--line)}.ct h3{margin:4px 0 2px;font-size:18px}.ct p{margin:4px 0}
+/* M1 v20d: 휴대폰 터치 영역 */
+@media (pointer:coarse){.doors a{display:inline-flex;align-items:center;min-height:40px}.foot .fl a{display:inline-flex;align-items:center;min-height:36px}.crumb a{display:inline-block;padding:6px 0}}
+'''
 
 def _build_static(D):
     (dist / 'static.css').write_text(_STATIC_CSS, encoding='utf-8')
