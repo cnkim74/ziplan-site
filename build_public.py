@@ -257,6 +257,7 @@ ul.pts{padding-left:20px}ul.pts li{margin:4px 0}
 .ct{padding:16px 0 18px;border-bottom:1px solid var(--line)}.ct h3{margin:4px 0 2px;font-size:18px}.ct p{margin:4px 0}
 /* M1 v20d: 휴대폰 터치 영역 */
 @media (pointer:coarse){.doors a{display:inline-flex;align-items:center;min-height:40px}.foot .fl a{display:inline-flex;align-items:center;min-height:36px}.crumb a{display:inline-block;padding:6px 0}}
+.ctart{display:inline-grid;place-items:center;border-radius:10px;color:#fff;vertical-align:middle;margin-right:8px;flex:0 0 auto}.ctart svg{width:66%;height:66%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.ctjump{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}.ctjump a{display:inline-flex;align-items:center;gap:0;padding:4px 10px 4px 4px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--fg);text-decoration:none;min-height:36px}.ctjump a .ctart{margin-right:6px;border-radius:7px}.ctjump b{margin-left:6px;color:var(--fg3);font-weight:600}.grp h2 .ctart{margin-right:10px}.ct .tags{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}.ct .tags span{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--fg2)}
 '''
 
 def _build_static(D):
@@ -504,24 +505,38 @@ def _build_static(D):
     CI = sorted([x for x in _cj['items'] if x.get('ongoing') or x['deadline'] >= _today], key=lambda x: (_sk(x), x['title']))
     _lab = {'학생공모전': '학생 공모전', '아이디어공모': '아이디어 공모', '세미나': '강연·세미나'}
     def _md(d): return '%d.%d' % (int(d[5:7]), int(d[8:10]))
-    rows, ev = [], []
+    # N1b v21a: 종목(field) 그림·그룹 — crit.html CT_FIELDS와 같은 키/색/선 그림
+    _cf = (root / 'crit.html').read_text(encoding='utf-8')
+    _fa = _cf.index('const CT_FIELDS=['); _fb = _cf.index('];', _fa)
+    CTF = [[a, [b, c], d] for a, b, c, d in re.findall(r"\['([^']+)',\['(#[0-9a-fA-F]+)','(#[0-9a-fA-F]+)'\],'([^']*)'\]", _cf[_fa:_fb])]
+    CTFB = {f[0]: f for f in CTF}
+    def _art(k, sz=44):
+        f = CTFB.get(k) or CTF[0]
+        return ('<span class="ctart" style="width:%dpx;height:%dpx;background:linear-gradient(140deg,%s,%s)" aria-hidden="true"><svg viewBox="0 0 64 64">%s</svg></span>' % (sz, sz, f[1][0], f[1][1], f[2]))
+    rows, ev = {}, []
     for x in CI:
         isev = x['type'] in _EVT and x.get('start')
         when = ('%s ~ %s' % (_md(x['start']), _md(x['end'])) if x.get('end') and x['end'] != x['start'] else _md(x['start']) + (' 개막' if x.get('ongoing') else '')) if isev else _md(x['deadline']) + ' 마감'
-        rows.append('<li class="ct"><p class="kick">%s · %s · %s</p><h3>%s</h3><p class="sub">%s%s</p><p>%s</p><p class="cap">%s<a href="%s" rel="noopener nofollow">원문 보기 ↗</a></p></li>' % (
+        tags = list(x.get('field', [])) + (['온라인'] if x.get('online') else []) + ([x['team'] + ' 참가'] if x.get('team') else [])
+        k = x.get('vis') or (x.get('field') or ['건축설계'])[0]
+        rows.setdefault(k, []).append('<li class="ct"><p class="kick">%s · %s · %s</p><h3>%s</h3><p class="sub">%s%s</p><p class="tags">%s</p><p>%s</p>%s<p class="cap">%s<a href="%s" rel="noopener nofollow">원문 보기 ↗</a></p></li>' % (
             _esc(_lab.get(x['type'], x['type'])), _esc('·'.join(x.get('audience', []))), _esc(when), _esc(x['title']), _esc(x['org']),
-            (' · ' + _esc(x['region'])) if x.get('region') else '', _esc(x['summary']), (_esc(x['benefit']) + ' · ') if x.get('benefit') else '', _esc(x['url'])))
+            (' · ' + _esc(x['region'])) if x.get('region') else '', ''.join('<span>%s</span>' % _esc(g) for g in tags), _esc(x['summary']),
+            ('<p class="cap">참가: %s</p>' % _esc(x['req'])) if x.get('req') else '', (_esc(x['benefit']) + ' · ') if x.get('benefit') else '', _esc(x['url'])))
         if isev:
             e = {'@type': 'Event', 'name': x['title'], 'startDate': x['start'], 'eventStatus': 'https://schema.org/EventScheduled',
                  'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode', 'organizer': {'@type': 'Organization', 'name': x['org']},
                  'description': x['summary'], 'url': x['url'], 'location': {'@type': 'Place', 'name': x.get('region') or x['org'], 'address': x.get('region') or '대한민국'}}
             if x.get('end'): e['endDate'] = x['end']
             ev.append(e)
-    m = ['<p class="kick">건축 공부 · 공모·행사</p><h1>건축 공모전·행사 일정</h1>',
-         '<p class="lead">설계공모, 학생 공모전, 아이디어 공모, 건축 전시와 강연을 마감(행사는 시작)이 가까운 순서로 모았어요. 마지막 확인: %s · 일정은 바뀔 수 있으니 지원·참석 전 원문을 꼭 확인하세요.</p>' % _esc(CK.replace('-', '.')),
-         '<div class="cta"><a class="btn" href="/#contests">앱에서 걸러 보기</a><a class="btn ghost" href="/contests.ics">캘린더(.ics) 받기</a></div>',
-         '<section class="grp"><h2>다가오는 일정 <span class="cap">%d</span></h2><ol class="pts" style="list-style:none;padding:0">%s</ol></section>' % (len(CI), ''.join(rows)),
-         '<p class="cap">요약은 ZIPLAN이 원문을 읽고 쓴 것이며, ZIPLAN은 공모·행사의 주최가 아닙니다.</p>']
+    m = ['<p class="kick">건축 공부 · 공모·행사</p><h1>건축 공모전·행사 일정 — %d건</h1>' % len(CI),
+         '<p class="lead">설계공모, 학생 공모전, 아이디어 공모, 건축 전시와 강연을 종목별로 나누고, 그 안은 마감(행사는 시작)이 가까운 순서로 모았어요. 마지막 확인: %s · 일정은 바뀔 수 있으니 지원·참석 전 원문을 꼭 확인하세요.</p>' % _esc(CK.replace('-', '.')),
+         '<div class="cta"><a class="btn" href="/#contests">나에게 맞는 공모전 찾기</a><a class="btn ghost" href="/contests.ics">캘린더(.ics) 받기</a></div>',
+         '<p class="ctjump">' + ''.join('<a href="#f-%d">%s %s <b>%d</b></a>' % (i, _art(f[0], 22), _esc(f[0]), len(rows[f[0]])) for i, f in enumerate(CTF) if f[0] in rows) + '</p>']
+    for i, f in enumerate(CTF):
+        if f[0] in rows:
+            m.append('<section class="grp" id="f-%d"><h2>%s%s <span class="cap">%d</span></h2><ol class="pts" style="list-style:none;padding:0">%s</ol></section>' % (i, _art(f[0], 32), _esc(f[0]), len(rows[f[0]]), ''.join(rows[f[0]])))
+    m.append('<p class="cap">그림은 종목을 나타내는 ZIPLAN 그림이며 공모·행사의 포스터나 작품이 아닙니다. 요약은 ZIPLAN이 원문을 읽고 쓴 것이며, ZIPLAN은 공모·행사의 주최가 아닙니다.</p>')
     _page('/contests/', '건축 공모전·행사 일정 — ZIPLAN', _clip('설계공모·학생 건축 공모전·아이디어 공모·건축 전시·강연 일정 %d건을 마감순으로. 마지막 확인 %s.' % (len(CI), CK), 155),
           ''.join(m), ld=[{'@type': 'CollectionPage', 'name': '건축 공모전·행사 일정', 'url': _url('/contests/')}] + ev,
           crumbs=[('ZIPLAN', '/'), ('공모·행사', '/contests/')], og_type='website')

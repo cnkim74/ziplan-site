@@ -2695,37 +2695,59 @@ html.dnat-lock{overflow:hidden}
 .hs-act{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:22px}.hs-more{color:var(--fg-2);font-size:14.5px;text-decoration:none}.hs-more:hover{color:var(--fg)}
 #view-home .lab-k{background:var(--fg);color:var(--bg)}
 #view-pricing{padding-top:72px}
-/* N1 v19d: 공모·행사 캘린더 */
-#view-contests{padding:84px 16px 72px;background:var(--bg-alt);min-height:100vh}
-.ct-wrap{max-width:960px;margin:0 auto}
-.ct-hd{text-align:left;margin-bottom:18px}.ct-hd h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:12px 0 8px;letter-spacing:-.02em}
-.ct-lead{color:var(--fg-2);margin:0 0 6px;max-width:680px}.ct-chk{font-size:13px;color:var(--fg-2);margin:0}
-.ct-chk b{color:var(--fg)}
-.ct-bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:14px 16px;border-radius:18px;background:var(--card);border:1px solid var(--card-line);position:sticky;top:64px;z-index:5}
+/* N1 v19d → N1b v21a: 공모·행사 — 방 표지(RHERO.contests) + zc2 본문 + 종목 그림 + 나에게 맞는 공모전 */
+#view-contests{padding:0 0 96px;background:var(--bg);min-height:100vh}
+.ct-wrap{max-width:1080px;text-align:left}
+.ct-chk{font-size:13px;color:var(--fg-2);margin:18px 2px 14px}.ct-chk b{color:var(--fg)}
+.ct-sec{margin:26px 0 10px}
+.ct-match{margin-bottom:6px}
+.ct-q{display:grid;grid-template-columns:132px 1fr;gap:6px 14px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.ct-q:first-of-type{border-top:0}
+.ct-q>b{font-size:13.5px;padding-top:7px}.ct-q>b small{display:block;font-weight:500;color:var(--fg-2);font-size:12px}
+.ct-ch{display:flex;flex-wrap:wrap;gap:6px}
+.ct-ch button,.ct-f button,.ct-vw button{border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;min-height:34px;display:inline-flex;align-items:center;gap:6px}
+.ct-ch button[aria-pressed=true],.ct-f button[aria-pressed=true],.ct-vw button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);font-weight:600}
+.ct-ch button i{width:16px;height:16px;border-radius:5px;display:inline-block;background:linear-gradient(135deg,var(--a1),var(--a2))}
+.ct-mres{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 14px;margin-top:6px;border-radius:14px;background:var(--bg-alt);font-size:13.5px}
+.ct-mres b{font-size:15px}.ct-mres .sp{flex:1}
+.ct-mres label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.ct-mres button.lnk{border:0;background:none;color:var(--accent);font-weight:600;cursor:pointer;font-size:13px;padding:6px 0}
+.ct-bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:14px 16px;border-radius:18px;background:var(--card);border:1px solid var(--card-line)}
 .ct-f{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.ct-f>span{font-size:12px;font-weight:700;color:var(--fg-2);margin-right:2px}
-.ct-f button{border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;min-height:32px}
-.ct-f button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);font-weight:600}
+.ct-vw{display:inline-flex;gap:4px;padding:3px;border-radius:999px;background:var(--bg-alt)}.ct-vw button{border:0;min-height:30px}
 .ct-past{font-size:13px;display:flex;gap:6px;align-items:center;cursor:pointer}.ct-ics{font-size:13px;margin-left:auto;font-weight:600}
 .ct-cnt{font-size:13px;color:var(--fg-2);margin:14px 2px 8px}
 .ct-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.ct-card{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--card-line);text-align:left}
-.ct-card.past{opacity:.55}
+.ct-grp{margin:22px 0 10px;display:flex;align-items:center;gap:10px}.ct-grp h4{margin:0;font-size:17px;letter-spacing:-.01em}.ct-grp span{font-size:12.5px;color:var(--fg-2)}
+.ct-grp .ct-art{width:40px;height:40px;border-radius:11px}
+.ct-card{position:relative;display:grid;grid-template-columns:88px 1fr 112px;gap:16px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--card-line);text-align:left}
+.ct-card.past,.ct-card.no{opacity:.55}
 .ct-date{border-radius:14px;background:var(--bg-alt);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;text-align:center;min-height:88px}
 .ct-date .m{font-size:12px;color:var(--fg-2);font-weight:700}.ct-date .d{font-size:30px;font-weight:800;line-height:1.05;letter-spacing:-.02em}.ct-date .w{font-size:11px;color:var(--fg-2)}
 .ct-dd{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--fg);color:var(--bg)}
 .ct-dd.hot{background:var(--bad);color:#fff}.ct-dd.soon{background:var(--accent);color:var(--accent-fg)}.ct-dd.end{background:var(--line);color:var(--fg-2)}
+.ct-art{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(140deg,var(--a1),var(--a2));display:grid;place-items:center;color:#fff}.ct-card>.ct-art{width:112px;height:112px;align-self:start}
+.ct-art svg{width:58%;height:auto;max-height:76px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+.ct-art em{position:absolute;left:8px;bottom:6px;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.02em;opacity:.92}
 .ct-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--fg-2)}
 .ct-type{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--fg)}.ct-type svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ct-aud{padding:2px 7px;border-radius:6px;background:var(--bg-alt)}
+.ct-tags{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 6px}.ct-tags span{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2)}
+.ct-fit{display:flex;align-items:flex-start;line-height:1.5;gap:6px;font-size:12.5px;margin:2px 0 4px;color:var(--fg-2)}
+.ct-fit b{white-space:nowrap;flex:0 0 auto;font-size:11.5px;padding:3px 9px;border-radius:999px;color:#fff;background:#8a8a93}
+.ct-fit.good b{background:#2f9e5b}.ct-fit.ok b{background:var(--accent)}.ct-fit.no b{background:var(--bad)}
 .ct-card h3{font-size:18px;line-height:1.35;margin:6px 0 2px;letter-spacing:-.01em}
 .ct-org{font-size:13px;color:var(--fg-2);margin:0 0 8px}
-.ct-sum{font-size:14.5px;line-height:1.6;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ct-sum{font-size:14.5px;line-height:1.6;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ct-req{font-size:12.5px;color:var(--fg-2);margin:0 0 10px}
 .ct-foot{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px}
 .ct-ben{color:var(--fg)}.ct-reg{color:var(--fg-2)}
+.ct-ref{border:0;background:none;padding:0;color:var(--accent);font-size:13px;cursor:pointer}
 .ct-go{margin-left:auto;font-weight:700}
 .ct-empty{display:flex;flex-direction:column;gap:4px;padding:28px;text-align:center;border-radius:18px;background:var(--card);border:1px dashed var(--line);margin-top:8px}.ct-empty span{font-size:13px;color:var(--fg-2)}
 .ct-note{font-size:12.5px;color:var(--fg-2);margin-top:22px}
-@media (max-width:640px){ #view-contests{padding-top:72px} .ct-bar{position:static;padding:12px} .ct-ics{margin-left:0} .ct-card{grid-template-columns:64px 1fr;gap:12px;padding:14px} .ct-date{min-height:72px;padding:8px 2px} .ct-date .d{font-size:24px} .ct-card h3{font-size:16.5px} .ct-go{margin-left:0} }
+@media (max-width:820px){ .ct-card{grid-template-columns:76px 1fr} .ct-card>.ct-art{position:absolute;right:12px;top:12px;width:44px;height:44px;border-radius:12px} .ct-card>.ct-art em{display:none} .ct-card>.ct-art svg{width:72%} .ct-card .ct-meta,.ct-card .ct-fit{padding-right:52px} }
+@media (max-width:640px){ .ct-bar{position:static;padding:12px} .ct-ics{margin-left:0} .ct-card{grid-template-columns:64px 1fr;gap:12px;padding:14px} .ct-date{min-height:72px;padding:8px 2px} .ct-date .d{font-size:24px} .ct-card h3{font-size:16.5px} .ct-go{margin-left:0} .ct-q{grid-template-columns:1fr} .ct-q>b{padding-top:0} }
 /* R1 v20: 내 방 고치기 */
 .hb-room{display:inline-block;margin-top:14px}
 #view-room{padding:84px 16px 96px;background:var(--bg-alt);min-height:100vh}
@@ -3255,22 +3277,31 @@ body{word-break:keep-all;overflow-wrap:break-word}
   <div class="faqcta"><span>더 궁금한 게 있나요?</span><button class="btn" data-ask>문의하기</button></div></div></section>
 </section>
 
-<section class="view" id="view-contests" hidden>
-<div class="ct-wrap">
-  <header class="ct-hd"><span class="lab-k">건축 공부 · 공모·행사</span><h1>다가오는 건축 공모·행사</h1>
-    <p class="ct-lead">설계공모·학생 공모전·전시·강연을 마감이 가까운 순서로 모았어요. 요약은 ZIPLAN이 쓴 것이고, 지원·참석 전에는 꼭 원문을 확인하세요.</p>
-    <p class="ct-chk" id="ctChk"></p></header>
+<section class="view" id="view-contests" hidden aria-label="공모·행사">
+  <div class="hero"><h1>공모·행사</h1><div class="tag">마감이 가까운 건축 공모전과 행사를 한눈에.</div><div class="sub">설계공모·학생 공모전·아이디어 공모·전시·강연을 모으고, 나에게 맞는 것부터 골라 드려요.</div></div>
+  <div class="zc2 ct-wrap">
+  <p class="ct-chk" id="ctChk"></p>
+  <section class="zc2-card ct-match" id="ctMatch" aria-label="나에게 맞는 공모전 찾기">
+    <div class="zc2-h"><span class="n">1</span><div><h3>나에게 맞는 공모전 찾기</h3><p>네 가지만 고르면 일정마다 '잘 맞음 · 맞음 · 참고'를 붙여 드려요. 고른 것은 이 기기에만 저장돼요.</p></div></div>
+    <div class="ct-q"><b>나는</b><div class="ct-ch" data-q="me"><button type="button" data-v="student" aria-pressed="false">학생</button><button type="button" data-v="arch" aria-pressed="false">실무자 · 건축사 자격·사무소 있음</button><button type="button" data-v="pro" aria-pressed="false">실무자 · 자격 없음</button><button type="button" data-v="gen" aria-pressed="false">일반</button></div></div>
+    <div class="ct-q"><b>관심 종목<small>여러 개 골라도 돼요</small></b><div class="ct-ch" data-q="fields" id="ctQF"></div></div>
+    <div class="ct-q"><b>참가 방식</b><div class="ct-ch" data-q="team"><button type="button" data-v="solo" aria-pressed="false">혼자</button><button type="button" data-v="team" aria-pressed="false">팀으로</button><button type="button" data-v="any" aria-pressed="false">상관없어요</button></div></div>
+    <div class="ct-q"><b>준비할 시간</b><div class="ct-ch" data-q="time"><button type="button" data-v="week" aria-pressed="false">1주 안</button><button type="button" data-v="month" aria-pressed="false">한 달쯤</button><button type="button" data-v="free" aria-pressed="false">여유 있어요</button></div></div>
+    <div class="ct-mres" id="ctMRes" hidden></div>
+  </section>
+  <div class="zc2-h ct-sec"><span class="n">2</span><div><h3>일정 둘러보기</h3><p>요약은 ZIPLAN이 원문을 읽고 쓴 것이에요. 지원·참석 전에는 꼭 원문을 확인하세요.</p></div></div>
   <div class="ct-bar" role="group" aria-label="걸러 보기">
+    <div class="ct-vw" id="ctView" role="group" aria-label="보기 방식"><button type="button" data-v="date" aria-pressed="true">마감순</button><button type="button" data-v="field" aria-pressed="false">종목별</button><button type="button" data-v="fit" aria-pressed="false" hidden>나에게 맞는 순</button></div>
     <div class="ct-f" id="ctAud"><span>대상</span><button type="button" data-v="" aria-pressed="true">전체</button><button type="button" data-v="학생" aria-pressed="false">학생</button><button type="button" data-v="실무" aria-pressed="false">실무</button><button type="button" data-v="일반" aria-pressed="false">일반</button></div>
     <div class="ct-f" id="ctType"><span>종류</span><button type="button" data-v="" aria-pressed="true">전체</button><button type="button" data-v="설계공모" aria-pressed="false">설계공모</button><button type="button" data-v="학생공모전" aria-pressed="false">학생 공모전</button><button type="button" data-v="아이디어공모" aria-pressed="false">아이디어</button><button type="button" data-v="전시·행사" aria-pressed="false">전시·행사</button><button type="button" data-v="세미나" aria-pressed="false">강연</button></div>
     <label class="ct-past"><input type="checkbox" id="ctHide" checked> 마감 지난 것 숨김</label>
     <a class="ct-ics" href="contests.ics" download>캘린더(.ics) 받기</a>
   </div>
   <p class="ct-cnt" id="ctCnt" aria-live="polite"></p>
-  <ol class="ct-list" id="ctList"></ol>
-  <div class="ct-empty" id="ctEmpty" hidden><b>조건에 맞는 일정이 없어요.</b><span>걸러 보기를 '전체'로 바꾸거나 마감 지난 것도 보세요.</span></div>
-  <p class="ct-note">ZIPLAN은 공모·행사의 주최가 아니며 일정 변경에 책임지지 않습니다. 잘못된 정보는 <a href="#" data-ask>문의하기</a>로 알려 주세요. 매주 새로 확인합니다.</p>
-</div>
+  <div id="ctList"></div>
+  <div class="ct-empty" id="ctEmpty" hidden><b>조건에 맞는 일정이 없어요.</b><span>걸러 보기를 '전체'로 바꾸거나, '나에게 맞는 것만'을 끄거나, 마감 지난 것도 보세요.</span></div>
+  <p class="ct-note">그림은 종목을 나타내는 ZIPLAN 그림이고, 공모·행사의 실제 포스터나 작품이 아니에요. '비슷한 건물'은 같은 쓰임의 참고 건물입니다. ZIPLAN은 공모·행사의 주최가 아니며 일정 변경에 책임지지 않습니다. 잘못된 정보는 <a href="#" data-ask>문의하기</a>로 알려 주세요. 3일마다 새로 확인합니다.</p>
+  </div>
 </section>
 
 <section class="view" id="view-room" hidden aria-label="내 방 고치기">
@@ -4035,33 +4066,90 @@ function route(){
 window.addEventListener('hashchange',route);
 document.addEventListener('click',e=>{ const a=e.target.closest('a[data-wb]'); if(!a) return; pendingScroll=a.dataset.wb; if(location.hash==='#'+a.dataset.wb){ e.preventDefault(); route(); } });
 function go(view,toWb){ pendingScroll=toWb?view:null; if(location.hash==='#'+view) route(); else location.hash=view; }
-/* ===== N1 v19d: 공모·행사 캘린더 (data/contests.js → window.ZCONTESTS) ===== */
+/* ===== N1 v19d → N1b v21a: 공모·행사 캘린더 (data/contests.js → window.ZCONTESTS) — 종목 그림 · 종목별 보기 · 나에게 맞는 공모전 ===== */
 const CT_ICO={'설계공모':'<path d="M4 20V9l8-5 8 5v11z"/><path d="M9 20v-6h6v6"/>','학생공모전':'<path d="M3 9l9-5 9 5-9 5z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/>','아이디어공모':'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>','전시·행사':'<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 21h10M8 9h8M8 13h5"/>','세미나':'<path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>'};
 const CT_LAB={'학생공모전':'학생 공모전','아이디어공모':'아이디어 공모','세미나':'강연·세미나'};
-const ctF={aud:'',type:''};
+/* 종목(field) — 순서 = 종목별 보기 순서. 그림은 ZIPLAN이 그린 선 그림(공모 포스터·작품 아님). build_public.py도 같은 키를 씀 */
+const CT_FIELDS=[
+ ['건축설계',['#3f7bff','#8a6bff'],'<path d="M12 52V28l20-15 20 15v24z"/><path d="M25 52V38h14v14"/><path d="M6 58h52"/><path d="M8 22v-8M56 22v-8M8 18h48" stroke-dasharray="3 3"/>'],
+ ['공공건축',['#2f6f9f','#3fa7c9'],'<path d="M8 24l24-13 24 13z"/><path d="M13 27v21M23 27v21M32 27v21M41 27v21M51 27v21"/><path d="M6 50h52M3 56h58"/>'],
+ ['주거',['#c2703f','#f2bd55'],'<path d="M7 52V33l12-10 12 10v19z"/><path d="M31 52V29l13-11 13 11v23z"/><path d="M15 52v-9h8v9"/><path d="M39 35h10v9H39z"/><path d="M3 52h58"/>'],
+ ['인테리어·실내',['#b0597a','#f0a37a'],'<path d="M8 46v-9a4 4 0 0 1 8 0v4h24v-4a4 4 0 0 1 8 0v9z"/><path d="M11 46v6M45 46v6"/><path d="M16 41v-9h24v9"/><path d="M54 52V20"/><path d="M47 20h14l-3-8h-8z"/>'],
+ ['조경·도시',['#2f9e5b','#8ccf6a'],'<path d="M4 54h56"/><path d="M8 54V30h10v24M18 54V20h11v34"/><path d="M46 54V40"/><circle cx="46" cy="31" r="10"/><path d="M33 54v-6h6v6"/>'],
+ ['리모델링·재생',['#7a6a5a','#c9a27a'],'<path d="M10 54V30l15-11 15 11v24z"/><path d="M4 54h42"/><path d="M19 54V42h12v12"/><path d="M58 22a12 12 0 1 1-5-9"/><path d="M53 6v7h7"/>'],
+ ['아이디어·개념',['#ff9f0a','#ff5e9c'],'<path d="M32 10a14 14 0 0 0-8.5 25.1c1.8 1.6 2.9 3.6 2.9 6.2h11.2c0-2.6 1.1-4.6 2.9-6.2A14 14 0 0 0 32 10z"/><path d="M27 48h10M28.5 54h7"/><path d="M10 22l-5-2M54 22l5-2M32 4V1M15 9l-3-3M49 9l3-3"/>'],
+ ['사진·영상',['#3b3f4a','#7d8597'],'<path d="M8 22h11l4-7h18l4 7h11v29H8z"/><circle cx="32" cy="36" r="10"/><circle cx="32" cy="36" r="4"/><path d="M48 27h3"/>'],
+ ['전시·강연·투어',['#7c5cff','#ff5e9c'],'<path d="M6 9h30v24H6z"/><path d="M10 28l8-8 6 6 4-4 5 5"/><circle cx="49" cy="25" r="4.5"/><path d="M44 56V38h10v18"/><path d="M3 56h58"/>'],
+ ['해외',['#1f8a8a','#3f7bff'],'<circle cx="32" cy="32" r="23"/><path d="M9 32h46M32 9c-9 8-9 38 0 46M32 9c9 8 9 38 0 46M13 20h38M13 44h38"/>']
+];
+const CT_FBY=Object.fromEntries(CT_FIELDS.map(f=>[f[0],f]));
+function ctArt(k,big,label){ const f=CT_FBY[k]||CT_FIELDS[0]; return `<div class="ct-art" style="--a1:${f[1][0]};--a2:${f[1][1]}" aria-hidden="true"><svg viewBox="0 0 64 64">${f[2]}</svg>${big&&label?`<em>${esc(f[0])}</em>`:''}</div>`; }
+const ctF={aud:'',type:'',view:'date'};
+let CTM=null; try{ CTM=JSON.parse(localStorage.getItem('zip_ct_match')||'null'); }catch(e){ CTM=null; }
+if(!CTM||typeof CTM!=='object') CTM={me:'',fields:[],team:'',time:'',only:true};
+if(!Array.isArray(CTM.fields)) CTM.fields=[];
+function ctSaveM(){ try{ localStorage.setItem('zip_ct_match',JSON.stringify(CTM)); }catch(e){} }
+function ctMReady(){ return !!(CTM.me&&(CTM.fields.length||CTM.team||CTM.time)); }
 function ctDay(iso){ const [y,m,d]=iso.split('-').map(Number); return new Date(y,m-1,d); }
 function ctToday(){ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); }
+function ctIsEv(x){ return !!x.start&&!['설계공모','학생공모전','아이디어공모'].includes(x.type); }
 function ctDD(x,t){ const dl=ctDay(x.deadline), diff=Math.round((dl-t)/864e5);
-  if(x.start&&x.type!=='설계공모'&&x.type!=='학생공모전'&&x.type!=='아이디어공모'){ const st=ctDay(x.start); if(t>=st&&t<=dl) return ['진행 중','soon']; if(t<st){ const k=Math.round((st-t)/864e5); return [k===0?'오늘':'D-'+k, k<=7?'soon':'']; } if(x.ongoing&&diff<0) return ['진행 중','soon']; }
+  if(ctIsEv(x)){ const st=ctDay(x.start); if(t>=st&&t<=dl) return ['진행 중','soon']; if(t<st){ const k=Math.round((st-t)/864e5); return [k===0?'오늘':'D-'+k, k<=7?'soon':'']; } if(x.ongoing&&diff<0) return ['진행 중','soon']; }
   if(diff<0) return x.ongoing?['진행 중','soon']:['마감','end']; if(diff===0) return ['오늘 마감','hot']; return ['D-'+diff, diff<=3?'hot':diff<=10?'soon':'']; }
 function ctPast(x,t){ return !x.ongoing && ctDay(x.deadline)<t; }
-function ctRender(){ const Z=window.ZCONTESTS; const L=$('#ctList'); if(!L) return;
+const CT_ME={student:'학생',arch:'실무자(건축사)',pro:'실무자',gen:'일반'};
+/* 관련도: 자격(who) → 제외/포함, 종목·대상·참가 방식·준비 시간으로 점수. 반환 {ok,lv:'good'|'ok'|'ref'|'no',why} */
+function ctFit(x,t){ const who=x.who||[]; const A=CTM; const any=who.includes('누구나')||who.includes('일반');
+  const elig=any||(A.me==='student'&&who.includes('학생'))||(A.me==='pro'&&who.includes('실무'))||(A.me==='arch'&&(who.includes('실무')||who.includes('건축사')));
+  if(!elig){ const need=who.includes('건축사')?'건축사(사무소) 대상':who.includes('학생')?'학생 대상':who.includes('실무')?'실무자 대상':'대상 다름'; return {ok:false,lv:'no',why:need+'이라 지금은 낼 수 없어요'}; }
+  let s=0; const R=[], N=[]; const fs=x.field||[];
+  if(A.fields.length){ const hit=fs.filter(f=>A.fields.includes(f)); if(hit.length){ s+=3+(hit.length>1?1:0); R.push(`관심 종목 '${hit[0]}'`); } else { s-=1; N.push('관심 종목과 달라요'); } } else s+=1;
+  if(!any&&A.me){ s+=2; R.push(`${CT_ME[A.me]==='실무자(건축사)'?'실무':CT_ME[A.me]} 대상`); }
+  const tm=x.team||''; if(A.team==='solo'&&tm==='팀'){ s-=2; N.push('팀 참가만 받아요'); } else if(A.team==='team'&&tm.includes('팀')){ s+=1; R.push('팀 참가 가능'); } else if(A.team==='solo'&&tm.includes('개인')){ s+=1; R.push('혼자 참가 가능'); }
+  const need={'가볍게':0,'보통':1,'본격':2}[x.level]??1, have={week:0,month:1,free:2}[A.time]; const days=Math.round((ctDay(x.deadline)-t)/864e5);
+  if(have!=null){ if(need<=have){ s+=1; if(need===0) R.push('가볍게 다녀오기 좋아요'); } else { s-=2; N.push(need===2?'준비가 꽤 필요해요':'준비 시간이 빠듯해요'); } }
+  if(need===2&&days>=0&&days<7){ s-=1; N.unshift(`마감까지 ${days}일`); }
+  const lv=s>=5?'good':s>=2?'ok':'ref'; return {ok:true,lv,s,why:(lv==='ref'?[...N,...R]:[...R,...N]).slice(0,2).join(' · ')}; }
+const CT_FL={good:'잘 맞음',ok:'맞음',ref:'참고',no:'자격 안 맞음'};
+function ctCard(x,t,fit){ const W='일월화수목금토'; const ev=ctIsEv(x); const key=ev&&ctDay(x.start)>t?x.start:x.deadline; const d=ctDay(key); const [dd,cl]=ctDD(x,t);
+  const when=ev?(x.end&&x.end!==x.start?`${x.start.slice(5).replace('-','.')} ~ ${x.end.slice(5).replace('-','.')}`:`${x.start.slice(5).replace('-','.')}${x.ongoing?' 개막':''}`):`${x.deadline.slice(5).replace('-','.')} 마감`;
+  const tags=[...(x.field||[])]; if(x.prize) tags.push(ev?'':'상금·혜택'); if(x.online) tags.push('온라인'); if(x.team) tags.push(x.team+' 참가');
+  return `<li class="ct-card${ctPast(x,t)?' past':''}${fit&&!fit.ok?' no':''}"><div class="ct-date" aria-hidden="true"><span class="m">${d.getMonth()+1}월</span><span class="d">${d.getDate()}</span><span class="w">${W[d.getDay()]}요일</span><span class="ct-dd ${cl}">${dd}</span></div>
+    <div><div class="ct-meta"><span class="ct-type"><svg viewBox="0 0 24 24" aria-hidden="true">${CT_ICO[x.type]||''}</svg>${esc(CT_LAB[x.type]||x.type)}</span>${(x.audience||[]).map(a=>`<span class="ct-aud">${esc(a)}</span>`).join('')}<span>· ${esc(when)}</span></div>
+    ${fit?`<p class="ct-fit ${fit.lv}"><b>${CT_FL[fit.lv]}</b>${fit.why?esc(fit.why):''}</p>`:''}
+    <h3>${esc(x.title)}</h3><p class="ct-org">${esc(x.org)}</p>
+    <div class="ct-tags">${tags.filter(Boolean).map(g=>`<span>${esc(g)}</span>`).join('')}</div>
+    <p class="ct-sum">${esc(x.summary)}</p>${x.req?`<p class="ct-req">참가: ${esc(x.req)}</p>`:''}
+    <div class="ct-foot">${x.benefit?`<span class="ct-ben">${esc(x.benefit)}</span>`:''}${x.region?`<span class="ct-reg">${esc(x.region)}</span>`:''}${x.ref&&x.ref.id?`<button type="button" class="ct-ref" data-ctref="${esc(x.ref.id)}">비슷한 건물 3D: ${esc(x.ref.name)} ›</button>`:''}<a class="ct-go" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">원문 보기 ↗</a></div></div>
+    ${ctArt(x.vis||(x.field||[])[0],true,true)}</li>`; }
+function ctMatchUI(){ const box=$('#ctQF'); if(box&&!box.dataset.on){ box.dataset.on=1; box.innerHTML=CT_FIELDS.map(f=>`<button type="button" data-v="${esc(f[0])}" aria-pressed="false"><i style="--a1:${f[1][0]};--a2:${f[1][1]}"></i>${esc(f[0])}</button>`).join(''); }
+  $$('#ctMatch .ct-ch').forEach(g=>{ const q=g.dataset.q; [...g.querySelectorAll('button')].forEach(b=>b.setAttribute('aria-pressed', q==='fields'?CTM.fields.includes(b.dataset.v):CTM[q]===b.dataset.v)); }); }
+function ctRender(){ const Z=window.ZCONTESTS; const L=$('#ctList'); if(!L) return; ctMatchUI();
   if(!Z||!Z.items){ L.innerHTML=''; $('#ctEmpty').hidden=false; return; }
-  const t=ctToday(), hide=$('#ctHide').checked, W='일월화수목금토';
+  const t=ctToday(), hide=$('#ctHide').checked; const ready=ctMReady();
   const chk=Z.checked||''; $('#ctChk').innerHTML=`마지막 확인: <b>${esc(chk.replace(/-/g,'.'))}</b> · 일정은 원문에서 꼭 다시 확인하세요`;
-  const xs=Z.items.filter(x=>(!ctF.aud||(x.audience||[]).includes(ctF.aud))&&(!ctF.type||x.type===ctF.type)&&(!hide||!ctPast(x,t)))
-    .sort((a,b)=>{ const ka=a.start&&ctDay(a.start)>t?a.start:a.deadline, kb=b.start&&ctDay(b.start)>t?b.start:b.deadline; return ka<kb?-1:ka>kb?1:a.title.localeCompare(b.title); });
-  $('#ctCnt').textContent=xs.length?`${xs.length}개 일정 · 마감(행사는 시작)이 가까운 순서`:'';
+  const fv=$('#ctView [data-v=fit]'); if(fv){ fv.hidden=!ready; if(!ready&&ctF.view==='fit') ctF.view='date'; }
+  $$('#ctView button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===ctF.view));
+  let xs=Z.items.filter(x=>(!ctF.aud||(x.audience||[]).includes(ctF.aud))&&(!ctF.type||x.type===ctF.type)&&(!hide||!ctPast(x,t)));
+  const fits=new Map(); if(ready) xs.forEach(x=>fits.set(x.id,ctFit(x,t)));
+  const all=xs.length; if(ready&&CTM.only) xs=xs.filter(x=>fits.get(x.id).ok);
+  const dkey=x=>ctIsEv(x)&&ctDay(x.start)>t?x.start:x.deadline;
+  xs.sort((a,b)=>{ const ka=dkey(a),kb=dkey(b); return ka<kb?-1:ka>kb?1:a.title.localeCompare(b.title); });
+  if(ctF.view==='fit'&&ready){ const o={good:0,ok:1,ref:2,no:3}; xs.sort((a,b)=>o[fits.get(a.id).lv]-o[fits.get(b.id).lv]||(fits.get(b.id).s||0)-(fits.get(a.id).s||0)); }
+  const R=$('#ctMRes'); if(R){ R.hidden=!ready; if(ready){ const n={good:0,ok:0,ref:0,no:0}; Z.items.filter(x=>!ctPast(x,t)).forEach(x=>n[ctFit(x,t).lv]++);
+    R.innerHTML=`<span>${esc(CT_ME[CTM.me]||'')}${CTM.fields.length?' · '+esc(CTM.fields.slice(0,3).join(', '))+(CTM.fields.length>3?' 외':''):''}</span><b>잘 맞음 ${n.good} · 맞음 ${n.ok}</b><span>참고 ${n.ref} · 자격 안 맞음 ${n.no}</span><span class="sp"></span><label><input type="checkbox" id="ctOnly"${CTM.only?' checked':''}> 낼 수 있는 것만</label><button type="button" class="lnk" id="ctFitGo">맞는 순서로 보기</button><button type="button" class="lnk" id="ctReset">다시 고르기</button>`; } }
+  $('#ctCnt').textContent=xs.length?`${xs.length}개 일정${ready&&CTM.only&&all>xs.length?` (자격이 안 맞는 ${all-xs.length}개 숨김)`:''} · ${ctF.view==='fit'?'나에게 맞는 순서':ctF.view==='field'?'종목별, 그 안은 마감순':'마감(행사는 시작)이 가까운 순서'}`:'';
   $('#ctEmpty').hidden=!!xs.length;
-  L.innerHTML=xs.map(x=>{ const ev=!!x.start&&!['설계공모','학생공모전','아이디어공모'].includes(x.type); const key=ev&&ctDay(x.start)>t?x.start:x.deadline; const d=ctDay(key); const [dd,cl]=ctDD(x,t);
-    const when=ev?(x.end&&x.end!==x.start?`${x.start.slice(5).replace('-','.')} ~ ${x.end.slice(5).replace('-','.')}`:`${x.start.slice(5).replace('-','.')}${x.ongoing?' 개막':''}`):`${x.deadline.slice(5).replace('-','.')} 마감`;
-    return `<li class="ct-card${ctPast(x,t)?' past':''}"><div class="ct-date" aria-hidden="true"><span class="m">${d.getMonth()+1}월</span><span class="d">${d.getDate()}</span><span class="w">${W[d.getDay()]}요일</span><span class="ct-dd ${cl}">${dd}</span></div>
-      <div><div class="ct-meta"><span class="ct-type"><svg viewBox="0 0 24 24" aria-hidden="true">${CT_ICO[x.type]||''}</svg>${esc(CT_LAB[x.type]||x.type)}</span>${(x.audience||[]).map(a=>`<span class="ct-aud">${esc(a)}</span>`).join('')}<span>· ${esc(when)}</span></div>
-      <h3>${esc(x.title)}</h3><p class="ct-org">${esc(x.org)}</p><p class="ct-sum">${esc(x.summary)}</p>
-      <div class="ct-foot">${x.benefit?`<span class="ct-ben">${esc(x.benefit)}</span>`:''}${x.region?`<span class="ct-reg">${esc(x.region)}</span>`:''}<a class="ct-go" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">원문 보기 ↗</a></div></div></li>`; }).join('');
+  const card=x=>ctCard(x,t,ready?fits.get(x.id):null);
+  if(ctF.view==='field'){ L.innerHTML=CT_FIELDS.map(f=>{ const g=xs.filter(x=>(x.vis||(x.field||[])[0])===f[0]); if(!g.length) return ''; return `<div class="ct-grp">${ctArt(f[0])}<h4>${esc(f[0])}</h4><span>${g.length}개</span></div><ol class="ct-list">${g.map(card).join('')}</ol>`; }).join(''); }
+  else L.innerHTML=`<ol class="ct-list">${xs.map(card).join('')}</ol>`;
 }
-document.addEventListener('click',e=>{ const b=e.target.closest('#ctAud button,#ctType button'); if(!b) return; const g=b.parentElement; $$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b)); ctF[g.id==='ctAud'?'aud':'type']=b.dataset.v; ctRender(); });
-document.addEventListener('change',e=>{ if(e.target&&e.target.id==='ctHide') ctRender(); });
+document.addEventListener('click',e=>{ const b=e.target.closest('#ctAud button,#ctType button,#ctView button'); if(b){ const g=b.parentElement; [...g.querySelectorAll('button')].forEach(x=>x.setAttribute('aria-pressed',x===b)); if(g.id==='ctView') ctF.view=b.dataset.v; else ctF[g.id==='ctAud'?'aud':'type']=b.dataset.v; ctRender(); return; }
+  const q=e.target.closest('#ctMatch .ct-ch button'); if(q){ const k=q.parentElement.dataset.q, v=q.dataset.v; if(k==='fields'){ const i=CTM.fields.indexOf(v); i<0?CTM.fields.push(v):CTM.fields.splice(i,1); } else CTM[k]=CTM[k]===v?'':v; CTM.only=CTM.only!==false; ctSaveM(); ctRender(); return; }
+  if(e.target.closest('#ctReset')){ CTM={me:'',fields:[],team:'',time:'',only:true}; ctSaveM(); if(ctF.view==='fit') ctF.view='date'; ctRender(); return; }
+  if(e.target.closest('#ctFitGo')){ ctF.view='fit'; ctRender(); const b2=$('#ctBarTop')||$('.ct-bar'); if(b2) b2.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  const r=e.target.closest('[data-ctref]'); if(r){ try{ bldOpen(r.dataset.ctref); }catch(err){ location.hash='#atlas'; } } });
+document.addEventListener('change',e=>{ if(!e.target) return; if(e.target.id==='ctHide') ctRender(); if(e.target.id==='ctOnly'){ CTM.only=e.target.checked; ctSaveM(); ctRender(); } });
 
 /* ---------- Panel layouts (A1 594x841 mm) ---------- */
 /* ===== R1 v20: 내 방 고치기 (#room) — 방 치수 엔진 · 배치 3안 · 통로 폭 · 문 열림 · 들어가나? · 조명·콘센트 · 팔레트 · 치수 조건 · 견적 상담 ===== */
@@ -6135,6 +6223,7 @@ const RHERO={
   plaza:{w:'PLAZA',c:0,n:'',col:['#8a6bff','#ff5e9c','#3f7bff'],rib:['패널','도면','모형','사진','크릿','댓글','챌린지']},
   portfolio:{w:'FOLIO',c:2,n:'07',col:['#ff5e9c','#ff9f5a','#8a6bff'],rib:['진로 지도','연봉','12쪽','이력서','증명사진','건축사','비전공']},
   guide:{w:'GUIDE',c:3,n:'',col:['#3f7bff','#30a46c','#ff9f0a'],rib:['재료 넣기','세 안','하나 고르기','도면','모형','패널','포트폴리오']},
+  contests:{w:'CONTEST',c:3,n:'',col:['#ff9f0a','#3f7bff','#ff5e9c'],rib:['설계공모','학생 공모전','아이디어','전시','강연','투어','D-day','나에게 맞는 공모전']},
   room:{w:'ROOM',c:1,n:'',col:['#c2703f','#f2bd55','#3f7bff'],rib:['가구 배치','통로 폭','문 열림','들어가나?','조명','콘센트','색 · 재료','견적 상담']},
   zipcode:{w:'ZIPCODE',c:3,n:'01',col:['#3f7bff','#8a6bff','#ff5e9c'],rib:['용도지역','건폐율','용적률','연면적','층수','조례','지구단위']},
   site:{w:'SITE',c:2,n:'02',col:['#2fae7a','#7cc5a0','#3f7bff'],rib:['해','바람','길','소음','조망','그림자','경사']},
