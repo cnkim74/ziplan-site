@@ -2777,6 +2777,93 @@ html.dnat-lock{overflow:hidden}
 @media (max-width:900px){ .rm-grid{grid-template-columns:1fr} .rm-chk{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:640px){ #view-room{padding:72px 12px 120px} .rm-card{padding:16px;border-radius:18px} .rm-tpls{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px} .rm-tpl{scroll-snap-align:start;min-height:108px}
   .rm-opts{grid-template-columns:1fr} .rm-opt .mini{width:64px;height:64px} .rm-plan{padding:4px;border-radius:14px} .rm-pal{grid-template-columns:84px 1fr} .rm-x{margin-left:0} .rm-op{gap:8px 10px} }
+/* R1b v20b: 내 방 고치기 — 다른 방과 같은 표지(RHERO)·내집코드 카드 틀, 3단계 */
+#view-room{padding:0 0 96px;background:var(--bg)}
+.rm-wrap.zc2{max-width:1180px;text-align:left}
+.rm-hint{padding:0;max-width:none;margin:0 0 14px}.rm-hint .in{gap:10px 16px}
+.rm-hintl{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;flex:1;font-size:13.5px;line-height:1.5}
+.rm-hintl b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;margin-right:7px;vertical-align:1px}
+.rm-steps{grid-template-columns:repeat(3,1fr);margin:6px 0 10px}
+.rm-steps li{padding:0;transition:border-color .2s,box-shadow .2s}
+.rm-steps li button{all:unset;box-sizing:border-box;display:grid;gap:2px;width:100%;height:100%;padding:14px 16px;cursor:pointer;border-radius:18px;position:relative;z-index:1}
+.rm-steps li button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.rm-steps li.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.rm-steps li:not(.on):not(.done) b{color:var(--fg-2)}.rm-steps li.done b::after{content:' ✓';font-size:15px}
+.rm-note{font-size:12.5px;color:var(--fg-2);margin:0 2px 14px;line-height:1.5}.rm-note b{color:var(--fg);margin-right:6px}
+.rm-pane .zc2-card{gap:12px;padding:20px}
+.rm-pane .zc2-h p{font-size:13.5px;line-height:1.5}
+.rm-tpls{grid-template-columns:repeat(6,1fr)}
+.rm-tpl{min-height:150px;padding:14px 8px 12px;border-color:var(--card-line);transition:transform .2s,border-color .2s}
+.rm-tpl:hover{transform:translateY(-2px);border-color:var(--accent)}
+.rm-tpl em{font-style:normal;font-size:11.5px;color:var(--fg-2);line-height:1.35;text-align:center}
+.rm-tpl.own svg{color:var(--fg-2)}
+.rm-dims{margin:4px 0 0}
+.rm-more{border-top:1px solid var(--card-line);padding-top:2px}
+.rm-more>summary{list-style:none;display:flex;gap:10px;align-items:center;padding:12px 2px 10px;cursor:pointer;font-size:14.5px}
+.rm-more>summary::-webkit-details-marker,.rm-acc>summary::-webkit-details-marker{display:none}
+.rm-more>summary span{flex:1;min-width:0;color:var(--fg-2);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rm-more>summary em{font-style:normal;font-size:13px;font-weight:700;color:var(--accent)}.rm-more>summary em::after{content:' ›'}
+.rm-more[open]>summary em::after{content:' ⌃'}.rm-more[open]{padding-bottom:12px}.rm-more .rm-p{margin:0 0 10px}
+.rm-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0 4px}
+.rm-opt small{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:999px;background:var(--accent);color:var(--accent-fg);vertical-align:2px}
+.rm-tbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}#rmDoors{display:contents}
+.rm-tbar [data-rm3d]{margin-left:auto}
+.rm-plan.rm-edit{cursor:default;touch-action:pan-y;outline:none}.rm-plan.rm-edit:focus-visible{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 50%,transparent)}
+.rm-plan.rm-edit .rm-f{cursor:grab}.rm-plan.rm-edit .rm-f.sel{cursor:grabbing}.rm-plan .rm-cl{cursor:pointer}
+.rm-legend{font-size:12.5px;color:var(--fg-2);margin:0;line-height:1.6}.rm-legend .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin:0 4px 0 10px}.rm-legend .dot:first-child{margin-left:0}
+.rm-iss{margin:0}.rm-iss li:nth-child(n+4){display:none}.rm-iss.all li{display:block}
+.rm-issmore{all:unset;cursor:pointer;color:var(--accent);font-size:13px;font-weight:700;justify-self:start}
+.rm-g3{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+.rm-left{position:sticky;top:76px}
+.rm-save{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rm-lnk{all:unset;cursor:pointer;font-size:13px;color:var(--fg-2);text-decoration:underline;padding:6px 4px}
+.rm-st{margin:0;min-height:1em}
+.rm-accs{display:grid;gap:10px}
+.rm-acc{background:var(--card);border:1px solid var(--card-line);border-radius:18px;padding:0 18px}
+.rm-acc>summary{list-style:none;display:flex;gap:10px;align-items:baseline;padding:16px 0;cursor:pointer}
+.rm-acc>summary b{font-size:16px;letter-spacing:-.01em}.rm-acc>summary em{font-style:normal;font-size:12.5px;color:var(--fg-2);flex:1}
+.rm-acc>summary::after{content:'+';font-size:20px;line-height:1;color:var(--fg-2)}.rm-acc[open]>summary::after{content:'−'}
+.rm-acc[open]{padding-bottom:16px;border-color:color-mix(in srgb,var(--accent) 35%,var(--card-line))}
+.rm-acc .rm-fit{margin-top:10px}.rm-acc .rm-chk{grid-template-columns:repeat(2,1fr);margin:4px 0 12px}
+.rm-acc .rm-photo{margin-top:12px}
+.rm-pal{appearance:none;font:inherit;color:inherit;text-align:left;border:0;cursor:pointer;width:100%}
+.rm-pal[aria-pressed=true]{box-shadow:0 0 0 2px var(--accent) inset}.rm-pal.top{box-shadow:none}
+.rm-pal .ls{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:12px;color:var(--fg-2)}.rm-pal .ls span{display:inline-flex;gap:4px;align-items:center}.rm-pal .ls i{width:9px;height:9px;border-radius:3px;border:1px solid rgba(0,0,0,.12)}
+.rm-mbar{display:none}
+.rm3dm{position:fixed;inset:0;z-index:95;background:rgba(10,12,16,.55);display:grid;place-items:center;padding:20px}.rm3dm[hidden]{display:none}
+.rm3dm .rm3-in{width:min(1040px,100%);height:min(740px,100%);background:var(--card);color:var(--fg);border-radius:22px;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;text-align:left}
+.rm3-hd{display:flex;gap:10px;align-items:center;padding:10px 12px 10px 18px;border-bottom:1px solid var(--card-line)}.rm3-hd b{font-size:16px}.rm3-hd span{font-size:12.5px;color:var(--fg-2);flex:1}.rm3-hd .rm-x{margin-left:0}
+.rm3-cv{position:relative;min-height:0;background:#eef0f3}.rm3-cv canvas{display:block;cursor:grab}
+.rm3-ld{position:absolute;inset:0;display:grid;place-items:center;margin:0;color:#6e6e73;font-size:14px;padding:20px;text-align:center}
+.rm3-ft{margin:0;padding:10px 18px;font-size:12px;color:var(--fg-2)}
+.rm-g2{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:18px;align-items:start}
+.rm-side{display:grid;gap:12px}.rm-side .rm-opts{grid-template-columns:1fr;gap:8px}
+.rm-side .rm-tbar [data-rm3d]{margin-left:0}
+.rm-main{position:sticky;top:76px;display:grid;gap:6px}.rm-main .rm-plan svg{max-height:calc(100vh - 150px)}
+.rm-tip{margin:0;font-size:12.5px;color:var(--fg-2);text-align:center}
+@media (max-width:1000px){ .rm-tpls{grid-template-columns:repeat(3,1fr)} .rm-g3,.rm-g2{grid-template-columns:1fr} .rm-left,.rm-main{position:static} .rm-side{display:contents} .rm-side .rm-opts{grid-template-columns:repeat(3,1fr)} .rm-g2>.rm-main{order:2} .rm-side .rm-tbar{order:3} .rm-side .rm-legend{order:4} .rm-side .rm-iss{order:5} .rm-side .rm-issmore{order:6} .rm-main .rm-plan svg{max-height:70vh} }
+@media (max-width:820px){
+  #view-room{padding:0 0 150px}
+  .rm-nav{display:none}
+  .rm-mbar{position:fixed;left:0;right:0;bottom:0;z-index:31;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+  html.hasTab .rm-mbar{bottom:calc(66px + env(safe-area-inset-bottom,0px));padding-bottom:10px}
+  .rm-mbar span{text-align:center;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rm-mbar .btn{min-width:84px}
+  html:has(#view-room:not([hidden])) .zc-fab{bottom:72px}
+  html.hasTab:has(#view-room:not([hidden])) .zc-fab{bottom:calc(140px + env(safe-area-inset-bottom,0px))}
+  html.rm3d-on .tabbar{display:none}
+}
+@media (max-width:640px){
+  .rm-steps{grid-template-columns:repeat(3,1fr);gap:6px}.rm-steps li button{padding:10px 10px}.rm-steps em{display:none}.rm-steps span{font-size:13.5px}.rm-steps b{font-size:18px}
+  .rm-hintl{flex-direction:column;gap:6px}
+  .rm-pane .zc2-card{padding:16px 14px}
+  .rm-tpls{grid-template-columns:repeat(3,1fr);overflow:visible;gap:6px}.rm-tpl{min-height:128px;padding:10px 4px}.rm-tpl em{display:none}.rm-tpl svg{width:46px;height:auto}
+  .rm-dims{gap:8px 12px}.rm-dims label{font-size:13.5px}.rm-wrap .rm-dims input[type=number]{width:72px}
+  .rm-opts{grid-template-columns:repeat(3,1fr);gap:6px}.rm-opt{flex-direction:column;align-items:stretch;gap:6px;padding:8px}.rm-opt .mini{width:100%;height:auto;aspect-ratio:1}.rm-opt .mini svg{max-width:100%;max-height:100%}
+  .rm-opt em{display:none}.rm-opt b{font-size:13px}.rm-opt i{font-size:11px}
+  .rm-tbar [data-rm3d]{margin-left:0}
+  .rm-acc{padding:0 14px}.rm-acc .rm-chk{grid-template-columns:1fr}
+  .rm3dm{padding:0}.rm3dm .rm3-in{border-radius:0;height:100%;width:100%}
+}
 .stx{margin-top:56px;border-top:1px solid var(--line)}.stx-h{padding-top:64px}
 .build[data-mode="line"]{height:400vh}.build[data-mode="panel"]{height:430vh}
 .build[data-mode="line"] .pnhead,.build[data-mode="line"] .pnview,.build[data-mode="line"] .pnfoot{display:none}
@@ -3045,7 +3132,8 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
 </section>
 
 <section class="view" id="view-room" hidden aria-label="내 방 고치기">
-<div class="rm-wrap" id="rmApp"></div>
+  <div class="hero"><h1>내 방 고치기</h1><div class="tag">방 하나부터, 다시 그려 봅니다.</div><div class="sub">방 치수만 넣으면 가구 배치 세 가지, 통로 폭, 조명·콘센트 자리까지. 로그인 없이, 무료.</div></div>
+  <div class="zc2 rm-wrap" id="rmApp"></div>
 </section>
 
 <section class="view" id="view-pricing" hidden>
@@ -3876,7 +3964,7 @@ const RM_APP=[['ac','에어컨'],['heat','전기 히터·온풍기'],['pc','컴�
 /* 쿠팡 파트너스 등 제휴 링크 자리 — 비어 있으면 '찾기' 버튼과 고지 문구 모두 숨김 */
 const RM_SHOP={};
 let RM=null;
-function rmDefault(){ const t=RM_TPL[1]; return {tpl:t.id,W:t.W,D:t.D,H:t.H,open:t.open.map(o=>({...o})),furn:t.furn.slice(),pick:0,out:2,app:{},chk:{},dims:true,elec:true}; }
+function rmDefault(){ const t=RM_TPL[1]; return {tpl:t.id,W:t.W,D:t.D,H:t.H,open:t.open.map(o=>({...o})),furn:t.furn.slice(),pick:0,out:2,app:{},chk:{},dims:true,elec:true,step:1,edits:{},pal:''}; }
 function rmLoad(){ try{ const s=JSON.parse(localStorage.getItem('zip_room')||'null'); if(s&&s.W&&s.D&&Array.isArray(s.open)&&Array.isArray(s.furn)) return Object.assign(rmDefault(),s); }catch(e){} return rmDefault(); }
 function rmRand(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
 function rmWallLen(w){ return w%2===0?RM.W:RM.D; }
@@ -3884,7 +3972,7 @@ function rmWallLen(w){ return w%2===0?RM.W:RM.D; }
 function rmOnWall(w,s,L,P){ const W=RM.W,D=RM.D; if(w===0) return {x:s,y:0,w:L,h:P}; if(w===1) return {x:W-P,y:s,w:P,h:L}; if(w===2) return {x:s,y:D-P,w:L,h:P}; return {x:0,y:s,w:P,h:L}; }
 const RM_DIR=[[0,1],[-1,0],[0,-1],[1,0]];   /* 벽 w에 붙은 가구의 앞 방향 */
 function rmHit(a,b,g){ g=g||0; return a.x<b.x+b.w-g&&b.x<a.x+a.w-g&&a.y<b.y+b.h-g&&b.y<a.y+a.h-g; }
-function rmDoorZones(){ return RM.open.filter(o=>o.k==='door').map(o=>{ const r=rmOnWall(o.wall,o.off,o.w,o.w); return {x:r.x-5,y:r.y-5,w:r.w+10,h:r.h+10,o}; }); }
+function rmDoorZones(){ return RM.open.filter(o=>o.k==='door'&&o.swing!=='out').map(o=>{ const r=rmOnWall(o.wall,o.off,o.w,o.w); return {x:r.x-5,y:r.y-5,w:r.w+10,h:r.h+10,o}; }); }
 /* r의 dir 쪽 면에서 가장 가까운 장애물(가구·벽)까지 거리 */
 function rmClear(r,dir,obs){ const W=RM.W,D=RM.D; const [dx,dy]=dir; let best;
   if(dy){ const face=dy>0?r.y+r.h:r.y; best=dy>0?D-face:face; for(const o of obs){ if(o===r) continue; if(o.x<r.x+r.w-1&&o.x+o.w>r.x+1){ const dd=dy>0?o.y-face:face-(o.y+o.h); if(dd>=-.5&&dd<best) best=Math.max(0,dd); } } }
@@ -3935,9 +4023,15 @@ function rmEval(L,sid){ const rects=L.items.map(i=>i.r), zones=rmDoorZones(); co
     if(sid==='C'&&f.k==='desk'){ const wn=RM.open.find(o=>o.k==='win'); if(wn){ if(it.w===wn.wall&&it.s<wn.off+wn.w&&wn.off<it.s+it.L) sc+=45; else if((it.w+1)%4===wn.wall||(it.w+3)%4===wn.wall) sc+=18; } }
     if(sid==='A'&&f.k==='bed'&&it.m==='side') sc+=14;
   }
+  /* 직접 옮긴 배치: 겹침 · 문 열리는 자리 · 키 큰 가구가 창을 가림 */
+  const jg=n=>{ const c=n.charCodeAt(n.length-1)-0xac00; return c>=0&&c<11172&&c%28?'이':'가'; };
+  L.items.forEach(it=>{ it.hit=false; });
+  for(let a=0;a<L.items.length;a++) for(let b=a+1;b<L.items.length;b++){ const A=L.items[a],B=L.items[b]; if(rmHit(A.r,B.r,.5)){ A.hit=B.hit=true; sc-=300; iss.unshift({lv:'bad',t:`가구가 겹쳐요 — ${RM_FURN[A.key].n} · ${RM_FURN[B.key].n}`}); } }
+  for(const it of L.items){ const f=RM_FURN[it.key]; for(const z of zones) if(rmHit(it.r,z)){ it.hit=true; sc-=250; iss.unshift({lv:'bad',t:`${f.n}${jg(f.n)} 문 열리는 자리를 막아요 — 문 여는 방향을 바꾸거나 옮겨 보세요.`}); break; }
+    if(f.h>RM_TALL&&(it.gap==null||it.gap<5)) for(const o of RM.open) if(o.k==='win'&&o.wall===it.w&&it.s<o.off+o.w&&o.off<it.s+it.L){ sc-=40; iss.push({lv:'warn',t:`${f.n}${jg(f.n)} 창을 가려요 — 키 큰 가구는 창 없는 벽이 좋아요.`}); break; } }
   for(const k of L.miss){ sc-=400; iss.unshift({lv:'bad',t:`${RM_FURN[k].n}(${RM_FURN[k].w}×${RM_FURN[k].d})를 놓을 자리가 없어요 — 더 작은 크기를 고르거나 빼 보세요.`}); }
   const area=reach.area; sc+=area*(sid==='A'?14:7);
-  if(!iss.some(i=>i.lv==='bad')) iss.push({lv:'ok',t:'문 열림 반경과 창 앞(키 큰 가구)은 비워 두었어요.'});
+  if(!iss.some(i=>i.lv==='bad')) iss.push({lv:'ok',t:L.items.some(i=>i.gap!=null)?'겹치거나 문을 막는 가구는 없어요.':'문 열림 반경과 창 앞(키 큰 가구)은 비워 두었어요.'});
   L.score=sc; L.iss=iss; L.walk=area; return L; }
 function rmSolve(sid,seed){ const rnd=rmRand(seed), zones=rmDoorZones(); const keys=RM.furn.filter(k=>RM_FURN[k]); const all=[]; const cache={};
   for(const k of new Set(keys)) cache[k]=rmCands(k);
@@ -3955,7 +4049,7 @@ function rmSolve(sid,seed){ const rnd=rmRand(seed), zones=rmDoorZones(); const k
 function rmSig(L){ return L.items.map(i=>i.key+':'+i.w+':'+i.m+':'+Math.round(i.s/20)).sort().join('|'); }
 function rmCompute(){ const seed=(RM.W*131+RM.D*17+RM.furn.join('').length*7+RM.open.reduce((a,o)=>a+o.wall*13+o.off+o.w,0))|0; const out=[], seen=new Set();
   RM_STRAT.forEach((st,i)=>{ const list=rmSolve(st.id,seed+i*999); let pick=list.find(L=>!seen.has(rmSig(L)))||list[0]; seen.add(rmSig(pick)); pick.st=st; pick.walk=rmReach(pick.items.map(x=>x.r),true).area; out.push(pick); });
-  RM.L=out; return out; }
+  RM.L=out; try{ rmApplyEdits(); }catch(e){ console.warn('room edits',e); } return out; }
 /* ---------- 조명·콘센트 ---------- */
 function rmElec(L){ const lights=[{t:'main',x:RM.W/2,y:RM.D/2,n:'천장등(방 가운데)'}], outs=[], lines=[]; const wallPt=(w,s)=>{ const W=RM.W,D=RM.D; return w===0?[s,0]:w===1?[W,s]:w===2?[s,D]:[0,s]; };
   const add=(w,s,n)=>{ s=Math.max(10,Math.min(rmWallLen(w)-10,s)); const [x,y]=wallPt(w,s); if(outs.some(o=>Math.hypot(o.x-x,o.y-y)<40)) return; for(const o of RM.open) if(o.k==='door'&&o.wall===w&&s>o.off-10&&s<o.off+o.w+10) return; outs.push({x,y,w,n}); };
@@ -3971,7 +4065,7 @@ function rmElec(L){ const lights=[{t:'main',x:RM.W/2,y:RM.D/2,n:'천장등(방 �
   const sw=door?(()=>{ const s=door.off+door.w+12; return {x:wallPt(door.wall,Math.min(rmWallLen(door.wall)-5,s))[0],y:wallPt(door.wall,Math.min(rmWallLen(door.wall)-5,s))[1],w:door.wall}; })():null;
   return {lights,outs,lines,sw}; }
 /* ---------- 평면 SVG ---------- */
-function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:70,t=12; const vb=`${-m} ${-m} ${W+m*2} ${D+m*2}`; const s=[];
+function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:(RM.open.some(d=>d.k==='door'&&d.swing==='out')?Math.max(70,...RM.open.filter(d=>d.k==='door'&&d.swing==='out').map(d=>d.w+24)):70),t=12; const vb=`${-m} ${-m} ${W+m*2} ${D+m*2}`; const s=[];
   const C={wall:'#1d1d1f',floor:'#fbfaf7',furn:'#e8eef9',fl:'#3f6fd8',txt:'#1d1d1f',sub:'#6e6e73',red:'#e5484d',amb:'#d97706',ok:'#2f9e44',zone:'#f1f3f5',win:'#57a5ff',light:'#f5b301'};
   s.push(`<rect x="0" y="0" width="${W}" height="${D}" fill="${C.floor}"/>`);
   /* 문 열림 영역 */
@@ -3980,11 +4074,11 @@ function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:70,t=12; const vb=
   const seg=(w,a,b)=>{ const r=w===0?{x:a,y:-t,w:b-a,h:t}:w===1?{x:W,y:a,w:t,h:b-a}:w===2?{x:a,y:D,w:b-a,h:t}:{x:-t,y:a,w:t,h:b-a}; s.push(`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${C.wall}"/>`); };
   for(let w=0;w<4;w++){ const len=rmWallLen(w); const ops=RM.open.filter(q=>q.wall===w).sort((a,b)=>a.off-b.off); let cur=w%2===0?-t:-t; const end=len+t; for(const q of ops){ if(q.off>cur) seg(w,cur,q.off); cur=Math.max(cur,q.off+q.w); } if(cur<end) seg(w,cur,end);
     for(const q of ops){ if(q.k==='win'){ const r=w===0?{x:q.off,y:-t,w:q.w,h:t}:w===1?{x:W,y:q.off,w:t,h:q.w}:w===2?{x:q.off,y:D,w:q.w,h:t}:{x:-t,y:q.off,w:t,h:q.w}; s.push(`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="#fff" stroke="${C.wall}" stroke-width="1.5"/><line x1="${r.x+(w%2?r.w/2:0)}" y1="${r.y+(w%2?0:r.h/2)}" x2="${r.x+(w%2?r.w/2:r.w)}" y2="${r.y+(w%2?r.h:r.h/2)}" stroke="${C.win}" stroke-width="2.5"/>`); }
-      else { /* 문: 힌지는 시작점, 안쪽으로 90° */ const h=w===0?[q.off,0]:w===1?[W,q.off]:w===2?[q.off,D]:[0,q.off]; const e=w===0?[q.off+q.w,0]:w===1?[W,q.off+q.w]:w===2?[q.off+q.w,D]:[0,q.off+q.w]; const dn=RM_DIR[w]; const leaf=[h[0]+dn[0]*q.w,h[1]+dn[1]*q.w];
+      else { /* 문: 경첩(hinge s=시작점·e=끝점), 여는 쪽(swing in/out) */ const st=w===0?[q.off,0]:w===1?[W,q.off]:w===2?[q.off,D]:[0,q.off]; const en=w===0?[q.off+q.w,0]:w===1?[W,q.off+q.w]:w===2?[q.off+q.w,D]:[0,q.off+q.w]; const h=q.hinge==='e'?en:st, e=q.hinge==='e'?st:en; const dn=RM_DIR[w].map(v=>q.swing==='out'?-v:v); const leaf=[h[0]+dn[0]*q.w,h[1]+dn[1]*q.w];
         const ux=leaf[0]-h[0],uy=leaf[1]-h[1],vx=e[0]-h[0],vy=e[1]-h[1], sw=(ux*vy-uy*vx)>0?1:0;
         s.push(`<line x1="${h[0]}" y1="${h[1]}" x2="${leaf[0]}" y2="${leaf[1]}" stroke="${C.wall}" stroke-width="3"/><path d="M${leaf[0]} ${leaf[1]} A${q.w} ${q.w} 0 0 ${sw} ${e[0]} ${e[1]}" fill="none" stroke="${C.sub}" stroke-width="1.5" stroke-dasharray="6 5"/>`); } } }
   /* 가구 */
-  for(const it of L.items){ const f=RM_FURN[it.key], r=it.r; const bad=!it.ok; s.push(`<g><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${o.mini?3:5}" fill="${C.furn}" stroke="${bad?C.red:C.fl}" stroke-width="${o.mini?2:2.5}"/>`);
+  let fi=-1; for(const it of L.items){ fi++; const f=RM_FURN[it.key], r=it.r; const bad=!it.ok||it.hit; const sel=!o.mini&&o.sel===fi; s.push(`<g class="rm-f${sel?' sel':''}" data-i="${fi}"><title>${esc(f.n)} ${Math.round(r.w)}×${Math.round(r.h)}cm</title><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${o.mini?3:5}" fill="${it.hit?'#fde8e8':C.furn}" stroke="${bad?C.red:C.fl}" stroke-width="${o.mini?2:sel?4:2.5}"/>${sel?`<rect x="${r.x-7}" y="${r.y-7}" width="${r.w+14}" height="${r.h+14}" rx="9" fill="none" stroke="${C.fl}" stroke-width="2" stroke-dasharray="7 6"/>`:''}`);
     const [dx,dy]=it.dir;
     if(f.k==='bed'){ const pw=it.m==='head'?(dx||dy?20:20):20; /* 베개: 벽(머리) 쪽 */ const hw=it.m==='head'; const pr=hw?(it.w===0?{x:r.x+8,y:r.y+8,w:r.w-16,h:pw}:it.w===2?{x:r.x+8,y:r.y+r.h-8-pw,w:r.w-16,h:pw}:it.w===1?{x:r.x+r.w-8-pw,y:r.y+8,w:pw,h:r.h-16}:{x:r.x+8,y:r.y+8,w:pw,h:r.h-16}):(it.w%2===0?{x:r.x+8,y:r.y+8,w:pw,h:r.h-16}:{x:r.x+8,y:r.y+8,w:r.w-16,h:pw}); s.push(`<rect x="${pr.x}" y="${pr.y}" width="${pr.w}" height="${pr.h}" rx="6" fill="#fff" stroke="${C.fl}" stroke-width="1.2"/>`); }
     if(f.k==='desk'||f.k==='dining'){ const cx=r.x+r.w/2+dx*(r.w/2+22)*(dx?1:0), cy=r.y+r.h/2+dy*(r.h/2+22)*(dy?1:0); s.push(`<circle cx="${cx}" cy="${cy}" r="20" fill="none" stroke="${C.fl}" stroke-width="1.5"/>`); }
@@ -3993,7 +4087,7 @@ function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:70,t=12; const vb=
     if(!o.mini){ const n=[...f.n].length+.4, hf=Math.min(20,r.w*.9/n,r.h*.55), vf=Math.min(20,r.h*.9/n,r.w*.55); const rot=vf>hf+1; const fs=Math.max(9,rot?vf:hf); const sh=f.k==='bed'?0:.16; const cx=r.x+r.w/2+dx*r.w*sh, cy=r.y+r.h/2+dy*r.h*sh; s.push(rot?`<text x="${cx}" y="${cy+fs*.35}" font-size="${fs}" text-anchor="middle" fill="${C.txt}" font-weight="700" transform="rotate(-90 ${cx} ${cy})">${esc(f.n)}</text>`:`<text x="${cx}" y="${cy+fs*.35}" font-size="${fs}" text-anchor="middle" fill="${C.txt}" font-weight="700">${esc(f.n)}</text>`); }
     s.push('</g>'); }
   /* 통로 폭 */
-  if(!o.mini&&o.dims!==false){ const done=[]; const lab=(x1,y1,x2,y2,v,need)=>{ const col=v<60?C.red:v<need?C.amb:C.ok; const mx=(x1+x2)/2,my=(y1+y2)/2; if(v<8) return; if(done.some(q=>q.v===v&&Math.abs(q.x-mx)<60&&Math.abs(q.y-my)<60)) return; done.push({x:mx,y:my,v}); const hz=y1===y2, tk=(x,y)=>hz?`<line x1="${x}" y1="${y-7}" x2="${x}" y2="${y+7}" stroke="${col}" stroke-width="2"/>`:`<line x1="${x-7}" y1="${y}" x2="${x+7}" y2="${y}" stroke="${col}" stroke-width="2"/>`; s.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="2"/>${tk(x1,y1)}${tk(x2,y2)}<rect x="${mx-24}" y="${my-11}" width="48" height="22" rx="11" fill="${col}"/><text x="${mx}" y="${my+5}" font-size="14" text-anchor="middle" fill="#fff" font-weight="800">${v}</text>`); };
+  if(!o.mini&&o.dims!==false){ const done=[]; const lab=(x1,y1,x2,y2,v,need)=>{ const col=v<60?C.red:v<need?C.amb:C.ok; const wd=v<60?'좁음':v<need?'빠듯':'여유'; const mx=(x1+x2)/2,my=(y1+y2)/2; if(v<8) return; if(done.some(q=>q.v===v&&Math.abs(q.x-mx)<60&&Math.abs(q.y-my)<60)) return; done.push({x:mx,y:my,v}); const hz=y1===y2, tk=(x,y)=>hz?`<line x1="${x}" y1="${y-7}" x2="${x}" y2="${y+7}" stroke="${col}" stroke-width="2"/>`:`<line x1="${x-7}" y1="${y}" x2="${x+7}" y2="${y}" stroke="${col}" stroke-width="2"/>`; s.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="2"/>${tk(x1,y1)}${tk(x2,y2)}<g class="rm-cl" data-cm="${v}" data-w="${wd}"><title>${v}cm</title><rect x="${mx-26}" y="${my-12}" width="52" height="24" rx="12" fill="${col}"/><text x="${mx}" y="${my+5}" font-size="14" text-anchor="middle" fill="#fff" font-weight="800">${o.cm?v:wd}</text></g>`); };
     for(const it of L.items){ const f=RM_FURN[it.key], r=it.r, need=RM_NEED[f.k]||60; const show=(dir,v)=>{ if(v==null) return; const [dx,dy]=dir; if(dy){ const x=r.x+r.w*(dy>0?.3:.7), y1=dy>0?r.y+r.h:r.y; lab(x,y1,x,y1+dy*v,v,need); } else { const y=r.y+r.h*(dx>0?.3:.7), x1=dx>0?r.x+r.w:r.x; lab(x1,y,x1+dx*v,y,v,need); } };
       if(f.k==='bed'&&it.m==='head'){ const [a,b]=rmSides(it); if(it.cl.s1<200) show(a,it.cl.s1); if(it.cl.s2<200) show(b,it.cl.s2); }
       else if(RM_NEED[f.k]&&it.cl.front!=null&&it.cl.front<220) show(it.dir,it.cl.front); } }
@@ -4007,83 +4101,226 @@ function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:70,t=12; const vb=
   const defs=`<defs><marker id="rmA2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${C.sub}"/></marker></defs>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" ${o.mini?'':`width="${W+m*2}" height="${D+m*2}"`} role="img" aria-label="방 평면 ${W}×${D}cm" font-family="Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">${defs}${s.join('')}</svg>`; }
 function rmTplSVG(t){ const sc=60/Math.max(t.W,t.D), w=t.W*sc, h=t.D*sc; return `<svg viewBox="-4 -4 ${w+8} ${h+8}" width="${w+8}" height="${h+8}" aria-hidden="true"><rect x="0" y="0" width="${w}" height="${h}" fill="none" stroke="currentColor" stroke-width="2.5"/>${t.open.map(o=>{ const L=o.w*sc, s=o.off*sc; const p=o.wall===0?[s,0,s+L,0]:o.wall===1?[w,s,w,s+L]:o.wall===2?[s,h,s+L,h]:[0,s,0,s+L]; return `<line x1="${p[0]}" y1="${p[1]}" x2="${p[2]}" y2="${p[3]}" stroke="${o.k==='win'?'#57a5ff':'var(--bg-alt)'}" stroke-width="4"/>`; }).join('')}</svg>`; }
-/* ---------- 화면 ---------- */
+/* ---------- 화면 (R1b v20b: 3단계 — ① 방 정하기 → ② 배치 고르기 → ③ 확인·저장) ---------- */
+const RM_STEPS=[['방 정하기','예시 방 · 치수'],['배치 고르기','세 가지 중 하나 · 끌어서 옮기기'],['확인 · 저장','들어가나 · 조명 · 색 · 상담']];
+const RM_TPL_NOTE={oneroom:'침대·책상·식탁 한 칸에',small:'침대·책상·옷장',master:'퀸 침대·옷장·TV',kid:'침대·책상·책장',study:'책상·책장·소파'};
+function rmCur(){ return RM&&RM.L?RM.L[RM.pick]:null; }
+function rmHintSeen(){ try{ return localStorage.getItem('zip_room_hint')==='1'; }catch(e){ return false; } }
 function rmBuild(){ const app=$('#rmApp'); if(!app||app.dataset.on) return; app.dataset.on='1';
-  app.innerHTML=`<header class="rm-hd"><span class="lab-k">내 집 짓기 · 내 방 고치기</span><h1>내 방 고치기</h1>
-    <p class="rm-lead">방 치수와 문·창 위치만 넣으면 가구 배치 세 가지, 통로 폭, 조명·콘센트 자리까지 한 번에 그려 드려요. 물건보다 먼저 <b>방의 구조</b>를 고르는 곳이에요.</p>
-    <p class="rm-warn" role="note"><b>참고용</b> — 실제 공사·가구 주문 전에는 줄자로 다시 재고 전문가와 확인하세요.</p></header>
-  <section class="rm-card" aria-labelledby="rmS1"><div class="rm-h"><span class="n">1</span><div><h2 id="rmS1">방 고르기</h2><p>비슷한 방을 누르고, 치수만 고쳐도 돼요.</p></div></div>
-    <div class="rm-tpls" id="rmTpls" role="group" aria-label="방 예시">${RM_TPL.map(t=>`<button type="button" class="rm-tpl" data-rmtpl="${t.id}" aria-pressed="false">${rmTplSVG(t)}<b>${t.n}</b><span>${(t.W/100).toFixed(1)} × ${(t.D/100).toFixed(1)}m</span></button>`).join('')}</div>
-    <div class="rm-dims"><label>가로 <input type="number" id="rmW" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>세로 <input type="number" id="rmD" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>천장 높이 <input type="number" id="rmH" min="200" max="400" step="5" inputmode="numeric"> <em>cm</em></label></div>
-    <div class="rm-ops"><div class="rm-opsh"><b>문 · 창</b><span>위·아래 벽은 왼쪽 끝부터, 왼쪽·오른쪽 벽은 위 끝부터 잰 거리예요.</span></div><div id="rmOps"></div><div class="rm-opadd"><button type="button" class="btn sec sm" data-rmadd="door">+ 문</button><button type="button" class="btn sec sm" data-rmadd="win">+ 창</button></div></div>
-    <div class="rm-photo"><label class="btn sec sm" for="rmPhoto">분위기 참고 사진 (선택)</label><input type="file" id="rmPhoto" accept="image/*" hidden><span class="rm-pnote">사진은 이 화면에서만 보고 <b>저장하지 않아요</b>. 위치 정보(EXIF)는 지운 뒤 보여 줘요.</span><div class="rm-pthumb" id="rmPthumb" hidden></div></div>
+  app.innerHTML=`
+  <div class="fwlink rm-hint" id="rmHint"${rmHintSeen()?' hidden':''}><div class="in"><span class="lab-k">이렇게 쓰세요</span><ol class="rm-hintl"><li><b>1</b>비슷한 방을 고르고 치수만 고쳐요.</li><li><b>2</b>배치 세 가지 중 하나를 고르고, 가구는 끌어서 옮겨요.</li><li><b>3</b>들어가나·조명·색을 확인하고 저장해요.</li></ol><button type="button" class="btn sec sm" id="rmHintX">알겠어요</button></div></div>
+  <ol class="zc2-steps rm-steps" id="rmSteps" aria-label="내 방 고치기 순서">${RM_STEPS.map(([a,b],i)=>`<li data-st="${i+1}"><button type="button" data-rmgo="${i+1}"><b>0${i+1}</b><span>${a}</span><em>${b}</em></button></li>`).join('')}</ol>
+  <p class="rm-note" role="note"><b>참고용</b> 실제 공사·가구 주문 전에는 줄자로 다시 재고 전문가와 확인하세요.</p>
+
+  <section class="rm-pane" data-pane="1" aria-labelledby="rmP1">
+    <div class="zc2-card"><div class="zc2-h"><span class="n">1</span><div><h3 id="rmP1">어떤 방인가요?</h3><p>비슷한 방을 누르고, 치수만 고쳐도 돼요. 문·창과 가구는 예시대로 들어가요.</p></div></div>
+      <div class="rm-tpls" id="rmTpls" role="group" aria-label="방 예시">${RM_TPL.map(t=>`<button type="button" class="rm-tpl" data-rmtpl="${t.id}" aria-pressed="false">${rmTplSVG(t)}<b>${t.n}</b><span>${(t.W/100).toFixed(1)} × ${(t.D/100).toFixed(1)}m</span><em>${RM_TPL_NOTE[t.id]||''}</em></button>`).join('')}<button type="button" class="rm-tpl own" data-rmtpl="custom" aria-pressed="false"><svg viewBox="0 0 64 64" width="60" height="60" aria-hidden="true"><rect x="8" y="8" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5"/><path d="M32 22v20M22 32h20" stroke="currentColor" stroke-width="2.5"/></svg><b>직접 입력</b><span>줄자로 잰 치수</span><em>아래 칸에 cm로</em></button></div>
+      <div class="rm-dims"><label>가로 <input type="number" id="rmW" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>세로 <input type="number" id="rmD" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>천장 <input type="number" id="rmH" min="200" max="400" step="5" inputmode="numeric"> <em>cm</em></label></div>
+      <details class="rm-more" id="rmMoreF"><summary><b>가구</b><span id="rmFsum"></span><em>바꾸기</em></summary>
+        <p class="rm-p">일반 규격 기준 크기예요. 눌러서 더하고, 목록의 ×로 빼요.</p>
+        <div class="rm-fadd" role="group" aria-label="가구 더하기">${Object.entries(RM_FURN).map(([k,f])=>`<button type="button" class="rm-chip" data-rmf="${k}">+ ${esc(f.n)} <em>${f.w}×${f.d}</em></button>`).join('')}</div>
+        <ul class="rm-flist" id="rmFlist"></ul></details>
+      <details class="rm-more" id="rmMoreO"><summary><b>문 · 창</b><span id="rmOsum"></span><em>위치 바꾸기</em></summary>
+        <p class="rm-p">위·아래 벽은 왼쪽 끝부터, 왼쪽·오른쪽 벽은 위 끝부터 잰 거리예요. 문 여는 방향은 다음 단계 평면에서 바꿀 수 있어요.</p>
+        <div id="rmOps"></div><div class="rm-opadd"><button type="button" class="btn sec sm" data-rmadd="door">+ 문</button><button type="button" class="btn sec sm" data-rmadd="win">+ 창</button></div></details>
+    </div>
+    <div class="rm-nav"><span></span><button type="button" class="btn" data-rmgo="2">배치 보기 →</button></div>
   </section>
-  <section class="rm-card" aria-labelledby="rmS2"><div class="rm-h"><span class="n">2</span><div><h2 id="rmS2">놓을 가구</h2><p>일반 규격 기준 크기예요. 눌러서 더하고, 아래 목록에서 빼요.</p></div></div>
-    <div class="rm-fadd" role="group" aria-label="가구 더하기">${Object.entries(RM_FURN).map(([k,f])=>`<button type="button" class="rm-chip" data-rmf="${k}">+ ${esc(f.n)} <em>${f.w}×${f.d}</em></button>`).join('')}</div>
-    <ul class="rm-flist" id="rmFlist"></ul>
+
+  <section class="rm-pane" data-pane="2" aria-labelledby="rmP2" hidden>
+    <div class="zc2-card"><div class="zc2-h"><span class="n">2</span><div><h3 id="rmP2">배치 고르기</h3><p>세 가지 중 마음에 드는 걸 고르세요. 가구를 누르면 고를 수 있고, 끌어서 옮기거나 돌릴 수 있어요.</p></div></div>
+      <div class="rm-g2">
+        <div class="rm-side"><div class="rm-opts" id="rmOpts" role="tablist" aria-label="배치 안"></div>
+          <div class="rm-tbar" role="toolbar" aria-label="평면 도구"><button type="button" class="btn sec sm" id="rmRot" disabled>↻ 90° 돌리기</button><span id="rmDoors"></span><button type="button" class="btn sec sm" id="rmReset" hidden>배치 처음대로</button><button type="button" class="btn sm" data-rm3d>3D로 보기</button></div>
+          <p class="rm-legend"><i class="dot r"></i>좁음 60cm 미만 <i class="dot a"></i>빠듯 <i class="dot g"></i>여유 <span>· 표시를 누르면 cm로 보여요</span></p>
+          <ul class="rm-iss" id="rmIss"></ul><button type="button" class="rm-issmore" id="rmIssMore" hidden></button></div>
+        <div class="rm-main"><div class="rm-plan rm-edit" id="rmPlan" tabindex="0" aria-label="방 평면 — 가구를 눌러 고르고 화살표로 10cm씩, R로 돌리기"></div><p class="rm-tip">가구를 누르면 고르고, 끌면 옮겨요 · 벽 가까이 놓으면 벽에 붙어요</p></div>
+      </div>
+    </div>
+    <div class="rm-nav"><button type="button" class="btn sec" data-rmgo="1">← 방 정하기</button><button type="button" class="btn" data-rmgo="3">확인·저장 →</button></div>
   </section>
-  <section class="rm-card rm-res" aria-labelledby="rmS3"><div class="rm-h"><span class="n">3</span><div><h2 id="rmS3">배치 세 가지</h2><p>숫자는 가구 앞·옆 남는 폭(cm) — <i class="dot r"></i>60 미만 <i class="dot a"></i>권장보다 좁음 <i class="dot g"></i>넉넉</p></div></div>
-    <div class="rm-opts" id="rmOpts" role="tablist" aria-label="배치 안"></div>
-    <div class="rm-tools"><label><input type="checkbox" id="rmTDims" checked> 통로 폭</label><label><input type="checkbox" id="rmTElec" checked> 조명·콘센트</label></div>
-    <div class="rm-plan" id="rmPlan" aria-live="polite"></div>
-    <ul class="rm-iss" id="rmIss"></ul>
+
+  <section class="rm-pane" data-pane="3" aria-labelledby="rmP3" hidden>
+    <div class="rm-g3">
+      <div class="zc2-card rm-left"><div class="zc2-h"><span class="n">3</span><div><h3 id="rmP3">확인하고 저장하기</h3><p id="rmP3s"></p></div></div>
+        <div class="rm-plan" id="rmPlan3"></div>
+        <div class="rm-save"><button type="button" class="btn" id="rmSave">저장하기</button><button type="button" class="btn sec" id="rmPng">이미지로 저장</button><button type="button" class="btn sec" data-rm3d>3D로 보기</button><button type="button" class="rm-lnk" id="rmSvg">SVG 받기</button></div>
+        <p class="rm-st" id="rmSt" aria-live="polite"></p></div>
+      <div class="rm-accs">
+        <details class="rm-acc" data-acc="fit" open><summary><b>이 가구 들어가나?</b><em>사기 전에 크기 확인</em></summary>
+          <p class="rm-p">사려는 가구 크기를 넣으면 방문 통과·세우기·놓을 자리를 확인해요.</p>
+          <form class="rm-fit" id="rmFit"><label>가로 <input type="number" id="rmFw" min="10" max="400" placeholder="180" inputmode="numeric"></label><label>깊이 <input type="number" id="rmFd" min="10" max="300" placeholder="60" inputmode="numeric"></label><label>높이 <input type="number" id="rmFh" min="10" max="300" placeholder="200" inputmode="numeric"></label><button class="btn" type="submit">확인</button></form>
+          <div class="rm-fitr" id="rmFitR" aria-live="polite"></div></details>
+        <details class="rm-acc" data-acc="elec"><summary><b>조명 · 콘센트</b><em>펼치면 평면에 번호로 보여요</em></summary>
+          <ol class="rm-el" id="rmEl"></ol>
+          <div class="rm-elin"><label>지금 방 콘센트 <input type="number" id="rmOut" min="0" max="20" inputmode="numeric"> 구</label></div>
+          <div class="rm-app" role="group" aria-label="큰 전기 기기">${RM_APP.map(([k,n])=>`<label><input type="checkbox" data-rmapp="${k}"> ${n}</label>`).join('')}</div>
+          <div class="rm-elw" id="rmElW" hidden></div></details>
+        <details class="rm-acc" data-acc="pal"><summary><b>색 · 재료</b><em>3D 보기 색도 바뀌어요</em></summary>
+          <p class="rm-p" id="rmPalP"></p><div class="rm-pals" id="rmPals"></div>
+          <div class="rm-photo"><label class="btn sec sm" for="rmPhoto">분위기 참고 사진 (선택)</label><input type="file" id="rmPhoto" accept="image/*" hidden><span class="rm-pnote">이 화면에서만 보고 <b>저장하지 않아요</b>. 위치 정보(EXIF)는 지운 뒤 보여 줘요.</span><div class="rm-pthumb" id="rmPthumb" hidden></div></div></details>
+        <details class="rm-acc" data-acc="shop"><summary><b>살 때 치수 조건</b><em>이 크기 안이면 들어가요</em></summary>
+          <p class="rm-disc" id="rmShopDisc" hidden>이 목록의 일부 링크는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있어요.</p>
+          <ul class="rm-shop" id="rmShop"></ul></details>
+        <details class="rm-acc rm-quote" data-acc="quote"><summary><b>공사가 필요하면 · 견적 상담</b><em>체크한 것만 모아서</em></summary>
+          <div class="rm-chk" id="rmChk">${RM_CHK.map((t,i)=>`<label><input type="checkbox" data-rmchk="${i}"> ${t}</label>`).join('')}</div>
+          <div class="rm-qact"><button type="button" class="btn" id="rmAsk">견적 상담 받기</button><span>주소는 적지 않아도 돼요. ZIPLAN은 상담을 이어 드리는 곳이며 공사 계약의 당사자가 아니에요. 업체에 연락처를 넘길 때는 따로 동의를 받아요.</span></div></details>
+      </div>
+    </div>
+    <div class="rm-nav"><button type="button" class="btn sec" data-rmgo="2">← 배치 고르기</button><span></span></div>
   </section>
-  <div class="rm-grid">
-  <section class="rm-card" aria-labelledby="rmFitH"><h2 id="rmFitH" class="rm-h2">이 가구 들어가나?</h2><p class="rm-p">사려는 가구 크기를 넣으면 방문 통과·세우기·놓을 자리를 확인해요.</p>
-    <form class="rm-fit" id="rmFit"><label>가로 <input type="number" id="rmFw" min="10" max="400" placeholder="180" inputmode="numeric"></label><label>깊이 <input type="number" id="rmFd" min="10" max="300" placeholder="60" inputmode="numeric"></label><label>높이 <input type="number" id="rmFh" min="10" max="300" placeholder="200" inputmode="numeric"></label><button class="btn" type="submit">확인</button></form>
-    <div class="rm-fitr" id="rmFitR" aria-live="polite"></div></section>
-  <section class="rm-card" aria-labelledby="rmElH"><h2 id="rmElH" class="rm-h2">조명 · 콘센트</h2><p class="rm-p">고른 배치에 맞춘 추천 자리예요. 번호는 평면의 파란 동그라미와 같아요.</p>
-    <ol class="rm-el" id="rmEl"></ol>
-    <div class="rm-elin"><label>지금 방 콘센트 <input type="number" id="rmOut" min="0" max="20" inputmode="numeric"> 구</label></div>
-    <div class="rm-app" role="group" aria-label="큰 전기 기기">${RM_APP.map(([k,n])=>`<label><input type="checkbox" data-rmapp="${k}"> ${n}</label>`).join('')}</div>
-    <div class="rm-elw" id="rmElW" hidden></div></section>
-  <section class="rm-card" aria-labelledby="rmPalH"><h2 id="rmPalH" class="rm-h2">색 · 재료</h2><p class="rm-p" id="rmPalP"></p><div class="rm-pals" id="rmPals"></div></section>
-  <section class="rm-card" aria-labelledby="rmShopH"><h2 id="rmShopH" class="rm-h2">살 때 치수 조건</h2><p class="rm-disc" id="rmShopDisc" hidden>이 목록의 일부 링크는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있어요.</p><p class="rm-p">고른 배치에서 이 크기 안이면 들어가요.</p><ul class="rm-shop" id="rmShop"></ul></section>
-  </div>
-  <section class="rm-card rm-quote" aria-labelledby="rmQH"><h2 id="rmQH" class="rm-h2">공사가 필요한 것</h2><p class="rm-p">체크한 항목을 모아 한 번에 견적 상담을 요청할 수 있어요. 주소는 적지 않아도 돼요.</p>
-    <div class="rm-chk" id="rmChk">${RM_CHK.map((t,i)=>`<label><input type="checkbox" data-rmchk="${i}"> ${t}</label>`).join('')}</div>
-    <div class="rm-qact"><button type="button" class="btn" id="rmAsk">견적 상담 받기</button><span>ZIPLAN은 상담을 이어 드리는 곳이며 공사 계약의 당사자가 아니에요. 업체에 연락처를 넘길 때는 따로 동의를 받아요.</span></div></section>
-  <div class="rm-bar"><button type="button" class="btn" id="rmSave">저장하기</button><button type="button" class="btn sec" id="rmPng">평면 이미지 저장</button><button type="button" class="btn sec" id="rmSvg">SVG 받기</button><span class="rm-st" id="rmSt" aria-live="polite"></span></div>
-  <p class="rm-foot">사진은 저장하지 않고, 주소는 묻지 않아요. 저장하면 방 치수·문·창·가구만 이 기기(로그인하면 계정)에 남아요. 가구 크기는 일반 규격 기준이고 제품마다 달라요.</p>`;
+  <p class="rm-foot">사진은 저장하지 않고, 주소는 묻지 않아요. 저장하면 방 치수·문·창·가구 자리만 이 기기(로그인하면 계정)에 남아요. 가구 크기는 일반 규격 기준이고 제품마다 달라요.</p>
+  <div class="rm-mbar" id="rmMbar"><button type="button" class="btn sec" id="rmMprev">이전</button><span id="rmMlab"></span><button type="button" class="btn" id="rmMnext">다음</button></div>
+  <div class="rm3dm" id="rm3dm" role="dialog" aria-modal="true" aria-label="3D로 보기" hidden><div class="rm3-in"><div class="rm3-hd"><b>3D로 보기</b><span>끌어서 돌려 보세요 · 앞쪽 벽은 낮춰 보여요</span><button type="button" class="rm-x" id="rm3dX" aria-label="3D 닫기">×</button></div><div class="rm3-cv" id="rm3dc"></div><p class="rm3-ft" id="rm3dF"></p></div></div>`;
   /* 이벤트 */
-  app.addEventListener('click',e=>{ const t=e.target.closest('[data-rmtpl]'); if(t){ const T=RM_TPL.find(x=>x.id===t.dataset.rmtpl); Object.assign(RM,{tpl:T.id,W:T.W,D:T.D,H:T.H,open:T.open.map(o=>({...o})),furn:T.furn.slice(),pick:0}); rmFill(); rmUpdate(); return; }
-    const f=e.target.closest('[data-rmf]'); if(f){ RM.furn.push(f.dataset.rmf); RM.tpl=''; rmUpdate(); return; }
-    const x=e.target.closest('[data-rmdel]'); if(x){ RM.furn.splice(+x.dataset.rmdel,1); RM.tpl=''; rmUpdate(); return; }
-    const a=e.target.closest('[data-rmadd]'); if(a){ const k=a.dataset.rmadd; RM.open.push(k==='door'?{k,wall:2,off:20,w:80}:{k,wall:0,off:60,w:120}); RM.tpl=''; rmFill(); rmUpdate(); return; }
-    const od=e.target.closest('[data-rmodel]'); if(od){ RM.open.splice(+od.dataset.rmodel,1); if(!RM.open.some(o=>o.k==='door')) RM.open.unshift({k:'door',wall:2,off:20,w:80}); RM.tpl=''; rmFill(); rmUpdate(); return; }
-    const p=e.target.closest('[data-rmpick]'); if(p){ RM.pick=+p.dataset.rmpick; rmShow(); return; }
+  app.addEventListener('click',e=>{
+    const g=e.target.closest('[data-rmgo]'); if(g){ rmStep(+g.dataset.rmgo,true); return; }
+    if(e.target.closest('#rmHintX')){ try{ localStorage.setItem('zip_room_hint','1'); }catch(er){} $('#rmHint').hidden=true; return; }
+    const t=e.target.closest('[data-rmtpl]'); if(t){ if(t.dataset.rmtpl==='custom'){ RM.tpl='custom'; rmMarkTpl(); const i=$('#rmW'); if(i){ i.focus(); i.select(); } return; } const T=RM_TPL.find(x=>x.id===t.dataset.rmtpl); Object.assign(RM,{tpl:T.id,W:T.W,D:T.D,H:T.H,open:T.open.map(o=>({...o})),furn:T.furn.slice(),pick:0,edits:{}}); RM.sel=-1; rmFill(); rmUpdate(); return; }
+    const f=e.target.closest('[data-rmf]'); if(f){ RM.furn.push(f.dataset.rmf); rmTouchRoom(); rmUpdate(); return; }
+    const x=e.target.closest('[data-rmdel]'); if(x){ RM.furn.splice(+x.dataset.rmdel,1); rmTouchRoom(); rmUpdate(); return; }
+    const a=e.target.closest('[data-rmadd]'); if(a){ const k=a.dataset.rmadd; RM.open.push(k==='door'?{k,wall:2,off:20,w:80,hinge:'s',swing:'in'}:{k,wall:0,off:60,w:120}); rmTouchRoom(); rmFill(); rmUpdate(); return; }
+    const od=e.target.closest('[data-rmodel]'); if(od){ RM.open.splice(+od.dataset.rmodel,1); if(!RM.open.some(o=>o.k==='door')) RM.open.unshift({k:'door',wall:2,off:20,w:80,hinge:'s',swing:'in'}); rmTouchRoom(); rmFill(); rmUpdate(); return; }
+    const p=e.target.closest('[data-rmpick]'); if(p){ RM.pick=+p.dataset.rmpick; RM.sel=-1; rmShow(); rmSaveSoon(); return; }
+    const dr=e.target.closest('[data-rmdoor]'); if(dr){ const d=RM.open[+dr.dataset.rmdoor]; if(d){ const st=((d.swing==='out'?2:0)+(d.hinge==='e'?1:0)+1)%4; d.swing=st>=2?'out':'in'; d.hinge=st%2?'e':'s'; rmUpdate(true); } return; }
+    if(e.target.closest('#rmRot')){ rmRotate(); return; }
+    if(e.target.closest('#rmReset')){ if(RM.edits) delete RM.edits[RM.pick]; RM.sel=-1; rmUpdate(true); return; }
+    if(e.target.closest('[data-rm3d]')){ rm3DOpen(); return; }
+    if(e.target.closest('#rm3dX')){ rm3DClose(); return; }
+    const pl=e.target.closest('[data-rmpal]'); if(pl){ RM.pal=pl.dataset.rmpal; rmPal(); rmSaveSoon(); return; }
+    if(e.target.closest('#rmIssMore')){ const u=$('#rmIss'); u.classList.toggle('all'); rmIssMore(); return; }
+    if(e.target.closest('#rmMprev')){ rmStep(Math.max(1,RM.step-1),true); return; }
+    if(e.target.closest('#rmMnext')){ if(RM.step<3) rmStep(RM.step+1,true); else rmSave(true); return; }
     if(e.target.closest('#rmAsk')){ rmAsk(); return; }
     if(e.target.closest('#rmSave')){ rmSave(true); return; }
     if(e.target.closest('#rmPng')){ rmPNG(); return; }
-    if(e.target.closest('#rmSvg')){ const L=RM.L&&RM.L[RM.pick]; if(L) dlBlob(new Blob([rmSVG(L,{elec:RM.elec,dims:RM.dims})],{type:'image/svg+xml'}),`내방_${RM.W}x${RM.D}_${L.st.id}.svg`); return; }
+    if(e.target.closest('#rmSvg')){ const L=rmCur(); if(L) dlBlob(new Blob([rmSVG(L,{elec:true,dims:true,cm:true})],{type:'image/svg+xml'}),`내방_${RM.W}x${RM.D}_${L.st.id}.svg`); return; }
     if(e.target.closest('#rmPclr')){ rmPhotoClear(); return; } });
   let tm=0; const deb=()=>{ clearTimeout(tm); tm=setTimeout(rmUpdate,250); };
   app.addEventListener('input',e=>{ const el=e.target;
-    if(el.id==='rmW'||el.id==='rmD'||el.id==='rmH'){ const v=+el.value; if(v>=150&&v<=1200){ RM[el.id.slice(2)]=v; RM.tpl=''; deb(); } return; }
-    const op=el.closest('[data-rmop]'); if(op){ const o=RM.open[+op.dataset.rmop]; if(!o) return; if(el.name==='wall') o.wall=+el.value; else { const v=+el.value; if(v>=0&&v<=1200) o[el.name]=v; } RM.tpl=''; deb(); return; }
+    if(el.id==='rmW'||el.id==='rmD'||el.id==='rmH'){ const v=+el.value; if(v>=150&&v<=1200){ RM[el.id.slice(2)]=v; if(RM.tpl!=='custom') RM.tpl=''; rmMarkTpl(); deb(); } return; }
+    const op=el.closest('[data-rmop]'); if(op){ const o=RM.open[+op.dataset.rmop]; if(!o) return; if(el.name==='wall') o.wall=+el.value; else { const v=+el.value; if(v>=0&&v<=1200) o[el.name]=v; } rmTouchRoom(); deb(); return; }
     if(el.id==='rmOut'){ RM.out=Math.max(0,+el.value||0); rmElecList(); return; }
     if(el.dataset.rmapp){ RM.app[el.dataset.rmapp]=el.checked; rmElecList(); return; }
-    if(el.dataset.rmchk!=null){ RM.chk[el.dataset.rmchk]=el.checked; return; }
-    if(el.id==='rmTDims'){ RM.dims=el.checked; rmShow(); return; } if(el.id==='rmTElec'){ RM.elec=el.checked; rmShow(); return; } });
+    if(el.dataset.rmchk!=null){ RM.chk[el.dataset.rmchk]=el.checked; return; } });
   app.addEventListener('change',e=>{ if(e.target.id==='rmPhoto') rmPhoto(e.target); if(e.target.closest('[data-rmop]')&&e.target.name==='wall') rmFill(); });
+  app.addEventListener('toggle',e=>{ const d=e.target; if(!d.matches||!d.matches('.rm-acc')) return; if(d.dataset.acc==='elec') rmShow3(); },true);
   $('#rmFit').addEventListener('submit',e=>{ e.preventDefault(); rmFitCheck(); });
-  $$('#rmOpts').forEach(el=>el.addEventListener('keydown',e=>{ if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return; RM.pick=(RM.pick+(e.key==='ArrowRight'?1:2))%3; rmShow(); const b=$(`[data-rmpick="${RM.pick}"]`); if(b) b.focus(); }));
+  $('#rmOpts').addEventListener('keydown',e=>{ if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return; RM.pick=(RM.pick+(e.key==='ArrowRight'?1:2))%3; RM.sel=-1; rmShow(); const b=$(`[data-rmpick="${RM.pick}"]`); if(b) b.focus(); });
+  rmDragInit($('#rmPlan'));
+  $('#rmPlan3').addEventListener('click',rmBadgeTap);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#rm3dm').hidden) rm3DClose(); });
 }
-function rmFill(){ $('#rmW').value=RM.W; $('#rmD').value=RM.D; $('#rmH').value=RM.H; $('#rmOut').value=RM.out;
-  $$('[data-rmtpl]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.rmtpl===RM.tpl));
+function rmTouchRoom(){ if(RM.tpl!=='custom') RM.tpl=''; RM.edits={}; RM.sel=-1; }
+function rmMarkTpl(){ $$('[data-rmtpl]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.rmtpl===RM.tpl)); }
+function rmStep(n,scroll){ RM.step=n; $$('#rmApp .rm-pane').forEach(p=>p.hidden=+p.dataset.pane!==n);
+  $$('#rmSteps li').forEach(li=>{ const k=+li.dataset.st; li.classList.toggle('on',k===n); li.classList.toggle('done',k<n); const b=li.querySelector('button'); if(k===n) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current'); });
+  $('#rmMprev').disabled=n===1; $('#rmMnext').textContent=n<3?'다음 →':'저장하기'; $('#rmMlab').textContent=`${n}/3 · ${RM_STEPS[n-1][0]}`;
+  if(n===3) rmShow3(); if(n===2) rmShowPlan();
+  rmSaveSoon();
+  if(scroll){ const s=$('#rmSteps'); if(s){ const y=s.getBoundingClientRect().top+scrollY-84; if(Math.abs(scrollY-y)>40) scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); } } }
+function rmFill(){ $('#rmW').value=RM.W; $('#rmD').value=RM.D; $('#rmH').value=RM.H; $('#rmOut').value=RM.out; rmMarkTpl();
   $('#rmOps').innerHTML=RM.open.map((o,i)=>`<div class="rm-op" data-rmop="${i}"><b class="k ${o.k}">${o.k==='door'?'문':'창'}</b><label>벽 <select name="wall">${RM_WALL.map((w,j)=>`<option value="${j}"${j===o.wall?' selected':''}>${w}</option>`).join('')}</select></label><label>${o.wall%2===0?'왼쪽에서':'위에서'} <input name="off" type="number" min="0" max="900" value="${o.off}" inputmode="numeric"> cm</label><label>폭 <input name="w" type="number" min="40" max="600" value="${o.w}" inputmode="numeric"> cm</label><button type="button" class="rm-x" data-rmodel="${i}" aria-label="${o.k==='door'?'문':'창'} 지우기">×</button></div>`).join('');
-  $$('[data-rmapp]').forEach(c=>c.checked=!!RM.app[c.dataset.rmapp]); $$('[data-rmchk]').forEach(c=>c.checked=!!RM.chk[c.dataset.rmchk]); $('#rmTDims').checked=RM.dims!==false; $('#rmTElec').checked=RM.elec!==false; }
-function rmUpdate(){ /* 문·창이 벽 밖으로 나가면 잘라 줌 */ for(const o of RM.open){ const len=rmWallLen(o.wall); o.w=Math.min(o.w,len); o.off=Math.max(0,Math.min(o.off,len-o.w)); }
-  $$('[data-rmtpl]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.rmtpl===RM.tpl));
-  const cnt={}; RM.furn.forEach(k=>cnt[k]=(cnt[k]||0)+1);
+  $$('[data-rmapp]').forEach(c=>c.checked=!!RM.app[c.dataset.rmapp]); $$('[data-rmchk]').forEach(c=>c.checked=!!RM.chk[c.dataset.rmchk]); }
+function rmUpdate(keepAuto){ /* 문·창이 벽 밖으로 나가면 잘라 줌 */ for(const o of RM.open){ const len=rmWallLen(o.wall); o.w=Math.min(o.w,len); o.off=Math.max(0,Math.min(o.off,len-o.w)); if(o.k==='door'){ o.hinge=o.hinge||'s'; o.swing=o.swing||'in'; } }
+  rmMarkTpl();
   $('#rmFlist').innerHTML=RM.furn.length?RM.furn.map((k,i)=>{ const f=RM_FURN[k]; return `<li><b>${esc(f.n)}</b><span>${f.w} × ${f.d}cm${f.h>RM_TALL?' · 키 큰 가구':''}</span><button type="button" class="rm-x" data-rmdel="${i}" aria-label="${esc(f.n)} 빼기">×</button></li>`; }).join(''):'<li class="em">위에서 가구를 더해 주세요.</li>';
+  $('#rmFsum').textContent=RM.furn.length?RM.furn.map(k=>RM_FURN[k].n.replace(/ 침대$/,' 침대')).join(' · '):'아직 없음';
+  const nd=RM.open.filter(o=>o.k==='door').length, nw=RM.open.length-nd; $('#rmOsum').textContent=`문 ${nd} · 창 ${nw}`;
   try{ rmCompute(); }catch(e){ console.warn('room',e); RM.L=null; }
   rmShow(); rmPal(); rmSaveSoon(); }
-function rmShow(){ const Ls=RM.L; if(!Ls) return; if(RM.pick>2) RM.pick=0; const L=Ls[RM.pick];
-  $('#rmOpts').innerHTML=Ls.map((x,i)=>{ const bad=x.iss.filter(q=>q.lv==='bad').length, warn=x.iss.filter(q=>q.lv==='warn').length; return `<button type="button" class="rm-opt" role="tab" data-rmpick="${i}" aria-selected="${i===RM.pick}" tabindex="${i===RM.pick?0:-1}"><span class="mini">${rmSVG(x,{mini:true})}</span><span class="tx"><b>${x.st.id} · ${x.st.n}</b><em>${x.st.d}</em><i>걸어 다닐 바닥 약 ${x.walk.toFixed(1)}㎡ · ${bad?`<span class="r">고칠 것 ${bad}</span>`:warn?`<span class="a">살필 것 ${warn}</span>`:'<span class="g">문제 없음</span>'}</i></span></button>`; }).join('');
-  $('#rmPlan').innerHTML=rmSVG(L,{elec:RM.elec!==false,dims:RM.dims!==false});
-  $('#rmIss').innerHTML=L.iss.map(q=>`<li class="${q.lv}">${esc(q.t)}</li>`).join('');
+function rmShow(){ const Ls=RM.L; if(!Ls) return; if(RM.pick>2) RM.pick=0;
+  $('#rmOpts').innerHTML=Ls.map((x,i)=>{ const bad=x.iss.filter(q=>q.lv==='bad').length, warn=x.iss.filter(q=>q.lv==='warn').length; return `<button type="button" class="rm-opt" role="tab" data-rmpick="${i}" aria-selected="${i===RM.pick}" tabindex="${i===RM.pick?0:-1}"><span class="mini">${rmSVG(x,{mini:true})}</span><span class="tx"><b>${x.st.id} · ${x.st.n}${x.edited?' <small>옮김</small>':''}</b><em>${x.st.d}</em><i>${bad?`<span class="r">고칠 것 ${bad}</span>`:warn?`<span class="a">살필 것 ${warn}</span>`:'<span class="g">문제 없음</span>'} · 바닥 ${x.walk.toFixed(1)}㎡</i></span></button>`; }).join('');
+  rmShowPlan(); if(RM.step===3) rmShow3(); }
+/* ② 평면(편집) */
+function rmShowPlan(){ const L=rmCur(); if(!L) return; const box=$('#rmPlan'); if(!box) return;
+  box.innerHTML=rmSVG(L,{elec:false,dims:true,sel:RM.sel});
+  const it=L.items[RM.sel]; $('#rmRot').disabled=!it; $('#rmRot').textContent=it?`↻ ${RM_FURN[it.key].n} 돌리기`:'↻ 90° 돌리기';
+  $('#rmReset').hidden=!L.edited;
+  const doors=RM.open.map((o,i)=>[o,i]).filter(([o])=>o.k==='door'); const nd=doors.length;
+  $('#rmDoors').innerHTML=doors.map(([o,i],j)=>{ const side=o.wall%2===0?(o.hinge==='e'?'오른쪽':'왼쪽'):(o.hinge==='e'?'아래쪽':'위쪽'); return `<button type="button" class="btn sec sm" data-rmdoor="${i}" title="누를 때마다 여는 방향이 바뀌어요">문${nd>1?' '+(j+1):''} · ${o.swing==='out'?'밖으로':'안으로'} · 경첩 ${side}</button>`; }).join('');
+  rmIss(L); }
+function rmIss(L){ const u=$('#rmIss'); u.innerHTML=L.iss.map(q=>`<li class="${q.lv}">${esc(q.t)}</li>`).join(''); rmIssMore(); }
+function rmIssMore(){ const u=$('#rmIss'), b=$('#rmIssMore'); const n=u.children.length; b.hidden=n<=3; b.textContent=u.classList.contains('all')?'접기':`나머지 ${n-3}개 더 보기`; }
+/* ③ 확인 · 저장 */
+function rmShow3(){ const L=rmCur(); if(!L) return; const acc=$('.rm-acc[data-acc="elec"]'); const el=!!(acc&&acc.open);
+  $('#rmPlan3').innerHTML=rmSVG(L,{elec:el,dims:!el});
+  const bad=L.iss.filter(q=>q.lv==='bad').length; $('#rmP3s').textContent=`${L.st.id} · ${L.st.n}${L.edited?'(직접 옮김)':''} — 방 ${RM.W}×${RM.D}cm, 걸어 다닐 바닥 약 ${L.walk.toFixed(1)}㎡${bad?` · 고칠 것 ${bad}개는 ② 배치에서 확인하세요`:''}`;
   rmElecList(); rmShop(); if($('#rmFitR').innerHTML) rmFitCheck(true); }
+/* 배지 누르면 cm로 잠깐 */
+function rmBadgeTap(e){ const g=e.target.closest('.rm-cl'); if(!g) return false; const t=g.querySelector('text'); if(!t) return true; const w=g.dataset.w, c=g.dataset.cm+'cm'; t.textContent=c; clearTimeout(g._t); g._t=setTimeout(()=>{ if(t.isConnected) t.textContent=w; },2600); return true; }
+/* ---------- 끌어 옮기기 · 돌리기 ---------- */
+function rmItem(key,r){ const W=RM.W,D=RM.D; const ds=[r.y,W-(r.x+r.w),D-(r.y+r.h),r.x]; let w=0; for(let i=1;i<4;i++) if(ds[i]<ds[w]-.01) w=i;
+  const along=w%2===0?r.w:r.h, perp=w%2===0?r.h:r.w; const f=RM_FURN[key]; const m=f.k==='bed'?(along<perp?'head':'side'):'wall';
+  return {key,w,m,s:w%2===0?r.x:r.y,L:along,P:perp,r:{x:r.x,y:r.y,w:r.w,h:r.h},dir:RM_DIR[w],gap:ds[w]}; }
+function rmEditSig(){ return RM.W+'x'+RM.D+'|'+RM.furn.slice().sort().join(','); }
+function rmApplyEdits(){ if(!RM.L||!RM.edits) return; RM.L.forEach((L,i)=>{ const E=RM.edits[i]; if(!E||E.sig!==rmEditSig()) return; const items=E.items.map(q=>rmItem(q.key,q)); const st=L.st; const N=rmEval({sid:st.id,items,miss:[]},st.id); N.st=st; N.edited=true; N.walk=rmReach(items.map(x=>x.r),true).area; RM.L[i]=N; }); }
+function rmCommit(){ const L=rmCur(); if(!L) return; RM.edits=RM.edits||{}; RM.edits[RM.pick]={sig:rmEditSig(),items:L.items.map(it=>({key:it.key,x:it.r.x,y:it.r.y,w:it.r.w,h:it.r.h}))}; L.edited=true; L.walk=rmReach(L.items.map(x=>x.r),true).area; rmSaveSoon(); }
+function rmPlace(i,x,y,w,h,live){ const L=rmCur(); if(!L) return; const W=RM.W,D=RM.D; w=Math.min(w,W); h=Math.min(h,D);
+  x=Math.round(x/10)*10; y=Math.round(y/10)*10; if(x<15) x=0; if(y<15) y=0; if(W-(x+w)<15) x=W-w; if(D-(y+h)<15) y=D-h; x=Math.max(0,Math.min(W-w,x)); y=Math.max(0,Math.min(D-h,y));
+  const items=L.items.slice(); items[i]=rmItem(items[i].key,{x,y,w,h}); const N=rmEval({sid:L.st.id,items,miss:[]},L.st.id); N.st=L.st; N.edited=true; N.walk=live?L.walk:rmReach(items.map(q=>q.r),true).area; RM.L[RM.pick]=N; }
+function rmRotate(){ const L=rmCur(); const it=L&&L.items[RM.sel]; if(!it) return; const r=it.r, cx=r.x+r.w/2, cy=r.y+r.h/2; rmPlace(RM.sel,cx-r.h/2,cy-r.w/2,r.h,r.w); rmCommit(); rmShow(); }
+function rmPt(box,e){ const svg=box.querySelector('svg'); if(!svg) return {x:0,y:0}; const p=svg.createSVGPoint(); p.x=e.clientX; p.y=e.clientY; const m=svg.getScreenCTM(); return m?p.matrixTransform(m.inverse()):{x:0,y:0}; }
+function rmDragInit(box){ let D=null, raf=0;
+  /* 가구에서 시작한 터치는 화면 스크롤 대신 끌기 */
+  box.addEventListener('touchstart',e=>{ if(e.target.closest&&e.target.closest('.rm-f')) e.preventDefault(); },{passive:false});
+  box.addEventListener('pointerdown',e=>{ if(rmBadgeTap(e)) return; const g=e.target.closest('.rm-f'); if(!g){ if(RM.sel!==-1){ RM.sel=-1; rmShowPlan(); } return; } e.preventDefault(); const i=+g.dataset.i; const L=rmCur(); const it=L&&L.items[i]; if(!it) return; const p=rmPt(box,e);
+    D={i,dx:p.x-it.r.x,dy:p.y-it.r.y,w:it.r.w,h:it.r.h,x0:e.clientX,y0:e.clientY,moved:false}; RM.sel=i; try{ box.setPointerCapture(e.pointerId); }catch(er){} box.focus({preventScroll:true});
+    /* 바로 다시 그리면 터치 대상이 사라져 touchstart 막기가 안 됨 → 다음 프레임에 */ requestAnimationFrame(()=>rmShowPlan()); });
+  box.addEventListener('pointermove',e=>{ if(!D) return; if(!D.moved&&Math.hypot(e.clientX-D.x0,e.clientY-D.y0)<4) return; D.moved=true; const p=rmPt(box,e); D.nx=p.x-D.dx; D.ny=p.y-D.dy;
+    if(!raf) raf=requestAnimationFrame(()=>{ raf=0; if(!D) return; rmPlace(D.i,D.nx,D.ny,D.w,D.h,true); rmShowPlan(); }); });
+  const end=()=>{ if(!D) return; const was=D.moved; if(was&&D.nx!=null) rmPlace(D.i,D.nx,D.ny,D.w,D.h); D=null; if(was){ rmCommit(); rmShow(); } };
+  box.addEventListener('pointerup',end); box.addEventListener('pointercancel',end);
+  box.addEventListener('keydown',e=>{ const L=rmCur(); if(!L) return; if(e.key==='Tab') return; const n=L.items.length; if(!n) return;
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); RM.sel=(RM.sel+1)%n; rmShowPlan(); return; }
+    const it=L.items[RM.sel]; if(!it) return; if(e.key==='r'||e.key==='R'){ e.preventDefault(); rmRotate(); return; }
+    const mv={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[e.key]; if(!mv) return; e.preventDefault(); const r=it.r; let x=r.x+mv[0], y=r.y+mv[1];
+    /* 벽에 붙는 자석(15cm)을 키보드로는 넘을 수 있게 */ if(mv[0]&&x>0&&x<15) x=mv[0]>0?15:0; if(mv[1]&&y>0&&y<15) y=mv[1]>0?15:0;
+    rmPlace(RM.sel,x,y,r.w,r.h); rmCommit(); rmShow(); });
+}
+/* ---------- 3D 보기(가벼운 상자 모형) ---------- */
+const RM3={};
+function rmPalCur(){ return RM_PAL.find(p=>p.id===RM.pal)||rmPalSorted()[0].p; }
+async function rm3DOpen(){ const L=rmCur(); if(!L) return; const m=$('#rm3dm'), cv=$('#rm3dc'), ft=$('#rm3dF'); m.hidden=false; document.documentElement.classList.add('rm3d-on'); cv.innerHTML='<p class="rm3-ld">3D를 불러오는 중…</p>'; ft.textContent='';
+  let ok=false; try{ const c=document.createElement('canvas'); ok=!!(c.getContext('webgl')||c.getContext('experimental-webgl')); }catch(e){}
+  if(!ok){ cv.innerHTML='<p class="rm3-ld">이 기기에선 3D를 열 수 없어요. 평면으로 확인해 주세요.</p>'; return; }
+  let T; try{ T=await t3Load(); }catch(e){ cv.innerHTML='<p class="rm3-ld">3D 도구를 불러오지 못했어요. 평면으로 확인해 주세요.</p>'; return; }
+  if(m.hidden) return; rm3DBuild(T,L,cv); const P=rmPalCur(); ft.textContent=`${L.st.id} · ${L.st.n} · 색: ${P.n} · 천장 ${RM.H}cm · 상자 모형이라 실제 가구 모양과 달라요`; }
+function rm3DClose(){ const m=$('#rm3dm'); if(m) m.hidden=true; document.documentElement.classList.remove('rm3d-on'); if(RM3.dispose) RM3.dispose(); }
+function rm3DBuild(T,L,cv){ if(RM3.dispose) RM3.dispose(); cv.innerHTML=''; const P=rmPalCur(); const col=i=>new T.Color(P.c[i][0]);
+  const Wm=RM.W/100, Dm=RM.D/100, Hm=RM.H/100, th=.1; const R=new T.WebGLRenderer({antialias:true,alpha:false}); R.setPixelRatio(Math.min(2,devicePixelRatio||1)); cv.appendChild(R.domElement);
+  const sc=new T.Scene(); sc.background=new T.Color('#eef0f3'); const cam=new T.PerspectiveCamera(42,1,.05,80);
+  sc.add(new T.HemisphereLight(0xffffff,0xb9b2a6,.8)); const dl=new T.DirectionalLight(0xffffff,.45); dl.position.set(-3,6,4); sc.add(dl);
+  const mat=c=>new T.MeshLambertMaterial({color:c}); const box=(w,h,d,x,y,z,mt)=>{ const g=new T.Mesh(new T.BoxGeometry(w,h,d),mt); g.position.set(x,y,z); return g; };
+  const X=cm=>cm/100-Wm/2, Z=cm=>cm/100-Dm/2;
+  sc.add(box(Wm+th*2,.04,Dm+th*2,0,-.02,0,mat(col(1))));
+  const wallM=mat(col(0)), walls=[0,1,2,3].map(()=>new T.Group()); walls.forEach(g=>sc.add(g));
+  for(let w=0;w<4;w++){ const len=rmWallLen(w), ops=RM.open.filter(q=>q.wall===w).sort((a,b)=>a.off-b.off); const seg=(a,b,y0,y1)=>{ if(b-a<1||y1-y0<.01) return; const l=(b-a)/100, h=y1-y0, mid=(a+b)/2;
+      const mesh=w%2===0?box(l,h,th,X(mid),y0+h/2,w===0?-Dm/2-th/2:Dm/2+th/2,wallM):box(th,h,l,w===3?-Wm/2-th/2:Wm/2+th/2,y0+h/2,Z(mid),wallM); walls[w].add(mesh); };
+    let cur=w%2===0?-th*100:-th*100; const end=len+th*100;
+    for(const q of ops){ seg(cur,q.off,0,Hm); const top=Math.min(Hm,2.1); if(q.k==='door'){ seg(q.off,q.off+q.w,top,Hm); } else { seg(q.off,q.off+q.w,0,.9); seg(q.off,q.off+q.w,top,Hm); const gl=new T.MeshLambertMaterial({color:0x9cc8ff,transparent:true,opacity:.35}); const mid=q.off+q.w/2, l=q.w/100, h=top-.9; walls[w].add(w%2===0?box(l,h,.02,X(mid),.9+h/2,w===0?-Dm/2-th/2:Dm/2+th/2,gl):box(.02,h,l,w===3?-Wm/2-th/2:Wm/2+th/2,.9+h/2,Z(mid),gl)); } cur=Math.max(cur,q.off+q.w); }
+    seg(cur,end,0,Hm); }
+  /* 문짝(열린 각도로) */
+  for(const q of RM.open.filter(o=>o.k==='door')){ const w=q.wall, he=q.hinge==='e'; const s=he?q.off+q.w:q.off; const hp=w===0?[s,0]:w===1?[RM.W,s]:w===2?[s,RM.D]:[0,s]; const dn=RM_DIR[w].map(v=>q.swing==='out'?-v:v);
+    const leaf=box(.04,2.05,q.w/100,0,1.025,0,mat(0xffffff)); const g=new T.Group(); g.position.set(X(hp[0]),0,Z(hp[1])); leaf.position.set(dn[0]*q.w/200,1.025,dn[1]*q.w/200); leaf.rotation.y=Math.atan2(dn[0],dn[1]); g.add(leaf); sc.add(g); }
+  const kc={bed:3,sofa:2,ward:0,shelf:1,desk:1,dining:1,dresser:1,tv:4};
+  for(const it of L.items){ const f=RM_FURN[it.key], r=it.r, h=f.h/100; const c=col(kc[f.k]??1); if(f.k==='ward') c.offsetHSL(0,0,-.08); const mesh=box(r.w/100-.01,h,r.h/100-.01,X(r.x+r.w/2),h/2,Z(r.y+r.h/2),mat(c)); sc.add(mesh);
+    if(f.k==='bed'){ /* 베개 쪽 표시 — 평면 그림과 같은 쪽 */ const [dx,dy]=it.dir; let px,pz,pw,pd; if(it.m==='head'){ if(dy){ px=r.x+r.w/2; pz=dy>0?r.y+25:r.y+r.h-25; pw=r.w-16; pd=35; } else { pz=r.y+r.h/2; px=dx>0?r.x+25:r.x+r.w-25; pw=35; pd=r.h-16; } } else if(it.w%2===0){ px=r.x+25; pz=r.y+r.h/2; pw=35; pd=r.h-16; } else { px=r.x+r.w/2; pz=r.y+25; pw=r.w-16; pd=35; }
+      sc.add(box(pw/100,.1,pd/100,X(px),h+.05,Z(pz),mat(0xffffff))); }
+    if(it.hit) mesh.material.emissive=new T.Color(0x551111); }
+  const base=Math.max(Wm,Dm)*1.55+1.2; const st={az:-.7,el:.85,dist:base,drag:null,zoomed:false};
+  const place=()=>{ const ce=Math.cos(st.el); cam.position.set(Math.sin(st.az)*ce*st.dist,Math.sin(st.el)*st.dist+.3,Math.cos(st.az)*ce*st.dist); cam.lookAt(0,.6,0);
+    /* 카메라 쪽 벽은 낮게(인형집처럼) */ const v=[[0,-1],[1,0],[0,1],[-1,0]]; walls.forEach((g,i)=>{ const n=v[i]; const facing=n[0]*cam.position.x+n[1]*cam.position.z>0; g.scale.y=facing?.22:1; }); };
+  const draw=()=>{ place(); R.render(sc,cam); };
+  const size=()=>{ const w=cv.clientWidth||600, h=cv.clientHeight||420; R.setSize(w,h,false); R.domElement.style.width='100%'; R.domElement.style.height='100%'; cam.aspect=w/h; cam.updateProjectionMatrix(); if(!st.zoomed) st.dist=base*Math.max(1,1.05/cam.aspect); draw(); };
+  const el=R.domElement; el.style.touchAction='none';
+  el.addEventListener('pointerdown',e=>{ st.drag={x:e.clientX,y:e.clientY,az:st.az,el:st.el}; try{ el.setPointerCapture(e.pointerId); }catch(er){} });
+  el.addEventListener('pointermove',e=>{ if(!st.drag) return; st.az=st.drag.az-(e.clientX-st.drag.x)*.008; st.el=Math.max(.18,Math.min(1.45,st.drag.el+(e.clientY-st.drag.y)*.006)); draw(); });
+  el.addEventListener('pointerup',()=>{ st.drag=null; }); el.addEventListener('pointercancel',()=>{ st.drag=null; });
+  el.addEventListener('wheel',e=>{ e.preventDefault(); st.zoomed=true; st.dist=Math.max(2,Math.min(30,st.dist*(1+Math.sign(e.deltaY)*.08))); draw(); },{passive:false});
+  const ro=new ResizeObserver(size); ro.observe(cv); size();
+  RM3.dispose=()=>{ try{ ro.disconnect(); }catch(e){} sc.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material) o.material.dispose(); }); R.dispose(); try{ R.forceContextLoss(); }catch(e){} if(el.parentNode) el.remove(); RM3.dispose=null; };
+  RM3.draw=draw; }
 function rmElecList(){ const L=RM.L&&RM.L[RM.pick]; if(!L) return; const E=rmElec(L);
   $('#rmEl').innerHTML=E.outs.map((o,i)=>`<li><i class="o">${i+1}</i>${esc(o.n)}</li>`).join('')+E.lights.map(p=>`<li><i class="l"></i>${esc(p.n)}</li>`).join('')+E.lines.map(l=>`<li><i class="l line"></i>${esc(l.n)}</li>`).join('')+(E.sw?'<li><i class="s"></i>스위치 — 문 열고 손 닿는 쪽(바닥에서 약 1.2m)</li>':'');
   const need=E.outs.length, add=Math.max(0,need-(RM.out||0)); const notes=[];
@@ -4096,9 +4333,10 @@ function rmElecList(){ const L=RM.L&&RM.L[RM.pick]; if(!L) return; const E=rmEle
   w.innerHTML=notes.map(n=>`<p>${n}</p>`).join('')+(elec?`<div class="rm-elx"><b>전기 공사가 필요할 수 있어요</b><span>콘센트 증설·전용 회로·조명 배선 변경은 등록된 전기공사업체가 해야 해요.</span><button type="button" class="btn sm" data-rmelask>전기 상담 받기</button></div>`:'');
   const b=w.querySelector('[data-rmelask]'); if(b) b.onclick=()=>{ if(add>0) RM.chk[2]=true; if(RM.app.ac||RM.app.dry) RM.chk[3]=true; rmFill(); rmAsk('전기'); };
   if(add>0&&RM.chk[2]==null){ RM.chk[2]=true; const c=$('[data-rmchk="2"]'); if(c) c.checked=true; } }
-function rmPal(){ const keys=new Set((state&&state.dna)||[]); const sc=RM_PAL.map(p=>({p,v:p.kw.filter(k=>keys.has(k)).length})); const has=sc.some(x=>x.v>0); if(has) sc.sort((a,b)=>b.v-a.v);
-  $('#rmPalP').innerHTML=has?'취향 랩에서 고른 것과 가까운 순서예요.':'<a href="#dna">30초 취향 랩</a>을 하면 내 취향에 가까운 순서로 바꿔 드려요.';
-  $('#rmPals').innerHTML=sc.map(({p,v},i)=>`<div class="rm-pal${has&&i===0?' top':''}"><div class="sw">${p.c.map(([c,n])=>`<i style="background:${c}" title="${esc(n)}"></i>`).join('')}</div><b>${p.n}${has&&i===0?' <em>내 취향</em>':''}</b><ul>${p.c.map(([c,n])=>`<li><i style="background:${c}"></i>${esc(n)}</li>`).join('')}</ul></div>`).join(''); }
+function rmPalSorted(){ const keys=new Set((typeof state!=='undefined'&&state&&state.dna)||[]); const sc=RM_PAL.map(p=>({p,v:p.kw.filter(k=>keys.has(k)).length})); const has=sc.some(x=>x.v>0); if(has) sc.sort((a,b)=>b.v-a.v); sc.has=has; return sc; }
+function rmPal(){ const sc=rmPalSorted(), has=sc.has; const cur=RM.pal||sc[0].p.id;
+  $('#rmPalP').innerHTML=(has?'취향 랩에서 고른 것과 가까운 순서예요.':'<a href="#dna">30초 취향 랩</a>을 하면 내 취향에 가까운 순서로 바꿔 드려요.')+' 눌러서 고르면 3D 보기 색이 바뀌어요.';
+  $('#rmPals').innerHTML=sc.map(({p},i)=>`<button type="button" class="rm-pal" data-rmpal="${p.id}" aria-pressed="${p.id===cur}"><span class="sw">${p.c.map(([c,n])=>`<i style="background:${c}" title="${esc(n)}"></i>`).join('')}</span><b>${p.n}${has&&i===0?' <em>내 취향</em>':''}</b><span class="ls">${p.c.map(([c,n])=>`<span><i style="background:${c}"></i>${esc(n)}</span>`).join('')}</span></button>`).join(''); }
 /* 각 가구가 지금 자리에서 커질 수 있는 한도 */
 function rmShop(){ const L=RM.L&&RM.L[RM.pick]; if(!L) return; const rects=L.items.map(i=>i.r), zones=rmDoorZones(); const rows=[]; const door=RM.open.find(o=>o.k==='door'); const dw=door?door.w-8:0;
   for(const it of L.items){ const f=RM_FURN[it.key], len=rmWallLen(it.w); let a=it.s,b=it.s+it.L; const blocked=(s0,s1)=>{ const r=rmOnWall(it.w,s0,s1-s0,it.P); for(const o of rects) if(o!==it.r&&rmHit(r,o,.5)) return true; for(const z of zones) if(rmHit(r,z)) return true; if(f.h>RM_TALL) for(const o of RM.open) if(o.k==='win'&&o.wall===it.w&&s0<o.off+o.w&&o.off<s1) return true; return false; };
@@ -4134,7 +4372,7 @@ async function rmPhoto(inp){ const f=inp.files&&inp.files[0]; inp.value=''; if(!
 const RM_PH={url:null,blob:null};
 function rmPhotoClear(keep){ if(RM_PH.url) URL.revokeObjectURL(RM_PH.url); RM_PH.url=null; RM_PH.blob=null; if(!keep){ const t=$('#rmPthumb'); if(t){ t.hidden=true; t.innerHTML=''; } } }
 /* 저장 — 치수·문·창·가구만(사진·주소 없음) */
-function rmData(){ return {tpl:RM.tpl,W:RM.W,D:RM.D,H:RM.H,open:RM.open,furn:RM.furn,pick:RM.pick,out:RM.out,app:RM.app,chk:RM.chk,dims:RM.dims,elec:RM.elec}; }
+function rmData(){ return {tpl:RM.tpl,W:RM.W,D:RM.D,H:RM.H,open:RM.open,furn:RM.furn,pick:RM.pick,out:RM.out,app:RM.app,chk:RM.chk,dims:RM.dims,elec:RM.elec,step:RM.step,edits:RM.edits||{},pal:RM.pal||''}; }
 let rmSaveT=0; function rmSaveSoon(){ clearTimeout(rmSaveT); rmSaveT=setTimeout(()=>{ try{ localStorage.setItem('zip_room',JSON.stringify(rmData())); }catch(e){} },600); }
 function rmSave(msg){ try{ localStorage.setItem('zip_room',JSON.stringify(rmData())); }catch(e){} try{ state.room=rmData(); touch('room'); }catch(e){} if(msg){ const s=$('#rmSt'); s.textContent=(typeof acct!=='undefined'&&acct&&acct.email)?'저장했어요 — 계정에도 남아요.':'이 기기에 저장했어요. 로그인하면 계정에도 남아요.'; setTimeout(()=>{ s.textContent=''; },3500); } }
 /* 견적 상담 — 문의하기 창에 내용을 채워 줌(주소 없음) */
@@ -4142,11 +4380,11 @@ function rmAsk(kind){ const L=RM.L&&RM.L[RM.pick]; const chk=RM_CHK.filter((t,i)
   try{ zcOpen(true); const t=$('[data-zt="ask"]'); if(t) t.click(); setTimeout(()=>{ const k=$('#zaKind'); if(k){ const op=[...k.options].find(o=>o.text.includes('견적')); if(op) k.value=op.value; } const m=$('#zaMsg'); if(m){ m.value=msg; m.focus(); } },80); }catch(e){ console.warn(e); } }
 /* 공유 이미지 1080×1350 */
 async function rmPNG(){ const L=RM.L&&RM.L[RM.pick]; if(!L) return; const st=$('#rmSt'); st.textContent='이미지를 만드는 중…';
-  try{ const svg=rmSVG(L,{elec:RM.elec!==false,dims:RM.dims!==false}); const img=new Image(); const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})); await new Promise((ok,no)=>{ img.onload=ok; img.onerror=no; img.src=url; });
+  try{ const svg=rmSVG(L,{elec:true,dims:true,cm:true}); const img=new Image(); const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})); await new Promise((ok,no)=>{ img.onload=ok; img.onerror=no; img.src=url; });
     const cv=document.createElement('canvas'); cv.width=1080; cv.height=1350; const g=cv.getContext('2d'); g.fillStyle='#f5f3ee'; g.fillRect(0,0,1080,1350);
     g.fillStyle='#1d1d1f'; g.font='900 44px "Archivo Black", Pretendard, sans-serif'; g.fillText('ZI',64,104); let x=64+g.measureText('ZI').width; g.fillStyle='#2b6cff'; g.fillText('P',x,104); x+=g.measureText('P').width; g.fillStyle='#1d1d1f'; g.fillText('LAN',x,104);
     g.font='700 30px Pretendard, sans-serif'; g.fillStyle='#6e6e73'; g.fillText('내 방 고치기',64,152);
-    g.font='800 52px Pretendard, sans-serif'; g.fillStyle='#1d1d1f'; g.fillText(`${L.st.id} · ${L.st.n}`,64,236);
+    g.font='800 52px Pretendard, sans-serif'; g.fillStyle='#1d1d1f'; g.fillText(`${L.st.id} · ${L.st.n}${L.edited?' (직접 옮김)':''}`,64,236);
     g.font='500 30px Pretendard, sans-serif'; g.fillStyle='#3a3a3c'; g.fillText(`방 ${RM.W} × ${RM.D}cm · 걸어 다닐 바닥 약 ${L.walk.toFixed(1)}㎡`,64,284);
     const bx=64,by=320,bw=952,bh=860; g.fillStyle='#fff'; g.beginPath(); g.roundRect?g.roundRect(bx,by,bw,bh,28):g.rect(bx,by,bw,bh); g.fill();
     const iw=img.width||RM.W+140, ih=img.height||RM.D+140; const k=Math.min((bw-48)/iw,(bh-48)/ih); g.drawImage(img,bx+(bw-iw*k)/2,by+(bh-ih*k)/2,iw*k,ih*k); URL.revokeObjectURL(url);
@@ -4154,8 +4392,9 @@ async function rmPNG(){ const L=RM.L&&RM.L[RM.pick]; if(!L) return; const st=$('
     g.font='700 28px Pretendard, sans-serif'; g.fillStyle='#1d1d1f'; g.fillText(`내 방도 그려 보기 → ${location.host||'ziplan'}/#room`,64,1288);
     const blob=await new Promise(r=>cv.toBlob(r,'image/png')); RM_PH.lastPng=blob; dlBlob(blob,`내방_${RM.W}x${RM.D}_${L.st.id}.png`); st.textContent='이미지를 저장했어요.'; setTimeout(()=>{ st.textContent=''; },3000);
   }catch(e){ console.warn(e); st.textContent='이미지를 만들지 못했어요. SVG 받기를 써 보세요.'; } }
-function rmEnter(){ if(!RM){ RM=rmLoad(); try{ if(state&&state.room&&!localStorage.getItem('zip_room')) RM=Object.assign(rmDefault(),state.room); }catch(e){} } rmBuild(); rmFill(); rmUpdate(); }
-window.__room={get RM(){ return RM; },rmCompute,rmSVG,rmEval,RM_PH,rmFitCheck,rmPNG};
+function rmEnter(){ const first=!RM; if(!RM){ RM=rmLoad(); try{ if(state&&state.room&&!localStorage.getItem('zip_room')) RM=Object.assign(rmDefault(),state.room); }catch(e){} RM.sel=-1; if(!RM.edits||typeof RM.edits!=='object') RM.edits={}; } rmBuild(); rmFill(); rmUpdate(); if(first) rmStep(Math.min(3,Math.max(1,+RM.step||1)),false); }
+window.__room={get RM(){ return RM; },rmCompute,rmSVG,rmEval,RM_PH,rmFitCheck,rmPNG,rmStep,rmPlace,rmRotate,rmCommit,rm3DOpen,rm3DClose,RM3};
+addEventListener('hashchange',()=>{ if(location.hash!=='#room'){ try{ rm3DClose(); }catch(e){} } });
 
 const M=20, W=594, H=841;
 const LAYOUTS={
@@ -5357,6 +5596,7 @@ const RHERO={
   plaza:{w:'PLAZA',c:0,n:'',col:['#8a6bff','#ff5e9c','#3f7bff'],rib:['패널','도면','모형','사진','크릿','댓글','챌린지']},
   portfolio:{w:'FOLIO',c:2,n:'07',col:['#ff5e9c','#ff9f5a','#8a6bff'],rib:['진로 지도','연봉','12쪽','이력서','증명사진','건축사','비전공']},
   guide:{w:'GUIDE',c:3,n:'',col:['#3f7bff','#30a46c','#ff9f0a'],rib:['재료 넣기','세 안','하나 고르기','도면','모형','패널','포트폴리오']},
+  room:{w:'ROOM',c:1,n:'',col:['#c2703f','#f2bd55','#3f7bff'],rib:['가구 배치','통로 폭','문 열림','들어가나?','조명','콘센트','색 · 재료','견적 상담']},
   zipcode:{w:'ZIPCODE',c:3,n:'01',col:['#3f7bff','#8a6bff','#ff5e9c'],rib:['용도지역','건폐율','용적률','연면적','층수','조례','지구단위']},
   site:{w:'SITE',c:2,n:'02',col:['#2fae7a','#7cc5a0','#3f7bff'],rib:['해','바람','길','소음','조망','그림자','경사']},
   concept:{w:'CONCEPT',c:3,n:'03',col:['#ff8a5c','#ff5e9c','#8a6bff'],rib:['중정','테라스','필로티','마을','액자','두꺼운 벽','큰 지붕']},
