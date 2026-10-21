@@ -2,7 +2,6 @@
    규칙: 직접 열어 본 페이지에서 날짜를 확인한 항목만. 요약은 우리 말로(원문 복제 금지). 포스터·이미지 사용 금지(그림은 vis 키로 ZIPLAN 그림).
    새 항목에는 반드시 field·who·team·level·req·prize·online·vis를 채울 것(모르면 team:'' · req에 '원문 확인').
    deadline = 정렬·D-day 기준일(공모: 접수/제출 마감, 행사: 마지막 날 또는 하루짜리면 그날). 본문은 엄격한 JSON(큰따옴표, 끝 쉼표 없음) — build_public.py가 마지막 window.ZCONTESTS 뒤를 JSON으로 읽음. */
-window.ZCONTESTS = {JSON} 한 줄 형태를 유지할 것(build_public.py가 JSON으로 읽음). */
 window.ZCONTESTS = {
 "checked":"2026-10-21","items":[
 {"id":"gg-arch-62","title":"2026 제62회 경기건축대전","org":"한국건축가협회 경기건축가회","type":"학생공모전","audience":["학생"],"deadline":"2026-10-28","region":"경기","benefit":"대상 700만 원(시니어·주니어 합산)","summary":"주제는 '변화와 기회의 공간'. 대학 1~3학년은 주니어, 4학년 이상·대학원생은 시니어 부문으로 나뉩니다. 1차는 10.26~10.28 18시까지 온라인 제출, 1차 통과작은 11.21 패널·모형을 냅니다.","url":"https://www.ggkia.or.kr","source":"https://thinkyou.co.kr/contest/65377/","checked":"2026-10-21","field":["건축설계","아이디어·개념"],"who":["학생"],"team":"","level":"본격","req":"대학생·대학원생, 학년별 주니어·시니어 부문 · 2차는 패널·모형 제출","prize":true,"online":false,"vis":"건축설계"},
