@@ -173,7 +173,7 @@ __bsigFill({"sejong":function(K){
       E.forest(E.scatter(620,1000,-300,300,14,TR.h,(x,z,h)=>E.r()<.6,(x,z,h)=>10,1),{trunks:false}); // 경복궁 숲
       // 광화문광장·세종대왕상(배경 그룹)
     // ---- 광화문광장·세종대로·세종대왕상 ----
-      B(0,0,40,600,.08,40,K.col(0xbfb8aa,{roughness:.9})); // 광장(포장)
+      B(0,0,40,600,.08,40,K.col(0xbfb8aa,{roughness:.9})); { const T1=K.col(0xcac3b5,{roughness:.9}), T2=K.col(0xa9a294,{roughness:.9}); for(let x=-296;x<=296;x+=8) B(x,.08,37.5,4,.012,33,(Math.round(x/8)%2)?T1:T2); B(0,.08,57,560,.1,2.2,K.M.water); B(0,.08,55.6,560,.14,.6,K.col(0x8f897e,{roughness:.9})); B(0,.08,58.4,560,.14,.6,K.col(0x8f897e,{roughness:.9})); for(let x=-250;x<=250;x+=60){ if(Math.abs(x)<30) continue; for(let k=0;k<4;k++) tree(x+(k%2)*9-4,.08,26+Math.floor(k/2)*9,7.5+k*.4,k%2?K.M.leaf3:K.M.leaf2); } } // v20c 광화문광장(2022 재구조화, 세종문화회관 쪽): 포장 결 띠·물길·숲 군락(위치·크기 추정)
     for(let i=-10;i<=10;i++){ if(Math.abs(i)<2) continue; tree(i*24,0,30,9,K.M.leaf2); tree(i*24+12,0,50,8,K.M.leaf3); }
     for(let i=-5;i<=5;i++) B(i*40,.08,40,26,.25,4,K.M.grass);
     { const sx=0, sz=40; B(sx,0,sz,10,1.2,8,STN); B(sx,1.2,sz,6,2.4,4.6,K.col(0x8a8a86,{roughness:.6})); C(sx,3.6,sz,1.4,2.6,K.col(0x6e5a2a,{roughness:.4,metalness:.7}),10,1.6); const g=new T.SphereGeometry(.7,10,8); g.translate(sx,6.9,sz); Q(K.col(0x6e5a2a,{roughness:.4,metalness:.7}),g); } // 세종대왕상(추정 크기)

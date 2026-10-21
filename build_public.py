@@ -95,6 +95,12 @@ for rel in ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/con
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(root / rel, dist / rel)
 
+# A1 v20c: 정교 모형 미리 렌더 썸네일(img/sig/<id>.webp) — 앱의 아틀라스 썸네일·오늘의 명작 포스터·정적 페이지 그림
+(dist / 'img' / 'sig').mkdir(parents=True, exist_ok=True)
+SIG_IMGS = set()
+for _f in sorted((root / 'img' / 'sig').glob('*.webp')) if (root / 'img' / 'sig').exists() else []:
+    shutil.copy(_f, dist / 'img' / 'sig' / _f.name); SIG_IMGS.add(_f.stem)
+
 # ===== v18b: 검색 노출용 정적 페이지 =====
 # crit.html의 데이터(BLD·BSIG 메타·TPL·PH·TFEAT·TV_ABROAD·TV_SEASON·KB2·ENC)를 node로 꺼내
 # /atlas/<id>/ · /travel/<id>/ · /ask/<slug>/ · /dict/<id>/ + 목록 4개 + sitemap.xml · robots.txt · 404.html 을 만든다.
@@ -290,9 +296,12 @@ def _build_static(D):
         desc = _clip('%s(%s, %s, %s) — %s. 사진 출처·3D 모형·같은 건축가의 다른 건물까지.' % (b['name'], b['arch'], _yr, b['city'], b['line'].rstrip('.')), 155)
         m = ['<p class="kick">%s · %s</p>' % (' · '.join(_esc(x) for x in dict.fromkeys([REG.get(b['reg'], ''), cn]) if x), _esc(ERA.get(b['era'], ''))),
              '<h1>%s</h1>' % _esc(b['name']), '<p class="sub">%s · %s · %s</p>' % (_esc(b['arch']), _esc(b['year']), _esc(b['city']))]
+        sigimg = ('/img/sig/%s.webp' % b['id']) if b['id'] in SIG_IMGS else None
         if img:
             ss = '%s 500w, %s 1280w' % (_bld_img(b, 500), img) if (b.get('w') or 0) > 500 else ''
             m.append(_figure(img, ss, '%s (%s)' % (b['name'], b['city']), bld_credit(b)))
+        elif sigimg:
+            m.append(_figure(sigimg, '', '%s 정교 모형' % b['name'], 'ZIPLAN 정교 모형 렌더 — 공개 자료의 치수로 다시 지음(일부 추정)'))
         else:
             m.append('<p class="nophoto">자유 라이선스 사진을 찾지 못한 건물이에요. 앱에서 단어로 지은 3D 모형으로 볼 수 있어요.</p>')
         m.append('<p class="lead">%s</p>' % _esc(b['line']))
@@ -318,8 +327,9 @@ def _build_static(D):
         m.append(_sec('%s의 다른 건물' % cn, _links([('/atlas/%s/' % x['id'], x['name'], '%s · %s' % (x['arch'], x['year'])) for x in sc])))
         ld = {'@type': 'LandmarksOrHistoricalBuildings', 'name': b['name'], 'description': b['line'], 'url': _url('/atlas/%s/' % b['id']),
               'address': {'@type': 'PostalAddress', 'addressLocality': cityname(b), 'addressCountry': cn}}
-        if img: ld['image'] = img
-        _page('/atlas/%s/' % b['id'], title, desc, ''.join(m), img=img, img_alt=b['name'], ld=ld,
+        ogimg = img or (SITE_URL + sigimg if sigimg else None)
+        if ogimg: ld['image'] = ogimg
+        _page('/atlas/%s/' % b['id'], title, desc, ''.join(m), img=ogimg, img_alt=b['name'], ld=ld,
               crumbs=[('ZIPLAN', '/'), ('건축 아틀라스', '/atlas/'), (b['name'], '/atlas/%s/' % b['id'])]); nA += 1
     # 목록
     m = ['<p class="kick">집 구경 · 건축 아틀라스</p><h1>건축 아틀라스 — %d채</h1>' % len(BX),

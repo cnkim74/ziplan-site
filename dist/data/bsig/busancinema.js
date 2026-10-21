@@ -135,7 +135,7 @@ __bsigFill({"busancinema":function(K){
     const CM=TMat(panelTex('bcCm',{base:'#8a9096',tones:['#80868d','#959ba1','#777d84'],blot:80,bs:16,seam:'#3b4046',cols:6,rows:10,sw:1.6}),6,{roughness:.55,metalness:.35}); // 시네마운틴 금속 외장(추정)
     const PV=TMat(panelTex('bcPv',{base:'#a9a49b',tones:['#b3aea4','#9d988f','#bbb6ac'],blot:120,bs:12,seam:'#85807a',cols:5,rows:5,sw:1.3}),5,{roughness:.9});
     // ---- 0층: 바닥(광장 포장) ----
-    L(0); B(-10,-.06,-20,260,.06,200,PV); B(-8,0,0,170,.08,64,K.col(0xbdb8ae,{roughness:.8}));
+    L(0); B(-10,-.06,-20,260,.06,200,PV); B(-8,0,0,170,.08,64,K.col(0xbdb8ae,{roughness:.8})); { const BD=K.col(0x9a958c,{roughness:.9}), BL=K.col(0xc9c4b8,{roughness:.85}); for(let x=-130;x<=110;x+=20) B(x,0,-20,1.2,.012,196,BD); for(let z=-110;z<=70;z+=20){ if(z>-34&&z<34) continue; B(-10,0,z,256,.012,1.2,BD); } for(let z=40;z<=74;z+=17) B(70,0,z,64,.014,6,BL); for(const [x,z] of [[100,-60],[100,-30],[100,30],[100,60],[60,70],[30,70],[-20,72],[-60,72]]){ B(x,0,z,7,.6,7,K.col(0x8f8a82,{roughness:.9})); tree(x,.6,z,7.5); } } // v20c 광장 포장 줄눈 띠·밝은 띠·화단 나무(배치 추정)
     // ---- 시네마운틴(x −90~−42): 기울어진 면이 접힌 큰 덩어리 · 하늘연극장·상영관 ----
     { const fp=[[-92,-30],[-44,-30],[-40,-12],[-44,26],[-88,30],[-95,8]]; exG(fp,0,6,K.col(0x3a4148,{roughness:.5,metalness:.4})); // 1층(어두운 유리 로비 띠)
       L(0); for(const [a,b] of fp.map((p,i)=>[p,fp[(i+1)%fp.length]])){ const mx=(a[0]+b[0])/2, mz=(a[1]+b[1])/2, len=Math.hypot(b[0]-a[0],b[1]-a[1]), ang=Math.atan2(-(b[1]-a[1]),b[0]-a[0]); B(mx,.1,mz,len,5.6,.1,GDK,ang); for(let t=1;t<len;t+=2.4){ const k=t/len; B(a[0]+(b[0]-a[0])*k,.1,a[1]+(b[1]-a[1])*k,.12,5.6,.16,STLd,ang); } }
