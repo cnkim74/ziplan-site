@@ -580,3 +580,11 @@
   - **눈높이 시작·걷기 방향** `rmFace(x,y,d)`: 시작(문 안쪽 60cm)과 바닥 눌러 걸어간 뒤, 앞이 방 짧은 변의 55%보다 가까이 막혀 있으면 15° 간격으로 가장 트인 쪽으로 돌고(장애물·ㄱ/ㄷ 빈칸 포함), 그래도 80cm 미만이면 방 다각형 가운데를 봄. 걷는 동안 같이 부드럽게 돈다.
 - `__room`에 rmInner·rmObs·rmPoly·rmUpdate·rmFill·rmShow 추가(테스트용).
 - 테스트(저장소 밖 `/home/claude/f22/`, 서버 `python3 -m http.server 8814` in crit): `ov.js`(FAB 겹침 360·390·가로), `troom.js d|m`(ㄷ자·안쪽 벽 창·밖여닫이 안내·3D 열기·3D 가구 끌기 → edits 저장·다시 짓기·눈높이 걷기·ㄱ자 안쪽 벽 문 평면/3D), `t3.js`(예시 방 5클릭 회귀), `tdna.js`(공유 링크 → 공유받은 결과 → 홈 가면 기록 복원), `sweep.js`(20개 라우트 1440/390 pageerror 0·가로 넘침 0).
+
+## S8 · v22c (2026-10-23) — 아틀라스 +119채(928) · 정교 모형 +60(287) · 전시실 19방
+- **아틀라스 BLD +119**(한국 72·세계 47; 조사 /tmp/claude-0/-home-claude/ad5cd39c-5a61-5615-996a-b77e24e93ec8/scratchpad/s8/atlas_add.js·출처 대조 atlas_add_report.md — 107건 대조: 확인 73·정정 33·제외 1(웰콤시티)). 사진은 전부 빈칸(위키미디어 접근 불가) → 카드는 기존 사진 없는 항목 경로, 정적 /atlas/<id>/는 `.nophoto` 문구 + og:image house-dusk. **사진 채우기는 사용자 Chrome으로 커먼즈 라이선스 확인 필요.** '809채'→'928채'(crit.html·build_public.py·og 이미지).
+- **정교 모형 +60 → 287**(병합 /tmp/claude-0/-home-claude/ad5cd39c-5a61-5615-996a-b77e24e93ec8/scratchpad/v13/merge.js): K2(한국 20 + deoksu 3칸 확인·mireuksa eye 이동), A2(20 + stmarytokyo 쿤스 곡면·shirakawago 박공·interlace 출처 보강), W2(20 + douglashouse 재작성). id 목록 /tmp/claude-0/-home-claude/ad5cd39c-5a61-5615-996a-b77e24e93ec8/scratchpad/s8/{K2,A2,W2}_ids.txt, 출처·자평 *_report.md.
+- **전시실 16→19방**: 신설 `khouse` 고택과 정원(하회·양동·오죽헌·운현궁·북촌·전주·성읍·소쇄원 — ktemple/kold에서 이동), `houses` 명작 주택(master에서 주택 15채 이동 + 홀리호크·쉰들러·러벨·게리 자택·힐 하우스·스토클레·유리의 집·빌라 바르바로), `ancient` 유적과 성(스톤헨지·퐁 뒤 가르·메종 카레·노이슈반슈타인·만리장성·시기리야). '궁전과 광장'은 정교 모형 궁전이 아직 없어 만들지 않음. 나머지 새 모형은 기존 방에 추가(합계 287, 중복 0).
+- 썸네일 66장(새 60 + 재작업 6) `img/sig` 다시 찍음(prerender 사본 /tmp/claude-0/-home-claude/ad5cd39c-5a61-5615-996a-b77e24e93ec8/scratchpad/s8/th, 포트 8793), `SIG_TH` 287, `SIG_TH_V='20261023'`; img/sig 287장 9.9MB. og/atlas.jpg 287/928로 다시 찍음(/home/claude/seo/og.html).
+- 확인: 아틀라스 390 CPU×4 로드 3.55초·진입 멈춤 합 2.7초·스크롤 52fps(S7 3.6초·42.7fps), 새 모달 10개(1440·390) 오류 0·깨진 이미지 0, 라우트 스윕 오류 0, 새 정적 119쪽 링크 3,838개 깨짐 0(/privacy·/terms는 cleanUrls), sitemap 1,777.
+- 남은 한계: 독립기념관 겨레의 집 지붕(맞배, 확인 필요) · 정림사지 탑 높이 추정 · 경주박물관·전쟁기념관 치수 추정 · djinguereber 대부분 추정 · 선암사 바닥 0.03m 겹침 1곳(화면 미확인) · 썸네일에서 대릉원·정림사지·만리장성은 멀리서 작게 보임 · 새 119채 사진 없음. 다음 차례: 안동 고택(임청각·선교장·독락당 등, 이제 BLD에 있음) 정교 모형.

@@ -1,7 +1,7 @@
 __bsigFill({"shirakawago":function(K){
 // 사실: 오기마치에 갓쇼식 농가 59채(보존 지정 역사 건물 117채·기타 7) · 가파르게 기운 초가지붕 · 보통 3~4층(위층 누에치기, 마루 밑 초석 생산) · 30~40년마다 유이(공동 노동)로 지붕 다시 이음 · 모든 용마루가 쇼강과 나란히 · 쇼강은 지역 한가운데를 북쪽 동해로 흐름 · 오기마치 중심 단구는 강 동쪽 해발 약 500 m · 1,500 m 안팎 가파른 숲 산(주봉 하쿠산)
 // 출처: 영문 위키백과 「Historic Villages of Shirakawa-gō and Gokayama」
-// 추정: 지붕 경사 약 60°, 집 크기(큰 집 22 × 13 m · 용마루 높이 약 15 m, 보통 16 × 10 m), 채 수(여기선 22채)·배치, 논·수로·쇼강 폭, 산 높이·거리는 개략
+// 추정(2차 보강: 초가 질감·박공 층 띠·세로 기둥·바람막이 널·덧처마·용마루 누름대는 사진 관찰 기반 개략): 지붕 경사 약 60°, 집 크기(큰 집 22 × 13 m · 용마루 높이 약 15 m, 보통 16 × 10 m), 채 수(여기선 22채)·배치, 논·수로·쇼강 폭, 산 높이·거리는 개략
     const T=K.T;
     const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
     // 인스턴스: geo(밑면 y=0 기준) 를 items=[[x,y,z,ry,sx,sy,sz]] 자리에 복제 — 기둥·판문·공포처럼 같은 부재 반복
@@ -113,7 +113,8 @@ __bsigFill({"shirakawago":function(K){
         const hide=o=>{ try{ Object.defineProperty(o,'visible',{configurable:true,get(){ return !on(); },set(v){}}); }catch(e){} }; site.children.forEach(hide); const add0=site.add; site.add=function(...a){ if(mk.parent===K.life&&K.life.parent) a.forEach(hide); return add0.apply(this,a); }; };
       return {sky,lplane,lpoly,solid,WATER,city,grid,ring,manh,own}; })();
     const LIFE=f=>{ const pc=K.cur; K.cur=K.life; f(); K.cur=pc; };
-    const TH=K.col(0x76664c,{roughness:1}), TH2=K.col(0x9b8562,{roughness:1}), WD=K.col(0x5a4330,{roughness:.85}), WD2=K.col(0x7a5c40,{roughness:.85}), SHJ=K.col(0xe9e2d0,{roughness:.8}), STN=K.col(0x8f887c,{roughness:1}), PAD=K.col(0x8fa45a,{roughness:1}), WAT=K.col(0x5a8790,{roughness:.05,metalness:.1});
+    const thTex=(()=>{ const c=document.createElement('canvas'); c.width=c.height=256; const x=c.getContext('2d'); x.fillStyle='#7a6a4f'; x.fillRect(0,0,256,256); let sd=3; const r=()=>{ sd=(sd*9301+49297)%233280; return sd/233280; }; for(let i=0;i<2600;i++){ const px=r()*256, py=r()*256, L=10+r()*26; const v=90+Math.floor(r()*70); x.strokeStyle=`rgba(${v+40},${v+22},${v-10},${.35+r()*.4})`; x.lineWidth=.8+r()*1.4; x.beginPath(); x.moveTo(px,py); x.lineTo(px+(r()-.5)*3,py+L); x.stroke(); } for(let j=0;j<256;j+=32){ x.fillStyle='rgba(40,30,20,.18)'; x.fillRect(0,j,256,3); } const t=new T.CanvasTexture(c); t.wrapS=t.wrapT=T.RepeatWrapping; t.repeat.set(.32,.32); if(T.SRGBColorSpace) t.colorSpace=T.SRGBColorSpace; return t; })();
+    const TH=new T.MeshStandardMaterial({map:thTex,color:0x9d8f78,roughness:1}), TH2=K.col(0x9b8562,{roughness:1}), WD=K.col(0x5a4330,{roughness:.85}), WD2=K.col(0x7a5c40,{roughness:.85}), SHJ=K.col(0xe9e2d0,{roughness:.8}), STN=K.col(0x8f887c,{roughness:1}), PAD=K.col(0x8fa45a,{roughness:1}), WAT=K.col(0x5a8790,{roughness:.05,metalness:.1});
     // 갓쇼 집: 몸체(낮은 처마) + 두꺼운 초가 맞배(용마루 z축 = 강과 나란히) + 박공면 창
     const house=(x,z,w,d,ry,big)=>{ const g0=new T.Group(); g0.position.set(x,0,z); g0.rotation.y=ry||0; (K.cur||K.layer(0)).add(g0); const add=(m,c)=>{ m.castShadow=c!==false; m.receiveShadow=true; g0.add(m); return m; };
       const eave=2.6, rh=(w/2)*Math.tan(60*Math.PI/180)*.98; // 60° 경사(추정)
@@ -122,7 +123,14 @@ __bsigFill({"shirakawago":function(K){
       roof(w+2.4,rh+1.2,d+1.6,TH,eave+.4-.6); // 초가(두께감 있게 바깥)
       roof(w-.2,rh-.4,d+.05,WD,eave+.4); // 박공면(나무) — 초가 안쪽
       for(const sz of [-1,1]){ for(let k=0;k<3;k++){ const yy=eave+1.4+k*2.6; const ww=(w-.4)*(1-(yy-eave)/rh)*.7; if(ww<1) continue; const s=new T.Mesh(new T.BoxGeometry(ww,1.5,.1),SHJ); s.position.set(0,yy,sz*(d/2+.06)); add(s,false); } }
-      const rd=new T.Mesh(new T.BoxGeometry(.9,.5,d+1.8),K.col(0x5d5a52,{roughness:.9})); rd.position.y=eave+.4+rh+.35; add(rd); // 용마루 덮개
+      const RT=eave+.4+rh+.35; const rd=new T.Mesh(new T.BoxGeometry(1.2,.7,d+1.8),TH); rd.position.y=RT; add(rd); // 용마루(초가 덮개)
+      for(let k=0;k<Math.floor((d+1.6)/2.2);k++){ const zz=-(d+1.6)/2+1.1+k*2.2; for(const s2 of [-1,1]){ const g=new T.BoxGeometry(.18,2.2,.18); const m=new T.Mesh(g,WD); m.position.set(0,RT+.35,zz); m.rotation.z=s2*.62; add(m,false); } } // 용마루 X자 누름대(구시 — 개략)
+      for(const sz of [-1,1]){ const zf=sz*(d/2+.07);
+        for(const s2 of [-1,1]){ const L=Math.hypot(w/2+.6,rh); const g=new T.BoxGeometry(L,.35,.12); const m=new T.Mesh(g,WD); m.position.set(s2*(w/4+.15),eave+.4+rh/2,zf+sz*.05); m.rotation.z=-s2*Math.atan2(rh,w/2+.6); add(m,false); } // 박공 바람막이 널
+        for(let k=0;k<4;k++){ const yy=eave+.4+k*3.1; const ww=Math.max(.6,(w-.2)*(1-(yy-eave-.4)/rh)); const m=new T.Mesh(new T.BoxGeometry(ww,.22,.14),WD); m.position.set(0,yy,zf+sz*.03); add(m,false); } // 층 띠
+        for(const xx of [-w*.22,0,w*.22]){ const hh=Math.max(1,rh*(1-Math.abs(xx)/(w/2))-.6); const m=new T.Mesh(new T.BoxGeometry(.18,hh,.12),WD); m.position.set(xx,eave+.4+hh/2,zf+sz*.04); add(m,false); } // 박공 세로 기둥
+        { const sh=new T.Mesh(new T.BoxGeometry(w*.8,.16,1.6),TH); sh.position.set(0,eave+.1,zf+sz*.75); sh.rotation.x=sz*.42; add(sh); } // 1층 박공 아래 덧처마(히사시 — 개략)
+      }
       return g0; };
     // ================= 0: 논 · 수로 · 길 =================
     K.layer(0);

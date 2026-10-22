@@ -1,7 +1,7 @@
 __bsigFill({"stmarytokyo":function(K){
 // 사실: 단게 겐조 설계, 구조 쓰보이 요시카쓰 · 1963.4~1964.12 공사, 1964 완공 · 십자형 평면(마름모꼴 1층이 올라가며 십자가로) · 쌍곡포물면 8장이 성소를 이룸 · 포물면이 위로 열려 네 입면을 따라 수직으로 이어지는 빛의 십자가 · 높이 39.4 m · 종탑 61.6 m(철근콘크리트, 성당 서쪽에 따로) · 스테인리스 외장 · 연면적 3,650 ㎡ · 대지 15,098 ㎡
 // 출처: 영문 위키백과 「St. Mary's Cathedral, Tokyo」
-// 추정: 셸 꼭짓점 좌표(마름모 모서리 반경 31 m, 팔 끝 34 m), 틈 폭 약 2 m, 수직 창 높이, 종탑 단면(2.4 × 6 m 쐐기형)과 위치, 주변 숲·주택가 배치는 개략
+// 추정: 셸 꼭짓점 좌표(마름모 모서리 반경 31 m, 팔 끝 34 m)와 셸끼리 만나는 골의 오목 곡선(쿤스 곡면으로 부드럽게 — 2차 보강), 틈 폭 약 2 m, 수직 창 높이, 종탑 단면(2.4 × 6 m 쐐기형)과 위치, 주변 숲·주택가 배치는 개략
     const T=K.T;
     const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
     // 인스턴스: geo(밑면 y=0 기준) 를 items=[[x,y,z,ry,sx,sy,sz]] 자리에 복제 — 기둥·판문·공포처럼 같은 부재 반복
@@ -113,10 +113,11 @@ __bsigFill({"stmarytokyo":function(K){
         const hide=o=>{ try{ Object.defineProperty(o,'visible',{configurable:true,get(){ return !on(); },set(v){}}); }catch(e){} }; site.children.forEach(hide); const add0=site.add; site.add=function(...a){ if(mk.parent===K.life&&K.life.parent) a.forEach(hide); return add0.apply(this,a); }; };
       return {sky,lplane,lpoly,solid,WATER,city,grid,ring,manh,own}; })();
     const LIFE=f=>{ const pc=K.cur; K.cur=K.life; f(); K.cur=pc; };
-    const SS=K.col(0xdfe4e8,{roughness:.3,metalness:.5}), SS2=K.col(0xc4cbd0,{roughness:.32,metalness:.5}), CON=K.col(0xa9a69f,{roughness:.85}), GL=K.col(0xd9e4e8,{roughness:.08,metalness:.3,transparent:true,opacity:.6,emissive:0x8090a0,emissiveIntensity:.2}), PV=K.col(0xbfb8ac,{roughness:.95}), GRV=K.col(0xd0c6b3,{roughness:1});
+    const SS=K.col(0xdfe4e8,{roughness:.22,metalness:.6}), SS2=K.col(0xc4cbd0,{roughness:.32,metalness:.5}), CON=K.col(0xa9a69f,{roughness:.85}), GL=K.col(0xd9e4e8,{roughness:.08,metalness:.3,transparent:true,opacity:.6,emissive:0x8090a0,emissiveIntensity:.2}), PV=K.col(0xbfb8ac,{roughness:.95}), GRV=K.col(0xd0c6b3,{roughness:1});
     const H=39.4, RE=34, RD=31, G=1.1; // 꼭대기 · 팔 끝 반경 · 대각 모서리 반경 · 틈 반폭
     // 쌍곡포물면 셸: 네 모서리 a(대각 땅) b(팔 끝 아래) c(팔 끝 위) d(가운데 위) — 쌍선형 보간
-    const hp=(a,b,c,d,mat)=>K.surf((u,v)=>{ const p=[0,1,2].map(k=>(a[k]*(1-u)+b[k]*u)*(1-v)+(d[k]*(1-u)+c[k]*u)*v); return [p[0],p[1],p[2],u*6,v*6]; },16,16,mat);
+    // 쿤스 곡면: 바닥 변 a→b(직선) · 옆 수직 변 b→c(직선) · 꼭대기 능선 d→c(직선) · 이웃 셸과 만나는 골 a→d는 오목한 곡선(바닥에선 완만, 꼭대기로 갈수록 가파름) — 부드러운 쌍곡 곡면
+    const hp=(a,b,c,d,mat)=>{ const P=[a[0]*.45+d[0]*.55,a[1]+(d[1]-a[1])*.12,a[2]*.45+d[2]*.55]; const D0=v=>[0,1,2].map(k=>(1-v)*(1-v)*a[k]+2*(1-v)*v*P[k]+v*v*d[k]); return K.surf((u,v)=>{ const d0=D0(v); const p=[0,1,2].map(k=>{ const c0=a[k]*(1-u)+b[k]*u, c1=d[k]*(1-u)+c[k]*u, d1=b[k]*(1-v)+c[k]*v; const bil=(1-u)*(1-v)*a[k]+u*(1-v)*b[k]+(1-u)*v*d[k]+u*v*c[k]; return (1-v)*c0+v*c1+(1-u)*d0[k]+u*d1-bil; }); return [p[0],p[1],p[2],u*6,v*6]; },28,28,mat); };
     // ================= 0: 앞마당 · 바닥판 =================
     K.layer(0); K.b(0,-.15,0,130,.15,110,PV); K.b(0,0,0,74,.6,74,GRV);
     // ================= 1: 셸 8장 + 빛의 십자가(틈의 유리) =================

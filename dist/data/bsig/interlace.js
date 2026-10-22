@@ -1,7 +1,8 @@
 __bsigFill({"interlace":function(K){
 // 사실: 31개 동, 6층 동을 최대 4단으로 쌓아 최대 24층(정보상자 25층), 높이 88.7 m · 육각형 배치로 엇갈려 중정 8곳을 둘러쌈 · 1,040세대 · 대지 8 ha · 설계 OMA/올레 스히렌 · 2013 완공
 // 출처: 영문 위키백과 「The Interlace」
-// 추정: 동 크기(길이 70 m · 폭 16 m · 6층 18.6 m), 육각 격자(한 변 70 m)와 동마다 단 배정, 외장 색·발코니 띠, 중정 조경·수영장, 주변 능선 숲·디포 로드 배치는 개략
+// 사실(2차 보강): 31동·각 6층 · 네 개의 '수퍼레벨' · 24층 봉우리 셋, 나머지 6~18층 계단식 · 중정 8곳, 각 약 60 m · 대지 8 ha(알렉산드라 로드/디포 로드) · 연면적 170,000 ㎡ — 출처: Büro Ole Scheeren 「The Interlace」
+// 추정: 동 크기(길이 70 m · 폭 16.5 m · 6층 18.6 m), 육각 격자(중정 60 m에서 한 변 약 44 m로 역산)와 동마다 단 배정(꼭짓점 공유 동은 다른 단 · 봉우리 3동 — 실제 배치와 다를 수 있음), 외장 색·발코니 띠, 중정 조경·수영장, 주변 능선 숲·디포 로드 배치는 개략
     const T=K.T;
     const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
     // 인스턴스: geo(밑면 y=0 기준) 를 items=[[x,y,z,ry,sx,sy,sz]] 자리에 복제 — 기둥·판문·공포처럼 같은 부재 반복
@@ -114,18 +115,21 @@ __bsigFill({"interlace":function(K){
       return {sky,lplane,lpoly,solid,WATER,city,grid,ring,manh,own}; })();
     const LIFE=f=>{ const pc=K.cur; K.cur=K.life; f(); K.cur=pc; };
     const WH=K.col(0xe9e8e3,{roughness:.8}), GR=K.col(0xb9bcbc,{roughness:.7}), GL=K.col(0x5a7480,{roughness:.08,metalness:.5}), RG=K.col(0x6f9a4a,{roughness:1}), PV=K.col(0xcfcac0,{roughness:.95}), POOL=K.col(0x4fa3b5,{roughness:.05,metalness:.1});
-    const L=70, D=16, FH=3.1, BH=6*FH;
-    // 육각 격자 중정 8곳(축 좌표) → 고유 변(동 후보) 모으기
-    const S3=Math.sqrt(3); const cells=[[0,0],[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1],[2,-1]];
-    const ctr=([q,r])=>[L*S3*(q+r/2),L*1.5*r];
-    const edges=new Map(); cells.forEach(c=>{ const [cx,cz]=ctr(c); for(let k=0;k<6;k++){ const a0=Math.PI/6+k*Math.PI/3, a1=a0+Math.PI/3; const p0=[cx+L*Math.cos(a0),cz+L*Math.sin(a0)], p1=[cx+L*Math.cos(a1),cz+L*Math.sin(a1)]; const mx=(p0[0]+p1[0])/2, mz=(p0[1]+p1[1])/2; const key=Math.round(mx)+','+Math.round(mz); if(!edges.has(key)) edges.set(key,{x:mx,z:mz,ang:Math.atan2(p1[1]-p0[1],p1[0]-p0[0])}); } });
+    const L=70, D=16.5, FH=3.1, BH=6*FH;
+    // 육각 격자: 중정 지름(마주 보는 동 안쪽 면 사이) 60 m → 육각 한 변 s = 2·(30+D/2)/√3 ≈ 44 m. 동(70 m)은 육각 꼭짓점을 넘어 이웃 동과 엇갈려 겹침 — 꼭짓점을 공유하는 동끼리는 다른 단에 놓임
+    const S3=Math.sqrt(3), sH=2*(30+D/2)/S3; const cells=[[0,0],[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1],[2,-1]];
+    const ctr=([q,r])=>[sH*S3*(q+r/2),sH*1.5*r];
+    const edges=new Map(); const vkey=(x,z)=>Math.round(x*10)+','+Math.round(z*10);
+    cells.forEach(c=>{ const [cx,cz]=ctr(c); for(let k=0;k<6;k++){ const a0=Math.PI/6+k*Math.PI/3, a1=a0+Math.PI/3; const p0=[cx+sH*Math.cos(a0),cz+sH*Math.sin(a0)], p1=[cx+sH*Math.cos(a1),cz+sH*Math.sin(a1)]; const mx=(p0[0]+p1[0])/2, mz=(p0[1]+p1[1])/2; const key=Math.round(mx)+','+Math.round(mz); if(!edges.has(key)) edges.set(key,{x:mx,z:mz,ang:Math.atan2(p1[1]-p0[1],p1[0]-p0[0]),v:[vkey(...p0),vkey(...p1)]}); } });
     let E2=[...edges.values()]; const gc=E2.reduce((a,e)=>[a[0]+e.x/E2.length,a[1]+e.z/E2.length],[0,0]);
     E2.forEach(e=>{ e.x-=gc[0]; e.z-=gc[1]; e.d=Math.hypot(e.x,e.z); }); E2.sort((a,b)=>a.d-b.d); E2=E2.slice(0,31);
-    // 단 배정: 가운데 높게(최대 4단) — 같은 방향 동이 겹치지 않게 단마다 섞음(추정)
-    E2.forEach((e,i)=>{ e.lv=e.d<60?3:e.d<120?2:e.d<175?1:0; if(i%5===3&&e.lv>0) e.lv--; });
+    // 단 배정: 꼭짓점을 공유하는 동끼리 다른 단(탐욕 색칠) → 서로 떨어진 3동을 4단(24층 봉우리 셋)으로 올림
+    E2.forEach(e=>{ e.nb=E2.filter(f=>f!==e&&f.v.some(k=>e.v.includes(k))); });
+    E2.forEach(e=>{ const used=new Set(e.nb.filter(f=>f.lv!==undefined).map(f=>f.lv)); let lv=0; while(used.has(lv)) lv++; e.lv=lv; });
+    { const cand=E2.filter(e=>e.lv===2).sort((a,b)=>a.d-b.d); const peaks=[]; for(const e of cand){ if(peaks.length>=3) break; if(peaks.every(p=>Math.hypot(p.x-e.x,p.z-e.z)>80)) peaks.push(e); } peaks.forEach(e=>e.lv=3); }
     // ================= 0: 대지 · 중정(정원·수영장) =================
     K.layer(0);
-    K.b(0,-.15,0,420,.15,360,RG); cells.forEach((c,i)=>{ const [x,z]=ctr(c); const xx=x-gc[0], zz=z-gc[1]; K.c(xx,0,zz,26,.06,PV,6); if(i%3===0) K.c(xx+8,.07,zz-6,12,.05,POOL,20); });
+    K.b(0,-.15,0,420,.15,360,RG); cells.forEach((c,i)=>{ const [x,z]=ctr(c); const xx=x-gc[0], zz=z-gc[1]; K.c(xx,0,zz,24,.06,PV,6); if(i%3===0) K.c(xx+8,.07,zz-6,12,.05,POOL,20); });
     E.forest(cells.flatMap(c=>{ const [x,z]=ctr(c); return [[x-gc[0]-18,0,z-gc[1]+14,7,0],[x-gc[0]+20,0,z-gc[1]+10,6,0],[x-gc[0],0,z-gc[1]-22,8,0]]; }),{grp:K.cur,trunks:true,cast:true});
     // ================= 1~4: 단별 동(6층) — 층 띠·발코니 유리 · 옥상 정원 =================
     for(let lv=0;lv<4;lv++){ K.layer(1+lv); const Ls=E2.filter(e=>e.lv===lv); const slabs=[], glz=[];

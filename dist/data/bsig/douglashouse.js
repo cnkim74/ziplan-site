@@ -1,7 +1,7 @@
 __bsigFill({"douglashouse":function(K){
-// 사실: 리처드 마이어 · 1971 계획, 1973 완공 · 미시간 하버스프링스 근처 사우스 레이크 쇼어 드라이브 3490 · 미시간 호숫가의 매우 가파른 비탈, 말뚝 위 · 4개 층 + 아래 설비·창고층 · 위(길) 쪽 입구는 맨 위층, 다리로 진입 · 세로 레드우드 판을 흰색으로 · 평지붕 · 호수 쪽 벽 대부분 유리 · 계단은 모서리 · 4층 큰 바깥 데크와 그 위 작은 데크
-// 출처: Wikipedia 'Douglas House (Harbor Springs, Michigan)'(연도·주소·층·다리·재료·비탈·유리·데크) · Michigan Modern 'James and Jean Douglas House'
-// 추정: 폭 15 m·깊이 9 m·층고 3.2 m, 비탈 기울기, 다리 길이, 굴뚝(금속 원통 2개) 위치, 데크 크기, 숲 밀도, 호수까지 거리
+// 사실: 리처드 마이어 · 1971 계획, 1973 완공 · 미시간 하버스프링스 북쪽 레이크 쇼어 드라이브 · 미시간 호수로 약 45° 떨어지는 빽빽한 숲 비탈 · 길에서는 지붕과 입구층만 보이고, 본체 밖으로 내민 입구에 가는 다리로 들어감 · 입구층 아래로 네 개 층 · 입구 홀이 아래 거실·식당을 내려다봄, 큰 지붕 데크로 열림 · 층마다 데크, 공중에 매달려 튀어나온 바깥 계단이 데크를 이음 · 세로 굴뚝과 멀리언이 가로 층을 끊음 — 땅 위의 배 · 흰 칠 레드우드 판, 호수 쪽 대부분 유리
+// 출처: SAH Archipedia 'Douglas House'(비탈 45°·입구·층·데크·계단·굴뚝·배) · Wikipedia 'Douglas House (Harbor Springs, Michigan)'(연대·재료·유리) · Michigan Modern 'James and Jean Douglas House'
+// 추정: 폭 14 m·깊이 8 m, 층고 3.2 m, 데크 크기·위치, 계단 경로, 굴뚝 2개(흰 마감 세로 덩어리)·위치, 다리 길이, 숲 밀도, 호수까지 거리
     const T=K.T;
     // ---- 공용 조립 도구(이 build 안에서만) ----
     const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
@@ -128,53 +128,44 @@ __bsigFill({"douglashouse":function(K){
     const RNG=(a,b,st,ex)=>{ const L=[]; for(let v=a;v<=b+1e-6;v+=st) L.push(v); return L.concat(ex||[]); };
     // 눈높이 시선 확보: 카메라 방위 az 쪽 쐐기(건물 반폭 wb + 거리×.5) 안의 나무·소품을 빼는 판정 — true면 둬도 됨
     const VIEWCLEAR=(az,wb,az2,tmax)=>(x,z)=>{ tmax=tmax||Math.max(90,wb*7); for(const a of [az].concat(az2===undefined||az2===null?[]:[az2])){ const c=Math.cos(a), s=Math.sin(a); const t=x*c+z*s, l=Math.abs(-x*s+z*c); if(t>0&&t<tmax&&l<wb+t*.5) return false; } return true; };
-    const WH=K.col(0xf6f6f3,{roughness:.75}), WH2=K.col(0xeeeeea,{roughness:.8}), DK=K.col(0x6f8fa3,{roughness:.04,metalness:.55,transparent:true,opacity:.55,depthWrite:false}); DK.side=T.DoubleSide;
-    const RL=K.col(0xffffff,{roughness:.5}), MT=K.col(0xd6d8da,{roughness:.3,metalness:.8}), DECK=K.col(0xe4e1da,{roughness:.9});
-    const W0=15, D0=9, FH=3.2, NF=4, Y0=0; const HT=NF*FH;
-    // 비탈 기준: 길(-z, 높음) → 호수(+z, 낮음). 집 바닥 y=0 은 호수 쪽 아래층 바닥
-    K.layer(0);
-    K.b(0,-1.8,0,W0-.4,1.8,D0-.4,K.col(0xbdbab2,{roughness:.95})); // 설비층(비탈 속)
-    for(let i=0;i<NF;i++){ K.layer(i);
-      const y=i*FH;
-      K.b(0,y,0,W0,.3,D0,WH); // 바닥판
-      // 뒤(길 쪽)·옆: 흰 판벽 + 몇 개 창
-      K.b(0,y+.3,-D0/2+.12,W0,FH-.3,.24,WH2); K.b(-W0/2+.12,y+.3,0,.24,FH-.3,D0,WH2); K.b(W0/2-.12,y+.3,0,.24,FH-.3,D0,WH2);
-      if(i===NF-1){ K.b(0,y+.3,-D0/2-.02,2.2,2.4,.06,DK); } else K.b(-4,y+1.0,-D0/2-.02,1.4,1.4,.06,DK);
-      K.b(-W0/2-.02,y+1.0,-2,.06,1.6,2.4,DK);
-      // 호수 쪽(+z) 유리 커튼월 + 흰 멀리언
-      K.b(0,y+.3,D0/2-.05,W0-.6,FH-.3,.05,DK); for(let x=-W0/2+.3;x<=W0/2-.3;x+=3.6) K.b(x,y+.3,D0/2,.1,FH-.3,.12,RL); K.b(0,y,D0/2+.25,W0+.2,.32,.5,WH); if(i===1){ K.b(-W0/2+2,y+.3,D0/2-.1,4,FH-.3,.2,WH2); }
-    }
-    K.layer(NF); K.b(0,HT,0,W0+.1,.4,D0+.1,WH); K.b(0,HT+.4,0,W0+.1,.7,D0+.1,WH,0,{hollow:true});
-    // 금속 원통 굴뚝 2개(지붕 위로 높게)
-    K.c(-3,HT,-2,.35,3.8,MT,20); K.c(3.6,HT,-2.4,.3,3.2,MT,20);
-    // 4층 바깥 데크(호수 쪽 내밈) + 그 위 작은 데크, 흰 파이프 난간
-    const deck=(y,x,w,d)=>{ K.b(x,y,D0/2+d/2,w,.2,d,DECK); K.b(x,y+1.05,D0/2+d,w,.06,.06,RL); for(let xx=x-w/2;xx<=x+w/2+.01;xx+=1.2) K.b(xx,y+.2,D0/2+d,.05,.85,.05,RL); K.b(x-w/2,y+1.05,D0/2+d/2,.06,.06,d,RL); K.b(x+w/2,y+1.05,D0/2+d/2,.06,.06,d,RL); };
-    deck(3*FH,1,13,2.6); deck(HT,3.5,6,1.6);
-    // 바깥 계단(호수 쪽 모서리에서 아래로)
-    for(let i=0;i<16;i++) K.b(W0/2+.8,3*FH-(i+1)*.6,D0/2+1.2-i*.0,1.2,.08,.5,DECK,0); K.b(W0/2+1.4,0,D0/2+.8,.08,3*FH,.08,RL);
-    // 진입 다리(길 → 맨 위층)
-    K.b(0,HT-FH+.05,-D0/2-5.5,2,.3,11,WH); K.b(-1,HT-FH+.35,-D0/2-5.5,.06,1.0,11,RL); K.b(1,HT-FH+.35,-D0/2-5.5,.06,1.0,11,RL); K.b(-1,HT-FH+1.35,-D0/2-5.5,.08,.06,11,RL); K.b(1,HT-FH+1.35,-D0/2-5.5,.08,.06,11,RL);
+    const WH=K.col(0xf7f7f4,{roughness:.7}), WH2=K.col(0xededea,{roughness:.75}), DECK=K.col(0xe6e4de,{roughness:.9}), RL=K.col(0xffffff,{roughness:.45});
+    const GL=K.col(0x5d7d90,{roughness:.04,metalness:.55,transparent:true,opacity:.6,depthWrite:false}); GL.side=T.DoubleSide;
+    // 흰 칠 세로 판벽 질감
+    const rwt=E.tex('dougrw',128,(g,N)=>{ g.fillStyle='#f7f7f4'; g.fillRect(0,0,N,N); g.fillStyle='#e2e2de'; for(let i=0;i<16;i++) g.fillRect(i*N/16,0,1,N); }); const RW=new T.MeshStandardMaterial({color:0xffffff,map:rwt||null,roughness:.7});
+    const W0=14, D0=8, FH=3.2, NB=4; const Y0=-NB*FH; // 입구층 바닥 y=0, 아래 네 층(y<0)
+    const rail=(x,y,z,w,d)=>{ // 파이프 난간(바깥 테두리 3변)
+      const t=.06; K.b(x,y+1.05,z+d/2,w,t,t,RL); K.b(x,y+.55,z+d/2,w,t,t,RL); K.b(x-w/2,y+1.05,z,t,t,d,RL); K.b(x+w/2,y+1.05,z,t,t,d,RL); K.b(x-w/2,y+.55,z,t,t,d,RL); K.b(x+w/2,y+.55,z,t,t,d,RL);
+      for(let xx=x-w/2;xx<=x+w/2+.01;xx+=1.4) K.b(xx,y,z+d/2,t,1.05,t,RL); };
+    // 아래 층들: 뒤(비탈 쪽)는 판벽, 호수 쪽은 유리 + 데크(층마다 폭·위치를 달리)
+    const decks=[[2,11,2.2],[-2.5,8,1.8],[1,13,2.6],[-3,7,1.6]];
+    for(let i=0;i<NB;i++){ K.layer(i); const y=Y0+i*FH;
+      K.b(0,y,0,W0,.3,D0,WH2); merge([bx(0,y+.3,-D0/2+.1,W0,FH-.3,.2,0,3),bx(-W0/2+.1,y+.3,0,.2,FH-.3,D0,0,3),bx(W0/2-.1,y+.3,0,.2,FH-.3,D0,0,3)],RW);
+      const glassH=(i===1)?2*FH-.3:FH-.3; if(i!==2) K.b(-.5,y+.3,D0/2-.05,W0-2.4,glassH,.05,GL); for(let x=-W0/2+1.6;x<=W0/2-1.6;x+=2.4) K.b(x,y+.3,D0/2,.08,FH-.3,.1,WH);
+      K.b(W0/2-.7,y+.3,D0/2-.05,1.4,FH-.3,.2,RW); // 모서리 계단실 벽(호수 쪽 끝)
+      const [dx,dw,dd]=decks[i]; K.b(dx,y,D0/2+dd/2,dw,.25,dd,DECK); rail(dx,y+.25,D0/2+dd/2,dw,dd); }
+    // 입구층(지붕 높이): 본체 + 밖으로 내민 입구 + 큰 지붕 데크
+    K.layer(NB); K.b(0,0,-1.5,W0,.3,D0-3,WH2); merge([bx(0,.3,-D0/2+.1,W0,FH-.3,.2,0,3),bx(-W0/2+.1,.3,-1.5,.2,FH-.3,D0-3,0,3)],RW); K.b(-3,.3,1,7,FH-.3,.05,GL);
+    K.b(0,FH,-1.5,W0+.2,.35,D0-2.8,WH); K.b(2,0,2.2,W0-4,.25,4.4,DECK); rail(2,.25,2.2,W0-4,4.4); // 지붕 데크
+    K.b(-2,0,-D0/2-1,3,FH,2,RW); // 내민 입구
+    // 세로 굴뚝 2(가로 층을 끊음)
+    K.layer(NB+1); K.b(-W0/2-.6,Y0,1.5,1.2,NB*FH+FH+2.6,1.4,WH); K.b(3.5,Y0+FH,-D0/2-.6,1.1,NB*FH+2.2,1.1,WH); for(const [x,z] of [[-W0/2-.6,1.5],[3.5,-D0/2-.6]]) K.c(x,FH+2.6+(x>0?-.4:0),z,.18,.8,K.col(0xb9bec2,{roughness:.3,metalness:.8}),10);
+    // 공중에 매달린 바깥 계단(데크를 지그재그로 이음)
+    for(let i=0;i<NB;i++){ const y0=Y0+i*FH+.25, sx=i%2?-1:1; for(let k=0;k<11;k++) K.b(W0/2+1.0+sx*(k*.0),y0+(k+1)*FH/11,D0/2+.5+(sx>0?k*.28:3.1-k*.28),1.1,.08,.3,DECK); K.b(W0/2+1.55,y0,D0/2+1.9,.05,FH+1.05,3.6,RL,0,{hollow:true}); }
+    // 진입 다리(길 → 내민 입구), 가는 데크 + 파이프 난간
+    K.b(-2,.05,-D0/2-7.5,1.8,.25,11,DECK); for(const sx of [-1,1]){ K.b(-2+sx*.9,1.1,-D0/2-7.5,.06,.06,11,RL); for(let z=-D0/2-13;z<=-D0/2-2;z+=1.4) K.b(-2+sx*.9,.3,z,.05,.8,.05,RL); }
     // 말뚝(호수 쪽 아래)
-    for(const x of [-6,0,6]) K.c(x,-1.8,D0/2-.6,.25,1.8,WH2,10);
-    // ===== 비탈 숲 · 호숫가 · 미시간 호수 =====
-    const VC=VIEWCLEAR(1.25,9,0.75);
+    for(const x of [-5,0,5]) K.c(x,Y0-3,D0/2-.8,.22,3.1,WH2,10);
+    // ===== 45° 숲 비탈 · 레이크 쇼어 드라이브 · 모래톱 · 미시간 호수 =====
+    const VC=VIEWCLEAR(1.2,10,0.7);
     LIFE(()=>{
-      const YB=-1.8; // 집 아래 지반
-      const hf=(x,z)=>{ // 길 쪽 평탄(지붕 높이) → 집 → 가파른 비탈 → 모래 호숫가 → 호수
-        const road=HT-FH; if(z<-15) return road; const zz=z;
-        let h = zz<-D0/2 ? road+(zz+D0/2)*0 - Math.max(0,( -D0/2-zz))*0 : 0; // 아래에서 계산
-        const t=(z+15)/(40); // 0(길)~1(호숫가)
-        h=road-(road-(-9))*Math.min(1,Math.max(0,t))**.9; if(z>25) h=-9-(z-25)*.08; if(z>40) return Math.max(-11.5,h);
-        return h+E.fbm(x*.05,z*.05,2)*1.2*Math.min(1,Math.abs(x)/20); };
-      const HFx=(x,z)=>(Math.abs(x)<W0/2+.5&&z>-D0/2-.5&&z<D0/2+.5)?Math.min(hf(x,z),YB):hf(x,z);
-      TERR(RNG(-400,400,8,[-W0/2-.5,W0/2+.5]),RNG(-260,220,6,[-D0/2-.5,D0/2+.5]),HFx,(x,z,h,ny)=>{ const n=E.fbm(x*.04,z*.04,2); if(h<-8.6) return [.82,.77,.63]; return ny<.75?[.42+.05*n,.38+.04*n,.28]:[.33+.05*n,.42+.06*n,.24]; },(x,z)=>Math.abs(x)<W0/2+.5&&Math.abs(z)<D0/2+.5);
-      // 호수(넓은 물, 모래톱 앞)
-      const WT=W.WATER; const wm=new T.Mesh(new T.PlaneGeometry(3000,2000),WT); wm.rotation.x=-Math.PI/2; wm.position.set(0,-10.3,1050); K.life.add(wm);
-      // 길(레이크 쇼어 드라이브) — 숲속 좁은 길
-      K.b(0,HT-FH-.02,-24,200,.05,6,K.col(0x555555,{roughness:1}));
-      // 비탈 숲(활엽·침엽) — 호수 쪽 시야는 비움
-      E.forest(E.scatter(-200,200,-200,30,7,HFx,(x,z)=>VC(x,z)&&!(Math.abs(x)<14&&z>-14)&&E.r()<.6,()=>13+E.r()*7,()=>E.r()<.4?2:0),{});
-      E.forest([[-14,hf(-14,-6),-6,15,2,.3,1],[15,hf(15,-4),-4,16,0,.5,1],[-16,hf(-16,6),6,12,0,.7,1]].filter(t=>VC(t[0],t[2])),{cast:true});
+      // 길(z<-14, 지붕 높이 y≈0) → 집 → 약 45° 비탈 → 모래톱(z≈28, y≈-30) → 호수
+      const hf=(x,z)=>{ const n=E.fbm(x*.04,z*.04,2); if(z<-13) return -.05+n*.6; let h=-.05-(z+13)*.95; if(z>18) h=Math.max(-30.5,-.05-31*.95+(z-18)*0)+0; h=Math.max(h,-30.5); return h+n*1.4*Math.min(1,Math.abs(z+13)/6)*(h>-30?1:0); };
+      const HFx=(x,z)=>(Math.abs(x)<W0/2+.3&&z>-D0/2-.3&&z<D0/2+.3)?Math.min(hf(x,z),Y0-3):hf(x,z);
+      TERR(RNG(-300,300,6,[-W0/2-.3,W0/2+.3]),RNG(-160,240,3,[-D0/2-.3,D0/2+.3,-13]),HFx,(x,z,h,ny)=>{ const n=E.fbm(x*.04,z*.04,2); if(h<-29.8) return [.84,.79,.65]; return ny<.8?[.36+.05*n,.33+.04*n,.24]:[.33+.05*n,.42+.06*n,.24]; });
+      const wm=new T.Mesh(new T.PlaneGeometry(3000,2000),W.WATER); wm.rotation.x=-Math.PI/2; wm.position.set(0,-30.9,1040); K.life.add(wm);
+      K.b(0,-.02,-20,400,.06,7,K.col(0x4a4a4a,{roughness:1})); // 레이크 쇼어 드라이브
+      E.forest(E.scatter(-180,180,-120,22,4.5,HFx,(x,z,h)=>VC(x,z)&&!(Math.abs(x)<W0/2+3&&z>-D0/2-14&&z<D0/2+4)&&!(Math.abs(x-W0/2-1.5)<2.5&&z>-2&&z<D0/2+6)&&E.r()<.5,()=>7+E.r()*4,(x,z)=>E.r()<.45?2:0),{});
+      W.sky(2000);
     });
-    W.own(); KEEP_PEOPLE();
+    W.own(); { K.life.add=function(){ return K.life; }; }
   }});

@@ -1,6 +1,7 @@
 __bsigFill({"deoksu":function(K){
 // 출처: 한국민족문화대백과사전 「덕수궁」(중화전 정면 5칸·측면 4칸, 처음 중층 → 1904 화재 뒤 단층, 중화문 정면 3칸·측면 2칸 단층, 석조전 정면 54 m·측면 31 m 3층 석조, 대한문 다포 우진각), 서울신문(1994.07, 석조전 최초 서양식 건물)
-// 추정: 전각 배치·거리, 칸 폭, 월대 높이, 석조전 높이·열주 수·세부, 서관 크기, 대한문 칸 수(사진 기준 3칸으로 표현), 주변 건물
+// 확인(K2): 대한문 정면 3칸·측면 2칸 단층 다포 우진각 — 한국민족문화대백과사전 「덕수궁 대한문」 본문(1906 대안문→대한문 개칭, 1914·1970 이건). 같은 사전의 '덕수궁' 항목 사진 설명은 '정면 2칸'이라 적었으나 본문 기준으로 3칸 유지
+// 추정: 전각 배치·거리, 칸 폭, 월대 높이, 석조전 높이·열주 수·세부, 서관 크기, 주변 건물
     const T=K.T; const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
     // --- 공용 헬퍼(이 build 안에서만): 인스턴스·병합·한옥 지붕면(roofHF: dt 0 우진각 · 0<dt<1 팔작 · 1 맞배) ---
     const inst=(geo,mat,items,cast,grp,fit)=>{ if(!items.length) return null; if(fit) geo=geo.clone(); const m=new T.InstancedMesh(geo,mat,items.length); m.frustumCulled=false; const M4=new T.Matrix4(),Q=new T.Quaternion(),S=new T.Vector3(),V=new T.Vector3(),Eu=new T.Euler(); items.forEach((it,i)=>{ V.set(it[0],it[1],it[2]); Eu.set(it[7]||0,it[3]||0,it[8]||0); Q.setFromEuler(Eu); S.set(it[4]||1,it[5]||1,it[6]||1); M4.compose(V,Q,S); m.setMatrixAt(i,M4); }); m.instanceMatrix.needsUpdate=true; if(fit){ if(!geo.boundingBox) geo.computeBoundingBox(); const gb=geo.boundingBox.clone(), bb=new T.Box3(); for(let i=0;i<items.length;i++){ m.getMatrixAt(i,M4); bb.union(gb.clone().applyMatrix4(M4)); } geo.boundingBox=bb; geo.boundingSphere=bb.getBoundingSphere(new T.Sphere()); } if(grp){ m.castShadow=!!cast; m.receiveShadow=true; grp.add(m); return m; } return put(m,cast); };
