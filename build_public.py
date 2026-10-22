@@ -189,6 +189,38 @@ _FOOT = ('<div class="foot"><div class="fl"><a href="/atlas/">건축 아틀라�
 _DEF_IMG = SITE_URL + '/img/house-dusk.jpg'
 _PAGES = []   # (path, bytes)
 
+# F7 v22b: 정적 /atlas/·/ask/ 본문의 전문 용어를 처음 한 번만 쉬운 말(용어)로. 제목·링크·버튼·코드 안은 건드리지 않음.
+_PLAIN = [('노출 콘크리트', '마감 없이 드러낸 콘크리트'), ('캔틸레버', '한쪽만 받쳐 내민 구조'), ('필로티', '기둥만 세워 비운 1층'),
+          ('파사드', '정면'), ('커튼월', '통유리 외벽'), ('아트리움', '지붕 덮인 큰 중앙 홀'), ('버트레스', '벽을 받치는 버팀벽'),
+          ('루버', '햇빛 가림 날개'), ('보이드', '비워 둔 공간'), ('슬래브', '바닥판'), ('조닝', '구역 나누기'), ('포디움', '아래 받침 건물'),
+          ('매스', '덩어리'), ('동선', '다니는 길'), ('입면', '바깥 면'), ('그리드', '격자'), ('모듈', '반복 단위'), ('코어', '계단·엘리베이터 심'),
+          ('기단', '건물을 올린 받침 단'), ('중정', '가운데 마당'), ('대지', '땅')]
+_PLAIN_ATLAS_ONLY = {('공포', '처마를 받치는 나무 짜임')}
+_PARTICLE = set('이가은는을를의와과로에도만처까부보')
+def _plainify(html, atlas):
+    import re as R
+    i = html.find('<main'); j = html.rfind('</main>')
+    if i < 0 or j < 0: return html
+    body = html[i:j]; parts = R.split(r'(<[^>]+>)', body); skip = 0; done = set()
+    terms = list(_PLAIN) + (list(_PLAIN_ATLAS_ONLY) if atlas else [])
+    sk = R.compile(r'^<(/?)(h1|h2|h3|h4|a|title|button|code|script|style|summary|figcaption|dt|nav)\b', R.I)
+    for k, t in enumerate(parts):
+        if t.startswith('<'):
+            m = sk.match(t)
+            if m and not t.endswith('/>'): skip += -1 if m.group(1) else 1
+            skip = max(skip, 0); continue
+        if skip or not t.strip(): continue
+        for term, plain in terms:
+            if term in done or plain in t: continue
+            for m in R.finditer(R.escape(term), t):
+                a, b = m.start(), m.end()
+                pv = t[a-1] if a else ' '; nx = t[b] if b < len(t) else ' '
+                if '\uac00' <= pv <= '\ud7a3': continue
+                if nx == '(' or ('\uac00' <= nx <= '\ud7a3' and nx not in _PARTICLE): continue
+                t = t[:a] + plain + '(' + term + ')' + t[b:]; done.add(term); break
+        parts[k] = t
+    return html[:i] + ''.join(parts) + html[j:]
+
 def _page(path, title, desc, main, img=None, img_alt='', ld=None, crumbs=None, og_type='article', noindex=False):
     can = _url(path)
     g = []
@@ -218,6 +250,7 @@ def _page(path, title, desc, main, img=None, img_alt='', ld=None, crumbs=None, o
     rel = path.strip('/')
     f = dist / rel / 'index.html' if rel and not rel.endswith('.html') else dist / (rel or 'index.html')
     f.parent.mkdir(parents=True, exist_ok=True)
+    if rel.startswith('atlas/') or rel.startswith('ask/'): doc = _plainify(doc, rel.startswith('atlas/'))
     b = doc.encode('utf-8'); f.write_bytes(b)
     if not noindex: _PAGES.append((path, len(b)))
     return title
@@ -587,6 +620,7 @@ def _build_static(D):
     _page('/taste/', '취향 랩 — 사진 세 번 고르면 내 취향 집 | ZIPLAN', '분위기·사는 곳·중요한 것을 사진 카드로 고르면 1분 안에 내 취향 집이 3D로 지어지고, 닮은 실제 건물 3채를 알려 줍니다. 로그인 없이 무료.',
           '<p class="kick">취향 랩</p><h1>사진 세 번 고르면, 내 취향 집</h1><p class="lead">좋아하는 집을 말로 설명하기 어렵다면 사진으로 고르세요. 세 단계, 1분이면 끝나요.</p>'
           '<div class="cta"><a class="btn" href="/#dna">취향 랩 시작하기</a><a class="btn ghost" href="/atlas/">닮은 명작 둘러보기</a></div>'
+          '<script>(function(){try{var r=new URLSearchParams(location.search).get("r");if(r&&/^[a-z.-]{2,80}$/.test(r)){location.replace("/#dna?r="+r);}}catch(e){}})();</script>'
           '<section class="grp"><h2>이렇게 진행돼요</h2><ol class="pts"><li><b>분위기</b> — 따뜻한 나무 집, 차분한 콘크리트, 한옥… 마음에 드는 사진을 2~3장</li><li><b>사는 곳</b> — 도심, 골목, 숲 속, 바닷가… 살고 싶은 곳</li><li><b>중요한 것</b> — 빛, 마당, 넓은 거실, 수납, 조용함…</li></ol></section>'
           '<section class="grp"><h2>결과로 받는 것</h2><ul class="pts"><li>내 취향 유형 이름과 한 줄 설명</li><li>고른 단어로 지은 3D 집(돌려 보기)</li><li>닮은 실제 건물 3채 — 정교 모형으로 바로 열기</li><li>공유용 이미지(1080×1350)와 링크</li></ul><p class="cap">결과는 고른 사진의 단어를 바탕으로 한 참고용 제안이에요.</p></section>',
           img=SITE_URL + '/img/og/taste.jpg', img_alt='ZIPLAN 취향 랩', crumbs=[('ZIPLAN', '/'), ('취향 랩', '/taste/')], og_type='website',
