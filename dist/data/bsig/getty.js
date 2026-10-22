@@ -1,4 +1,5 @@
 __bsigFill({"getty":function(K){
+// v22 재작업(팀 W): 트래버틴 색을 실제 베이지로 진하게, 흰 금속 판을 따뜻한 회백색으로 — 멀리서도 두 재료가 구분되게 · 마이어의 홀로 선 곡면 트래버틴 벽(호) 5곳과 박물관 안마당 곡면 캐노피 추가(위치·반지름 추정)
 // 출처: Getty 공식 「Architecture」 안내(getty.edu/visit/center/architecture) — 트래버틴 약 16,000 t(로마 동쪽 약 15 mi 바니 디 티볼리), 120만 sq ft, 트래버틴 정사각 격자, 연구소는 중앙 정원 서쪽 원형 건물, 그림 전시실은 북·남·동·서 전시동 위층, 주차장에서 언덕 위로 트램 · 영문 위키백과 「Getty Center」(1997-12 개관, 리처드 마이어, 중앙 정원 로버트 어윈)
 // 추정: 건물 배치·크기(항공사진 기억을 바탕으로 단순화), 해발 약 270 m(900 ft), 전시동 높이 14~18 m, 입구 홀 지름 26 m, 연구소 지름 72 m, 정원 연못 지름 36 m, 지형(골짜기·405번 고속도로 위치·LA 분지·바다 방향)
     const T=K.T;
@@ -121,9 +122,9 @@ __bsigFill({"getty":function(K){
       return {sky,lplane,lpoly,solid,WATER,city,grid,ring,manh,own}; })();
 
     // 질감: 트래버틴(거친 베이지 정사각 판 76 cm, 가로 결) · 흰 에나멜 판(76 cm 격자) — 512 px = 3.05 m
-    const trT=E.tex('usGettyTrav',512,(g,N,rr)=>{ const n=4, c=N/n; for(let j=0;j<n;j++) for(let i=0;i<n;i++){ const t=.92+rr()*.12; g.fillStyle=`rgb(${Math.round(214*t)},${Math.round(200*t)},${Math.round(170*t)})`; g.fillRect(i*c,j*c,c,c); for(let k=0;k<26;k++){ const y=j*c+rr()*c; g.fillStyle=rr()<.6?'rgba(120,100,70,.28)':'rgba(255,248,230,.25)'; g.fillRect(i*c+rr()*c*.3,y,c*(.3+rr()*.7),1+rr()*2.5); } for(let k=0;k<40;k++){ g.fillStyle='rgba(90,72,50,.35)'; g.fillRect(i*c+rr()*c,j*c+rr()*c,2+rr()*3,1.5); } }
+    const trT=E.tex('usGettyTrav2',512,(g,N,rr)=>{ const n=4, c=N/n; for(let j=0;j<n;j++) for(let i=0;i<n;i++){ const t=.9+rr()*.14; g.fillStyle=`rgb(${Math.round(203*t)},${Math.round(184*t)},${Math.round(150*t)})`; g.fillRect(i*c,j*c,c,c); for(let k=0;k<26;k++){ const y=j*c+rr()*c; g.fillStyle=rr()<.6?'rgba(110,88,58,.36)':'rgba(255,246,226,.28)'; g.fillRect(i*c+rr()*c*.3,y,c*(.3+rr()*.7),1+rr()*2.5); } for(let k=0;k<40;k++){ g.fillStyle='rgba(90,72,50,.35)'; g.fillRect(i*c+rr()*c,j*c+rr()*c,2+rr()*3,1.5); } }
       g.strokeStyle='rgba(110,95,72,.55)'; g.lineWidth=2; for(let k=0;k<=n;k++){ g.beginPath(); g.moveTo(k*c,0); g.lineTo(k*c,N); g.stroke(); g.beginPath(); g.moveTo(0,k*c); g.lineTo(N,k*c); g.stroke(); } });
-    const mtT=E.tex('usGettyMetal',512,(g,N,rr)=>{ g.fillStyle='#eeece6'; g.fillRect(0,0,N,N); const n=4, c=N/n; for(let j=0;j<n;j++) for(let i=0;i<n;i++){ const t=.97+rr()*.04; g.fillStyle=`rgb(${Math.round(238*t)},${Math.round(236*t)},${Math.round(230*t)})`; g.fillRect(i*c+2,j*c+2,c-4,c-4); } g.strokeStyle='rgba(120,120,115,.6)'; g.lineWidth=2.2; for(let k=0;k<=n;k++){ g.beginPath(); g.moveTo(k*c,0); g.lineTo(k*c,N); g.stroke(); g.beginPath(); g.moveTo(0,k*c); g.lineTo(N,k*c); g.stroke(); } });
+    const mtT=E.tex('usGettyMetal2',512,(g,N,rr)=>{ g.fillStyle='#e6e3da'; g.fillRect(0,0,N,N); const n=4, c=N/n; for(let j=0;j<n;j++) for(let i=0;i<n;i++){ const t=.97+rr()*.04; g.fillStyle=`rgb(${Math.round(232*t)},${Math.round(229*t)},${Math.round(220*t)})`; g.fillRect(i*c+2,j*c+2,c-4,c-4); } g.strokeStyle='rgba(105,105,100,.75)'; g.lineWidth=2.2; for(let k=0;k<=n;k++){ g.beginPath(); g.moveTo(k*c,0); g.lineTo(k*c,N); g.stroke(); g.beginPath(); g.moveTo(0,k*c); g.lineTo(N,k*c); g.stroke(); } });
     const TRV=tmat(trT,0xd6c8aa,{roughness:.95}), MTL=tmat(mtT,0xeeece6,{roughness:.45,metalness:.12}), GLS=K.col(0x6f8995,{roughness:.08,metalness:.5}), MUL=K.col(0xd9d9d4,{roughness:.4,metalness:.4}),
       PAV=tmat(trT,0xd8ccb2,{roughness:.95,tint:0xece4d2}), GRN=K.col(0x6e8b4a,{roughness:.95}), CAC=K.col(0x5f7d4a,{roughness:.8}), AZA=K.col(0xd2557a,{roughness:.8}), DK=K.col(0x50545a,{roughness:.6});
     const TL=[], ML=[], GL=[], MU=[]; const TM=3.05;
@@ -177,6 +178,12 @@ __bsigFill({"getty":function(K){
     for(const [x,z,w,h,ry] of [[-60,-95,60,4.5,0],[-30,-100,1.4,4,0],[-95,-60,1.4,5,0],[20,60,44,3.5,0],[64,70,1.4,3.5,0],[-150,-60,1.4,6,.39],[-115,-20,1.4,4,0]]) TL.push(bx(x,0,z,w,h,w>2?1.4:40,ry,TM));
     // 유리 다리(입구 홀 → 북 전시동 → 동 전시동)
     GL.push(bx(-17,7,-45,4,3.5,12)); GL.push(bx(14,7,-24,14,3.5,4)); GL.push(bx(40,7,13,4,3.5,10));
+    // [v22 재작업] 마이어의 곡면 — 홀로 선 트래버틴 호(arc) 벽: 도착 광장(원통 홀 둘레) · 중앙 정원 위 가장자리 · 남쪽 선인장 정원 곶 · 연구소 앞 — 곡선과 직교 격자의 대비
+    { const arc=(cx,cz,r,a0,a1,h,th,L)=>{ const n=Math.max(6,Math.round(Math.abs(a1-a0)*r/2.4)); for(let i=0;i<n;i++){ const a=a0+(a1-a0)*(i+.5)/n; const seg=Math.abs(a1-a0)*r/n+.05; L.push(bx(cx+Math.cos(a)*r,0,cz+Math.sin(a)*r,seg,h,th,-a+Math.PI/2,TM)); } };
+      arc(-10,-60,24,Math.PI*.15,Math.PI*.85,5.5,1.4,TL); arc(-10,-60,30,Math.PI*1.1,Math.PI*1.55,3.2,1.2,TL);
+      arc(-118,40,30,Math.PI*.05,Math.PI*.95,2.2,1.2,TL); arc(62,96,17,-Math.PI*.6,Math.PI*.95,1.6,1.0,TL); arc(-200,40,44,Math.PI*1.15,Math.PI*1.85,3.6,1.4,TL);
+      // 박물관 안마당 위 흰 금속 곡면 캐노피(입구 쪽) + 가는 기둥
+      const cg=new T.CylinderGeometry(16,16,.5,40,1,false,Math.PI*1.05,Math.PI*.9); cg.translate(5,12.5,-12); ML.push(cg); for(let k=0;k<7;k++){ const a=Math.PI*1.05+k/6*Math.PI*.9; MU.push(bx(5+Math.sin(a)*15.4,0,-12+Math.cos(a)*15.4,.35,12.5,.35)); } }
     merge(TL,TRV); merge(ML,MTL); merge(GL,GLS,false); merge(MU,MUL,false);
     // ================= 2: 중앙 정원(골짜기 · 지그재그 길 · 진달래 미로 연못) · 선인장 정원 =================
     K.layer(2);

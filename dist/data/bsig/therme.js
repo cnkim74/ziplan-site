@@ -1,4 +1,5 @@
 __bsigFill({"therme":function(K){
+// v22 재작업(팀 W): 규암 판 질감을 더 밝고 초록빛 도는 회색으로, 판 두께 차이와 줄눈이 멀리서도 보이게 · 잔디 지붕의 빛 틈을 흰 선 → 짙은 유리 줄로 · 앞 처마 유리 줄도 짙게 · 호텔 동에 발코니 띠(추정)
 // 출처: tour-switzerland.ch 「Vals Therme」 — 1996 개장, 발스 규암 60,000장, 얇은 콘크리트 줄눈 사이 가로 켜쌓기, 판 두께 10~12 cm·깊이 30~50 cm, 실내 풀 36°C·불탕 42°C·냉탕 14°C·바깥 풀 36°C·꽃탕·소리 동굴·마시는 샘, 위 호텔(7132 Hotel)에서 터널, 비탈에 일부 묻힘
 // 추정: 평면 58 × 34 m·높이 7.6 m, 바깥 풀 위치·크기(21 × 13 m), 블록·지붕판 배치와 틈 폭, 개구부 크기·위치, 비탈 경사, 호텔 동 위치·높이, 산 높이·계곡 방향, 마을 위치
     const T=K.T; const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
@@ -118,8 +119,8 @@ __bsigFill({"therme":function(K){
     const rod=(a,b,r,mat,seg)=>{ const dx=b[0]-a[0],dy=b[1]-a[1],dz=b[2]-a[2]; const L=Math.hypot(dx,dy,dz); if(L<.001) return; const g=new T.CylinderGeometry(r,r,L,seg||6,1,true); g.applyMatrix4(new T.Matrix4().makeRotationFromQuaternion(new T.Quaternion().setFromUnitVectors(UP,new T.Vector3(dx/L,dy/L,dz/L)))); g.translate((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2); Q(mat,g); };
 
     K.layer(0); E.own();
-    const QZ=TX.mk(TX.tex('eu_valsq',512,(g,N,rr)=>{ g.fillStyle='#4b4e4a'; g.fillRect(0,0,N,N); let y=0; const hs=[4,6,8]; while(y<N){ const h=hs[Math.floor(rr()*3)]; let x=-rr()*80; while(x<N){ const w=40+rr()*140; const t=rr(); const c=[118+t*36|0,122+t*32|0,114+t*30|0]; if(rr()<.2){ c[1]+=6; c[2]+=10; } g.fillStyle=`rgb(${c[0]},${c[1]},${c[2]})`; g.fillRect(x+1,y+.5,w-1.5,h-1.2); x+=w; } y+=h; } for(let k=0;k<3000;k++){ g.fillStyle=rr()<.5?'rgba(255,255,255,.05)':'rgba(0,0,0,.06)'; g.fillRect(rr()*N,rr()*N,2,1); } }),2.2,{roughness:.88});
-    const GRS=TX.mk(TX.tex('eu_valsroof2',512,(g,N,rr)=>{ g.fillStyle='#6f8a4b'; g.fillRect(0,0,N,N); for(let k=0;k<9000;k++){ const t=rr(); g.fillStyle=`rgba(${80+t*60|0},${110+t*50|0},${50+t*30|0},.35)`; g.fillRect(rr()*N,rr()*N,2,3); } g.fillStyle='rgba(200,210,205,.7)'; const xs=[0,.11,.27,.39,.52,.66,.8,.9,1], zs=[0,.18,.33,.5,.62,.8,1]; for(const f of xs) g.fillRect(f*N-.6,0,1.2,N); for(const f of zs) g.fillRect(0,f*N-.6,N,1.2); }),60,{roughness:1});
+    const QZ=TX.mk(TX.tex('eu_valsq2',512,(g,N,rr)=>{ g.fillStyle='#3d413c'; g.fillRect(0,0,N,N); let y=0; const hs=[4,6,8]; while(y<N){ const h=hs[Math.floor(rr()*3)]; let x=-rr()*80; while(x<N){ const w=40+rr()*140; const t=rr(); const c=[124+t*44|0,132+t*40|0,120+t*34|0]; if(rr()<.25){ c[1]+=10; c[2]+=4; } if(rr()<.12){ c[0]-=22; c[1]-=20; c[2]-=18; } g.fillStyle=`rgb(${c[0]},${c[1]},${c[2]})`; g.fillRect(x+1,y+.5,w-1.5,h-1.2); x+=w; } y+=h; } for(let k=0;k<3000;k++){ g.fillStyle=rr()<.5?'rgba(255,255,255,.05)':'rgba(0,0,0,.06)'; g.fillRect(rr()*N,rr()*N,2,1); } }),2.2,{roughness:.88});
+    const GRS=TX.mk(TX.tex('eu_valsroof3',512,(g,N,rr)=>{ g.fillStyle='#6f8a4b'; g.fillRect(0,0,N,N); for(let k=0;k<9000;k++){ const t=rr(); g.fillStyle=`rgba(${80+t*60|0},${110+t*50|0},${50+t*30|0},.35)`; g.fillRect(rr()*N,rr()*N,2,3); } g.fillStyle='rgba(38,52,58,.85)'; const xs=[0,.11,.27,.39,.52,.66,.8,.9,1], zs=[0,.18,.33,.5,.62,.8,1]; for(const f of xs) g.fillRect(f*N-.6,0,1.2,N); for(const f of zs) g.fillRect(0,f*N-.6,N,1.2); }),60,{roughness:1});
     const GLD=K.col(0x27333a,{roughness:.05,metalness:.72}), CONC=K.col(0x8c8f8a,{roughness:.9}), DECK=K.col(0x7d817c,{roughness:.85});
     const POOL=K.col(0x4f8f96,{roughness:.04,metalness:.1,transparent:true,opacity:.85});
     const X0=-29, X1=29, Z0=-17, Z1=17, HH=7.6, PX0=-27, PX1=-6, PZ0=3; // 바깥 풀 마당(앞 왼쪽, 지붕 없음)
@@ -151,7 +152,7 @@ __bsigFill({"therme":function(K){
     const roofP=[[X0,Z0-3.2,X1,PZ0],[PX1,PZ0,X1,Z1]];
     for(const [a,b,c,d] of roofP){ B((a+c)/2,HH,(b+d)/2,c-a+.5,.45,d-b+.5,CONC); B((a+c)/2,HH+.45,(b+d)/2,c-a+.3,.18,d-b+.3,GRS); }
     // 지붕판 틈(빛 띠) — 앞 처마 면에 가는 유리 줄
-    for(const x of [-22.6,-13.4,-6.6,1.2,9.3,17.4,23.2]) if(x>PX1||true) B(x,HH,(x>PX1?Z1:PZ0)+.24,.1,.45,.04,K.col(0xdfe8ea,{roughness:.1,metalness:.3}));
+    for(const x of [-22.6,-13.4,-6.6,1.2,9.3,17.4,23.2]) if(x>PX1||true) B(x,HH,(x>PX1?Z1:PZ0)+.24,.12,.45,.04,K.col(0x2a363c,{roughness:.05,metalness:.7}));
     flush();
     // ---- 배경(K.life): 산비탈(뒤로 솟음) · 계곡·강 · 침엽수림 · 호텔 · 발스 마을(돌판 지붕) · 눈 덮인 봉우리 ----
     LIFE(()=>{
@@ -163,7 +164,7 @@ __bsigFill({"therme":function(K){
       { const pts=[]; for(let x=-1500;x<=1500;x+=30) pts.push(new T.Vector3(x,0,0)); const g=new T.PlaneGeometry(3000,14,100,1); g.rotateX(-Math.PI/2); const p=g.attributes.position; for(let i=0;i<p.count;i++){ const x=p.getX(i), z=p.getZ(i)+180+Math.sin(x*.004)*40; p.setZ(i,z); p.setY(i,TR.h(x,z)+.4); } g.computeVertexNormals(); const m=new T.Mesh(g,E.WATER); K.life.add(m); }
       const tr=E.scatter(-1500,1500,-1500,1500,20,TR.h,(x,z,h)=>!(Math.abs(x)<170&&z>-130&&z<160)&&h<620&&h>-30&&E.vn(x*.01,z*.01)>.38&&!(Math.abs(z-180-Math.sin(x*.004)*40)<20),()=>11+E.r()*7,()=>2); E.forest(tr,{trunks:false});
       // 호텔(뒤 비탈 위, 1960년대 동 — 위치·높이 추정) · 터널 입구 쪽 길
-      const hot=[[-70,-70,46,16,18,'#d9d4c8'],[10,-92,60,16,21,'#e2ddd2'],[80,-62,30,14,15,'#cfc9bc']]; for(const [x,z,w,d,h,c] of hot){ const y=TR.h(x,z); B(x,y-4,z,w,h+4,d,K.col(parseInt(c.slice(1),16),{roughness:.9})); for(let k=1;k<6;k++) B(x,y+k*3.1,z+d/2+.05,w-2,1.2,.1,GLD); B(x,y+h,z,w+1.2,.4,d+1.2,K.col(0x6d6a65,{roughness:.9})); }
+      const hot=[[-70,-70,46,16,18,'#d9d4c8'],[10,-92,60,16,21,'#e2ddd2'],[80,-62,30,14,15,'#cfc9bc']]; for(const [x,z,w,d,h,c] of hot){ const y=TR.h(x,z); B(x,y-14,z,w,h+14,d,K.col(parseInt(c.slice(1),16),{roughness:.9})); for(let k=1;k<6;k++){ B(x,y+k*3.1,z+d/2+.05,w-2,1.3,.1,GLD); B(x,y+k*3.1-.35,z+d/2+.9,w-1,.25,1.8,K.col(0xe8e5dd,{roughness:.9})); } B(x,y+h,z,w+1.2,.4,d+1.2,K.col(0x6d6a65,{roughness:.9})); }
       // 발스 마을: 흰 벽 + 회색 돌판 지붕 집(인스턴스)
       { const wall=[], roof=[]; for(let i=0;i<120;i++){ const x=-60-E.r()*520, z=150+E.r()*170; if(Math.abs(z-180-Math.sin(x*.004)*40)<14) continue; const y=TR.h(x,z), s=7+E.r()*5, ry=E.r()*.4; wall.push([x,y-1,z,ry,s,6.5+E.r()*3,s*.8]); roof.push([x,y+6+E.r()*.2,z,ry,s*1.15,3.4,s*.95]); }
         const rg=(()=>{ const sh=new T.Shape(); sh.moveTo(-.5,0); sh.lineTo(0,1); sh.lineTo(.5,0); const g=new T.ExtrudeGeometry(sh,{depth:1,bevelEnabled:false}); g.translate(0,0,-.5); return g; })();

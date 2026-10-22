@@ -1,19 +1,15 @@
 __bsigFill({"tepapa":function(K){
-// 출처: 테 파파 공식 「Te Papa's main building: Engineering facts」·영문 위키백과 「Te Papa」 — 1998.2.14 개관, 자스막스(피트 보슬리·이반 메르셉) 설계·플레처 시공, 6개 층, 공용 바닥 36,000 ㎡, 무게 64,000 t, 콘크리트 80,000 ㎥, 면진 받침 152개, 외피 회색·노란색 석재 패널 14,500장, 매립지(케이블 거리, 16 m 다짐), 마라에 롱고마라에로아, 부시 시티, 케이블 거리 쪽 므르쿠시치 색유리(2층 높이·건물 길이만큼)
-// 추정: 본동 150 × 60 m·높이 24 m, 쐐기 각도(도시 격자에서 약 25°)·길이·높이 24→12 m, 유리 틈 폭 4 m, 항구 쪽 잔디 마당 단, 주변 배치(항구·와이탕이 공원·오리엔탈 베이 언덕·CBD·타키나) 개략
-    const T=K.T; const put=(m,cast,grp)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (grp||K.cur||K.layer(0)).add(m); return m; };
-    const inst=(geo,mat,items,cast,grp)=>{ if(!items.length) return null; const m=new T.InstancedMesh(geo,mat,items.length); const M4=new T.Matrix4(),Q=new T.Quaternion(),S=new T.Vector3(),V=new T.Vector3(),Eu=new T.Euler(0,0,0,'YXZ'); items.forEach((it,i)=>{ V.set(it[0],it[1],it[2]); Eu.set(it[7]||0,it[3]||0,it[8]||0); Q.setFromEuler(Eu); S.set(it[4]||1,it[5]||1,it[6]||1); M4.compose(V,Q,S); m.setMatrixAt(i,M4); }); m.instanceMatrix.needsUpdate=true; return put(m,cast,grp); };
+// 사실: 지상 6개 층 · 공용 바닥 36,000 ㎡ · 무게 64,000 t · 콘크리트 8만 ㎥ · 면진 받침 152개 · 회색·노란색 석재 패널 14,500장 · 박물관 소유 대지 2.3019 ha(+ 워터프런트 임차 약 5,689 ㎡) · 공사 4년 · 1998 개관 · 설계 재스맥스(JASMAX)
+// 출처: Te Papa 공식 「Te Papa's main building: engineering facts」(층수·면적·무게·받침·석재 패널·대지)
+// 추정: 본동 약 140 × 55 m · 높이 24~28 m(계단식 지붕), 쐐기 길이 약 130 m(밑 폭 34 m → 끝 뾰족)·각도(격자에서 약 24°)·높이(26 → 12 m), 유리 로비 범위, 색유리 띠 위치·색, 잔디 계단·부시 시티 범위, 주변 CBD·언덕·항구 배치는 개략
+    const T=K.T;
+    const put=(m,cast)=>{ m.castShadow=cast!==false; m.receiveShadow=true; (K.cur||K.layer(0)).add(m); return m; };
+    // 인스턴스: geo(밑면 y=0 기준) 를 items=[[x,y,z,ry,sx,sy,sz]] 자리에 복제 — 기둥·판문·공포처럼 같은 부재 반복
+    const inst=(geo,mat,items,cast)=>{ const m=new T.InstancedMesh(geo,mat,items.length); const M4=new T.Matrix4(),Q=new T.Quaternion(),S=new T.Vector3(),V=new T.Vector3(),E=new T.Euler(); items.forEach((it,i)=>{ V.set(it[0],it[1],it[2]); E.set(0,it[3]||0,0); Q.setFromEuler(E); S.set(it[4]||1,it[5]||1,it[6]||1); M4.compose(V,Q,S); m.setMatrixAt(i,M4); }); m.instanceMatrix.needsUpdate=true; return put(m,cast); };
+    const bx=(x,y,z,w,h,d,ry)=>{ const g=new T.BoxGeometry(w,h,d); if(ry) g.rotateY(ry); g.translate(x,y+h/2,z); return g; };
+    const merge=(geos,mat,cast)=>{ if(!geos.length) return null; let n=0; const G=geos.map(g=>g.index?g.toNonIndexed():g); for(const g of G) n+=g.attributes.position.count; const Pa=new Float32Array(n*3),Na=new Float32Array(n*3),Ua=new Float32Array(n*2); let o=0; for(const g of G){ Pa.set(g.attributes.position.array,o*3); Na.set(g.attributes.normal.array,o*3); if(g.attributes.uv) Ua.set(g.attributes.uv.array,o*2); o+=g.attributes.position.count; } const g=new T.BufferGeometry(); g.setAttribute('position',new T.BufferAttribute(Pa,3)); g.setAttribute('normal',new T.BufferAttribute(Na,3)); g.setAttribute('uv',new T.BufferAttribute(Ua,2)); return put(new T.Mesh(g,mat),cast); };
+    const cylG=(r,h,seg,r2)=>{ const g=new T.CylinderGeometry(r2===undefined?r*.9:r2,r,h,seg||10); g.translate(0,h/2,0); return g; };
     const boxG=(w,h,d)=>{ const g=new T.BoxGeometry(w,h,d); g.translate(0,h/2,0); return g; };
-    // 월드 크기 UV 상자(질감이 늘어나지 않게): tm m마다 질감 한 장
-    const tboxG=(w,h,d,tm)=>{ const g=new T.BoxGeometry(w,h,d); const uv=g.attributes.uv; const S=[[d,h],[d,h],[w,d],[w,d],[w,h],[w,h]]; for(let f=0;f<6;f++) for(let i=0;i<4;i++){ const k=f*4+i; uv.setXY(k,uv.getX(k)*S[f][0]/tm,uv.getY(k)*S[f][1]/tm); } g.translate(0,h/2,0); return g; };
-    const tb=(x,y,z,w,h,d,mat,tm,ry,grp,cast)=>{ const m=new T.Mesh(tboxG(w,h,d,tm||4),mat); m.position.set(x,y,z); if(ry) m.rotation.y=ry; return put(m,cast,grp); };
-    // 다각형 프리즘: pts [[x,z]…], 바닥 y0, 윗면 높이 top(x,z)(숫자도 됨) — 옆면 UV는 둘레 길이/높이 기준
-    const prism=(pts,y0,top,mat,tm,grp,cast)=>{ tm=tm||4; const tf=typeof top==='function'?top:()=>top; const n=pts.length; const P=[], U=[]; let cx=0,cz=0; pts.forEach(p=>{ cx+=p[0]/n; cz+=p[1]/n; });
-      const tri=(a,b,c,ua,ub,uc,want)=>{ const ux=b[0]-a[0],uy=b[1]-a[1],uz=b[2]-a[2], vx=c[0]-a[0],vy=c[1]-a[1],vz=c[2]-a[2]; const nx=uy*vz-uz*vy, ny=uz*vx-ux*vz, nz=ux*vy-uy*vx; if(nx*want[0]+ny*want[1]+nz*want[2]<0){ [b,c]=[c,b]; [ub,uc]=[uc,ub]; } P.push(...a,...b,...c); U.push(...ua,...ub,...uc); };
-      const tris=T.ShapeUtils.triangulateShape(pts.map(p=>new T.Vector2(p[0],p[1])),[]);
-      tris.forEach(([i,j,k])=>{ const a=pts[i],b=pts[j],c=pts[k]; tri([a[0],tf(a[0],a[1]),a[1]],[b[0],tf(b[0],b[1]),b[1]],[c[0],tf(c[0],c[1]),c[1]],[a[0]/tm,a[1]/tm],[b[0]/tm,b[1]/tm],[c[0]/tm,c[1]/tm],[0,1,0]); tri([a[0],y0,a[1]],[b[0],y0,b[1]],[c[0],y0,c[1]],[0,0],[0,0],[0,0],[0,-1,0]); });
-      let L=0; for(let i=0;i<n;i++){ const a=pts[i], b=pts[(i+1)%n]; const l=Math.hypot(b[0]-a[0],b[1]-a[1]); const ha=tf(a[0],a[1]), hb=tf(b[0],b[1]); const mx=(a[0]+b[0])/2-cx, mz=(a[1]+b[1])/2-cz; let ox=b[1]-a[1], oz=-(b[0]-a[0]); if(ox*mx+oz*mz<0){ ox=-ox; oz=-oz; } const w=[ox,0,oz]; const A0=[a[0],y0,a[1]],B0=[b[0],y0,b[1]],A1=[a[0],ha,a[1]],B1=[b[0],hb,b[1]]; const u0=L/tm,u1=(L+l)/tm; tri(A0,B0,B1,[u0,y0/tm],[u1,y0/tm],[u1,hb/tm],w); tri(A0,B1,A1,[u0,y0/tm],[u1,hb/tm],[u0,ha/tm],w); L+=l; }
-      const g=new T.BufferGeometry(); g.setAttribute('position',new T.Float32BufferAttribute(P,3)); g.setAttribute('uv',new T.Float32BufferAttribute(U,2)); g.computeVertexNormals(); return put(new T.Mesh(g,mat),cast,grp); };
     // ---- 배경·바닥 공용(v13): 캔버스 질감(박석·마사토) · 높이장 지형(K.life — bbox 밖이라 썸네일 거리에 영향 없음) · 인스턴스 숲 ----
     const E=(()=>{ const TT=K.T; let sd=97; const r=()=>{ sd=(sd*16807)%2147483647; return sd/2147483647; };
       const C=(typeof window!=='undefined')?(window.__kTex13||(window.__kTex13={})):{};
@@ -116,48 +112,51 @@ __bsigFill({"tepapa":function(K){
       const own=()=>{ const root=K.bldg.parent; if(!root) return; const site=root.children[0]; if(!site||site===K.bldg||site===K.life||!site.isGroup) return; const mk=new TT.Object3D(); K.life.add(mk); const on=()=>mk.parent===K.life&&!!K.life.parent&&K.life.visible;
         const hide=o=>{ try{ Object.defineProperty(o,'visible',{configurable:true,get(){ return !on(); },set(v){}}); }catch(e){} }; site.children.forEach(hide); const add0=site.add; site.add=function(...a){ if(mk.parent===K.life&&K.life.parent) a.forEach(hide); return add0.apply(this,a); }; };
       return {sky,lplane,lpoly,solid,WATER,city,grid,ring,manh,own}; })();
-    const stoneT=(key,base,tones)=>E.tex(key,256,(g,N,rr)=>{ g.fillStyle='#5b5a56'; g.fillRect(0,0,N,N); const pw=N/6, ph=N/12; for(let j=0;j<12;j++) for(let i=0;i<6;i++){ const off=(j%2)*pw/2; g.fillStyle=tones[Math.floor(rr()*tones.length)]; g.fillRect(i*pw+off+1,j*ph+1,pw-2,ph-2); g.fillRect(i*pw+off+1-N,j*ph+1,pw-2,ph-2); } for(let k=0;k<1500;k++){ g.fillStyle=rr()<.5?'rgba(255,255,255,.07)':'rgba(0,0,0,.08)'; g.fillRect(rr()*N,rr()*N,1.5,1.5); } });
-    const smat=(t)=>new T.MeshStandardMaterial({map:t,roughness:.82});
-    const GREY=smat(stoneT('tpGrey',0,['#8a8a85','#94938d','#7f7f7a','#9a988f','#86857f'])), YEL=smat(stoneT('tpYel',0,['#cbb27a','#c2a86f','#d3bb85','#bba066','#c9ad74']));
-    const GW=K.col(0x4c5e68,{roughness:.07,metalness:.7}), GL=K.M.glass, DK=K.col(0x2a2e31,{roughness:.6}), CON=K.col(0xc9c4ba,{roughness:.85}), GR=K.col(0x6f9850,{roughness:.95}), TIM=K.col(0x8a6a4a,{roughness:.8}), MET=K.col(0x8d9296,{roughness:.4,metalness:.6});
-    // ---- 0: 기단(면진층 위 바닥판) + 항구 쪽 계단식 잔디 마당 ----
-    K.layer(0); tb(-5,-.1,8,190,.12,124,CON,6);
-    for(let k=0;k<5;k++){ const z0=15+k*6; prism([[-80,z0],[-12+k*2,z0],[-12+k*2,z0+6],[-80,z0+6]],0,8.5-k*1.8,CON,6); prism([[-79.5,z0+.4],[-12.5+k*2,z0+.4],[-12.5+k*2,z0+5.6],[-79.5,z0+5.6]],8.5-k*1.8-.3,8.5-k*1.8+.08,GR,8).castShadow=false; }
-    { const st=[]; for(let k=0;k<14;k++) st.push([-8,0,16+k*1.4,0,8,Math.max(.3,8.5-k*.6),1.4]); inst(boxG(1,1,1),CON,st); } // 잔디 마당 동쪽 큰 계단
-    // ---- 1~2: 본동(도시 격자 · 회색 석재 + 노란 띠) ----
-    K.layer(1); prism([[-80,-45],[70,-45],[70,15],[-80,15]],0,12,GREY,8); tb(-5,12,-15,150.6,1.2,60.6,YEL,6);
-    K.layer(2); prism([[-80,-45],[70,-45],[70,15],[-80,15]],13.2,24,GREY,8); tb(-5,24,-15,151,.8,61,K.col(0x8e8f8b,{roughness:.85}),4); tb(-5,24.8,-15,149,.25,59,K.col(0x9fa09b,{roughness:.9}),4);
-    // 본동 남·서면 가는 슬롯 창(돌 사이 깊은 세로 틈) + 케이블 거리 색유리 띠(므르쿠시치)
-    { const sl=[], cg=[]; const cols=[0x2f6fa8,0xc8402f,0xe3b33b,0x3f8f5a,0x6b4c9a,0xe07b39]; for(let x=-76;x<66;x+=9) sl.push([x,14.5,-45.15,0,.9,8,.3]); for(let z=-40;z<12;z+=8) sl.push([-80.15,14.5,z,0,.3,8,.9]);
-      inst(boxG(1,1,1),GW,sl,false); for(let i=0;i<36;i++){ const x=-78+i*4.1; cg.push([x,.6,-45.2,0,3.9,8.2,.25]); }
-      const cm=cols.map(c=>K.col(c,{roughness:.15,metalness:.3,transparent:true,opacity:.85})); cm.forEach((m,j)=>inst(boxG(1,1,1),m,cg.filter((_,i)=>i%6===j),false)); }
-    // 케이블 거리 정문: 넓은 계단 + 유리 현관 + 캔틸레버 캐노피
-    tb(-20,0,-47,30,.6,4,CON,4); tb(-20,0,-45.6,24,9,.4,GW,4); tb(-20,9.4,-50,34,.9,12,K.col(0xe8e4dc,{roughness:.6}),4); for(const x of [-34,-6]) K.c(x,0,-54,.35,9.4,MET,10);
-    // ---- 3: 쐐기(항구 축으로 비틀린 노란 석재 볼륨) + 유리 틈(단층선) ----
+    const LIFE=f=>{ const pc=K.cur; K.cur=K.life; f(); K.cur=pc; };
+    // 석재 패널 질감(회색·노랑) — 줄눈 + 색 얼룩
+    const stone=(key,base,tones)=>{ const t=E.tex(key,256,(g,N,rr)=>{ g.fillStyle=base; g.fillRect(0,0,N,N); for(let j=0;j<8;j++) for(let i=0;i<4;i++){ g.fillStyle=tones[Math.floor(rr()*tones.length)]; g.fillRect(i*N/4+2,j*N/8+2,N/4-4,N/8-4); } }); const m=new T.MeshStandardMaterial({map:t,roughness:.85}); m.userData.tm=6; return m; };
+    const GR=stone('tpG','#5e6366',['#7b8084','#72777b','#858a8d','#6c7175']), YL=stone('tpY','#a38a52',['#c9ad6c','#bfa262','#d2b778','#b79a5c']);
+    const GL=K.col(0x6e8d9b,{roughness:.06,metalness:.5}), GLT=K.col(0xb7cbd4,{roughness:.05,metalness:.3,transparent:true,opacity:.55}), MUL=K.col(0x9aa1a5,{roughness:.4,metalness:.5}), PV=K.col(0xbcb5a8,{roughness:.95}), GRS=K.col(0x6f8f45,{roughness:1}), CON=K.col(0xa9a69f,{roughness:.9});
+    const COLG=['#c0392b','#e67e22','#f1c40f','#16a085','#2980b9','#8e44ad'].map(h=>K.col(parseInt(h.slice(1),16),{roughness:.15,metalness:.2,transparent:true,opacity:.85}));
+    // 월드 UV 상자(석재 질감)
+    const sb=(x,y,z,w,h,d,mat,ry)=>{ const g=new T.BoxGeometry(w,h,d); const p=g.attributes.position, n=g.attributes.normal, uv=g.attributes.uv; for(let i=0;i<p.count;i++){ const ax=Math.abs(n.getX(i)), ay=Math.abs(n.getY(i)); uv.setXY(i,(ax>.5?p.getZ(i):p.getX(i))/6,(ay>.5?p.getZ(i):p.getY(i)+h/2+y)/6); } if(ry) g.rotateY(ry); g.translate(x,y+h/2,z); return put(new T.Mesh(g,mat)); };
+    // 쐐기: 밑변 두 점(a,b, 폭) → 꼭짓점 tip, 높이 hb(뒤) → ht(끝) — 경사 지붕 삼각기둥
+    const wedge=(a,b,tip,hb,ht,mat)=>{ const V=[[a[0],0,a[1]],[b[0],0,b[1]],[tip[0],0,tip[1]],[a[0],hb,a[1]],[b[0],hb,b[1]],[tip[0],ht,tip[1]]]; const F=[[0,2,1],[3,4,5],[0,1,4],[0,4,3],[1,2,5],[1,5,4],[2,0,3],[2,3,5]]; const pos=[], uv=[]; F.forEach(f=>{ const A=V[f[0]],B=V[f[1]],C=V[f[2]]; const nx=(B[1]-A[1])*(C[2]-A[2])-(B[2]-A[2])*(C[1]-A[1]), nz=(B[0]-A[0])*(C[1]-A[1])-(B[1]-A[1])*(C[0]-A[0]); f.forEach(k=>{ const P=V[k]; pos.push(...P); const horiz=Math.abs(nx)>Math.abs(nz); uv.push((horiz?P[2]:P[0])/6,P[1]/6); }); }); const g=new T.BufferGeometry(); g.setAttribute('position',new T.Float32BufferAttribute(pos,3)); g.setAttribute('uv',new T.Float32BufferAttribute(uv,2)); g.computeVertexNormals(); return put(new T.Mesh(g,mat)); };
+    // ================= 0: 대지 · 항구 쪽 계단 잔디 · 부시 시티 · 케이블 거리 정문 계단 =================
+    K.layer(0);
+    K.b(0,-.15,0,230,.15,160,PV);
+    for(let i=0;i<7;i++) K.b(-62,i*1.1,40-i*3.4,52,1.1,3.6+(6-i)*3.4,i%2?GRS:K.col(0x7f9c52,{roughness:1})); // 계단 잔디(항구 쪽, 서)
+    K.b(88,0,5,44,.4,70,K.col(0x5a7a3a,{roughness:1})); K.b(96,.4,-6,14,.06,10,K.col(0x4b7d88,{roughness:.05,metalness:.1}));
+    E.forest(E.scatter(68,110,-28,38,5,()=>.4,()=>E.r()<.7,()=>3+E.r()*3,(x,z)=>E.r()<.3?2:0),{grp:K.cur,trunks:true}); // 부시 시티(토착 식물, 개략)
+    for(let i=0;i<5;i++) K.b(-10,i*.32,-50-i*.9,60,.32,1.8,CON); // 케이블 거리 정문 계단
+    // ================= 1: 회색 본동(도시 격자) — 계단식 지붕 =================
+    K.layer(1);
+    sb(-15,0,-18,140,24,56,GR); sb(-58,24,-22,52,4,40,GR); sb(20,24,-28,60,3.2,30,GR);
+    { const gs=[]; for(const y of [4.6,9.2,13.8,18.4]) gs.push(bx(-15,y,-18,140.4,.35,56.4)); merge(gs,K.col(0x4a4f52,{roughness:.8}),false); }
+    for(let i=0;i<6;i++) K.b(-34+i*7.2,6,-46.1,5.4,9,.2,COLG[i]); // 정문 색유리 띠(개략 — 여러 색 유리판)
+    K.b(-10,0,-46.2,30,6,.2,GL);
+    for(const x of [-82,52]) K.b(x,4,-18,.2,14,40,GL);
+    // ================= 2: 노란 쐐기(항구 축으로 비틀림) =================
+    K.layer(2);
+    wedge([4,-46],[40,-30],[-66,64],30,14,YL); wedge([4.6,-45.4],[39.4,-30.6],[-65,63],30.6,14.6,K.col(0xbfa262,{roughness:.8})); // 쐐기(+ 지붕 갓)
+    // ================= 3: 둘 사이 유리 로비(웰링턴 포이어) — 쐐기와 본동 틈 =================
     K.layer(3);
-    const wd=[[-30,5],[40,-8],[96,62],[72,74]]; const wH=(x,z)=>Math.max(14,25-Math.max(0,(x-20))*.15);
-    prism(wd,0,wH,YEL,8);
-    const out=(pts,d)=>{ const n=pts.length; let cx=0,cz=0; pts.forEach(p=>{ cx+=p[0]/n; cz+=p[1]/n; }); return pts.map(p=>{ const dx=p[0]-cx, dz=p[1]-cz, L=Math.hypot(dx,dz)||1; return [p[0]+dx/L*d,p[1]+dz/L*d]; }); };
-    prism(out(wd,-.6),12,(x,z)=>wH(x,z)+.15,K.col(0x8e8f8b,{roughness:.85}),6); for(const y of [5.6,13.2]) prism(out(wd,.35),y,y+1,GREY,8); prism(out(wd,.3),0,1.2,GREY,8);
-    // 쐐기 옆면의 깊은 세로 슬롯 창(인스턴스) — 긴 두 변을 따라
-    { const sl=[]; const side=(a,b,n)=>{ const dx=b[0]-a[0], dz=b[1]-a[1], L=Math.hypot(dx,dz); const ry=-Math.atan2(dz,dx); const nx=dz/L, nz=-dx/L; for(let k=1;k<n;k++){ const t=k/n; const x=a[0]+dx*t, z=a[1]+dz*t; const top=wH(x,z); sl.push([x-nx*.1,1.8,z-nz*.1,ry,1.1,Math.max(1,top-4.5),.5]); } }; side(wd[1],wd[2],10); side(wd[3],wd[0],10); inst(boxG(1,1,1),GW,sl,false); }
-    prism(out([[86,60],[96,62],[72,74],[74,66]],.05),0,9,GW,6); // 쐐기 머리 유리 모서리
-    prism([[-31,2],[40,-11],[42,-7],[-29,6]],0,27,GW,6); // 본동과 쐐기 사이의 유리 틈
-    { const mu=[]; for(let t=0;t<=1.0001;t+=1/14){ const x=-30+70*t, z=4-15*t; mu.push([x,0,z,0,.18,27,.18]); } inst(boxG(1,1,1),MET,mu,false); }
-    // 쐐기 머리(항구 쪽): 깊은 유리 전망창 + 발코니
-    // 옥상 테라스 난간·설비
-    tb(0,24.8,-20,30,3,14,K.col(0x9b9a94,{roughness:.8}),4); tb(-50,24.8,-5,16,2.4,10,K.col(0x9b9a94,{roughness:.8}),4);
-    // ---- 배경(K.life): 웰링턴 항구(물)·목재 산책로·와이탕이 공원·부시 시티 숲, 오리엔탈 베이 언덕과 집들, CBD 고층, 타키나 · 배치 개략(추정) ----
-    { const LG=K.life; const ROAD=W.solid(0x55585b,{roughness:.9}); W.lplane(W.solid(0xaaa59b),0,-.03,0,9000,9000);
-      W.lpoly(W.solid(0x8b7357,{roughness:.9}),[[-200,72],[90,72],[110,84],[-200,84]],.04); // 목재 산책로
-      W.lpoly(W.WATER,[[-3000,84],[110,84],[300,40],[1200,-40],[3000,-40],[3000,3000],[-3000,3000]],.05);
-      W.lpoly(ROAD,[[-2000,-70],[400,-70],[400,-56],[-2000,-56]],.03);
-      W.lpoly(W.solid(0x82a35d),[[100,-50],[300,-50],[300,30],[110,70]],.04); // 와이탕이 공원
-      E.forest(E.scatter(98,150,-45,40,7,()=>0,()=>E.r()<.8,()=>6+E.r()*4,0),{trunks:true}); // 부시 시티
-      W.city([[-40,-110,90,50,26,'#9aa0a3',0,'g'],[-160,-90,60,50,18,'#c9c2b4',0,'p']]); // 타키나·이웃
-      W.ring({cx:-700,cz:-300,r0:0,r1:520,step:46,fill:.75,gp:.5,keep:(x,z)=>z<-60&&x<-120,h:r=>20+E.r()*E.r()*110,pal:['#cbbfa8','#d8d0c0','#b9a993'],gpal:['#a9b8c3','#9aabb7']});
-      E.terrain(200,3200,-1800,2600,60,60,(x,z)=>{ const d=Math.max(0,x-420+z*.15); return E.ss(d/600)*180*(.6+.6*E.fbm(x*.002,z*.002,3)); },(x,z,h,ny)=>h<1?[.62,.6,.55]:E.mcol(x,z,h,ny,{low:6}));
-      { const H=[]; for(let i=0;i<220;i++){ const x=450+E.r()*900, z=-900+E.r()*1500; const d=Math.max(0,x-420+z*.15); const h=E.ss(d/600)*180*(.6+.6*E.fbm(x*.002,z*.002,3)); if(h<4) continue; H.push([x,z,8+E.r()*6,7+E.r()*5,5+E.r()*4,['#ece7dc','#d9cfc0','#c4b9a6','#e2d6c0'][i%4],E.r()*3,'n','#7a5a4a',2.4,3,h-.5,1]); } W.city(H); }
-      W.city([[-120,-360,40,40,116,'#bcc6cc',0,'g']]); }
-    W.own(); W.sky(4000);
+    { const sh=new T.Shape(); [[-40,12],[0,12],[10,-8],[-34,30]].forEach(([x,z],i)=>i?sh.lineTo(x,-z):sh.moveTo(x,-z)); const g=new T.ExtrudeGeometry(sh,{depth:16,bevelEnabled:false}); g.rotateX(-Math.PI/2); const m=new T.Mesh(g,GLT); put(m,false); const r=new T.ExtrudeGeometry(sh,{depth:.5,bevelEnabled:false}); r.rotateX(-Math.PI/2); r.translate(0,16,0); put(new T.Mesh(r,MUL)); }
+    { const gs=[]; for(let i=0;i<=8;i++){ const t=i/8; const x=-40+(6+40)*t; gs.push(bx(x,0,10.3,.25,20,.25)); } for(const y of [5,10,15]) gs.push(bx(-17,y,10.3,46,.2,.25)); merge(gs,MUL,false); }
+    // ================= 배경(K.life): 웰링턴 항 · 워터프런트 · CBD · 마운트 빅토리아 =================
+    LIFE(()=>{
+      const PK=[[900,-500,500,900,196,1.2],[300,-1500,1200,600,180,1.3],[-1400,-1600,900,700,220,1.3],[2200,800,700,900,260,1.25]];
+      const hf=(x,z)=>{ if(z>90&&x>-1500&&x<1800) return -6; return E.peaks(x,z,PK)*E.ss((Math.hypot(x,z)-240)/300); };
+      E.terrain(-4000,4000,-4000,4000,120,120,hf,(x,z,h,ny)=>h<0?[.4,.46,.46]:E.mcol(x,z,h,ny,{low:6,lowc:[.62,.6,.52]}),[-120,120,-90,90]);
+      W.lplane(PV,0,-.05,0,240,180); W.lplane(W.WATER,0,-.6,1700,9000,3200);
+      K.b(0,0,86,2000,.4,8,CON); // 항구 산책로
+      K.b(0,0,-74,3000,.08,16,K.col(0x55585c,{roughness:.95})); // 케이블 거리
+      W.ring({r0:200,r1:1800,step:40,keep:(x,z)=>x<-150&&z<80,h:(r,x)=>x<-350?40+E.r()*90:15+E.r()*30,pal:['#cfcac0','#bdb7ab','#d9d4ca','#a9a69f'],gp:.45,tall:[.08,100,50],fill:.75}); // CBD(서)
+      W.ring({r0:260,r1:2600,step:30,keep:(x,z)=>x>140&&z<60,hy:(x,z)=>Math.max(0,hf(x,z)),h:()=>6+E.r()*6,pal:['#e8e3d8','#d6cfbf','#c8bfae','#b9c4c8'],gp:.03,roof:['#8a4b3c',1.8,2.4],fill:.6}); // 언덕 주택(동·남)
+      E.forest(E.scatter(-3500,3500,-3500,80,40,hf,(x,z,h)=>h>20&&E.r()<.5,()=>10+E.r()*5,(x,z)=>E.r()<.4?2:0),{trunks:false});
+    });
+W.sky(2600);
+    // 정리: 뷰어 기본 대지(잔디판·포장판·길)는 이 모형이 떠 있는 동안 숨기고(W.own과 같은 방식), 기본 life에는 사람만 받음 — 이 build의 지형·광장이 바닥
+    { const root=K.bldg.parent, site=root&&root.children[0]; if(site&&site!==K.bldg&&site!==K.life&&site.isGroup){ const mk=new T.Object3D(); K.life.add(mk); const on=()=>mk.parent===K.life&&!!K.life.parent&&K.life.visible; const hide=o=>{ try{ Object.defineProperty(o,'visible',{configurable:true,get(){ return !on(); },set(v){}}); }catch(e){} }; site.children.forEach(hide); const add0=site.add; site.add=function(...a){ if(mk.parent===K.life&&K.life.parent) a.forEach(hide); return add0.apply(this,a); }; }
+      const la=K.life.add.bind(K.life); K.life.add=(...o)=>{ o.forEach(m=>{ if(m&&m.material===K.M.people) la(m); }); return K.life; }; }
   }});
