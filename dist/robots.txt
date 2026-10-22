@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# 관리자 예시 데이터 화면(로컬 미리보기용 쿼리)
+Disallow: /*?admdemo=
 
 Sitemap: https://ziplan-site-dist.vercel.app/sitemap.xml

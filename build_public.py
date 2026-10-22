@@ -17,21 +17,40 @@ head = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="ZIPLAN 집플랜 — 모두의 건축. 계획은 당신이, 표현은 ZIP이. 내집코드·대지 분석·컨셉·도면·모형·패널·포트폴리오·자료실.">
+<meta name="description" content="명작 166채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳. 모두의 건축 ZIPLAN.">
 <meta property="og:title" content="ZIPLAN 집플랜 — 모두의 건축">
-<meta property="og:description" content="계획은 당신이, 표현은 ZIP이. 컨셉부터 패널까지, 대안을 보고 고르는 건축 작업대.">
+<meta property="og:description" content="명작 166채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ZIPLAN 집플랜">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="%s/">
-<meta property="og:image" content="%s/img/house-dusk.jpg">
+<meta property="og:image" content="%s/img/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ZIPLAN 집플랜 — 집을 좋아하는 모든 사람의 공간">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZIPLAN 집플랜 — 모두의 건축">
+<meta name="twitter:description" content="명작 166채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳.">
+<meta name="twitter:image" content="%s/img/og/home.jpg">
 <link rel="canonical" href="%s/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="brand/ziplan-app-icon-180.png">
 '''
 head = head.replace('%s', SITE_URL)
+_GA = os.environ.get('ZIPLAN_GA4_ID', '').strip()
+if _GA and re.fullmatch(r'G-[A-Z0-9]{4,}', _GA, re.I):
+    s = s.replace("window.ZIPLAN_CFG=Object.assign({ga4Id:''", "window.ZIPLAN_CFG=Object.assign({ga4Id:'%s'" % _GA, 1); print('GA4 측정 ID 적용:', _GA)
+import json as _jj, html as _hh
+_fq = re.search(r'<section class="mod faq" id="faq">(.*?)</section>', s, re.S)
+_faq = []
+if _fq:
+    for q, a in re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', _fq.group(1), re.S):
+        _faq.append({'@type': 'Question', 'name': _hh.unescape(re.sub(r'<[^>]+>', '', q)).strip(), 'acceptedAnswer': {'@type': 'Answer', 'text': _hh.unescape(re.sub(r'<[^>]+>', '', a)).strip()}})
+_g = [{'@type': 'WebSite', '@id': SITE_URL + '/#website', 'url': SITE_URL + '/', 'name': 'ZIPLAN 집플랜', 'alternateName': '모두의 건축', 'inLanguage': 'ko-KR', 'publisher': {'@id': SITE_URL + '/#org'}},
+      {'@type': 'Organization', '@id': SITE_URL + '/#org', 'name': 'ZIPLAN 집플랜', 'url': SITE_URL + '/', 'logo': SITE_URL + '/brand/ziplan-app-icon-512.png'}]
+if _faq: _g.append({'@type': 'FAQPage', 'url': SITE_URL + '/', 'mainEntity': _faq})
+head = head + '<script type="application/ld+json">' + _jj.dumps({'@context': 'https://schema.org', '@graph': _g}, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + '</script>\n'
 assert s.startswith('<meta charset="utf-8">\n')
 s = s[len('<meta charset="utf-8">\n'):]
 s = s.replace('<title>ZIPLAN</title>', '<title>ZIPLAN 집플랜 — 모두의 건축 | 집 구경·내 집 짓기·건축 공부</title>', 1)
@@ -50,6 +69,8 @@ s = s.replace('이 화면에선 이미지를 보낼 수 없습니다. claude.ai 
 s = s.replace('이미지를 보낼 수 없는 화면입니다. claude.ai 안에서 열어 주세요.', '이 화면에서는 이미지 크릿을 쓸 수 없어요.')
 s = s.replace('claude.ai 안에서 열면 그 계정으로 자동 로그인됩니다. 내 작업실에서 저장·불러오기. 올린 사진은 용량 때문에 이 브라우저에만 남습니다. 정식 서비스에서는 이메일 로그인과 결제가 들어갑니다.', 'Google이나 이메일로 로그인하면 내 작업실에서 저장·불러오기가 돼요. 만든 것은 PNG·SVG·DXF로 내려받을 수 있어요.')
 assert '정식 오픈' not in s, '공개 빌드에 정식 오픈 문구가 남음'
+# SEO·v22: cleanUrls 때문에 *.html 링크는 308 리다이렉트를 한 번 거침 → 공개 빌드에선 처음부터 깨끗한 주소로
+for _f in ('privacy', 'terms', 'licenses'): s = s.replace('href="%s.html"' % _f, 'href="/%s"' % _f)
 # 정교 모형(BSIG) build 함수는 따로 떼어 data/bsig.js로 (첫 화면 JS를 1.4MB 줄임 — 아이패드 등에서 파싱·메모리 부담)
 import subprocess, json as _json, hashlib as _hl
 _BSIG_SPLIT = r'''// build_public.py가 부른다: stdin = 전체 HTML, stdout = JSON {html, data}
@@ -89,7 +110,7 @@ for _f in (root / 'brand').glob('ziplan-*'):
     _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
-for rel in ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','data/furniture.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
+for rel in ['img/og/%s.jpg' % _k for _k in ('home','atlas','travel','taste','room','contests')] + ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','data/furniture.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
     if not (root / rel).exists():
         print('WARNING missing', rel); continue
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)
@@ -184,7 +205,8 @@ def _page(path, title, desc, main, img=None, img_alt='', ld=None, crumbs=None, o
              '<meta property="og:description" content="%s">' % _esc(desc), '<meta property="og:url" content="%s">' % _esc(can),
              '<meta property="og:image" content="%s">' % _esc(img or _DEF_IMG)]
     if img_alt: head.append('<meta property="og:image:alt" content="%s">' % _esc(img_alt))
-    head += ['<meta name="twitter:card" content="summary_large_image">',
+    if (img or '').startswith(SITE_URL + '/img/og/'): head.append('<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">')
+    head += ['<meta name="twitter:card" content="summary_large_image">', '<meta name="twitter:title" content="%s">' % _esc(title), '<meta name="twitter:description" content="%s">' % _esc(desc), '<meta name="twitter:image" content="%s">' % _esc(img or _DEF_IMG),
              '<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">',
              '<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/brand/ziplan-app-icon-180.png">',
              '<link rel="stylesheet" href="/static.css">']
@@ -348,7 +370,7 @@ def _build_static(D):
             s += '<h3>%s <span class="cap">%d</span></h3>' % (_esc(c), len(L)) + _links([('/atlas/%s/' % b['id'], b['name'], '%s · %s' % (b['arch'], b['year'])) for b in L])
         m.append('<section class="grp"><h2>%s</h2>%s</section>' % (_esc(rn), s))
     _page('/atlas/', 'ZIPLAN 건축 아틀라스 — 세계 건축 %d채 사진·건축가·연도' % len(BX), _clip('종묘부터 시드니 오페라하우스까지, 세계 %d개 나라 건축 %d채를 나라·지역별로. 건축가·연도·한 줄 설명과 자유 라이선스 사진, 3D 모형.' % (len(byCountry), len(BX)), 155),
-          ''.join(m), ld={'@type': 'CollectionPage', 'name': 'ZIPLAN 건축 아틀라스', 'url': _url('/atlas/')}, crumbs=[('ZIPLAN', '/'), ('건축 아틀라스', '/atlas/')], og_type='website')
+          ''.join(m), ld={'@type': 'CollectionPage', 'name': 'ZIPLAN 건축 아틀라스', 'url': _url('/atlas/')}, crumbs=[('ZIPLAN', '/'), ('건축 아틀라스', '/atlas/')], og_type='website', img=SITE_URL + '/img/og/atlas.jpg', img_alt='ZIPLAN 건축 아틀라스 — 정교 모형 3D')
 
     # ---------- 건축 여행: 국내 ----------
     for p in TPL:
@@ -430,7 +452,7 @@ def _build_static(D):
         if L: m.append('<section class="grp"><h2>%s <span class="cap">%d</span></h2>%s</section>' % (_esc(rn), len(L), _links([('/travel/%s/' % p['id'], p['n'], p['a']) for p in L])))
     m.append('<section class="grp"><h2>해외 건축 답사 코스</h2>%s</section>' % _links([('/travel/%s/' % c['id'], '%s 건축 여행 코스' % c['name'], '%s · %d곳' % (c['country'], len(c['stops']))) for c in D['TV_ABROAD']]))
     _page('/travel/', 'ZIPLAN 건축 여행 — 국내 건축 여행지 %d곳 · 해외 답사 코스' % len(TPL), _clip('서울·경주·안동·제주부터 도쿄·교토·싱가포르까지. 건축으로 고른 국내 %d곳과 해외 %d도시 답사 코스, 볼 포인트와 근처 여행지.' % (len(TPL), len(D['TV_ABROAD'])), 155),
-          ''.join(m), ld={'@type': 'CollectionPage', 'name': 'ZIPLAN 건축 여행', 'url': _url('/travel/')}, crumbs=[('ZIPLAN', '/'), ('건축 여행', '/travel/')], og_type='website')
+          ''.join(m), ld={'@type': 'CollectionPage', 'name': 'ZIPLAN 건축 여행', 'url': _url('/travel/')}, crumbs=[('ZIPLAN', '/'), ('건축 여행', '/travel/')], og_type='website', img=SITE_URL + '/img/og/travel.jpg', img_alt='ZIPLAN 건축 여행')
 
     # ---------- 건축 물어보기 ----------
     SKIP = re.compile(r'^\^|안녕|고마워|고맙|뭘 ?물어|농담|지쳤|망했|굿 ?나잇|잘 ?자|멋지다|배고|사귀자|심심')
@@ -539,7 +561,7 @@ def _build_static(D):
     m.append('<p class="cap">그림은 종목을 나타내는 ZIPLAN 그림이며 공모·행사의 포스터나 작품이 아닙니다. 요약은 ZIPLAN이 원문을 읽고 쓴 것이며, ZIPLAN은 공모·행사의 주최가 아닙니다.</p>')
     _page('/contests/', '건축 공모전·행사 일정 — ZIPLAN', _clip('설계공모·학생 건축 공모전·아이디어 공모·건축 전시·강연 일정 %d건을 마감순으로. 마지막 확인 %s.' % (len(CI), CK), 155),
           ''.join(m), ld=[{'@type': 'CollectionPage', 'name': '건축 공모전·행사 일정', 'url': _url('/contests/')}] + ev,
-          crumbs=[('ZIPLAN', '/'), ('공모·행사', '/contests/')], og_type='website')
+          crumbs=[('ZIPLAN', '/'), ('공모·행사', '/contests/')], og_type='website', img=SITE_URL + '/img/og/contests.jpg', img_alt='ZIPLAN 건축 공모전·행사 일정')
     def _ics(s): return str(s).replace('\\', '\\\\').replace(';', '\;').replace(',', '\\,').replace('\n', '\\n')
     def _fold(l):
         b = l.encode('utf-8'); out = []
@@ -561,16 +583,32 @@ def _build_static(D):
     (dist / 'contests.ics').write_bytes(('\r\n'.join(ics) + '\r\n').encode('utf-8'))
     print('공모·행사: %d건(확인 %s) · /contests/ · contests.ics' % (len(CI), CK))
 
+    # ---------- SEO·v22: 공유용 소개 페이지(/taste/ · /room/) — 카카오톡·SNS 미리보기가 해시 주소(#dna)를 못 읽어서 ----------
+    _page('/taste/', '취향 랩 — 사진 세 번 고르면 내 취향 집 | ZIPLAN', '분위기·사는 곳·중요한 것을 사진 카드로 고르면 1분 안에 내 취향 집이 3D로 지어지고, 닮은 실제 건물 3채를 알려 줍니다. 로그인 없이 무료.',
+          '<p class="kick">취향 랩</p><h1>사진 세 번 고르면, 내 취향 집</h1><p class="lead">좋아하는 집을 말로 설명하기 어렵다면 사진으로 고르세요. 세 단계, 1분이면 끝나요.</p>'
+          '<div class="cta"><a class="btn" href="/#dna">취향 랩 시작하기</a><a class="btn ghost" href="/atlas/">닮은 명작 둘러보기</a></div>'
+          '<section class="grp"><h2>이렇게 진행돼요</h2><ol class="pts"><li><b>분위기</b> — 따뜻한 나무 집, 차분한 콘크리트, 한옥… 마음에 드는 사진을 2~3장</li><li><b>사는 곳</b> — 도심, 골목, 숲 속, 바닷가… 살고 싶은 곳</li><li><b>중요한 것</b> — 빛, 마당, 넓은 거실, 수납, 조용함…</li></ol></section>'
+          '<section class="grp"><h2>결과로 받는 것</h2><ul class="pts"><li>내 취향 유형 이름과 한 줄 설명</li><li>고른 단어로 지은 3D 집(돌려 보기)</li><li>닮은 실제 건물 3채 — 정교 모형으로 바로 열기</li><li>공유용 이미지(1080×1350)와 링크</li></ul><p class="cap">결과는 고른 사진의 단어를 바탕으로 한 참고용 제안이에요.</p></section>',
+          img=SITE_URL + '/img/og/taste.jpg', img_alt='ZIPLAN 취향 랩', crumbs=[('ZIPLAN', '/'), ('취향 랩', '/taste/')], og_type='website',
+          ld={'@type': 'WebPage', 'name': '취향 랩', 'url': _url('/taste/'), 'isPartOf': {'@id': SITE_URL + '/#website'}})
+    _page('/room/', '내 방 고치기 — 방 치수로 가구 배치 3안·3D | ZIPLAN', '방 치수나 평면도를 넣으면 가구 배치 세 안과 통로 폭, 가구가 방문으로 들어가는지, 조명·콘센트 자리를 알려 주고 3D로 보여 줍니다. 참고용.',
+          '<p class="kick">내 방 고치기</p><h1>방 치수만 넣으면, 가구 배치 세 안</h1><p class="lead">이사 갈 방에 침대·책상·옷장이 다 들어갈지, 지나다닐 길은 남는지 미리 확인해 보세요.</p>'
+          '<div class="cta"><a class="btn" href="/#room">내 방 고치기 시작하기</a><a class="btn ghost" href="/#zipcode">땅부터 보기(내집코드)</a></div>'
+          '<section class="grp"><h2>세 단계</h2><ol class="pts"><li><b>방 정하기</b> — 예시 방을 고르거나, 평면도 그림을 올리거나, 가로·세로를 직접 넣어요.</li><li><b>배치 고르기</b> — 자동으로 만든 세 안 중 하나를 고르고, 가구를 끌어 옮겨요.</li><li><b>확인·저장</b> — 들어가나? · 조명·콘센트 · 색 · 살 때 치수 조건 · 공사 상담.</li></ol></section>'
+          '<section class="grp"><h2>알아 두세요</h2><ul class="pts"><li>가구 치수는 일반 규격 기준이라 제품마다 달라요.</li><li>올린 사진·평면도는 이 기기 브라우저에서만 쓰고 서버에 저장하지 않아요. 주소는 묻지 않아요.</li><li>참고용이에요 — 실제 시공 전에는 실측과 전문가 확인이 필요해요.</li></ul></section>',
+          img=SITE_URL + '/img/og/room.jpg', img_alt='ZIPLAN 내 방 고치기 3D', crumbs=[('ZIPLAN', '/'), ('내 방 고치기', '/room/')], og_type='website',
+          ld={'@type': 'WebPage', 'name': '내 방 고치기', 'url': _url('/room/'), 'isPartOf': {'@id': SITE_URL + '/#website'}})
     # ---------- 404 · sitemap · robots ----------
     _page('/404.html', '페이지를 찾을 수 없어요 | ZIPLAN', '요청한 페이지가 없어요. 건축 아틀라스·건축 여행·물어보기·사전에서 찾아보세요.',
           '<p class="kick">404</p><h1>페이지를 찾을 수 없어요</h1><p class="lead">주소가 바뀌었거나 없는 페이지예요. 아래에서 다시 찾아보세요.</p>'
-          '<div class="cta"><a class="btn" href="/">ZIPLAN 홈</a><a class="btn ghost" href="/atlas/">건축 아틀라스</a><a class="btn ghost" href="/travel/">건축 여행</a><a class="btn ghost" href="/ask/">건축 물어보기</a><a class="btn ghost" href="/dict/">건축 사전</a></div>', noindex=True)
+          '<div class="cta"><a class="btn" href="/">ZIPLAN 홈</a><a class="btn ghost" href="/atlas/">건축 아틀라스</a><a class="btn ghost" href="/travel/">건축 여행</a><a class="btn ghost" href="/contests/">공모·행사</a><a class="btn ghost" href="/ask/">건축 물어보기</a><a class="btn ghost" href="/dict/">건축 사전</a></div>'
+          '<section class="grp"><h2>바로 해 볼 수 있는 것</h2><ul class="pts"><li><a href="/taste/">취향 랩</a> — 사진 세 번 고르면 내 취향 집</li><li><a href="/room/">내 방 고치기</a> — 방 치수로 가구 배치 세 안</li><li><a href="/#zipcode">내집코드</a> — 이 땅에 지을 수 있는 대략의 크기</li></ul></section>', noindex=True)
     urls = ['/'] + [p for p, _ in _PAGES]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls: sm.append('<url><loc>%s</loc><lastmod>%s</lastmod></url>' % (_esc(_url(u)), BUILD_DATE))
     sm.append('</urlset>')
     (dist / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
-    (dist / 'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % SITE_URL, encoding='utf-8')
+    (dist / 'robots.txt').write_text('User-agent: *\nAllow: /\n# 관리자 예시 데이터 화면(로컬 미리보기용 쿼리)\nDisallow: /*?admdemo=\n\nSitemap: %s/sitemap.xml\n' % SITE_URL, encoding='utf-8')
     sz = sum(s for _, s in _PAGES)
     print('정적 페이지: 아틀라스 %d · 여행 %d · 물어보기 %d · 사전 %d + 목록 4 = %d쪽, 평균 %.1f KB, 합계 %d KB, sitemap URL %d, %.1f초' % (
         nA, nT, nQ, nE, len(_PAGES), sz / len(_PAGES) / 1024, sz / 1024, len(urls), _st.time() - _t0))

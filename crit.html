@@ -2973,7 +2973,7 @@ html.dnat-lock{overflow:hidden}
   .hmeet.solo .hm-grid{grid-auto-columns:100%} }
 @media (prefers-reduced-motion:reduce){ .build[data-mode]{height:auto} .pcta{box-shadow:none} }
 /* v19b U2 취향 랩 3단계 */
-#view-dna:not(.dn-adv)>:not(#dnQuick):not(.dn-toast){display:none!important}
+#view-dna:not(.dn-adv)>:not(#dnQuick):not(.dn-toast):not(.zbc){display:none!important}
 #view-dna.dn-adv #dnQuick{display:none}
 #view-dna .dnmarq{display:none!important}
 .dnadv-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1200px;margin:18px auto 0;padding:12px 18px;border:1px solid var(--card-line);border-radius:14px;background:var(--bg-alt);font-size:15px}
@@ -3099,6 +3099,56 @@ html:has(#view-dna:not([hidden]):not(.dn-adv) .dnq-bar) .zc-fab{display:none}
 }
 /* 한글 줄바꿈 */
 body{word-break:keep-all;overflow-wrap:break-word}
+/* ===== SEO·v22: 탐색경로 · 이렇게 써요 · 문의 완료 · 통계 동의 · 탭 '짓기' 강조 ===== */
+.zbc{position:relative;height:0;z-index:4}
+.zbc>div{position:absolute;top:14px;left:0;right:0;max-width:1180px;margin:0 auto;padding:0 22px;pointer-events:none}
+.zbc ol{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;margin:0;padding:0;list-style:none;font-size:13px;line-height:1.4;color:var(--fg-2,#6e6e73)}
+.zbc li{display:inline-flex;align-items:center;min-width:0}
+.zbc li+li::before{content:"›";margin:0 8px;opacity:.55}
+.zbc a{pointer-events:auto;color:inherit;text-decoration:none;padding:6px 0}
+.zbc a:hover{color:var(--fg,#1d1d1f);text-decoration:underline}
+.zbc b{font-weight:700;color:var(--fg,#1d1d1f);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46vw}
+.zbc .g{opacity:.85}
+@media (max-width:820px){.zbc>div{top:8px;padding:0 16px}.zbc ol{font-size:12px;flex-wrap:nowrap;white-space:nowrap;overflow:hidden}.zbc .g{display:none}.zbc li+li::before{margin:0 6px}}
+.znext{max-width:1080px;margin:56px auto 64px;padding:0 20px}
+.znext h2{font-size:15px;font-weight:800;color:var(--fg-2,#6e6e73);margin:0 0 12px;letter-spacing:.02em}
+.znext-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.znext-g a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;border:1px solid var(--card-line,rgba(0,0,0,.08));background:var(--card,#fff);color:inherit;text-decoration:none;min-height:44px}
+.znext-g a:hover{border-color:#2997ff}
+.znext-g b{font-size:16px;font-weight:800}.znext-g span{font-size:14px;color:var(--fg-2,#6e6e73);line-height:1.5}
+.zuse{max-width:1080px;margin:8px auto 48px;padding:0 20px}
+.zuse h2{font-size:clamp(26px,3.4vw,36px);font-weight:900;letter-spacing:-.02em;margin:0 0 6px}
+.zuse-l{color:var(--fg-2,#6e6e73);margin:0 0 20px;font-size:15px}
+.zuse-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.zuse-c{background:var(--card,#fff);border:1px solid var(--card-line,rgba(0,0,0,.08));border-radius:18px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:8px}
+.zuse-c .n{font:900 13px/1 'Archivo Black',sans-serif;color:#2997ff;letter-spacing:.04em}
+.zuse-c h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.zuse-c dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;font-size:14px;line-height:1.55}
+.zuse-c dt{font-weight:700;color:var(--fg-2,#6e6e73);white-space:nowrap}
+.zuse-c dd{margin:0}
+.zuse-c .btn{align-self:flex-start;margin-top:auto}
+.faq .faql summary:focus-visible{outline:2px solid #2997ff;outline-offset:3px;border-radius:8px}
+.faqcta a.faq-use{margin-left:10px;font-weight:600}
+.zth{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;padding:20px;background:rgba(10,12,18,.55)}
+.zth[hidden]{display:none}
+.zth-c{width:min(440px,100%);background:var(--bg,#fff);color:var(--fg,#1d1d1f);border-radius:22px;padding:28px 24px 22px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.zth-ic{width:56px;height:56px;margin:0 auto 12px;border-radius:50%;background:#30a46c;display:grid;place-items:center}
+.zth-ic svg{width:30px;height:30px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.zth-c h2{margin:0 0 8px;font-size:22px;font-weight:900}
+.zth-c p{margin:0 0 10px;font-size:15px;line-height:1.6}
+.zth-rt{background:rgba(41,151,255,.1);border-radius:12px;padding:8px 12px;font-weight:600}
+.zth-b{display:flex;gap:8px;justify-content:center;margin-top:14px}
+html.zth-open #zchat,html.zth-open #tabBar{display:none}
+.zc-rt{font-size:13px;color:var(--fg-2,#6e6e73);margin:6px 0 0}
+.zcons{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:2147482000;max-width:640px;margin:0 auto;background:var(--bg,#fff);color:var(--fg,#1d1d1f);border:1px solid var(--card-line,rgba(0,0,0,.1));border-radius:16px;padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,.18);display:flex;gap:12px;align-items:center}
+.zcons[hidden]{display:none}
+.zcons p{margin:0;font-size:13.5px;line-height:1.55;flex:1}
+.zcons>div{display:flex;gap:6px;flex-shrink:0}
+html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+@media (max-width:560px){.zcons{flex-direction:column;align-items:stretch}.zcons>div{justify-content:flex-end}}
+.tabbar .tb[data-tab="build"] svg{width:20px;height:20px;padding:4px;background:#2997ff;stroke:#fff;border-radius:9px}
+.tabbar .tb[data-tab="build"] span{color:#2997ff;font-weight:800}
+
 </style>
 
 <nav>
@@ -3255,7 +3305,7 @@ body{word-break:keep-all;overflow-wrap:break-word}
    <details><summary>건축 여행의 사진과 별점은 어디서 왔나요?</summary><p>사진은 Wikimedia Commons의 자유 라이선스 사진이고, 각 사진의 ⓘ에 작가와 라이선스가 있어요. 별점은 ZIPLAN 에디터의 주관 평가이고, 방문자 별점은 회원이 직접 남긴 점수의 평균이에요.</p></details>
    <details><summary>내 작업과 위치 정보는 어떻게 다뤄지나요?</summary><p>작업은 로그인한 본인만 볼 수 있어요. 건축 여행의 위치는 브라우저 안에서만 쓰고 저장하지 않아요. 방문 통계는 쿠키 없이 익명으로만 모읍니다. 자세한 건 <a href="privacy.html">개인정보처리방침</a>을 봐 주세요.</p></details>
   </div>
-  <div class="faqcta"><span>더 궁금한 게 있나요?</span><button class="btn" data-ask>문의하기</button></div></div></section>
+  <div class="faqcta"><span>더 궁금한 게 있나요?</span><button class="btn" data-ask>문의하기</button><a class="faq-use" href="#guide">상황별 사용법 보기 ›</a></div></div></section>
 </section>
 
 <section class="view" id="view-contests" hidden aria-label="공모·행사">
@@ -3915,7 +3965,7 @@ body{word-break:keep-all;overflow-wrap:break-word}
 <footer class="zft"><div class="in">
   <div class="zft-b"><a href="#home" class="zft-logo"><span class="mark" data-mark="18"></span><b>ZI<span class="pz">P</span>LAN</b></a><p>집을 좋아하는 모든 사람의 공간 — 모두의 건축</p></div>
   <div class="zft-c"><h6>둘러보기</h6><a href="#atlas">집 구경</a><a href="#zipcode">내 집 짓기</a><a href="#flow">건축 공부</a><a href="#contests">공모·행사</a><a href="#plaza">광장</a><a href="#pricing">요금</a></div>
-  <div class="zft-c"><h6>안내</h6><a href="terms.html">이용약관</a><a href="privacy.html"><b>개인정보처리방침</b></a><a href="licenses.html">출처·라이선스</a><a href="#" data-ask>문의하기</a></div>
+  <div class="zft-c"><h6>안내</h6><a href="terms.html">이용약관</a><a href="privacy.html"><b>개인정보처리방침</b></a><a href="licenses.html">출처·라이선스</a><a href="#" data-ask>문의하기</a><a href="#" data-consent hidden>통계 동의 설정</a></div>
   <div class="zft-c zft-biz"><h6>사업자 정보</h6><p>상호 · 대표 · 사업자등록번호 · 통신판매업 신고번호 — 정식 서비스 시작 때 표기합니다.</p><p class="zft-note">법규·면적·비용 수치는 참고용이며, 실제 인허가와 계약은 관할 기관·전문가와 확인하세요.</p></div>
 </div><div class="zft-bt"><span>© 2026 ZIPLAN</span></div></footer>
 
@@ -4037,6 +4087,7 @@ function route(){
   try{ zDeep(); }catch(e){ console.warn('deeplink',e); }
   let h=(location.hash||'#home').slice(1).split('?')[0]; if(!VIEWS.includes(h)) h='home';
   $$('.view').forEach(v=>v.hidden=v.id!=='view-'+h);
+  try{ zRouteMeta(h); }catch(e){}
   try{ placeBuild(h); }catch(e){ console.warn('placeBuild',e); }
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); navCurrent(h); try{ tabCurrent(); }catch(e){}
   if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
@@ -4047,6 +4098,90 @@ function route(){
 window.addEventListener('hashchange',route);
 document.addEventListener('click',e=>{ const a=e.target.closest('a[data-wb]'); if(!a) return; pendingScroll=a.dataset.wb; if(location.hash==='#'+a.dataset.wb){ e.preventDefault(); route(); } });
 function go(view,toWb){ pendingScroll=toWb?view:null; if(location.hash==='#'+view) route(); else location.hash=view; }
+/* ===== SEO·v22: 화면별 제목·설명 · 탐색경로 · GA4(동의 뒤) · 문의 완료 · 이렇게 써요 =====
+   ZIPLAN_CFG: ga4Id(비면 GA를 아예 불러오지 않음, build_public.py가 환경변수 ZIPLAN_GA4_ID로 채움),
+   reply(문의 답변 시간 안내 — 비면 화면에 안 보임). */
+window.ZIPLAN_CFG=Object.assign({ga4Id:'',reply:{text:'',hours:'',offdays:''}},window.ZIPLAN_CFG||{});
+const ZMETA={
+ home:['ZIPLAN 집플랜 — 모두의 건축 | 집 구경·내 집 짓기·건축 공부','명작 166채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳. 모두의 건축 ZIPLAN.'],
+ atlas:['건축 아틀라스 — 정교 모형 166채·세계 809채 3D | ZIPLAN','경복궁에서 부르즈 할리파까지, 실제 치수와 특징으로 다시 지은 정교 모형 166채와 세계 건축 809채를 나라·건축가·시대별로 둘러봅니다.'],
+ travel:['건축 여행 — 한국 72곳·해외 8도시 답사 코스 | ZIPLAN','건축을 보러 가는 여행. 한국 72곳과 해외 8도시, 계절별 스팟과 지도 위 코스 짜기, 근처 맛집까지 한 화면에서.'],
+ dna:['취향 랩 — 사진 세 번 고르면 내 취향 집 | ZIPLAN','분위기·사는 곳·중요한 것을 사진 카드로 고르면 1분 안에 내 취향 집이 3D로 지어지고, 닮은 실제 건물 3채를 알려 줍니다.'],
+ zipcode:['내집코드 — 주소로 보는 이 땅의 건축 규모 | ZIPLAN','용도지역과 땅 크기를 넣으면 건폐율·용적률·정북 일조를 따져 지을 수 있는 대략의 크기를 3D 세 안으로 보여 줍니다. 개략 검토용.'],
+ room:['내 방 고치기 — 방 치수로 가구 배치 3안·3D | ZIPLAN','방 치수나 평면도를 넣으면 가구 배치 세 안과 통로 폭, 가구가 들어가는지, 조명·콘센트 자리를 알려 주고 3D로 보여 줍니다.'],
+ contests:['건축 공모전·행사 일정 — 마감순 정리 | ZIPLAN','공공 설계공모, 학생 건축 공모전, 전시·강연·투어 일정을 마감순으로 모았습니다. 나에게 맞는 공모전 찾기와 캘린더 받기.'],
+ flow:['설계 흐름 — 컨셉부터 평면도·DXF까지 한 화면 | ZIPLAN','단어와 대지 치수로 아홉 안을 받고, 크리틱을 반영해 매스·원라인·평면도·DXF까지 이어 가는 건축 설계 작업대.'],
+ site:['대지 — 일조·그림자·바람과 답사 키트 | ZIPLAN','대지의 해 길과 그림자, 바람, 등고선(콘타)을 그려 보고 답사 체크리스트·현장 도구로 땅을 읽습니다.'],
+ concept:['컨셉 — 마법사·매스 도감·레시피 | ZIPLAN','용도·대지·느낌을 고르면 컨셉 세 안과 이름 후보, 3D 매스가 나옵니다. 매스 조작 도감과 컨셉 레시피도 함께.'],
+ drawing:['도면 — 관계 다이어그램·조닝·단면 | ZIPLAN','실 관계 다이어그램과 조닝, 단면을 그려 보며 평면을 정리하는 도면 작업대.'],
+ model:['모형 — 층 펼치기·재료·법규 볼륨 | ZIPLAN','층을 펼쳐 보고 재료를 바꾸며, 건폐율·용적률·일조 사선으로 법규 볼륨을 개략 확인하는 모형 작업대.'],
+ panel:['패널 — 레이아웃 13종·분해 액소·공모전 달력 | ZIPLAN','수상작에서 읽은 패널 레이아웃 13종, 3초 진단, 분해 액소메트릭과 매스 진화 다이어그램 만들기.'],
+ portfolio:['포트폴리오·진로 — 12쪽 해부·이력서 | ZIPLAN','건축 포트폴리오 12쪽 구성, 이력서와 증명사진, 건축사 되는 길과 진로 지도를 정리했습니다.'],
+ learn:['사례 — 아이소 썸네일로 보는 설계 사례 | ZIPLAN','설계 사례를 아이소 썸네일로 훑어보고 내 컨셉과 닮은 순으로 정렬해 봅니다.'],
+ library:['자료실 — 건축 사전·도면 규약·자유 라이선스 자료 | ZIPLAN','건축 용어 사전, 도면 레이어·치수·표제란 규약, 자유 라이선스 자료를 모았습니다.'],
+ plaza:['광장 — 집과 작업을 함께 보는 곳 | ZIPLAN','다른 사람이 만든 집과 작업을 보고, 주간 챌린지에 참여하는 ZIPLAN 광장.'],
+ studio:['내 작업실 — 프로젝트와 진행 상황 | ZIPLAN','내 프로젝트와 진행 단계를 한곳에서 보고 이어서 작업합니다.'],
+ guide:['사용법 — 이렇게 써요 | ZIPLAN','ZIPLAN을 처음 쓰는 분을 위한 상황별 사용법과 가장 빠른 길.'],
+ pricing:['요금 — 무료로 시작, 얼리버드 안내 | ZIPLAN','ZIPLAN은 대부분의 기능을 로그인 없이 무료로 쓸 수 있어요. 요금제와 재학생 혜택 안내.'],
+ admin:['관리자 | ZIPLAN','ZIPLAN 관리자 화면.']
+};
+const ZNAME={home:'홈',atlas:'건축 아틀라스',travel:'건축 여행',dna:'취향 랩',zipcode:'내집코드',room:'내 방 고치기',contests:'공모·행사',flow:'설계 흐름',site:'대지',concept:'컨셉',drawing:'도면',model:'모형',panel:'패널',portfolio:'포트폴리오 · 진로',learn:'사례',library:'자료실',plaza:'광장',studio:'내 작업실',guide:'사용법',pricing:'요금',admin:'관리자'};
+const ZCUR={h:'home',deep:null};
+function zMetaTag(sel,attr,val){ try{ let m=document.head.querySelector(sel); if(!m){ m=document.createElement('meta'); const k=sel.match(/\[(name|property)="([^"]+)"\]/); if(!k) return; m.setAttribute(k[1],k[2]); document.head.appendChild(m); } m.setAttribute(attr,val); }catch(e){} }
+function zMetaApply(){ const M=ZMETA[ZCUR.h]||ZMETA.home; const t=ZCUR.deep?`${ZCUR.deep} — ${ZNAME[ZCUR.h]||'ZIPLAN'} | ZIPLAN`:M[0]; document.title=t; zMetaTag('meta[name="description"]','content',M[1]); zMetaTag('meta[property="og:title"]','content',t); zMetaTag('meta[property="og:description"]','content',M[1]); zBcRender(); }
+/* 탐색경로: 홈 › (문 이름) › 방 [› 깊은 화면]. 문(집 구경·내 집 짓기…)은 따로 페이지가 아니라서 글자로만 */
+function zBcGroup(h){ try{ const g=NAVG.find(g=>g.items.some(i=>i[0]===h)); return g?g.t:''; }catch(e){ return ''; } }
+function zBcRender(){ const h=ZCUR.h; $$('.zbc').forEach(el=>{ if(el.dataset.v!==h) el.innerHTML=''; }); if(h==='home'||h==='admin') return; const v=document.getElementById('view-'+h); if(!v) return; let el=v.querySelector(':scope>.zbc'); if(!el){ el=document.createElement('div'); el.className='zbc'; el.dataset.v=h; v.insertBefore(el,v.firstChild); }
+  const g=zBcGroup(h), nm=ZNAME[h]||h, deep=ZCUR.deep; const parts=[`<a href="#home">홈</a>`]; if(g&&g!==nm) parts.push(`<span class="g">${esc(g)}</span>`); parts.push(deep?`<a href="#${h}" data-zbcroot>${esc(nm)}</a>`:`<b aria-current="page">${esc(nm)}</b>`); if(deep) parts.push(`<b aria-current="page">${esc(deep)}</b>`);
+  el.innerHTML=`<div role="navigation" aria-label="현재 위치"><ol>${parts.map(p=>`<li>${p}</li>`).join('')}</ol></div>`; }
+function zDeepMeta(label){ ZCUR.deep=label||null; zMetaApply(); }
+document.addEventListener('click',e=>{ const a=e.target.closest('[data-zbcroot]'); if(!a) return; if(location.hash==='#'+ZCUR.h){ e.preventDefault(); try{ if(ZCUR.h==='atlas') bldClose(); if(ZCUR.h==='travel') tDetailClose(); if(ZCUR.h==='dna'&&typeof dnqEnter==='function') dnqEnter(); }catch(err){} zDeepMeta(null); window.scrollTo({top:0}); } });
+function zRouteMeta(h){ ZCUR.h=h; ZCUR.deep=null; zMetaApply(); try{ zgaPV(); }catch(e){} }
+/* GA4 — 측정 ID가 있고, 방문자가 동의했을 때만 불러온다. 없으면 스크립트·쿠키·요청 모두 없음 */
+const ZGA={on:false,last:null,sent:{}};
+function zgaId(){ const id=(window.ZIPLAN_CFG&&ZIPLAN_CFG.ga4Id)||''; return /^G-[A-Z0-9]{4,}$/i.test(id)?id:''; }
+function zConsentGet(){ try{ return localStorage.getItem('zip_consent'); }catch(e){ return null; } }
+function zConsentSet(v){ try{ localStorage.setItem('zip_consent',v); }catch(e){} }
+function zgaLoad(){ const id=zgaId(); if(!id||ZGA.on) return; try{ window.dataLayer=window.dataLayer||[]; window.gtag=window.gtag||function(){ dataLayer.push(arguments); }; gtag('js',new Date()); gtag('config',id,{send_page_view:false}); const s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id); s.onerror=()=>{}; document.head.appendChild(s); ZGA.on=true; ZGA.last=null; zgaPV(); }catch(e){} }
+function zgaPV(){ if(!ZGA.on) return; const h=ZCUR.h||'home'; const key=h+'|'+(ZCUR.deep||''); if(ZGA.last===key) return; ZGA.last=key; try{ gtag('event','page_view',{page_title:document.title,page_location:location.origin+location.pathname+(h==='home'?'':'#'+h),page_path:'/'+(h==='home'?'':'#'+h)}); }catch(e){} }
+function zga(ev,p){ if(!ZGA.on) return; try{ gtag('event',ev,p||{}); }catch(e){} }
+function zConsentBar(force){ const id=zgaId(); if(!id) return; const c=zConsentGet(); if(c==='y'&&!force){ zgaLoad(); return; } if(c&&!force) return; let b=$('#zConsent'); if(!b){ b=document.createElement('div'); b.id='zConsent'; b.className='zcons'; b.setAttribute('role','dialog'); b.setAttribute('aria-label','방문 통계 동의');
+  b.innerHTML=`<p><b>방문 통계(구글 애널리틱스)</b> 어떤 화면이 쓰이는지 알아보려고 쿠키로 익명 통계를 모아도 될까요? 거부해도 모든 기능을 그대로 쓸 수 있어요. <a href="privacy.html">개인정보처리방침</a></p><div><button type="button" class="btn sec sm" data-cons="n">거부</button><button type="button" class="btn sm" data-cons="y">동의</button></div>`; document.body.appendChild(b); }
+  b.hidden=false; }
+document.addEventListener('click',e=>{ const c=e.target.closest('[data-cons]'); if(c){ zConsentSet(c.dataset.cons); const b=$('#zConsent'); if(b) b.hidden=true; if(c.dataset.cons==='y') zgaLoad(); else if(ZGA.on){ try{ gtag('consent','update',{analytics_storage:'denied'}); }catch(err){} } return; }
+  const s=e.target.closest('[data-consent]'); if(s){ e.preventDefault(); zConsentBar(true); return; }
+  if(!ZGA.on) return;
+  const cta=e.target.closest('[data-cta],.pcta,#homeDoors a,#homeBuild a,#homeBuild button,#homeStudio a,#likeWrap a,.zuse a'); if(cta){ zga('cta_click',{cta:(cta.dataset.cta||cta.textContent||'').trim().replace(/\s+/g,' ').slice(0,40),screen:ZCUR.h}); }
+  const out=e.target.closest('#view-contests a[target=_blank]'); if(out){ const card=out.closest('.ct-card'); const h=card&&card.querySelector('h3,b'); zga('contest_outbound',{link_url:out.href,contest_title:h?h.textContent.trim().slice(0,80):''}); }
+  const sh=e.target.closest('[data-dnqcopy],[data-dnqpng],#rmPng,[data-share]'); if(sh){ zga('share',{method:sh.dataset.dnqcopy!=null?'link':'image',content_type:ZCUR.h}); } },true);
+setTimeout(()=>{ try{ const id=zgaId(); $$('[data-consent]').forEach(a=>a.hidden=!id); if(id&&/^https?:$/.test(location.protocol)) zConsentBar(false); }catch(e){} },1500);
+/* 문의 답변 시간 — 설정이 비면 아무것도 안 보임 */
+function zReplyText(){ const r=(window.ZIPLAN_CFG&&ZIPLAN_CFG.reply)||{}; const a=[r.text,r.hours,r.offdays].map(x=>(x||'').trim()).filter(Boolean); return a.join(' · '); }
+function zReplyFill(){ const t=zReplyText(); $$('[data-zreply]').forEach(el=>{ el.textContent=t; el.hidden=!t; }); }
+/* 문의 완료 — 서버(Supabase)에 실제로 저장된 뒤에만 연다. 주소(해시)를 바꾸지 않으므로 새로고침·직접 접속으로는 안 나타남 */
+function zThanks(rec){ let m=$('#zThanks'); if(!m){ m=document.createElement('div'); m.id='zThanks'; m.className='zth'; m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.setAttribute('aria-labelledby','zthT'); document.body.appendChild(m);
+  m.addEventListener('click',e=>{ if(e.target===m||e.target.closest('[data-zthx]')){ zThanksClose(); } const h=e.target.closest('[data-zthhome]'); if(h){ zThanksClose(); if(location.hash&&location.hash!=='#home') location.hash='home'; else window.scrollTo({top:0,behavior:'smooth'}); } }); }
+  const rt=zReplyText(); m.innerHTML=`<div class="zth-c"><div class="zth-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2 id="zthT">문의가 접수됐어요</h2><p>보내 주셔서 고맙습니다. <b>${esc(rec.kind||'문의')}</b>로 관리자에게 전달됐어요.${rec.email?' 남겨 주신 이메일로 답을 드릴게요.':' 이메일을 남기지 않으셨다면 답장은 보내 드리지 못해요.'}</p>${rt?`<p class="zth-rt">${esc(rt)}</p>`:''}<div class="zth-b"><button type="button" class="btn" data-zthhome>홈으로</button><button type="button" class="btn sec" data-zthx>닫기</button></div></div>`;
+  m.hidden=false; document.documentElement.classList.add('zth-open'); setTimeout(()=>{ const b=m.querySelector('[data-zthhome]'); if(b) b.focus(); },50); }
+function zThanksClose(){ const m=$('#zThanks'); if(m) m.hidden=true; document.documentElement.classList.remove('zth-open'); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#zThanks')&&!$('#zThanks').hidden) zThanksClose(); });
+/* 이렇게 써요 — 실제 고객 사례가 아니라 '이런 상황이면 이렇게' 예시 */
+const ZHOWTO=[
+ ['땅을 보러 가기 전','사려는 땅에 어느 정도 크기의 집을 지을 수 있는지 감이 안 올 때','내집코드에 용도지역과 땅 크기를 넣고 3D 세 안을 비교해요.','대략의 층수·면적과 걸리는 규칙 체크리스트(개략 — 실제 허가는 건축사·관청 확인)','zipcode','내집코드 열기'],
+ ['이사 갈 방, 가구가 들어갈까','침대·책상·옷장이 새 방에 다 들어갈지, 동선이 막히지 않을지 궁금할 때','내 방 고치기에 방 치수나 평면도를 넣고 가구를 담아요.','배치 세 안, 통로 폭, 방문 통과 여부, 조명·콘센트 자리와 3D','room','내 방 고치기 열기'],
+ ['내 취향을 말로 못 하겠을 때','좋아하는 집이 있는데 어떤 스타일인지 설명하기 어려울 때','취향 랩에서 사진 카드를 세 번 골라요(1분).','취향 유형 이름, 3D 집, 닮은 실제 건물 3채와 공유 이미지','dna','취향 랩 열기'],
+ ['공모전·설계 과제를 준비할 때','어떤 공모전이 열리는지, 컨셉을 어디서부터 잡을지 막막할 때','공모·행사에서 마감순 일정을 보고, 설계 흐름에서 단어로 안을 받아요.','나에게 맞는 공모전 목록, 아홉 안·평면도·DXF 초안','contests','공모·행사 보기']];
+function zUseHTML(){ return `<section class="zuse" aria-labelledby="zuseT"><h2 id="zuseT">이렇게 써요</h2><p class="zuse-l">상황별 예시예요. 실제 고객 사례나 성과 수치가 아니라, 이런 고민이 있을 때 어느 화면을 열면 되는지 정리했어요.</p><div class="zuse-g">${ZHOWTO.map(([t,s,how,get,h,b],i)=>`<article class="zuse-c"><span class="n">0${i+1}</span><h3>${t}</h3><dl><dt>상황</dt><dd>${s}</dd><dt>이렇게</dt><dd>${how}</dd><dt>얻는 것</dt><dd>${get}</dd></dl><a class="btn sm" href="#${h}" data-cta="use-${h}">${b} ›</a></article>`).join('')}</div></section>`; }
+/* 다음에 볼 것 — 몇몇 방 끝에 자연스럽게 이어지는 곳 2~3개만 */
+const ZNEXT={room:[['zipcode','내집코드','땅이 있다면 지을 수 있는 크기부터'],['dna','취향 랩','어떤 분위기의 방이 좋은지 30초 만에'],['atlas','건축 아틀라스','명작의 실내 구성을 3D로']],
+ dna:[['zipcode','내집코드','이 취향을 내 땅에 지어 보기'],['room','내 방 고치기','지금 사는 방부터 바꿔 보기'],['atlas','건축 아틀라스','닮은 명작 더 둘러보기']],
+ zipcode:[['room','내 방 고치기','방 하나 단위로 가구 배치 확인'],['dna','취향 랩','어떤 집을 짓고 싶은지 정리하기'],['travel','건축 여행','비슷한 집을 직접 보러 가기']],
+ contests:[['flow','설계 흐름','공모전 컨셉을 단어로 잡아 보기'],['panel','패널','수상작에서 읽은 레이아웃 13종'],['portfolio','포트폴리오 · 진로','결과물을 포트폴리오로']],
+ atlas:[['travel','건축 여행','이 건물들을 직접 보러 가는 코스'],['dna','취향 랩','내 취향과 닮은 명작 찾기'],['contests','공모·행사','지금 열리는 건축 전시·공모']],
+ travel:[['atlas','건축 아틀라스','가기 전에 3D로 미리 보기'],['contests','공모·행사','이번 달 건축 전시·강연'],['site','대지','답사 키트로 현장 기록하기']]};
+function zNextInit(){ Object.keys(ZNEXT).forEach(h=>{ const v=document.getElementById('view-'+h); if(!v||v.querySelector(':scope>.znext')) return; v.insertAdjacentHTML('beforeend',`<section class="znext" aria-labelledby="znext-${h}"><h2 id="znext-${h}">다음에 볼 것</h2><div class="znext-g">${ZNEXT[h].map(([k,t,d])=>`<a href="#${k}" data-cta="next-${h}-${k}"><b>${t} ›</b><span>${d}</span></a>`).join('')}</div></section>`); }); }
+setTimeout(()=>{ try{ zNextInit(); }catch(e){ console.warn('znext',e); } },0);
+setTimeout(()=>{ try{ const g=$('#view-guide .guide'); if(g&&!$('#view-guide .zuse')) g.insertAdjacentHTML('beforebegin',zUseHTML()); zReplyFill(); }catch(e){ console.warn('zuse',e); } },0);
 /* ===== N1 v19d → N1b v21a: 공모·행사 캘린더 (data/contests.js → window.ZCONTESTS) — 종목 그림 · 종목별 보기 · 나에게 맞는 공모전 ===== */
 const CT_ICO={'설계공모':'<path d="M4 20V9l8-5 8 5v11z"/><path d="M9 20v-6h6v6"/>','학생공모전':'<path d="M3 9l9-5 9 5-9 5z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/>','아이디어공모':'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>','전시·행사':'<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 21h10M8 9h8M8 13h5"/>','세미나':'<path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>'};
 const CT_LAB={'학생공모전':'학생 공모전','아이디어공모':'아이디어 공모','세미나':'강연·세미나'};
@@ -5982,7 +6117,7 @@ function dnqFinish(){ const w=dnqWords(); if(!w.length){ DNQ.step=0; dnqRender()
   DNQ.view='result'; dnqRender(); try{ $('#dnQuick').scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); }catch(e){} }
 function dnqName(r){ const A=r.arch[0]; return A?`${DNA_MOOD(r.vec)} ${A.name}`:'나의 집'; }
 function dnqBlds(){ const L=bldSimilar(state.dna,60); const isS=x=>typeof BSIG!=='undefined'&&BSIG[x.b.id]; const s=L.filter(isS); return [...s,...L.filter(x=>!isS(x))].slice(0,3); }
-function dnqResult(){ const box=$('#dnQuick'); if(!state.dna.length){ DNQ.view='steps'; dnqRender(); return; } const r=dnaAnalyze(state.dna); const A=r.arch[0]; const P=dnqPicks(); const ids=P.flat(); const L=dnqBlds();
+function dnqResult(){ const box=$('#dnQuick'); if(!state.dna.length){ DNQ.view='steps'; dnqRender(); return; } try{ if(ZCUR.h==='dna') zDeepMeta('결과'); }catch(e){} const r=dnaAnalyze(state.dna); const A=r.arch[0]; const P=dnqPicks(); const ids=P.flat(); const L=dnqBlds();
   box.innerHTML=`<div class="dnq-in dnq-res">
    <div class="dnq-top"><span class="dnq-k">나의 취향 집</span><button type="button" class="dnq-link" data-dnqgo="steps">다시 고르기</button></div>
    <div class="dnq-rw">
@@ -6036,7 +6171,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return;
   if(e.target.closest('[data-dnqprev]')){ if(DNQ.step>0){ DNQ.step--; dnqRender(); } return; }
   const gg=e.target.closest('[data-dnqgo]'); if(gg){ if(gg.dataset.dnqgo==='result'){ state.dna=dnqWords(); DV.site=dnqSite()||''; DNQ.view='result'; } else { DNQ.view='steps'; DNQ.step=0; } dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); return; }
   if(e.target.closest('[data-dnqpng]')){ dnqPNG().then(()=>dnqToast('이미지를 저장했어요')).catch(err=>{ console.warn(err); dnqToast('이미지를 만들지 못했어요'); }); return; }
-  if(e.target.closest('[data-dnqcopy]')){ const r=dnaAnalyze(state.dna); const txt=`나의 취향 집: ${dnqName(r)}\n${dnaLine(r.arch[0],state.dna)}.\n나도 1분 만에 해 보기 → ${location.origin}/#dna`; try{ navigator.clipboard.writeText(txt).then(()=>dnqToast('링크를 복사했어요'),()=>dnqToast('복사하지 못했어요')); }catch(err){ dnqToast('복사하지 못했어요'); } return; }
+  if(e.target.closest('[data-dnqcopy]')){ const r=dnaAnalyze(state.dna); const txt=`나의 취향 집: ${dnqName(r)}\n${dnaLine(r.arch[0],state.dna)}.\n나도 1분 만에 해 보기 → ${location.origin}${/^https?:/.test(location.protocol)&&!/localhost|127\.0/.test(location.host)?'/taste/':'/#dna'}`; try{ navigator.clipboard.writeText(txt).then(()=>dnqToast('링크를 복사했어요'),()=>dnqToast('복사하지 못했어요')); }catch(err){ dnqToast('복사하지 못했어요'); } return; }
   if(e.target.closest('[data-dnqadv]')){ dnMode('adv'); DN_OPEN.clear(); const r=dnaAnalyze(state.dna); (r.ks||[]).forEach(k=>DN_OPEN.add(k.cat)); renderDnaLab(); setTimeout(()=>{ const t=$('#dnPick'); if(t) t.scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); },60); return; }
   if(e.target.closest('[data-dnback]')){ dnMode('quick'); DNQ.view=dnqPicks().some(l=>l.length)?'result':'steps'; if(DNQ.view==='result'){ /* 고급에서 고친 단어를 그대로 보여 준다 */ } dnqRender(); window.scrollTo(0,0); return; }
 },true);
@@ -7128,7 +7263,7 @@ const ZC={open:false,tab:'ai',busy:false,cat:'play',log:lsGet('zip_chat',[])};
 (function(){ const w=document.createElement('div'); w.id='zchat'; w.innerHTML=`<button class="zc-fab" id="zcFab" aria-label="길잡이·문의 열기" aria-expanded="false"><span class="zc-gl"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z"/></svg><em>물어보기</em></button>
   <div class="zc-panel" id="zcPanel" hidden role="dialog" aria-label="ZIPLAN 길잡이"><div class="zc-h"><div class="zc-tabs"><button data-zt="ai" aria-pressed="true">AI 길잡이</button><button data-zt="ask" aria-pressed="false">문의하기</button></div><div class="zc-hr"><button type="button" class="zc-x zc-reset" id="zcReset" aria-label="대화 지우기" title="대화 지우기">↺</button><button class="zc-x" id="zcX" aria-label="닫기">×</button></div></div>
    <div class="zc-ai" id="zcAi"><div class="zc-log" id="zcLog"></div><div class="zc-cat" id="zcCat">${ZC_CATS.map(c=>`<button type="button" data-zcc="${c[0]}" aria-pressed="${c[0]===ZC.cat}">${c[1]}</button>`).join('')}</div><div class="zc-chips" id="zcChips"></div><form class="zc-in" id="zcForm"><input id="zcQ" placeholder="무엇이든 물어보세요 — 용어·건물·계산·여행·퀴즈" autocomplete="off" maxlength="300"><button aria-label="보내기">↑</button></form></div>
-   <form class="zc-ask" id="zcAsk" hidden><p>관리자에게 바로 전달됩니다. 답이 필요하면 이메일을 남겨 주세요.</p><div class="row"><input id="zaName" placeholder="이름 (선택)" maxlength="60"><select id="zaKind"><option>일반 문의</option><option>오류 신고</option><option>기능 제안</option><option>공사 · 견적 상담</option><option>학교 · 단체 도입</option><option>제휴</option></select></div><input id="zaEmail" type="email" placeholder="답변 받을 이메일 (선택)" maxlength="120"><textarea id="zaMsg" placeholder="내용을 적어 주세요" maxlength="3000" required></textarea><button class="btn" id="zaGo">보내기</button><div class="status" id="zaSt"></div></form></div>`;
+   <form class="zc-ask" id="zcAsk" hidden><p>관리자에게 바로 전달됩니다. 답이 필요하면 이메일을 남겨 주세요.</p><div class="row"><input id="zaName" placeholder="이름 (선택)" maxlength="60"><select id="zaKind"><option>일반 문의</option><option>오류 신고</option><option>기능 제안</option><option>공사 · 견적 상담</option><option>학교 · 단체 도입</option><option>제휴</option></select></div><input id="zaEmail" type="email" placeholder="답변 받을 이메일 (선택)" maxlength="120"><textarea id="zaMsg" placeholder="내용을 적어 주세요" maxlength="3000" required></textarea><p class="zc-rt" data-zreply${zReplyText()?'':' hidden'}>${esc(zReplyText())}</p><button class="btn" id="zaGo">보내기</button><div class="status" id="zaSt"></div></form></div>`;
   document.body.appendChild(w); setTimeout(()=>{ try{ zcChips(); zcRender(); }catch(e){ console.warn('zcRender',e); } },0); })();
 function zcChips(){ const c=$('#zcChips'); if(!c) return; const cat=ZC_CATS.find(x=>x[0]===ZC.cat)||ZC_CATS[0]; c.innerHTML=cat[2].map(q=>`<button type="button">${q}</button>`).join(''); $$('#zcCat button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.zcc===ZC.cat)); }
 const ZC_HELLO='안녕하세요, ZIPLAN 길잡이예요. 건축 용어는 그림과 함께, 유명 건물은 사진과 모형으로, 평·㎡나 건폐율은 바로 계산해서 답해요. 심심하면 <b>퀴즈 내줘</b>, 아무거나 보고 싶으면 <b>오늘의 건물</b>이라고 해 보세요. 사람에게 묻고 싶으면 위의 <b>문의하기</b>로요.';
@@ -7223,7 +7358,7 @@ document.addEventListener('click',e=>{ if(e.target.closest('#zcFab')){ zcOpen(!Z
 document.addEventListener('submit',async e=>{ if(e.target.id==='zcForm'){ e.preventDefault(); const q=$('#zcQ').value; $('#zcQ').value=''; zcAsk(q); }
   if(e.target.id==='zcAsk'){ e.preventDefault(); const st=$('#zaSt'); const msg=$('#zaMsg').value.trim(); if(msg.length<2){ st.className='status err'; st.textContent='내용을 적어 주세요.'; return; }
     const rec={name:$('#zaName').value.trim()||null,email:$('#zaEmail').value.trim()||null,kind:$('#zaKind').value,message:msg,page:location.hash||'#home'}; $('#zaGo').disabled=true; st.className='status'; st.textContent='보내는 중…';
-    try{ if(!sb) throw {local:true}; const {error}=await sb.from('inquiries').insert(acct&&acct.mode==='server'?{...rec,user_id:acct.id}:rec); if(error) throw error; st.textContent='보냈습니다. 고맙습니다! 이메일을 남기셨다면 답을 드릴게요.'; $('#zaMsg').value=''; }
+    try{ if(!sb) throw {local:true}; const {error}=await sb.from('inquiries').insert(acct&&acct.mode==='server'?{...rec,user_id:acct.id}:rec); if(error) throw error; st.textContent='보냈습니다. 고맙습니다! 이메일을 남기셨다면 답을 드릴게요.'; $('#zaMsg').value=''; try{ zga('inquiry_submit_success',{kind:rec.kind}); zcOpen(false); zThanks(rec); }catch(err){} }
     catch(err){ const q=lsGet('zip_inq',[]); q.push({...rec,at:Date.now()}); lsSet('zip_inq',q); st.className='status err'; st.textContent=err&&err.local?'지금 화면에서는 서버에 닿지 않아 이 브라우저에 보관했어요. 정식 사이트에서 다시 보내 주세요.':'보내지 못했습니다. 잠시 뒤 다시 눌러 주세요.'; }
     finally{ $('#zaGo').disabled=false; } } });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&ZC.open) zcOpen(false); });
@@ -9225,7 +9360,7 @@ function tDockInit(){ if($('#tvDock')) return; const S=[['tvCollSec','컬렉션'
   d.addEventListener('click',e=>{ const a=e.target.closest('[data-tdock]'); if(!a) return; e.preventDefault(); const el=$('#'+a.dataset.tdock); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
   const io=new IntersectionObserver(en=>{ en.forEach(x=>{ if(x.isIntersecting){ $$('#tvDock a').forEach(a=>a.classList.toggle('on',a.dataset.tdock===x.target.id)); } }); },{rootMargin:'-40% 0px -50% 0px'}); S.forEach(s=>{ const el=$('#'+s[0]); if(el) io.observe(el); });
   const vis=()=>{ d.classList.toggle('show',location.hash==='#travel'&&scrollY>innerHeight*.6); }; addEventListener('scroll',vis,{passive:true}); addEventListener('hashchange',()=>setTimeout(vis,80)); vis(); }
-function tDetail(id){ const p=TPL.find(x=>x.id===id); if(!p) return; let d=$('#tvDrawer'); if(!d){ d=document.createElement('div'); d.id='tvDrawer'; d.className='tv-dr'; document.body.appendChild(d); d.addEventListener('click',e=>{ if(e.target===d||e.target.closest('[data-tdx]')) tDetailClose(); const g=e.target.closest('[data-tdmap]'); if(g){ tDetailClose(); const pp=TPL.find(x=>x.id===g.dataset.tdmap); $('#tvMap').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>tFly(pp,16.2),400); } const a=e.target.closest('[data-tdadd]'); if(a){ tDetailClose(); document.querySelector(`[data-tadd="${a.dataset.tdadd}"]`)?.click(); } }); }
+function tDetail(id){ const p=TPL.find(x=>x.id===id); if(!p) return; try{ if(ZCUR.h==='travel') zDeepMeta(p.name); }catch(e){} let d=$('#tvDrawer'); if(!d){ d=document.createElement('div'); d.id='tvDrawer'; d.className='tv-dr'; document.body.appendChild(d); d.addEventListener('click',e=>{ if(e.target===d||e.target.closest('[data-tdx]')) tDetailClose(); const g=e.target.closest('[data-tdmap]'); if(g){ tDetailClose(); const pp=TPL.find(x=>x.id===g.dataset.tdmap); $('#tvMap').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>tFly(pp,16.2),400); } const a=e.target.closest('[data-tdadd]'); if(a){ tDetailClose(); document.querySelector(`[data-tadd="${a.dataset.tdadd}"]`)?.click(); } }); }
   const c=TREG[p.r][1], sc=TSC[p.id]||[4,4,4,4], r=TRAT[p.id], F=TFEAT[p.id]||[], E=tEat(p.id); const nm=p.n.replace(/\s*\(.+\)/,'');
   d.innerHTML=`<aside class="tv-drb" style="--c:${c}"><button class="tv-drx" data-tdx aria-label="닫기">×</button>
    <div class="tv-drph">${PH[p.id]?phImg(p.id,1280,'',p.n,'(max-width:700px) 100vw, 560px'):`<div class="tv-art">${CTHUMB.kind(p.sh,1)}</div>`}${phCredit(p.id)}<div class="tv-drt"><span>${TREG[p.r][0]} · ${p.k==='t'?'전통':'현대'} · ${esc(p.y)}</span><h3>${esc(p.n)}</h3><em>${esc(p.a)}</em></div></div>
@@ -9241,7 +9376,7 @@ function tDetail(id){ const p=TPL.find(x=>x.id===id); if(!p) return; let d=$('#t
     <div class="tv-dract"><button class="btn" data-tdadd="${p.id}">코스에 넣기</button><button class="btn sec" data-tdmap="${p.id}">지도에서 보기</button><a class="btn sec" href="https://map.kakao.com/link/to/${encodeURIComponent(nm)},${p.lat},${p.lon}" target="_blank" rel="noopener">길찾기 ›</a></div>
    </div></aside>`;
   d.hidden=false; requestAnimationFrame(()=>d.classList.add('on')); document.documentElement.style.overflow='hidden'; }
-function tDetailClose(){ const d=$('#tvDrawer'); if(!d) return; d.classList.remove('on'); document.documentElement.style.overflow=''; setTimeout(()=>d.hidden=true,300); }
+function tDetailClose(){ try{ if(ZCUR.h==='travel'&&ZCUR.deep) zDeepMeta(null); }catch(e){} const d=$('#tvDrawer'); if(!d) return; d.classList.remove('on'); document.documentElement.style.overflow=''; setTimeout(()=>d.hidden=true,300); }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') tDetailClose(); });
 /* 지도 스타일 · 전체 화면 · 자동 투어 */
 const TSTY={calm:['차분한','https://tile.openstreetmap.org/{z}/{x}/{y}.png','tv-tiles','© OpenStreetMap 기여자'],color:['선명한','https://tile.openstreetmap.org/{z}/{x}/{y}.png','','© OpenStreetMap 기여자'],sat:['위성','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}','','Tiles © Esri — Esri, Maxar, Earthstar Geographics']};
@@ -42264,7 +42399,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return;
   const h=e.target.closest('[data-athall]'); if(h){ const k=h.dataset.athall; atRoomRender(k&&h.getAttribute('aria-pressed')!=='true'?k:''); if(!k) $('#atHalls').scrollIntoView({behavior:'smooth',block:'start'}); return; } });
 document.addEventListener('click',e=>{ const j=e.target.closest&&e.target.closest('[data-atjump]'); if(!j) return; e.preventDefault(); const el=$('#'+j.dataset.atjump); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
 document.addEventListener('keydown',e=>{ if(location.hash!=='#atlas'||e.target.closest('input,textarea,[contenteditable]')||$('#dnatM:not([hidden])')) return; const r=$('#atSpot'); if(!r) return; const b=r.getBoundingClientRect(); if(b.bottom<0||b.top>innerHeight) return; if(e.key==='ArrowRight'){ ATX.i++; atSpotRender(); } if(e.key==='ArrowLeft'){ ATX.i--; atSpotRender(); } });
-function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!m){ document.body.insertAdjacentHTML('beforeend','<div class="dnat-m" id="dnatM" role="dialog" aria-modal="true" aria-label="건물 보기" hidden></div>'); m=$('#dnatM'); }
+function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; try{ if(ZCUR.h==='atlas') zDeepMeta(b.name); }catch(e){} let m=$('#dnatM'); if(!m){ document.body.insertAdjacentHTML('beforeend','<div class="dnat-m" id="dnatM" role="dialog" aria-modal="true" aria-label="건물 보기" hidden></div>'); m=$('#dnatM'); }
   const img=bldImg(b,1280); const same=BLDX.filter(x=>x.id!==b.id&&x.arch===b.arch).slice(0,4); const sim=bldSimilar(b.keys,4,b.id).map(x=>x.b).filter(x=>!same.includes(x)).slice(0,4);
   m.innerHTML=`<div class="dnat-mb"><button class="x" type="button" data-atclose aria-label="닫기">✕</button>
    <div class="dnat-mp"><div class="pic${img?'':' gen'}">${img?`<img src="${img}" alt="${esc(b.name)}">`:'<i class="ld"></i>'}</div><div class="dnat-3d"><button type="button" class="dnat-3f lg" data-bld3full title="크게 보기" aria-label="3D 크게 보기">⛶</button><div class="dnat-3v" id="bld3d"></div><span class="dnat-3t">${BSIG[b.id]?'실제 치수와 특징으로 다시 지은 모형 — 끌어서 돌려 보세요':'단어로 지은 모형 — '+esc(DNA_ARCH[bldArch(b)].name)}</span>${pgToolsHTML('bld',{noSite:!BSIG[b.id]})}</div>${img?`<p class="cr">사진 <a href="${bldFile(b)}" target="_blank" rel="noopener">${esc(b.by||'작가 미상')} · ${esc(b.lic)}</a> · 위키미디어 공용</p>`:''}</div>
@@ -42279,7 +42414,7 @@ function bldOpen(id){ const b=BLD_BY[id]; if(!b) return; let m=$('#dnatM'); if(!
   const mnt=()=>{ try{ if(!m.querySelector('#bld3d')) return; pgvDispose('bld'); pgvMount('bld',m.querySelector('#bld3d'),site=>bldSpec(b,site||undefined)); }catch(e){ console.warn(e); } }; const go3=()=>{ bsigNeed(b.id)?bsigLoad(b.id).then(mnt,mnt):mnt(); };
   const th3=sigTh(b.id), v3=m.querySelector('#bld3d'); if(PG_LOW&&th3&&v3){ pgvDispose('bld'); v3.innerHTML=`<img class="dnat-po" src="${th3}" alt="" decoding="async"><button type="button" class="atx-3dgo" data-bld3go>3D로 돌려 보기</button>`; v3._go=go3; } else go3();
   if(!img) bldModel(b,720,500).then(u=>{ const p=m.querySelector('.pic'); if(p) p.innerHTML=`<img src="${u}" alt="">`; }).catch(()=>{}); }
-function bldClose(){ const m=$('#dnatM'); if(m) m.hidden=true; document.documentElement.classList.remove('dnat-lock'); try{ pgvDispose('bld'); }catch(e){} }
+function bldClose(){ try{ if(ZCUR.h==='atlas'&&ZCUR.deep) zDeepMeta(null); }catch(e){} const m=$('#dnatM'); if(m) m.hidden=true; document.documentElement.classList.remove('dnat-lock'); try{ pgvDispose('bld'); }catch(e){} }
 function bldBuild(id,add){ const b=BLD_BY[id]; if(!b) return; bldClose(); if(location.hash!=='#dna'){ location.hash='#dna'; setTimeout(()=>bldBuild(id,add),350); return; } try{ dnMode('adv'); }catch(e){} state.dna=add?[...new Set([...state.dna,...b.keys])]:b.keys.slice(); try{ touch('dna'); }catch(e){} renderDnaLab(); if(state.dna.length>=3){ renderDnaResult(); setTimeout(()=>{ const t=$('#dnStoryWrap'); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); },120); } else $('#dnPick').scrollIntoView({behavior:'smooth',block:'start'});
   const t=$('#dnToast'); if(t){ t.textContent=add?`${b.name}의 단어를 더했어요`:`${b.name}의 단어 ${b.keys.length}개로 지었어요`; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2400); } }
 document.addEventListener('click',e=>{ if(!e.target.closest) return;
