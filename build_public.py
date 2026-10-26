@@ -17,9 +17,9 @@ head = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="명작 287채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳. 모두의 건축 ZIPLAN.">
+<meta name="description" content="명작 332채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳. 모두의 건축 ZIPLAN.">
 <meta property="og:title" content="ZIPLAN 집플랜 — 모두의 건축">
-<meta property="og:description" content="명작 287채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳.">
+<meta property="og:description" content="명작 332채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ZIPLAN 집플랜">
 <meta property="og:locale" content="ko_KR">
@@ -30,7 +30,7 @@ head = '''<!doctype html>
 <meta property="og:image:alt" content="ZIPLAN 집플랜 — 집을 좋아하는 모든 사람의 공간">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ZIPLAN 집플랜 — 모두의 건축">
-<meta name="twitter:description" content="명작 287채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳.">
+<meta name="twitter:description" content="명작 332채를 3D로 구경하고, 30초 취향 테스트로 내 집을 그려 보고, 설계 흐름으로 건축을 공부하는 곳.">
 <meta name="twitter:image" content="%s/img/og/home.jpg">
 <link rel="canonical" href="%s/">
 <meta name="theme-color" content="#ffffff">
