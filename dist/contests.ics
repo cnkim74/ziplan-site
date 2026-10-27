@@ -4,111 +4,8 @@ PRODID:-//ZIPLAN//contests//KO
 CALSCALE:GREGORIAN
 X-WR-CALNAME:ZIPLAN 건축 공모·행사
 BEGIN:VEVENT
-UID:wdc-busan-pavilion@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261027
-SUMMARY:[마감] 2028 세계디자인수도 부산 파빌리온 디자인 
- 국제공모
-DESCRIPTION:2028 세계디자인수도 부산을 알릴 고정·이동식 
- 파빌리온을 제안하는 2단계 국제 공모입니다. 1단계 개
- 념안을 10.26 17시까지 온라인으로 내고\, 뽑힌 2팀이 11월
-  한 달 동안 디자인을 발전시켜요.\n원문: https://wdcbusanpa
- vilion-idc.kr/\n마지막 확인: 2026-10-24
-URL:https://wdcbusanpavilion-idc.kr/
-END:VEVENT
-BEGIN:VEVENT
-UID:pub-mabik-lab@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261027
-SUMMARY:[마감] 국립해양생물자원관 해양생물보존연구동 
- 건립사업 설계공모
-DESCRIPTION:해양생물 자원을 보존·연구하는 연구동을 새
- 로 짓는 설계 공모입니다. 이번 목록에서 설계비가 가
- 장 큰 국내 공모예요. 참가등록 마감 기준.\n원문: https:/
- /jootek.com/folio/contests/19002\n마지막 확인: 2026-10-24
-URL:https://jootek.com/folio/contests/19002
-END:VEVENT
-BEGIN:VEVENT
-UID:pub-gyeryong-sensor@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261027
-SUMMARY:[마감] 지능형센서 Spin-on 군 적합성 검증 기술지원
- 센터 건립 설계용역
-DESCRIPTION:지능형 센서 기술의 군 적합성을 검증·지원하
- 는 센터를 새로 짓는 설계 공모입니다. 참가등록 마감 
- 기준.\n원문: https://jootek.com/folio/contests/19011\n마지막 확
- 인: 2026-10-24
-URL:https://jootek.com/folio/contests/19011
-END:VEVENT
-BEGIN:VEVENT
-UID:pub-chuncheon-youth@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261027
-SUMMARY:[마감] 퇴계산업단지 청년문화센터 건립사업
-DESCRIPTION:산업단지 안에 청년들이 모이는 문화센터를 짓
- 는 설계 공모입니다. 참가등록 마감 기준.\n원문: https://
- jootek.com/folio/contests/19005\n마지막 확인: 2026-10-24
-URL:https://jootek.com/folio/contests/19005
-END:VEVENT
-BEGIN:VEVENT
-UID:pub-palgong-office@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261027
-SUMMARY:[마감] 팔공산국립공원서부사무소 신축사업 설계
- 공모
-DESCRIPTION:국립공원 서부 지역을 관리하는 사무소를 새로
-  짓는 설계 공모입니다. 참가등록 마감 기준.\n원문: http
- s://jootek.com/folio/contests/19001\n마지막 확인: 2026-10-24
-URL:https://jootek.com/folio/contests/19001
-END:VEVENT
-BEGIN:VEVENT
-UID:gj-asia-arch-ex@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261102
-SUMMARY:2026 광주 아시아국제건축공모전 수상작 전시
-DESCRIPTION:'참여 건축'을 주제로 대학생들이 아시아의 땅
- 에 제안한 설계안을 모아 보여 주는 전시입니다. 첫날 1
- 0.27 오후 2시에 같은 곳에서 시상식이 열려요.\n원문: htt
- p://www.gwangjuproject.kr\n마지막 확인: 2026-10-24
-URL:http://www.gwangjuproject.kr
-END:VEVENT
-BEGIN:VEVENT
-UID:suseong-living-ground-ex@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261123
-SUMMARY:2026 수성 건축·조경 시각작품 국제 공모 선정작 
- 전시
-DESCRIPTION:'리빙 그라운드(Living Ground)란?'이라는 물음에 
- 청소년·일반 참가자가 그림 한 장으로 답한 작품 가운
- 데 선정작을 수성못 둘레에서 보여 줍니다. 10.27 수성국
- 제비엔날레 개막과 함께 시작해요.\n원문: https://www.sscf.
- or.kr\n마지막 확인: 2026-10-24
-URL:https://www.sscf.or.kr
-END:VEVENT
-BEGIN:VEVENT
-UID:suseong-biennale-2026@ziplan
-DTSTAMP:20261026T034429Z
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261123
-SUMMARY:2026 수성국제비엔날레 — Living Ground
-DESCRIPTION:건축과 조경으로 도시와 자연이 함께 사는 법
- 을 묻는 비엔날레입니다. 한옥식 목구조 야외 전시장 '
- 빅 루프'에서 지역 공간 설계안과 국내외 건축가의 구
- 상을 보여 주고\, 포럼·체험 프로그램도 열려요. 휴관 
- 없이 운영.\n원문: https://www.sscf.or.kr\n마지막 확인: 2026-10
- -24
-URL:https://www.sscf.or.kr
-END:VEVENT
-BEGIN:VEVENT
 UID:intl-garden-festival-2027@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261028
 SUMMARY:[마감] International Garden Festival 2027 작품 공모
@@ -122,7 +19,7 @@ URL:https://competitions.archi/competition/the-international-garden-festiv
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-gyeongsan-gym@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261028
 SUMMARY:[마감] 경산 제2일반산업단지 다목적 체육관 건립 
@@ -134,7 +31,7 @@ URL:https://jootek.com/folio/contests/19003
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-rome-residence@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261028
 SUMMARY:[마감] 주이탈리아대사관 관저 리모델링 설계 제
@@ -147,7 +44,7 @@ URL:https://jootek.com/folio/contests/19007
 END:VEVENT
 BEGIN:VEVENT
 UID:gg-arch-62@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261028
 DTEND;VALUE=DATE:20261029
 SUMMARY:[마감] 2026 제62회 경기건축대전
@@ -160,7 +57,7 @@ URL:https://www.ggkia.or.kr
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-wangsuk2-park@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261028
 DTEND;VALUE=DATE:20261029
 SUMMARY:[마감] 남양주왕숙2 공원문화건축물 설계용역 제
@@ -173,7 +70,7 @@ URL:https://jootek.com/folio/contests/19008
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-gg-kids-edu@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261029
 DTEND;VALUE=DATE:20261030
 SUMMARY:[마감] (가칭)경기도교육청 동부유아체험교육원 
@@ -186,7 +83,7 @@ URL:https://jootek.com/folio/contests/19016
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-bonghwa-library@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261029
 DTEND;VALUE=DATE:20261030
 SUMMARY:[마감] (가칭)경상북도교육청 봉화도서관 신축공
@@ -198,7 +95,7 @@ URL:https://jootek.com/folio/contests/19019
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-vancouver-tall@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261029
 DTEND;VALUE=DATE:20261030
 SUMMARY:[마감] Vancouver Tall Challenge — 밴쿠버 도심 고층 건
@@ -213,7 +110,7 @@ URL:https://competitions.archi/competition/vancouver-tall-challenge/
 END:VEVENT
 BEGIN:VEVENT
 UID:jeju-photo-ex@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261030
 SUMMARY:제주국제건축문화제 건축사진 공모 수상작 전시
@@ -225,7 +122,7 @@ URL:https://linkareer.com/activity/354422
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-jinan-wood-tower@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261029
 DTEND;VALUE=DATE:20261030
 SUMMARY:[마감] 진안고원 친환경 목조전망대 조성사업 설
@@ -238,7 +135,7 @@ URL:https://jootek.com/folio/contests/19021
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-curator-talk@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261030
 DTEND;VALUE=DATE:20261031
 SUMMARY:서울도시건축전시관 큐레이터 토크
@@ -250,7 +147,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:pub-hwasun-jeil@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261030
 DTEND;VALUE=DATE:20261031
 SUMMARY:[마감] 화순제일중 공간재구조화 개축 제안공모
@@ -262,7 +159,7 @@ URL:https://jootek.com/folio/contests/18999
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-3-element@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:[마감] The 3-Element Challenge — 세 가지 요소만으로 
@@ -276,8 +173,20 @@ DESCRIPTION:재료·형태·개념 가운데 딱 세 가지만 골라 건
 URL:https://competitions.archi/competition/the-3-element-challenge/
 END:VEVENT
 BEGIN:VEVENT
+UID:gj-asia-arch-ex@ziplan
+DTSTAMP:20261027T063114Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261102
+SUMMARY:2026 광주 아시아국제건축공모전 수상작 전시
+DESCRIPTION:'참여 건축'을 주제로 대학생들이 아시아의 땅
+ 에 제안한 설계안을 모아 보여 주는 전시입니다. 첫날 1
+ 0.27 오후 2시에 같은 곳에서 시상식이 열려요.\n원문: htt
+ p://www.gwangjuproject.kr\n마지막 확인: 2026-10-24
+URL:http://www.gwangjuproject.kr
+END:VEVENT
+BEGIN:VEVENT
 UID:pub-bitgreen-youth@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:[마감] 빛그린산단 종합비즈니스센터(청년문화센
@@ -290,7 +199,7 @@ URL:https://jootek.com/folio/contests/19010
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-bjarke-lecture@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261105
 DTEND;VALUE=DATE:20261106
 SUMMARY:비야케 잉엘스(BIG) 특별강연
@@ -303,7 +212,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-big-ex@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261107
 SUMMARY:BIG 국내 첫 기획전
@@ -315,7 +224,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-lee-talk@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
 SUMMARY:BIG 이진호 건축가 토크
@@ -327,7 +236,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-social-hub-2@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261112
 DTEND;VALUE=DATE:20261113
 SUMMARY:[마감] The Social Hub 2.0: 동네 커뮤니티 공간 다시 상
@@ -342,7 +251,7 @@ URL:https://competitions.archi/competition/the-social-hub-2-0-re-imagining
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-gliwice-boulevard@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261112
 DTEND;VALUE=DATE:20261113
 SUMMARY:[마감] 글리비체 크워드니차 강변 대로 도시설계 
@@ -357,7 +266,7 @@ URL:https://competitions.archi/competition/urban-planning-competition-for-
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-tour-nov@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261112
 DTEND;VALUE=DATE:20261116
 SUMMARY:도시건축투어 — 청계천 · 경복궁 동측
@@ -369,7 +278,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:kosid-38-ex@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261112
 DTEND;VALUE=DATE:20261116
 SUMMARY:제38회 대한민국 실내건축대전 전시
@@ -380,7 +289,7 @@ URL:https://kosid.or.kr/22
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-krystal-grad@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
 SUMMARY:[마감] Krystal Design Award 졸업작품 공모
@@ -394,8 +303,36 @@ URL:https://competitions.archi/competition/krystal-design-award-graduation
  -competition-3/
 END:VEVENT
 BEGIN:VEVENT
+UID:suseong-living-ground-ex@ziplan
+DTSTAMP:20261027T063114Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261123
+SUMMARY:2026 수성 건축·조경 시각작품 국제 공모 선정작 
+ 전시
+DESCRIPTION:'리빙 그라운드(Living Ground)란?'이라는 물음에 
+ 청소년·일반 참가자가 그림 한 장으로 답한 작품 가운
+ 데 선정작을 수성못 둘레에서 보여 줍니다. 10.27 수성국
+ 제비엔날레 개막과 함께 시작해요.\n원문: https://www.sscf.
+ or.kr\n마지막 확인: 2026-10-24
+URL:https://www.sscf.or.kr
+END:VEVENT
+BEGIN:VEVENT
+UID:suseong-biennale-2026@ziplan
+DTSTAMP:20261027T063114Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261123
+SUMMARY:2026 수성국제비엔날레 — Living Ground
+DESCRIPTION:건축과 조경으로 도시와 자연이 함께 사는 법
+ 을 묻는 비엔날레입니다. 한옥식 목구조 야외 전시장 '
+ 빅 루프'에서 지역 공간 설계안과 국내외 건축가의 구
+ 상을 보여 주고\, 포럼·체험 프로그램도 열려요. 휴관 
+ 없이 운영.\n원문: https://www.sscf.or.kr\n마지막 확인: 2026-10
+ -24
+URL:https://www.sscf.or.kr
+END:VEVENT
+BEGIN:VEVENT
 UID:gg-arch-62-ex@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261124
 DTEND;VALUE=DATE:20261129
 SUMMARY:제62회 경기건축대전 수상작 전시
@@ -406,7 +343,7 @@ URL:https://www.ggkia.or.kr
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-exchange-ex@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261126
 DTEND;VALUE=DATE:20261127
 SUMMARY:서울도시건축교류전
@@ -418,7 +355,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-house-future-sa@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:[마감] House of the Future — 사우디아라비아 미래 주
@@ -433,7 +370,7 @@ URL:https://competitions.archi/competition/house-of-the-future/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-house-of-poetry@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261213
 DTEND;VALUE=DATE:20261214
 SUMMARY:[마감] House of Poetry — 시인 디노 캄파나의 집 다시
@@ -449,7 +386,7 @@ URL:https://www.youngarchitectscompetitions.com/open-competitions/house-of
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-drwngs@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:[마감] DRWNGS 건축 드로잉 공개 모집
@@ -463,7 +400,7 @@ URL:https://competitions.archi/competition/drwngs-open-call-architectural-
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-living-markets@ziplan
-DTSTAMP:20261026T034429Z
+DTSTAMP:20261027T063114Z
 DTSTART;VALUE=DATE:20270228
 DTEND;VALUE=DATE:20270301
 SUMMARY:[마감] Living Markets 아이디어 공모
