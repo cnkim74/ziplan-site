@@ -110,7 +110,7 @@ for _f in (root / 'brand').glob('ziplan-*'):
     _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
-for rel in ['img/og/%s.jpg' % _k for _k in ('home','atlas','travel','taste','room','contests')] + ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','data/furniture.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
+for rel in ['img/og/%s.jpg' % _k for _k in ('home','atlas','travel','taste','room','contests','plan3d')] + ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','data/furniture.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
     if not (root / rel).exists():
         print('WARNING missing', rel); continue
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)
@@ -632,11 +632,19 @@ def _build_static(D):
           '<section class="grp"><h2>알아 두세요</h2><ul class="pts"><li>가구 치수는 일반 규격 기준이라 제품마다 달라요.</li><li>올린 사진·평면도는 이 기기 브라우저에서만 쓰고 서버에 저장하지 않아요. 주소는 묻지 않아요.</li><li>참고용이에요 — 실제 시공 전에는 실측과 전문가 확인이 필요해요.</li></ul></section>',
           img=SITE_URL + '/img/og/room.jpg', img_alt='ZIPLAN 내 방 고치기 3D', crumbs=[('ZIPLAN', '/'), ('내 방 고치기', '/room/')], og_type='website',
           ld={'@type': 'WebPage', 'name': '내 방 고치기', 'url': _url('/room/'), 'isPartOf': {'@id': SITE_URL + '/#website'}})
+    _page('/plan3d/', '도면 → 3D — DXF·평면도를 SketchUp 모형으로 | ZIPLAN', 'DXF나 평면도 그림·PDF를 올리고 층고·슬래브 두께를 넣으면 벽·창·문을 세운 3D 모형을 만들어 SketchUp용 .dae와 Ruby 스크립트로 받습니다. 미리보기 무료, 파일은 멤버십·무료 체험 3회. 참고용.',
+          '<p class="kick">도면 → 3D</p><h1>도면 한 장이, SketchUp 모형으로</h1><p class="lead">평면도를 올리고 층고와 슬래브 두께만 넣으면 벽·창·문을 세운 매스 모형을 만들어 드려요.</p>'
+          '<div class="cta"><a class="btn" href="/#plan3d">도면 → 3D 시작하기</a><a class="btn ghost" href="/room/">방 하나라면 — 내 방 고치기</a></div>'
+          '<section class="grp"><h2>네 단계</h2><ol class="pts"><li><b>도면 올리기</b> — DXF(벽·창·문 레이어), 평면도 그림(PNG·JPG), PDF 첫 쪽, 또는 예시 도면.</li><li><b>층과 높이</b> — 층마다 도면을 고르고 층고·슬래브 두께·벽 두께·창 높이·지붕을 넣어요.</li><li><b>3D 확인</b> — 돌려 보고 층별로 보면서, 이상한 곳은 도면에서 눌러 문·창을 고쳐요.</li><li><b>내려받기</b> — SketchUp용 .dae(COLLADA 1.4.1), SketchUp Ruby 스크립트(.rb), 3D DXF, PNG.</li></ol></section>'
+          '<section class="grp"><h2>SketchUp에서 여는 법</h2><ul class="pts"><li><b>.dae</b> — 데스크톱 SketchUp: 파일 → 가져오기. (SketchUp for Web은 유료 플랜에서 .dae 가져오기 가능)</li><li><b>.rb</b> — 데스크톱 SketchUp: 창 → Ruby 콘솔에서 load 명령으로 실행하면 그룹·레이어(태그)가 나뉜 모형이 그려져요.</li><li><b>3D DXF</b> — AutoCAD·Rhino 등 다른 프로그램용.</li></ul></section>'
+          '<section class="grp"><h2>알아 두세요</h2><ul class="pts"><li>그림·PDF 도면은 선을 읽어 벽을 찾는 방식이라 치수 글자는 읽지 않아요 — 축척(길이 한 곳)은 직접 맞춰 주세요. 사선 벽은 계단처럼 보일 수 있어요.</li><li>올린 도면은 이 기기 브라우저에서만 처리하고 서버에 저장하지 않아요.</li><li>만든 모형은 계획 검토용 참고 자료예요 — 구조·법규·실제 시공 도면을 대신하지 않아요.</li></ul></section>',
+          img=SITE_URL + '/img/og/plan3d.jpg', img_alt='ZIPLAN 도면 → 3D 모형', crumbs=[('ZIPLAN', '/'), ('도면 → 3D', '/plan3d/')], og_type='website',
+          ld={'@type': 'WebPage', 'name': '도면 → 3D', 'url': _url('/plan3d/'), 'isPartOf': {'@id': SITE_URL + '/#website'}})
     # ---------- 404 · sitemap · robots ----------
     _page('/404.html', '페이지를 찾을 수 없어요 | ZIPLAN', '요청한 페이지가 없어요. 건축 아틀라스·건축 여행·물어보기·사전에서 찾아보세요.',
           '<p class="kick">404</p><h1>페이지를 찾을 수 없어요</h1><p class="lead">주소가 바뀌었거나 없는 페이지예요. 아래에서 다시 찾아보세요.</p>'
           '<div class="cta"><a class="btn" href="/">ZIPLAN 홈</a><a class="btn ghost" href="/atlas/">건축 아틀라스</a><a class="btn ghost" href="/travel/">건축 여행</a><a class="btn ghost" href="/contests/">공모·행사</a><a class="btn ghost" href="/ask/">건축 물어보기</a><a class="btn ghost" href="/dict/">건축 사전</a></div>'
-          '<section class="grp"><h2>바로 해 볼 수 있는 것</h2><ul class="pts"><li><a href="/taste/">취향 랩</a> — 사진 세 번 고르면 내 취향 집</li><li><a href="/room/">내 방 고치기</a> — 방 치수로 가구 배치 세 안</li><li><a href="/#zipcode">내집코드</a> — 이 땅에 지을 수 있는 대략의 크기</li></ul></section>', noindex=True)
+          '<section class="grp"><h2>바로 해 볼 수 있는 것</h2><ul class="pts"><li><a href="/taste/">취향 랩</a> — 사진 세 번 고르면 내 취향 집</li><li><a href="/room/">내 방 고치기</a> — 방 치수로 가구 배치 세 안</li><li><a href="/plan3d/">도면 → 3D</a> — 평면도를 SketchUp 모형으로</li><li><a href="/#zipcode">내집코드</a> — 이 땅에 지을 수 있는 대략의 크기</li></ul></section>', noindex=True)
     urls = ['/'] + [p for p, _ in _PAGES]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls: sm.append('<url><loc>%s</loc><lastmod>%s</lastmod></url>' % (_esc(_url(u)), BUILD_DATE))

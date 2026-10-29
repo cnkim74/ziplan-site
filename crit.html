@@ -3150,6 +3150,96 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 .tabbar .tb[data-tab="build"] svg{width:20px;height:20px;padding:4px;background:#2997ff;stroke:#fff;border-radius:9px}
 .tabbar .tb[data-tab="build"] span{color:#2997ff;font-weight:800}
 
+/* ===== X · v23: 도면 → 3D (#plan3d) — 내 방 고치기(rm-*)·내집코드(zc2-*) 틀을 그대로 씀 ===== */
+#view-plan3d{padding:0 0 96px;background:var(--bg)}
+.p3-wrap.zc2{max-width:1180px;text-align:left}
+.p3-steps{grid-template-columns:repeat(4,1fr)}
+.p3-modes{grid-template-columns:repeat(3,1fr)}
+.p3-samples{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.p3-sample{min-height:86px;align-content:center;gap:4px}.p3-sample b{font-size:14.5px}.p3-sample span{font-size:12.5px;color:var(--fg-2)}
+.p3-priv{margin:2px 0 0}
+.p3-plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:14px;margin-top:6px}
+.p3-plans:empty{display:none}
+.p3-plan{border:1px solid var(--card-line);border-radius:18px;padding:12px 14px 12px;display:grid;gap:8px;background:var(--bg);min-width:0}
+.p3-ph{display:flex;align-items:center;gap:8px;min-width:0}.p3-ph b{font-size:14.5px;white-space:nowrap}.p3-ph span{flex:1;min-width:0;font-size:12.5px;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p3-sv{background:#fbfaf7;border:1px solid var(--card-line);border-radius:12px;overflow:hidden}
+.p3-svgp{display:block;width:100%;height:auto;max-height:420px;touch-action:manipulation}
+.p3-svgp.picking{cursor:crosshair}
+.p3-w{fill:#4a4d55;stroke:none;cursor:pointer}.p3-w.ext{fill:#25272c}.p3-w.off{fill:none;stroke:#c33;stroke-dasharray:.08 .06;stroke-width:.03;opacity:.8}
+.p3-w:hover{fill:#5f6ad8}
+.p3-o{cursor:pointer;stroke:#fff;stroke-width:.02}.p3-o:hover{opacity:.75}
+.p3-o.k-door{fill:#e5484d}.p3-o.k-win{fill:#3e8ed0}.p3-o.k-open{fill:#c9cbd1;stroke:#8a8f98;stroke-dasharray:.06 .05}.p3-o.k-none{fill:#25272c}
+.p3-dim{fill:#6e6e73;font-family:inherit}
+.p3-pk{fill:#ff9f0a;stroke:#fff;stroke-width:.03}.p3-pkl{stroke:#ff9f0a}
+.p3-st{margin:0;font-size:13px;color:var(--fg-2);line-height:1.5}.p3-st b{color:var(--fg)}.p3-st em{font-style:normal}.p3-st .bad{color:#d1242f}
+.p3-tl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px}
+.p3-tl select,.p3-tl input[type=number]{font:inherit;font-size:16px;padding:6px 8px;border:1px solid var(--card-line);border-radius:10px;background:var(--bg);color:var(--fg)}
+.p3-tl input[type=number]{width:88px}
+.p3-mut{color:var(--fg-2);font-size:12.5px}
+.p3-sc em{font-style:normal;color:var(--fg-2);font-size:12px}
+.p3-rad{display:inline-flex;gap:8px;align-items:center;color:var(--fg-2)}.p3-rad input{width:110px}
+.p3-pkin{display:inline-flex;gap:6px;align-items:center}
+.p3-lg{margin:0;font-size:12px;color:var(--fg-2);line-height:1.6}.p3-lg i{display:inline-block;width:12px;height:8px;border-radius:2px;margin:0 4px 0 6px;vertical-align:0}
+.p3-lg i:first-child{margin-left:0}.p3-lg .k-door{background:#e5484d}.p3-lg .k-win{background:#3e8ed0}.p3-lg .k-open{background:#c9cbd1}.p3-lg .k-none{background:#25272c}
+.p3-flr{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:14px}
+.p3-flr select{font:inherit;font-size:16px;padding:7px 10px;border:1px solid var(--card-line);border-radius:10px;background:var(--bg);color:var(--fg);margin-left:6px}
+.p3-ck,.p3-ck2{display:inline-flex;gap:8px;align-items:center;font-size:14px}
+.p3-ft{width:100%;border-collapse:collapse;font-size:14px}
+.p3-ft th,.p3-ft td{padding:6px 8px;border-bottom:1px solid var(--card-line);text-align:left}.p3-ft thead th{font-size:12px;color:var(--fg-2);font-weight:600}
+.p3-ft tbody th{width:56px;white-space:nowrap}
+.p3-ft select,.p3-ft input{font:inherit;font-size:16px;padding:6px 8px;border:1px solid var(--card-line);border-radius:10px;background:var(--bg);color:var(--fg);max-width:100%}
+.p3-ft select{width:100%}.p3-ft input{width:96px}
+.p3-vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:10px 14px}
+.p3-vg label{display:grid;gap:4px;font-size:13px}.p3-vg label>span:first-child{font-weight:700}
+.p3-vg em{font-style:normal;font-size:11.5px;color:var(--fg-2);line-height:1.4}
+.p3-vg .p3-in{display:flex;gap:6px;align-items:center;color:var(--fg-2)}
+.p3-vg input[type=number],.p3-vg select{font:inherit;font-size:16px;padding:7px 9px;border:1px solid var(--card-line);border-radius:10px;background:var(--bg);color:var(--fg);width:100%;max-width:140px}
+.p3-vg .p3-ck2{grid-column:1/-1;display:flex}
+.p3-vbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px}
+.p3-vbar select{font:inherit;font-size:15px;padding:5px 8px;border:1px solid var(--card-line);border-radius:10px;background:var(--bg);color:var(--fg);margin-left:4px}
+.p3-chips{display:flex;flex-wrap:wrap;gap:6px}
+.p3-chip{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border:1px solid var(--card-line);border-radius:999px;font-size:13px;cursor:pointer;min-height:34px;user-select:none}
+.p3-chip i{width:12px;height:12px;border-radius:3px;border:1px solid rgba(0,0,0,.18)}
+.p3-chip:has(input:not(:checked)){opacity:.5}
+.p3-vbtn{display:inline-flex;gap:6px;margin-left:auto}
+.p3-cv{position:relative;height:min(62vh,560px);min-height:300px;border-radius:16px;overflow:hidden;background:#eef0f3;border:1px solid var(--card-line)}
+.p3-cv canvas{display:block;width:100%;height:100%;cursor:grab}.p3-cv canvas:active{cursor:grabbing}
+.p3-sum{margin:0;font-size:13px;color:var(--fg-2);line-height:1.5}.p3-sum b{color:var(--fg)}.p3-sum em{font-style:normal;font-size:12px}
+.p3-gate .p3-g{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid var(--card-line);background:var(--bg-alt)}
+.p3-g b{font-size:14.5px}.p3-g span{flex:1 1 260px;font-size:13px;color:var(--fg-2);line-height:1.5}.p3-g span em{font-style:normal;color:#b25e00}
+.p3-g.ok{border-color:color-mix(in srgb,#30a46c 50%,var(--card-line))}.p3-g.ok b{color:#1d8a4b}
+.p3-g.no{border-color:color-mix(in srgb,#e5484d 45%,var(--card-line))}
+.p3-dls{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.p3-dl{all:unset;box-sizing:border-box;display:grid;gap:4px;padding:14px 16px;border:1px solid var(--card-line);border-radius:16px;cursor:pointer;background:var(--bg);transition:border-color .2s,transform .2s}
+.p3-dl:hover{border-color:var(--accent);transform:translateY(-1px)}.p3-dl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.p3-dl b{font-size:14.5px}.p3-dl span{font-size:12.5px;color:var(--fg-2);line-height:1.45}
+.p3-dl:first-child{border-color:var(--accent)}
+.p3-howl{margin:0 0 8px;padding-left:20px;font-size:13.5px;line-height:1.6;display:grid;gap:6px}.p3-howl b{margin-right:6px}
+.p3-howl code{font-size:12.5px;background:var(--bg-alt);padding:1px 5px;border-radius:5px;word-break:break-all}
+.p3-src{margin:0;font-size:12px;color:var(--fg-2);line-height:1.6}.p3-src a{color:inherit}
+.p3-legal{margin:2px 0 0}
+.p3-toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);background:#1d1d1f;color:#fff;padding:10px 16px;border-radius:12px;font-size:13.5px;z-index:120;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:min(92vw,520px);text-align:center;line-height:1.45}
+.p3-toast.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:820px){
+  #view-plan3d{padding:0 0 150px}
+  html:has(#view-plan3d:not([hidden])) .zc-fab,html.hasTab:has(#view-plan3d:not([hidden])) .zc-fab{bottom:auto}
+  html.hasTab:has(#view-plan3d:not([hidden])) #zchat{bottom:calc(140px + env(safe-area-inset-bottom,0px))}
+  .p3-toast{bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:640px){
+  .p3-steps{grid-template-columns:repeat(4,1fr);gap:6px}
+  .p3-modes{grid-template-columns:1fr 1fr 1fr;gap:6px}.p3-modes .rm-mode span{display:none}
+  .p3-samples{grid-template-columns:1fr}
+  .p3-dls{grid-template-columns:1fr}
+  .p3-vg{grid-template-columns:1fr 1fr;gap:10px}.p3-vg input[type=number],.p3-vg select{max-width:100%}
+  .p3-vbtn{margin-left:0}
+  .p3-cv{height:58vh;min-height:280px}
+}
+
+/* X v23: 메뉴 안 작은 묶음 제목 */
+.mg-sec{grid-column:1/-1;font-size:11px;font-weight:700;color:var(--fg-2);padding:8px 10px 2px;letter-spacing:.02em}.mg-sec:first-of-type{padding-top:0}
+.menu .mm-sec{margin:8px 0 2px;font-size:11.5px;font-weight:700;color:var(--fg-2)}
+.ts-sec{grid-column:1/-1;font-size:11.5px;font-weight:700;color:var(--fg-2);margin:4px 2px -2px}
 </style>
 
 <nav>
@@ -3284,7 +3374,7 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
         <p class="hbd-sub">땅이 있다면 주소부터, 아직 없다면 취향부터. 지을 집이 보이면 건축사·시공사 상담까지 이어 드릴게요.</p>
         <div class="hb-two"><a class="hb" href="#zipcode"><b>땅이 있어요</b><p>주소 하나로 지을 수 있는 크기·층수</p></a><a class="hb" href="#dna"><b>아직 없어요</b><p>단어로 먼저 내 취향 집부터</p></a></div>
         <form class="addr" id="homeAddr"><input type="text" id="homeAddrIn" placeholder="주소를 넣으면 이 땅에 뭘 지을 수 있는지 알려드려요" aria-label="주소"><button type="submit">읽어 보기</button></form>
-        <a class="hs-more hb-room" href="#room">방 하나만 바꾸고 싶다면 — 내 방 고치기 ›</a>
+        <a class="hs-more hb-room" href="#room">방 하나만 바꾸고 싶다면 — 내 방 고치기 ›</a><a class="hs-more hb-room" href="#plan3d">도면이 있다면 — 도면 → 3D(SketchUp) ›</a>
       </div>
       <figure class="hbd-fig"><img src="img/alt-c.webp" width="720" height="540" alt="ㄱ자로 안마당을 감싼 집 — 예시 이미지" loading="lazy" decoding="async"><figcaption>예시 — 마당 · 큰 지붕 · 나무로 고른 집</figcaption></figure>
     </div>
@@ -3294,7 +3384,7 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     <div class="hs-in">
       <figure class="hs-fig"><img src="img/p-crit.webp" width="760" height="570" alt="벽에 걸린 A1 패널들" loading="lazy" decoding="async"></figure>
       <div class="hs-t"><span class="lab-k">건축 공부</span><h2>학생과 실무자의 작업대.</h2><div class="tag">컨셉에서 치수 붙은 평면도·DXF, A1 패널까지 — 한 흐름으로 이어집니다.</div>
-        <div class="hs-act"><a class="btn" href="#flow">작업대 열기</a><a class="hs-more" href="#contests">다가오는 공모·행사 일정 ›</a><a class="hs-more" href="#pricing">요금 · 얼리버드 사전 신청 ›</a></div></div>
+        <div class="hs-act"><a class="btn" href="#flow">작업대 열기</a><a class="hs-more" href="#plan3d">도면을 SketchUp 3D로 ›</a><a class="hs-more" href="#contests">다가오는 공모·행사 일정 ›</a><a class="hs-more" href="#pricing">요금 · 얼리버드 사전 신청 ›</a></div></div>
     </div>
   </section>
 
@@ -3339,6 +3429,11 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <section class="view" id="view-room" hidden aria-label="내 방 고치기">
   <div class="hero"><h1>내 방 고치기</h1><div class="tag">방 하나부터, 다시 그려 봅니다.</div><div class="sub">방 치수만 넣으면 가구 배치 세 가지, 통로 폭, 조명·콘센트 자리까지. 로그인 없이, 무료.</div></div>
   <div class="zc2 rm-wrap" id="rmApp"></div>
+</section>
+
+<section class="view" id="view-plan3d" hidden aria-label="도면 → 3D">
+  <div class="hero"><h1>도면 → 3D</h1><div class="tag">도면 한 장이, SketchUp 모형으로.</div><div class="sub">DXF나 평면도 그림을 올리고 층고·슬래브 두께를 넣으면 벽·창·문을 세운 3D 모형을 만들어 SketchUp 파일(.dae·.rb)로 드려요. 미리보기는 무료, 파일 받기는 멤버십 · 무료 체험 3회.</div></div>
+  <div class="zc2 rm-wrap p3-wrap" id="p3App"></div>
 </section>
 
 <section class="view" id="view-pricing" hidden>
@@ -4018,7 +4113,7 @@ const typeName=t=>(IMG_TYPES.find(x=>x[0]===t)||[t,t])[1];
 const NAVG=[
   {k:'look',t:'집 구경',c:'#ff9f0a',items:[['atlas','건축 아틀라스','정교 모형 375채 · 세계 928채를 3D로','atlas'],['travel','건축 여행','한국 72곳 · 해외 8도시 · 계절별 스팟 · 코스 짜기','pin'],['cinema','건축 극장','영화·드라마 속 그 집을 영화관처럼','film','soon'],['game','집 블록','1분 퍼즐로 짓는 집 · 오늘의 판','blocks','soon'],['story','집 이야기','물어보기 549문답을 읽을거리로','book','soon']],
     f:{w:'LOOK',h:'명작을 한 채씩, 모형으로.',p:'경복궁에서 부르즈 할리파까지, 실측으로 다시 지은 375채. 그리고 보러 가는 건축 72곳.',a:'atlas',b:'아틀라스 열기',g:'linear-gradient(135deg,#ff9f0a,#ff5e5e)'}},
-  {k:'build',t:'내 집 짓기',c:'#3f7bff',items:[['dna','취향 랩','단어 몇 개로 30초 만에 내 취향 집','dna'],['zipcode','내집코드','주소 하나로 이 땅에 지을 수 있는 크기','code'],['room','내 방 고치기','방 치수로 가구 배치 3안 · 조명·콘센트 자리','plan'],['buildguide','건축주 가이드','땅 고르기부터 입주까지 8단계','steps','soon'],['#ask','상담 요청','지을 집이 보이면, 물어보세요','chat']],
+  {k:'build',t:'내 집 짓기',c:'#3f7bff',items:[['dna','취향 랩','단어 몇 개로 30초 만에 내 취향 집','dna'],['zipcode','내집코드','주소 하나로 이 땅에 지을 수 있는 크기','code'],['plan3d','도면 → 3D','도면을 SketchUp 3D 모형으로 · 멤버십','cube'],['room','내 방 고치기','방 치수로 가구 배치 3안 · 조명·콘센트 자리','plan'],['buildguide','건축주 가이드','땅 고르기부터 입주까지 8단계','steps','soon'],['#ask','상담 요청','지을 집이 보이면, 물어보세요','chat']],
     f:{w:'BUILD',h:'30초면 내 취향 집이 보인다.',p:'단어를 고르면 집이 지어지고 도면까지 나옵니다. 땅이 있다면 주소부터.',a:'dna',b:'취향 랩 열기',g:'linear-gradient(135deg,#3f7bff,#8a6bff)'}},
   {k:'studio',t:'건축 공부',c:'#30a46c',items:[['flow','설계 흐름','컨셉 → 아홉 안 → 피드백 → 원라인 → 평면도·DXF 한 화면','flow'],['site','대지','일조·그림자·바람 · 답사 키트 · 콘타','site'],['concept','컨셉','마법사 · 매스 도감 · 레시피 58','spark'],['drawing','도면','관계 다이어그램 · 조닝 · 단면','plan'],['model','모형','층 펼치기 · 재료 · 법규 볼륨','cube'],['panel','패널','레이아웃 13 · 분해 액소 · 공모전 달력','panel'],['portfolio','포트폴리오 · 진로','12쪽 해부 · 이력서 · 건축사 되는 길','folio'],['learn','사례','아이소 썸네일로 보는 설계 사례','grid'],['library','자료실','건축 사전 · 도면 규약 · 자유 라이선스 자료','book'],['contests','공모·행사','마감순 공모전 · 전시 · 강연 일정','spark']],
     f:{w:'STUDIO',h:'일곱 단계면 한 학기 설계가 한 장으로.',p:'취향 → 대지 → 컨셉 → 도면 → 모형 → 패널 → 포트폴리오. 학생과 실무자의 작업대.',a:'flow',b:'설계 흐름 열기',g:'linear-gradient(135deg,#1d8a4b,#7cc89a)'}},
@@ -4026,6 +4121,12 @@ const NAVG=[
     f:{w:'PLAZA',h:'만든 것을 올리고, 서로의 사례가 된다.',p:'로그인하면 작업이 자동으로 저장되고 어느 기기에서나 이어집니다.',a:'plaza',b:'광장 들어가기',g:'linear-gradient(135deg,#8a6bff,#3f7bff)'}}
 ];
 NAVG.forEach(g=>{ g.items=g.items.filter(i=>!i[4]||i[0]==='cinema'); });
+/* X v23: 묶음 안 작은 분류 — 처음 온 사람이 '어디에 뭐가 있는지' 바로 보이게 */
+const NAVSEC={look:[['둘러보기','atlas','travel'],['예고','cinema']],
+ build:[['취향부터','dna'],['땅과 집','zipcode','plan3d'],['방 하나','room'],['상담','#ask','buildguide']],
+ studio:[['설계 작업대','flow','site','concept','drawing','model','panel'],['배우기 · 자료','learn','library','portfolio'],['소식','contests']],
+ together:[['함께','plaza','studio'],['도움','guide','#ask']]};
+function navSecs(g){ const S=NAVSEC[g.k]; if(!S) return [['',g.items]]; const used=new Set(); const out=S.map(([n,...ids])=>{ const it=ids.map(id=>g.items.find(i=>i[0]===id)).filter(Boolean); it.forEach(i=>used.add(i)); return [n,it]; }).filter(x=>x[1].length); const rest=g.items.filter(i=>!used.has(i)); if(rest.length) out.push(['',rest]); return out; }
 /* M1: 탭 바 전용 아이콘(짓기=집+망치 대신 집 모양 연필, 공부=펼친 책) */
 const NICO={tbuild:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h6"/><path d="M14.5 20.5l.6-2.6 5.2-5.2a1.4 1.4 0 0 1 2 2l-5.2 5.2z"/>',tstudy:'<path d="M3 5.5c3-1.3 6-1.3 9 .5v14c-3-1.8-6-1.8-9-.5z"/><path d="M21 5.5c-3-1.3-6-1.3-9 .5v14c3-1.8 6-1.8 9-.5z"/>',film:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 10h4M3 14h4M17 10h4M17 14h4"/>',blocks:'<rect x="3" y="13" width="6" height="8"/><rect x="9" y="13" width="6" height="8"/><rect x="15" y="13" width="6" height="8"/><rect x="6" y="5" width="6" height="8"/><rect x="12" y="5" width="6" height="8"/>',steps:'<path d="M3 20h5v-4h5v-4h5V8h3"/><path d="M3 20V16h5M8 16v-4h5M13 12V8h5"/>',atlas:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',flow:'<path d="M3 6h5l3 6-3 6H3M10 6h5l3 6-3 6h-5M17 6h4v12h-4"/>',dna:'<path d="M7 3c0 6 10 6 10 12s-10 6-10 6M17 3c0 6-10 6-10 12M8 7h8M8 17h8"/>',code:'<path d="M3 11l9-7 9 7v9H3z"/><path d="M9 15l-2 2 2 2M15 15l2 2-2 2"/>',book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/>',
   site:'<circle cx="12" cy="7" r="3"/><path d="M2 20c3-5 6-7 10-7s7 2 10 7M6 20c2-3 4-4 6-4s4 1 6 4"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>',plan:'<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 11h9V3M12 11v4M16 11h5M12 19v2"/>',cube:'<path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/>',
@@ -4036,10 +4137,10 @@ const nHref=id=>id[0]==='#'?'#':'#'+id;
 function buildNav(){ const nl=$('nav .nlinks'); if(!nl) return;
   nl.innerHTML=NAVG.map(g=>`<button type="button" class="nl ngb" data-hl data-g="${g.k}" aria-expanded="false" aria-haspopup="true">${g.t}<svg class="chev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></button>`).join('');
   const mega=document.createElement('div'); mega.className='mega'; mega.id='mega'; mega.hidden=true;
-  mega.innerHTML=`<div class="mg-in">${NAVG.map(g=>`<div class="mg-pane" data-g="${g.k}"><div class="mg-items"><div class="mg-k" style="color:${g.c}">${g.t}</div>${g.items.map(([id,t,d,ic,so],i)=>so?`<span class="mg-a soon" style="--i:${i}" title="준비 중">${nIco(ic,g.c)}<span><b>${t}<i class="soon-b">곧</i></b><em>${d}</em></span></span>`:`<a class="mg-a" href="${nHref(id)}"${id==='#ask'?' data-ask':''} style="--i:${i}">${nIco(ic,g.c)}<span><b>${t}</b><em>${d}</em></span></a>`).join('')}</div>
+  mega.innerHTML=`<div class="mg-in">${NAVG.map(g=>`<div class="mg-pane" data-g="${g.k}"><div class="mg-items"><div class="mg-k" style="color:${g.c}">${g.t}</div>${navSecs(g).map(([sn,its])=>(sn?`<div class="mg-sec">${sn}</div>`:'')+its.map(([id,t,d,ic,so],i)=>so?`<span class="mg-a soon" style="--i:${i}" title="준비 중">${nIco(ic,g.c)}<span><b>${t}<i class="soon-b">곧</i></b><em>${d}</em></span></span>`:`<a class="mg-a" href="${nHref(id)}"${id==='#ask'?' data-ask':''} style="--i:${i}">${nIco(ic,g.c)}<span><b>${t}</b><em>${d}</em></span></a>`).join('')).join('')}</div>
     <a class="mg-f" href="#${g.f.a}" style="--g:${g.f.g}">${g.f.img?`<img src="${g.f.img}" alt="" loading="lazy">`:''}<span class="mg-fw">${g.f.w}</span><b>${g.f.h}</b><em>${g.f.p}</em><span class="mg-fb">${g.f.b} ›</span></a></div>`).join('')}</div>`;
   $('nav').appendChild(mega);
-  const mm=$('#navMenu'); if(mm) mm.innerHTML=NAVG.map(g=>`<div class="mm-g"><h4 style="color:${g.c}">${g.t}</h4>${g.items.map(([id,t,d,ic,so])=>so?`<span class="soon">${nIco(ic,g.c)}<span><b>${t}<i class="soon-b">곧</i></b><em>${d}</em></span></span>`:`<a href="${nHref(id)}"${id==='#ask'?' data-ask':''}>${nIco(ic,g.c)}<span><b>${t}</b><em>${d}</em></span></a>`).join('')}</div>`).join('');
+  const mm=$('#navMenu'); if(mm) mm.innerHTML=NAVG.map(g=>`<div class="mm-g"><h4 style="color:${g.c}">${g.t}</h4>${navSecs(g).map(([sn,its])=>(sn?`<h5 class="mm-sec">${sn}</h5>`:'')+its.map(([id,t,d,ic,so])=>so?`<span class="soon">${nIco(ic,g.c)}<span><b>${t}<i class="soon-b">곧</i></b><em>${d}</em></span></span>`:`<a href="${nHref(id)}"${id==='#ask'?' data-ask':''}>${nIco(ic,g.c)}<span><b>${t}</b><em>${d}</em></span></a>`).join('')).join('')}</div>`).join('');
   let cur=null, tOpen=0, tClose=0;
   const open=k=>{ clearTimeout(tClose); if(cur===k&&!mega.hidden) return; const first=mega.hidden; mega.hidden=false; cur=k;
     $$('.ngb').forEach(b=>b.setAttribute('aria-expanded',b.dataset.g===k)); $$('.mg-pane',mega).forEach(p=>p.classList.toggle('on',p.dataset.g===k));
@@ -4063,7 +4164,7 @@ function buildTabBar(){ const bar=$('#tabBar'), sh=$('#tabSheet'), shin=$('#tabS
   bar.innerHTML=TABS.map(([k,t,ic])=>`<button type="button" class="tb" data-tab="${k}" aria-pressed="false"><svg viewBox="0 0 24 24">${NICO[ic]||''}</svg><span>${t}</span></button>`).join(''); bar.hidden=false; document.documentElement.classList.add('hasTab');
   let cur=null;
   const close=()=>{ cur=null; document.documentElement.classList.remove('tabsheet-open'); sh.classList.remove('show'); setTimeout(()=>{ if(!cur) sh.hidden=true; },220); $$('.tb',bar).forEach(b=>b.setAttribute('aria-pressed','false')); tabCurrent(); };
-  const open=k=>{ const g=NAVG.find(x=>x.k===k); if(!g) return; cur=k; shin.innerHTML=`<div class="ts-h" style="--c:${g.c}"><b>${g.t}</b><button type="button" class="ts-x" aria-label="닫기">✕</button></div><div class="ts-g">${g.items.map(([id,t,d,ic,so])=>so?`<span class="ts-a soon">${nIco(ic,g.c)}<span><b>${t}<i class="soon-b">곧</i></b><em>${d}</em></span></span>`:`<a class="ts-a" href="${nHref(id)}"${id==='#ask'?' data-ask':''}>${nIco(ic,g.c)}<span><b>${t}</b><em>${d}</em></span></a>`).join('')}</div>`; sh.hidden=false; document.documentElement.classList.add('tabsheet-open'); requestAnimationFrame(()=>sh.classList.add('show')); $$('.tb',bar).forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===k)); };
+  const open=k=>{ const g=NAVG.find(x=>x.k===k); if(!g) return; cur=k; shin.innerHTML=`<div class="ts-h" style="--c:${g.c}"><b>${g.t}</b><button type="button" class="ts-x" aria-label="닫기">✕</button></div><div class="ts-g">${navSecs(g).map(([sn,its])=>(sn?`<div class="ts-sec">${sn}</div>`:'')+its.map(([id,t,d,ic,so])=>so?`<span class="ts-a soon">${nIco(ic,g.c)}<span><b>${t}<i class="soon-b">곧</i></b><em>${d}</em></span></span>`:`<a class="ts-a" href="${nHref(id)}"${id==='#ask'?' data-ask':''}>${nIco(ic,g.c)}<span><b>${t}</b><em>${d}</em></span></a>`).join('')).join('')}</div>`; sh.hidden=false; document.documentElement.classList.add('tabsheet-open'); requestAnimationFrame(()=>sh.classList.add('show')); $$('.tb',bar).forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===k)); };
   bar.addEventListener('click',e=>{ const b=e.target.closest('.tb'); if(!b) return; const k=b.dataset.tab; if(k==='home'){ close(); if(location.hash&&location.hash!=='#home') location.hash='home'; else window.scrollTo({top:0,behavior:'smooth'}); return; } if(cur===k) close(); else open(k); });
   sh.addEventListener('click',e=>{ if(e.target.closest('.ts-x')||e.target===sh||e.target.closest('a')) close(); });
   addEventListener('hashchange',close); document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&cur) close(); });
@@ -4091,8 +4192,597 @@ window.vOff=function(el){ const v=el&&el.closest&&el.closest('.view'); return !v
 function placeBuild(h){ const b=$('#build'); if(!b) return; const slot=h==='flow'?$('#lineSlot'):h==='panel'?$('#pnSlot'):null; if(!slot) return; const mode=h==='flow'?'line':'panel'; if(b.parentElement!==slot) slot.appendChild(b); b.dataset.mode=mode; setTimeout(()=>{ try{ if(typeof pnApi!=='undefined'&&pnApi) pnApi.measure(); }catch(e){} window.dispatchEvent(new Event('resize')); },90); }
 document.addEventListener('click',e=>{ const a=e.target.closest('[data-jump]'); if(!a) return; const t=document.getElementById(a.dataset.jump); if(!t) return; e.preventDefault(); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); });
 NAVG.forEach(g=>{ g.items=g.items.filter(i=>!(i[4]&&['game','buildguide','story'].includes(i[0]))); });   /* v19: 홈·메뉴의 '곧'은 건축 극장만 */
+/* ===== X · v23: 도면 → 3D (스케치업) — 핵심 계산(브라우저·node 공용) =====
+   도면(DXF·이미지)에서 벽 중심선·두께와 개구부(문·창)를 찾고, 층고·슬래브 값으로 입체(solid) 목록을 만든 뒤
+   COLLADA(.dae) · SketchUp Ruby(.rb) · 3D DXF(3DFACE)로 내보낸다. 단위는 m, 평면 좌표는 x 오른쪽·y 위쪽(북), z 위.
+   solid = {g:'벽'|'슬래브'|'창'|'문'|'지붕'|'난간', f:층(1..)|0(지붕), n:이름, V:[[x,y,z]…], F:[[i…]…]} */
+const P3_GROUPS=['벽','슬래브','창','문','지붕','난간'];
+const P3_GCOL={벽:[0.93,0.91,0.87],슬래브:[0.70,0.71,0.73],창:[0.55,0.74,0.88],문:[0.55,0.38,0.24],지붕:[0.42,0.35,0.32],난간:[0.86,0.84,0.80]};
+const P3_GEN={벽:'WALL',슬래브:'SLAB',창:'WINDOW',문:'DOOR',지붕:'ROOF',난간:'PARAPET'};
+
+/* ---------- DXF 읽기 (ASCII) ---------- */
+function p3DxfParse(txt){
+  const L=txt.split(/\r?\n/); const P=[]; for(let i=0;i+1<L.length;i+=2){ const c=parseInt(L[i].trim(),10); if(isNaN(c)){ i--; continue; } P.push([c,L[i+1].replace(/\s+$/,'')]); }
+  let insunits=null; const blocks={}; const ents=[]; let sec=null, i=0;
+  const readEnt=(start)=>{ /* P[start] = [0,TYPE] → [obj, next] */ const o={type:P[start][1].trim(),g:[]}; let k=start+1; while(k<P.length&&P[k][0]!==0){ o.g.push(P[k]); k++; } return [o,k]; };
+  while(i<P.length){ const [c,v]=P[i];
+    if(c===0&&v==='SECTION'){ sec=(P[i+1]&&P[i+1][0]===2)?P[i+1][1].trim():null; i+=2; continue; }
+    if(c===0&&v==='ENDSEC'){ sec=null; i++; continue; }
+    if(sec==='HEADER'){ if(c===9&&v.trim()==='$INSUNITS'){ for(let k=i+1;k<Math.min(P.length,i+4);k++) if(P[k][0]===70){ insunits=parseInt(P[k][1],10); break; } } i++; continue; }
+    if(sec==='BLOCKS'&&c===0&&v.trim()==='BLOCK'){ const [b,k]=readEnt(i); const name=(b.g.find(x=>x[0]===2)||[0,''])[1].trim(); const bx=+((b.g.find(x=>x[0]===10)||[0,0])[1]), by=+((b.g.find(x=>x[0]===20)||[0,0])[1]);
+      const list=[]; let j=k; while(j<P.length&&!(P[j][0]===0&&P[j][1].trim()==='ENDBLK')){ if(P[j][0]===0){ const [e,n]=readEnt(j); list.push(e); j=n; } else j++; }
+      blocks[name]={bx,by,ents:list}; i=j+1; continue; }
+    if(sec==='ENTITIES'&&c===0){ const [e,k]=readEnt(i); ents.push(e); i=k; continue; }
+    i++; }
+  /* POLYLINE + VERTEX … SEQEND 묶기 */
+  const fold=list=>{ const out=[]; for(let k=0;k<list.length;k++){ const e=list[k]; if(e.type==='POLYLINE'){ const vs=[]; k++; while(k<list.length&&list[k].type!=='SEQEND'){ if(list[k].type==='VERTEX') vs.push(list[k]); k++; } e.verts=vs; } out.push(e); } return out; };
+  Object.values(blocks).forEach(b=>b.ents=fold(b.ents));
+  const segs=[], arcs=[], layers=new Set();
+  const gv=(e,c,d)=>{ const x=e.g.find(p=>p[0]===c); return x?x[1].trim():d; };
+  const gn=(e,c,d)=>{ const x=e.g.find(p=>p[0]===c); const n=x?parseFloat(x[1]):NaN; return isNaN(n)?d:n; };
+  const emit=(list,M,inLayer,depth)=>{ for(const e of fold(list)){ let ly=gv(e,8,'0'); if(ly==='0'&&inLayer) ly=inLayer; layers.add(ly);
+      const T=(x,y)=>[M[0]*x+M[1]*y+M[4], M[2]*x+M[3]*y+M[5]];
+      if(e.type==='LINE'){ const a=T(gn(e,10,0),gn(e,20,0)), b=T(gn(e,11,0),gn(e,21,0)); segs.push({x1:a[0],y1:a[1],x2:b[0],y2:b[1],ly}); }
+      else if(e.type==='LWPOLYLINE'||e.type==='POLYLINE'){ let pts=[]; if(e.type==='LWPOLYLINE'){ let cx=null; for(const [c,v] of e.g){ if(c===10) cx=parseFloat(v); else if(c===20&&cx!=null){ pts.push(T(cx,parseFloat(v))); cx=null; } } } else { pts=(e.verts||[]).map(vx=>T(gn(vx,10,0),gn(vx,20,0))); }
+        const closed=(gn(e,70,0)&1)===1; for(let k=0;k+1<pts.length;k++) segs.push({x1:pts[k][0],y1:pts[k][1],x2:pts[k+1][0],y2:pts[k+1][1],ly}); if(closed&&pts.length>2) segs.push({x1:pts[pts.length-1][0],y1:pts[pts.length-1][1],x2:pts[0][0],y2:pts[0][1],ly}); }
+      else if(e.type==='ARC'){ const c=T(gn(e,10,0),gn(e,20,0)); const s=Math.sqrt(Math.abs(M[0]*M[3]-M[1]*M[2]))||1; arcs.push({cx:c[0],cy:c[1],r:gn(e,40,0)*s,ly}); }
+      else if(e.type==='INSERT'&&depth<4){ const b=blocks[gv(e,2,'')]; if(!b) continue; const ix=gn(e,10,0), iy=gn(e,20,0), sx=gn(e,41,1), sy=gn(e,42,sx), r=gn(e,50,0)*Math.PI/180; const cs=Math.cos(r), sn=Math.sin(r);
+        /* 블록 좌표 p → (p - base)·scale → 회전 → +insert → 부모 M */
+        const a=cs*sx, bq=-sn*sy, c2=sn*sx, d=cs*sy, tx=ix-(a*b.bx+bq*b.by), ty=iy-(c2*b.bx+d*b.by);
+        const N=[M[0]*a+M[1]*c2, M[0]*bq+M[1]*d, M[2]*a+M[3]*c2, M[2]*bq+M[3]*d, M[0]*tx+M[1]*ty+M[4], M[2]*tx+M[3]*ty+M[5]];
+        emit(b.ents,N,ly,depth+1); } } };
+  emit(ents,[1,0,0,1,0,0],null,0);
+  return {segs,arcs,layers:[...layers],insunits};
+}
+/* 단위: $INSUNITS(4 mm · 5 cm · 6 m · 1 인치 · 2 피트) → 없으면 크기로 짐작 */
+const P3_UNITS={mm:.001,cm:.01,m:1,in:.0254,ft:.3048};
+function p3DxfUnit(d){ const code={1:'in',2:'ft',4:'mm',5:'cm',6:'m'}[d.insunits]; if(code) return {u:code,how:'파일 설정($INSUNITS)'};
+  let x0=1/0,x1=-1/0,y0=1/0,y1=-1/0; d.segs.forEach(s=>{ x0=Math.min(x0,s.x1,s.x2); x1=Math.max(x1,s.x1,s.x2); y0=Math.min(y0,s.y1,s.y2); y1=Math.max(y1,s.y1,s.y2); });
+  const ext=Math.max(x1-x0,y1-y0); if(!isFinite(ext)||ext<=0) return {u:'mm',how:'짐작'};
+  if(ext/1000>=2&&ext/1000<=400) return {u:'mm',how:'크기로 짐작'}; if(ext/100>=2&&ext/100<=400) return {u:'cm',how:'크기로 짐작'}; return {u:'m',how:'크기로 짐작'}; }
+const P3_RX={wall:/WALL|벽|^A-WAL|조적|콘크리트|CONC|^W$|^WAL/i, win:/WIN|GLAZ|창|WINDOW|SASH|샤시/i, door:/DOOR|^A-DR|문(?!자|구)|^DR$/i, skip:/DIM|TEXT|TXT|HATCH|치수|문자|해치|GRID|중심|CEN|AXIS|FURN|가구|TITLE|표제|SYMB|기호|PAT|FILL|ELEV|입면|단면|SECT/i};
+function p3LayerKind(ly){ if(P3_RX.skip.test(ly)) return 'skip'; if(P3_RX.win.test(ly)) return 'win'; if(P3_RX.door.test(ly)) return 'door'; if(P3_RX.wall.test(ly)) return 'wall'; return ''; }
+
+/* ---------- 선분 → 벽 (평행한 두 선 짝 맞추기) ---------- */
+function p3Seg(s){ const dx=s.x2-s.x1, dy=s.y2-s.y1, L=Math.hypot(dx,dy); return Object.assign(s,{L,ux:dx/L,uy:dy/L}); }
+function p3PairWalls(segs,opt){ opt=opt||{}; const dmin=opt.dmin||.06, dmax=opt.dmax||.7;
+  const S=segs.map(p3Seg).filter(s=>s.L>=.08); const cand=[];
+  /* 각도 묶음(1°)으로 짝 후보 줄이기 */
+  const B=new Map(); S.forEach((s,i)=>{ let a=Math.atan2(s.uy,s.ux); if(a<0) a+=Math.PI; if(a>=Math.PI-1e-9) a-=Math.PI; s.a=a; const k=Math.round(a/(Math.PI/180)); s.k=k; (B.get(k)||B.set(k,[]).get(k)).push(i); });
+  const near=k=>[k-1,k,k+1,k===0?179:-99,k===179?0:-99,k===180?1:-99].map(q=>B.get(q)||[]).flat();
+  for(let i=0;i<S.length;i++){ const a=S[i]; for(const j of near(a.k)){ if(j<=i) continue; const b=S[j];
+      const dot=a.ux*b.ux+a.uy*b.uy; if(Math.abs(dot)<Math.cos(1.6*Math.PI/180)) continue;
+      const d1=(b.x1-a.x1)*a.uy-(b.y1-a.y1)*a.ux, d2=(b.x2-a.x1)*a.uy-(b.y2-a.y1)*a.ux; if(Math.sign(d1)!==Math.sign(d2)&&Math.abs(d1)>1e-6&&Math.abs(d2)>1e-6) continue;
+      const d=(Math.abs(d1)+Math.abs(d2))/2; if(d<dmin||d>dmax||Math.abs(d1-d2)>.02+d*.08) continue;
+      const t1=(b.x1-a.x1)*a.ux+(b.y1-a.y1)*a.uy, t2=(b.x2-a.x1)*a.ux+(b.y2-a.y1)*a.uy; const lo=Math.max(0,Math.min(t1,t2)), hi=Math.min(a.L,Math.max(t1,t2)); const ov=hi-lo;
+      if(ov<Math.max(.1,.3*Math.min(a.L,b.L))) continue; cand.push({i,j,d,lo,hi,sg:Math.sign(d1+d2)||1}); } }
+  cand.sort((p,q)=>p.d-q.d);
+  const cov=S.map(()=>[]); const covered=(k,lo,hi)=>{ let c=0; cov[k].forEach(([a,b])=>{ c+=Math.max(0,Math.min(b,hi)-Math.max(a,lo)); }); return c/(hi-lo); };
+  const walls=[];
+  for(const c of cand){ const a=S[c.i], b=S[c.j];
+    /* b 좌표계의 같은 구간 */
+    const bt=t=>{ const x=a.x1+a.ux*t, y=a.y1+a.uy*t; return (x-b.x1)*b.ux+(y-b.y1)*b.uy; }; const blo=Math.min(bt(c.lo),bt(c.hi)), bhi=Math.max(bt(c.lo),bt(c.hi));
+    if(covered(c.i,c.lo,c.hi)>.5||covered(c.j,blo,bhi)>.5) continue;
+    cov[c.i].push([c.lo,c.hi]); cov[c.j].push([blo,bhi]);
+    const nx=a.uy*c.sg, ny=-a.ux*c.sg; /* a에서 b 쪽으로 가는 법선: d1=(b-a)×u 의 부호 */
+    const off=c.d/2; walls.push({x1:a.x1+a.ux*c.lo+nx*off, y1:a.y1+a.uy*c.lo+ny*off, x2:a.x1+a.ux*c.hi+nx*off, y2:a.y1+a.uy*c.hi+ny*off, t:c.d}); }
+  /* 짝 없는 긴 선(외곽선만 있는 한 줄 도면) */
+  const single=[]; S.forEach((s,k)=>{ const c=covered(k,0,s.L); if(c<.2&&s.L>=.6) single.push(s); });
+  return {walls,single,nseg:S.length};
+}
+/* 같은 줄 위의 벽 합치기 */
+function p3MergeWalls(W){ W=W.map(w=>{ const L=Math.hypot(w.x2-w.x1,w.y2-w.y1); return Object.assign({},w,{L,ux:(w.x2-w.x1)/L,uy:(w.y2-w.y1)/L}); }).filter(w=>w.L>.05);
+  const used=new Array(W.length).fill(false), out=[];
+  for(let i=0;i<W.length;i++){ if(used[i]) continue; const a=W[i]; used[i]=true; const grp=[a];
+    for(let j=i+1;j<W.length;j++){ if(used[j]) continue; const b=W[j]; if(Math.abs(a.ux*b.ux+a.uy*b.uy)<Math.cos(1*Math.PI/180)) continue; const d=Math.abs((b.x1-a.x1)*a.uy-(b.y1-a.y1)*a.ux); if(d>.03) continue; if(Math.abs(a.t-b.t)>.025) continue; grp.push(b); used[j]=true; }
+    /* 축 위 구간 합치기 */
+    const iv=grp.map(w=>{ const t1=(w.x1-a.x1)*a.ux+(w.y1-a.y1)*a.uy, t2=(w.x2-a.x1)*a.ux+(w.y2-a.y1)*a.uy; return [Math.min(t1,t2),Math.max(t1,t2),w.t]; }).sort((p,q)=>p[0]-q[0]);
+    let cur=null; const flush=()=>{ if(cur) out.push({x1:a.x1+a.ux*cur[0],y1:a.y1+a.uy*cur[0],x2:a.x1+a.ux*cur[1],y2:a.y1+a.uy*cur[1],t:cur[2]}); };
+    for(const v of iv){ if(cur&&v[0]<=cur[1]+.02){ cur[1]=Math.max(cur[1],v[1]); cur[2]=Math.max(cur[2],v[2]); } else { flush(); cur=v.slice(); } } flush(); }
+  return out; }
+/* 벽 끝을 만나는 벽까지 늘리기(ㄱ·T자 모서리 채우기) */
+function p3Snap(W){ const out=W.map(w=>Object.assign({},w)); const info=w=>{ const L=Math.hypot(w.x2-w.x1,w.y2-w.y1); return {L,ux:(w.x2-w.x1)/L,uy:(w.y2-w.y1)/L}; };
+  out.forEach((w,i)=>{ const A=info(w); [0,1].forEach(end=>{ const px=end?w.x2:w.x1, py=end?w.y2:w.y1, dx=end?A.ux:-A.ux, dy=end?A.uy:-A.uy; let best=null;
+      out.forEach((k,j)=>{ if(j===i) return; const K=info(k); if(Math.abs(A.ux*K.ux+A.uy*K.uy)>Math.cos(25*Math.PI/180)) return;
+        /* (px,py)+s·(dx,dy) 와 k 중심선의 교점 */
+        const den=dx*K.uy-dy*K.ux; if(Math.abs(den)<1e-9) return; const qx=k.x1-px, qy=k.y1-py; const s=(qx*K.uy-qy*K.ux)/den, u=(qx*dy-qy*dx)/den;
+        if(u<-k.t/2-.02||u>K.L+k.t/2+.02) return; if(s<-k.t/2-.01||s>w.t*1.6+k.t/2+.02) return; const e=s+k.t/2*Math.abs(1/((dx*K.uy-dy*K.ux)||1)); if(!best||Math.abs(s)<Math.abs(best.s)) best={s,e}; });
+      if(best&&best.e>0){ if(end){ w.x2=px+dx*best.e; w.y2=py+dy*best.e; } else { w.x1=px+dx*best.e; w.y1=py+dy*best.e; } } }); });
+  return out; }
+/* ---------- 같은 줄의 두 벽 사이 틈 = 개구부 ---------- */
+function p3Gaps(W,opt){ opt=opt||{}; const gmin=opt.gmin||.45, gmax=opt.gmax||3.4; const I=W.map(w=>{ const L=Math.hypot(w.x2-w.x1,w.y2-w.y1); return {L,ux:(w.x2-w.x1)/L,uy:(w.y2-w.y1)/L}; });
+  const ops=[], seen=new Set();
+  W.forEach((a,i)=>{ const A=I[i]; [0,1].forEach(end=>{ const px=end?a.x2:a.x1, py=end?a.y2:a.y1, dx=end?A.ux:-A.ux, dy=end?A.uy:-A.uy; let best=null;
+      W.forEach((b,j)=>{ if(j===i) return; const B=I[j]; if(Math.abs(A.ux*B.ux+A.uy*B.uy)<Math.cos(2*Math.PI/180)) return;
+        const off=Math.abs((b.x1-a.x1)*A.uy-(b.y1-a.y1)*A.ux); if(off>Math.max(a.t,b.t)*.5+.01) return; if(Math.max(a.t,b.t)/Math.min(a.t,b.t)>1.8) return;
+        const s1=(b.x1-px)*dx+(b.y1-py)*dy, s2=(b.x2-px)*dx+(b.y2-py)*dy; const s=Math.min(s1,s2); if(Math.max(s1,s2)<=.001) return; if(!best||s<best.s) best={s,j}; });
+      /* 바로 이어지거나 겹치는 벽이 있으면 틈이 아님(가장 가까운 벽만 봄) */
+      if(best&&(best.s<gmin||best.s>gmax)) best=null;
+      if(best){ const key=[i,best.j].sort().join('-'); if(seen.has(key)) return; seen.add(key); ops.push({x1:px,y1:py,x2:px+dx*best.s,y2:py+dy*best.s,t:(a.t+W[best.j].t)/2,w:best.s,a:i,b:best.j,k:''}); } }); });
+  return ops; }
+/* ---------- 바깥·안쪽 판정 + 슬래브 영역 (0.1m 격자) ---------- */
+function p3Grid(W,O,res){ res=res||.1; let x0=1/0,y0=1/0,x1=-1/0,y1=-1/0; const pad=t=>t/2+.05; W.concat(O||[]).forEach(w=>{ const p=pad(w.t); x0=Math.min(x0,w.x1-p,w.x2-p); x1=Math.max(x1,w.x1+p,w.x2+p); y0=Math.min(y0,w.y1-p,w.y2-p); y1=Math.max(y1,w.y1+p,w.y2+p); });
+  if(!isFinite(x0)) return null; const m=1.2; x0-=m; y0-=m; x1+=m; y1+=m; const nx=Math.ceil((x1-x0)/res)+1, ny=Math.ceil((y1-y0)/res)+1; if(nx*ny>4e6) return null;
+  const blk=new Uint8Array(nx*ny);
+  const fill=w=>{ const L=Math.hypot(w.x2-w.x1,w.y2-w.y1)||1, ux=(w.x2-w.x1)/L, uy=(w.y2-w.y1)/L, h=w.t/2+res*.5;
+    const bx0=Math.floor((Math.min(w.x1,w.x2)-h-x0)/res), bx1=Math.ceil((Math.max(w.x1,w.x2)+h-x0)/res), by0=Math.floor((Math.min(w.y1,w.y2)-h-y0)/res), by1=Math.ceil((Math.max(w.y1,w.y2)+h-y0)/res);
+    for(let gy=Math.max(0,by0);gy<=Math.min(ny-1,by1);gy++) for(let gx=Math.max(0,bx0);gx<=Math.min(nx-1,bx1);gx++){ const px=x0+gx*res-w.x1, py=y0+gy*res-w.y1; const t=px*ux+py*uy, n=px*uy-py*ux; if(t>=-res*.5&&t<=L+res*.5&&Math.abs(n)<=h) blk[gy*nx+gx]=1; } };
+  W.forEach(fill); (O||[]).forEach(fill);
+  /* 닫기: 막힌 칸을 r칸 넓힌 뒤 바깥 채우기 → 바깥을 다시 r칸 넓혀 원래 크기로 */
+  const r=Math.round(.55/res); const dil=(src,val)=>{ /* 정사각 팽창(분리형) */ const a=new Uint8Array(nx*ny), b=new Uint8Array(nx*ny);
+      for(let y=0;y<ny;y++){ let last=-1e9; for(let x=0;x<nx;x++){ if(src[y*nx+x]===val) last=x; if(x-last<=r) a[y*nx+x]=1; } last=1e9; for(let x=nx-1;x>=0;x--){ if(src[y*nx+x]===val) last=x; if(last-x<=r) a[y*nx+x]=1; } }
+      for(let x=0;x<nx;x++){ let last=-1e9; for(let y=0;y<ny;y++){ if(a[y*nx+x]) last=y; if(y-last<=r) b[y*nx+x]=1; } last=1e9; for(let y=ny-1;y>=0;y--){ if(a[y*nx+x]) last=y; if(last-y<=r) b[y*nx+x]=1; } } return b; };
+  const big=dil(blk,1); const out=new Uint8Array(nx*ny); const st=[0]; out[0]=1;
+  while(st.length){ const k=st.pop(), x=k%nx, y=(k-x)/nx; const nb=[x>0?k-1:-1,x<nx-1?k+1:-1,y>0?k-nx:-1,y<ny-1?k+nx:-1]; for(const q of nb){ if(q>=0&&!out[q]&&!big[q]){ out[q]=1; st.push(q); } } }
+  const outB=dil(out,1); const inside=new Uint8Array(nx*ny); let nin=0; for(let k=0;k<nx*ny;k++){ if(!outB[k]||blk[k]){ inside[k]=1; nin++; } }
+  /* 바깥 = outB 이면서 벽이 아닌 칸 */
+  const isOut=(x,y)=>{ const gx=Math.round((x-x0)/res), gy=Math.round((y-y0)/res); if(gx<0||gy<0||gx>=nx||gy>=ny) return true; const k=gy*nx+gx; return !!outB[k]&&!blk[k]; };
+  return {x0,y0,nx,ny,res,blk,inside,nin,isOut}; }
+function p3Rects(mask,nx,ny){ /* 칸 → 직사각형(행 구간을 아래로 이어 붙임) */ const used=new Uint8Array(nx*ny), R=[];
+  for(let y=0;y<ny;y++){ let x=0; while(x<nx){ if(!mask[y*nx+x]||used[y*nx+x]){ x++; continue; } let x2=x; while(x2+1<nx&&mask[y*nx+x2+1]&&!used[y*nx+x2+1]) x2++;
+      let y2=y; outer: while(y2+1<ny){ for(let q=x;q<=x2;q++){ if(!mask[(y2+1)*nx+q]||used[(y2+1)*nx+q]) break outer; } y2++; }
+      for(let yy=y;yy<=y2;yy++) for(let q=x;q<=x2;q++) used[yy*nx+q]=1; R.push([x,y,x2,y2]); x=x2+1; } }
+  return R; }
+function p3Exterior(w,G){ if(!G) return true; const L=Math.hypot(w.x2-w.x1,w.y2-w.y1)||1, ux=(w.x2-w.x1)/L, uy=(w.y2-w.y1)/L, nx=uy, ny=-ux, o=w.t/2+.18; let a=0,b=0;
+  for(let k=1;k<=5;k++){ const t=L*k/6, x=w.x1+ux*t, y=w.y1+uy*t; if(G.isOut(x+nx*o,y+ny*o)) a++; if(G.isOut(x-nx*o,y-ny*o)) b++; } return Math.max(a,b)>=3; }
+/* 개구부 종류: 힌트(창 선·문 호) → 없으면 바깥벽·폭으로 짐작 */
+function p3Classify(ops,W,G,hint){ hint=hint||{}; ops.forEach(o=>{ if(o.k) return; const cx=(o.x1+o.x2)/2, cy=(o.y1+o.y2)/2, L=o.w, ux=(o.x2-o.x1)/L, uy=(o.y2-o.y1)/L;
+    const inGap=(x,y,pad)=>{ const t=(x-o.x1)*ux+(y-o.y1)*uy, n=(x-o.x1)*uy-(y-o.y1)*ux; return t>-pad&&t<L+pad&&Math.abs(n)<o.t/2+pad; };
+    const win=(hint.win||[]).some(s=>inGap((s.x1+s.x2)/2,(s.y1+s.y2)/2,.12));
+    const door=(hint.door||[]).some(s=>inGap((s.x1+s.x2)/2,(s.y1+s.y2)/2,.6))||(hint.arcs||[]).some(a=>{ const dd=Math.min(Math.hypot(a.cx-o.x1,a.cy-o.y1),Math.hypot(a.cx-o.x2,a.cy-o.y2)); return dd<.25&&a.r>L*.35&&a.r<L*1.15; });
+    const ext=p3Exterior({x1:o.x1,y1:o.y1,x2:o.x2,y2:o.y2,t:o.t},G); o.ext=ext;
+    if(hint.thin&&hint.thin(o)) o.k='win'; else if(win&&!door) o.k='win'; else if(door) o.k='door'; else if(ext) o.k=L>=1.05?'win':'door'; else o.k=L>2.3?'open':'door'; }); return ops; }
+/* DXF 하나 → 평면 */
+function p3FromDxf(txt,unitOverride,cfg){ cfg=cfg||{}; const d=p3DxfParse(txt); const U=unitOverride?{u:unitOverride,how:'직접 고름'}:p3DxfUnit(d); const k=P3_UNITS[U.u]||.001;
+  const sc=s=>({x1:s.x1*k,y1:s.y1*k,x2:s.x2*k,y2:s.y2*k,ly:s.ly});
+  const kinds={}; d.layers.forEach(l=>kinds[l]=p3LayerKind(l)); const hasWall=d.layers.some(l=>kinds[l]==='wall');
+  const segs=d.segs.map(sc); const wallSegs=segs.filter(s=>hasWall?kinds[s.ly]==='wall':kinds[s.ly]!=='skip'&&kinds[s.ly]!=='win'&&kinds[s.ly]!=='door');
+  const pr=p3PairWalls(wallSegs); let W=pr.walls, note=[];
+  if(!W.length&&pr.single.length){ W=pr.single.map(s=>({x1:s.x1,y1:s.y1,x2:s.x2,y2:s.y2,t:cfg.tExt||.2})); note.push('벽이 선 하나로 그려져 있어 두께는 외벽 값으로 넣었어요'); }
+  W=p3MergeWalls(W);
+  /* 아주 얇은 '벽'(창 유리선 짝)은 창 힌트로 돌리고 뺌 */
+  const ts=W.map(w=>w.t).sort((a,b)=>a-b), med=ts.length?ts[Math.floor(ts.length/2)]:.2; const thin=W.filter(w=>w.t<med*.5&&Math.hypot(w.x2-w.x1,w.y2-w.y1)<3.6); W=W.filter(w=>!thin.includes(w));
+  W=p3Snap(W);
+  const ops=p3Gaps(W); const G=p3Grid(W,ops);
+  const hint={win:segs.filter(s=>kinds[s.ly]==='win').concat(thin), door:segs.filter(s=>kinds[s.ly]==='door'), arcs:d.arcs.map(a=>({cx:a.cx*k,cy:a.cy*k,r:a.r*k}))};
+  p3Classify(ops,W,G,hint);
+  W.forEach(w=>w.ext=p3Exterior(w,G));
+  return p3Norm({src:'dxf',unit:U.u,unitHow:U.how,layers:d.layers.map(l=>[l,kinds[l]]),walls:W,opens:ops,note,nseg:d.segs.length,narc:d.arcs.length}); }
+/* 원점 맞추기(왼쪽 아래 = 0,0) — 같은 DXF끼리는 shift를 넘겨 맞춤 */
+function p3Norm(P,shift){ let x0=1/0,y0=1/0; P.walls.forEach(w=>{ x0=Math.min(x0,w.x1,w.x2); y0=Math.min(y0,w.y1,w.y2); }); if(!isFinite(x0)){ x0=0; y0=0; }
+  const s=shift||[x0,y0]; P.shift=s; const mv=w=>{ w.x1-=s[0]; w.x2-=s[0]; w.y1-=s[1]; w.y2-=s[1]; }; P.walls.forEach(mv); P.opens.forEach(mv); return P; }
+function p3Bounds(P){ let x0=1/0,y0=1/0,x1=-1/0,y1=-1/0; P.walls.forEach(w=>{ const h=w.t/2; x0=Math.min(x0,w.x1-h,w.x2-h); x1=Math.max(x1,w.x1+h,w.x2+h); y0=Math.min(y0,w.y1-h,w.y2-h); y1=Math.max(y1,w.y1+h,w.y2+h); }); return isFinite(x0)?{x0,y0,x1,y1,w:x1-x0,h:y1-y0}:{x0:0,y0:0,x1:1,y1:1,w:1,h:1}; }
+
+/* ---------- 이미지(평면도 그림) → 벽 ---------- */
+/* gray: Uint8Array(w*h) 0..255, 반환 단위 px (y 아래로) → p3ImgPlan이 m로 바꿈 */
+function p3Otsu(g){ const h=new Array(256).fill(0); g.forEach(v=>h[v]++); const N=g.length; let sum=0; for(let i=0;i<256;i++) sum+=i*h[i]; let sB=0,wB=0,best=0,th=128; for(let t=0;t<256;t++){ wB+=h[t]; if(!wB) continue; const wF=N-wB; if(!wF) break; sB+=t*h[t]; const mB=sB/wB, mF=(sum-sB)/wF, v=wB*wF*(mB-mF)*(mB-mF); if(v>best){ best=v; th=t; } } return th; }
+function p3ImgWalls(gray,w,h,opt){ opt=opt||{}; const th=opt.th!=null?opt.th:Math.min(200,p3Otsu(gray)); const dark=new Uint8Array(w*h); for(let i=0;i<w*h;i++) dark[i]=gray[i]<=th?1:0;
+  /* 벽 두께 짐작: 어두운 연속 구간 길이(가로·세로) 중 4px 이상에서 가장 흔한 값 */
+  const hist=new Array(160).fill(0); const run=(get,n,m)=>{ for(let a=0;a<m;a++){ let r=0; for(let b=0;b<=n;b++){ const v=b<n?get(a,b):0; if(v) r++; else { if(r>=2&&r<160) hist[r]+=r; r=0; } } } };
+  run((y,x)=>dark[y*w+x],w,h); run((x,y)=>dark[y*w+x],h,w);
+  let Tw=opt.tw||0; if(!Tw){ let best=0; for(let r=4;r<160;r++){ if(hist[r]>best){ best=hist[r]; Tw=r; } } if(!Tw) Tw=6; }
+  const rad=opt.rad||Math.max(1,Math.min(2,Math.floor(Tw*.32))); /* 2px(굵기 5px 미만 선)만 지움 — 안벽이 얇게 그려진 도면도 살림 */
+  /* 열기(침식→팽창): 2·rad+1보다 얇은 선 제거 */
+  const ero=(src,r)=>{ const a=new Uint8Array(w*h), b=new Uint8Array(w*h); for(let y=0;y<h;y++){ let c=0; for(let x=0;x<w;x++){ c=src[y*w+x]?c+1:0; a[y*w+x]=c; } }
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){ /* 가로 [x-r,x+r] 모두 1 */ const xe=Math.min(w-1,x+r); b[y*w+x]=(x-r>=0&&a[y*w+xe]>=xe-(x-r)+1)?1:0; }
+    const c2=new Uint8Array(w*h); for(let x=0;x<w;x++){ let c=0; for(let y=0;y<h;y++){ c=b[y*w+x]?c+1:0; c2[y*w+x]=c; } } const o=new Uint8Array(w*h);
+    for(let x=0;x<w;x++) for(let y=0;y<h;y++){ const ye=Math.min(h-1,y+r); o[y*w+x]=(y-r>=0&&c2[ye*w+x]>=ye-(y-r)+1)?1:0; } return o; };
+  const dil=(src,r)=>{ const a=new Uint8Array(w*h), o=new Uint8Array(w*h); for(let y=0;y<h;y++){ let last=-1e9; for(let x=0;x<w;x++){ if(src[y*w+x]) last=x; if(x-last<=r) a[y*w+x]=1; } last=1e9; for(let x=w-1;x>=0;x--){ if(src[y*w+x]) last=x; if(last-x<=r) a[y*w+x]=1; } }
+    for(let x=0;x<w;x++){ let last=-1e9; for(let y=0;y<h;y++){ if(a[y*w+x]) last=y; if(y-last<=r) o[y*w+x]=1; } last=1e9; for(let y=h-1;y>=0;y--){ if(a[y*w+x]) last=y; if(last-y<=r) o[y*w+x]=1; } } return o; };
+  const wall=dil(ero(dark,rad),rad);
+  /* 격자로 줄여 가로벽·세로벽 직사각형 */
+  const cs=Math.max(2,Math.round(Tw/3)), gw=Math.ceil(w/cs), gh=Math.ceil(h/cs); const cell=new Uint8Array(gw*gh);
+  for(let gy=0;gy<gh;gy++) for(let gx=0;gx<gw;gx++){ let n=0,c=0; for(let y=gy*cs;y<Math.min(h,gy*cs+cs);y++) for(let x=gx*cs;x<Math.min(w,gx*cs+cs);x++){ n++; c+=wall[y*w+x]; } cell[gy*gw+gx]=c>n*.5?1:0; }
+  const Lmin=Math.max(3,Math.round(Tw*2.2/cs)); const H=new Uint8Array(gw*gh), V=new Uint8Array(gw*gh);
+  for(let y=0;y<gh;y++){ let x=0; while(x<gw){ if(!cell[y*gw+x]){ x++; continue; } let e=x; while(e+1<gw&&cell[y*gw+e+1]) e++; if(e-x+1>=Lmin) for(let q=x;q<=e;q++) H[y*gw+q]=1; x=e+1; } }
+  for(let x=0;x<gw;x++){ let y=0; while(y<gh){ if(!cell[y*gw+x]){ y++; continue; } let e=y; while(e+1<gh&&cell[(e+1)*gw+x]) e++; if(e-y+1>=Lmin) for(let q=y;q<=e;q++) V[q*gw+x]=1; y=e+1; } }
+  /* 두께가 벽 두께의 2.6배보다 두꺼운 '가로벽'은 사실 세로벽 묶음/채움 → 버림 */
+  const rectsH=p3Rects(H,gw,gh), rectsV=(()=>{ /* 세로 우선: 전치해서 같은 함수 */ const T=new Uint8Array(gw*gh); for(let y=0;y<gh;y++) for(let x=0;x<gw;x++) T[x*gh+y]=V[y*gw+x]; return p3Rects(T,gh,gw).map(([a,b,c,d])=>[b,a,d,c]); })();
+  const Wpx=[]; const maxT=Tw*2.6/cs;
+  rectsH.forEach(([x0,y0,x1,y1])=>{ const tt=y1-y0+1, ll=x1-x0+1; if(tt>maxT||ll<Lmin) return; Wpx.push({x1:x0*cs,y1:(y0+y1+1)/2*cs,x2:(x1+1)*cs,y2:(y0+y1+1)/2*cs,t:tt*cs}); });
+  rectsV.forEach(([x0,y0,x1,y1])=>{ const tt=x1-x0+1, ll=y1-y0+1; if(tt>maxT||ll<Lmin) return; Wpx.push({x1:(x0+x1+1)/2*cs,y1:y0*cs,x2:(x0+x1+1)/2*cs,y2:(y1+1)*cs,t:tt*cs}); });
+  return {walls:Wpx,Tw,th,cs,dark,w,h}; }
+/* px 벽 → m 평면. scale = m/px. 가는 선(창)이 틈 안에 있으면 창 */
+function p3ImgPlan(R,scale,cfg){ cfg=cfg||{}; const k=scale; let W=R.walls.map(w=>({x1:w.x1*k,y1:-w.y1*k,x2:w.x2*k,y2:-w.y2*k,t:w.t*k}));
+  W=p3MergeWalls(W);
+  const ops=p3Gaps(W,{gmin:.45,gmax:3.4}); const G=p3Grid(W,ops);
+  const thin=o=>{ /* 원래 어두운 화소가 틈 안에 얼마나 있나 */ const L=o.w, ux=(o.x2-o.x1)/L, uy=(o.y2-o.y1)/L; let n=0,c=0; for(let a=.1;a<L-.1;a+=Math.max(.02,k)){ for(let b=-o.t/2;b<=o.t/2;b+=Math.max(.02,k)){ const x=(o.x1+ux*a+uy*b)/k, y=-(o.y1+uy*a-ux*b)/k; const xi=Math.round(x), yi=Math.round(y); if(xi<0||yi<0||xi>=R.w||yi>=R.h) continue; n++; c+=R.dark[yi*R.w+xi]; } } return n>0&&c/n>.07; };
+  p3Classify(ops,W,G,{thin});
+  W.forEach(w=>{ w.ext=p3Exterior(w,G); if(cfg.fixT){ w.t=w.ext?(cfg.tExt||.2):(cfg.tInt||.12); } });
+  ops.forEach(o=>{ if(cfg.fixT) o.t=o.ext?(cfg.tExt||.2):(cfg.tInt||.12); });
+  return p3Norm({src:'img',walls:W,opens:ops,note:[],Tw:R.Tw}); }
+
+/* ---------- 입체 만들기 ---------- */
+function p3Prism(poly,z0,z1){ const n=poly.length, V=[]; poly.forEach(([x,y])=>V.push([x,y,z0])); poly.forEach(([x,y])=>V.push([x,y,z1])); const F=[];
+  F.push(poly.map((_,i)=>n-1-i)); F.push(poly.map((_,i)=>n+i)); for(let i=0;i<n;i++){ const j=(i+1)%n; F.push([i,j,n+j,n+i]); } return {V,F}; }
+function p3Rect(x1,y1,x2,y2,t){ const L=Math.hypot(x2-x1,y2-y1)||1, nx=(y2-y1)/L*t/2, ny=-(x2-x1)/L*t/2; return [[x1+nx,y1+ny],[x2+nx,y2+ny],[x2-nx,y2-ny],[x1-nx,y1-ny]]; }
+function p3Gen(plans,floors,cfg){ const S=[]; let z=0; const N=floors.length; const add=(g,f,n,geo)=>{ if(geo) S.push(Object.assign({g,f,n},geo)); };
+  const slabRects=P=>{ const G=p3Grid(P.walls,P.opens.filter(o=>o.k!=='none')); if(!G) return []; const R=p3Rects(G.inside,G.nx,G.ny); const bb=p3Bounds(P); const area=G.nin*G.res*G.res;
+    if(area<bb.w*bb.h*.25) return [[bb.x0,bb.y0,bb.x1,bb.y1]]; return R.map(([a,b,c,d])=>[G.x0+(a-.5)*G.res,G.y0+(b-.5)*G.res,G.x0+(c+.5)*G.res,G.y0+(d+.5)*G.res]); };
+  const SL={}; const slabs=pi=>SL[pi]||(SL[pi]=slabRects(plans[pi]));
+  for(let f=0;f<N;f++){ const fl=floors[f], P=plans[fl.plan]; if(!P) continue; const H=+fl.H||cfg.H, sl=cfg.slab, z0=z, zt=z+H, zf=z0+sl; const fn=(f+1)+'층';
+    slabs(fl.plan).forEach((r,i)=>add('슬래브',f+1,`${fn} 슬래브${i?' '+(i+1):''}`,p3Prism([[r[0],r[1]],[r[2],r[1]],[r[2],r[3]],[r[0],r[3]]],z0,zf)));
+    P.walls.forEach((w,i)=>{ if(w.off) return; add('벽',f+1,`${fn} ${w.ext?'외벽':'내벽'} ${i+1}`,p3Prism(p3Rect(w.x1,w.y1,w.x2,w.y2,w.t),zf,zt)); });
+    P.opens.forEach((o,i)=>{ const k=o.k; if(k==='none'){ add('벽',f+1,`${fn} 벽(막음) ${i+1}`,p3Prism(p3Rect(o.x1,o.y1,o.x2,o.y2,o.t),zf,zt)); return; }
+      const R=p3Rect(o.x1,o.y1,o.x2,o.y2,o.t);
+      if(k==='win'){ const s=Math.min(cfg.sill,H-sl-.3), top=Math.min(zt,zf+s+cfg.winH);
+        if(s>.01) add('벽',f+1,`${fn} 창대 ${i+1}`,p3Prism(R,zf,zf+s)); if(zt-top>.01) add('벽',f+1,`${fn} 창 위 인방 ${i+1}`,p3Prism(R,top,zt)); add('창',f+1,`${fn} 창 ${i+1}`,p3Prism(p3Rect(o.x1,o.y1,o.x2,o.y2,.03),zf+s,top)); }
+      else if(k==='door'){ const top=Math.min(zt,zf+cfg.doorH); if(zt-top>.01) add('벽',f+1,`${fn} 문 위 인방 ${i+1}`,p3Prism(R,top,zt)); add('문',f+1,`${fn} 문 ${i+1}`,p3Prism(p3Rect(o.x1,o.y1,o.x2,o.y2,.045),zf,top)); }
+      /* open: 아무것도 없음(천장까지 뚫림) */ });
+    z=zt; }
+  /* 지붕 */
+  const top=floors[N-1]; const TP=top&&plans[top.plan];
+  if(TP){ const zt=z, sl=cfg.slab;
+    slabs(top.plan).forEach((r,i)=>add('지붕',0,`지붕 슬래브${i?' '+(i+1):''}`,p3Prism([[r[0],r[1]],[r[2],r[1]],[r[2],r[3]],[r[0],r[3]]],zt,zt+sl)));
+    if(cfg.roof==='gable'){ const b=p3Bounds(TP), o=cfg.over||0, along=b.w>=b.h; const span=along?b.h:b.w, rise=span/2*Math.tan((cfg.pitch||30)*Math.PI/180), th=.18, z1=zt+sl;
+      const X0=b.x0-o, X1=b.x1+o, Y0=b.y0-o, Y1=b.y1+o;
+      const plane=(a0,a1,side)=>{ /* along: 용마루 y 가운데, x 방향 */ let V; if(along){ const ym=(b.y0+b.y1)/2, ye=side<0?Y0:Y1, zr=z1+rise, ze=z1-o*Math.tan((cfg.pitch||30)*Math.PI/180);
+          V=[[X0,ye,ze],[X1,ye,ze],[X1,ym,zr],[X0,ym,zr],[X0,ye,ze+th],[X1,ye,ze+th],[X1,ym,zr+th],[X0,ym,zr+th]]; }
+        else { const xm=(b.x0+b.x1)/2, xe=side<0?X0:X1, zr=z1+rise, ze=z1-o*Math.tan((cfg.pitch||30)*Math.PI/180); V=[[xe,Y0,ze],[xe,Y1,ze],[xm,Y1,zr],[xm,Y0,zr],[xe,Y0,ze+th],[xe,Y1,ze+th],[xm,Y1,zr+th],[xm,Y0,zr+th]]; }
+        return {V,F:[[3,2,1,0],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]]}; };
+      add('지붕',0,'지붕 경사면 1',plane(0,0,-1)); add('지붕',0,'지붕 경사면 2',plane(0,0,1));
+      /* 박공벽(삼각) */ const tg=cfg.tExt||.2; const tri=(e)=>{ if(along){ const ym=(b.y0+b.y1)/2; return {V:[[e,b.y0,z1],[e,b.y1,z1],[e,ym,z1+rise],[e+tg,b.y0,z1],[e+tg,b.y1,z1],[e+tg,ym,z1+rise]],F:[[0,1,2],[5,4,3],[0,3,4,1],[1,4,5,2],[2,5,3,0]]}; }
+        const xm=(b.x0+b.x1)/2; return {V:[[b.x0,e,z1],[b.x1,e,z1],[xm,e,z1+rise],[b.x0,e+tg,z1],[b.x1,e+tg,z1],[xm,e+tg,z1+rise]],F:[[0,1,2],[5,4,3],[0,3,4,1],[1,4,5,2],[2,5,3,0]]}; };
+      if(along){ add('벽',0,'박공벽 1',tri(b.x0)); add('벽',0,'박공벽 2',tri(b.x1-tg)); } else { add('벽',0,'박공벽 1',tri(b.y0)); add('벽',0,'박공벽 2',tri(b.y1-tg)); } }
+    else if(cfg.para>0){ TP.walls.forEach((w,i)=>{ if(w.off||!w.ext) return; add('난간',0,`옥상 난간 ${i+1}`,p3Prism(p3Rect(w.x1,w.y1,w.x2,w.y2,w.t),zt+sl,zt+sl+cfg.para)); });
+      TP.opens.forEach((o,i)=>{ if(!o.ext) return; add('난간',0,`옥상 난간(개구부 위) ${i+1}`,p3Prism(p3Rect(o.x1,o.y1,o.x2,o.y2,o.t),zt+sl,zt+sl+cfg.para)); }); } }
+  return S; }
+function p3Stats(S,plans,floors){ let area=0; S.forEach(s=>{ if(s.g!=='슬래브') return; const xs=s.V.map(v=>v[0]), ys=s.V.map(v=>v[1]); area+=(Math.max(...xs)-Math.min(...xs))*(Math.max(...ys)-Math.min(...ys)); });
+  let zmax=0; S.forEach(s=>s.V.forEach(v=>{ if(v[2]>zmax) zmax=v[2]; })); const by={}; S.forEach(s=>by[s.g]=(by[s.g]||0)+1); return {area,zmax,by,n:S.length}; }
+
+/* ---------- 내보내기 ---------- */
+const p3f=n=>(Math.round(n*10000)/10000).toString();
+function p3Tri(F){ const T=[]; F.forEach(f=>{ for(let i=1;i+1<f.length;i++) T.push([f[0],f[i],f[i+1]]); }); return T; }
+function p3NC(s){ /* COLLADA name = xs:NCName: 띄어쓰기·괄호 없이, 숫자로 시작하지 않게 */ let t=String(s).replace(/[\s·]+/g,'_').replace(/[^\p{L}\p{N}_.-]/gu,''); if(!/^[\p{L}_]/u.test(t)) t='F'+t; return t||'ZIPLAN'; }
+function p3XmlEsc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c])); }
+function p3DAE(S,meta){ meta=meta||{}; const now=new Date().toISOString().replace(/\.\d+Z$/,'Z'); const gs=P3_GROUPS.filter(g=>S.some(s=>s.g===g));
+  const eff=gs.map((g,i)=>{ const c=P3_GCOL[g]; const tr=g==='창'?'<transparent opaque="A_ONE"><color>0 0 0 0.45</color></transparent>':''; return `<effect id="fx${i}"><profile_COMMON><technique sid="common"><lambert><diffuse><color>${c.map(p3f).join(' ')} 1</color></diffuse>${tr}</lambert></technique></profile_COMMON></effect>`; }).join('');
+  const mat=gs.map((g,i)=>`<material id="m${i}" name="${P3_GEN[g]}"><instance_effect url="#fx${i}"/></material>`).join('');
+  const geo=S.map((s,k)=>{ const T=p3Tri(s.F); const pos=s.V.map(v=>v.map(p3f).join(' ')).join(' ');
+    return `<geometry id="g${k}" name="${p3XmlEsc(p3NC(s.n))}"><mesh><source id="g${k}-p"><float_array id="g${k}-pa" count="${s.V.length*3}">${pos}</float_array><technique_common><accessor source="#g${k}-pa" count="${s.V.length}" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common></source><vertices id="g${k}-v"><input semantic="POSITION" source="#g${k}-p"/></vertices><triangles material="mat" count="${T.length}"><input semantic="VERTEX" source="#g${k}-v" offset="0"/><p>${T.map(t=>t.join(' ')).join(' ')}</p></triangles></mesh></geometry>`; }).join('\n');
+  /* 노드: ZIPLAN 모형 > n층 > 묶음 > 조각 */
+  const fl=[...new Set(S.map(s=>s.f))].sort((a,b)=>(a||99)-(b||99)); let nid=0;
+  const node=(s,k)=>`<node id="n${nid++}" name="${p3XmlEsc(p3NC(s.n))}"><instance_geometry url="#g${k}"><bind_material><technique_common><instance_material symbol="mat" target="#m${gs.indexOf(s.g)}"/></technique_common></bind_material></instance_geometry></node>`;
+  const scene=fl.map(f=>{ const fname=f?f+'층':'지붕'; const inner=gs.map(g=>{ const list=S.map((s,k)=>[s,k]).filter(([s])=>s.f===f&&s.g===g); if(!list.length) return ''; return `<node id="n${nid++}" name="${p3XmlEsc(p3NC(fname+' '+g))}">${list.map(([s,k])=>node(s,k)).join('')}</node>`; }).join(''); return `<node id="n${nid++}" name="${p3XmlEsc(p3NC(fname))}">${inner}</node>`; }).join('\n');
+  return `<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<asset><contributor><author>ZIPLAN</author><authoring_tool>ZIPLAN 도면 → 3D (참고용)</authoring_tool><comments>${p3XmlEsc(meta.note||'ZIPLAN이 도면에서 만든 참고용 모형입니다. 실제 설계·시공 전 전문가 확인이 필요합니다.')}</comments></contributor><created>${now}</created><modified>${now}</modified><unit name="meter" meter="1"/><up_axis>Z_UP</up_axis></asset>
+<library_effects>${eff}</library_effects>
+<library_materials>${mat}</library_materials>
+<library_geometries>
+${geo}
+</library_geometries>
+<library_visual_scenes><visual_scene id="scene" name="ZIPLAN"><node id="root" name="ZIPLAN_모형">
+${scene}
+</node></visual_scene></library_visual_scenes>
+<scene><instance_visual_scene url="#scene"/></scene>
+</COLLADA>
+`; }
+function p3RB(S,meta){ meta=meta||{}; const gs=P3_GROUPS.filter(g=>S.some(s=>s.g===g)); const fl=[...new Set(S.map(s=>s.f))].sort((a,b)=>(a||99)-(b||99));
+  const rs=s=>JSON.stringify(String(s));
+  const L=[];
+  L.push('# encoding: UTF-8');
+  L.push('# ZIPLAN 도면 → 3D (참고용) — SketchUp 데스크톱용 Ruby 스크립트');
+  L.push('# 쓰는 법: SketchUp(데스크톱) 메뉴 [창(Window) > Ruby 콘솔]에서  load "이 파일의 전체 경로"  를 입력하세요.');
+  L.push('# (SketchUp for Web·iPad에는 Ruby 콘솔이 없어요. 웹에서는 .dae 파일을 가져오기 하세요 — 유료 구독 필요)');
+  L.push('# 만든 날: '+new Date().toISOString().slice(0,10)+(meta.note?' · '+String(meta.note).replace(/\n/g,' '):''));
+  L.push('# 실제 설계·시공 전에는 반드시 실측과 전문가 확인이 필요합니다.');
+  L.push('module ZiplanP3');
+  L.push('  def self.run');
+  L.push('    model = Sketchup.active_model');
+  L.push('    model.start_operation(\'ZIPLAN 도면 → 3D\', true)');
+  L.push('    begin');
+  L.push('      tags = {}');
+  L.push('      mats = {}');
+  gs.forEach(g=>{ const c=P3_GCOL[g].map(v=>Math.round(v*255)); L.push(`      tags[${rs(g)}] = (model.layers[${rs('ZIPLAN '+g)}] || model.layers.add(${rs('ZIPLAN '+g)}))`); L.push(`      m = model.materials[${rs('ZIPLAN '+g)}] || model.materials.add(${rs('ZIPLAN '+g)}); m.color = Sketchup::Color.new(${c.join(', ')})${g==='창'?'; m.alpha = 0.45':''}; mats[${rs(g)}] = m`); });
+  L.push('      root = model.active_entities.add_group');
+  L.push('      root.name = \'ZIPLAN 모형\'');
+  L.push('      solid = lambda do |parent, name, tag, pts, faces|');
+  L.push('        g = parent.entities.add_group');
+  L.push('        g.name = name');
+  L.push('        p = pts.map { |a| Geom::Point3d.new(a[0].m, a[1].m, a[2].m) }');
+  L.push('        faces.each do |f|');
+  L.push('          begin');
+  L.push('            g.entities.add_face(f.map { |i| p[i] })');
+  L.push('          rescue ArgumentError');
+  L.push('          end');
+  L.push('        end');
+  L.push('        g.layer = tags[tag]');
+  L.push('        g.material = mats[tag]');
+  L.push('        g');
+  L.push('      end');
+  fl.forEach(f=>{ const fname=f?f+'층':'지붕'; L.push(`      fg = root.entities.add_group; fg.name = ${rs(fname)}`);
+    gs.forEach(g=>{ const list=S.filter(s=>s.f===f&&s.g===g); if(!list.length) return; L.push(`      gg = fg.entities.add_group; gg.name = ${rs(fname+' '+g)}; gg.layer = tags[${rs(g)}]`);
+      list.forEach(s=>{ L.push(`      solid.call(gg, ${rs(s.n)}, ${rs(g)}, [${s.V.map(v=>'['+v.map(p3f).join(',')+']').join(',')}], [${s.F.map(q=>'['+q.join(',')+']').join(',')}])`); }); }); });
+  L.push('      model.commit_operation');
+  L.push('      model.active_view.zoom_extents');
+  L.push('    rescue => e');
+  L.push('      model.abort_operation');
+  L.push('      UI.messagebox("ZIPLAN 스크립트 오류: #{e.message}")');
+  L.push('    end');
+  L.push('  end');
+  L.push('end');
+  L.push('ZiplanP3.run');
+  return L.join('\n')+'\n'; }
+function p3DXF3D(S){ const o=['0','SECTION','2','HEADER','9','$ACADVER','1','AC1009','0','ENDSEC','0','SECTION','2','TABLES','0','TABLE','2','LAYER','70',String(P3_GROUPS.length)];
+  P3_GROUPS.forEach((g,i)=>o.push('0','LAYER','2','ZIPLAN-'+P3_GEN[g],'70','0','62',String([7,8,4,30,1,9][i])));
+  o.push('0','ENDTAB','0','ENDSEC','0','SECTION','2','ENTITIES');
+  S.forEach(s=>{ const ly='ZIPLAN-'+P3_GEN[s.g]; s.F.forEach(f=>{ const tris=f.length===4?[f]:p3Tri([f]); tris.forEach(q=>{ const v=q.length===3?[q[0],q[1],q[2],q[2]]:q; o.push('0','3DFACE','8',ly); v.forEach((ix,j)=>{ const p=s.V[ix]; o.push(String(10+j),p3f(p[0]),String(20+j),p3f(p[1]),String(30+j),p3f(p[2])); }); }); }); });
+  o.push('0','ENDSEC','0','EOF'); return o.join('\r\n')+'\r\n'; }
+/* 예시 도면(DXF) — 테스트와 '예시로 시작'에 같이 씀 */
+function p3SampleDXF(kind){ const L=[]; const ln=(x1,y1,x2,y2,ly)=>L.push(['0','LINE','8',ly||'A-WALL','10',x1,'20',y1,'11',x2,'21',y2]);
+  const wallRect=(x0,y0,x1,y1,t,gaps)=>{ /* 바깥 테두리 벽(두께 t, mm) — gaps: [{side:'S'|'N'|'W'|'E', a, b, k}] */ const sides={S:[[x0,y0],[x1,y0]],N:[[x0,y1],[x1,y1]],W:[[x0,y0],[x0,y1]],E:[[x1,y0],[x1,y1]]};
+    Object.entries(sides).forEach(([sd,[[ax,ay],[bx,by]]])=>{ const hz=ay===by; const inner=hz?(sd==='S'?t:-t):(sd==='W'?t:-t); const gs=(gaps||[]).filter(g=>g.side===sd).sort((p,q)=>p.a-q.a);
+      const len=hz?bx-ax:by-ay; let cur=0; const piece=(a,b)=>{ if(b-a<1) return; const ia=Math.max(a,0), ib=Math.min(b,len);
+        if(hz){ ln(ax+ia,ay,ax+ib,ay); const a2=Math.max(ia,a===0?t:ia), b2=Math.min(ib,b===len?len-t:ib); ln(ax+a2,ay+inner,ax+b2,ay+inner); ln(ax+ia,ay,ax+ia,ay+inner); ln(ax+ib,ay,ax+ib,ay+inner); }
+        else { ln(ax,ay+ia,ax,ay+ib); const a2=Math.max(ia,a===0?t:ia), b2=Math.min(ib,b===len?len-t:ib); ln(ax+inner,ay+a2,ax+inner,ay+b2); ln(ax,ay+ia,ax+inner,ay+ia); ln(ax,ay+ib,ax+inner,ay+ib); } };
+      gs.forEach(g=>{ piece(cur,g.a); cur=g.b; if(g.k==='door'){ const r=g.b-g.a; L.push(['0','ARC','8','A-DOOR','10',hz?ax+g.a:ax+inner,'20',hz?ay+inner:ay+g.a,'40',r,'50',0,'51',90]); } if(g.k==='win'){ const m=t/2; if(hz){ ln(ax+g.a,ay+inner*.4,ax+g.b,ay+inner*.4,'A-GLAZ'); ln(ax+g.a,ay+inner*.6,ax+g.b,ay+inner*.6,'A-GLAZ'); } else { ln(ax+inner*.4,ay+g.a,ax+inner*.4,ay+g.b,'A-GLAZ'); ln(ax+inner*.6,ay+g.a,ax+inner*.6,ay+g.b,'A-GLAZ'); } } }); piece(cur,len); }); };
+  const inner=(x0,y0,x1,y1,t,gap)=>{ /* 안벽 한 줄(두께 t) — gap: [a,b] 문 */ const hz=y0===y1; const segs=gap?[[0,gap[0]],[gap[1],hz?x1-x0:y1-y0]]:[[0,hz?x1-x0:y1-y0]];
+    segs.forEach(([a,b])=>{ if(hz){ ln(x0+a,y0-t/2,x0+b,y0-t/2); ln(x0+a,y0+t/2,x0+b,y0+t/2); } else { ln(x0-t/2,y0+a,x0-t/2,y0+b); ln(x0+t/2,y0+a,x0+t/2,y0+b); } });
+    if(gap){ const r=gap[1]-gap[0]; L.push(['0','ARC','8','A-DOOR','10',hz?x0+gap[0]:x0,'20',hz?y0:y0+gap[0],'40',r,'50',0,'51',90]); } };
+  if(kind==='one'){ wallRect(0,0,6000,4500,200,[{side:'S',a:800,b:1700,k:'door'},{side:'N',a:1500,b:3300,k:'win'},{side:'E',a:1200,b:2700,k:'win'}]); inner(4000,200,4000,4300,120,[2900,3700]); }
+  else if(kind==='two'){ wallRect(0,0,9000,7200,200,[{side:'S',a:1000,b:1950,k:'door'},{side:'S',a:3500,b:6500,k:'win'},{side:'N',a:1200,b:2700,k:'win'},{side:'N',a:5500,b:7500,k:'win'},{side:'W',a:2500,b:4300,k:'win'},{side:'E',a:2000,b:3500,k:'win'}]);
+    inner(200,3600,8800,3600,120,[2200,3100]); inner(5000,200,5000,3540,120,[1200,2100]); inner(5000,3660,5000,7000,120,[600,1500]); }
+  else { /* 근생 3층: 상가 앞면 큰 창 */ wallRect(0,0,12000,9000,200,[{side:'S',a:600,b:1700,k:'door'},{side:'S',a:2200,b:5200,k:'win'},{side:'S',a:5600,b:8600,k:'win'},{side:'S',a:9000,b:11400,k:'win'},{side:'N',a:1500,b:3000,k:'win'},{side:'N',a:8500,b:10000,k:'win'},{side:'E',a:2500,b:4500,k:'win'}]);
+    inner(8000,200,8000,8800,150,[5800,6800]); inner(8075,5000,11800,5000,150,[1200,2100]); }
+  const head=['0','SECTION','2','HEADER','9','$INSUNITS','70','4','0','ENDSEC','0','SECTION','2','ENTITIES'];
+  return head.concat(L.flat().map(String)).concat(['0','ENDSEC','0','EOF']).join('\n')+'\n'; }
+/* node 테스트용 export는 빌드에서 뺌 */ void {p3DxfParse,p3DxfUnit,p3FromDxf,p3PairWalls,p3MergeWalls,p3Snap,p3Gaps,p3Grid,p3Rects,p3ImgWalls,p3ImgPlan,p3Gen,p3Stats,p3DAE,p3RB,p3DXF3D,p3SampleDXF,p3Bounds,P3_GROUPS};
+
+/* ===== X · v23: 도면 → 3D 화면(#plan3d) =====
+   도면은 이 브라우저 메모리(P3P)에서만 다루고 저장하지 않는다. 저장(localStorage zip_p3)은 층·높이 값과 단계만.
+   미리보기는 누구나 무료, 내려받기는 멤버십(학생 스튜디오·스튜디오·프로·학교) 무제한 · 그 밖은 로그인 후 무료 체험 P3_FREE회.
+   체험 횟수는 Supabase plan3d_usage(supabase/plan3d.sql)의 RPC로 센다. 그 SQL이 없으면 이 기기에서 임시로 세고 화면에 그렇게 적는다. */
+const P3_FREE=3, P3_MEMBER=['stu','studio','pro','school'];
+const P3_STEPS=[['도면 올리기','DXF · 이미지 · PDF · 예시'],['층과 높이','층고 · 슬래브 · 벽 두께'],['3D 확인','돌려 보기 · 층 · 레이어'],['내려받기','SketchUp .dae · .rb · DXF']];
+const P3_SAMPLES=[['one','원룸 주택','1층 · 6.0 × 4.5 m','one',1],['two','2층 단독주택','2층 · 9.0 × 7.2 m · 박공지붕','two',2],['three','3층 근린생활시설','3층 · 12 × 9 m · 1층 상가 창','three',3]];
+const P3_KN={door:'문',win:'창',open:'뚫림',none:'막음'}, P3_CYC=['door','win','open','none'];
+let P3=null, P3P=[], P3V=null, P3S=null;
+window.__p3={get S(){ return P3; },get plans(){ return P3P; },step:n=>p3Step(n),gen:()=>p3Gen0()}; /* 테스트용 */
+function p3Default(){ return {step:1,mode:'dxf',cfg:{H:3.0,slab:.2,tExt:.2,tInt:.12,sill:.9,winH:1.2,doorH:2.1,para:1.2,roof:'flat',pitch:30,over:.3,fixT:true},nf:1,same:true,floors:[{plan:0,H:3.0}],show:{벽:1,슬래브:1,창:1,문:1,지붕:1,난간:1},upto:0}; }
+function p3Load(){ const d=p3Default(); try{ const s=JSON.parse(localStorage.getItem('zip_p3')||'null'); if(s&&typeof s==='object'){ Object.assign(d,s); d.cfg=Object.assign(p3Default().cfg,s.cfg||{}); d.show=Object.assign(p3Default().show,s.show||{}); } }catch(e){} return d; }
+let p3SaveT=0; function p3Save(){ clearTimeout(p3SaveT); p3SaveT=setTimeout(()=>{ try{ const {step,mode,cfg,nf,same,floors,show,upto}=P3; localStorage.setItem('zip_p3',JSON.stringify({step,mode,cfg,nf,same,floors,show,upto})); }catch(e){} },300); }
+function p3HintSeen(){ try{ return localStorage.getItem('zip_p3_hint')==='1'; }catch(e){ return false; } }
+const p3n=(v,d)=>{ const x=parseFloat(v); return isFinite(x)?x:d; };
+const p3m=v=>(Math.round(v*100)/100).toFixed(2).replace(/\.?0+$/,'');
+
+function p3Build(){ const app=$('#p3App'); if(!app||app.dataset.on) return; app.dataset.on='1';
+  app.innerHTML=`
+  <div class="fwlink rm-hint" id="p3Hint"${p3HintSeen()?' hidden':''}><div class="in"><span class="lab-k">이렇게 쓰세요</span><ol class="rm-hintl"><li><b>1</b>도면(DXF가 가장 정확)이나 평면도 그림을 올려요.</li><li><b>2</b>층 수·층고·슬래브 두께를 넣어요.</li><li><b>3</b>3D로 확인하고 SketchUp 파일로 받아요.</li></ol><button type="button" class="btn sec sm" id="p3HintX">알겠어요</button></div></div>
+  <ol class="zc2-steps rm-steps p3-steps" id="p3Steps" aria-label="도면 → 3D 순서">${P3_STEPS.map(([a,b],i)=>`<li data-st="${i+1}"><button type="button" data-p3go="${i+1}"><b>0${i+1}</b><span>${a}</span><em>${b}</em></button></li>`).join('')}</ol>
+  <p class="rm-note" role="note"><b>참고용</b> 도면에서 읽은 벽·창·문으로 만든 개략 모형이에요. 실제 설계·시공·허가에 쓰기 전에는 반드시 실측과 전문가 확인이 필요해요.</p>
+
+  <section class="rm-pane" data-pane="1" aria-labelledby="p3P1">
+    <div class="zc2-card"><div class="zc2-h"><span class="n">1</span><div><h3 id="p3P1">도면을 올려 주세요</h3><p>층마다 도면이 다르면 여러 장 올리세요. 같은 평면을 쌓을 거면 한 장이면 돼요.</p></div></div>
+      <div class="rm-modes p3-modes" role="tablist" aria-label="도면 종류">${[['dxf','DXF 올리기','CAD 도면 · 가장 정확'],['img','이미지 · PDF','평면도 그림 · 스캔 · 캡처'],['sample','예시 도면','바로 해 보기']].map(([k,a,b])=>`<button type="button" role="tab" class="rm-mode" data-p3mode="${k}" aria-selected="false"><b>${a}</b><span>${b}</span></button>`).join('')}</div>
+      <div class="rm-mp" data-p3mp="dxf"><div class="rm-up"><label class="btn" for="p3FD">DXF 파일 고르기</label><input type="file" id="p3FD" accept=".dxf,application/dxf,image/vnd.dxf" multiple hidden><p class="rm-pnote">DWG는 CAD에서 <b>‘다른 이름으로 저장 → DXF’</b>로 바꿔 올려 주세요. 레이어 이름(벽·WALL·A-WALL / 창·WIN·GLAZ / 문·DOOR)으로 벽과 창·문을 찾아요.</p></div></div>
+      <div class="rm-mp" data-p3mp="img" hidden><div class="rm-up"><label class="btn" for="p3FI">이미지 · PDF 고르기</label><input type="file" id="p3FI" accept="image/*,.pdf,application/pdf" multiple hidden><p class="rm-pnote">굵게 칠한 벽을 찾아요. 치수 글자는 읽지 못해서 <b>길이 하나는 직접</b> 맞춰야 해요. PDF는 첫 쪽만 써요.</p></div></div>
+      <div class="rm-mp" data-p3mp="sample" hidden><div class="p3-samples">${P3_SAMPLES.map(([k,a,b])=>`<button type="button" class="rm-tpl p3-sample" data-p3sample="${k}"><b>${a}</b><span>${b}</span></button>`).join('')}</div></div>
+      <p class="rm-pnote p3-priv"><b>올린 도면은 이 브라우저 안에서만 계산하고 서버로 보내거나 저장하지 않아요.</b> 새로고침하면 다시 올려야 해요.</p>
+      <div class="p3-plans" id="p3Plans"></div>
+    </div>
+    <div class="rm-nav"><span></span><button type="button" class="btn" data-p3go="2">층과 높이 →</button></div>
+  </section>
+
+  <section class="rm-pane" data-pane="2" aria-labelledby="p3P2" hidden>
+    <div class="zc2-card"><div class="zc2-h"><span class="n">2</span><div><h3 id="p3P2">층과 높이</h3><p>모르는 값은 기본값 그대로 두세요. 기본값은 흔히 쓰는 값일 뿐 정답이 아니에요(참고용).</p></div></div>
+      <div class="p3-flr"><label>층 수 <select id="p3NF">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${n}층</option>`).join('')}</select></label><label class="p3-ck"><input type="checkbox" id="p3Same"> 모든 층에 같은 도면</label></div>
+      <div class="p3-ftab" id="p3FTab"></div>
+      <div class="p3-vals" id="p3Vals"></div>
+    </div>
+    <div class="rm-nav"><button type="button" class="btn sec" data-p3go="1">← 도면</button><button type="button" class="btn" data-p3go="3">3D로 보기 →</button></div>
+  </section>
+
+  <section class="rm-pane" data-pane="3" aria-labelledby="p3P3" hidden>
+    <div class="zc2-card"><div class="zc2-h"><span class="n">3</span><div><h3 id="p3P3">3D 확인</h3><p>끌어서 돌리고, 휠·두 손가락으로 확대해요. 이상한 곳은 1단계 도면에서 문·창을 눌러 고쳐요.</p></div></div>
+      <div class="p3-vbar"><div class="p3-chips" id="p3Chips" role="group" aria-label="보이기"></div><label>층 보기 <select id="p3Upto"></select></label><span class="p3-vbtn"><button type="button" class="btn sec sm" data-p3cam="iso">기본</button><button type="button" class="btn sec sm" data-p3cam="top">위에서</button><button type="button" class="btn sec sm" data-p3cam="front">정면</button></span></div>
+      <div class="p3-cv" id="p3Cv"><p class="rm3-ld" id="p3Ld">3D를 준비하는 중…</p></div>
+      <p class="p3-sum" id="p3Sum" aria-live="polite"></p>
+    </div>
+    <div class="rm-nav"><button type="button" class="btn sec" data-p3go="2">← 층과 높이</button><button type="button" class="btn" data-p3go="4">내려받기 →</button></div>
+  </section>
+
+  <section class="rm-pane" data-pane="4" aria-labelledby="p3P4" hidden>
+    <div class="zc2-card"><div class="zc2-h"><span class="n">4</span><div><h3 id="p3P4">SketchUp 파일로 받기</h3><p>미리보기는 누구나 무료예요. 파일 받기는 멤버십이면 무제한, 그 밖에는 로그인하면 무료 체험 ${P3_FREE}회예요.</p></div></div>
+      <div class="p3-gate" id="p3Gate" aria-live="polite"></div>
+      <div class="p3-dls">
+        <button type="button" class="p3-dl" data-p3dl="dae"><b>SketchUp용 3D (.dae)</b><span>층·벽·창·문이 이름 붙은 묶음으로 · SketchUp 데스크톱 ‘가져오기’ / 웹은 유료 구독</span></button>
+        <button type="button" class="p3-dl" data-p3dl="rb"><b>SketchUp Ruby 스크립트 (.rb)</b><span>SketchUp 데스크톱에서 실행하면 태그(레이어)·그룹으로 정리된 모형을 직접 지어요</span></button>
+        <button type="button" class="p3-dl" data-p3dl="dxf"><b>3D DXF (3DFACE)</b><span>다른 CAD·3D 프로그램용 · 레이어 ZIPLAN-WALL 등</span></button>
+        <button type="button" class="p3-dl" data-p3dl="png"><b>지금 화면 이미지 (.png)</b><span>3D 미리보기 그대로</span></button>
+      </div>
+      <details class="rm-more p3-how" open><summary><b>SketchUp에서 여는 방법</b><span>데스크톱 · 웹</span><em>보기</em></summary>
+        <ol class="p3-howl">
+          <li><b>.dae (SketchUp 데스크톱 Pro 등)</b> 파일 → 가져오기(Import) → 형식 ‘COLLADA (*.dae)’ → 파일 고르기. 옵션의 ‘같은 평면 면 합치기(Merge Coplanar Faces)’는 켜 두세요. 단위는 미터로 들어가요.</li>
+          <li><b>.rb (SketchUp 데스크톱)</b> 창(Window) → Ruby 콘솔을 열고 <code>load "받은 파일 경로/ziplan-plan3d.rb"</code> 입력 → Enter. 한 번에 되돌리기(Ctrl+Z)로 지울 수 있어요.</li>
+          <li><b>SketchUp for Web(무료)</b> 무료 요금제는 .skp·이미지만 가져올 수 있어요. .dae 가져오기는 유료 구독이 필요하고, Ruby 콘솔은 웹·iPad에 없어요.</li>
+          <li><b>.skp를 바로 만들지 않는 이유</b> .skp는 SketchUp 전용 형식이라 Trimble SDK(윈도우·맥용)가 있는 서버가 필요해요. 지금은 SketchUp이 공식으로 읽는 .dae와 Ruby로 드려요.</li>
+        </ol>
+        <p class="p3-src">출처: <a href="https://help.sketchup.com/en/sketchup/importing-and-exporting-collada-files" target="_blank" rel="noopener">SketchUp 도움말 — COLLADA 가져오기</a> · <a href="https://help.sketchup.com/en/sketchup-web/file-management" target="_blank" rel="noopener">SketchUp for Web 파일 관리</a> · <a href="https://forums.sketchup.com/t/how-do-i-access-the-ruby-console-in-the-web-version-of-sketchup/342629" target="_blank" rel="noopener">SketchUp 포럼 — 웹 Ruby 콘솔</a> (2026-10 확인)</p>
+      </details>
+      <p class="rm-note p3-legal"><b>참고용 결과</b> 도면 인식과 높이 값은 자동 추정이 섞여 있어요. 받은 모형을 설계·시공·허가 도서로 쓰지 마세요. <a href="terms.html">이용약관</a></p>
+    </div>
+    <div class="rm-nav"><button type="button" class="btn sec" data-p3go="3">← 3D</button><span></span></div>
+  </section>
+  <div class="rm-mbar" id="p3Mbar"><button type="button" class="btn sec" id="p3Mprev">이전</button><span id="p3Mlab"></span><button type="button" class="btn" id="p3Mnext">다음</button></div>`;
+  app.addEventListener('click',p3Click); app.addEventListener('change',p3Change);
+  $('#p3FD').addEventListener('change',e=>{ p3Files(e.target.files,'dxf'); e.target.value=''; });
+  $('#p3FI').addEventListener('change',e=>{ p3Files(e.target.files,'img'); e.target.value=''; });
+  $('#p3HintX').addEventListener('click',()=>{ $('#p3Hint').hidden=true; try{ localStorage.setItem('zip_p3_hint','1'); }catch(e){} });
+  $('#p3Mprev').addEventListener('click',()=>p3Step(Math.max(1,P3.step-1),true));
+  $('#p3Mnext').addEventListener('click',()=>{ if(P3.step<4) p3Step(P3.step+1,true); else p3Download('dae'); });
+}
+function p3Enter(){ if(!P3) P3=p3Load(); p3Build(); p3Mode(P3.mode||'dxf'); p3RenderPlans(); p3RenderFloors(); p3Step(P3P.length?P3.step:1); }
+function p3Leave(){ p3Dispose(); clearInterval(p3GateT); }
+function p3Mode(k){ P3.mode=k; $$('[data-p3mode]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.p3mode===k))); $$('#p3App [data-p3mp]').forEach(p=>p.hidden=p.dataset.p3mp!==k); p3Save(); }
+function p3Step(n,scroll){ if(n>1&&!P3P.length){ n=1; p3Toast('먼저 도면을 올리거나 예시 도면을 골라 주세요.'); }
+  P3.step=n; $$('#p3App .rm-pane').forEach(p=>p.hidden=+p.dataset.pane!==n);
+  $$('#p3Steps li').forEach(li=>{ const k=+li.dataset.st; li.classList.toggle('on',k===n); li.classList.toggle('done',k<n); const b=li.querySelector('button'); if(k===n) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current'); });
+  const pv=$('#p3Mprev'), nx=$('#p3Mnext'), lb=$('#p3Mlab'); if(pv){ pv.disabled=n===1; nx.textContent=n<4?'다음 →':'.dae 받기'; lb.textContent=`${n}/4 · ${P3_STEPS[n-1][0]}`; }
+  if(n===2) p3RenderFloors(); if(n===3) p3Show3D(); else if(n<3) p3Dispose(); if(n===4){ p3Gen0(); p3GateRender(); clearInterval(p3GateT); p3GateT=setInterval(()=>{ const id=acct&&acct.id||''; if(id!==p3GateId) p3GateRender(); },2000); } else clearInterval(p3GateT);
+  p3Save();
+  if(scroll){ const s=$('#p3Steps'); if(s){ const y=s.getBoundingClientRect().top+scrollY-84; if(Math.abs(scrollY-y)>40) scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); } } }
+function p3Toast(t){ let el=$('#p3Toast'); if(!el){ el=document.createElement('div'); el.id='p3Toast'; el.className='p3-toast'; el.setAttribute('role','status'); document.body.appendChild(el); } el.textContent=t; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),2600); }
+
+/* ---------- 파일 → 평면 ---------- */
+async function p3Files(files,kind){ const list=[...files||[]]; for(const f of list){ try{
+    if(kind==='dxf'||/\.dxf$/i.test(f.name)){ if(f.size>25e6){ p3Toast('DXF가 너무 커요(25MB까지).'); continue; } const txt=await f.text(); if(!/SECTION/.test(txt.slice(0,4000))&&!/ENTITIES/.test(txt)){ p3Toast(`${f.name}: DXF(문자) 형식이 아니에요. 바이너리 DXF·DWG는 ASCII DXF로 저장해 주세요.`); continue; } p3AddDxf(txt,f.name); }
+    else { const c=await p3ImgCanvas(f); if(c) p3AddImg(c,f.name); } }catch(err){ console.warn('[plan3d]',err); p3Toast(`${f.name}을(를) 읽지 못했어요.`); } }
+  p3AfterPlans(); }
+function p3AddDxf(txt,name,sample){ const P=p3FromDxf(txt,null,P3.cfg); /* 같은 DXF끼리 원점 맞춤: 첫 DXF의 이동량 공유 */ const first=P3P.find(q=>q.kind==='dxf'&&!q.sample);
+  const item={id:'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),kind:'dxf',name,txt,unit:P.unit,plan:P,sample:!!sample};
+  if(first&&!sample){ p3Reshift(item,first.plan.shift); }
+  P3P.push(item); }
+function p3Reshift(item,shift){ const P=item.plan, s=P.shift; const dx=s[0]-shift[0], dy=s[1]-shift[1]; [P.walls,P.opens].forEach(L=>L.forEach(w=>{ w.x1+=dx; w.x2+=dx; w.y1+=dy; w.y2+=dy; })); P.shift=shift; }
+async function p3ImgCanvas(f){ let bmp;
+  if(f.type==='application/pdf'||/\.pdf$/i.test(f.name)){ const base=new URL('vendor/pdfjs/',location.href); const pdfjs=await import(base+'pdf.min.mjs'); pdfjs.GlobalWorkerOptions.workerSrc=base+'pdf.worker.min.mjs';
+    const doc=await pdfjs.getDocument({data:await f.arrayBuffer()}).promise; const page=await doc.getPage(1); const v0=page.getViewport({scale:1}); const sc=Math.min(4,1600/Math.max(v0.width,v0.height)); const vp=page.getViewport({scale:sc});
+    const c=document.createElement('canvas'); c.width=Math.round(vp.width); c.height=Math.round(vp.height); const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); await page.render({canvasContext:x,viewport:vp}).promise; return p3Shrink(c,1400); }
+  bmp=await createImageBitmap(f); const c=document.createElement('canvas'); c.width=bmp.width; c.height=bmp.height; const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(bmp,0,0); try{ bmp.close(); }catch(e){} return p3Shrink(c,1400); }
+function p3Shrink(c,mx){ const k=Math.min(1,mx/Math.max(c.width,c.height)); if(k>=1) return c; const d=document.createElement('canvas'); d.width=Math.round(c.width*k); d.height=Math.round(c.height*k); const x=d.getContext('2d'); x.imageSmoothingQuality='high'; x.drawImage(c,0,0,d.width,d.height); return d; }
+function p3AddImg(c,name){ const w=c.width,h=c.height, d=c.getContext('2d').getImageData(0,0,w,h).data; const g=new Uint8Array(w*h); for(let i=0;i<w*h;i++) g[i]=(d[i*4]*.299+d[i*4+1]*.587+d[i*4+2]*.114)|0;
+  const item={id:'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),kind:'img',name,gray:g,w,h,rad:0,url:null};
+  c.toBlob(b=>{ if(b){ item.url=URL.createObjectURL(b); p3RenderPlans(); } },'image/jpeg',.82);
+  p3ImgRun(item,true); P3P.push(item); }
+function p3ImgRun(item,first){ item.R=p3ImgWalls(item.gray,item.w,item.h,{rad:item.rad||0});
+  if(first||!item.scale){ /* 바깥벽 두께를 외벽 값(기본 0.2m)으로 보고 축척 짐작 */ item.scale=(P3.cfg.tExt||.2)/Math.max(3,item.R.Tw); item.scaleHow='벽 두께로 짐작'; }
+  item.plan=p3ImgPlan(item.R,item.scale,P3.cfg); }
+function p3AfterPlans(){ P3.floors.forEach(f=>{ if(f.plan>=P3P.length) f.plan=0; }); p3RenderPlans(); p3RenderFloors(); P3V&&(P3V.dirty=true); p3Save(); }
+function p3Sample(k){ const s=P3_SAMPLES.find(x=>x[0]===k); if(!s) return; P3P=P3P.filter(p=>!p.sample); p3AddDxf(p3SampleDXF(s[3]),'예시 — '+s[1],true);
+  const pi=P3P.length-1; P3.nf=s[4]; P3.same=true; P3.floors=Array.from({length:s[4]},(_,i)=>({plan:pi,H:k==='three'&&i===0?4.0:k==='three'?3.3:3.0})); P3.cfg.roof=k==='two'?'gable':'flat'; p3AfterPlans(); p3Toast(`${s[1]} 예시를 불러왔어요 — 아래에서 확인하고 다음으로.`); }
+
+/* ---------- 도면 카드(2D 확인·고치기) ---------- */
+function p3PlanSVG(item){ const P=item.plan, b=p3Bounds(P), m=Math.max(.6,Math.max(b.w,b.h)*.06); const vx=b.x0-m, vy=-(b.y1+m), vw=b.w+2*m, vh=b.h+2*m; const sw=Math.max(b.w,b.h)/300;
+  const poly=(pts)=>pts.map(([x,y])=>`${p3f(x)},${p3f(-y)}`).join(' ');
+  let img=''; if(item.kind==='img'&&item.url){ const k=item.scale, s=P.shift; img=`<image href="${item.url}" x="${p3f(-s[0])}" y="${p3f(s[1])}" width="${p3f(item.w*k)}" height="${p3f(item.h*k)}" preserveAspectRatio="none" opacity=".35"/>`; }
+  const walls=P.walls.map((w,i)=>`<polygon class="p3-w${w.off?' off':''}${w.ext?' ext':''}" data-p3w="${i}" points="${poly(p3Rect(w.x1,w.y1,w.x2,w.y2,Math.max(w.t,sw*2)))}"><title>${w.ext?'외벽':'안벽'} · 두께 ${Math.round(w.t*1000)}mm${w.off?' (뺌)':''} — 누르면 ${w.off?'다시 넣기':'빼기'}</title></polygon>`).join('');
+  const ops=P.opens.map((o,i)=>`<polygon class="p3-o k-${o.k}" data-p3o="${i}" points="${poly(p3Rect(o.x1,o.y1,o.x2,o.y2,Math.max(o.t*1.6,sw*5)))}"><title>${P3_KN[o.k]} · 폭 ${Math.round(o.w*100)}cm — 누르면 바꾸기(문 → 창 → 뚫림 → 막음)</title></polygon>`).join('');
+  const fs=Math.max(b.w,b.h)/34; const dim=`<text class="p3-dim" x="${p3f(b.x0+b.w/2)}" y="${p3f(-b.y0+fs*1.6)}" font-size="${p3f(fs)}" text-anchor="middle">${p3m(b.w)} m</text><text class="p3-dim" x="${p3f(b.x1+fs*.6)}" y="${p3f(-(b.y0+b.h/2))}" font-size="${p3f(fs)}" transform="rotate(90 ${p3f(b.x1+fs*.6)} ${p3f(-(b.y0+b.h/2))})" text-anchor="middle">${p3m(b.h)} m</text>`;
+  let pick=''; if(P3.pick&&P3.pick.id===item.id) pick=P3.pick.pts.map(([x,y])=>`<circle class="p3-pk" cx="${p3f(x)}" cy="${p3f(y)}" r="${p3f(fs*.35)}"/>`).join('')+(P3.pick.pts.length===2?`<line class="p3-pkl" x1="${p3f(P3.pick.pts[0][0])}" y1="${p3f(P3.pick.pts[0][1])}" x2="${p3f(P3.pick.pts[1][0])}" y2="${p3f(P3.pick.pts[1][1])}" stroke-width="${p3f(sw*1.6)}"/>`:'');
+  return `<svg class="p3-svgp${P3.pick&&P3.pick.id===item.id?' picking':''}" viewBox="${p3f(vx)} ${p3f(vy)} ${p3f(vw)} ${p3f(vh)}" role="img" aria-label="${esc(item.name)} 인식 결과 — 벽 ${P.walls.length}, 문 ${P.opens.filter(o=>o.k==='door').length}, 창 ${P.opens.filter(o=>o.k==='win').length}" data-p3svg="${item.id}">${img}<g>${walls}</g><g>${ops}</g>${dim}${pick}</svg>`; }
+function p3RenderPlans(){ const box=$('#p3Plans'); if(!box) return; if(!P3P.length){ box.innerHTML=''; return; }
+  box.innerHTML=P3P.map((it,i)=>{ const P=it.plan, b=p3Bounds(P), nD=P.opens.filter(o=>o.k==='door').length, nW=P.opens.filter(o=>o.k==='win').length;
+    const tools=it.kind==='dxf'?`<div class="p3-tl"><label>단위 <select data-p3unit="${it.id}">${[['mm','mm'],['cm','cm'],['m','m'],['in','인치'],['ft','피트']].map(([v,n])=>`<option value="${v}"${v===it.unit?' selected':''}>${n}</option>`).join('')}</select></label><span class="p3-mut">${esc(P.unitHow||'')}${P.layers?` · 레이어 ${P.layers.length}개 중 벽 ${P.layers.filter(l=>l[1]==='wall').length}·창 ${P.layers.filter(l=>l[1]==='win').length}·문 ${P.layers.filter(l=>l[1]==='door').length}`:''}</span></div>`
+      :`<div class="p3-tl"><span class="p3-sc"><b>길이 맞추기</b> 건물 전체 가로 <input type="number" step="0.1" min="1" max="300" value="${p3m(b.w)}" data-p3w0="${it.id}" inputmode="decimal"> m <em>(${esc(it.scaleHow||'')})</em></span><button type="button" class="rm-lnk" data-p3pick="${it.id}">${P3.pick&&P3.pick.id===it.id?'두 점 찍는 중… (취소)':'두 점 찍어 재기'}</button>${P3.pick&&P3.pick.id===it.id&&P3.pick.pts.length===2?`<label class="p3-pkin">두 점 사이 <input type="number" step="0.05" min=".1" max="300" data-p3pklen="${it.id}" placeholder="예: 3.6" inputmode="decimal"> m <button type="button" class="btn sm" data-p3pkok="${it.id}">맞추기</button></label>`:''}<label class="p3-rad">가는 선 무시 <input type="range" min="1" max="6" value="${it.rad||Math.max(1,Math.min(2,Math.floor((it.R&&it.R.Tw||6)*.32)))}" data-p3rad="${it.id}"></label></div>`;
+    return `<article class="p3-plan" data-p3id="${it.id}"><div class="p3-ph"><b>도면 ${i+1}</b><span>${esc(it.name)}</span><button type="button" class="rm-x" data-p3del="${it.id}" aria-label="${esc(it.name)} 지우기">✕</button></div>
+      <div class="p3-sv">${p3PlanSVG(it)}</div>
+      <p class="p3-st">벽 <b>${P.walls.filter(w=>!w.off).length}</b> · 문 <b>${nD}</b> · 창 <b>${nW}</b> · 크기 <b>${p3m(b.w)} × ${p3m(b.h)} m</b>${P.note&&P.note.length?` · <em>${esc(P.note.join(' · '))}</em>`:''}${!P.walls.length?' · <em class="bad">벽을 찾지 못했어요 — 단위·레이어를 확인하거나 이미지로 올려 보세요</em>':''}</p>${tools}
+      <p class="p3-lg"><i class="k-door"></i>문 <i class="k-win"></i>창 <i class="k-open"></i>뚫림 <i class="k-none"></i>막음 — 표시를 누르면 바뀌어요. 벽을 누르면 빼거나 다시 넣어요.</p></article>`; }).join(''); }
+function p3Item(id){ return P3P.find(p=>p.id===id); }
+function p3SvgPt(svg,e){ const pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY; const q=pt.matrixTransform(svg.getScreenCTM().inverse()); return [q.x,q.y]; }
+
+/* ---------- 층·높이 ---------- */
+function p3RenderFloors(){ const t=$('#p3FTab'); if(!t) return; const nf=Math.max(1,Math.min(10,P3.nf||1)); P3.nf=nf;
+  while(P3.floors.length<nf){ const i=P3.floors.length; P3.floors.push({plan:P3.same&&P3.floors[0]?P3.floors[0].plan:Math.max(0,Math.min(P3P.length-1,i)),H:P3.cfg.H}); } P3.floors.length=nf;
+  if(P3.same) P3.floors.forEach(f=>f.plan=P3.floors[0].plan);
+  $('#p3NF').value=nf; $('#p3Same').checked=!!P3.same;
+  const opts=sel=>P3P.map((p,i)=>`<option value="${i}"${i===sel?' selected':''}>도면 ${i+1} · ${esc(p.name.slice(0,24))}</option>`).join('')||'<option value="0">도면 없음</option>';
+  t.innerHTML=`<table class="p3-ft"><thead><tr><th>층</th><th>도면</th><th>층고(m)</th></tr></thead><tbody>${P3.floors.map((f,i)=>`<tr><th>${i+1}층</th><td><select data-p3fp="${i}"${P3.same&&i>0?' disabled':''}>${opts(f.plan)}</select></td><td><input type="number" step="0.05" min="2.2" max="12" value="${f.H}" data-p3fh="${i}" inputmode="decimal"></td></tr>`).join('')}</tbody></table>`;
+  const C=P3.cfg; const V=[['slab','슬래브 두께','m',.1,.6,.01,'층 바닥판 두께'],['tExt','외벽 두께','m',.08,.8,.01,'이미지·한 줄 도면에 씀(DXF는 도면 두께)'],['tInt','안벽 두께','m',.05,.5,.01,'이미지 도면에 씀'],['sill','창대 높이','m',0,2,.05,'바닥에서 창 아래까지'],['winH','창 높이','m',.3,3,.05,''],['doorH','문 높이','m',1.8,3,.05,'']];
+  $('#p3Vals').innerHTML=`<div class="p3-vg">${V.map(([k,a,u,mn,mx,st,hint])=>`<label><span>${a}</span><span class="p3-in"><input type="number" min="${mn}" max="${mx}" step="${st}" value="${C[k]}" data-p3c="${k}" inputmode="decimal"> ${u}</span>${hint?`<em>${hint}</em>`:''}</label>`).join('')}
+    <label><span>지붕</span><select data-p3c="roof"><option value="flat"${C.roof==='flat'?' selected':''}>평지붕 + 난간</option><option value="gable"${C.roof==='gable'?' selected':''}>박공지붕</option></select><em>${C.roof==='gable'?'박공은 건물 바깥 네모(외곽 사각형) 기준 근사':'평지붕은 옥상 슬래브 위 난간'}</em></label>
+    ${C.roof==='gable'?`<label><span>지붕 기울기</span><span class="p3-in"><input type="number" min="5" max="60" step="1" value="${C.pitch}" data-p3c="pitch" inputmode="numeric"> °</span></label><label><span>처마 내밀기</span><span class="p3-in"><input type="number" min="0" max="1.5" step="0.05" value="${C.over}" data-p3c="over" inputmode="decimal"> m</span></label>`:`<label><span>난간 높이</span><span class="p3-in"><input type="number" min="0" max="2" step="0.05" value="${C.para}" data-p3c="para" inputmode="decimal"> m</span><em>0이면 없음</em></label>`}
+    <label class="p3-ck2"><input type="checkbox" data-p3c="fixT"${C.fixT?' checked':''}> 이미지 도면 벽 두께를 위 값으로 맞추기</label></div>
+    <p class="rm-pnote">기본값: 층고 3.0 · 슬래브 0.2 · 외벽 0.2 · 안벽 0.12 · 창대 0.9 · 창 1.2 · 문 2.1 m — 흔히 쓰는 값일 뿐이에요. 실제 도면·구조 값으로 바꾸세요.</p>`; }
+
+/* ---------- 3D 미리보기(three r128) ---------- */
+function p3Gen0(){ const pl=P3P.map(p=>p.plan); P3S=p3Gen(pl,P3.floors.map(f=>({plan:Math.min(f.plan,pl.length-1),H:f.H})),P3.cfg); return P3S; }
+async function p3Show3D(){ const cv=$('#p3Cv'); if(!cv) return; p3Gen0(); const st=p3Stats(P3S); $('#p3Sum').innerHTML=`조각 ${st.n}개 · 벽 ${st.by['벽']||0} · 창 ${st.by['창']||0} · 문 ${st.by['문']||0} · 높이 약 <b>${p3m(st.zmax)} m</b> · 바닥 합계 약 <b>${Math.round(st.area)} ㎡</b> <em>(슬래브 외곽 기준 개략)</em>`;
+  const ups=$('#p3Upto'); ups.innerHTML=`<option value="0">전체</option>`+P3.floors.map((_,i)=>`<option value="${i+1}">${i+1}층까지</option>`).join(''); ups.value=String(P3.upto||0);
+  $('#p3Chips').innerHTML=P3_GROUPS.filter(g=>P3S.some(s=>s.g===g)).map(g=>`<label class="p3-chip"><input type="checkbox" data-p3show="${g}"${P3.show[g]?' checked':''}><i style="background:rgb(${P3_GCOL[g].map(v=>Math.round(v*255)).join(',')})"></i>${g}</label>`).join('');
+  let T; try{ T=await t3Load(); }catch(e){ $('#p3Ld').textContent='3D를 불러오지 못했어요. 네트워크를 확인하거나 1단계 평면으로 확인하세요.'; return; }
+  if(P3.step!==3) return;
+  try{ p3Mount(T,cv); }catch(e){ console.warn('[plan3d] 3D',e); $('#p3Ld').textContent='이 기기에서는 3D(WebGL)를 쓸 수 없어요. 1단계 평면으로 확인하고 파일은 그대로 받을 수 있어요.'; } }
+function p3Mount(T,cv){ p3Dispose(); const W=cv.clientWidth||800, H=cv.clientHeight||480; const mob=matchMedia('(max-width:820px)').matches;
+  const r=new T.WebGLRenderer({antialias:!mob,preserveDrawingBuffer:true}); r.setPixelRatio(Math.min(devicePixelRatio||1,mob?1.5:2)); r.setSize(W,H); r.outputEncoding=T.sRGBEncoding; r.setClearColor(0xeef0f3);
+  cv.querySelectorAll('canvas').forEach(c=>c.remove()); cv.appendChild(r.domElement); $('#p3Ld').hidden=true; r.domElement.setAttribute('aria-label','3D 모형 — 끌어서 돌리기, 휠·두 손가락으로 확대'); r.domElement.setAttribute('role','img');
+  const sc=new T.Scene(); const cam=new T.PerspectiveCamera(38,W/H,.1,2000);
+  sc.add(new T.HemisphereLight(0xffffff,0xb8b4ab,.85)); const sun=new T.DirectionalLight(0xffffff,.75); sun.position.set(30,60,40); sc.add(sun);
+  const mats={}; P3_GROUPS.forEach(g=>{ const c=P3_GCOL[g]; mats[g]=new T.MeshStandardMaterial({color:new T.Color(c[0],c[1],c[2]),roughness:.85,metalness:0,transparent:g==='창',opacity:g==='창'?.45:1,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}); });
+  const lineM=new T.LineBasicMaterial({color:0x2a2a2a,transparent:true,opacity:.28});
+  const root=new T.Group(); sc.add(root); const objs=[]; let bb=new T.Box3();
+  P3S.forEach(s=>{ const pos=[]; p3Tri(s.F).forEach(t=>t.forEach(i=>{ const v=s.V[i]; pos.push(v[0],v[2],-v[1]); })); const geo=new T.BufferGeometry(); geo.setAttribute('position',new T.Float32BufferAttribute(pos,3)); geo.computeVertexNormals();
+    const m=new T.Mesh(geo,mats[s.g]); const eg=new T.LineSegments(new T.EdgesGeometry(geo,25),lineM); const o=new T.Group(); o.add(m); o.add(eg); o.userData={g:s.g,f:s.f}; root.add(o); objs.push(o); geo.computeBoundingBox(); bb.union(geo.boundingBox); });
+  const ctr=new T.Vector3(); bb.getCenter(ctr); const size=new T.Vector3(); bb.getSize(size); const R=Math.max(size.x,size.y,size.z)||10;
+  const grid=new T.GridHelper(Math.ceil(R*2.4/5)*5,Math.ceil(R*2.4/5)*5/ (R>40?5:1),0xb9bcc2,0xd7d9dd); grid.position.set(ctr.x,-.01,ctr.z); sc.add(grid);
+  const V={r,sc,cam,objs,ctr,R,th:-.8,ph:.95,d:R*2.1,mats,lineM,dirty:false,raf:0};
+  const place=()=>{ const {th,ph}=V; const d=V.d*Math.max(1.06,1.12/cam.aspect); /* 세로 화면이면 뒤로 */ cam.position.set(ctr.x+d*Math.sin(ph)*Math.sin(th),size.y*.42+d*Math.cos(ph),ctr.z+d*Math.sin(ph)*Math.cos(th)); cam.lookAt(ctr.x,size.y*.42,ctr.z); cam.near=Math.max(.05,d*.01); cam.far=d*10+R*4; cam.updateProjectionMatrix(); };
+  V.draw=()=>{ if(V.raf) return; V.raf=requestAnimationFrame(()=>{ V.raf=0; place(); r.render(sc,cam); }); };
+  V.apply=()=>{ const up=+P3.upto||0; objs.forEach(o=>{ const {g,f}=o.userData; o.visible=!!P3.show[g]&&(!up||(f>0&&f<=up)); }); V.draw(); };
+  V.view=k=>{ if(k==='top'){ V.th=0; V.ph=.02; V.d=R*1.9; } else if(k==='front'){ V.th=0; V.ph=Math.PI/2-.05; V.d=R*1.9; } else { V.th=-.8; V.ph=.95; V.d=R*2.1; } V.draw(); };
+  const el=r.domElement; const ptrs=new Map(); let last=null, pinch=0;
+  el.addEventListener('pointerdown',e=>{ el.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,[e.clientX,e.clientY]); last=[e.clientX,e.clientY]; if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; pinch=Math.hypot(a[0]-b[0],a[1]-b[1]); } });
+  el.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+    if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; const p=Math.hypot(a[0]-b[0],a[1]-b[1]); if(pinch){ V.d=Math.max(R*.25,Math.min(R*6,V.d*pinch/p)); } pinch=p; V.draw(); return; }
+    const dx=e.clientX-last[0], dy=e.clientY-last[1]; last=[e.clientX,e.clientY]; V.th-=dx*.008; V.ph=Math.max(.02,Math.min(Math.PI/2-.02,V.ph-dy*.008)); V.draw(); });
+  const up=e=>{ ptrs.delete(e.pointerId); if(ptrs.size<2) pinch=0; if(ptrs.size===1) last=[...ptrs.values()][0]; }; el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up);
+  el.addEventListener('wheel',e=>{ e.preventDefault(); V.d=Math.max(R*.25,Math.min(R*6,V.d*(1+Math.sign(e.deltaY)*.1))); V.draw(); },{passive:false});
+  el.style.touchAction='none';
+  V.ro=new ResizeObserver(()=>{ const w=cv.clientWidth, h=cv.clientHeight; if(!w||!h) return; r.setSize(w,h); cam.aspect=w/h; cam.updateProjectionMatrix(); V.draw(); }); V.ro.observe(cv);
+  P3V=V; V.apply(); }
+function p3Dispose(){ const V=P3V; if(!V) return; P3V=null; try{ cancelAnimationFrame(V.raf); V.ro&&V.ro.disconnect(); V.objs.forEach(o=>o.children.forEach(c=>c.geometry&&c.geometry.dispose())); Object.values(V.mats).forEach(m=>m.dispose()); V.lineM.dispose(); V.r.dispose(); try{ V.r.forceContextLoss(); }catch(e){} V.r.domElement.remove(); }catch(e){} const ld=$('#p3Ld'); if(ld){ ld.hidden=false; ld.textContent='3D를 준비하는 중…'; } }
+
+/* ---------- 이벤트 ---------- */
+function p3Click(e){ const t=e.target;
+  const go=t.closest('[data-p3go]'); if(go){ p3Step(+go.dataset.p3go,true); return; }
+  const md=t.closest('[data-p3mode]'); if(md){ p3Mode(md.dataset.p3mode); return; }
+  const sm=t.closest('[data-p3sample]'); if(sm){ p3Sample(sm.dataset.p3sample); return; }
+  const dl=t.closest('[data-p3dl]'); if(dl){ p3Download(dl.dataset.p3dl); return; }
+  const cm=t.closest('[data-p3cam]'); if(cm){ P3V&&P3V.view(cm.dataset.p3cam); return; }
+  const del=t.closest('[data-p3del]'); if(del){ const it=p3Item(del.dataset.p3del); if(it&&it.url) URL.revokeObjectURL(it.url); const ix=P3P.indexOf(it); P3P.splice(ix,1); P3.floors.forEach(f=>{ if(f.plan>ix) f.plan--; else if(f.plan===ix) f.plan=0; }); p3AfterPlans(); return; }
+  const pk=t.closest('[data-p3pick]'); if(pk){ const id=pk.dataset.p3pick; P3.pick=P3.pick&&P3.pick.id===id?null:{id,pts:[]}; p3RenderPlans(); return; }
+  const pko=t.closest('[data-p3pkok]'); if(pko){ const it=p3Item(pko.dataset.p3pkok), inp=$(`[data-p3pklen="${pko.dataset.p3pkok}"]`); const L=p3n(inp&&inp.value,0); if(!it||!P3.pick||P3.pick.pts.length<2||!(L>0)){ p3Toast('두 점 사이 실제 길이(m)를 넣어 주세요.'); return; }
+    const [a,b]=P3.pick.pts; const dm=Math.hypot(a[0]-b[0],a[1]-b[1]); /* 지금 축척에서 m → 실제 m */ it.scale*=L/dm; it.scaleHow='두 점으로 맞춤'; P3.pick=null; it.plan=p3ImgPlan(it.R,it.scale,P3.cfg); p3AfterPlans(); return; }
+  const svg=t.closest('svg[data-p3svg]'); if(svg&&P3.pick&&P3.pick.id===svg.dataset.p3svg){ P3.pick.pts.push(p3SvgPt(svg,e)); if(P3.pick.pts.length>2) P3.pick.pts=P3.pick.pts.slice(-2); p3RenderPlans(); const inp=$(`[data-p3pklen="${svg.dataset.p3svg}"]`); if(inp) inp.focus(); return; }
+  const op=t.closest('[data-p3o]'); if(op){ const it=p3Item(op.closest('[data-p3id]').dataset.p3id), o=it.plan.opens[+op.dataset.p3o]; o.k=P3_CYC[(P3_CYC.indexOf(o.k)+1)%P3_CYC.length]; p3RenderPlans(); p3Toast(`폭 ${Math.round(o.w*100)}cm → ${P3_KN[o.k]}`); return; }
+  const wl=t.closest('[data-p3w]'); if(wl){ const it=p3Item(wl.closest('[data-p3id]').dataset.p3id), w=it.plan.walls[+wl.dataset.p3w]; w.off=!w.off; p3RenderPlans(); return; } }
+function p3Change(e){ const t=e.target;
+  if(t.dataset.p3unit){ const it=p3Item(t.dataset.p3unit); if(!it) return; it.unit=t.value; it.plan=p3FromDxf(it.txt,t.value,P3.cfg); const first=P3P.find(q=>q.kind==='dxf'&&!q.sample&&q!==it); if(first&&!it.sample&&P3P.indexOf(first)<P3P.indexOf(it)) p3Reshift(it,first.plan.shift); p3AfterPlans(); return; }
+  if(t.dataset.p3rad){ const it=p3Item(t.dataset.p3rad); it.rad=+t.value; p3ImgRun(it,false); p3AfterPlans(); return; }
+  if(t.dataset.p3w0){ const it=p3Item(t.dataset.p3w0); const L=p3n(t.value,0); const b=p3Bounds(it.plan); if(L>0&&b.w>0){ it.scale*=L/b.w; it.scaleHow='가로 길이로 맞춤'; it.plan=p3ImgPlan(it.R,it.scale,P3.cfg); p3AfterPlans(); } return; }
+  if(t.id==='p3NF'){ P3.nf=+t.value; p3RenderFloors(); p3Save(); return; }
+  if(t.id==='p3Same'){ P3.same=t.checked; p3RenderFloors(); p3Save(); return; }
+  if(t.dataset.p3fp!=null){ P3.floors[+t.dataset.p3fp].plan=+t.value; p3Save(); return; }
+  if(t.dataset.p3fh!=null){ P3.floors[+t.dataset.p3fh].H=Math.max(2.2,Math.min(12,p3n(t.value,P3.cfg.H))); p3Save(); return; }
+  if(t.dataset.p3c){ const k=t.dataset.p3c; if(k==='roof'){ P3.cfg.roof=t.value; p3RenderFloors(); } else if(k==='fixT'){ P3.cfg.fixT=t.checked; P3P.filter(p=>p.kind==='img').forEach(p=>p.plan=p3ImgPlan(p.R,p.scale,P3.cfg)); p3RenderPlans(); } else { P3.cfg[k]=p3n(t.value,P3.cfg[k]); if(k==='tExt'||k==='tInt') P3P.filter(p=>p.kind==='img'&&P3.cfg.fixT).forEach(p=>p.plan=p3ImgPlan(p.R,p.scale,P3.cfg)); } p3Save(); return; }
+  if(t.id==='p3Upto'){ P3.upto=+t.value; P3V&&P3V.apply(); p3Save(); return; }
+  if(t.dataset.p3show){ P3.show[t.dataset.p3show]=t.checked?1:0; P3V&&P3V.apply(); p3Save(); return; } }
+
+/* ---------- 내려받기 · 멤버십 · 무료 체험 ---------- */
+let p3GateT=0, p3GateId='';
+function p3IsMember(plan,until){ return P3_MEMBER.includes(plan)&&(!until||new Date(until)>new Date()); }
+function p3LocalKey(){ return 'zip_p3_used_'+(acct&&acct.id||'x'); }
+function p3LocalUsed(){ try{ return +(localStorage.getItem(p3LocalKey())||0); }catch(e){ return 0; } }
+async function p3Status(){ if(!acct) return {login:false}; const admin=acct.role==='admin'||acct.role==='super_admin';
+  if(sb&&acct.mode==='server'){ try{ const q=await sb.rpc('plan3d_status'); if(!q.error&&q.data){ const d=q.data; return {login:true,server:true,member:!!d.member||admin,used:+d.used||0,free:+d.free||P3_FREE}; } }catch(e){}
+    if(!p3Status.warned){ console.warn('[plan3d] plan3d.sql이 적용되지 않아 무료 체험 횟수를 이 기기에서 임시로 셉니다(서버 집계 아님).'); p3Status.warned=1; }
+    let member=admin; try{ const q=await sb.from('profiles').select('plan,plan_until').eq('id',acct.id).maybeSingle(); if(!q.error&&q.data) member=member||p3IsMember(q.data.plan,q.data.plan_until); }catch(e){}
+    return {login:true,server:false,member,used:p3LocalUsed(),free:P3_FREE,temp:true}; }
+  return {login:true,server:false,member:admin,used:p3LocalUsed(),free:P3_FREE,temp:true}; }
+async function p3GateRender(){ const box=$('#p3Gate'); if(!box) return; p3GateId=acct&&acct.id||''; const S=await p3Status();
+  if(!S.login){ box.innerHTML=`<div class="p3-g"><b>파일 받기는 로그인 후</b><span>로그인하면 무료 체험 ${P3_FREE}회를 쓸 수 있어요. 멤버십(학생 스튜디오·스튜디오·프로)은 무제한이에요.</span><button type="button" class="btn sm" data-p3login>로그인 · 가입</button><a class="rm-lnk" href="#pricing">멤버십 보기 ›</a></div>`; return; }
+  if(S.member){ box.innerHTML=`<div class="p3-g ok"><b>멤버십 — 무제한</b><span>원하는 만큼 받으세요.</span></div>`; return; }
+  const left=Math.max(0,S.free-S.used); box.innerHTML=`<div class="p3-g${left?'':' no'}"><b>무료 체험 ${left}/${S.free}회 남음</b><span>모형 하나(같은 도면·같은 값)를 받을 때 1회 — 형식(.dae·.rb·DXF·PNG)을 바꿔 받아도 같은 모형이면 다시 빼지 않아요.${S.temp?' <em>지금은 이 기기에서 임시로 세고 있어요.</em>':''}</span>${left?'':'<a class="btn sm" href="#pricing">멤버십 보기</a>'}</div>`; }
+document.addEventListener('click',e=>{ if(e.target.closest('[data-p3login]')){ try{ openAuth('in'); }catch(err){} } });
+function p3Hash(){ const s=JSON.stringify([P3P.map(p=>[p.plan.walls.map(w=>[w.x1,w.y1,w.x2,w.y2,w.t,!!w.off]),p.plan.opens.map(o=>o.k)]),P3.floors,P3.cfg]); let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return (h>>>0).toString(36); }
+async function p3Consume(){ const S=await p3Status(); if(!S.login){ try{ openAuth('in'); }catch(e){} p3Toast('로그인하면 무료 체험으로 받을 수 있어요.'); return false; }
+  if(S.member) return true; const key=p3Hash(), pk='zip_p3_paid_'+acct.id; let paid=[]; try{ paid=JSON.parse(localStorage.getItem(pk)||'[]'); }catch(e){}
+  if(paid.includes(key)) return true;
+  if(S.server){ try{ const q=await sb.rpc('plan3d_consume'); if(q.error) throw q.error; const d=q.data||{}; if(!d.ok){ p3Toast('무료 체험을 다 썼어요. 멤버십이면 무제한으로 받을 수 있어요.'); p3GateRender(); return false; } }catch(err){ console.warn('[plan3d] consume',err); p3Toast('횟수를 확인하지 못했어요. 잠시 뒤 다시 해 주세요.'); return false; } }
+  else { if(S.used>=S.free){ p3Toast('무료 체험을 다 썼어요. 멤버십이면 무제한으로 받을 수 있어요.'); p3GateRender(); return false; } try{ localStorage.setItem(p3LocalKey(),String(S.used+1)); }catch(e){} }
+  paid.push(key); try{ localStorage.setItem(pk,JSON.stringify(paid.slice(-30))); }catch(e){} p3GateRender(); return true; }
+function p3Blob(b,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); }
+async function p3Download(kind){ if(!P3P.length){ p3Step(1,true); return; } p3Gen0(); if(!P3S.length){ p3Toast('만들 벽이 없어요 — 1단계 도면을 확인해 주세요.'); return; }
+  if(!(await p3Consume())) return;
+  const d=new Date(), day=`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`, base='ziplan-plan3d-'+day; const meta={note:`${P3.floors.length}층 · 층고 ${P3.floors.map(f=>f.H).join('/')} m · 슬래브 ${P3.cfg.slab} m · 참고용`};
+  if(kind==='dae') p3Blob(new Blob([p3DAE(P3S,meta)],{type:'model/vnd.collada+xml'}),base+'.dae');
+  else if(kind==='rb') p3Blob(new Blob([p3RB(P3S,meta)],{type:'text/x-ruby;charset=utf-8'}),base+'.rb');
+  else if(kind==='dxf') p3Blob(new Blob([p3DXF3D(P3S)],{type:'application/dxf'}),base+'-3d.dxf');
+  else if(kind==='png'){ if(!P3V){ p3Toast('3D 단계에서 화면을 연 뒤 이미지로 받을 수 있어요.'); return; } P3V.r.render(P3V.sc,P3V.cam); P3V.r.domElement.toBlob(b=>{ if(b) p3Blob(b,base+'.png'); },'image/png'); }
+  try{ zga('plan3d_download',{format:kind}); }catch(e){} p3Toast('파일을 받았어요. SketchUp에서 여는 방법은 아래를 보세요.'); }
+
 /* ---------- Router ---------- */
-const VIEWS=['atlas','flow','travel','home','pricing','contests','room','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
+const VIEWS=['atlas','flow','travel','home','pricing','contests','room','plan3d','zipcode','site','concept','drawing','model','panel','learn','plaza','portfolio','library','studio','guide','admin','dna'];
 let pendingScroll=null;
 function route(){
   try{ zDeep(); }catch(e){ console.warn('deeplink',e); }
@@ -4101,6 +4791,7 @@ function route(){
   try{ zRouteMeta(h); }catch(e){}
   try{ if(h!=='dna'&&DNQ.bak) dnqUnshare(); }catch(e){}
   try{ placeBuild(h); }catch(e){ console.warn('placeBuild',e); }
+  try{ if(h==='plan3d') p3Enter(); else if(P3) p3Leave(); }catch(e){ console.warn('plan3d',e); }
   $$('nav a.nl').forEach(a=>{ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); navCurrent(h); try{ tabCurrent(); }catch(e){}
   if(h!=='home') $('nav').classList.remove('on-dark'); /* 방 화면은 밝은 바 — 표지 장면이 바를 어둡게 바꾸는 건 홈에서만 */
   if(h==='model'){ drawModelStage(); drawMass(); } if(h==='drawing'){ drawZoneStage(); drawSection(); try{ dwFromDna(); }catch(e){} } if(h==='panel') renderSheet($('#panelStageSheet'),panelStageLayout); if(h==='zipcode') zcCalc(); if(h==='concept'){ drawConceptStage(); renderConceptCards(); } if(h==='learn') renderCases(); if(h==='admin') renderAdmin(); if(h==='contests'){ try{ ctRender(); }catch(e){ console.warn('contests',e); } } if(h==='room'){ try{ rmEnter(); }catch(e){ console.warn('room',e); } } if(h==='dna'){ try{ dnqEnter(); }catch(e){ console.warn(e); } renderDnaLab(); } if(h==='flow'){ setTimeout(()=>{ try{ fwRender(); }catch(e){ console.warn(e); } },0); } if(h==='atlas'){ setTimeout(()=>{ try{ atPageInit(); }catch(e){ console.warn(e); } },0); } else { try{ pgvDispose('atsp'); }catch(e){} } try{ roomLabs(h); }catch(e){} if(h==='studio') renderStudio(); if(h==='site'){ drawSite(); setTimeout(()=>{ try{ svRender(); }catch(e){ console.warn(e); } },0); } if(h==='plaza') loadPosts(); if(h==='portfolio'){ renderPortfolio(); setTimeout(()=>{ try{ renderPfPlus(); }catch(e){ console.warn(e); } },0); } if(h==='library') renderLibrary();
@@ -4120,6 +4811,7 @@ const ZMETA={
  travel:['건축 여행 — 한국 72곳·해외 8도시 답사 코스 | ZIPLAN','건축을 보러 가는 여행. 한국 72곳과 해외 8도시, 계절별 스팟과 지도 위 코스 짜기, 근처 맛집까지 한 화면에서.'],
  dna:['취향 랩 — 사진 세 번 고르면 내 취향 집 | ZIPLAN','분위기·사는 곳·중요한 것을 사진 카드로 고르면 1분 안에 내 취향 집이 3D로 지어지고, 닮은 실제 건물 3채를 알려 줍니다.'],
  zipcode:['내집코드 — 주소로 보는 이 땅의 건축 규모 | ZIPLAN','용도지역과 땅 크기를 넣으면 건폐율·용적률·정북 일조를 따져 지을 수 있는 대략의 크기를 3D 세 안으로 보여 줍니다. 개략 검토용.'],
+ plan3d:['도면 → 3D — DXF·평면도를 SketchUp 모형으로 | ZIPLAN','DXF나 평면도 그림을 올리고 층고·슬래브 두께를 넣으면 벽·창·문을 세운 3D 모형을 만들어 SketchUp용 .dae·Ruby 스크립트로 받습니다. 미리보기 무료, 파일은 멤버십·무료 체험.'],
  room:['내 방 고치기 — 방 치수로 가구 배치 3안·3D | ZIPLAN','방 치수나 평면도를 넣으면 가구 배치 세 안과 통로 폭, 가구가 들어가는지, 조명·콘센트 자리를 알려 주고 3D로 보여 줍니다.'],
  contests:['건축 공모전·행사 일정 — 마감순 정리 | ZIPLAN','공공 설계공모, 학생 건축 공모전, 전시·강연·투어 일정을 마감순으로 모았습니다. 나에게 맞는 공모전 찾기와 캘린더 받기.'],
  flow:['설계 흐름 — 컨셉부터 평면도·DXF까지 한 화면 | ZIPLAN','단어와 대지 치수로 아홉 안을 받고, 크리틱을 반영해 매스·원라인·평면도·DXF까지 이어 가는 건축 설계 작업대.'],
@@ -4137,7 +4829,7 @@ const ZMETA={
  pricing:['요금 — 무료로 시작, 얼리버드 안내 | ZIPLAN','ZIPLAN은 대부분의 기능을 로그인 없이 무료로 쓸 수 있어요. 요금제와 재학생 혜택 안내.'],
  admin:['관리자 | ZIPLAN','ZIPLAN 관리자 화면.']
 };
-const ZNAME={home:'홈',atlas:'건축 아틀라스',travel:'건축 여행',dna:'취향 랩',zipcode:'내집코드',room:'내 방 고치기',contests:'공모·행사',flow:'설계 흐름',site:'대지',concept:'컨셉',drawing:'도면',model:'모형',panel:'패널',portfolio:'포트폴리오 · 진로',learn:'사례',library:'자료실',plaza:'광장',studio:'내 작업실',guide:'사용법',pricing:'요금',admin:'관리자'};
+const ZNAME={home:'홈',atlas:'건축 아틀라스',travel:'건축 여행',dna:'취향 랩',zipcode:'내집코드',room:'내 방 고치기',plan3d:'도면 → 3D',contests:'공모·행사',flow:'설계 흐름',site:'대지',concept:'컨셉',drawing:'도면',model:'모형',panel:'패널',portfolio:'포트폴리오 · 진로',learn:'사례',library:'자료실',plaza:'광장',studio:'내 작업실',guide:'사용법',pricing:'요금',admin:'관리자'};
 const ZCUR={h:'home',deep:null};
 function zMetaTag(sel,attr,val){ try{ let m=document.head.querySelector(sel); if(!m){ m=document.createElement('meta'); const k=sel.match(/\[(name|property)="([^"]+)"\]/); if(!k) return; m.setAttribute(k[1],k[2]); document.head.appendChild(m); } m.setAttribute(attr,val); }catch(e){} }
 function zMetaApply(){ const M=ZMETA[ZCUR.h]||ZMETA.home; const t=ZCUR.deep?`${ZCUR.deep} — ${ZNAME[ZCUR.h]||'ZIPLAN'} | ZIPLAN`:M[0]; document.title=t; zMetaTag('meta[name="description"]','content',M[1]); zMetaTag('meta[property="og:title"]','content',t); zMetaTag('meta[property="og:description"]','content',M[1]); zBcRender(); }
@@ -4185,7 +4877,8 @@ const ZHOWTO=[
  ['공모전·설계 과제를 준비할 때','어떤 공모전이 열리는지, 컨셉을 어디서부터 잡을지 막막할 때','공모·행사에서 마감순 일정을 보고, 설계 흐름에서 단어로 안을 받아요.','나에게 맞는 공모전 목록, 아홉 안·평면도·DXF 초안','contests','공모·행사 보기']];
 function zUseHTML(){ return `<section class="zuse" aria-labelledby="zuseT"><h2 id="zuseT">이렇게 써요</h2><p class="zuse-l">상황별 예시예요. 실제 고객 사례나 성과 수치가 아니라, 이런 고민이 있을 때 어느 화면을 열면 되는지 정리했어요.</p><div class="zuse-g">${ZHOWTO.map(([t,s,how,get,h,b],i)=>`<article class="zuse-c"><span class="n">0${i+1}</span><h3>${t}</h3><dl><dt>상황</dt><dd>${s}</dd><dt>이렇게</dt><dd>${how}</dd><dt>얻는 것</dt><dd>${get}</dd></dl><a class="btn sm" href="#${h}" data-cta="use-${h}">${b} ›</a></article>`).join('')}</div></section>`; }
 /* 다음에 볼 것 — 몇몇 방 끝에 자연스럽게 이어지는 곳 2~3개만 */
-const ZNEXT={room:[['zipcode','내집코드','땅이 있다면 지을 수 있는 크기부터'],['dna','취향 랩','어떤 분위기의 방이 좋은지 30초 만에'],['atlas','건축 아틀라스','명작의 실내 구성을 3D로']],
+const ZNEXT={plan3d:[['room','내 방 고치기','방 하나 단위로 가구 배치·3D'],['zipcode','내집코드','이 땅에 지을 수 있는 크기'],['flow','설계 흐름','도면이 없다면 단어로 평면부터']],
+ room:[['zipcode','내집코드','땅이 있다면 지을 수 있는 크기부터'],['dna','취향 랩','어떤 분위기의 방이 좋은지 30초 만에'],['atlas','건축 아틀라스','명작의 실내 구성을 3D로']],
  dna:[['zipcode','내집코드','이 취향을 내 땅에 지어 보기'],['room','내 방 고치기','지금 사는 방부터 바꿔 보기'],['atlas','건축 아틀라스','닮은 명작 더 둘러보기']],
  zipcode:[['room','내 방 고치기','방 하나 단위로 가구 배치 확인'],['dna','취향 랩','어떤 집을 짓고 싶은지 정리하기'],['travel','건축 여행','비슷한 집을 직접 보러 가기']],
  contests:[['flow','설계 흐름','공모전 컨셉을 단어로 잡아 보기'],['panel','패널','수상작에서 읽은 레이아웃 13종'],['portfolio','포트폴리오 · 진로','결과물을 포트폴리오로']],
@@ -6406,6 +7099,7 @@ const RHERO={
   portfolio:{w:'FOLIO',c:2,n:'07',col:['#ff5e9c','#ff9f5a','#8a6bff'],rib:['진로 지도','연봉','12쪽','이력서','증명사진','건축사','비전공']},
   guide:{w:'GUIDE',c:3,n:'',col:['#3f7bff','#30a46c','#ff9f0a'],rib:['재료 넣기','세 안','하나 고르기','도면','모형','패널','포트폴리오']},
   contests:{w:'CONTEST',c:3,n:'',col:['#ff9f0a','#3f7bff','#ff5e9c'],rib:['설계공모','학생 공모전','아이디어','전시','강연','투어','D-day','나에게 맞는 공모전']},
+  plan3d:{w:'PLAN3D',c:4,n:'',col:['#3f7bff','#30a46c','#c2703f'],rib:['DXF','평면도 그림','PDF','층고','슬래브','벽 두께','창 · 문','SketchUp','.dae','.rb']},
   room:{w:'ROOM',c:1,n:'',col:['#c2703f','#f2bd55','#3f7bff'],rib:['가구 배치','통로 폭','문 열림','들어가나?','조명','콘센트','색 · 재료','견적 상담']},
   zipcode:{w:'ZIPCODE',c:3,n:'01',col:['#3f7bff','#8a6bff','#ff5e9c'],rib:['용도지역','건폐율','용적률','연면적','층수','조례','지구단위']},
   site:{w:'SITE',c:2,n:'02',col:['#2fae7a','#7cc5a0','#3f7bff'],rib:['해','바람','길','소음','조망','그림자','경사']},
@@ -78776,8 +79470,8 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return; const v=e.t
 /* ===== 요금제 · 활동 등급 (사이트 공용) ===== */
 const ZTIER=[
  {k:'guest',n:'둘러보기',sub:'로그인 없이',price:'0원',c:'#8a8f98',who:'처음 온 모든 사람',inc:['취향 랩 · 건축 도감 · 여행 · 사전','실험실(해·바람·콘타·모형)','컨셉 마법사 결과 보기'],lim:['저장 안 됨','도면·PNG 받기 불가']},
- {k:'free',n:'새싹',sub:'무료 회원',price:'0원',c:'#30a46c',who:'가입한 누구나',inc:['프로젝트 1개 자동 저장','취향 랩 기록 10개','도면 SVG 받기 월 5회','AI 대안 월 10회'],lim:['패널 PNG 작은 크기','포트폴리오 크릿 월 1회']},
- {k:'stu',n:'학생 스튜디오',sub:'재학생 인증',price:'월 3,900원',c:'#3f7bff',who:'학교 메일로 인증한 재학생',inc:['프로젝트 무제한','AI 대안 월 300회','도면 SVG·DXF·PDF 무제한','포트폴리오 크릿 월 10회','패널 고해상도 · 워터마크 없음'],lim:['졸업 전까지 매년 한 번 재인증']},
+ {k:'free',n:'새싹',sub:'무료 회원',price:'0원',c:'#30a46c',who:'가입한 누구나',inc:['프로젝트 1개 자동 저장','취향 랩 기록 10개','도면 SVG 받기 월 5회','AI 대안 월 10회','도면 → 3D(SketchUp) 무료 체험 3회'],lim:['패널 PNG 작은 크기','포트폴리오 크릿 월 1회']},
+ {k:'stu',n:'학생 스튜디오',sub:'재학생 인증',price:'월 3,900원',c:'#3f7bff',who:'학교 메일로 인증한 재학생',inc:['프로젝트 무제한','AI 대안 월 300회','도면 SVG·DXF·PDF 무제한','도면 → 3D(SketchUp) 무제한','포트폴리오 크릿 월 10회','패널 고해상도 · 워터마크 없음'],lim:['졸업 전까지 매년 한 번 재인증']},
  {k:'studio',n:'스튜디오',sub:'일반',price:'월 9,900원',c:'#7c3aed',who:'건축주 · 실무자 · 취미',inc:['학생 스튜디오와 같은 기능','상업 이용 가능'],lim:[]},
  {k:'pro',n:'프로',sub:'학생 14,500 / 일반 29,000',price:'월 29,000원',c:'#ff5e3a',who:'졸업 · 공모전 · 소규모 사무소',inc:['스튜디오 전부','매스 3D · 렌더 톤','팀 공유 3인','법규 한도 자동 조회','우선 크릿'],lim:[]},
  {k:'school',n:'학교 · 스튜디오',sub:'연 계약',price:'협의',c:'#1d1d1f',who:'학과 · 설계 스튜디오 반',inc:['한 반 전체 스튜디오','교수 비교 뷰','크리틱 기록 · 출석'],lim:['학기 단위 계약']}];
@@ -78848,7 +79542,8 @@ function admOpsSqlList(t){ const S=ADMOPS.sql||{};
     {k:'inquiries',f:'inquiries.sql',st:'ok',msg:'적용됨 · 문의함'},
     {k:'ratings',f:'ratings.sql',st:'ok',msg:'적용됨 · place_ratings'},
     Object.assign({k:'plaza',f:'plaza.sql',chk:true,table:'plaza_posts'},dyn('plaza',{st:'bad',msg:'미적용 — Supabase SQL Editor에서 실행'})),
-    Object.assign({k:'tiers',f:'tiers.sql',chk:true,table:'profiles.plan'},dyn('tiers',{st:'bad',msg:'미적용 — Supabase SQL Editor에서 실행'}))
+    Object.assign({k:'tiers',f:'tiers.sql',chk:true,table:'profiles.plan'},dyn('tiers',{st:'bad',msg:'미적용 — Supabase SQL Editor에서 실행'})),
+    Object.assign({k:'plan3d',f:'plan3d.sql',chk:true,table:'plan3d_usage'},dyn('plan3d',{st:'bad',msg:'미적용 — 도면 → 3D 무료 체험을 서버에서 셈(tiers.sql 다음에 실행)'}))
   ]; }
 function admOpsChip(st,text){ const ic={ok:'✓',warn:'!',bad:'✗',info:'i',busy:'…'}[st]||'·'; return '<span class="admops-chip '+st+'">'+ic+' '+admOpsEsc(text)+'</span>'; }
 function admOpsSqlHTML(t){ const S=admOpsSb();
@@ -78950,7 +79645,7 @@ function admOpsNotesFlush(){ if(ADMOPS.timer){ clearTimeout(ADMOPS.timer); ADMOP
 /* SQL 확인: 서버에 실제로 물어봄 */
 async function admOpsCheck(k){ const S=admOpsSb(); if(!S) return; const chip=document.querySelector('[data-admops-chip="'+k+'"]'); const note=document.querySelector('[data-admops-note="'+k+'"]');
   if(chip) chip.innerHTML=admOpsChip('busy','확인 중'); let st='bad', msg='';
-  try{ let q; if(k==='plaza') q=await S.from('plaza_posts').select('id',{count:'exact',head:true}); else if(k==='tiers') q=await S.from('profiles').select('plan').limit(1); else return;
+  try{ let q; if(k==='plaza') q=await S.from('plaza_posts').select('id',{count:'exact',head:true}); else if(k==='tiers') q=await S.from('profiles').select('plan').limit(1); else if(k==='plan3d') q=await S.rpc('plan3d_status'); else return;
     if(q&&q.error) throw q.error; st='ok'; msg=k==='plaza'?('적용됨 · 글 '+admOpsNum(q&&q.count!=null?q.count:0)+'건'):'적용됨 · profiles.plan 있음'; }
   catch(e){ st='bad'; msg='미적용 — '+((e&&e.message)||'확인 실패')+' · Supabase SQL Editor에서 실행'; }
   ADMOPS.sql[k]={st,msg,at:Date.now()};
