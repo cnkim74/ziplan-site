@@ -1,0 +1,202 @@
+{
+ "acc": {
+  "checked": "2026-11-03",
+  "notes": "수정: 옛 전남도청 6개 동 복원·2026.5.18 개방(민주평화교류원 설명 교체). feats 별관 존치 설명 재확인 필요"
+ },
+ "angkor": {
+  "checked": "2026-11-03",
+  "notes": "ok(지식 기반)"
+ },
+ "bangju": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "bonte": {
+  "checked": "2026-11-03",
+  "notes": "ok(2026.3 신관 본스타 개관 — 모형엔 없음)"
+ },
+ "bulguksa": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "busanmodern": {
+  "checked": "2026-11-03",
+  "notes": "신규 추가(1929, 설계자 미상)"
+ },
+ "buseoksa": {
+  "checked": "2026-11-03",
+  "notes": "ok(평면 치수 추정 유지)"
+ },
+ "byeongsan": {
+  "checked": "2026-11-03",
+  "notes": "ok(1572 이전·1613 존덕사 관례 차이)"
+ },
+ "changdeok": {
+  "checked": "2026-11-03",
+  "notes": "수정: 부용지 천원지방 — 네모=땅, 둥근 섬=하늘"
+ },
+ "chichu": {
+  "checked": "2026-11-03",
+  "notes": "미확정: 지하 3층 미확인"
+ },
+ "churchlight": {
+  "checked": "2026-11-03",
+  "notes": "ok — 일반 견학 2024 중단(재개 미정)"
+ },
+ "cityhall": {
+  "checked": "2026-11-03",
+  "notes": "ok(서울시 자료)"
+ },
+ "ddp": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "forbidden": {
+  "checked": "2026-11-03",
+  "notes": "ok(지식 기반)"
+ },
+ "frembassy": {
+  "checked": "2026-11-03",
+  "notes": "ok(2023.4 재개관 확인), 사진 없음"
+ },
+ "fuji": {
+  "checked": "2026-11-03",
+  "notes": "ok, 사진 없음"
+ },
+ "gyeongbok": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "haein": {
+  "checked": "2026-11-03",
+  "notes": "ok(encykorea)"
+ },
+ "hahoe": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "himeji": {
+  "checked": "2026-11-03",
+  "notes": "ok(지식 기반)"
+ },
+ "hwaseong": {
+  "checked": "2026-11-03",
+  "notes": "ok(화서문 옹성 ㄱ자 표현 미확인)"
+ },
+ "jongmyo": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "kanazawa": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "katsura": {
+  "checked": "2026-11-03",
+  "notes": "미확정: 안행 방향·고서원 흰 벽 미확인"
+ },
+ "kyungdong": {
+  "checked": "2026-11-03",
+  "notes": "미확정: year 1981 vs dims 1980 준공 — 자료마다 다름, 바꾸지 않음. 2026.7 무료 공개 투어 시작"
+ },
+ "leeum": {
+  "checked": "2026-11-03",
+  "notes": "ok(2021 리움미술관 개칭 반영됨)"
+ },
+ "leeungno": {
+  "checked": "2026-11-03",
+  "notes": "신규 추가(로랑 보두앵 2007, 여행지와 같은 id)"
+ },
+ "lgartscenter": {
+  "checked": "2026-11-03",
+  "notes": "신규 추가(안도 다다오·간삼 2022, 2023 서울시 건축상 대상)"
+ },
+ "lotte": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "mimesis": {
+  "checked": "2026-11-03",
+  "notes": "ok, 사진 없음"
+ },
+ "mmca": {
+  "checked": "2026-11-03",
+  "notes": "수정: 등록문화재→국가등록문화유산. 사진 없음"
+ },
+ "mmcagwacheon": {
+  "checked": "2026-11-03",
+  "notes": "신규 추가(김태수 1986)"
+ },
+ "moriyama": {
+  "checked": "2026-11-03",
+  "notes": "ok(JA)"
+ },
+ "museumsan": {
+  "checked": "2026-11-03",
+  "notes": "ok(700m·해발 275m 미확인)"
+ },
+ "myeongdong": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "nakagin": {
+  "checked": "2026-11-03",
+  "notes": "수정: line·dims·feats에 2022 해체·캡슐 23개 보존 반영"
+ },
+ "nmk": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "podo": {
+  "checked": "2026-11-03",
+  "notes": "미확정: 객실 26·티타늄 아연 미확인, 지하 1층 갤러리 있음"
+ },
+ "sendai": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "seodaemunprison": {
+  "checked": "2026-11-03",
+  "notes": "신규 추가(1908, 설계자 미상)"
+ },
+ "seokguram": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "seonyudo": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "seoullo": {
+  "checked": "2026-11-03",
+  "notes": "ok(서울시 계획값)"
+ },
+ "sewoon": {
+  "checked": "2026-11-03",
+  "notes": "미확정: 세운상가군 단계 철거·공원화 계획(2025.7 실시계획 고시) — 진행 상황 확인 못 해 설명 유지"
+ },
+ "soswaewon": {
+  "checked": "2026-11-03",
+  "notes": "ok(면적 미확인)"
+ },
+ "space": {
+  "checked": "2026-11-03",
+  "notes": "ok(2014 국가등록문화유산, 아라리오뮤지엄)"
+ },
+ "sumiyoshi": {
+  "checked": "2026-11-03",
+  "notes": "미확정: 3.6×14.1m가 대지인지 건물인지"
+ },
+ "tajmahal": {
+  "checked": "2026-11-03",
+  "notes": "ok"
+ },
+ "teshima": {
+  "checked": "2026-11-03",
+  "notes": "ok(공식 사이트)"
+ },
+ "yokohama": {
+  "checked": "2026-11-03",
+  "notes": "ok(요코하마시)"
+ }
+}
