@@ -635,3 +635,11 @@
 - 휴대폰(PG_LOW)은 전시실 6방만 먼저 보이고 '전시실 N개 더 보기'(`AT_HALL_FOLD`, `[data-athmore]`). 데스크톱은 그대로.
 - 버그 수정: 터치에서 탭 뒤 hover가 남아 전시실 큰 카드 사진(.pic opacity 0)이 빈칸이 되던 것 → `@media (hover:hover)`로 감쌈.
 - 측정(390, CPU×4, swiftshader, 2코어·부하 높은 날, 같은 날 교차 5회): 스크롤 중 메인스레드 막힘 중앙값 **HEAD 1,774ms → 217ms**(a79ec10 232ms), 스크롤 fps 중앙값 HEAD 6.5 → **11.7**(a79ec10 13.4; 부하 낮은 회차만 보면 새 빌드 14.3~14.6 ≥ a79ec10 13.4~13.9). 진입 로드 중앙값 HEAD 14.9s → 10.6s. 숫자는 환경 편차가 크니 비교용.
+
+## Q2 · v23b — 세계 정교 모형 5차 G5 (2026-11-03)
+- **정교 모형 +25 → 400채**(병합 scratch v13/merge.js, eye·thumb 유지): azadi badshahi belemtower bosco casamusica dancinghouse dresdenfrauen grandearche hallgrim kuwaittowers lotfollah nijo saintechapelle swayambhu turningtorso umeda victoria vitra lloyds leverhouse stockholmcityhall allianz dulles johnsonwax eastbuilding. 소스 scratch s11/src/<id>.js(생성기 s11/gen.js), 보고서 s11/G5_report.md(출처). 추정치는 각 build `// 추정`.
+- 컨테이너 재시작으로 중간 작업자가 끊겨 대체 작업자가 이어 마침. kuwaittowers 원판 배치 `geometry.applyQuaternion` → `applyMatrix4(makeRotationFromQuaternion)`(번들 three 버전 호환 — 빌드 예외로 첫 구만 그려지던 것 수정).
+- 자평: 상 kuwaittowers·hallgrim·turningtorso·lloyds·stockholmcityhall·bosco·badshahi / 중 azadi·vitra·eastbuilding(평면 사다리꼴 근사·천창 배치 추정)·casamusica·dulles(깊이·기둥 높이 추정) / 나머지 중상.
+- 전시실: 사막의 돔 +3(아자디·쿠웨이트 타워·로트폴라), 남·동남아 +3(바드샤히·스와얌부·빅토리아), 유적과 성 +1(벨렝탑), 도시의 현대 아이콘 +7(보스코·카사 다 무지카·댄싱 하우스·그랑드 아르슈·로이드·알리안츠·비트라 소방서), 신전과 대성당 +3(드레스덴 성모·할그림·생트샤펠), 일본 +2(니조성·우메다), 하늘로 +1(터닝 토르소), 근대의 거장들 +4(레버 하우스·덜레스·존슨 왁스·동관), 궁전과 광장 +1(스톡홀름 시청). 합계 400.
+- 썸네일 25장 원본 720×480 + 작은 360×240(`img/sig/s`, Q1 규칙) — prerender 사본 scratch s11/th(포트 8852, 빌드된 dist에서 pgThumb). `SIG_TH` 400, `SIG_TH_V='20261103'`. og/atlas.jpg '400채'로 다시 찍음(/home/claude/seo/og.html). '375채'→'400채'(crit.html·build_public.py·licenses.html).
+- 확인(로컬 8852): 라우트 9개 + 새 모달 10개 1440·390 페이지 오류 0, 새 정적 /atlas/ 8쪽 링크 211개 깨짐 0, 썸네일 원본·작은 그림 200. 성능 재측정은 이번엔 안 함(전시실 타일 +25, Q1의 휴대폰 접기·작은 그림 위).
