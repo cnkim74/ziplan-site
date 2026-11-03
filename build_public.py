@@ -121,6 +121,10 @@ for rel in ['img/og/%s.jpg' % _k for _k in ('home','atlas','travel','taste','roo
 SIG_IMGS = set()
 for _f in sorted((root / 'img' / 'sig').glob('*.webp')) if (root / 'img' / 'sig').exists() else []:
     shutil.copy(_f, dist / 'img' / 'sig' / _f.name); SIG_IMGS.add(_f.stem)
+# Q1 v23a: 작은 그림(360×240) img/sig/s/ — 카드·필름·전시실 미리보기용
+(dist / 'img' / 'sig' / 's').mkdir(parents=True, exist_ok=True)
+for _f in sorted((root / 'img' / 'sig' / 's').glob('*.webp')) if (root / 'img' / 'sig' / 's').exists() else []:
+    shutil.copy(_f, dist / 'img' / 'sig' / 's' / _f.name)
 
 # ===== v18b: 검색 노출용 정적 페이지 =====
 # crit.html의 데이터(BLD·BSIG 메타·TPL·PH·TFEAT·TV_ABROAD·TV_SEASON·KB2·ENC)를 node로 꺼내

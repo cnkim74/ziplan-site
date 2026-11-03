@@ -628,3 +628,10 @@
 - **검증**: node 코어 테스트(예시 3종 DXF → 벽·개구부 개수), 내보낸 .dae 5개 pycollada `ColladaValidator` 스키마 통과, .rb `ruby -c` 통과, 3D DXF 3DFACE 484·EOF 확인. 브라우저(1440·390, three는 로컬 라우팅·SwiftShader): 예시→DXF→그림+PDF 올리기→개구부 토글→층→3D(회전·층 보기·위에서)→4형식 받기→체험 3→2→0→막힘, pageerror 0, 가로 넘침 0, 메뉴 분류 11개. **SketchUp 실물에서 열어 본 확인은 못 함**(컨테이너에 SketchUp 없음).
 - 샘플·내보낸 파일: 스크래치 `x/`(sample_{one,two,three}.dxf/.dae/.rb/_3d.dxf, sample_plan.png/.pdf, d-ziplan-plan3d-*.dae/.rb/-3d.dxf). 테스트 `/home/claude/x/t_x.js d|m|both`, `t1.js`.
 - 남은 것: 실제 SketchUp에서 열기 확인(사용자), 멤버십 결제 연결 전까지 '멤버십'은 관리자가 plan을 넣어 준 계정만, 곡선 벽·계단, 치수 글자 OCR.
+
+## Q1 · v23a — 아틀라스 휴대폰 스크롤 (2026-11-03)
+- 작은 미리보기 그림 `img/sig/s/<id>.webp`(360×240, 375장 5.2MB) 신설 — `sigTh(id,sm)`, `bldModel(b,w)`는 w≤520이면 작은 그림(카드·필름·전시실 타일), 전시실 방의 큰 카드(.atx-rc.big)는 720 → 원본. build_public.py가 dist/img/sig/s/로 복사. **새 정교 모형을 넣을 때 작은 그림도 같이 만들 것**(원본에서 360×240 리사이즈, 같은 SIG_TH_V).
+- 필름 스트립은 처음에 max(24, 오늘 순번+8)장만 만들고 옆으로 넘기면 24장씩 붙임(`atFilmHTML/atFilmEnsure`, `AT_FILM_STEP`).
+- 휴대폰(PG_LOW)은 전시실 6방만 먼저 보이고 '전시실 N개 더 보기'(`AT_HALL_FOLD`, `[data-athmore]`). 데스크톱은 그대로.
+- 버그 수정: 터치에서 탭 뒤 hover가 남아 전시실 큰 카드 사진(.pic opacity 0)이 빈칸이 되던 것 → `@media (hover:hover)`로 감쌈.
+- 측정(390, CPU×4, swiftshader, 2코어·부하 높은 날, 같은 날 교차 5회): 스크롤 중 메인스레드 막힘 중앙값 **HEAD 1,774ms → 217ms**(a79ec10 232ms), 스크롤 fps 중앙값 HEAD 6.5 → **11.7**(a79ec10 13.4; 부하 낮은 회차만 보면 새 빌드 14.3~14.6 ≥ a79ec10 13.4~13.9). 진입 로드 중앙값 HEAD 14.9s → 10.6s. 숫자는 환경 편차가 크니 비교용.
