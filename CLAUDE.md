@@ -647,3 +647,11 @@
 ## 아틀라스 점검 로그
 - 매일 00:40 예약 점검. 기록 `audit/atlas_audit.json`(id → checked·notes). 다음 점검은 기록 없는 건물부터(BLD 순서, 한국 2/3).
 - 2026-11-03: 첫 점검 45채(한국 30·세계 15) — 수정 4(창덕궁 부용지 천지 반대로 적힌 것, 국립현대미술관 서울관 국가등록문화유산 명칭, ACC 옛 전남도청 2026.5 복원 개방, 나카긴 2022 해체 반영), 추가 5(국립현대미술관 과천관·서대문형무소·이응노미술관·부산근현대역사관 별관·LG아트센터 서울, 사진 없음) → 933채. 미확정: 경동교회 1980/1981, 세운상가 철거 진행, 포도호텔 객실·지붕재. og/atlas.jpg는 아직 928 표기(원본 og.html 없음).
+
+## Q3 · v23c — 한국 정교 모형 5차 K5 (2026-11-04 새벽)
+- **정교 모형 +21 → 421채**(서브에이전트 3조, 브리프·보고서 `tools/sig/BRIEF.md`·`tools/sig/k5/{A,B,C}_report.md`): 전통 hwaamsa(하앙)·jeondeungsa(나부상)·gaesimsa(휜 기둥)·nakseonjae·haenggung·sajikdan·jogyesa / 근대 seoullib·bokmuseum·russianlegation·belgiumconsulate·daehanuiwon·nabawi·gunsancustoms / 현대 bulgwang·sogangmain·natheater(2021 리모델링 후)·mmcagwacheon·jongnotower·leeungno·seoulwcs. 모두 'town' + eye 힌트, 추정은 build `// 추정`.
+- 전시실: 궁궐과 성곽 +2(행궁·사직단), 산사와 서원 +4, 고택과 정원 +1(낙선재), 한국의 근대 +7, 서울의 현대 +7. '400채'→'421채'. og/atlas.jpg는 아직 옛 숫자(원본 og.html 없음 — Q12).
+- BLD 고침: 서울도서관 설계 '조선총독부 건축과(사사 게이이치 설계)', 벨기에영사관 이전 '1982~83', 불광동성당 단어 노출 콘크리트→붉은 벽돌.
+- 자평 중: haenggung(칸수 자료 없음, 단지 축약)·bulgwang(부채꼴 평면 미확인)·natheater·mmcagwacheon·leeungno(실제 평면 미확인). 확인 필요: 사직단 대문 형식(솟을대문 기사), 나바위 팔각창 수(모형 26, 자료 68), 군산세관 첨탑 위치.
+- **도구를 저장소에 둠** `tools/sig/`(세션 스크래치가 자꾸 사라져서): `t.js`(렌더 하네스 — 저장소 루트를 8861에 띄우고 `render.sh <patch|none> ids thumb,eye,aerial,jiteye,jitaerial out/pre-`), `jit.py`(깜빡임: 카메라 0.00005 rad 회전 전후 바뀐 화소 수, PGV `api.nudge` 디버그 훅 추가), `merge.js '<hall json>' patch.js…`(BSIG 끝 추가·BSIG_SITE·SIG_TH·전시실), `sweep.js <port>`(dist 라우트 21개 + 새 모달 1440/390), `perf.js <port>`(390·CPU×4 아틀라스). three.min.js는 `npm pack three@0.128.0`(cdnjs는 컨테이너에서 403).
+- 확인: dist 라우트 21개 1440·390 pageerror 0·가로 넘침 0, 새 모달 6채 3D·제목·이미지 정상, 바뀐 정적 23쪽 링크 1,663개 깨짐 0, 아틀라스 390 CPU×4 같은 날 교차 2회 — HEAD 로드 8.6/9.1 s·진입 롱태스크 6.1/7.0 s·스크롤 6.4/5.9 fps vs 새 빌드 7.6/7.0 s·5.8/5.3 s·6.3/6.2 fps(회귀 없음).
