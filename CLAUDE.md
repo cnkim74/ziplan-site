@@ -647,6 +647,7 @@
 ## 아틀라스 점검 로그
 - 매일 00:40 예약 점검. 기록 `audit/atlas_audit.json`(id → checked·notes). 다음 점검은 기록 없는 건물부터(BLD 순서, 한국 2/3).
 - 2026-11-03: 첫 점검 45채(한국 30·세계 15) — 수정 4(창덕궁 부용지 천지 반대로 적힌 것, 국립현대미술관 서울관 국가등록문화유산 명칭, ACC 옛 전남도청 2026.5 복원 개방, 나카긴 2022 해체 반영), 추가 5(국립현대미술관 과천관·서대문형무소·이응노미술관·부산근현대역사관 별관·LG아트센터 서울, 사진 없음) → 933채. 미확정: 경동교회 1980/1981, 세운상가 철거 진행, 포도호텔 객실·지붕재. og/atlas.jpg는 아직 928 표기(원본 og.html 없음).
+- 2026-11-04: 45채(한국 30·세계 15) — 수정 13(첨성대 돌 수 '360여 개', 덕수궁 연도 1593(정릉동 행궁), 약현성당 종탑 1905 신축, 63빌딩 유리 교체 문구, N서울타워 착공·완공 연도, CCTV 층수, 부르즈 분수 275 m, 다카 국회 210에이커·1962 설계 의뢰, 파르테논 곡률 10 cm, 판테온 '지금도 최대 무근 콘크리트 돔', 피렌체 '비계'→'받침틀', 현대카드 라이브러리 키워드), 추가 5(서소문성지 역사박물관·대구간송미술관·국립세계문자박물관·덕수궁 중명전·제주 추사관, 사진 없음) → 938채. 미확정: 계산성당 설계자(프와넬/로베르)·'영남 첫 성당', 통도사 대웅전 중건 1641/1645, 63빌딩 설계자(Som and Associates vs SOM), 석조전 기둥 양식. 커먼즈 접근 차단으로 사진 링크 검증 못 함.
 
 ## Q3 · v23c — 한국 정교 모형 5차 K5 (2026-11-04 새벽)
 - **정교 모형 +21 → 421채**(서브에이전트 3조, 브리프·보고서 `tools/sig/BRIEF.md`·`tools/sig/k5/{A,B,C}_report.md`): 전통 hwaamsa(하앙)·jeondeungsa(나부상)·gaesimsa(휜 기둥)·nakseonjae·haenggung·sajikdan·jogyesa / 근대 seoullib·bokmuseum·russianlegation·belgiumconsulate·daehanuiwon·nabawi·gunsancustoms / 현대 bulgwang·sogangmain·natheater(2021 리모델링 후)·mmcagwacheon·jongnotower·leeungno·seoulwcs. 모두 'town' + eye 힌트, 추정은 build `// 추정`.
