@@ -158,11 +158,17 @@ __bsigFill({"osakacastle":function(K){
     // ===== 혼마루 · 내·외 해자 · 돌담 · 니시노마루 정원 · 오사카 시내 =====
     const VC=VIEWCLEAR(1.5708,40,null,420);
     LIFE(()=>{
-      const hf=(x,z)=>{ const r=Math.max(Math.abs(x)/1.1,Math.abs(z)); if(r<150) return 0; if(r<185) return -12; if(r<300) return -2; if(r<345) return -12; return -2; };
-      E.terrain(-3000,3000,-3000,3000,140,140,hf,(x,z,h)=>h<-6?[.5,.47,.42]:[.6,.58,.53]);
-      for(const r of [167,327]){ const g=new T.RingGeometry(r-17,r+17,4,1); g.rotateX(-Math.PI/2); g.rotateY(Math.PI/4); g.scale(1.1/Math.SQRT1_2*.72,1,1/Math.SQRT1_2*.72); const m=new T.Mesh(g,W.WATER); m.position.y=-9; K.life.add(m); }
-      W.lplane(W.solid(0xcfc6b2),0,.02,40,200,140); W.lplane(W.solid(0x7f9a5c),-200,-1.98,40,140,300);
-      for(let i=0;i<500;i++){ const x=(E.r()-.5)*640, z=(E.r()-.5)*600; const r=Math.max(Math.abs(x)/1.1,Math.abs(z)); if(r<60||(r>148&&r<190)||(r>298&&r<350)) continue; if(VC(x,z)) TREES.push([x,hf(x,z),z,10+E.r()*4,1,E.r(),1]); }
+      // v23d: 해자를 실제로 보이게 — 예전엔 43 m 격자 지형이 35 m 폭 해자를 놓쳐 물이 땅 밑에 묻혔음. 해자 모서리마다 격자선을 둔 지형(TERR)으로 돌담 경사(약 4 m 들임 · 높이 12~13 m — 추정)와 물을 맞춤
+      // 단면(r=max(|x|/1.1,|z|)): 혼마루 0 m → 안 해자 돌담 → 수면 −10 m(바닥 −13) → 니노마루 −2 m → 바깥 해자 돌담 → 수면 −11 m(바닥 −14) → 바깥 −2 m
+      const KN=[[0,0],[150,0],[154,-13],[181,-13],[185,-2],[300,-2],[304,-14],[341,-14],[345,-2]];
+      const hf=(x,z)=>{ const r=Math.max(Math.abs(x)/1.1,Math.abs(z)); if(r>=345) return -2; for(let i=1;i<KN.length;i++) if(r<=KN[i][0]){ const a=KN[i-1], b=KN[i], t=(r-a[0])/(b[0]-a[0]); return a[1]+(b[1]-a[1])*t; } return -2; };
+      const EDG=[150,150.5,152,153.5,154,181,181.5,183,184.5,185,300,300.5,302,303.5,304,341,341.5,343,344.5,345], XS=RNG(-3000,3000,250), ZS=RNG(-3000,3000,250); for(const e of EDG) for(const sg of [-1,1]){ XS.push(sg*e*1.1); ZS.push(sg*e); } for(let v=-380;v<=380;v+=40){ XS.push(v); ZS.push(v); }
+      TERR(XS,ZS,hf,(x,z,h,ny)=>{ const r=Math.max(Math.abs(x)/1.1,Math.abs(z)); const wall=(r>150.3&&r<153.7)||(r>181.3&&r<184.7)||(r>300.3&&r<303.7)||(r>341.3&&r<344.7); if(wall){ const n=E.fbm(x*.15,z*.15+h*.3,2); return [.47+.06*n,.45+.05*n,.41+.05*n]; } if(h<-12) return [.34,.36,.31]; return r<150?[.64,.61,.56]:[.6,.58,.53]; });
+      // 수면: 겹치지 않는 네 띠(남·북은 전체 폭, 동·서는 그 사이)
+      const moatW=(r0,r1,y)=>{ const X0=r0*1.1, X1=r1*1.1; for(const sg of [-1,1]){ W.lplane(W.WATER,0,y,sg*(r0+r1)/2,X1*2,r1-r0); W.lplane(W.WATER,sg*(X0+X1)/2,y,0,X1-X0,r0*2); } };
+      moatW(152.8,182.4,-10); moatW(302.7,342.3,-11);
+      W.lplane(W.solid(0xcfc6b2),0,.02,40,200,140); W.lplane(W.solid(0x7f9a5c),-267,-1.96,40,120,280); // 혼마루 광장 · 니시노마루 정원(안 해자 서쪽 — 추정 위치)
+      for(let i=0;i<500;i++){ const x=(E.r()-.5)*640, z=(E.r()-.5)*600; const r=Math.max(Math.abs(x)/1.1,Math.abs(z)); if(r<60||(r>146&&r<190)||(r>296&&r<350)) continue; if(VC(x,z)) TREES.push([x,hf(x,z),z,10+E.r()*4,1,E.r(),1]); }
       const L=[]; for(let x=-2400;x<2400;x+=46) for(let z=-2400;z<2400;z+=46){ const r=Math.max(Math.abs(x)/1.1,Math.abs(z)); if(r<380) continue; if(!VC(x,z)||E.r()<.15) continue; const tall=x>500&&z<-300&&E.r()<.35; L.push([x,z,36,36,tall?70+E.r()*90:12+E.r()*24,['#cfd3d6','#bfc4c8','#e1ddd5','#a9b1b8'][Math.floor(E.r()*4)],0,tall?'g':'p','#6b6f74',3.4,1.2,-2]); }
       W.city(L); flushTrees({cast:false});
       W.sky(3200);

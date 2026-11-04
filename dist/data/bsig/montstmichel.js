@@ -145,7 +145,18 @@ __bsigFill({"montstmichel":function(K){
     const rock=(x,z)=>{ const r=Math.hypot(x/1.05,z); const base=78*Math.pow(Math.max(0,1-r/150),.42); const n=Math.sin(x*.07)*Math.cos(z*.06)*4+Math.sin(x*.19+z*.13)*2; return r>=150?-4:Math.max(-1,base+n)+(r<40?2:0); };
     K.layer(0);
     // 바위섬(높이장 메시, 건물 레이어 안)
-    { const N=56, S=330; const g=new T.PlaneGeometry(S,S,N,N); g.rotateX(-Math.PI/2); const p=g.attributes.position; for(let i=0;i<p.count;i++){ const x=p.getX(i), z=p.getZ(i); p.setY(i,rock(x,z)); } g.computeVertexNormals(); merge([g],GR); }
+    // v23d: 둥근 언덕처럼 보이던 바위를 화강암 섬답게 — 북·서쪽(마을·성벽 없는 쪽)에 갈라진 절벽 턱(능선 잡음), 경사에 따라 화강암 회갈색·북쪽 숲(수도원 숲)·풀 색을 꼭짓점 색으로, 기슭에 바윗덩이. 마을·성벽·라 메르베유 자리는 rock() 그대로(건물 밑면 유지). 절벽 위치·숲 범위는 사진 기준 추정
+    const rockA=(x,z)=>{ const a=Math.atan2(z,x/1.05); return a<-.25||a>2.65; }; // 북·서쪽(마을·성벽 바깥)
+    const rockD=(x,z)=>{ const r=Math.hypot(x/1.05,z); if(r<55||r>149||!rockA(x,z)) return 0; if(Math.abs(x)<48&&z>-80&&z<-38) return 0; const w=E.ss((r-55)/25)*E.ss((149-r)/6); const n=E.ridged?E.ridged(x*.035,z*.035):Math.abs(Math.sin(x*.05)*Math.cos(z*.045)); const st=Math.round(n*3)/3; return w*(st*7-3.5+Math.sin(x*.21+z*.17)*1.2); };
+    { const N=120, S=330; const g=new T.PlaneGeometry(S,S,N,N); g.rotateX(-Math.PI/2); const p=g.attributes.position; for(let i=0;i<p.count;i++){ const x=p.getX(i), z=p.getZ(i); p.setY(i,rock(x,z)+(rock(x,z)>-3?rockD(x,z):0)); } g.computeVertexNormals();
+      const nm=g.attributes.normal, col=[]; const lc=v=>Math.pow(v,2.2); for(let i=0;i<p.count;i++){ const x=p.getX(i), y=p.getY(i), z=p.getZ(i), ny=nm.getY(i); const n=E.fbm?E.fbm(x*.05,z*.05,2):0; let c;
+        if(y<.5) c=[.42+.03*n,.40+.03*n,.35+.02*n]; else if(ny<.72) c=[.50+.06*n,.47+.05*n,.42+.04*n]; else if(rockA(x,z)&&z<-10&&y<60&&!(Math.abs(x)<48&&z>-80)) c=[.25+.04*n,.34+.05*n,.19+.03*n]; else if(ny<.86) c=[.47+.05*n,.46+.05*n,.39+.04*n]; else c=[.44+.05*n,.47+.05*n,.35+.04*n];
+        col.push(lc(c[0]),lc(c[1]),lc(c[2])); }
+      g.setAttribute('color',new T.Float32BufferAttribute(col,3)); const m=new T.Mesh(g,new T.MeshStandardMaterial({vertexColors:true,roughness:.95})); m.castShadow=m.receiveShadow=true; (K.cur||K.layer(0)).add(m); }
+    // 북쪽 비탈 수도원 숲(나무 — 위치·밀도 추정)
+    LIFE(()=>{ const RY=(x,z)=>rock(x,z)+rockD(x,z); const L=[]; for(let i=0;i<900&&L.length<170;i++){ const x=(E.r()-.5)*300, z=-12-E.r()*140; const r=Math.hypot(x/1.05,z); if(r>143||r<50||!rockA(x,z)||(Math.abs(x)<48&&z>-80)) continue; const y=RY(x,z); if(y<2||y>60) continue; const gx=RY(x+2,z)-RY(x-2,z), gz=RY(x,z+2)-RY(x,z-2); if(Math.hypot(gx,gz)/4>.9) continue; L.push([x,y-.3,z,6+E.r()*4,0,E.r()]); } E.forest(L,{trunks:false}); });
+    // 기슭 바윗덩이(화강암, 간조 때 드러나는 것) — 섬 둘레 r 146~162
+    { const gs=[]; for(let i=0;i<190;i++){ const a=E.r()*Math.PI*2, r=146+E.r()*16; const x=Math.cos(a)*r*1.05, z=Math.sin(a)*r; if(z>100&&Math.abs(x-30)<25) continue; const sz=1.5+E.r()*E.r()*6; const g=new T.DodecahedronGeometry(sz,0); g.scale(1+E.r()*.6,.45+E.r()*.4,1+E.r()*.6); g.rotateY(E.r()*3); g.translate(x,-3.6+sz*.25,z); gs.push(g); } merge(gs,GR); }
     // 성벽(남·동쪽 아래) + 둥근 망루
     { const gs=[], tw=[]; for(let a=-.2;a<2.6;a+=.05){ const r=146, x=Math.cos(a)*r*1.05, z=Math.sin(a)*r; const x2=Math.cos(a+.05)*r*1.05, z2=Math.sin(a+.05)*r; const y0=Math.max(0,rock(x,z)-2); const L=Math.hypot(x2-x,z2-z); const g=new T.BoxGeometry(L,12,2.4); g.translate(0,6,0); g.rotateY(-Math.atan2(z2-z,x2-x)); g.translate((x+x2)/2,y0,(z+z2)/2); gs.push(g); }
       merge(gs,ST2); for(const a of [-.1,.45,.95,1.45,1.95,2.45]){ const x=Math.cos(a)*146*1.05, z=Math.sin(a)*146; K.c(x,Math.max(0,rock(x,z)-2),z,5,16,ST2,14); } }

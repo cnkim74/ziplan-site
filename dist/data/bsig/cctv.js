@@ -149,7 +149,7 @@ __bsigFill({"cctv":function(K){ let G1BL=null;
     LIFE(()=>{
       const hf=(x,z)=>-.05;
       E.terrain(-3000,3000,-3000,3000,60,60,hf,(x,z)=>{ const n=E.fbm(x*.01,z*.01,2); return [.6+.03*n,.6+.03*n,.57+.03*n]; },[-130,130,-130,130]);
-      E.plane(K.col(0x56585a,{roughness:.95}),-230,.02,0,60,6000); for(const x of [-250,-230,-210]) E.plane(K.col(0xe8e6df),x,.04,0,.4,6000); // 동3환로
+      E.plane(K.col(0x56585a,{roughness:.95}),-230,.02,0,60,6000); for(const x of [-250,-210]) E.plane(K.col(0xe8e6df),x,.10,0,.4,6000); // 동3환로 — v23d: 가운데 차선은 중앙 녹지 띠와 겹쳐 깜빡여서 뺌, 차선은 노면 위 8 cm(멀리서도 깊이 구분)
       E.plane(K.col(0x56585a,{roughness:.95}),0,.02,175,6000,36); // 광화로
       E.plane(K.col(0x7d9a5a,{roughness:1}),0,.01,-10,250,250); // 미디어 공원 잔디(주변)
       const SB=(x,z,w,d,h,c)=>B(x,0,z,w,h,d,K.col(c,{roughness:.25,metalness:.45}));
@@ -278,7 +278,7 @@ __bsigFill({"cctv":function(K){ let G1BL=null;
     // 가로수: 동3환로(x −230) 양쪽 두 줄 · 광화로(z 175) 양쪽 — 은행·회화나무(둥근 수관), 시선은 비움
     { const L=[]; for(let z=-1600;z<=1600;z+=12) for(const x of [-268,-262,-198,-192]) if(!vcam(x,z,6)&&!(Math.abs(z-175)<22)) L.push([x+(E.r()-.5)*1.5,0,z,9+E.r()*3,0,E.r(),1]); for(let x=-1600;x<=1600;x+=12) for(const z of [152,198]) if(!vcam(x,z,6)&&Math.abs(x+230)>36) L.push([x,0,z+(E.r()-.5)*1.5,9+E.r()*3,0,E.r(),1]); E.forest(L,{trunks:true}); }
     // 길가 녹지 띠(동3환로 중앙분리 녹지)
-    W.lplane(sol(0x7d9a5a),-230,.035,0,4,6000);
+    W.lplane(sol(0x7d9a5a),-230,.14,0,4,6000);
     }
       tidySite();
   }});

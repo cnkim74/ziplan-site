@@ -111,7 +111,7 @@ __bsigFill({"nmk":function(K){
     for(let i=0;i<7;i++) B(-VW/2+VW*i/6,DY+WH-1.2,0,.6,1.2,D+6,SLB); B(0,DY,0,VW,.12,D+8,SLB); B(0,DY+18,0,VW+2,3.2,6,GLP); B(0,DY+18,0,VW+2,.3,6,SLB); // 지붕 보·마당 바닥·유리 통로
     B(0,DY+.1,-D/2+6,VW,.6,2,GRT2); // 마당 끝 턱(남산 쪽)
     // ---- 거울못(100 × 70) + 청자정(육각, 청자 기와) + 산책로 ----
-    { const px=110, pz=90; B(px,0,pz,104,.4,74,K.col(0x5f6e6a)); B(px,.4,pz,100,.02,70,WAT); B(px,0,pz-37.5,106,.6,2,SLB); B(px,0,pz+37.5,106,.6,2,SLB); B(px-52,0,pz,2,.6,76,SLB); B(px+52,0,pz,2,.6,76,SLB);
+    { const px=110, pz=90; B(px,0,pz,104,.28,74,K.col(0x5f6e6a)); B(px,.4,pz,100,.02,70,WAT); /* v23d: 못 바닥을 수면보다 14 cm 아래로(예전 2 cm — 멀리서 물가 깜빡임) */ B(px,0,pz-37.5,106,.6,2,SLB); B(px,0,pz+37.5,106,.6,2,SLB); B(px-52,0,pz,2,.6,76,SLB); B(px+52,0,pz,2,.6,76,SLB);
       const cx=px+22, cz=pz-12, r=4.5; { const g=new T.CylinderGeometry(r+.8,r+1.2,.9,6); g.translate(cx,.45,cz); Q(SLB,g); } for(let i=0;i<6;i++){ const a=i*Math.PI/3; C(cx+Math.cos(a)*r,.9,cz+Math.sin(a)*r,.18,3.2,WD,6,.16); } { const g=new T.CylinderGeometry(r+.6,r+.6,.3,6); g.translate(cx,4.25,cz); Q(WD,g); const g2=new T.ConeGeometry(r+2.4,2.6,6); g2.translate(cx,4.4+1.3,cz); Q(CEL,g2); const g3=new T.CylinderGeometry(.25,.4,.8,6); g3.translate(cx,7.0,cz); Q(DKG,g3); } B(px-10,.42,pz-30,30,.3,2.4,WD); } // 청자정 + 다리
     for(const [x,z] of [[40,120],[70,130],[150,135],[190,110],[200,60],[-230,20],[-235,60],[230,-20]]) tree(x,0,z,7,LF3);
     flush();
