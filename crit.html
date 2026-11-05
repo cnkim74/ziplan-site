@@ -5029,30 +5029,46 @@ function rmLoad(){ try{ const s=JSON.parse(localStorage.getItem('zip_room')||'nu
 function rmRand(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
 function rmWallLen(w){ if(w>=4){ const g=rmWallGeo(w); return g?g.len:0; } return w%2===0?RM.W:RM.D; }
 /* 벽 w에 붙인 직사각형: 벽 따라 길이 L, 안쪽으로 깊이 P, 시작 위치 s */
-function rmOnWall(w,s,L,P){ const W=RM.W,D=RM.D; if(w>=4){ const g=rmWallGeo(w); if(!g) return {x:0,y:0,w:0,h:0}; const x0=g.a[0]+g.t[0]*s, y0=g.a[1]+g.t[1]*s, x1=x0+g.t[0]*L+g.n[0]*P, y1=y0+g.t[1]*L+g.n[1]*P; return {x:Math.min(x0,x1),y:Math.min(y0,y1),w:Math.abs(x1-x0),h:Math.abs(y1-y0)}; } if(w===0) return {x:s,y:0,w:L,h:P}; if(w===1) return {x:W-P,y:s,w:P,h:L}; if(w===2) return {x:s,y:D-P,w:L,h:P}; return {x:0,y:s,w:P,h:L}; }
+function rmOnWall(w,s,L,P){ const W=RM.W,D=RM.D; if(w>=4){ const g=rmWallGeo(w); if(!g) return {x:0,y:0,w:0,h:0}; const x0=g.a[0]+g.t[0]*s, y0=g.a[1]+g.t[1]*s; const xs=[x0,x0+g.t[0]*L,x0+g.n[0]*P,x0+g.t[0]*L+g.n[0]*P], ys=[y0,y0+g.t[1]*L,y0+g.n[1]*P,y0+g.t[1]*L+g.n[1]*P]; const mx=Math.min(...xs), my=Math.min(...ys); return {x:mx,y:my,w:Math.max(...xs)-mx,h:Math.max(...ys)-my}; } if(w===0) return {x:s,y:0,w:L,h:P}; if(w===1) return {x:W-P,y:s,w:P,h:L}; if(w===2) return {x:s,y:D-P,w:L,h:P}; return {x:0,y:s,w:P,h:L}; }
 const RM_DIR=[[0,1],[-1,0],[0,-1],[1,0]];   /* 벽 w에 붙은 가구의 앞 방향 */
 function rmHit(a,b,g){ g=g||0; return a.x<b.x+b.w-g&&b.x<a.x+a.w-g&&a.y<b.y+b.h-g&&b.y<a.y+a.h-g; }
 /* ㄱ자 방: 바운딩 사각형에서 한 모서리를 뺀 칸(방이 아닌 곳) — RM.notch={c:0 왼쪽 위|1 오른쪽 위|2 오른쪽 아래|3 왼쪽 아래, w, d} */
-function rmObs(){ const n=RM&&RM.notch; if(!n||!(n.w>0&&n.d>0)) return []; const W=RM.W,D=RM.D;
+/* Q5 v23e: 사선 벽 — RM.notch.c 8 왼쪽 위·9 오른쪽 위·10 오른쪽 아래·11 왼쪽 아래 모서리를 비스듬히 자름(w=가로로 자른 길이, d=세로로 자른 길이) */
+function rmDiag(){ const n=RM&&RM.notch; if(!n||n.c<8||!(n.w>0&&n.d>0)) return null; const W=RM.W,D=RM.D; const w=Math.min(n.w,W-60), d=Math.min(n.d,D-60); if(w<=0||d<=0) return null; const c=n.c-8; const K=[[0,0],[W,0],[W,D],[0,D]][c]; const sx=c===0||c===3?1:-1, sy=c<2?1:-1; return {c,w,d,K,sx,sy,H:[K[0]+sx*w,K[1]],V:[K[0],K[1]+sy*d]}; }
+function rmIsDiagW(w){ const g=w>=4&&rmWallGeo(w); return !!g&&g.t[0]!==0&&g.t[1]!==0; }
+let RM_OBS_K='', RM_OBS_V=[];
+function rmObs(){ const n=RM&&RM.notch; if(!n||!(n.w>0&&n.d>0)) return []; const k=RM.W+'x'+RM.D+'|'+n.c+','+n.w+','+n.d; if(k===RM_OBS_K) return RM_OBS_V; RM_OBS_K=k; return RM_OBS_V=rmObs0(); }
+function rmObs0(){ const n=RM.notch, W=RM.W,D=RM.D;
+  if(n.c>=8){ /* 사선: 잘린 삼각형을 계단 모양 직사각형으로(가구가 사선에 걸치지 않게, 조금 넉넉히) */ const g=rmDiag(); if(!g) return []; const out=[]; const st=Math.max(10,g.d/24);
+    for(let a=0;a<g.d-.01;a+=st){ const b=Math.min(g.d,a+st), L=g.w*(1-a/g.d); if(L<=.5) break; const y0=g.sy>0?g.K[1]+a:g.K[1]-b; const x0=g.sx>0?g.K[0]:g.K[0]-L; out.push({x:x0,y:y0,w:L,h:b-a,obs:1,diag:1}); }
+    return out; }
   if(n.c>=4){ /* F2 v22b: ㄷ자 — 벽 가운데가 안으로 들어감(4 위·5 오른쪽·6 아래·7 왼쪽). w=벽 따라 폭, d=안쪽 깊이 */ const hz=n.c===4||n.c===6; const len=hz?W:D, dep=hz?D:W; const w=Math.min(n.w,len-120), d=Math.min(n.d,dep-60); if(w<=0||d<=0) return []; const a=(len-w)/2;
     return [n.c===4?{x:a,y:0,w,h:d,obs:1}:n.c===6?{x:a,y:D-d,w,h:d,obs:1}:n.c===5?{x:W-d,y:a,w:d,h:w,obs:1}:{x:0,y:a,w:d,h:w,obs:1}]; }
   const w=Math.min(n.w,W-60), d=Math.min(n.d,D-60); if(w<=0||d<=0) return []; return [n.c===0?{x:0,y:0,w,h:d,obs:1}:n.c===1?{x:W-w,y:0,w,h:d,obs:1}:n.c===2?{x:W-w,y:D-d,w,h:d,obs:1}:{x:0,y:D-d,w,h:d,obs:1}]; }
 /* 안쪽 벽(ㄱ자 2개 · ㄷ자 3개) — 문·창은 벽 번호 4,5,6… 으로 붙음. a→b는 x 또는 y가 커지는 쪽, n은 방 안쪽 */
-function rmInner(){ const q=rmObs()[0]; if(!q) return []; const W=RM.W,D=RM.D, out=[];
+function rmInner(){ const dg=rmDiag(); if(dg){ const [a,b]=dg.H[0]<dg.V[0]?[dg.H,dg.V]:[dg.V,dg.H]; const len=Math.hypot(b[0]-a[0],b[1]-a[1]), t=[(b[0]-a[0])/len,(b[1]-a[1])/len]; let n=[-t[1],t[0]]; const mx=(a[0]+b[0])/2, my=(a[1]+b[1])/2; if((RM.W/2-mx)*n[0]+(RM.D/2-my)*n[1]<0) n=[-n[0],-n[1]]; return [{a,b,n,t,len,diag:1}]; }
+  if(RM.notch&&RM.notch.c>=8) return []; const q=rmObs()[0]; if(!q) return []; const W=RM.W,D=RM.D, out=[];
   if(q.y>0) out.push({a:[q.x,q.y],b:[q.x+q.w,q.y],n:[0,-1]}); if(q.x+q.w<W) out.push({a:[q.x+q.w,q.y],b:[q.x+q.w,q.y+q.h],n:[1,0]});
   if(q.y+q.h<D) out.push({a:[q.x,q.y+q.h],b:[q.x+q.w,q.y+q.h],n:[0,1]}); if(q.x>0) out.push({a:[q.x,q.y],b:[q.x,q.y+q.h],n:[-1,0]});
   return out.map(g=>({...g,t:g.a[0]===g.b[0]?[0,1]:[1,0],len:Math.hypot(g.b[0]-g.a[0],g.b[1]-g.a[1])})); }
 function rmWallGeo(w){ const W=RM.W,D=RM.D; if(w<4){ const E=[[[0,0],[W,0],[0,1]],[[W,0],[W,D],[-1,0]],[[0,D],[W,D],[0,-1]],[[0,0],[0,D],[1,0]]][w]; return {a:E[0],b:E[1],n:E[2],t:w%2===0?[1,0]:[0,1],len:w%2===0?W:D}; } return rmInner()[w-4]||null; }
 function rmN(w){ if(w<4) return RM_DIR[w]; const g=rmWallGeo(w); return g?g.n:[0,-1]; }
-function rmHz(w){ if(w<4) return w%2===0; const g=rmWallGeo(w); return !g||g.t[0]===1; }
+function rmHz(w){ if(w<4) return w%2===0; const g=rmWallGeo(w); return !g||g.t[0]!==0; }
+function rmDot(a,b){ const p=rmN(a), q=rmN(b); return p[0]*q[0]+p[1]*q[1]; }   /* 두 벽이 마주 보면 −1, 같은 쪽이면 1 */
+function rmInPoly(x,y){ const P=rmPoly(); let ins=false; for(let i=0,j=P.length-1;i<P.length;j=i++){ const [xi,yi]=P[i],[xj,yj]=P[j]; if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi) ins=!ins; } return ins; }
+/* 바깥 벽 w에서 방이 아닌 구간 [a,b](cm) — ㄱ자는 끝, ㄷ자는 가운데, 사선은 잘린 모서리 쪽 */
+function rmCut(w){ if(w>=4) return null; const W=RM.W,D=RM.D; const dg=rmDiag(); if(dg){ const c=dg.c; return w===0&&c===0?[0,dg.w]:w===0&&c===1?[W-dg.w,W]:w===1&&c===1?[0,dg.d]:w===1&&c===2?[D-dg.d,D]:w===2&&c===2?[W-dg.w,W]:w===2&&c===3?[0,dg.w]:w===3&&c===3?[D-dg.d,D]:w===3&&c===0?[0,dg.d]:null; }
+  if(RM.notch&&RM.notch.c>=8) return null; const q=rmObs()[0]; if(!q) return null; if(w===0&&q.y<=0) return [q.x,q.x+q.w]; if(w===2&&q.y+q.h>=D) return [q.x,q.x+q.w]; if(w===3&&q.x<=0) return [q.y,q.y+q.h]; if(w===1&&q.x+q.w>=W) return [q.y,q.y+q.h]; return null; }
+/* 가구 자리 후보를 낼 벽: 바깥 4 + 안쪽(사선 제외) */
+function rmWallsAx(){ const out=[0,1,2,3]; rmInner().forEach((g,k)=>{ if(!g.diag) out.push(4+k); }); return out; }
 function rmWallPt(w,s){ const g=rmWallGeo(w); if(!g) return [0,0]; return [g.a[0]+g.t[0]*s,g.a[1]+g.t[1]*s]; }
-function rmWallNames(){ const v=rmInner(); const hz=v.filter(g=>g.t[0]===1).length>1, vt=v.filter(g=>g.t[1]===1).length>1; let a=0,b=0; return RM_WALL.concat(v.map(g=>g.t[0]===1?'안쪽 가로벽'+(hz?' '+(++a):''):'안쪽 세로벽'+(vt?' '+(++b):''))); }
-function rmPoly(){ const W=RM.W,D=RM.D, q=rmObs()[0]; if(!q) return [[0,0],[W,0],[W,D],[0,D]]; const n=RM.notch, qx2=q.x+q.w, qy2=q.y+q.h;
+function rmWallNames(){ const v=rmInner(); const hz=v.filter(g=>g.t[0]===1).length>1, vt=v.filter(g=>g.t[1]===1).length>1; let a=0,b=0; return RM_WALL.concat(v.map(g=>g.diag?'사선 벽':g.t[0]===1?'안쪽 가로벽'+(hz?' '+(++a):''):'안쪽 세로벽'+(vt?' '+(++b):''))); }
+function rmPoly(){ const W=RM.W,D=RM.D; const dg=rmDiag(); if(dg){ const P=[[0,0],[W,0],[W,D],[0,D]]; const ins=dg.c%2===0?[dg.V,dg.H]:[dg.H,dg.V]; P.splice(dg.c,1,...ins); return P; } if(RM.notch&&RM.notch.c>=8) return [[0,0],[W,0],[W,D],[0,D]]; const q=rmObs()[0]; if(!q) return [[0,0],[W,0],[W,D],[0,D]]; const n=RM.notch, qx2=q.x+q.w, qy2=q.y+q.h;
   switch(n.c){ case 0: return [[qx2,0],[W,0],[W,D],[0,D],[0,qy2],[qx2,qy2]]; case 1: return [[0,0],[q.x,0],[q.x,qy2],[W,qy2],[W,D],[0,D]]; case 2: return [[0,0],[W,0],[W,q.y],[q.x,q.y],[q.x,D],[0,D]]; case 3: return [[0,0],[W,0],[W,D],[qx2,D],[qx2,q.y],[0,q.y]];
     case 4: return [[0,0],[q.x,0],[q.x,qy2],[qx2,qy2],[qx2,0],[W,0],[W,D],[0,D]]; case 5: return [[0,0],[W,0],[W,q.y],[q.x,q.y],[q.x,qy2],[W,qy2],[W,D],[0,D]];
     case 6: return [[0,0],[W,0],[W,D],[qx2,D],[qx2,q.y],[q.x,q.y],[q.x,D],[0,D]]; default: return [[0,0],[W,0],[W,D],[0,D],[0,qy2],[qx2,qy2],[qx2,q.y],[0,q.y]]; } }
 function rmRects(items){ return items.filter(i=>!i.nf).map(i=>i.r).concat(rmObs()); }
-function rmArea(){ return (RM.W*RM.D-rmObs().reduce((a,o)=>a+o.w*o.h,0))/1e4; }
+function rmArea(){ const dg=rmDiag(); if(dg) return (RM.W*RM.D-dg.w*dg.d/2)/1e4; return (RM.W*RM.D-rmObs().reduce((a,o)=>a+o.w*o.h,0))/1e4; }
 function rmDoorZones(){ return RM.open.filter(o=>o.k==='door'&&o.swing!=='out').map(o=>{ const r=rmOnWall(o.wall,o.off,o.w,o.w); return {x:r.x-5,y:r.y-5,w:r.w+10,h:r.h+10,o}; }); }
 /* r의 dir 쪽 면에서 가장 가까운 장애물(가구·벽)까지 거리 */
 function rmClear(r,dir,obs){ const W=RM.W,D=RM.D; const [dx,dy]=dir; let best;
@@ -5078,7 +5094,7 @@ function rmReach(rects,full){ const W=RM.W,D=RM.D,c=10,nx=Math.ceil(W/c),ny=Math
 function rmCands(key){ const f=RM_FURN[key], out=[];
   if(f.at==='center'){ const W=RM.W,D=RM.D; for(let y=40;y<=D-f.d-40;y+=20) for(let x=40;x<=W-f.w-40;x+=20) out.push({w:-1,m:'free',s:0,L:f.w,P:f.d,r:{x,y,w:f.w,h:f.d}}); if(!out.length) out.push({w:-1,m:'free',s:0,L:f.w,P:f.d,r:{x:Math.max(0,(W-f.w)/2),y:Math.max(0,(D-f.d)/2),w:Math.min(f.w,W),h:Math.min(f.d,D)}}); return out; }
   const modes=f.k==='bed'?[['head',f.w,f.d],['side',f.d,f.w]]:[['wall',f.w,f.d]];
-  for(let w=0;w<4;w++){ const len=rmWallLen(w); for(const [m,L,P] of modes){ if(L>len) continue; const ss=[]; for(let s=0;s<=len-L;s+=10) ss.push(s); if((len-L)%10) ss.push(len-L); for(const s of ss) out.push({w,m,s,L,P,r:rmOnWall(w,s,L,P)}); } }
+  for(const w of rmWallsAx()){ const len=rmWallLen(w); for(const [m,L,P] of modes){ if(L>len) continue; const ss=[]; for(let s=0;s<=len-L;s+=10) ss.push(s); if((len-L)%10) ss.push(len-L); for(const s of ss) out.push({w,m,s,L,P,r:rmOnWall(w,s,L,P)}); } }
   return out; }
 function rmValid(c,key,placed,zones){ const f=RM_FURN[key], r=c.r; if(r.x<0||r.y<0||r.x+r.w>RM.W+.1||r.y+r.h>RM.D+.1) return false;
   for(const p of placed) if(!p.nf&&rmHit(r,p.r,.5)) return false;
@@ -5089,7 +5105,7 @@ function rmValid(c,key,placed,zones){ const f=RM_FURN[key], r=c.r; if(r.x<0||r.y
 function rmSides(it){ const [dx,dy]=it.dir; return [[-dy,dx],[dy,-dx]]; }   /* 앞 방향에 직각인 두 옆 */
 /* 배치 하나 평가 → 점수·문제 목록 */
 function rmEval(L,sid){ const rects=rmRects(L.items), zones=rmDoorZones(); const reach=rmReach(rects); let sc=0; const iss=[];
-  const doorWall=(RM.open.find(o=>o.k==='door')||{wall:2}).wall;
+  const doorWall=(RM.open.find(o=>o.k==='door')||{wall:2}).wall; const cnr=it=>rmCorner(it);
   for(const it of L.items){ const f=RM_FURN[it.key], need=rmNeed(f); it.cl={}; if(it.nf){ it.ok=true; continue; }
     if(f.k==='bed'&&it.m==='head'){ const [a,b]=rmSides(it); it.cl.s1=rmClear(it.r,a,rects); it.cl.s2=rmClear(it.r,b,rects); it.cl.front=rmClear(it.r,it.dir,rects); const mx=Math.max(it.cl.s1,it.cl.s2);
       if(mx<need){ sc-=(need-mx)*3; iss.push({lv:'bad',t:`${f.n} 양옆이 ${mx}cm뿐이에요 — 한쪽은 ${need}cm 이상 비우면 오르내리기 편해요.`}); }
@@ -5102,9 +5118,9 @@ function rmEval(L,sid){ const rects=rmRects(L.items), zones=rmDoorZones(); const
     if(!it.ok){ sc-=150; iss.push({lv:'bad',t:`${f.n} 앞까지 걸어갈 길이 막혀요.`}); }
     if(f.k==='bed'){ const wn=RM.open.find(o=>o.k==='win'&&o.wall===it.w&&it.s<o.off+o.w&&o.off<it.s+it.L); if(wn&&it.m==='head'){ sc-=8; iss.push({lv:'warn',t:'침대 머리가 창 아래에 있어요 — 겨울엔 외풍, 여름엔 이른 햇빛을 생각해 두세요.'}); } }
     /* 구석에 붙으면 가운데가 넓어짐 */
-    if(it.w>=0){ const len=rmWallLen(it.w); if(it.s===0||it.s===len-it.L) sc+=sid==='A'?16:8; }
-    if(sid==='B'&&f.k==='bed'){ if(it.m==='head') sc+=30; if(it.w===(doorWall+2)%4) sc+=30; else if(it.w!==doorWall) sc+=12; if(it.m==='head'&&Math.min(it.cl.s1,it.cl.s2)>=45) sc+=15; }
-    if(sid==='C'&&f.k==='desk'){ const wn=RM.open.find(o=>o.k==='win'); if(wn){ if(it.w===wn.wall&&it.s<wn.off+wn.w&&wn.off<it.s+it.L) sc+=45; else if((it.w+1)%4===wn.wall||(it.w+3)%4===wn.wall) sc+=18; } }
+    if(it.w>=0&&cnr(it)) sc+=sid==='A'?16:8;
+    if(sid==='B'&&f.k==='bed'){ if(it.m==='head') sc+=30; if(it.w>=0&&rmDot(it.w,doorWall)<-.6) sc+=30; else if(it.w>=0&&rmDot(it.w,doorWall)<.6) sc+=12; if(it.m==='head'&&Math.min(it.cl.s1,it.cl.s2)>=45) sc+=15; }
+    if(sid==='C'&&f.k==='desk'){ const wn=RM.open.find(o=>o.k==='win'); if(wn&&it.w>=0){ if(it.w===wn.wall&&it.s<wn.off+wn.w&&wn.off<it.s+it.L) sc+=45; else if(Math.abs(rmDot(it.w,wn.wall))<.75) sc+=18; } }
     if(sid==='A'&&f.k==='bed'&&it.m==='side') sc+=14;
   }
   /* 직접 옮긴 배치: 겹침 · 문 열리는 자리 · 키 큰 가구가 창을 가림 */
@@ -5117,12 +5133,18 @@ function rmEval(L,sid){ const rects=rmRects(L.items), zones=rmDoorZones(); const
   /* F2 v22b: 문 열림 — 안쪽으로 여는 문끼리 부딪힘 · 문이 안쪽 벽(ㄱ자·ㄷ자 모서리)에 걸림 · 밖으로 여는 문은 바깥 공간 확인 */
   { const ds=RM.open.filter(o=>o.k==='door'); const zr=o=>{ const r=rmOnWall(o.wall,o.off,o.w,o.w); return r; };
     for(let a=0;a<ds.length;a++) for(let b=a+1;b<ds.length;b++){ const A=ds[a],B=ds[b]; if(A.swing==='out'||B.swing==='out') continue; if(rmHit(zr(A),zr(B),2)){ sc-=120; iss.unshift({lv:'bad',t:'두 문이 열리는 자리가 겹쳐요 — 한쪽 문의 여는 방향이나 경첩을 바꿔 보세요.'}); } }
-    for(const o of ds){ if(o.swing==='out') continue; const r=zr(o); for(const q of OB) if(rmHit(r,q,2)){ sc-=120; iss.unshift({lv:'bad',t:'문이 끝까지 열리지 않아요 — 문짝이 꺾인 벽에 걸려요. 여는 방향을 바꾸거나 문을 옮겨 보세요.'}); break; } }
+    for(const o of ds){ if(o.swing==='out') continue; if(rmDoorBlocked(o)){ sc-=120; iss.unshift({lv:'bad',t:'문이 끝까지 열리지 않아요 — 문짝이 꺾인 벽에 걸려요. 여는 방향을 바꾸거나 문을 옮겨 보세요.'}); } }
     const outs=ds.filter(o=>o.swing==='out'); if(outs.length) iss.push({lv:'warn',t:`밖으로 여는 문${outs.length>1?' '+outs.length+'개':''} — 문 밖에 문 폭(${outs.map(o=>o.w+'cm').join('·')})만큼 빈 자리가 있어야 해요. 복도·현관 폭과 다른 문이 맞부딪히지 않는지 실제로 확인하세요.`}); }
   for(const k of L.miss){ sc-=400; iss.unshift({lv:'bad',t:`${RM_FURN[k].n}(${RM_FURN[k].w}×${RM_FURN[k].d})를 놓을 자리가 없어요 — 더 작은 크기를 고르거나 빼 보세요.`}); }
   const area=reach.area; sc+=area*(sid==='A'?14:7);
   if(!iss.some(i=>i.lv==='bad')) iss.push({lv:'ok',t:L.items.some(i=>i.gap!=null)?'겹치거나 문을 막는 가구는 없어요.':'문 열림 반경과 창 앞(키 큰 가구)은 비워 두었어요.'});
+  if(rmDiag()) iss.push({lv:'ok',t:'사선 벽에는 가구를 붙이지 않았어요 — 그 앞 삼각 자리는 화분·스탠드 자리로 남겨 두면 좋아요.'});
   L.score=sc; L.iss=iss; L.walk=area; return L; }
+/* 가구가 구석(옆면이 벽·꺾인 벽에 닿음)인가 — 안쪽 벽·사선 방에서도 */
+function rmCorner(c){ if(c.w<0) return false; const d=rmN(c.w), ob=rmObs(); return rmClear(c.r,[-d[1],d[0]],ob)<=1||rmClear(c.r,[d[1],-d[0]],ob)<=1; }
+/* 문짝이 도는 자리(1/4 원)가 방 밖으로 나가는가 — 꺾인 벽·사선 벽에 걸림 */
+function rmDoorBlocked(o){ const g=rmWallGeo(o.wall); if(!g) return false; const he=o.hinge==='e'; const h=rmWallPt(o.wall,he?o.off+o.w:o.off); const tv=he?[-g.t[0],-g.t[1]]:g.t; const n=g.n;
+  for(let a=8;a<=90;a+=8){ const ra=a*Math.PI/180, ux=tv[0]*Math.cos(ra)+n[0]*Math.sin(ra), uy=tv[1]*Math.cos(ra)+n[1]*Math.sin(ra); for(const k of [.35,.7,.98]){ const x=h[0]+ux*o.w*k+n[0]*2, y=h[1]+uy*o.w*k+n[1]*2; if(!rmInPoly(x,y)) return true; } } return false; }
 function rmUseTxt(f){ const m=f.m||''; return f.k==='desk'||f.k==='dining'?'의자를 빼고 앉으려면':/fridge|chest/.test(m)?'문을 활짝 열고 꺼내려면':/washer|washtower|styler/.test(m)?'문을 열고 빨래를 꺼내려면':m==='mirror'?'거울에 전신이 보이려면':/treadmill|bike|massage|recliner/.test(m)?'안전하게 쓰려면':f.k==='ward'?'문을 열고 옷을 꺼내려면':'지나가며 쓰려면'; }
 function rmSolve(sid,seed){ const rnd=rmRand(seed), zones=rmDoorZones(); RM.furn.forEach(rmEnsure); const keys=RM.furn.filter(k=>RM_FURN[k]&&!rmNF(RM_FURN[k])), nfk=RM.furn.filter(k=>RM_FURN[k]&&rmNF(RM_FURN[k])); const all=[]; const cache={};
   for(const k of new Set(keys)) cache[k]=rmCands(k);
@@ -5131,14 +5153,14 @@ function rmSolve(sid,seed){ const rnd=rmRand(seed), zones=rmDoorZones(); RM.furn
     for(const k of ord){ const f=RM_FURN[k]; let best=null,bs=-1e9; const rects=placed.map(p=>p.r).concat(rmObs());
       for(const c of cache[k]){ if(!rmValid(c,k,placed,zones)) continue;
         if(c.w<0){ /* 가운데 놓는 것(소파 테이블 등): 소파 앞·방 가운데 쪽 */ const r=c.r, cx=r.x+r.w/2, cy=r.y+r.h/2; let s=-Math.hypot(cx-RM.W/2,cy-RM.D/2)/8+rnd()*6; const so=placed.find(p=>RM_FURN[p.key].k==='sofa'); if(so){ const q=so.r; s-=Math.hypot(cx-(q.x+q.w/2+so.dir[0]*(q.w/2+45)),cy-(q.y+q.h/2+so.dir[1]*(q.h/2+45)))/4; } let mn=1e9; for(const o of rects){ const dx=Math.max(o.x-(r.x+r.w),r.x-(o.x+o.w),0), dy=Math.max(o.y-(r.y+r.h),r.y-(o.y+o.h),0); mn=Math.min(mn,Math.hypot(dx,dy)); } if(mn<45) s-=(45-mn)*2; if(s>bs){ bs=s; best=c; } continue; }
-        const dir=RM_DIR[c.w]; let s=rnd()*14; const len=rmWallLen(c.w); if(c.s===0||c.s===len-c.L) s+=sid==='A'?14:7;
+        const dir=rmN(c.w); let s=rnd()*14; if(c.cn==null) c.cn=rmCorner(c); if(c.cn) s+=sid==='A'?14:7;
         const need=rmNeed(f); if(need){ const cl=f.k==='bed'&&c.m==='head'?Math.max(rmClear(c.r,[-dir[1],dir[0]],rects),rmClear(c.r,[dir[1],-dir[0]],rects)):rmClear(c.r,dir,rects); s+=Math.min(cl,140)/6; if(cl<need) s-=(need-cl)*.8; }
-        if(f.k==='bed'){ if(sid==='B'&&c.m==='head') s+=18; if(sid==='A'&&c.m==='side') s+=8; const dw=(RM.open.find(o=>o.k==='door')||{wall:2}).wall; if(sid==='B'&&c.w===(dw+2)%4) s+=16; }
+        if(f.k==='bed'){ if(sid==='B'&&c.m==='head') s+=18; if(sid==='A'&&c.m==='side') s+=8; const dw=(RM.open.find(o=>o.k==='door')||{wall:2}).wall; if(sid==='B'&&rmDot(c.w,dw)<-.6) s+=16; }
         if(sid==='C'&&f.k==='desk'){ const wn=RM.open.find(o=>o.k==='win'); if(wn&&c.w===wn.wall&&c.s<wn.off+wn.w&&wn.off<c.s+c.L) s+=30; }
-        /* TV는 소파 맞은편 벽 */ if(f.k==='tv'){ const so=placed.find(p=>RM_FURN[p.key].k==='sofa'); if(so){ if(c.w===(so.w+2)%4) s+=45; else if(c.w===so.w) s-=30; } }
-        if(f.k==='sofa'){ const tv=placed.find(p=>RM_FURN[p.key].k==='tv'); if(tv&&c.w===(tv.w+2)%4) s+=35; }
+        /* TV는 소파 맞은편 벽 */ if(f.k==='tv'){ const so=placed.find(p=>RM_FURN[p.key].k==='sofa'); if(so&&so.w>=0){ const dt=rmDot(c.w,so.w); if(dt<-.6) s+=45; else if(dt>.6) s-=30; } }
+        if(f.k==='sofa'){ const tv=placed.find(p=>RM_FURN[p.key].k==='tv'); if(tv&&tv.w>=0&&rmDot(c.w,tv.w)<-.6) s+=35; }
         if(s>bs){ bs=s; best=c; } }
-      if(best) placed.push(best.w<0?rmItem(k,best.r):{key:k,w:best.w,m:best.m,s:best.s,L:best.L,P:best.P,r:best.r,dir:RM_DIR[best.w]}); else miss.push(k); }
+      if(best) placed.push(best.w<0?rmItem(k,best.r):{key:k,w:best.w,m:best.m,s:best.s,L:best.L,P:best.P,r:best.r,dir:rmN(best.w)}); else miss.push(k); }
     for(const k of nfk) placed.push(rmPlaceNF(k,placed));
     all.push(rmEval({sid,items:placed,miss},sid)); }
   all.sort((a,b)=>b.score-a.score); return all; }
@@ -5147,17 +5169,18 @@ function rmCompute(){ const seed=(RM.W*131+RM.D*17+RM.furn.join('').length*7+RM.
   RM_STRAT.forEach((st,i)=>{ const list=rmSolve(st.id,seed+i*999); let pick=list.find(L=>!seen.has(rmSig(L)))||list[0]; seen.add(rmSig(pick)); pick.st=st; pick.walk=rmReach(rmRects(pick.items),true).area; out.push(pick); });
   RM.L=out; try{ rmApplyEdits(); }catch(e){ console.warn('room edits',e); } return out; }
 /* ---------- 조명·콘센트 ---------- */
-function rmElec(L){ const lights=[{t:'main',x:RM.W/2,y:RM.D/2,n:'천장등(방 가운데)'}], outs=[], lines=[], ded=[]; const wallPt=(w,s)=>rmWallPt(w,s);
-  const add=(w,s,n)=>{ s=Math.max(10,Math.min(rmWallLen(w)-10,s)); const [x,y]=wallPt(w,s); if(outs.some(o=>Math.hypot(o.x-x,o.y-y)<40)) return; for(const o of RM.open) if(o.k==='door'&&o.wall===w&&s>o.off-10&&s<o.off+o.w+10) return; outs.push({x,y,w,n}); };
+function rmCenter(){ let x=RM.W/2,y=RM.D/2; if(rmInPoly(x,y)) return [x,y]; let b=null,bd=1e9; for(let j=1;j<20;j++) for(let i=1;i<20;i++){ const px=RM.W*i/20, py=RM.D*j/20; if(!rmInPoly(px,py)) continue; const d=(px-x)**2+(py-y)**2; if(d<bd){ bd=d; b=[px,py]; } } return b||[x,y]; }
+function rmElec(L){ const c0=rmCenter(); const lights=[{t:'main',x:c0[0],y:c0[1],n:'천장등(방 가운데)'}], outs=[], lines=[], ded=[]; const wallPt=(w,s)=>rmWallPt(w,s);
+  const add=(w,s,n)=>{ if(w<0) return; s=Math.max(10,Math.min(rmWallLen(w)-10,s)); const [x,y]=wallPt(w,s); { const nn=rmN(w); if(!rmInPoly(x+nn[0]*6,y+nn[1]*6)) return; } if(outs.some(o=>Math.hypot(o.x-x,o.y-y)<40)) return; for(const o of RM.open) if(o.k==='door'&&o.wall===w&&s>o.off-10&&s<o.off+o.w+10) return; outs.push({x,y,w,n}); };
   for(const it of L.items){ const f=RM_FURN[it.key];
     if(f.k==='bed'){ if(it.m==='head'){ add(it.w,it.s-15,'침대 왼쪽 머리맡'); add(it.w,it.s+it.L+15,'침대 오른쪽 머리맡'); lines.push({w:it.w,a:it.s,b:it.s+it.L,n:'침대 머리 간접등'}); } else add(it.w,it.s<rmWallLen(it.w)/2?it.s+it.L+15:it.s-15,'침대 머리맡'); }
-    if(f.k==='desk'){ add(it.w,it.s+it.L/2,'책상 위 높이(약 1m) 콘센트'); { const r=it.r; lights.push({t:'task',x:it.w%2===0?r.x+r.w-14:r.x+r.w/2,y:it.w%2===0?r.y+r.h/2:r.y+14,n:'책상 스탠드·벽등'}); } }
+    if(f.k==='desk'){ add(it.w,it.s+it.L/2,'책상 위 높이(약 1m) 콘센트'); { const r=it.r; lights.push({t:'task',x:rmHz(it.w)?r.x+r.w-14:r.x+r.w/2,y:rmHz(it.w)?r.y+r.h/2:r.y+14,n:'책상 스탠드·벽등'}); } }
     if(f.k==='tv') add(it.w,it.s+it.L/2,'TV장 뒤');
-    if(f.k==='sofa'){ add(it.w,it.s-15,'소파 옆'); const r=it.r; const p=it.w%2===0?(r.x>=30?[r.x-16,r.y+r.h/2]:[r.x+r.w+16,r.y+r.h/2]):(r.y>=30?[r.x+r.w/2,r.y-16]:[r.x+r.w/2,r.y+r.h+16]); lights.push({t:'floor',x:p[0],y:p[1],n:'소파 옆 스탠드'}); }
+    if(f.k==='sofa'){ add(it.w,it.s-15,'소파 옆'); const r=it.r; const p=rmHz(it.w)?(r.x>=30?[r.x-16,r.y+r.h/2]:[r.x+r.w+16,r.y+r.h/2]):(r.y>=30?[r.x+r.w/2,r.y-16]:[r.x+r.w/2,r.y+r.h+16]); lights.push({t:'floor',x:p[0],y:p[1],n:'소파 옆 스탠드'}); }
     if(f.k==='dresser') add(it.w,it.s+it.L+15,'서랍장 옆(드라이어)');
     if(f.k==='dining') add(it.w,it.s+it.L+15,'식탁 옆');
     /* R1c: 카탈로그 전기 기기 — 콘센트(pw 1) · 전용 회로 권장(pw 2) */
-    if(f.pw&&!['bed','desk','tv','sofa','dresser','dining'].includes(f.k)||f.pw===2){ const ss=it.w>=0?it.s+it.L/2:0; const before=outs.length; add(it.w,ss,f.n+(f.pw===2?' — 전용 회로 권장':'')); if(f.pw===2){ ded.push(f.n); if(outs.length===before){ const o=outs.find(q=>q.w===it.w&&Math.abs((it.w%2?q.y:q.x)-ss)<45); if(o&&!/전용/.test(o.n)) o.n+=` · ${f.n} 전용 회로 권장`; } } }
+    if(f.pw&&!['bed','desk','tv','sofa','dresser','dining'].includes(f.k)||f.pw===2){ const ss=it.w>=0?it.s+it.L/2:0; const before=outs.length; add(it.w,ss,f.n+(f.pw===2?' — 전용 회로 권장':'')); if(f.pw===2){ ded.push(f.n); if(outs.length===before){ const o=outs.find(q=>q.w===it.w&&Math.abs((rmHz(it.w)?q.x:q.y)-ss)<45); if(o&&!/전용/.test(o.n)) o.n+=` · ${f.n} 전용 회로 권장`; } } }
     if(f.m==='pendant'){ lights.push({t:'pend',x:it.r.x+it.r.w/2,y:it.r.y+it.r.h/2,n:'펜던트 조명(식탁 위)'}); }
     if(f.m==='lampf'||f.m==='lamparc'||f.m==='lampt'){ lights.push({t:'floor',x:it.r.x+it.r.w/2,y:it.r.y+it.r.h/2,n:f.n}); } }
   const door=RM.open.find(o=>o.k==='door'); if(door){ add(door.wall,door.off+door.w+40,'문 옆(청소기)'); }
@@ -5179,10 +5202,19 @@ function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:(RM.open.some(d=>d
         s.push(`<line x1="${h[0]}" y1="${h[1]}" x2="${leaf[0]}" y2="${leaf[1]}" stroke="${C.wall}" stroke-width="3"/><path d="M${leaf[0]} ${leaf[1]} A${q.w} ${q.w} 0 0 ${sw} ${e[0]} ${e[1]}" fill="none" stroke="${C.sub}" stroke-width="1.5" stroke-dasharray="6 5"/>`); } } }
   /* 가구 */
   /* ㄱ자 방: 방이 아닌 모서리 — 종이색으로 덮고 안쪽 두 벽을 그림 */
-  for(const q of rmObs()){ const ex={x:q.x-(q.x<=0?t+2:0),y:q.y-(q.y<=0?t+2:0)}; const x2=q.x+q.w+(q.x+q.w>=W?t+2:0), y2=q.y+q.h+(q.y+q.h>=D?t+2:0); s.push(`<rect x="${ex.x}" y="${ex.y}" width="${x2-ex.x}" height="${y2-ex.y}" fill="#fff"/>`);
+  const DG=rmDiag(); if(DG){ /* 사선: 잘린 삼각형(벽 두께까지)을 종이색으로 */ const {K,sx,sy,H,V}=DG, e=t+2; s.push(`<polygon points="${[[K[0]-sx*e,K[1]-sy*e],[H[0],K[1]-sy*e],H,V,[K[0]-sx*e,V[1]]].map(p=>p.join(',')).join(' ')}" fill="#fff"/>`); }
+  for(const q of (DG?[]:rmObs())){ const ex={x:q.x-(q.x<=0?t+2:0),y:q.y-(q.y<=0?t+2:0)}; const x2=q.x+q.w+(q.x+q.w>=W?t+2:0), y2=q.y+q.h+(q.y+q.h>=D?t+2:0); s.push(`<rect x="${ex.x}" y="${ex.y}" width="${x2-ex.x}" height="${y2-ex.y}" fill="#fff"/>`);
   }
   /* F2 v22b: 안쪽 벽(ㄱ자·ㄷ자) — 벽 번호 4부터, 문·창 구멍과 기호까지 */
   rmInner().forEach((g,k)=>{ const w=4+k, len=g.len; const ops=RM.open.filter(q=>q.wall===w).sort((a,b)=>a.off-b.off);
+    if(g.diag){ /* 사선 벽: 바깥 두 벽과 맞물리게(마이터) 띠를 그리고 문·창 자리를 뚫음 */ const {K,sx,sy,H,V}=DG; const o=[-g.n[0]*t,-g.n[1]*t]; const P0=[H[0]+o[0],H[1]+o[1]], dv=[V[0]-H[0],V[1]-H[1]];
+      const ix=(X)=>{ const u=(X-P0[0])/dv[0]; return [X,P0[1]+dv[1]*u]; }, iy=(Y)=>{ const u=(Y-P0[1])/dv[1]; return [P0[0]+dv[0]*u,Y]; };
+      const yo=K[1]-sy*t, xo=K[0]-sx*t; s.push(`<polygon points="${[H,V,[xo,V[1]],ix(xo),iy(yo),[H[0],yo]].map(p=>p.map(v=>+v.toFixed(2)).join(',')).join(' ')}" fill="${C.wall}"/>`);
+      for(const q of ops){ const st=rmWallPt(w,q.off), en=rmWallPt(w,q.off+q.w); const quad=[st,en,[en[0]+o[0],en[1]+o[1]],[st[0]+o[0],st[1]+o[1]]].map(p=>p.map(v=>+v.toFixed(2)).join(',')).join(' ');
+        if(q.k==='win'){ const m0=[st[0]+o[0]/2,st[1]+o[1]/2], m1=[en[0]+o[0]/2,en[1]+o[1]/2]; s.push(`<polygon points="${quad}" fill="#fff" stroke="${C.wall}" stroke-width="1.5"/><line x1="${m0[0]}" y1="${m0[1]}" x2="${m1[0]}" y2="${m1[1]}" stroke="${C.win}" stroke-width="2.5"/>`); }
+        else { s.push(`<polygon points="${quad}" fill="#fff"/>`); const h=q.hinge==='e'?en:st, e=q.hinge==='e'?st:en; const dn=g.n.map(v=>q.swing==='out'?-v:v); const leaf=[h[0]+dn[0]*q.w,h[1]+dn[1]*q.w]; const ux=leaf[0]-h[0],uy=leaf[1]-h[1],vx=e[0]-h[0],vy=e[1]-h[1], sw=(ux*vy-uy*vx)>0?1:0;
+          s.push(`<line x1="${h[0]}" y1="${h[1]}" x2="${leaf[0]}" y2="${leaf[1]}" stroke="${C.wall}" stroke-width="3"/><path d="M${leaf[0]} ${leaf[1]} A${q.w} ${q.w} 0 0 ${sw} ${e[0]} ${e[1]}" fill="none" stroke="${C.sub}" stroke-width="1.5" stroke-dasharray="6 5"/>`); } }
+      return; }
     const bar=(a,b)=>{ if(b-a<=0) return; const p0=[g.a[0]+g.t[0]*a,g.a[1]+g.t[1]*a], p1=[g.a[0]+g.t[0]*b-g.n[0]*t,g.a[1]+g.t[1]*b-g.n[1]*t]; s.push(`<rect x="${Math.min(p0[0],p1[0])}" y="${Math.min(p0[1],p1[1])}" width="${Math.abs(p1[0]-p0[0])}" height="${Math.abs(p1[1]-p0[1])}" fill="${C.wall}"/>`); };
     let cur=-t; for(const q of ops){ if(q.off>cur) bar(cur,q.off); cur=Math.max(cur,q.off+q.w); } if(cur<len+t) bar(cur,len+t);
     for(const q of ops){ const st=rmWallPt(w,q.off), en=rmWallPt(w,q.off+q.w);
@@ -5191,10 +5223,10 @@ function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:(RM.open.some(d=>d
         s.push(`<line x1="${h[0]}" y1="${h[1]}" x2="${leaf[0]}" y2="${leaf[1]}" stroke="${C.wall}" stroke-width="3"/><path d="M${leaf[0]} ${leaf[1]} A${q.w} ${q.w} 0 0 ${sw} ${e[0]} ${e[1]}" fill="none" stroke="${C.sub}" stroke-width="1.5" stroke-dasharray="6 5"/>`); } } });
   let fi=-1; for(const it of L.items){ fi++; const f=RM_FURN[it.key]||rmEnsure(it.key), r=it.r; const bad=!it.ok||it.hit; const sel=!o.mini&&o.sel===fi; const nf=it.nf; s.push(`<g class="rm-f${sel?' sel':''}${nf?' nf':''}" data-i="${fi}"><title>${esc(f.n)} ${Math.round(r.w)}×${Math.round(r.h)}cm${nf?' · 바닥 안 차지':''}</title><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${o.mini?3:5}" fill="${it.hit?'#fde8e8':nf?(f.m==='rug'||f.m==='rugR'||f.m==='mat'?'#f6efe2':'none'):C.furn}" fill-opacity="${nf?.8:1}" stroke="${bad?C.red:nf?'#9aa3b2':C.fl}" stroke-width="${o.mini?2:sel?4:nf?1.8:2.5}"${nf?' stroke-dasharray="6 5"':''}/>${sel?`<rect x="${r.x-7}" y="${r.y-7}" width="${r.w+14}" height="${r.h+14}" rx="9" fill="none" stroke="${C.fl}" stroke-width="2" stroke-dasharray="7 6"/>`:''}`);
     const [dx,dy]=it.dir;
-    if(f.k==='bed'){ const pw=it.m==='head'?(dx||dy?20:20):20; /* 베개: 벽(머리) 쪽 */ const hw=it.m==='head'; const pr=hw?(it.w===0?{x:r.x+8,y:r.y+8,w:r.w-16,h:pw}:it.w===2?{x:r.x+8,y:r.y+r.h-8-pw,w:r.w-16,h:pw}:it.w===1?{x:r.x+r.w-8-pw,y:r.y+8,w:pw,h:r.h-16}:{x:r.x+8,y:r.y+8,w:pw,h:r.h-16}):(it.w%2===0?{x:r.x+8,y:r.y+8,w:pw,h:r.h-16}:{x:r.x+8,y:r.y+8,w:r.w-16,h:pw}); s.push(`<rect x="${pr.x}" y="${pr.y}" width="${pr.w}" height="${pr.h}" rx="6" fill="#fff" stroke="${C.fl}" stroke-width="1.2"/>`); }
+    if(f.k==='bed'){ const pw=it.m==='head'?(dx||dy?20:20):20; /* 베개: 벽(머리) 쪽 */ const hw=it.m==='head'; const pr=hw?(dy>0?{x:r.x+8,y:r.y+8,w:r.w-16,h:pw}:dy<0?{x:r.x+8,y:r.y+r.h-8-pw,w:r.w-16,h:pw}:dx<0?{x:r.x+r.w-8-pw,y:r.y+8,w:pw,h:r.h-16}:{x:r.x+8,y:r.y+8,w:pw,h:r.h-16}):(dy?{x:r.x+8,y:r.y+8,w:pw,h:r.h-16}:{x:r.x+8,y:r.y+8,w:r.w-16,h:pw}); s.push(`<rect x="${pr.x}" y="${pr.y}" width="${pr.w}" height="${pr.h}" rx="6" fill="#fff" stroke="${C.fl}" stroke-width="1.2"/>`); }
     if(f.k==='desk'||f.k==='dining'){ const cx=r.x+r.w/2+dx*(r.w/2+22)*(dx?1:0), cy=r.y+r.h/2+dy*(r.h/2+22)*(dy?1:0); s.push(`<circle cx="${cx}" cy="${cy}" r="20" fill="none" stroke="${C.fl}" stroke-width="1.5"/>`); }
     if(f.k==='ward') s.push(`<line x1="${r.x}" y1="${r.y}" x2="${r.x+r.w}" y2="${r.y+r.h}" stroke="${C.fl}" stroke-width="1"/><line x1="${r.x+r.w}" y1="${r.y}" x2="${r.x}" y2="${r.y+r.h}" stroke="${C.fl}" stroke-width="1"/>`);
-    if(f.k==='sofa'){ const b=it.w===0?{x:r.x,y:r.y,w:r.w,h:20}:it.w===2?{x:r.x,y:r.y+r.h-20,w:r.w,h:20}:it.w===1?{x:r.x+r.w-20,y:r.y,w:20,h:r.h}:{x:r.x,y:r.y,w:20,h:r.h}; s.push(`<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" fill="${C.fl}" fill-opacity=".25"/>`); }
+    if(f.k==='sofa'){ const b=dy>0?{x:r.x,y:r.y,w:r.w,h:20}:dy<0?{x:r.x,y:r.y+r.h-20,w:r.w,h:20}:dx<0?{x:r.x+r.w-20,y:r.y,w:20,h:r.h}:{x:r.x,y:r.y,w:20,h:r.h}; s.push(`<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" fill="${C.fl}" fill-opacity=".25"/>`); }
     if(!o.mini&&!(it.nf&&r.w*r.h<15000)){ const n=[...f.n].length+.4, hf=Math.min(20,r.w*.9/n,r.h*.55), vf=Math.min(20,r.h*.9/n,r.w*.55); const rot=vf>hf+1; const fs=Math.max(9,rot?vf:hf); const sh=f.k==='bed'?0:.16; const cx=r.x+r.w/2+dx*r.w*sh, cy=r.y+r.h/2+dy*r.h*sh; s.push(rot?`<text x="${cx}" y="${cy+fs*.35}" font-size="${fs}" text-anchor="middle" fill="${C.txt}" font-weight="700" transform="rotate(-90 ${cx} ${cy})">${esc(f.n)}</text>`:`<text x="${cx}" y="${cy+fs*.35}" font-size="${fs}" text-anchor="middle" fill="${C.txt}" font-weight="700">${esc(f.n)}</text>`); }
     s.push('</g>'); }
   /* 통로 폭 */
@@ -5203,7 +5235,7 @@ function rmSVG(L,o){ o=o||{}; const W=RM.W,D=RM.D,m=o.mini?14:(RM.open.some(d=>d
       if(f.k==='bed'&&it.m==='head'){ const [a,b]=rmSides(it); if(it.cl.s1<200) show(a,it.cl.s1); if(it.cl.s2<200) show(b,it.cl.s2); }
       else if(rmNeed(f)&&it.cl.front!=null&&it.cl.front<220) show(it.dir,it.cl.front); } }
   /* 조명·콘센트 */
-  if(!o.mini&&o.elec){ const E=rmElec(L); E.lines.forEach(l=>{ const a=l.w===0?[l.a,6]:l.w===1?[W-6,l.a]:l.w===2?[l.a,D-6]:[6,l.a]; const b=l.w===0?[l.b,6]:l.w===1?[W-6,l.b]:l.w===2?[l.b,D-6]:[6,l.b]; s.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${C.light}" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 8"/>`); });
+  if(!o.mini&&o.elec){ const E=rmElec(L); E.lines.forEach(l=>{ const nn=rmN(l.w), pa=rmWallPt(l.w,l.a), pb=rmWallPt(l.w,l.b); const a=[pa[0]+nn[0]*6,pa[1]+nn[1]*6], b=[pb[0]+nn[0]*6,pb[1]+nn[1]*6]; s.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${C.light}" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 8"/>`); });
     E.lights.forEach(p=>{ s.push(p.t==='main'||p.t==='main2'?`<g><circle cx="${p.x}" cy="${p.y}" r="17" fill="#fff8db" stroke="${C.light}" stroke-width="3"/><path d="M${p.x-11} ${p.y-11}L${p.x+11} ${p.y+11}M${p.x+11} ${p.y-11}L${p.x-11} ${p.y+11}" stroke="${C.light}" stroke-width="2.5"/></g>`:`<circle cx="${p.x}" cy="${p.y}" r="10" fill="${C.light}" stroke="#fff" stroke-width="2"/>`); });
     E.outs.forEach((p,i)=>{ const [dx,dy]=rmN(p.w); const cx=p.x-dx*4, cy=p.y-dy*4; s.push(`<g><circle cx="${cx}" cy="${cy}" r="12" fill="#fff" stroke="${C.fl}" stroke-width="2.5"/><text x="${cx}" y="${cy+5}" font-size="13" text-anchor="middle" fill="${C.fl}" font-weight="800">${i+1}</text></g>`); });
     if(E.sw){ const [dx,dy]=rmN(E.sw.w); s.push(`<rect x="${E.sw.x+dx*12-7}" y="${E.sw.y+dy*12-7}" width="14" height="14" rx="3" fill="${C.txt}"/>`); } }
@@ -5246,7 +5278,7 @@ function rmBuild(){ const app=$('#rmApp'); if(!app||app.dataset.on) return; app.
         <div class="rm-walk"><b>줄자가 없으면</b><span>벽을 따라 보통 걸음으로 걸어 보세요.</span><label>가로 <input type="number" id="rmSw" min="1" max="20" inputmode="numeric"> 걸음</label><label>세로 <input type="number" id="rmSd" min="1" max="20" inputmode="numeric"> 걸음</label><button type="button" class="btn sec sm" id="rmSgo">치수로 넣기</button><p class="rm-p" id="rmSwR" aria-live="polite">한 걸음 약 70cm로 계산한 <b>추정</b>이에요.</p></div>
         <div class="rm-photo"><label class="btn sec sm" for="rmRPh">방 사진으로 색 맞추기 (선택)</label><input type="file" id="rmRPh" accept="image/*" hidden><span class="rm-pnote">사진으로는 방 크기를 정확히 잴 수 없어요 — 벽·바닥 색만 읽어 팔레트를 골라요. <b>저장하지 않아요</b>.</span><div class="rm-pthumb" id="rmRPhT" hidden></div></div>
       </div>
-      <div class="rm-dims"><label>가로 <input type="number" id="rmW" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>세로 <input type="number" id="rmD" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>천장 <input type="number" id="rmH" min="200" max="400" step="5" inputmode="numeric"> <em>cm</em></label><label>모양 <select id="rmShape"><option value="rect">네모</option><option value="L">ㄱ자</option><option value="U">ㄷ자</option></select></label>
+      <div class="rm-dims"><label>가로 <input type="number" id="rmW" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>세로 <input type="number" id="rmD" min="180" max="900" step="5" inputmode="numeric"> <em>cm</em></label><label>천장 <input type="number" id="rmH" min="200" max="400" step="5" inputmode="numeric"> <em>cm</em></label><label>모양 <select id="rmShape"><option value="rect">네모</option><option value="L">ㄱ자</option><option value="U">ㄷ자</option><option value="D">사선</option></select></label>
         <span class="rm-notch" id="rmNotchF" hidden><label><span id="rmNcL">빠진 모서리</span> <select id="rmNc"><option value="0">왼쪽 위</option><option value="1">오른쪽 위</option><option value="2">오른쪽 아래</option><option value="3">왼쪽 아래</option></select></label><label><span id="rmNwL">빠진 가로</span> <input type="number" id="rmNw" min="30" max="800" step="5" inputmode="numeric"> <em>cm</em></label><label><span id="rmNdL">빠진 세로</span> <input type="number" id="rmNd" min="30" max="800" step="5" inputmode="numeric"> <em>cm</em></label></span></div>
       <details class="rm-more" id="rmMoreF"><summary><b>가구</b><span id="rmFsum"></span><em>바꾸기</em></summary>
         <div class="rm-fbar"><button type="button" class="btn sm" data-rmcat>＋ 가구·가전 고르기 <em>${Object.values(RM_FURN).filter(f=>f.c&&!f.cust).length}종</em></button><span>일반 규격 기준 크기예요(제품마다 달라요). '크기'로 내 가구 치수에 맞춰요.</span></div>
@@ -5362,7 +5394,7 @@ function rmBuild(){ const app=$('#rmApp'); if(!app||app.dataset.on) return; app.
     if(el.dataset.rmapp){ RM.app[el.dataset.rmapp]=el.checked; rmElecList(); return; }
     if(el.dataset.rmchk!=null){ RM.chk[el.dataset.rmchk]=el.checked; return; } });
   app.addEventListener('change',e=>{ const id=e.target.id; if(id==='rmPlanF') rmPlanFile(e.target); if(id==='rmRPh') rmRoomPhoto(e.target); if(id==='rmPL'){ RMP.L=e.target.checked; if(RMP.L&&!RMP.notch&&RMP.rect){ RMP.notch={c:1,w:(RMP.rect.x1-RMP.rect.x0)*.35,d:(RMP.rect.y1-RMP.rect.y0)*.35}; } rmPlanOps(); rmPlanDraw(); }
-    if(id==='rmShape'){ const v=e.target.value; if(v==='L'){ RM.notch=RM.notch&&RM.notch.c<4?RM.notch:{c:1,w:Math.round(RM.W*.35/5)*5,d:Math.round(RM.D*.35/5)*5}; } else if(v==='U'){ RM.notch=RM.notch&&RM.notch.c>=4?RM.notch:{c:4,w:Math.round(RM.W*.4/5)*5,d:Math.round(RM.D*.3/5)*5}; } else RM.notch=null; rmTouchRoom(); rmFill(); rmUpdate(); }
+    if(id==='rmShape'){ const v=e.target.value; if(v==='D'){ RM.notch=RM.notch&&RM.notch.c>=8?RM.notch:{c:9,w:Math.round(RM.W*.3/5)*5,d:Math.round(RM.D*.3/5)*5}; } else if(v==='L'){ RM.notch=RM.notch&&RM.notch.c<4?RM.notch:{c:1,w:Math.round(RM.W*.35/5)*5,d:Math.round(RM.D*.35/5)*5}; } else if(v==='U'){ RM.notch=RM.notch&&RM.notch.c>=4&&RM.notch.c<8?RM.notch:{c:4,w:Math.round(RM.W*.4/5)*5,d:Math.round(RM.D*.3/5)*5}; } else RM.notch=null; rmTouchRoom(); rmFill(); rmUpdate(); }
     if(id==='rmNc'&&RM.notch){ RM.notch.c=+e.target.value; rmTouchRoom(); rmUpdate(); }
     if(e.target.id==='rmPhoto') rmPhoto(e.target); if(e.target.closest('[data-rmop]')&&e.target.name==='wall') rmFill(); });
   app.addEventListener('toggle',e=>{ const d=e.target; if(!d.matches||!d.matches('.rm-acc')) return; if(d.dataset.acc==='elec') rmShow3(); },true);
@@ -5383,10 +5415,11 @@ function rmStep(n,scroll){ RM.step=n; $$('#rmApp .rm-pane').forEach(p=>p.hidden=
   if(scroll){ const s=$('#rmSteps'); if(s){ const y=s.getBoundingClientRect().top+scrollY-84; if(Math.abs(scrollY-y)>40) scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); } } }
 function rmMode(k,focus){ RM.mode=k; $$('[data-rmmode]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.rmmode===k))); $$('#rmApp [data-mpane]').forEach(p=>{ p.hidden=p.dataset.mpane!==k; }); if(focus&&k==='dims'){ RM.tpl='custom'; rmMarkTpl(); const i=$('#rmW'); if(i){ i.focus(); i.select(); } } rmSaveSoon(); }
 function rmFill(){ $('#rmW').value=RM.W; $('#rmD').value=RM.D; $('#rmH').value=RM.H; $('#rmOut').value=RM.out; rmMarkTpl();
-  const sh=$('#rmShape'); if(sh){ const U=!!(RM.notch&&RM.notch.c>=4); sh.value=RM.notch?(U?'U':'L'):'rect'; $('#rmNotchF').hidden=!RM.notch; if(RM.notch){ const nc=$('#rmNc'); nc.innerHTML=(U?[[4,'위'],[5,'오른쪽'],[6,'아래'],[7,'왼쪽']]:[[0,'왼쪽 위'],[1,'오른쪽 위'],[2,'오른쪽 아래'],[3,'왼쪽 아래']]).map(([v,n])=>`<option value="${v}">${n}</option>`).join(''); nc.value=RM.notch.c; $('#rmNcL').textContent=U?'들어간 벽':'빠진 모서리'; $('#rmNwL').textContent=U?'들어간 폭(벽 따라)':'빠진 가로'; $('#rmNdL').textContent=U?'들어간 깊이':'빠진 세로'; $('#rmNw').value=RM.notch.w; $('#rmNd').value=RM.notch.d; } }
+  const sh=$('#rmShape'); if(sh){ const Dg=!!(RM.notch&&RM.notch.c>=8), U=!Dg&&!!(RM.notch&&RM.notch.c>=4); sh.value=RM.notch?(Dg?'D':U?'U':'L'):'rect'; $('#rmNotchF').hidden=!RM.notch; if(RM.notch){ const nc=$('#rmNc'); nc.innerHTML=(Dg?[[8,'왼쪽 위'],[9,'오른쪽 위'],[10,'오른쪽 아래'],[11,'왼쪽 아래']]:U?[[4,'위'],[5,'오른쪽'],[6,'아래'],[7,'왼쪽']]:[[0,'왼쪽 위'],[1,'오른쪽 위'],[2,'오른쪽 아래'],[3,'왼쪽 아래']]).map(([v,n])=>`<option value="${v}">${n}</option>`).join(''); nc.value=RM.notch.c; $('#rmNcL').textContent=Dg?'사선 모서리':U?'들어간 벽':'빠진 모서리'; $('#rmNwL').textContent=Dg?'가로로 자른 길이':U?'들어간 폭(벽 따라)':'빠진 가로'; $('#rmNdL').textContent=Dg?'세로로 자른 길이':U?'들어간 깊이':'빠진 세로'; $('#rmNw').value=RM.notch.w; $('#rmNd').value=RM.notch.d; } }
   $('#rmOps').innerHTML=RM.open.map((o,i)=>`<div class="rm-op" data-rmop="${i}"><b class="k ${o.k}">${o.k==='door'?'문':'창'}</b><label>벽 <select name="wall">${rmWallNames().map((w,j)=>`<option value="${j}"${j===o.wall?' selected':''}>${w}</option>`).join('')}</select></label><label>${rmHz(o.wall)?'왼쪽에서':'위에서'} <input name="off" type="number" min="0" max="900" value="${o.off}" inputmode="numeric"> cm</label><label>폭 <input name="w" type="number" min="40" max="600" value="${o.w}" inputmode="numeric"> cm</label><button type="button" class="rm-x" data-rmodel="${i}" aria-label="${o.k==='door'?'문':'창'} 지우기">×</button></div>`).join('');
   $$('[data-rmapp]').forEach(c=>c.checked=!!RM.app[c.dataset.rmapp]); $$('[data-rmchk]').forEach(c=>c.checked=!!RM.chk[c.dataset.rmchk]); }
-function rmUpdate(keepAuto){ /* 문·창이 벽 밖으로 나가면 잘라 줌 · 모양이 바뀌어 없어진 안쪽 벽이면 아래 벽으로 */ for(const o of RM.open){ if(o.wall>=4&&!rmWallGeo(o.wall)) o.wall=2; const len=rmWallLen(o.wall); o.w=Math.min(o.w,len); o.off=Math.max(0,Math.min(o.off,len-o.w)); if(o.k==='door'){ o.hinge=o.hinge||'s'; o.swing=o.swing||'in'; } }
+function rmUpdate(keepAuto){ /* 문·창이 벽 밖으로 나가면 잘라 줌 · 모양이 바뀌어 없어진 안쪽 벽이면 아래 벽으로 */ for(const o of RM.open){ if(o.wall>=4&&!rmWallGeo(o.wall)) o.wall=2; const len=rmWallLen(o.wall); o.w=Math.min(o.w,len); o.off=Math.max(0,Math.min(o.off,len-o.w));
+    { const ct=rmCut(o.wall); if(ct&&o.off<ct[1]&&ct[0]<o.off+o.w){ const pick=()=>{ const A=ct[1]+10<=len-o.w?ct[1]+10:null, B=ct[0]-10-o.w>=0?ct[0]-10-o.w:null; return A==null?B:B==null?A:(Math.abs(A-o.off)<=Math.abs(B-o.off)?A:B); }; let nx=pick(); if(nx==null){ o.w=Math.max(40,Math.min(o.w,Math.max(ct[0],len-ct[1])-20)); nx=pick(); } if(nx!=null) o.off=Math.max(0,Math.floor(nx/5)*5); } } if(o.k==='door'){ o.hinge=o.hinge||'s'; o.swing=o.swing||'in'; } }
   rmMarkTpl();
   const openI=(()=>{ const q=$('#rmFlist .rm-szp:not([hidden])'); return q?+q.closest('li').dataset.rmfi:-1; })(); $('#rmFlist').innerHTML=rmFlistHTML(); if(openI>=0){ const li=$(`#rmFlist li[data-rmfi="${openI}"]`); if(li){ li.querySelector('.rm-szp').hidden=false; li.querySelector('[data-rmsz]').setAttribute('aria-expanded','true'); } }
   $('#rmFsum').textContent=RM.furn.length?`${RM.furn.length}개 — `+RM.furn.map(k=>(RM_FURN[k]||{n:'?'}).n).join(' · '):'아직 없음';
@@ -5415,16 +5448,18 @@ function rmShow3(){ const L=rmCur(); if(!L) return; const acc=$('.rm-acc[data-ac
 function rmBadgeTap(e){ const g=e.target.closest('.rm-cl'); if(!g) return false; const t=g.querySelector('text'); if(!t) return true; const w=g.dataset.w, c=g.dataset.cm+'cm'; t.textContent=c; clearTimeout(g._t); g._t=setTimeout(()=>{ if(t.isConnected) t.textContent=w; },2600); return true; }
 /* ---------- 끌어 옮기기 · 돌리기 ---------- */
 function rmItem(key,r){ const W=RM.W,D=RM.D; const ds=[r.y,W-(r.x+r.w),D-(r.y+r.h),r.x]; let w=0; for(let i=1;i<4;i++) if(ds[i]<ds[w]-.01) w=i;
+  /* Q5: 안쪽 벽(ㄱ자·ㄷ자)에 더 가까이 붙어 있으면 그 벽 */ rmInner().forEach((g,k)=>{ if(g.diag) return; const hz=g.t[0]===1; const lo=hz?g.a[0]:g.a[1], hi=lo+g.len; const ov=hz?Math.min(hi,r.x+r.w)-Math.max(lo,r.x):Math.min(hi,r.y+r.h)-Math.max(lo,r.y); if(ov<Math.min(hz?r.w:r.h,g.len)*.5) return; const dd=hz?(g.n[1]>0?r.y-g.a[1]:g.a[1]-(r.y+r.h)):(g.n[0]>0?r.x-g.a[0]:g.a[0]-(r.x+r.w)); if(dd>-1&&dd<ds[w]-.01){ ds[4+k]=dd; w=4+k; } });
   const f=RM_FURN[key]||rmEnsure(key); const free=f.at==='center'&&ds[w]>15;
   /* 방향: 가운데 놓인 것은 가로·세로 중 긴 쪽 기준, 그 밖은 가장 가까운 벽 */
   if(free) w=r.w>=r.h?(r.y+r.h/2<D/2?0:2):(r.x+r.w/2<W/2?3:1);
-  const along=w%2===0?r.w:r.h, perp=w%2===0?r.h:r.w; const m=f.k==='bed'?(along<perp?'head':'side'):free?'free':'wall';
-  return {key,w,m,s:w%2===0?r.x:r.y,L:along,P:perp,r:{x:r.x,y:r.y,w:r.w,h:r.h},dir:RM_DIR[w],gap:ds[w],nf:rmNF(f)}; }
+  const hz=rmHz(w), along=hz?r.w:r.h, perp=hz?r.h:r.w; const m=f.k==='bed'?(along<perp?'head':'side'):free?'free':'wall'; const g=rmWallGeo(w);
+  return {key,w,m,s:hz?r.x-g.a[0]:r.y-g.a[1],L:along,P:perp,r:{x:r.x,y:r.y,w:r.w,h:r.h},dir:rmN(w),gap:ds[w],nf:rmNF(f)}; }
 /* 바닥을 안 차지하는 것 자리: 창(커튼·창문형 에어컨) · 벽(에어컨·TV·액자) · 가운데(러그·펜던트) */
 function rmPlaceNF(k,placed){ const f=RM_FURN[k], W=RM.W, D=RM.D; const at=f.at||'center';
   /* 책상·TV장 위에 올리는 것 */ if(!f.at&&/^(monitor|monitor2|lampt)$/.test(f.m)||f.id==='console'){ const tg=f.id==='console'?placed.find(p=>RM_FURN[p.key].k==='tv'):f.m==='lampt'?(placed.find(p=>RM_FURN[p.key].m==='sidet')||placed.find(p=>RM_FURN[p.key].k==='desk')):placed.find(p=>RM_FURN[p.key].k==='desk'); if(tg){ const q=tg.r, [dx,dy]=tg.dir; const w=Math.min(f.w,q.w-4), h=Math.min(f.d,q.h-4); const cx=q.x+q.w/2-dx*(q.w/2-h/2-4)*(dx?1:0), cy=q.y+q.h/2-dy*(q.h/2-h/2-4)*(dy?1:0); const ww=dx?h:w, hh=dx?w:h; return rmItem(k,{x:cx-ww/2,y:cy-hh/2,w:ww,h:hh}); } }
-  if(at==='win'){ const o=RM.open.find(q=>q.k==='win')||RM.open[0]; if(o){ const L=Math.min(rmWallLen(o.wall),Math.max(f.w,f.m==='curtain'?o.w+30:o.w)); const s=Math.max(0,Math.min(rmWallLen(o.wall)-L,o.off+o.w/2-L/2)); return rmItem(k,rmOnWall(o.wall,s,L,Math.max(4,f.d))); } }
-  if(at==='wall'){ /* 문·창 없는 가장 긴 벽 가운데, 에어컨은 창 있는 벽 끝 */ let best=null; for(let w=0;w<4;w++){ const len=rmWallLen(w); const L=Math.min(f.w,len); const ops=RM.open.filter(o=>o.wall===w); let sc=len-(ops.length?400:0); if(f.m==='acwall'){ sc=ops.some(o=>o.k==='win')?1e4:len; } if(f.m==='tvwall'){ const so=placed.find(p=>RM_FURN[p.key].k==='sofa'); if(so&&so.w===(w+2)%4) sc+=2e4; } if(!best||sc>best.sc){ let s=(len-L)/2; if(f.m==='acwall'){ const wn=ops.find(o=>o.k==='win'); s=wn?(wn.off>L+10?wn.off-L-10:Math.min(len-L,wn.off+wn.w+10)):len-L-10; } best={w,s:Math.max(0,s),L,sc}; } } return rmItem(k,rmOnWall(best.w,best.s,best.L,Math.max(3,f.d))); }
+  if(at==='win'){ const o=RM.open.find(q=>q.k==='win'&&!rmIsDiagW(q.wall))||RM.open.find(q=>q.k==='win')||RM.open[0]; if(o){ const L=Math.min(rmWallLen(o.wall),Math.max(f.w,f.m==='curtain'?o.w+30:o.w)); const s=Math.max(0,Math.min(rmWallLen(o.wall)-L,o.off+o.w/2-L/2)); return rmItem(k,rmOnWall(o.wall,s,L,Math.max(4,f.d))); } }
+  if(at==='wall'){ /* 문·창 없는 가장 긴 벽 가운데, 에어컨은 창 있는 벽 끝 — 꺾인 벽·사선으로 잘린 구간은 피함 */ let best=null; const ob=rmObs(); const okAt=(w,s,L)=>{ const r=rmOnWall(w,s,L,Math.max(3,f.d)); return !ob.some(o=>rmHit(r,o,.5)); };
+    for(const w of rmWallsAx()){ const len=rmWallLen(w); const ct=rmCut(w); const free=len-(ct?ct[1]-ct[0]:0); const L=Math.min(f.w,free); if(L<20) continue; const ops=RM.open.filter(o=>o.wall===w); let sc=free-(ops.length?400:0); if(f.m==='acwall'){ sc=ops.some(o=>o.k==='win')?1e4:free; } if(f.m==='tvwall'){ const so=placed.find(p=>RM_FURN[p.key].k==='sofa'); if(so&&so.w>=0&&rmDot(so.w,w)<-.6) sc+=2e4; } if(!best||sc>best.sc){ let s=(len-L)/2; if(f.m==='acwall'){ const wn=ops.find(o=>o.k==='win'); s=wn?(wn.off>L+10?wn.off-L-10:Math.min(len-L,wn.off+wn.w+10)):len-L-10; } s=Math.max(0,Math.min(len-L,s)); if(!okAt(w,s,L)){ let bs=null; for(let d=10;d<=len;d+=10){ for(const q of [s-d,s+d]) if(q>=0&&q<=len-L&&okAt(w,q,L)){ bs=q; break; } if(bs!=null) break; } if(bs==null) continue; s=bs; } best={w,s,L,sc}; } } if(!best) best={w:0,s:0,L:Math.min(f.w,RM.W),sc:0}; return rmItem(k,rmOnWall(best.w,best.s,best.L,Math.max(3,f.d))); }
   /* 가운데: 식탁 위 펜던트 · 소파/침대 앞 러그 */ let cx=W/2, cy=D/2; const tgt=f.m==='pendant'?placed.find(p=>RM_FURN[p.key].k==='dining'):placed.find(p=>RM_FURN[p.key].k==='sofa')||placed.find(p=>RM_FURN[p.key].k==='bed');
   let fw=f.w, fd=f.d;
   if(tgt){ const q=tgt.r; if(f.m==='pendant'){ cx=q.x+q.w/2; cy=q.y+q.h/2; } else { /* 러그: 긴 변을 소파·침대와 나란히, 앞쪽으로 */ const hz=tgt.w%2===0, lo=Math.max(f.w,f.d), sh=Math.min(f.w,f.d); fw=hz?lo:sh; fd=hz?sh:lo; const [dx,dy]=tgt.dir; const dep=hz?fd:fw; cx=q.x+q.w/2+dx*(q.w/2+dep/2-25); cy=q.y+q.h/2+dy*(q.h/2+dep/2-25); } }
@@ -5436,6 +5471,7 @@ function rmApplyEdits(){ if(!RM.L||!RM.edits) return; RM.L.forEach((L,i)=>{ cons
 function rmCommit(){ const L=rmCur(); if(!L) return; RM.edits=RM.edits||{}; RM.edits[RM.pick]={sig:rmEditSig(),items:L.items.map(it=>({key:it.key,x:it.r.x,y:it.r.y,w:it.r.w,h:it.r.h}))}; L.edited=true; L.walk=rmReach(rmRects(L.items),true).area; rmSaveSoon(); }
 function rmPlace(i,x,y,w,h,live){ const L=rmCur(); if(!L) return; const W=RM.W,D=RM.D; w=Math.min(w,W); h=Math.min(h,D);
   x=Math.round(x/10)*10; y=Math.round(y/10)*10; if(x<15) x=0; if(y<15) y=0; if(W-(x+w)<15) x=W-w; if(D-(y+h)<15) y=D-h; x=Math.max(0,Math.min(W-w,x)); y=Math.max(0,Math.min(D-h,y));
+  for(const g of rmInner()){ if(g.diag) continue; if(g.t[0]===1){ if(x+w>g.a[0]&&x<g.b[0]){ const d=g.n[1]>0?y-g.a[1]:g.a[1]-(y+h); if(d>-15&&d<15) y=g.n[1]>0?g.a[1]:g.a[1]-h; } } else if(y+h>g.a[1]&&y<g.b[1]){ const d=g.n[0]>0?x-g.a[0]:g.a[0]-(x+w); if(d>-15&&d<15) x=g.n[0]>0?g.a[0]:g.a[0]-w; } }
   const items=L.items.slice(); items[i]=rmItem(items[i].key,{x,y,w,h}); const N=rmEval({sid:L.st.id,items,miss:[]},L.st.id); N.st=L.st; N.edited=true; N.walk=live?L.walk:rmReach(rmRects(items),true).area; RM.L[RM.pick]=N; }
 function rmRotate(){ const L=rmCur(); const it=L&&L.items[RM.sel]; if(!it) return; const r=it.r, cx=r.x+r.w/2, cy=r.y+r.h/2; rmPlace(RM.sel,cx-r.h/2,cy-r.w/2,r.h,r.w); rmCommit(); rmShow(); }
 function rmPt(box,e){ const svg=box.querySelector('svg'); if(!svg) return {x:0,y:0}; const p=svg.createSVGPoint(); p.x=e.clientX; p.y=e.clientY; const m=svg.getScreenCTM(); return m?p.matrixTransform(m.inverse()):{x:0,y:0}; }
@@ -5613,7 +5649,7 @@ function rm3DBuild(T,L,cv){ if(RM3.dispose) RM3.dispose(); cv.innerHTML=''; cons
         cur=Math.max(cur,o.b); }
       piece(cur,len+th,0,Hm);
       /* 걸레받이(문 구간 빼고) */ let c2=0; for(const o of os){ if(o.k==='door'){ if(o.a>c2) trim(c2,o.a,.04,.08,.012,baseM); c2=o.b; } } if(len>c2) trim(c2,len,.04,.08,.012,baseM); };
-  { const W=RM.W,D=RM.D; const q=obs[0]; const cut=(w)=>{ /* 바깥 벽 w에서 잘리는 구간 [a,b] (cm) — ㄱ자는 끝, ㄷ자는 가운데 */ if(!q) return null; if(w===0&&q.y<=0) return [q.x,q.x+q.w]; if(w===2&&q.y+q.h>=D) return [q.x,q.x+q.w]; if(w===3&&q.x<=0) return [q.y,q.y+q.h]; if(w===1&&q.x+q.w>=W) return [q.y,q.y+q.h]; return null; };
+  { const cut=rmCut; /* 바깥 벽 w에서 잘리는 구간 [a,b] (cm) — ㄱ자는 끝, ㄷ자는 가운데, 사선은 모서리 쪽 */
     for(let w=0;w<4;w++){ const G=rmWallGeo(w), len=G.len; const ct=cut(w); const parts=ct?[[0,ct[0]],[ct[1],len]].filter(([a,b])=>b-a>.5):[[0,len]];
       for(const [a,b] of parts){ const ops=RM.open.filter(o=>o.wall===w).map(o=>({k:o.k,a:(o.off-a)/100,b:(o.off+o.w-a)/100})).filter(o=>o.b>0&&o.a<(b-a)/100);
         const s0=rmWallPt(w,a), s1=rmWallPt(w,b); addWall(X(s0[0]),Z(s0[1]),X(s1[0]),Z(s1[1]),G.n[0],G.n[1],ops); walls[walls.length-1].userData.w=w; } }
@@ -5720,9 +5756,9 @@ function rmFitCheck(quiet){ const w=+$('#rmFw').value, d=+$('#rmFd').value, h=+$
   else res.push(['bad',`완제품으로는 방문을 못 지나가요 — 가장 짧은 변 ${dims[0]}cm > 문틀 안쪽 약 ${clear}cm. 조립식인지 확인하세요.`]);
   if(h){ if(h>RM.H-2) res.push(['bad',`높이 ${h}cm가 천장(${RM.H}cm)보다 높아요.`]); else { const dg=Math.round(Math.hypot(h,d)); if(dg>RM.H) res.push(['warn',`눕혀 들여와 세울 때 대각선이 ${dg}cm라 천장(${RM.H}cm)에 걸려요 — 방 안에서 조립하는 제품이 안전해요.`]); else res.push(['ok',`세우기 문제 없음 — 대각선 ${dg}cm < 천장 ${RM.H}cm.`]); } }
   if(L){ const rects=rmRects(L.items), zones=rmDoorZones(); let best=null;
-    for(let wl=0;wl<4;wl++){ const len=rmWallLen(wl); for(const [A,B] of [[w,d],[d,w]]){ if(A>len) continue; for(let s=0;s<=len-A;s+=5){ const r=rmOnWall(wl,s,A,B); let okk=true; for(const o of rects) if(rmHit(r,o,.5)){ okk=false; break; } if(okk) for(const z of zones) if(rmHit(r,z)){ okk=false; break; } if(okk&&h>RM_TALL) for(const o of RM.open) if(o.k==='win'&&o.wall===wl&&s<o.off+o.w&&o.off<s+A){ okk=false; break; } if(!okk) continue; const fc=rmClear(r,RM_DIR[wl],rects); if(!best||fc>best.fc) best={wl,s,A,B,fc}; } } }
-    if(best){ const lv=best.fc>=75?'ok':best.fc>=60?'warn':'bad'; res.push([lv,`지금 배치(${L.st.id})에서 ${RM_WALL[best.wl]} 벽에 놓을 수 있어요 — 앞에 ${best.fc}cm 남아요${best.fc<60?'(지나가기 빠듯)':''}.`]); }
-    else { let mx=0; for(let wl=0;wl<4;wl++){ const len=rmWallLen(wl); let run=0; for(let s=0;s<len;s+=5){ const r=rmOnWall(wl,s,5,Math.min(w,d)); let fr=true; for(const o of rects) if(rmHit(r,o,.5)){ fr=false; break; } if(fr) for(const z of zones) if(rmHit(r,z)){ fr=false; break; } run=fr?run+5:0; mx=Math.max(mx,run); } } res.push(['bad',`지금 배치에는 자리가 없어요 — 비어 있는 벽은 가장 길어야 ${mx}cm예요. 다른 배치 안을 보거나 가구를 하나 빼 보세요.`]); } }
+    for(const wl of rmWallsAx()){ const len=rmWallLen(wl); for(const [A,B] of [[w,d],[d,w]]){ if(A>len) continue; for(let s=0;s<=len-A;s+=5){ const r=rmOnWall(wl,s,A,B); let okk=true; for(const o of rects) if(rmHit(r,o,.5)){ okk=false; break; } if(okk) for(const z of zones) if(rmHit(r,z)){ okk=false; break; } if(okk&&h>RM_TALL) for(const o of RM.open) if(o.k==='win'&&o.wall===wl&&s<o.off+o.w&&o.off<s+A){ okk=false; break; } if(!okk) continue; const fc=rmClear(r,rmN(wl),rects); if(!best||fc>best.fc) best={wl,s,A,B,fc}; } } }
+    if(best){ const lv=best.fc>=75?'ok':best.fc>=60?'warn':'bad'; res.push([lv,`지금 배치(${L.st.id})에서 ${rmWallNames()[best.wl].replace(/ 벽$/,'')} 벽에 놓을 수 있어요 — 앞에 ${best.fc}cm 남아요${best.fc<60?'(지나가기 빠듯)':''}.`]); }
+    else { let mx=0; for(const wl of rmWallsAx()){ const len=rmWallLen(wl); let run=0; for(let s=0;s<len;s+=5){ const r=rmOnWall(wl,s,5,Math.min(w,d)); let fr=true; for(const o of rects) if(rmHit(r,o,.5)){ fr=false; break; } if(fr) for(const z of zones) if(rmHit(r,z)){ fr=false; break; } run=fr?run+5:0; mx=Math.max(mx,run); } } res.push(['bad',`지금 배치에는 자리가 없어요 — 비어 있는 벽은 가장 길어야 ${mx}cm예요. 다른 배치 안을 보거나 가구를 하나 빼 보세요.`]); } }
   out.innerHTML=res.map(([lv,t])=>`<p class="${lv}">${esc(t)}</p>`).join(''); }
 /* 사진: EXIF(위치 포함)를 지우려고 캔버스로 다시 그린 뒤 메모리에서만 보여 줌 */
 async function rmPhoto(inp){ const f=inp.files&&inp.files[0]; inp.value=''; if(!f) return; const st=$('#rmSt');
@@ -5887,7 +5923,7 @@ function rmPlanApply(){ const st=$('#rmPSt'); const len=+$('#rmPLen').value; if(
   rmFill(); rmUpdate(); rmStep(2,true); }
 
 function rmEnter(){ const first=!RM; if(!RM){ RM=rmLoad(); try{ if(state&&state.room&&!localStorage.getItem('zip_room')) RM=Object.assign(rmDefault(),state.room); }catch(e){} RM.sel=-1; if(!RM.edits||typeof RM.edits!=='object') RM.edits={}; RM.furn=RM.furn.filter(k=>rmEnsure(k)); Object.values(RM.edits).forEach(E=>(E&&E.items||[]).forEach(q=>rmEnsure(q.key))); } rmBuild(); rmFill(); rmUpdate(); if(first) rmStep(Math.min(3,Math.max(1,+RM.step||1)),false); }
-window.__room={get RM(){ return RM; },rm3Mesh,t3Load:()=>t3Load(),RMP,RMC:()=>RMC,rmCatOpen,rmPlanDetect,RM_FURN,rmCompute,rmSVG,rmEval,RM_PH,rmFitCheck,rmPNG,rmStep,rmPlace,rmRotate,rmCommit,rm3DOpen,rm3DClose,RM3,rmInner,rmObs,rmPoly,rmUpdate:()=>rmUpdate(),rmFill:()=>rmFill(),rmShow:()=>rmShow()};
+window.__room={get RM(){ return RM; },rm3Mesh,t3Load:()=>t3Load(),RMP,RMC:()=>RMC,rmCatOpen,rmPlanDetect,RM_FURN,rmCompute,rmSVG,rmEval,RM_PH,rmFitCheck,rmPNG,rmStep,rmPlace,rmRotate,rmCommit,rm3DOpen,rm3DClose,RM3,rmInner,rmObs,rmPoly,rmDiag,rmItem,rmCut,rmDoorBlocked,rmInPoly,rmCands,rmCorner,rmWallLen,rmSolve,rmUpdate:()=>rmUpdate(),rmFill:()=>rmFill(),rmShow:()=>rmShow()};
 addEventListener('hashchange',()=>{ if(location.hash!=='#room'){ try{ rm3DClose(); }catch(e){} } });
 
 const M=20, W=594, H=841;
