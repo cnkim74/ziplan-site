@@ -1,5 +1,5 @@
 __bsigFill({"geunjeongjeon":function(K){
-// 실측: 정면 5칸 도리칸 17·21·22·21·17척(≈29.7 m) · 측면 5칸 보칸 17·11·11·11·17척(≈20.3 m) · 기둥 높이 16척(≈4.85 m, 1척≈0.303 m) · 내9포·외7포 다포 · 추녀마루 잡상 7
+// 실측: 정면 5칸 도리칸 17·21·22·21·17척(≈29.7 m) · 측면 5칸 보칸 17·11·11·11·17척(≈20.3 m) · 기둥 높이 16척(≈4.85 m, 1척≈0.303 m) · 외3출목·내4출목 다포 · 추녀마루 잡상 7
 // 출처: 한국어 위키백과 「경복궁 근정전」(기둥 높이·주칸·공포·잡상) · 한국민족문화대백과 E0002441 「경복궁 근정문 및 행각」(근정문 정면 3칸 측면 2칸 중층 우진각, 행각 복랑·맞배, 일화문·월화문은 근정문 좌우, 융문루·융무루는 동·서 회랑 앞쪽 1/3 지점)
 // 추정 치수: 하월대 54×44 m·상월대 42×32 m(각 1.5 m), 기단 0.9 m, 용마루 약 23 m, 행각 안쪽 마당 약 100×97 m, 품계석 24(동서 12씩, 3 m 간격), 공포 띠 높이 1.3 m
     const T=K.T; const RED=K.col(0x9a3b2a,{roughness:.8}), GRN=K.col(0x2f6b4f), BLU=K.col(0x2b5a8a), WH=K.col(0xe9e2d2), GW=K.M.giwa, RU=K.col(0x5a4a3c), DK=K.col(0x2e3a30,{roughness:.6}), ST=K.M.stone.clone(), PV=K.M.pave, BR=K.col(0x6b4b36), DR=K.col(0x3a3a3a), OC=K.col(0xc9a86a), SG=K.col(0xbdb6a8,{roughness:.95}), SG2=K.col(0xa8a194,{roughness:.95}), SG3=K.col(0xd4cfc3,{roughness:.9}), WLB=K.col(0x7d7466,{roughness:.95}), DOOR=K.col(0x7a4a2c,{roughness:.8}); ST.color.set(0xd9d3c6); ST.color.convertSRGBToLinear();
