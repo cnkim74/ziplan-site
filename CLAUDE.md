@@ -678,3 +678,11 @@
 - 디버그 `__room`에 rmDiag·rmItem·rmCut·rmDoorBlocked·rmInPoly·rmCands·rmCorner·rmWallLen·rmSolve 추가.
 - 확인(스크래치 `/home/claude/w/q5/t.js`, 1440·390): 사선 2·ㄷ자 2·ㄱ자 1 × 가구 9개 — 방 밖 가구 0, ㄷ/ㄱ자에서 안쪽 벽 배치 확인(예 ㄷ자 위: 옷장·침대·서랍장이 안쪽 가로벽에), 사선 벽 문·창 그리기·문 걸림 false, 안쪽 벽으로 끌기 → w=5·y=벽, 3D 열기 정상, pageerror 0, 가로 넘침 0. 네모 방은 후보 구석 판정이 옛 식과 모든 후보에서 같음(`rmCorner` vs s===0||s===len−L). 참고: 배치 계산은 원래부터 페이지 로드마다 결과가 조금씩 달라질 수 있음(옛 빌드도 같음 — 원인 미확인).
 - 남은 것: 사선 벽에 가구 붙이기(회전 배치 필요), 두 모서리 이상 사선·사선+ㄱ자 조합, 평면도 올리기에서 사선 자동 인식.
+
+## Q8 · v23f — 한국 정교 모형 6차 K6 (2026-11-10)
+- **정교 모형 +21 → 442채**(서브에이전트 3조, 브리프·보고서 `tools/sig/k6/{BRIEF,A_report,B_report,C_report}.md`, 병합 `tools/sig/merge.js`): 전통 geonwonneung 건원릉·munmyo 문묘와 성균관·yongjucheonbo 용주사 천보루·gongsanseong 공산성·seonunsa 선운사 영산전·unjusa 운주사·muryeong 무령왕릉 / 근대 gunsanbank·mokpoconsulate·paichai·dapdong·oldsnu·chungnamhall·jungmyeongjeon / 현대 someseoul 세빛섬·botanicpark 서울식물원·sejonglib 국립세종도서관·moasnu 서울대 미술관·busantower 부산타워·gocheok 고척스카이돔·yundongju 윤동주문학관. 모두 'town' + eye·thumb 힌트, 추정은 build `// 추정:`.
+- 전시실: kold +2(건원릉·공산성), ktemple +4(문묘·천보루·선운사·운주사), ancient +1(무령왕릉), kmod +7, knew +5, icons +1(세종도서관), sky +1(부산타워). 합계 442, 중복 0. '421채'→'442채'(crit.html·build_public.py·licenses.html). og/atlas.jpg는 여전히 옛 숫자(Q12).
+- BLD 정정: gunsanbank 설계 '나카무라 요시헤이(조선은행 발주)', dapdong 연도 '1897(지금 모습 1937)'·설계 '코스트 신부(전함)', oldsnu·chungnamhall 단어 '붉은 벽돌'→'벽돌'(실물은 갈색 타일·스크래치 타일).
+- 자평 중: gongsanseong(성벽 단순 타원, 둘레 1.9 km vs 실제 2.66 km, 문루 동일형), muryeong(고분 배치·크기 추정, 무덤방 없음), gocheok(평면·지붕 곡선 추정), yundongju(물탱크 치수 추정). 나머지 중상. 썸네일에서 공산성은 숲이 대부분, 서울대 미술관은 덩어리가 작게 보임.
+- 확인 필요: 선운사 영산전 칸수·지붕(3×3 맞배 추정), 문묘 동재·서재 13칸, 천보루 누하 돌기둥, 답동 돔 형태, 중명전 베란다 범위, 구 서울대 본관 층 구성, 충남도청 日자 해석, 부산타워 높이 118/120 m, 고척 좌석 수.
+- 썸네일 21장(원본 720×480 + 작은 360×240), `SIG_TH_V='20261110'`. 렌더 하네스 쓸 때 출력 prefix는 절대 경로로(상대 경로는 tools/sig 기준).
