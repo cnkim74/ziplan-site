@@ -3013,6 +3013,23 @@ html.dnat-lock{overflow:hidden}
 .dnq-skip{background:none;border:0;color:var(--muted,#6e6e73);font:inherit;font-size:15px;cursor:pointer;padding:8px}
 .dnq-bar .btn[disabled]{opacity:.45;cursor:not-allowed}
 .dnq-prev[disabled]{visibility:hidden}
+.dnab-in{margin-top:6px}
+.dnab-pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.dnab-c{position:relative;display:flex;flex-direction:column;text-align:left;padding:0;border:2px solid var(--card-line);border-radius:20px;background:var(--card);color:var(--fg);font:inherit;cursor:pointer;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s,opacity .2s}
+.dnab-c:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.dnab-c:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.dnab-c.on{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+.dnab-pair.picked .dnab-c:not(.on){opacity:.45}
+.dnab-c .dnq-tx b{font-size:19px}
+.dnab-key{position:absolute;top:10px;left:10px;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
+.dnab-or{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:2;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--fg);color:var(--bg);font-weight:800;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.18);pointer-events:none}
+.dnab-dots{display:flex;gap:6px;list-style:none;margin:0 0 20px;padding:0}
+.dnab-dots li{flex:1;height:5px;border-radius:3px;background:var(--line);transition:background .3s}
+.dnab-dots li.dn,.dnab-dots li.cur{background:var(--accent)}.dnab-dots li.cur{opacity:.55}
+.dnab-alt{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:-6px 0 18px;padding:10px 14px;border-radius:14px;background:var(--bg-alt);font-size:15px;color:var(--muted,#6e6e73)}
+.dnab-alt .btn{min-height:40px}
+@media (pointer:coarse){.dnab-key,.dnab-kb{display:none}}
+@media (max-width:640px){.dnab-c .dnq-ph{aspect-ratio:4/5}.dnab-pair{gap:10px}.dnab-c .dnq-tx{padding:10px 10px 12px}.dnab-c .dnq-tx b{font-size:16px}.dnab-c .dnq-tx em{font-size:13px}.dnab-or{width:40px;height:40px;font-size:12px;top:36%}}
 .dnq-rw{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
 .dnq-3d{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:var(--bg-alt)}
 .dnq-3dv{position:absolute;inset:0}
@@ -6883,11 +6900,13 @@ function dnqSite(){ const p=dnqPicks()[1]; const c=p.map(id=>DNQ_CARD[id]).find(
 function dnqCardHTML(c,on,i){ return `<button type="button" class="dnq-c${on?' on':''}" data-dnq="${c.id}" aria-pressed="${on}" style="--i:${i}"><span class="dnq-ph" data-dnqth="${c.id}"><i class="dnq-ld"></i></span><span class="dnq-ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="dnq-tx"><b>${esc(c.t)}</b><em>${esc(c.d)}</em></span></button>`; }
 function dnqRender(){ const box=$('#dnQuick'); if(!box) return; const P=dnqPicks();
   if(DNQ.view==='result'){ dnqResult(); return; }
-  const st=DNQ_STEPS[DNQ.step], sel=P[DNQ.step]; const done=P.every(l=>l.length);
+  if(DNQ.view==='ab'){ dnabRender(); return; }
+  const st=DNQ_STEPS[DNQ.step], sel=P[DNQ.step]; const done=P.every(l=>l.length)||dnqIsAB();
   box.innerHTML=`<div class="dnq-in">
    <div class="dnq-top"><span class="dnq-k">취향 랩 · 1분이면 충분해요</span>${done&&DNQ.step===0?'<button type="button" class="dnq-link" data-dnqgo="result">지난 결과 보기 ›</button>':''}</div>
    <ol class="dnq-prog" aria-label="진행">${DNQ_STEPS.map((s,i)=>`<li class="${i<DNQ.step?'dn':i===DNQ.step?'cur':''}"><b>${i+1}</b><span>${esc(s.n)}</span></li>`).join('')}</ol>
    <div class="dnq-h"><span class="dnq-n">${DNQ.step+1} / 3</span><h1>${esc(st.q)}</h1><p>${esc(st.s)}</p></div>
+   ${DNQ.step===0?'<div class="dnab-alt"><span>사진 여러 장 고르기가 어렵다면</span><button type="button" class="btn sm sec" data-dnqgo="ab">둘 중 하나만 8번 고르기</button></div>':''}
    <div class="dnq-g">${st.cards.map((c,i)=>dnqCardHTML(c,sel.includes(c.id),i)).join('')}</div>
    <div class="dnq-bar"><button type="button" class="btn sec dnq-prev" data-dnqprev ${DNQ.step?'':'disabled'}>이전</button><span class="dnq-cnt">${sel.length?`${sel.length}장 골랐어요`:'2~3장을 골라 주세요'}</span><button type="button" class="dnq-skip" data-dnqskip>건너뛰기</button><button type="button" class="btn" data-dnqnext ${sel.length?'':'disabled'}>${DNQ.step===2?'내 집 보기':'다음'}</button></div>
   </div>`;
@@ -6899,43 +6918,88 @@ function dnqThumbs(st){ st.cards.forEach(c=>{ const fill=u=>{ $$(`[data-dnqth="$
 function dnqToggle(id){ const P=dnqPicks(), l=P[DNQ.step]; const i=l.indexOf(id); if(i>=0) l.splice(i,1); else { if(l.length>=3) l.shift(); l.push(id); }
   const g=$('#dnQuick .dnq-g'); if(g) $$('.dnq-c',g).forEach(b=>{ const on=l.includes(b.dataset.dnq); b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
   const cnt=$('#dnQuick .dnq-cnt'); if(cnt) cnt.textContent=l.length?`${l.length}장 골랐어요`:'2~3장을 골라 주세요'; const nx=$('#dnQuick [data-dnqnext]'); if(nx) nx.disabled=!l.length; }
-function dnqFinish(){ const w=dnqWords(); if(!w.length){ DNQ.step=0; dnqRender(); return; } state.dna=w; state.dnq.t=Date.now(); DV.site=dnqSite()||''; try{ touch('dna'); }catch(e){} try{ saveSoon(); }catch(e){}
+function dnqFinish(){ const w=dnqWords(); if(!w.length){ DNQ.step=0; dnqRender(); return; } state.dna=w; state.dnq.t=Date.now(); delete state.dnq.ab; DV.site=dnqSite()||''; try{ touch('dna'); }catch(e){} try{ saveSoon(); }catch(e){}
   const r=dnaAnalyze(state.dna); const A=r.arch[0]; if(A){ try{ dnaLibSet([{id:'q'+Date.now().toString(36),t:Date.now(),name:A.name,alt:'3단계',keys:state.dna.slice(),base:A.id,mode:'main',code:r.code,persona:dnaPersona(r)},...dnaLibGet().filter(x=>x.alt!=='3단계'||x.keys.join()!==state.dna.join())]); }catch(e){} }
   DNQ.view='result'; dnqRender(); try{ $('#dnQuick').scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); }catch(e){} }
-function dnqName(r){ const A=r.arch[0]; return A?`${DNA_MOOD(r.vec)} ${A.name}`:'나의 집'; }
+function dnqName(r){ const A=r.arch[0]; if(!A) return '나의 집'; const m=DNA_MOOD(r.vec); return A.name.split(' ')[0]===m?A.name:`${m} ${A.name}`; }
 /* F3 v22b: 공유 딥링크 — #dna?r=wood-hanok.forest.light-yard (단계는 '.', 카드는 '-'). 받은 사람 기록은 건드리지 않고 보여 주기만 */
 function dnqCode(){ return dnqPicks().map(l=>l.filter(id=>DNQ_CARD[id]).join('-')).join('.'); }
+function dnqIsAB(){ return !!(state.dnq&&typeof state.dnq.ab==='string'&&/^[abn]{8}$/.test(state.dnq.ab)); }
 function dnqParse(r){ const st=String(r||'').split('.'); if(st.length!==3) return null; const P=st.map((x,i)=>x.split('-').filter(id=>DNQ_CARD[id]&&DNQ_STEPS[i].cards.some(c=>c.id===id)).slice(0,3)); return P.some(l=>l.length)?P:null; }
-function dnqShareURL(){ const c=dnqCode(); const prod=/^https?:/.test(location.protocol)&&!/localhost|127\.0/.test(location.host); return location.origin+(prod?'/taste/?r=':location.pathname+'#dna?r=')+encodeURIComponent(c).replace(/%2E/gi,'.'); }
+function dnqShareURL(){ const c=dnqCode(); const prod=/^https?:/.test(location.protocol)&&!/localhost|127\.0/.test(location.host); if(dnqIsAB()) return location.origin+(prod?'/taste/?ab=':location.pathname+'#dna?ab=')+state.dnq.ab; return location.origin+(prod?'/taste/?r=':location.pathname+'#dna?r=')+encodeURIComponent(c).replace(/%2E/gi,'.'); }
 function dnqShared(P){ if(!DNQ.bak) DNQ.bak={dna:(state.dna||[]).slice(),dnq:JSON.parse(JSON.stringify(state.dnq||{p:[[],[],[]],t:0})),site:DV.site}; DNQ.shared=true;
   state.dnq={p:P,t:0}; state.dna=dnqWords(); DV.site=dnqSite()||''; dnMode('quick'); DNQ.view='result'; dnqRender(); }
 function dnqUnshare(){ if(!DNQ.bak) return; state.dna=DNQ.bak.dna; state.dnq=DNQ.bak.dnq; DV.site=DNQ.bak.site; DNQ.bak=null; DNQ.shared=false; }
+
+/* ===== Q10 v23g: 둘 중 하나 8판 — 사진 카드 여러 장 대신, 두 집 중 하나만 8번 고르기. 기록은 state.dnq.ab = 'a'|'b'|'n'(상관없음) 8글자.
+   공유는 #dna?ab=abnab… (/taste/?ab= 도 같은 곳으로). 결과 화면·이미지·링크는 3단계와 공용 ===== */
+const DNAB=[
+ {k:'mat',q:'어떤 재료가 더 끌려요?',a:{t:'따뜻한 나무',d:'나뭇결이 보이는 벽',w:['목재','따뜻한','나무 냄새']},b:{t:'단단한 콘크리트',d:'조용하고 묵직하게',w:['노출 콘크리트','단단한','고요한']}},
+ {k:'roof',q:'지붕은 어느 쪽?',a:{t:'기울어진 지붕',d:'다락이 생기는 박공',w:['박공지붕','지붕 밑 방']},b:{t:'평평한 지붕',d:'올라가 쉬는 옥상',w:['평지붕','옥상 정원']}},
+ {k:'win',q:'창은 어떻게?',a:{t:'탁 트인 큰 창',d:'밖이 다 보이게',w:['통창','투명한','남쪽 큰 창']},b:{t:'작고 깊은 창',d:'아늑하게 숨듯이',w:['작은 창','깊은 창틀','편안한']}},
+ {k:'yard',q:'마당은 어디에?',a:{t:'집 안쪽 마당',d:'방들이 둘러싼 하늘',w:['중정형','안마당']},b:{t:'집 앞 열린 마당',d:'길과 이어진 앞뜰',w:['앞마당','열린']}},
+ {k:'site',q:'어디에 짓고 싶어요?',a:{t:'도시 한가운데',d:'좁아도 편리하게',w:['도심 협소지','도시적'],site:'city'},b:{t:'숲 속',d:'나무 그늘 아래',w:['숲','나무 그늘'],site:'forest'}},
+ {k:'room',q:'집 안은요?',a:{t:'하나로 트인 공간',d:'다 같이 모이는 큰 방',w:['오픈 플랜','큰 방 하나','높은 천장']},b:{t:'조용히 나뉜 방',d:'각자의 자리',w:['사생활 지키기','긴 복도','다락']}},
+ {k:'form',q:'집의 모양은?',a:{t:'낮고 길게',d:'땅을 따라 눕듯이',w:['긴 바','지형 순응']},b:{t:'높이 쌓아',d:'층층이 올라가며',w:['적층','캔틸레버']}},
+ {k:'feel',q:'마지막, 느낌은?',a:{t:'시간이 쌓인 듯',d:'오래된 돌과 소박함',w:['옛스러운','소박한','돌로 쌓은']},b:{t:'새롭고 날렵하게',d:'금속과 곧은 선',w:['미래적','미니멀','금속 패널']}}];
+(function(){ const miss=[]; DNAB.forEach(r=>['a','b'].forEach(x=>{ r[x].w=r[x].w.filter(w=>{ if(DNA_BY[w]) return true; miss.push(w); return false; }); })); if(miss.length) console.warn('8판 매핑에 없는 단어',miss); })();
+function dnabParse(v){ v=String(v||'').toLowerCase(); return /^[abn]{8}$/.test(v)&&/[ab]/.test(v)?v:null; }
+function dnabWords(code){ const out=[]; let site=''; String(code||'').split('').forEach((ch,i)=>{ const o=DNAB[i]&&DNAB[i][ch]; if(!o) return; o.w.forEach(w=>{ if(!out.includes(w)) out.push(w); }); if(o.site&&!site) site=o.site; }); return {w:out,site}; }
+function dnabThumb(i,x){ const key='ab'+i+x; if(DNQ.th[key]) return Promise.resolve(DNQ.th[key]); const o=DNAB[i][x]; const P=pgSpec(o.w,{site:o.site||undefined}); return pgThumb(P,420,315).then(u=>DNQ.th[key]=u); }
+function dnabFill(i){ if(!DNAB[i]) return; ['a','b'].forEach(x=>{ const key='ab'+i+x; const put=u=>{ $$(`[data-dnqth="${key}"]`).forEach(ph=>{ if(ph.querySelector('img')) return; ph.querySelector('.dnq-ld')?.remove(); ph.insertAdjacentHTML('afterbegin',`<img src="${u}" alt="">`); }); };
+  if(DNQ.th[key]){ put(DNQ.th[key]); return; }
+  dnabThumb(i,x).then(put).catch(()=>{ $$(`[data-dnqth="${key}"]`).forEach(ph=>{ const w=DNAB[i][x].w[0]; const k=DNA_BY[w]; ph.classList.add('fb'); ph.style.setProperty('--c',DN_CATC[(k||{}).cat]||'#3f7bff'); ph.innerHTML=k?dnIcon(k):''; }); }); }); }
+function dnabEnter(){ dnMode('quick'); DNQ.view='ab'; DNQ.abi=0; DNQ.abc=''; dnqRender(); }
+function dnabRender(){ const box=$('#dnQuick'); if(!box) return; const i=Math.min(DNQ.abi||0,DNAB.length-1), R=DNAB[i], cur=(DNQ.abc||'')[i]||'';
+  const card=x=>{ const o=R[x]; return `<button type="button" class="dnab-c${cur===x?' on':''}" data-dnab="${x}" aria-pressed="${cur===x}" aria-label="${esc(o.t)} — ${esc(o.d)}"><span class="dnq-ph" data-dnqth="ab${i}${x}"><i class="dnq-ld"></i></span><span class="dnab-key" aria-hidden="true">${x==='a'?'←':'→'}</span><span class="dnq-tx"><b>${esc(o.t)}</b><em>${esc(o.d)}</em></span></button>`; };
+  box.innerHTML=`<div class="dnq-in dnab-in">
+   <div class="dnq-top"><span class="dnq-k">취향 랩 · 둘 중 하나 8판</span><button type="button" class="dnq-link" data-dnqgo="steps">사진 카드로 고르기 ›</button></div>
+   <ol class="dnab-dots" aria-label="${i+1}번째 판 / 8판">${DNAB.map((r,j)=>`<li class="${j<i?'dn':j===i?'cur':''}"></li>`).join('')}</ol>
+   <div class="dnq-h"><span class="dnq-n">${i+1} / ${DNAB.length}</span><h1>${esc(R.q)}</h1><p>더 끌리는 쪽을 누르세요. 바로 다음 판으로 넘어가요.</p></div>
+   <div class="dnab-pair">${card('a')}<span class="dnab-or" aria-hidden="true">또는</span>${card('b')}</div>
+   <div class="dnq-bar"><button type="button" class="btn sec dnq-prev" data-dnabprev ${i?'':'disabled'}>이전</button><span class="dnq-cnt">${i+1}번째 판<span class="dnab-kb"> · 키보드 ← →</span></span><button type="button" class="btn sec" data-dnab="n">상관없어요</button></div>
+  </div>`;
+  dnabFill(i); setTimeout(()=>dnabFill(i+1),400); }
+function dnabPick(x){ const i=DNQ.abi||0; if(!DNAB[i]) return; DNQ.abc=((DNQ.abc||'').slice(0,i)+x); const pr=$('#dnQuick .dnab-pair');
+  if(pr&&x!=='n'){ pr.classList.add('picked'); $$('.dnab-c',pr).forEach(b=>{ const on=b.dataset.dnab===x; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); }); }
+  clearTimeout(DNQ.abT); DNQ.abT=setTimeout(()=>{ DNQ.abi=i+1; if(DNQ.abi>=DNAB.length) dnabFinish(); else { dnabRender(); const t=$('#dnQuick'); if(t&&t.getBoundingClientRect().top<0) t.scrollIntoView({block:'start'}); } },x==='n'||dnqRM()?0:220); }
+function dnabFinish(){ const code=dnabParse(DNQ.abc); const W=code?dnabWords(code):{w:[]}; if(!W.w.length){ DNQ.abi=0; DNQ.abc=''; dnqToast('하나 이상 골라야 집을 지을 수 있어요'); dnabRender(); return; }
+  state.dna=W.w; state.dnq={p:[[],[],[]],t:Date.now(),ab:code}; DV.site=W.site||''; try{ touch('dna'); }catch(e){} try{ saveSoon(); }catch(e){}
+  const r=dnaAnalyze(state.dna); const A=r.arch[0]; if(A){ try{ dnaLibSet([{id:'q'+Date.now().toString(36),t:Date.now(),name:A.name,alt:'8판',keys:state.dna.slice(),base:A.id,mode:'main',code:r.code,persona:dnaPersona(r)},...dnaLibGet().filter(x=>x.alt!=='8판'||x.keys.join()!==state.dna.join())]); }catch(e){} }
+  DNQ.view='result'; dnqRender(); try{ $('#dnQuick').scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); }catch(e){} }
+/* 결과 칩·이미지에 쓰는 '고른 것' 목록: 3단계면 카드, 8판이면 고른 쪽 */
+function dnqItems(){ if(dnqIsAB()) return state.dnq.ab.split('').map((ch,i)=>{ const o=DNAB[i]&&DNAB[i][ch]; return o?{k:'ab'+i+ch,t:o.t,mk:()=>dnabThumb(i,ch)}:null; }).filter(Boolean);
+  return dnqPicks().flat().map(id=>{ const c=DNQ_CARD[id]; return c?{k:c.id,t:c.t,mk:()=>dnqThumb(c)}:null; }).filter(Boolean); }
+function dnqSharedAB(code){ if(!DNQ.bak) DNQ.bak={dna:(state.dna||[]).slice(),dnq:JSON.parse(JSON.stringify(state.dnq||{p:[[],[],[]],t:0})),site:DV.site}; DNQ.shared=true;
+  const W=dnabWords(code); state.dnq={p:[[],[],[]],t:0,ab:code}; state.dna=W.w; DV.site=W.site||''; dnMode('quick'); DNQ.view='result'; dnqRender(); }
+document.addEventListener('keydown',e=>{ if(DNQ.view!=='ab'||DNQ.adv) return; try{ if(ZCUR.h!=='dna') return; }catch(err){ return; } if(e.altKey||e.ctrlKey||e.metaKey) return; const t=e.target; if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return; if(document.querySelector('[aria-modal="true"]:not([hidden])')) return;
+  if(e.key==='ArrowLeft'){ e.preventDefault(); dnabPick('a'); } else if(e.key==='ArrowRight'){ e.preventDefault(); dnabPick('b'); } });
 function dnqBlds(){ const L=bldSimilar(state.dna,60); const isS=x=>typeof BSIG!=='undefined'&&BSIG[x.b.id]; const s=L.filter(isS); return [...s,...L.filter(x=>!isS(x))].slice(0,3); }
-function dnqResult(){ const box=$('#dnQuick'); if(!state.dna.length){ DNQ.view='steps'; dnqRender(); return; } try{ if(ZCUR.h==='dna') zDeepMeta('결과'); }catch(e){} const r=dnaAnalyze(state.dna); const A=r.arch[0]; const P=dnqPicks(); const ids=P.flat(); const L=dnqBlds();
+function dnqResult(){ const box=$('#dnQuick'); if(!state.dna.length){ DNQ.view='steps'; dnqRender(); return; } try{ if(ZCUR.h==='dna') zDeepMeta('결과'); }catch(e){} const r=dnaAnalyze(state.dna); const A=r.arch[0]; const IT=dnqItems(); const L=dnqBlds(); const isAB=dnqIsAB();
   box.innerHTML=`<div class="dnq-in dnq-res">
-   <div class="dnq-top"><span class="dnq-k">${DNQ.shared?'공유받은 취향 집':'나의 취향 집'}</span>${DNQ.shared?'<button type="button" class="btn sm" data-dnqmine>나도 해 보기</button>':'<button type="button" class="dnq-link" data-dnqgo="steps">다시 고르기</button>'}</div>
+   <div class="dnq-top"><span class="dnq-k">${DNQ.shared?'공유받은 취향 집':'나의 취향 집'}</span>${DNQ.shared?'<button type="button" class="btn sm" data-dnqmine>나도 해 보기</button>':`<button type="button" class="dnq-link" data-dnqgo="${isAB?'ab':'steps'}">다시 고르기</button>`}</div>
    <div class="dnq-rw">
     <div class="dnq-3d"><div class="dnq-3dv" id="dnq3d"></div><div class="dnq-fb" id="dnqFb" hidden></div></div>
     <div class="dnq-rt">
      <h1 class="dnq-nm">${esc(dnqName(r))}</h1>
      <p class="dnq-ln">${esc(dnaLine(A,state.dna))}.</p>
      <p class="dnq-ps">이런 집을 고르는 당신은 <b>${esc(dnaPersona(r))}</b></p>
-     <div class="dnq-pk">${ids.slice(0,6).map(id=>{ const c=DNQ_CARD[id]; return c?`<span><i data-dnqth="${c.id}">${DNQ.th[c.id]?`<img src="${DNQ.th[c.id]}" alt="">`:''}</i>${esc(c.t)}</span>`:''; }).join('')}</div>
+     <div class="dnq-pk">${IT.slice(0,isAB?8:6).map(o=>`<span><i data-dnqth="${o.k}">${DNQ.th[o.k]?`<img src="${DNQ.th[o.k]}" alt="">`:''}</i>${esc(o.t)}</span>`).join('')}</div>
      <div class="dnq-sh"><button type="button" class="btn sec" data-dnqpng>이미지 저장</button><button type="button" class="btn sec" data-dnqcopy>링크 복사</button></div>
      <div class="dnq-next"><a class="btn big" href="#zipcode">내 땅에 지어 보기<small>내집코드</small></a><button type="button" class="btn big sec" data-dnqadv>더 세밀하게 고르기<small>건축 단어 ${DNA_KW.length}개</small></button></div>
     </div>
    </div>
    ${L.length?`<div class="dnq-bl"><h2>이 취향의 실제 건물</h2><p>고른 집과 닮은 건물이에요. 눌러서 사진과 3D 모형으로 보세요.</p><div class="dnat-row dnq-blr">${L.map(({b,sh})=>bldCard(b,`<div class="ks">${sh.slice(0,3).map(k=>`<em class="on">${esc(k)}</em>`).join('')}</div>`)).join('')}</div></div>`:''}
   </div>`;
-  ids.forEach(id=>{ const c=DNQ_CARD[id]; if(c&&!DNQ.th[c.id]) dnqThumb(c).then(u=>{ $$(`#dnQuick .dnq-pk [data-dnqth="${c.id}"]`).forEach(i=>{ if(!i.querySelector('img')) i.innerHTML=`<img src="${u}" alt="">`; }); }).catch(()=>{}); });
+  IT.forEach(o=>{ if(!DNQ.th[o.k]) o.mk().then(u=>{ $$(`#dnQuick .dnq-pk [data-dnqth="${o.k}"]`).forEach(i=>{ if(!i.querySelector('img')) i.innerHTML=`<img src="${u}" alt="">`; }); }).catch(()=>{}); });
   try{ bldGenObserve(box); }catch(e){}
   try{ DNQ.v&&DNQ.v.dispose&&DNQ.v.dispose(); }catch(e){} DNQ.v=null;
-  const fb=()=>{ const f=$('#dnqFb'); if(!f) return; f.hidden=false; const u=ids.map(id=>DNQ.th[id]).find(Boolean); f.innerHTML=`${u?`<img src="${u}" alt="">`:''}<span>이 기기에서는 3D를 열 수 없어 그림으로 보여 드려요</span>`; const v=$('#dnq3d'); if(v) v.hidden=true; };
+  const fb=()=>{ const f=$('#dnqFb'); if(!f) return; f.hidden=false; const u=IT.map(o=>DNQ.th[o.k]).find(Boolean); f.innerHTML=`${u?`<img src="${u}" alt="">`:''}<span>이 기기에서는 3D를 열 수 없어 그림으로 보여 드려요</span>`; const v=$('#dnq3d'); if(v) v.hidden=true; };
   try{ const Ps=pgSpec(state.dna,{base:A.id,mode:'main',site:DV.site||undefined}); DNQ.P=Ps; DNQ.v=PGV($('#dnq3d'),{auto:!dnqRM(),onFail:fb}); DNQ.v.show(Ps); }catch(e){ console.warn(e); fb(); } }
 function dnqImg(src){ return new Promise(res=>{ if(!src){ res(null); return; } const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=src; }); }
-async function dnqPNG(){ const r=dnaAnalyze(state.dna); const A=r.arch[0]; const ids=dnqPicks().flat().slice(0,3); const W=1080,H=1350; const c=document.createElement('canvas'); c.width=W; c.height=H; const g=c.getContext('2d'); const F=getComputedStyle(document.body).fontFamily;
+async function dnqPNG(){ const r=dnaAnalyze(state.dna); const A=r.arch[0]; const IT=dnqItems().slice(0,3); const W=1080,H=1350; const c=document.createElement('canvas'); c.width=W; c.height=H; const g=c.getContext('2d'); const F=getComputedStyle(document.body).fontFamily;
   g.fillStyle='#f4efe6'; g.fillRect(0,0,W,H);
-  let main=null; try{ main=await dnqImg(DNQ.v&&DNQ.v.png&&DNQ.v.png()); }catch(e){} if(!main) main=await dnqImg(ids.map(id=>DNQ.th[id]).find(Boolean));
+  let main=null; try{ main=await dnqImg(DNQ.v&&DNQ.v.png&&DNQ.v.png()); }catch(e){} if(!main) main=await dnqImg(IT.map(o=>DNQ.th[o.k]).find(Boolean));
   const rr=(x,y,w,h,rad)=>{ g.beginPath(); g.moveTo(x+rad,y); g.arcTo(x+w,y,x+w,y+h,rad); g.arcTo(x+w,y+h,x,y+h,rad); g.arcTo(x,y+h,x,y,rad); g.arcTo(x,y,x+w,y,rad); g.closePath(); };
   const cover=(im,x,y,w,h,rad)=>{ g.save(); rr(x,y,w,h,rad); g.clip(); if(im){ const s=Math.max(w/im.width,h/im.height); g.drawImage(im,x+(w-im.width*s)/2,y+(h-im.height*s)/2,im.width*s,im.height*s); } else { const gr=g.createLinearGradient(x,y,x+w,y+h); gr.addColorStop(0,'#cfd8e6'); gr.addColorStop(1,'#8aa0c0'); g.fillStyle=gr; g.fillRect(x,y,w,h); } g.restore(); };
   g.fillStyle='#1b2532'; g.font=`800 34px ${F}`; g.fillText('ZIPLAN',60,92); g.fillStyle='#2b6cff'; g.fillText('P',60+g.measureText('ZI').width,92); g.fillStyle='#6b6f76'; g.font=`500 26px ${F}`; g.textAlign='right'; g.fillText('모두의 건축 · 취향 랩',W-60,92); g.textAlign='left';
@@ -6943,7 +7007,7 @@ async function dnqPNG(){ const r=dnaAnalyze(state.dna); const A=r.arch[0]; const
   g.fillStyle='#6b6f76'; g.font=`600 28px ${F}`; g.fillText('나의 취향 집',60,820);
   const nm=dnqName(r); g.fillStyle='#1b2532'; let fs=72; g.font=`800 ${fs}px ${F}`; while(g.measureText(nm).width>W-120&&fs>44){ fs-=4; g.font=`800 ${fs}px ${F}`; } g.fillText(nm,60,820+fs+10);
   g.fillStyle='#3d434c'; g.font=`500 30px ${F}`; const ln=dnaLine(A,state.dna)+'.'; let line='',yy=820+fs+70; for(const ch of ln){ if(g.measureText(line+ch).width>W-120){ g.fillText(line,60,yy); line=ch; yy+=42; } else line+=ch; } g.fillText(line,60,yy);
-  const ims=await Promise.all(ids.map(id=>dnqImg(DNQ.th[id]))); const tw=(W-120-40)/3, ty=H-300; ids.forEach((id,i)=>{ const x=60+i*(tw+20); cover(ims[i],x,ty,tw,170,18); g.fillStyle='#1b2532'; g.font=`700 26px ${F}`; g.fillText((DNQ_CARD[id]||{}).t||'',x+4,ty+210); });
+  const ims=await Promise.all(IT.map(o=>dnqImg(DNQ.th[o.k]))); const tw=(W-120-40)/3, ty=H-300; IT.forEach((o,i)=>{ const x=60+i*(tw+20); cover(ims[i],x,ty,tw,170,18); g.fillStyle='#1b2532'; g.font=`700 26px ${F}`; g.fillText(o.t||'',x+4,ty+210); });
   g.fillStyle='#8a8f96'; g.font=`500 24px ${F}`; g.fillText(`나도 1분 만에 해 보기 → ${location.host||'ZIPLAN'}`,60,H-40);
   const url=c.toDataURL('image/png'); const a=document.createElement('a'); a.href=url; a.download='ziplan-취향집.png'; document.body.appendChild(a); a.click(); a.remove(); window.__dnqPng=url.length; return url; }
 function dnqToast(t){ const el=$('#dnToast'); if(!el) return; el.textContent=t; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),2400); }
@@ -6959,16 +7023,18 @@ document.addEventListener('click',e=>{ if(!e.target.closest) return;
   const fo=e.target.closest('[data-dnfold]'); if(fo){ e.stopPropagation(); const c=fo.dataset.dnfold; DN_OPEN.has(c)?DN_OPEN.delete(c):DN_OPEN.add(c); $('#dnChips').innerHTML=dnaChipsHTML(); dnaReveal(); return; }
   const mo=e.target.closest('[data-dnmore]'); if(mo){ e.stopPropagation(); DN_MORE.add(mo.dataset.dnmore); $('#dnChips').innerHTML=dnaChipsHTML(); dnaReveal(); return; }
   if(!e.target.closest('#view-dna')) return;
+  const ab=e.target.closest('[data-dnab]'); if(ab){ dnabPick(ab.dataset.dnab); return; }
+  if(e.target.closest('[data-dnabprev]')){ if(DNQ.abi>0){ DNQ.abi--; dnabRender(); } return; }
   const q=e.target.closest('[data-dnq]'); if(q){ dnqToggle(q.dataset.dnq); return; }
   if(e.target.closest('[data-dnqnext]')){ if(DNQ.step<2){ DNQ.step++; dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); } else dnqFinish(); return; }
   if(e.target.closest('[data-dnqskip]')){ dnqPicks()[DNQ.step].length=0; if(DNQ.step<2){ DNQ.step++; dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); } else dnqFinish(); return; }
   if(e.target.closest('[data-dnqprev]')){ if(DNQ.step>0){ DNQ.step--; dnqRender(); } return; }
-  const gg=e.target.closest('[data-dnqgo]'); if(gg){ if(gg.dataset.dnqgo==='result'){ state.dna=dnqWords(); DV.site=dnqSite()||''; DNQ.view='result'; } else { DNQ.view='steps'; DNQ.step=0; } dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); return; }
+  const gg=e.target.closest('[data-dnqgo]'); if(gg){ if(gg.dataset.dnqgo==='ab'){ if(DNQ.shared) dnqUnshare(); dnabEnter(); $('#dnQuick').scrollIntoView({block:'start'}); return; } if(gg.dataset.dnqgo==='result'){ if(dnqIsAB()){ const W=dnabWords(state.dnq.ab); state.dna=W.w; DV.site=W.site||''; } else { state.dna=dnqWords(); DV.site=dnqSite()||''; } DNQ.view='result'; } else { DNQ.view='steps'; DNQ.step=0; } dnqRender(); $('#dnQuick').scrollIntoView({block:'start'}); return; }
   if(e.target.closest('[data-dnqpng]')){ dnqPNG().then(()=>dnqToast('이미지를 저장했어요')).catch(err=>{ console.warn(err); dnqToast('이미지를 만들지 못했어요'); }); return; }
   if(e.target.closest('[data-dnqcopy]')){ const r=dnaAnalyze(state.dna); const txt=`나의 취향 집: ${dnqName(r)}\n${dnaLine(r.arch[0],state.dna)}.\n이 결과 보기 → ${dnqShareURL()}`; try{ navigator.clipboard.writeText(txt).then(()=>dnqToast('링크를 복사했어요'),()=>dnqToast('복사하지 못했어요')); }catch(err){ dnqToast('복사하지 못했어요'); } return; }
   if(e.target.closest('[data-dnqmine]')){ dnqUnshare(); state.dnq={p:[[],[],[]],t:0}; DNQ.view='steps'; DNQ.step=0; dnqRender(); window.scrollTo(0,0); return; }
   if(e.target.closest('[data-dnqadv]')){ dnMode('adv'); DN_OPEN.clear(); const r=dnaAnalyze(state.dna); (r.ks||[]).forEach(k=>DN_OPEN.add(k.cat)); renderDnaLab(); setTimeout(()=>{ const t=$('#dnPick'); if(t) t.scrollIntoView({behavior:dnqRM()?'auto':'smooth',block:'start'}); },60); return; }
-  if(e.target.closest('[data-dnback]')){ dnMode('quick'); DNQ.view=dnqPicks().some(l=>l.length)?'result':'steps'; if(DNQ.view==='result'){ /* 고급에서 고친 단어를 그대로 보여 준다 */ } dnqRender(); window.scrollTo(0,0); return; }
+  if(e.target.closest('[data-dnback]')){ dnMode('quick'); DNQ.view=(dnqPicks().some(l=>l.length)||dnqIsAB())?'result':'steps'; if(DNQ.view==='result'){ /* 고급에서 고친 단어를 그대로 보여 준다 */ } dnqRender(); window.scrollTo(0,0); return; }
 },true);
 
 /* ---------- 취향 랩 화면 ---------- */
@@ -95529,7 +95595,7 @@ function zDeep(){ const m=/^#(atlas|travel|ask|dna)\?(.*)$/.exec(location.hash||
   try{ history.replaceState(null,'',location.pathname+location.search+'#'+v); }catch(e){}
   let n=0; const run=fn=>{ setTimeout(()=>{ try{ fn(); }catch(e){ if(++n<6) run(fn); else console.warn('deeplink',e); } },n?400:550); };
   if(m[1]==='atlas'){ const id=q.get('b'); if(id&&BLD_BY[id]) run(()=>{ if(q.get('build')) bldBuild(id); else bldOpen(id); }); }
-  else if(m[1]==='dna'){ const P=dnqParse(q.get('r')); if(P) run(()=>dnqShared(P)); }
+  else if(m[1]==='dna'){ const ab=dnabParse(q.get('ab')); const P=ab?null:dnqParse(q.get('r')); const go=()=>ab?dnqSharedAB(ab):dnqShared(P); /* 라우트의 dnqEnter가 늦게 돌아 화면을 덮으면 한 번 더 */ if(ab||P) run(()=>{ go(); setTimeout(()=>{ try{ if(location.hash.startsWith('#dna')&&!(DNQ.shared&&DNQ.view==='result')) go(); }catch(e){} },1300); }); }
   else if(m[1]==='travel'){ const id=q.get('p'); if(id&&TPL.some(x=>x.id===id)) run(()=>tDetail(id)); }
   else { const sl=(q.get('q')||'').trim(); run(()=>{ zcOpen(true); const t=$('[data-zt="ask"]'); if(t) t.click(); if(!sl) return; if(!ZDEEP_SL) ZDEEP_SL=kbSlugs(KB2); const i=ZDEEP_SL.indexOf(sl);
       if(i<0){ zcAsk(sl.replace(/-/g,' ')); return; } const k=KB2[i]; ZC.log.push({r:'u',h:esc(kbTopic(k))}); zcPush({h:k[1],go:k[2]?[[k[2],k[3]]]:null}); }); }

@@ -624,8 +624,9 @@ def _build_static(D):
     _page('/taste/', '취향 랩 — 사진 세 번 고르면 내 취향 집 | ZIPLAN', '분위기·사는 곳·중요한 것을 사진 카드로 고르면 1분 안에 내 취향 집이 3D로 지어지고, 닮은 실제 건물 3채를 알려 줍니다. 로그인 없이 무료.',
           '<p class="kick">취향 랩</p><h1>사진 세 번 고르면, 내 취향 집</h1><p class="lead">좋아하는 집을 말로 설명하기 어렵다면 사진으로 고르세요. 세 단계, 1분이면 끝나요.</p>'
           '<div class="cta"><a class="btn" href="/#dna">취향 랩 시작하기</a><a class="btn ghost" href="/atlas/">닮은 명작 둘러보기</a></div>'
-          '<script>(function(){try{var r=new URLSearchParams(location.search).get("r");if(r&&/^[a-z.-]{2,80}$/.test(r)){location.replace("/#dna?r="+r);}}catch(e){}})();</script>'
+          '<script>(function(){try{var q=new URLSearchParams(location.search),r=q.get("r"),ab=q.get("ab");if(ab&&/^[abn]{8}$/.test(ab)){location.replace("/#dna?ab="+ab);}else if(r&&/^[a-z.-]{2,80}$/.test(r)){location.replace("/#dna?r="+r);}}catch(e){}})();</script>'
           '<section class="grp"><h2>이렇게 진행돼요</h2><ol class="pts"><li><b>분위기</b> — 따뜻한 나무 집, 차분한 콘크리트, 한옥… 마음에 드는 사진을 2~3장</li><li><b>사는 곳</b> — 도심, 골목, 숲 속, 바닷가… 살고 싶은 곳</li><li><b>중요한 것</b> — 빛, 마당, 넓은 거실, 수납, 조용함…</li></ol></section>'
+          '<section class="grp"><h2>사진 고르기가 어렵다면 — 둘 중 하나 8판</h2><p>나무 집과 콘크리트 집, 기울어진 지붕과 평평한 지붕처럼 두 집 중 더 끌리는 쪽만 여덟 번 누르면 같은 결과를 받을 수 있어요. 고르기 어려운 판은 \u2018상관없어요\u2019로 넘어가면 돼요.</p></section>'
           '<section class="grp"><h2>결과로 받는 것</h2><ul class="pts"><li>내 취향 유형 이름과 한 줄 설명</li><li>고른 단어로 지은 3D 집(돌려 보기)</li><li>닮은 실제 건물 3채 — 정교 모형으로 바로 열기</li><li>공유용 이미지(1080×1350)와 링크</li></ul><p class="cap">결과는 고른 사진의 단어를 바탕으로 한 참고용 제안이에요.</p></section>',
           img=SITE_URL + '/img/og/taste.jpg', img_alt='ZIPLAN 취향 랩', crumbs=[('ZIPLAN', '/'), ('취향 랩', '/taste/')], og_type='website',
           ld={'@type': 'WebPage', 'name': '취향 랩', 'url': _url('/taste/'), 'isPartOf': {'@id': SITE_URL + '/#website'}})
