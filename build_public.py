@@ -599,7 +599,7 @@ def _build_static(D):
     _page('/contests/', '건축 공모전·행사 일정 — ZIPLAN', _clip('설계공모·학생 건축 공모전·아이디어 공모·건축 전시·강연 일정 %d건을 마감순으로. 마지막 확인 %s.' % (len(CI), CK), 155),
           ''.join(m), ld=[{'@type': 'CollectionPage', 'name': '건축 공모전·행사 일정', 'url': _url('/contests/')}] + ev,
           crumbs=[('ZIPLAN', '/'), ('공모·행사', '/contests/')], og_type='website', img=SITE_URL + '/img/og/contests.jpg', img_alt='ZIPLAN 건축 공모전·행사 일정')
-    def _ics(s): return str(s).replace('\\', '\\\\').replace(';', '\;').replace(',', '\\,').replace('\n', '\\n')
+    def _ics(s): return str(s).replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,').replace('\n', '\\n')
     def _fold(l):
         b = l.encode('utf-8'); out = []
         while len(b) > 74:
@@ -607,7 +607,7 @@ def _build_static(D):
             while cut > 0 and (b[cut] & 0xC0) == 0x80: cut -= 1
             out.append(b[:cut].decode('utf-8')); b = b' ' + b[cut:]
         out.append(b.decode('utf-8')); return '\r\n'.join(out)
-    _st0 = _sd.datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+    _st0 = _sd.datetime.now(_sd.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ZIPLAN//contests//KO', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:ZIPLAN 건축 공모·행사']
     for x in CI:
         isev = x['type'] in _EVT and x.get('start')

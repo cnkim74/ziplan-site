@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const TLIB = process.env.TLIB || __dirname + '/three.min.js'; // 없으면: npm pack three@0.128.0 → package/build/three.min.js 를 여기로
 const port = process.argv[2] || 8862;
-const ROUTES = ['home', 'atlas', 'travel', 'dna', 'zipcode', 'room', 'plan3d', 'flow', 'site', 'concept', 'plan', 'model', 'panel', 'cases', 'library', 'portfolio', 'contests', 'plaza', 'studio', 'guide', 'pricing'];
+const ROUTES = ['home', 'atlas', 'travel', 'dna', 'zipcode', 'room', 'plan3d', 'flow', 'site', 'concept', 'drawing', 'model', 'panel', 'learn', 'library', 'portfolio', 'contests', 'plaza', 'studio', 'guide', 'pricing'];
 const IDS = (process.argv[3] || 'hwaamsa,nakseonjae,bokmuseum,nabawi,seoulwcs,jongnotower').split(',');
 (async () => {
   const br = await chromium.launch({ args: ['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist'] });
