@@ -705,3 +705,15 @@
 - 고친 것: ① 취향 랩 3단계 화면에서 탐색경로가 '취향 랩 · 1분이면 충분해요' 머리글과 겹치던 것(#dnQuick 위 여백 52px, 고급 띠 .dnadv-bar 위 48px) ② 폰 탐색경로 '홈 › › 방'(문 이름 숨긴 빈 li가 › 를 남김 → li.gl 숨김) ③ 요금(#pricing)에 h1이 없던 것(h2→h1) ④ 터치 영역(pointer:coarse): 탐색경로 '홈'(11×29 → 27×49), 홈 보조 링크 .hs-more(높이 21 → 41), 여행 컬렉션 덱 점(8×8 → 18×32, 보이는 점 크기 그대로) ⑤ build_public.py 경고 2개(ics 이스케이프 문자열·utcnow) — 출력 동일.
 - 남은 작은 것(그대로 둠): 여행 계절 스팟 출처 링크(14px 글자 링크), 내집코드 슬라이더·체크박스(라벨 안), 패널·자료실 '공식 사이트/열기' 링크 높이 18~24px. 홈 1440 스크린샷의 표지 캡션은 스크롤 끝까지 내렸다가 바로 위로 올린 직후라 남은 것(실사용 아님).
 - 성능(390·CPU×4, 같은 날 교차 2회): HEAD 로드 4.1/5.1 s·진입 2.5/3.4 s·8.3/9.3 fps vs 새 4.7/4.1 s·3.1/2.5 s·9.1/8.9 fps(회귀 없음, 아틀라스 코드 변경 없음).
+
+## M2 · v23i — 참고 문헌·영상 (2026-11-12)
+- **데이터** `data/media.js` → `window.ZMEDIA={checked,cats,items}` (본문은 엄격한 JSON — 큰따옴표, 끝 쉼표 없음). 생성 스크립트는 세션 스크래치(mk.py)였으므로 앞으로는 이 파일을 직접 고친다. build_public.py 복사 목록에 추가됨.
+  - `cats`: [id,이름] 8개 — master 거장·건축가 / history 건축사 / hanok 한옥·한국 건축 / struct 구조·재료·환경 / design 설계·도면·모형 / career 포트폴리오·진로 / city 도시·공간 읽기 / travel 답사·여행.
+  - 항목: `{id, cat, kind:'book'|'video'|'lecture'|'channel'|'doc', title, by(저자·옮긴이·출판사 또는 채널), date('YYYY' 또는 'YYYY-MM-DD'), lang:'ko'|'en', url, yt?(영상 ID 11자 — 썸네일 i.ytimg.com/vi/<yt>/mqdefault.jpg), src(어디서 확인했는지), note(우리 말 한 줄 — 원문 설명 복사 금지), bld?(아틀라스 BLD id), enc?(건축 사전 id)}`. id 규칙: 영상 `v-<yt>`, 책 `b-<교보 상품번호>`, 채널 `c-<채널ID>`, 자료 `d-<이름>`.
+  - 첫 데이터 98개(거장 20 · 한옥 17 · 설계 16 · 도시 15 · 답사 10 · 구조 8 · 건축사 6 · 진로 6 / 영상 55 · 책 19 · 채널 11 · 강연 8 · 자료 5).
+- **화면**: 자료실 `#library`의 `.openhub` 바로 뒤 `section#mdLib.lab.mdlib` (코드 `/* ===== M2 v23i: 참고 문헌·영상 */`, 건축 사전 IIFE 바로 뒤) — 분야 칩 `[data-mdc]` + 종류 칩 `[data-mdk]`(책/영상·강연/채널/자료), 카드 12개 + "N개 더 보기", 링크는 `target=_blank rel="noopener noreferrer"`, 확인 날짜·외부 링크 안내·문의하기. 썸네일은 유튜브 공식 썸네일만(lazy, 실패하면 ▶ 아이콘), 책·자료는 아이콘.
+  - 아틀라스 건물 모달(`bldOpen`) 끝과 사전 모달(`encCard(e,true)`) 끝에 `mdRelHTML('bld'|'enc', id)` — 같은 id 항목 최대 3개 "관련 책·영상". 디버그 `window.__md`. CSS 접두어 `.mdl-`, 전역 접두어 `md`.
+- **확인 규칙(꼭 지킬 것)**: 확인한 링크만 넣는다. 영상·채널은 YouTube 데이터 API(PlayMCP `get_video_details`·`get_channel_details`·`get_playlist_items`)로 제목·채널·날짜를 확인, 책은 교보문고 검색 결과(search.kyobobook.co.kr — WebFetch 가능, 상품 페이지는 바이너리라 못 읽음)에서 상품번호 확인, 법령·공공 자료는 페이지를 열어 확인. 영상 ID·ISBN·URL을 기억으로 만들지 않는다. 공식 채널 또는 제작자 본인 채널만 — 다른 사람이 올린 방송·강연 재업로드, 책 통째 낭독, 영화 업로드는 넣지 않는다.
+  - 2026-11-12 기준 PlayMCP YouTube `search_*`·`get_channel_top_videos`는 일일 할당량 초과로 막혀 있었음 → WebSearch(allowed_domains youtube.com)로 후보를 찾고 `get_video_details`로 확인. 채널 ID는 playboard/vidiq/invidious 검색 결과에서 찾은 뒤 `get_channel_details`로 확인.
+- **갱신**: 한 달에 한 번 — 모든 `yt`를 `get_video_details`로 다시 조회해 없어진(결과에 없는) 영상·비공개 전환은 삭제, 채널도 `get_channel_details`로 확인, 책 링크는 교보 검색으로 상품번호 재확인(절판이면 note에 "절판, 도서관에서"). 바꾸면 `checked` 날짜 갱신. 분야마다 새 영상 1~2개를 같은 규칙으로 더해도 됨. 진로·법규 항목(건축사 시험 등)은 제도 개편(2027 건축사 시험) 문구를 note에서 맞출 것.
+- 테스트(스크래치 m2/t.js): 1440·390 — 섹션 위치(.openhub 뒤), 칩 aria-pressed, 분야×종류 필터, 더 보기, 링크 target/rel, 가로 넘침 없음, 아틀라스 `space` 모달·사전 `cheoma` 모달에 관련 3개, pageerror 0. tools/audit sweep(library·atlas·home × 3폭) 오류 0, links.py 깨짐 0(_vercel/image 7개는 로컬 정상).

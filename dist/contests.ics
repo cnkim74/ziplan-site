@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 X-WR-CALNAME:ZIPLAN 건축 공모·행사
 BEGIN:VEVENT
 UID:sca-big-ex@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261107
 SUMMARY:BIG 국내 첫 기획전
@@ -16,22 +16,8 @@ DESCRIPTION:BIG(비야케 잉엘스 그룹)의 작업을 국내에서 처
 URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
-UID:pub-gyeongju-onestop@ziplan
-DTSTAMP:20261111T191140Z
-DTSTART;VALUE=DATE:20261111
-DTEND;VALUE=DATE:20261112
-SUMMARY:[마감] 경주 원스톱 문화복합센터 조성 건축 설계
- 공모
-DESCRIPTION:경주 현곡면에 연면적 약 2\,379㎡의 문화복합센
- 터를 신축하는 일반설계공모입니다. 행정과 문화 기능
- 을 한 건물에 묶는 계획이에요. 참가등록 마감 기준.\n
- 원문: https://jootek.com/folio/contests/19040\n마지막 확인: 2026-1
- 1-04
-URL:https://jootek.com/folio/contests/19040
-END:VEVENT
-BEGIN:VEVENT
 UID:intl-social-hub-2@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261112
 DTEND;VALUE=DATE:20261113
 SUMMARY:[마감] The Social Hub 2.0: 동네 커뮤니티 공간 다시 상
@@ -46,7 +32,7 @@ URL:https://competitions.archi/competition/the-social-hub-2-0-re-imagining
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-gliwice-boulevard@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261112
 DTEND;VALUE=DATE:20261113
 SUMMARY:[마감] 글리비체 크워드니차 강변 대로 도시설계 
@@ -60,31 +46,8 @@ URL:https://competitions.archi/competition/urban-planning-competition-for-
  the-klodnica-boulevards-in-gliwice/
 END:VEVENT
 BEGIN:VEVENT
-UID:sca-tour-nov@ziplan
-DTSTAMP:20261111T191140Z
-DTSTART;VALUE=DATE:20261112
-DTEND;VALUE=DATE:20261116
-SUMMARY:도시건축투어 — 청계천 · 경복궁 동측
-DESCRIPTION:건축가·전문 해설사와 함께 도심 건축을 걸으
- 며 보는 투어입니다. 11.12 청계천\, 11.15 경복궁 동측 코
- 스. 신청 방법은 원문 공지를 확인하세요.\n원문: https://
- www.heraldk.com/article/2026100316511482957\n마지막 확인: 2026-11-04
-URL:https://www.heraldk.com/article/2026100316511482957
-END:VEVENT
-BEGIN:VEVENT
-UID:kosid-38-ex@ziplan
-DTSTAMP:20261111T191140Z
-DTSTART;VALUE=DATE:20261112
-DTEND;VALUE=DATE:20261116
-SUMMARY:제38회 대한민국 실내건축대전 전시
-DESCRIPTION:대학생·대학원생 실내건축 공모 본선작 전시
- 입니다. 11.14(토) 오후 2시에 발표 심사와 시상식이 함께
-  열려요.\n원문: https://kosid.or.kr/22\n마지막 확인: 2026-11-04
-URL:https://kosid.or.kr/22
-END:VEVENT
-BEGIN:VEVENT
 UID:intl-krystal-grad@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
 SUMMARY:[마감] Krystal Design Award 졸업작품 공모
@@ -98,8 +61,31 @@ URL:https://competitions.archi/competition/krystal-design-award-graduation
  -competition-3/
 END:VEVENT
 BEGIN:VEVENT
+UID:sca-tour-nov@ziplan
+DTSTAMP:20261112T053636Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261116
+SUMMARY:도시건축투어 — 청계천 · 경복궁 동측
+DESCRIPTION:건축가·전문 해설사와 함께 도심 건축을 걸으
+ 며 보는 투어입니다. 11.12 청계천\, 11.15 경복궁 동측 코
+ 스. 신청 방법은 원문 공지를 확인하세요.\n원문: https://
+ www.heraldk.com/article/2026100316511482957\n마지막 확인: 2026-11-04
+URL:https://www.heraldk.com/article/2026100316511482957
+END:VEVENT
+BEGIN:VEVENT
+UID:kosid-38-ex@ziplan
+DTSTAMP:20261112T053636Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261116
+SUMMARY:제38회 대한민국 실내건축대전 전시
+DESCRIPTION:대학생·대학원생 실내건축 공모 본선작 전시
+ 입니다. 11.14(토) 오후 2시에 발표 심사와 시상식이 함께
+  열려요.\n원문: https://kosid.or.kr/22\n마지막 확인: 2026-11-04
+URL:https://kosid.or.kr/22
+END:VEVENT
+BEGIN:VEVENT
 UID:suseong-living-ground-ex@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261123
 SUMMARY:2026 수성 건축·조경 시각작품 국제 공모 선정작 
@@ -113,7 +99,7 @@ URL:https://www.sscf.or.kr
 END:VEVENT
 BEGIN:VEVENT
 UID:suseong-biennale-2026@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261027
 DTEND;VALUE=DATE:20261123
 SUMMARY:2026 수성국제비엔날레 — Living Ground
@@ -127,7 +113,7 @@ URL:https://www.sscf.or.kr
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-figures-of-architecture@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261122
 DTEND;VALUE=DATE:20261123
 SUMMARY:[마감] Figures of Architecture — 숨은 재료와 짜임 다
@@ -141,7 +127,7 @@ URL:https://www.paloe.ca/competition/brief
 END:VEVENT
 BEGIN:VEVENT
 UID:gg-arch-62-ex@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261124
 DTEND;VALUE=DATE:20261129
 SUMMARY:제62회 경기건축대전 수상작 전시
@@ -152,7 +138,7 @@ URL:https://www.ggkia.or.kr
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-exchange-ex@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261126
 DTEND;VALUE=DATE:20261127
 SUMMARY:서울도시건축교류전
@@ -164,7 +150,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-house-future-sa@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:[마감] House of the Future — 사우디아라비아 미래 주
@@ -179,7 +165,7 @@ URL:https://competitions.archi/competition/house-of-the-future/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-rochester-market@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261210
 DTEND;VALUE=DATE:20261211
 SUMMARY:[마감] AIA invites: 강 협곡 옆 시장과 광장(뉴욕주 
@@ -195,7 +181,7 @@ URL:https://architecturecompetitions.com/newyorkmarket
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-cartesianforms@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261213
 DTEND;VALUE=DATE:20261214
 SUMMARY:[마감] CartesianForms — AI로 다시 상상하는 건축
@@ -209,7 +195,7 @@ URL:https://paacademy.com/competitions/cartesianforms-architecture-reimagi
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-house-of-poetry@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261213
 DTEND;VALUE=DATE:20261214
 SUMMARY:[마감] House of Poetry — 시인 디노 캄파나의 집 다시
@@ -225,7 +211,7 @@ URL:https://www.youngarchitectscompetitions.com/open-competitions/house-of
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-cappadocia-teahouse@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261222
 DTEND;VALUE=DATE:20261223
 SUMMARY:[마감] Cappadocia Oasis — 레드 밸리 찻집 설계
@@ -239,7 +225,7 @@ URL:https://competitions.archi/competition/architecture-international-cont
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-drwngs@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:[마감] DRWNGS 건축 드로잉 공개 모집
@@ -253,7 +239,7 @@ URL:https://competitions.archi/competition/drwngs-open-call-architectural-
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-copenhagen-museum-pavilion@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20270130
 DTEND;VALUE=DATE:20270131
 SUMMARY:[마감] 코펜하겐 작은 박물관 파빌리온
@@ -266,7 +252,7 @@ URL:https://archibriefer.com/product/small-museum-pavilion-copenhagen/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-living-markets@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20270228
 DTEND;VALUE=DATE:20270301
 SUMMARY:[마감] Living Markets 아이디어 공모
@@ -278,7 +264,7 @@ URL:https://competitions.archi/competition/living-markets-competition/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-evolo-2027@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20270309
 DTEND;VALUE=DATE:20270310
 SUMMARY:[마감] eVolo 2027 스카이스크래퍼 공모
@@ -291,7 +277,7 @@ URL:https://www.evolo.us/registration-2027-skyscraper-competition/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-funes-house@ziplan
-DTSTAMP:20261111T191140Z
+DTSTAMP:20261112T053636Z
 DTSTART;VALUE=DATE:20270430
 DTEND;VALUE=DATE:20270501
 SUMMARY:[마감] Funes House — 두 번에 나눠 짓는 가족 주택
