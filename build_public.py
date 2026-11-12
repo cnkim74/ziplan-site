@@ -110,7 +110,7 @@ for _f in (root / 'brand').glob('ziplan-*'):
     _sh.copy(_f, dist / 'brand' / _f.name)
 
 # 지원 파일
-for rel in ['img/og/%s.jpg' % _k for _k in ('home','atlas','travel','taste','room','contests','plan3d')] + ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','data/media.js','data/furniture.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
+for rel in ['img/og/%s.jpg' % _k for _k in ('home','atlas','travel','taste','room','contests','plan3d')] + ['privacy.html','terms.html','licenses.html','vendor/liquid-glass/container.js','vendor/liquid-glass/button.js','vendor/liquid-glass/glass.css','vendor/liquid-glass/LICENSE','vendor/html2canvas.min.js','vendor/html2canvas.LICENSE','effects/nav-glass.js','effects/nav-glass.css','effects/shader-gradient.js','data/portfolio.js','data/library.js','data/contests.js','data/media.js','data/furniture.js','data/travel_media.js','img/house-dusk.jpg','img/exax-retail.webp','img/exax-terrace.webp','img/exax-court.webp','img/p-sketch.webp','img/p-model.webp','img/p-crit.webp','img/alt-site.webp','img/alt-a.webp','img/alt-b.webp','img/alt-c.webp']+['img/%s.avif'%n for n in ('f-site','f-sketch','f-plan','f-mass','f-model','f-build','f-home','pn-aerial','pn-persp','pn-concept')]+['img/l-%s-%s%s.webp'%(l,o,sz) for l in ('bg','mid','fg') for o in ('off','on') for sz in ('','-960')]:
     if not (root / rel).exists():
         print('WARNING missing', rel); continue
     (dist / rel).parent.mkdir(parents=True, exist_ok=True)
@@ -268,6 +268,19 @@ def _links(items, cls='links'):
     if not items: return ''
     return '<ul class="%s">' % cls + ''.join('<li><a href="%s">%s</a>%s</li>' % (_esc(_q(u, safe="/-_.~")), _esc(t), (' <span>%s</span>' % _esc(s)) if s else '') for u, t, s in items) + '</ul>'
 
+def _tm_load():
+    try:
+        t = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/travel_media.js'), encoding='utf-8').read()
+        i = t.index('window.ZTVMEDIA='); j = t.rindex(';')
+        return _sj.loads(t[i + len('window.ZTVMEDIA='):j])
+    except Exception as e:
+        print('경고: data/travel_media.js 읽기 실패', e); return {'place': {}, 'region': {}, 'abroad': {}}
+_TMK = {'yt': '영상', 'official': '공식 영상', 'blog': '블로그'}
+def _tm_sec(L, q, h='다녀온 사람들의 영상·후기'):
+    li = ''.join('<li><a href="%s" rel="noopener nofollow" target="_blank">%s</a> <span>%s · %s%s</span></li>' % (_esc(x['u']), _esc(x['t']), _TMK.get(x['k'], '링크'), _esc(x.get('by', '')), (' · ' + _esc(x['d'][:7].replace('-', '.'))) if x.get('d') else '') for x in (L or []))
+    more = '<p class="cap">더 찾아보기: <a href="https://www.youtube.com/results?search_query=%s" rel="noopener nofollow" target="_blank">유튜브</a> · <a href="https://search.naver.com/search.naver?where=blog&amp;query=%s" rel="noopener nofollow" target="_blank">네이버 블로그</a> — 외부 영상·글은 각 작성자 책임, 방문 전 운영 정보는 공식 사이트로.</p>' % (_q(q + ' 건축', safe=''), _q(q, safe=''))
+    return _sec(h, ('<ul class="links">%s</ul>' % li if li else '') + more)
+
 def _sec(h, body):
     return '<section><h2>%s</h2>%s</section>' % (_esc(h), body) if body else ''
 
@@ -322,6 +335,7 @@ ul.pts{padding-left:20px}ul.pts li{margin:4px 0}
 def _build_static(D):
     (dist / 'static.css').write_text(_STATIC_CSS, encoding='utf-8')
     PH, TREG, TPL, TFEAT, BX, BSIG = D['PH'], D['TREG'], D['TPL'], D['TFEAT'], D['BLDX'], D['BSIG']
+    TMD = _tm_load()
     REG, ERA = D['BLD_REG'], D['BLD_ERA']
     BY = {b['id']: b for b in BX}; TP = {p['id']: p for p in TPL}
     def country(b):
@@ -431,6 +445,7 @@ def _build_static(D):
         if SEASON.get(p['id']):
             m.append(_sec('계절 추천', ''.join('<h3>%s · %s</h3><p>%s</p>%s' % (_esc(se['name']), _esc(sp.get('when', '')), _esc(sp.get('why', '')), ('<p class="cap">%s</p>' % _esc(sp['note'])) if sp.get('note') else '') for se, sp in SEASON[p['id']])))
         if p.get('tags'): m.append('<ul class="chips">' + ''.join('<li>%s</li>' % _esc(t) for t in p['tags']) + '</ul>')
+        m.append(_tm_sec(TMD['place'].get(p['id']), re.sub(r'\s*\(.+\)', '', p['n'])))
         m.append(_sec('근처 건축 여행지', _links(near(p, 6))))
         if p['id'] in BY: m.append(_sec('건축 아틀라스', _links([('/atlas/%s/' % p['id'], BY[p['id']]['name'], '건축가·사진·3D 모형')])))
         sr = [q for q in TPL if q['r'] == p['r'] and q['id'] != p['id']][:12]
@@ -457,6 +472,7 @@ def _build_static(D):
         m.append(_sec('답사 코스 %d곳' % len(stops), ''.join('<div class="stop"><b><a href="/travel/%s/">%s</a></b> <span class="cap">%s · %s</span><p>%s</p></div>' % (b['id'], _esc(b['name']), _esc(b['arch']), _esc(b['year']), _esc(s['note'])) for s, b in stops)))
         if c.get('route'): m.append(_sec('날짜별 코스', '<dl class="facts">' + ''.join('<dt>%s</dt><dd>%s</dd>' % (_esc(d), _esc(r)) for d, r in c['route']) + '</dl>'))
         if c.get('tips'): m.append(_sec('팁', '<ul class="pts">' + ''.join('<li>%s</li>' % _esc(t) for t in c['tips']) + '</ul>'))
+        m.append(_tm_sec(TMD['abroad'].get(c['id']), c['name'].split(' (')[0].split('·')[0], '다녀온 사람들의 영상'))
         m.append(_sec('다른 해외 코스', _links([('/travel/%s/' % x['id'], x['name'], x['country']) for x in D['TV_ABROAD'] if x['id'] != c['id']])))
         ld = {'@type': 'TouristTrip', 'name': '%s 건축 여행 코스' % c['name'], 'description': desc, 'url': _url('/travel/%s/' % c['id']),
               'itinerary': {'@type': 'ItemList', 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'item': {'@type': 'TouristAttraction', 'name': b['name'], 'url': _url('/travel/%s/' % b['id'])}} for i, (s, b) in enumerate(stops)]}}

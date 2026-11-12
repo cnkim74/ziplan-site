@@ -1920,6 +1920,30 @@ nav.on-dark .mega .mg-in{background:rgba(16,18,26,.72);border-color:rgba(255,255
 .tv-eat a:hover{transform:translateY(-3px);border-color:var(--c)}
 .tv-eat b{display:block;font-size:14px}.tv-eat span{display:block;font-size:12px;color:var(--fg-2);margin:3px 0 6px}.tv-eat em{font-style:normal;font-size:12px;font-weight:700;color:var(--accent)}
 .tv-small{font-size:11.5px;color:var(--fg-2);margin:8px 0 0}
+/* M3 v23j — 여행 영상·후기 */
+.tm-box{margin:22px 0 4px}.tm-box h4{margin:0 0 10px}
+.tm-list{display:grid;grid-template-columns:1fr;gap:8px}
+.tm-c{display:flex;gap:12px;align-items:center;padding:8px;border-radius:14px;border:1px solid var(--card-line);background:var(--card);color:inherit;text-decoration:none;transition:transform .25s cubic-bezier(.3,1.4,.4,1),border-color .2s;min-width:0}
+.tm-c:hover{transform:translateY(-2px);border-color:var(--c,var(--accent))}
+.tm-th{position:relative;flex:0 0 112px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,var(--c,#3f7bff),#0b1530);display:grid;place-items:center;color:#fff;font-size:18px}
+.tm-th img{width:100%;height:100%;object-fit:cover;display:block}
+.tm-th i{position:absolute;right:6px;bottom:6px;font-style:normal;font-size:10px;background:rgba(0,0,0,.6);color:#fff;border-radius:6px;padding:2px 6px}
+.tm-th.x::after{content:'▶';font-size:18px}
+.tm-tx{min-width:0;display:flex;flex-direction:column;gap:2px}
+.tm-tx b{font-size:13.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere}
+.tm-tx small{font-size:11.5px;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm-k{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.02em;color:var(--accent)}
+.k-official .tm-k{color:#30a46c}.k-blog .tm-k{color:#ff9f0a}
+.tm-more{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.tm-more span{font-size:12px;font-weight:800;color:var(--fg-2);margin-right:2px}
+.tm-more a{font-size:12.5px;font-weight:700;color:var(--fg);text-decoration:none;border:1px solid var(--card-line);background:var(--card);border-radius:999px;padding:7px 12px;min-height:34px;display:inline-flex;align-items:center}
+.tm-more a:hover{border-color:var(--accent);color:var(--accent)}
+.tm-reg{margin:-6px 0 18px}.tm-rh{display:block;font-size:12px;font-weight:800;color:var(--fg-2);margin:0 0 8px}
+.tm-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,320px);gap:8px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
+.tm-row .tm-c{scroll-snap-align:start}
+.tv-ab .tm-list,.tm-course .tm-list{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.tm-cw{display:flex;flex-direction:column;gap:4px;min-width:0}.tm-pn{font-size:11.5px;font-weight:800;color:var(--fg-2)}
+@media (max-width:600px){.tm-th{flex-basis:96px}.tm-row{grid-auto-columns:82%}.tv-ab .tm-list,.tm-course .tm-list{grid-template-columns:1fr}}
 .tv-dract{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;position:sticky;bottom:0;padding:12px 0 4px;background:linear-gradient(to top,var(--bg) 70%,transparent)}
 .tv-tl .ln a{color:var(--accent);font-weight:700;text-decoration:none}
 @media(max-width:700px){.tv-dr{align-items:flex-end}.tv-drb{width:100vw;height:92vh;border-radius:24px 24px 0 0;transform:translateY(100%)}.tv-drt h3{font-size:23px}}
@@ -4116,7 +4140,7 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <script>/* 정식 회원 서버(Supabase) — url·key를 넣으면 이메일·구글 로그인과 모두의 조회수·좋아요가 켜집니다. 비어 있으면 체험 계정. */
 window.ZIPLAN_AUTH=window.ZIPLAN_AUTH||{url:'https://zxxcpbzlwxfqgzqcealg.supabase.co',key:'sb_publishable_9q8x0Tlj2JlFuGyX3D1fbw_T96hfiyc'};</script>
 <script src="data/portfolio.js"></script>
-<script src="data/library.js"></script><script src="data/contests.js"></script><script src="data/media.js"></script><script src="data/furniture.js"></script><!-- 자료실 데이터 --><!-- 포트폴리오 방 데이터 (주기적으로 갱신) -->
+<script src="data/library.js"></script><script src="data/contests.js"></script><script src="data/media.js"></script><script src="data/furniture.js"></script><script src="data/travel_media.js"></script><!-- 자료실 데이터 --><!-- 포트폴리오 방 데이터 (주기적으로 갱신) -->
 <script>
 (function(){
 'use strict';
@@ -10299,6 +10323,34 @@ function tDetail(id){ const p=TPL.find(x=>x.id===id); if(!p) return; try{ if(ZCU
    </div></aside>`;
   d.hidden=false; requestAnimationFrame(()=>d.classList.add('on')); document.documentElement.style.overflow='hidden'; }
 function tDetailClose(){ try{ if(ZCUR.h==='travel'&&ZCUR.deep) zDeepMeta(null); }catch(e){} const d=$('#tvDrawer'); if(!d) return; d.classList.remove('on'); document.documentElement.style.overflow=''; setTimeout(()=>d.hidden=true,300); }
+/* ===== M3 v23j — 여행 영상·후기 (data/travel_media.js → window.ZTVMEDIA): 장소 서랍 · 지역 챕터 · 해외 도시 · AI 코스/코스 짜기 ===== */
+const tmD=()=>window.ZTVMEDIA||{place:{},region:{},abroad:{}};
+const TM_K={yt:'영상',official:'공식',blog:'블로그'};
+function tmYt(u){ const m=/[?&]v=([\w-]{11})/.exec(u||''); return m?m[1]:''; }
+function tmCard(x){ const id=x.k!=='blog'?tmYt(x.u):''; const by=esc(x.by||'')+(x.d?` · ${esc(x.d.slice(0,7).replace('-','.'))}`:'');
+  return `<a class="tm-c k-${esc(x.k)}" href="${esc(x.u)}" target="_blank" rel="noopener">${id?`<span class="tm-th"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('x');this.remove()"><i aria-hidden="true">▶</i></span>`:`<span class="tm-th tm-bl" aria-hidden="true">✎</span>`}<span class="tm-tx"><em class="tm-k">${TM_K[x.k]||'링크'}</em><b>${esc(x.t)}</b><small>${by}</small></span></a>`; }
+function tmQ(n){ return String(n||'').replace(/\s*\(.+\)/,'').trim(); }
+function tmSearch(q,extra){ const k=tmQ(q); return `<div class="tm-more"><span>더 찾아보기</span><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(k+' '+(extra||'건축'))}" target="_blank" rel="noopener">유튜브 ‘${esc(k)}${extra===''?'':' '+esc(extra||'건축')}’ ›</a><a href="https://search.naver.com/search.naver?where=blog&query=${encodeURIComponent(k)}" target="_blank" rel="noopener">네이버 블로그 후기 ›</a></div>`; }
+const TM_NOTE='<p class="tv-small tm-note">외부 영상·글 — 내용은 각 작성자 책임, 방문 전 운영 정보는 공식 사이트로.</p>';
+function tmBox(list,q,title,max,extra){ const L=(list||[]).slice(0,max||3); return `<section class="tm-box"><h4>${title}</h4>${L.length?`<div class="tm-list">${L.map(tmCard).join('')}</div>`:''}${tmSearch(q,extra)}${TM_NOTE}</section>`; }
+function tmDetail(id){ const d=$('#tvDrawer'); const p=TPL.find(x=>x.id===id); if(!d||!p) return; const inn=d.querySelector('.tv-drin'); if(!inn||inn.querySelector('.tm-box')) return;
+  const h=tmBox(tmD().place[id],p.n,'다녀온 사람들의 영상·후기',3); const anchor=[...inn.querySelectorAll('h4')].find(x=>x.textContent.trim()==='주변 인프라');
+  if(anchor) anchor.insertAdjacentHTML('beforebegin',h); else inn.insertAdjacentHTML('beforeend',h); }
+function tmRegions(){ const el=$('#tvList'); if(!el) return; const R=tmD().region; el.querySelectorAll('section.tv-ch').forEach(s=>{ if(s.querySelector('.tm-reg')) return; const nm=(s.querySelector('.tv-chh h3')||{}).textContent; const r=Object.keys(TREG).find(k=>TREG[k][0]===nm); if(!r) return; const L=(R[r]||[]).slice(0,4); if(!L.length) return;
+  const hd=s.querySelector('.tv-chh'); hd.insertAdjacentHTML('afterend',`<div class="tm-reg"><span class="tm-rh">이 지역 영상</span><div class="tm-row">${L.map(tmCard).join('')}</div></div>`); }); }
+function tmAbroad(){ const body=$('#tvAbBody'); const a=TV_AB_BY&&TV_AB_BY[TV.ab]; if(!body||!a||body.querySelector('.tm-box')) return; const nm=a.name.replace(/\s*\(.+\)/,'').split('·')[0];
+  const h=tmBox(tmD().abroad[a.id],nm,'다녀온 사람들의 영상',5); const note=[...body.querySelectorAll('.tv-ab > p.tv-small')].pop(); if(note) note.insertAdjacentHTML('beforebegin',h); else body.insertAdjacentHTML('beforeend',h); }
+function tmCourse(ids){ const P=tmD().place, seen=new Set(), out=[]; ids.forEach(id=>{ const L=P[id]||[]; for(const x of L){ if(!seen.has(x.u)){ seen.add(x.u); out.push(Object.assign({pn:(TPL.find(p=>p.id===id)||{}).n},x)); break; } } });
+  return out.slice(0,6); }
+function tmCourseHTML(ids){ if(!ids.length) return ''; const L=tmCourse(ids); const names=[...new Set(ids)].map(id=>(TPL.find(p=>p.id===id)||{}).n).filter(Boolean);
+  return `<section class="tm-box tm-course"><h4>코스 속 장소 영상·후기</h4>${L.length?`<div class="tm-list">${L.map(x=>`<div class="tm-cw"><span class="tm-pn">${esc(tmQ(x.pn))}</span>${tmCard(x)}</div>`).join('')}</div>`:''}<div class="tm-more"><span>더 찾아보기</span>${names.slice(0,6).map(n=>`<a href="https://search.naver.com/search.naver?where=blog&query=${encodeURIComponent(tmQ(n))}" target="_blank" rel="noopener">${esc(tmQ(n))} 후기 ›</a>`).join('')}</div>${TM_NOTE}</section>`; }
+function tmAi(){ const el=$('#tvAi'); if(!el||!TV.ai||el.querySelector('.tm-course')) return; el.insertAdjacentHTML('beforeend',tmCourseHTML(TV.ai.stops.map(s=>s.p.id))); }
+function tmPlan(){ const el=$('#tvPlan'); if(!el||!TV.plan||el.querySelector('.tm-course')) return; const ids=TV.plan.days.flat().filter(s=>s.p).map(s=>s.p.id); const h=tmCourseHTML(ids); if(!h) return; const pa=el.querySelector('.tv-pa'); if(pa) pa.insertAdjacentHTML('beforebegin',h); else el.insertAdjacentHTML('beforeend',h); }
+{ const oD=tDetail; tDetail=function(id){ oD(id); try{ tmDetail(id); }catch(e){ console.warn('tm',e); } };
+  const oA=tAbRender; tAbRender=function(){ oA(); try{ tmAbroad(); }catch(e){ console.warn('tm',e); } };
+  const oL=tList; tList=function(){ oL(); try{ tmRegions(); }catch(e){ console.warn('tm',e); } };
+  const oI=tAiDraw; tAiDraw=function(){ oI(); try{ tmAi(); }catch(e){ console.warn('tm',e); } };
+  const oP=tPlanDraw; tPlanDraw=function(){ oP(); try{ tmPlan(); }catch(e){ console.warn('tm',e); } }; }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') tDetailClose(); });
 /* 지도 스타일 · 전체 화면 · 자동 투어 */
 const TSTY={calm:['차분한','https://tile.openstreetmap.org/{z}/{x}/{y}.png','tv-tiles','© OpenStreetMap 기여자'],color:['선명한','https://tile.openstreetmap.org/{z}/{x}/{y}.png','','© OpenStreetMap 기여자'],sat:['위성','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}','','Tiles © Esri — Esri, Maxar, Earthstar Geographics']};
