@@ -1,5 +1,5 @@
 __bsigFill({"seattle":function(K){
-// 출처: 영문 위키백과 「Seattle Central Library」 — 2004-05-23 개관, OMA(렘 콜하스·조슈아 프린스라무스) + LMN, 11층, 지붕 56.39 m(185 ft)·건축 높이 60 m, 연면적 362,987 sq ft(약 33,700 ㎡), 4·5번가와 매디슨·스프링 St 블록(1000 Fourth Ave), 4층 레드 플로어(빨강 13가지), 유리와 강철망 외피
+// 출처: 시애틀 공공도서관 spl.org 「Central Library Architecture」('a towering Level 3 living room along Fifth Avenue that reaches 50 feet') · Seattle Times 특집(Level 3 Living Room — 5번가 입구, Level 1 — 4번가 입구) · 영문 위키백과 「Seattle Central Library」 — 2004-05-23 개관, OMA(렘 콜하스·조슈아 프린스라무스) + LMN, 11층, 지붕 56.39 m(185 ft)·건축 높이 60 m, 연면적 362,987 sq ft(약 33,700 ㎡), 4·5번가와 매디슨·스프링 St 블록(1000 Fourth Ave), 4층 레드 플로어(빨강 13가지), 유리와 강철망 외피
 // 추정: 플랫폼별 높이·어긋남(층 링 8단으로 단순화), 블록 평면 약 64 × 48 m, 다이아몬드 격자 한 칸 약 3.2 m, 실제 대지의 4번가→5번가 오르막(약 한 층)은 평지로 단순화, 주변 타워 위치·높이 개략
     const T=K.T;
     // ---- 공용 조립 도구(이 build 안에서만) ----
