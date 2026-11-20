@@ -1,6 +1,6 @@
 /* ZIPLAN 건축 여행 — 다녀온 사람들의 영상·후기 (M3 v23j). 본문은 엄격한 JSON. 갱신 규칙은 CLAUDE.md "M3 · v23j" */
 window.ZTVMEDIA={
-"checked": "2026-11-12",
+"checked": "2026-11-21",
 "note": "외부 영상·글 링크 모음. YouTube는 YouTube Data API 영상 정보로, 브런치 글은 원문을 열어 제목·작성자·날짜를 확인. 내용은 각 작성자 책임.",
 "place": {
 "ddp": [
@@ -99,11 +99,11 @@ window.ZTVMEDIA={
 "src": "YouTube Data API 영상 정보로 확인"
 },
 {
-"t": "역사의 현장을 품다 '국립현대미술관 서울관'",
-"by": "TBS 시민의방송",
-"d": "2014-02-17",
+"t": "[어느날] 국립현대미술관 서울관 MMCA 자연과 사물과 인간, 과거와 현재의 조화",
+"by": "절로 무지개 Korean Temples",
+"d": "2024-07-05",
 "k": "yt",
-"u": "https://www.youtube.com/watch?v=PDY2DFWGbDU",
+"u": "https://www.youtube.com/watch?v=cjD7uiQF-Iw",
 "src": "YouTube Data API 영상 정보로 확인"
 }
 ],
@@ -175,6 +175,14 @@ window.ZTVMEDIA={
 "k": "yt",
 "u": "https://www.youtube.com/watch?v=91R6lQGV270",
 "src": "YouTube Data API 영상 정보로 확인"
+},
+{
+"t": "세운상가에서 잠실 주경기장까지, 한국을 설계하다 (KBS 2005.02.18 방송)",
+"by": "KBS 히스토리",
+"d": "2025-12-25",
+"k": "yt",
+"u": "https://www.youtube.com/watch?v=tK9-mYdIrCQ",
+"src": "YouTube Data API 영상 정보로 확인"
 }
 ],
 "space": [
@@ -195,11 +203,11 @@ window.ZTVMEDIA={
 "src": "YouTube Data API 영상 정보로 확인"
 },
 {
-"t": "tbsTV 서울 공간산책 [구 공간사옥]",
-"by": "TBS 시민의방송",
-"d": "2016-03-30",
+"t": "[Re-Visit SPACE] Re-visiting the SPACE GROUP OF KOREA BUILDING",
+"by": "SPACE Magazine",
+"d": "2021-03-05",
 "k": "yt",
-"u": "https://www.youtube.com/watch?v=kKddc1D6PLw",
+"u": "https://www.youtube.com/watch?v=nY0tuCdeB9o",
 "src": "YouTube Data API 영상 정보로 확인"
 }
 ],
@@ -519,11 +527,11 @@ window.ZTVMEDIA={
 "src": "YouTube Data API 영상 정보로 확인"
 },
 {
-"t": "가장 오래된 목조건축물 극락전을 품고 있는 봉정사",
-"by": "kculturechannel",
-"d": "2012-10-17",
+"t": "'봉정사 극락전' 지켜라...산불 방지 200년 소나무도 '싹둑'",
+"by": "헬로tv뉴스",
+"d": "2025-03-27",
 "k": "yt",
-"u": "https://www.youtube.com/watch?v=U0PdffGtxJo",
+"u": "https://www.youtube.com/watch?v=bUPyDRYALD8",
 "src": "YouTube Data API 영상 정보로 확인"
 },
 {
@@ -576,14 +584,6 @@ window.ZTVMEDIA={
 "d": "2021-11-19",
 "k": "official",
 "u": "https://www.youtube.com/watch?v=9JSrraGpBLc",
-"src": "YouTube Data API 영상 정보로 확인"
-},
-{
-"t": "[경북관광] 세계문화유산으로 등재된 경주 양동민속마을로 봄 여행 떠나요",
-"by": "newsone2013",
-"d": "2014-04-11",
-"k": "yt",
-"u": "https://www.youtube.com/watch?v=DhIKCLWHScg",
 "src": "YouTube Data API 영상 정보로 확인"
 }
 ],
@@ -823,11 +823,11 @@ window.ZTVMEDIA={
 "src": "YouTube Data API 영상 정보로 확인"
 },
 {
-"t": "[tbsTV] '친환경 랜드마크' 서울시 신청사",
-"by": "TBS 시민의방송",
-"d": "2012-05-29",
+"t": "서울특별시청 - 신.구청사",
+"by": "우리역사쌤",
+"d": "2026-01-18",
 "k": "yt",
-"u": "https://www.youtube.com/watch?v=YGB4AY5rFwU",
+"u": "https://www.youtube.com/watch?v=udTDk-zw_gw",
 "src": "YouTube Data API 영상 정보로 확인"
 }
 ],
@@ -1030,6 +1030,14 @@ window.ZTVMEDIA={
 "d": "2020-11-02",
 "k": "yt",
 "u": "https://www.youtube.com/watch?v=YM76G7nRLqg",
+"src": "YouTube Data API 영상 정보로 확인"
+},
+{
+"t": "로랑 보두앵 Laurent Beaudouin (1955 - ) : Light & Color, Space",
+"by": "JAY ARCHITECT",
+"d": "2020-11-26",
+"k": "yt",
+"u": "https://www.youtube.com/watch?v=ZSRrYyW09y8",
 "src": "YouTube Data API 영상 정보로 확인"
 }
 ],
@@ -1555,14 +1563,6 @@ window.ZTVMEDIA={
 "k": "yt",
 "u": "https://www.youtube.com/watch?v=chgJmwlH7CE",
 "src": "YouTube Data API 영상 정보로 확인"
-},
-{
-"t": "백양사 쌍계루의 단풍",
-"by": "길",
-"d": "2014-10-20",
-"k": "yt",
-"u": "https://www.youtube.com/watch?v=ugzmIs5ELnM",
-"src": "YouTube Data API 영상 정보로 확인"
 }
 ],
 "gwanghallu": [
@@ -1664,6 +1664,22 @@ window.ZTVMEDIA={
 }
 ],
 "seoulbotanic": [
+{
+"t": "서울식물원도 '삼우건축'이? — 설계 스토리",
+"by": "삼우TV",
+"d": "2021-05-14",
+"k": "yt",
+"u": "https://www.youtube.com/watch?v=Hp6O5YV3128",
+"src": "YouTube Data API 영상 정보로 확인"
+},
+{
+"t": "서울식물원의 3가지의 색깔을 경험해보세요!",
+"by": "서울식물원 Seoul Botanic Park",
+"d": "2022-05-19",
+"k": "official",
+"u": "https://www.youtube.com/watch?v=0B2yQFZ_fjg",
+"src": "YouTube Data API 영상 정보로 확인"
+},
 {
 "t": "마곡 서울식물원 주제원 온실정원 후기",
 "by": "쏭데이 ssongday",
