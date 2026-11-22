@@ -4,50 +4,8 @@ PRODID:-//ZIPLAN//contests//KO
 CALSCALE:GREGORIAN
 X-WR-CALNAME:ZIPLAN 건축 공모·행사
 BEGIN:VEVENT
-UID:suseong-living-ground-ex@ziplan
-DTSTAMP:20261121T225751Z
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261123
-SUMMARY:2026 수성 건축·조경 시각작품 국제 공모 선정작 
- 전시
-DESCRIPTION:'리빙 그라운드(Living Ground)란?'이라는 물음에 
- 청소년·일반 참가자가 그림 한 장으로 답한 작품 가운
- 데 선정작을 수성못 둘레에서 보여 줍니다. 10.27 수성국
- 제비엔날레 개막과 함께 시작해요.\n원문: https://www.sscf.
- or.kr\n마지막 확인: 2026-11-22
-URL:https://www.sscf.or.kr
-END:VEVENT
-BEGIN:VEVENT
-UID:suseong-biennale-2026@ziplan
-DTSTAMP:20261121T225751Z
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261123
-SUMMARY:2026 수성국제비엔날레 — Living Ground
-DESCRIPTION:건축과 조경으로 도시와 자연이 함께 사는 법
- 을 묻는 비엔날레입니다. 한옥식 목구조 야외 전시장 '
- 빅 루프'에서 지역 공간 설계안과 국내외 건축가의 구
- 상을 보여 주고\, 포럼·체험 프로그램도 열려요. 휴관 
- 없이 운영.\n원문: https://www.sscf.or.kr\n마지막 확인: 2026-11
- -22
-URL:https://www.sscf.or.kr
-END:VEVENT
-BEGIN:VEVENT
-UID:intl-figures-of-architecture@ziplan
-DTSTAMP:20261121T225751Z
-DTSTART;VALUE=DATE:20261122
-DTEND;VALUE=DATE:20261123
-SUMMARY:[마감] Figures of Architecture — 숨은 재료와 짜임 다
- 시 보기
-DESCRIPTION:완성된 건물 속에 가려진 재료·조립·시공 방
- 식을 꺼내\, 기후 적응의 눈으로 그 역할을 다시 생각해
-  보는 학생 공모입니다. 등록과 제출이 같은 날 마감.\n
- 원문: https://www.paloe.ca/competition/brief\n마지막 확인: 2026-11
- -22
-URL:https://www.paloe.ca/competition/brief
-END:VEVENT
-BEGIN:VEVENT
 UID:gg-arch-62-ex@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261124
 DTEND;VALUE=DATE:20261129
 SUMMARY:제62회 경기건축대전 수상작 전시
@@ -58,7 +16,7 @@ URL:https://www.ggkia.or.kr
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-best-thesis-2026@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261125
 DTEND;VALUE=DATE:20261126
 SUMMARY:[마감] Best Thesis Award 2026: Architecture — 졸업작품 시
@@ -73,7 +31,7 @@ URL:https://competitions.archi/competition/best-thesis-award-2026-architec
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-exchange-ex@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261126
 DTEND;VALUE=DATE:20261127
 SUMMARY:서울도시건축교류전
@@ -85,7 +43,7 @@ URL:https://www.heraldk.com/article/2026100316511482957
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-rework-xfigura@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261129
 DTEND;VALUE=DATE:20261130
 SUMMARY:[마감] Rework by xFigura — 다시 쓰는 건축
@@ -97,7 +55,7 @@ URL:https://competitions.archi/competition/rework-by-xfigura/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-portfolio-challenge-2026@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:[마감] Architecture Portfolio Challenge 2026 — 건축 포트
@@ -111,7 +69,7 @@ URL:https://competitions.archi/competition/architecture-portfolio-challeng
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-house-future-sa@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:[마감] House of the Future — 사우디아라비아 미래 주
@@ -126,7 +84,7 @@ URL:https://competitions.archi/competition/house-of-the-future/
 END:VEVENT
 BEGIN:VEVENT
 UID:kosid-golden-scale-43@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:[마감] 제43회 골든스케일디자인어워드
@@ -138,7 +96,7 @@ URL:https://kosid.or.kr/29
 END:VEVENT
 BEGIN:VEVENT
 UID:sigs-2027-garden@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261209
 DTEND;VALUE=DATE:20261210
 SUMMARY:[마감] 2027 서울국제정원박람회 작가정원 국제공
@@ -153,7 +111,7 @@ URL:https://www.seoul.go.kr/news/news_notice.do?nttNo=470211
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-rochester-market@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261210
 DTEND;VALUE=DATE:20261211
 SUMMARY:[마감] AIA invites: 강 협곡 옆 시장과 광장(뉴욕주 
@@ -169,7 +127,7 @@ URL:https://architecturecompetitions.com/newyorkmarket
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-cartesianforms@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261213
 DTEND;VALUE=DATE:20261214
 SUMMARY:[마감] CartesianForms — AI로 다시 상상하는 건축
@@ -183,7 +141,7 @@ URL:https://paacademy.com/competitions/cartesianforms-architecture-reimagi
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-house-of-poetry@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261213
 DTEND;VALUE=DATE:20261214
 SUMMARY:[마감] House of Poetry — 시인 디노 캄파나의 집 다시
@@ -199,7 +157,7 @@ URL:https://www.youngarchitectscompetitions.com/open-competitions/house-of
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-community-workshop-pavilion@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261220
 DTEND;VALUE=DATE:20261221
 SUMMARY:[마감] Community Workshop Pavilion — 동네 공방 파빌리
@@ -213,7 +171,7 @@ URL:https://competitions.archi/competition/community-workshop-pavilion-arc
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-cappadocia-teahouse@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261222
 DTEND;VALUE=DATE:20261223
 SUMMARY:[마감] Cappadocia Oasis — 레드 밸리 찻집 설계
@@ -227,7 +185,7 @@ URL:https://competitions.archi/competition/architecture-international-cont
 END:VEVENT
 BEGIN:VEVENT
 UID:hanok-design-14@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261228
 DTEND;VALUE=DATE:20261229
 SUMMARY:[마감] 제14회 한옥 디자인 국제 공모전
@@ -241,7 +199,7 @@ URL:https://linkareer.com/activity/358648
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-drwngs@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:[마감] DRWNGS 건축 드로잉 공개 모집
@@ -255,7 +213,7 @@ URL:https://competitions.archi/competition/drwngs-open-call-architectural-
 END:VEVENT
 BEGIN:VEVENT
 UID:kibe-fusion-1@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:[마감] 제1회 KIBE 융합디자인 공모전
@@ -268,7 +226,7 @@ URL:https://linkareer.com/activity/349309
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-architecture-of-play@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270105
 DTEND;VALUE=DATE:20270106
 SUMMARY:[마감] The Architecture of Play 2026–2027 — 유치원 설계
@@ -281,7 +239,7 @@ URL:https://competitions.archi/competition/the-architecture-of-play-2026-2
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-digital-nomad-village@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270119
 DTEND;VALUE=DATE:20270120
 SUMMARY:[마감] Digital Nomad Village — 디지털 노마드 마을
@@ -295,7 +253,7 @@ URL:https://competitions.archi/competition/digital-nomad-village/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-museum-of-emotions-9@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270121
 DTEND;VALUE=DATE:20270122
 SUMMARY:[마감] Museum of Emotions #9 — 감정의 박물관
@@ -307,7 +265,7 @@ URL:https://competitions.archi/competition/museum-of-emotions-9/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-copenhagen-museum-pavilion@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270130
 DTEND;VALUE=DATE:20270131
 SUMMARY:[마감] 코펜하겐 작은 박물관 파빌리온
@@ -320,7 +278,7 @@ URL:https://archibriefer.com/product/small-museum-pavilion-copenhagen/
 END:VEVENT
 BEGIN:VEVENT
 UID:sca-big-ex@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20270301
 SUMMARY:BIG 기획전 「머티리얼리즘(MATERIALISM)」
@@ -333,7 +291,7 @@ URL:https://mediahub.seoul.go.kr/archives/2019950
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-living-markets@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270228
 DTEND;VALUE=DATE:20270301
 SUMMARY:[마감] Living Markets 아이디어 공모
@@ -345,7 +303,7 @@ URL:https://competitions.archi/competition/living-markets-competition/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-evolo-2027@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270309
 DTEND;VALUE=DATE:20270310
 SUMMARY:[마감] eVolo 2027 스카이스크래퍼 공모
@@ -358,7 +316,7 @@ URL:https://www.evolo.us/registration-2027-skyscraper-competition/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-excellence-awards-2027@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270316
 DTEND;VALUE=DATE:20270317
 SUMMARY:[마감] International Excellence Awards 2027 — 지은 작품·
@@ -373,7 +331,7 @@ URL:https://designskill.org/international-excellence-awards/
 END:VEVENT
 BEGIN:VEVENT
 UID:intl-funes-house@ziplan
-DTSTAMP:20261121T225751Z
+DTSTAMP:20261122T194515Z
 DTSTART;VALUE=DATE:20270430
 DTEND;VALUE=DATE:20270501
 SUMMARY:[마감] Funes House — 두 번에 나눠 짓는 가족 주택
