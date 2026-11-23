@@ -1123,11 +1123,11 @@ html.is-student .plan .stl .ok{display:inline}
 .cv-act{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .cv-prev{position:sticky;top:84px}.cv-a4wrap{background:color-mix(in srgb,var(--fg) 6%,transparent);border-radius:18px;padding:18px;overflow:auto}.cv-a4{width:100%;aspect-ratio:210/297;background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.18);overflow:hidden;container-type:inline-size}
 .cv-doc{box-sizing:border-box;width:100%;height:100%;padding:7.5% 8%;color:#1a1a1a;font-family:var(--font);font-size:2.5cqw;line-height:1.5;background:#fff}.cv-doc header{display:flex;justify-content:space-between;gap:4%;align-items:flex-start;border-bottom:1px solid #1a1a1a;padding-bottom:3%;margin-bottom:4%}
-.cv-doc h1{margin:0;font-size:2.6em;letter-spacing:-.02em;line-height:1.1}.cv-doc .t{margin:.4em 0 0;font-weight:700;color:#333}.cv-doc .ct{margin:.3em 0 0;color:#666;font-size:.9em}.cv-doc header img,.cv-doc .cv-phph{width:14%;aspect-ratio:7/9;object-fit:cover;border-radius:2px;flex:0 0 auto;background:#eee}
+.cv-doc .cvn{margin:0;font-weight:700;font-size:2.6em;letter-spacing:-.02em;line-height:1.1}.cv-doc .t{margin:.4em 0 0;font-weight:700;color:#333}.cv-doc .ct{margin:.3em 0 0;color:#666;font-size:.9em}.cv-doc header img,.cv-doc .cv-phph{width:14%;aspect-ratio:7/9;object-fit:cover;border-radius:2px;flex:0 0 auto;background:#eee}
 .cv-doc .intro{margin:0 0 4%;color:#333}.cv-doc section{margin-bottom:4%}.cv-doc h2{font-size:.85em;letter-spacing:.14em;text-transform:uppercase;color:#888;margin:0 0 1.2%;padding-bottom:.6%;border-bottom:1px solid #e3e3e3}
 .cv-doc .r{display:grid;grid-template-columns:1fr auto;gap:0 3%;margin-bottom:1.4%}.cv-doc .r b{font-weight:700}.cv-doc .r span{color:#777;font-size:.9em;white-space:nowrap}.cv-doc .r em{grid-column:1/3;font-style:normal;color:#444;font-size:.92em}.cv-doc .r p{grid-column:1/3;margin:.2em 0 0;color:#333;font-size:.92em}.cv-doc .r.sub span{grid-column:1/3;white-space:normal;color:#555}
-.cv-doc .ph{color:#bbb}.cv-doc.accent header{border-bottom:3px solid #3f7bff}.cv-doc.accent h2{color:#3f7bff;border-color:#cfe0ff}.cv-doc.accent h1{color:#3f7bff}
-.cv-doc.mono{font-family:var(--brand),var(--font)}.cv-doc.mono h1{font-size:3.4em;text-transform:uppercase}.cv-doc.mono h2{color:#1a1a1a;border-bottom:2px solid #1a1a1a}
+.cv-doc .ph{color:#bbb}.cv-doc.accent header{border-bottom:3px solid #3f7bff}.cv-doc.accent h2{color:#3f7bff;border-color:#cfe0ff}.cv-doc.accent .cvn{color:#3f7bff}
+.cv-doc.mono{font-family:var(--brand),var(--font)}.cv-doc.mono .cvn{font-size:3.4em;text-transform:uppercase}.cv-doc.mono h2{color:#1a1a1a;border-bottom:2px solid #1a1a1a}
 .cv-chk{border:1px solid var(--card-line);border-radius:16px;padding:14px 16px;background:var(--card)}.cv-chk h4{margin:0 0 10px;font-size:15px}.cv-chk h4 span{font-weight:400;font-size:12px;color:var(--fg-2)}.cv-chk ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}.cv-chk li{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.5;word-break:keep-all}.cv-chk li i{flex:0 0 18px;height:18px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;color:#fff;background:#ff9f0a;margin-top:2px}.cv-chk li.ok i{background:#30a46c}.cv-chk li span{flex:1}
 .cv-aiout{margin-top:12px;padding:12px;border-radius:12px;background:color-mix(in srgb,var(--accent) 8%,transparent);font-size:13px;line-height:1.6}
 .cv-tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.cv-tip{border:1px solid var(--card-line);border-radius:16px;padding:16px;background:var(--card)}.cv-tip em{font-style:normal;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:800}.cv-tip b{display:block;font-size:15px;margin:4px 0 6px}.cv-tip p{margin:0;font-size:13px;color:var(--fg-2);line-height:1.55;word-break:keep-all}
@@ -3153,6 +3153,8 @@ body{word-break:keep-all;overflow-wrap:break-word}
 .zbc .g{opacity:.85}
 /* Q11 v23h: 터치 영역 — 탐색경로 '홈', 홈 보조 링크, 여행 덱 점 */
 @media (pointer:coarse){.zbc a{display:inline-block;padding:10px 8px;margin:-10px -8px}.hs-more{display:inline-block;padding:10px 0}.tv-dk-dots{gap:0}.tv-dk-dots button{box-sizing:content-box;padding:12px 5px;background-clip:content-box}}
+/* Q22 v23u: 터치 영역 — 자료실·포트폴리오 '열기', 공모 '원문 보기', 패널 '공식 사이트', 여행 별점, 광장 태그·링크, 내집코드 '이 땅으로 묻기', 답사 체크, 작업실 머리 링크, 이력서 지우기 (보이는 크기는 그대로, 누르는 영역만 넓힘) */
+@media (pointer:coarse){.lbitem a.src,.pfread a.src,.cc a{display:inline-block;padding:11px 0;margin:-6px 0 -6px}.ct-go,.pz-ht,.pz-cr,.pz-go,.zcl-ask,.sc-h a,.asof a{display:inline-block;padding:11px 4px;margin-top:-11px;margin-bottom:-11px}.pz-ht,.pz-cr,.pz-go,.sc-h a,.asof a{margin-left:-4px;margin-right:-4px}.ct-go{margin-right:-4px}.zcl-ask{margin-top:-7px;margin-left:-4px}.tv-myr button{padding:7px 4px}.svk-it button{padding:6px 0}.cv-del{width:36px;height:36px;top:4px;right:4px}}
 @media (max-width:820px){.zbc>div{top:8px;padding:0 16px}.zbc ol{font-size:12px;flex-wrap:nowrap;white-space:nowrap;overflow:hidden}.zbc .g,.zbc .gl{display:none}.zbc li+li::before{margin:0 6px}}
 .znext{max-width:1080px;margin:56px auto 64px;padding:0 20px}
 .znext h2{font-size:15px;font-weight:800;color:var(--fg-2,#6e6e73);margin:0 0 12px;letter-spacing:.02em}
@@ -3996,7 +3998,7 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   <div class="hero"><h1>설계 취향 랩</h1><p class="tag">고를수록, 집이 지어집니다.</p><p class="sub">마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p></div>
   <div class="dnhero"><div class="stsg" id="dnSg"></div><div class="dnhin">
     <div class="dnk">설계 취향 랩</div>
-    <h1 class="dnh1"><span>고를수록,</span><br><span>집이 지어집니다.</span></h1>
+    <h2 class="dnh1"><span>고를수록,</span><br><span>집이 지어집니다.</span></h2>
     <p>마음이 가는 건축 단어를 누르세요. 단어마다 재료 · 창 · 지붕 · 덩어리 · 대지로 번역되어, 옆에서 집 한 채가 바로 자라납니다.</p>
     <div class="dnstats"><div><b id="dnKwN">0</b><span>건축 단어</span></div><div><b>12</b><span>설계 방향</span></div><div><b id="dnComb">0</b><span>다섯 개만 골라도 나오는 조합</span></div><div><b id="dnBldN">0</b><span>단어로 읽은 실제 건물</span></div></div>
     <div class="dnhero-act"><a class="btn big" href="#dnPick" data-dnjump>단어 고르러 가기</a><a class="btn ghost" href="#atlas">건축 아틀라스</a><button class="btn ghost" id="dnLibOpen" type="button">내 기록<em id="dnLibN">0</em></button></div>
@@ -4027,7 +4029,7 @@ html.hasTab .zcons{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   <div class="hero"><h1>내 작업실</h1><p class="tag">저장하고, 이어서, 함께.</p><p class="sub">프로젝트마다 일곱 단계가 이어집니다. 지금 어디쯤인지, 다음은 무엇인지 여기서.</p></div>
   <div class="sthero"><div class="stsg" id="stSg"></div><div class="stin">
     <div class="stk">내 작업실 <span class="stsave" id="stSaveState"></span></div>
-    <div><h1 id="stTitle" contenteditable="true" spellcheck="false" aria-label="프로젝트 이름 (눌러서 고치기)"></h1><div class="stmeta" id="stMeta"></div>
+    <div><h2 id="stTitle" contenteditable="true" spellcheck="false" aria-label="프로젝트 이름 (눌러서 고치기)"></h2><div class="stmeta" id="stMeta"></div>
       <div class="strow"><div class="string" id="stRing"></div><a class="stnext" id="stNext" href="#dna"></a></div></div>
     <div class="stdna" id="stDnaMini"></div>
   </div></div>
@@ -95421,7 +95423,7 @@ function cvHTML(){ cvLoad(); const c=CV;
   </section>`; }
 function cvActRow(a,i){ return `<div class="cv-actrow" data-i="${i}"><div class="cv-row2"><input data-cva="n" value="${esc(a.n)}" placeholder="프로젝트·활동 이름 (예: 3학년 설계 스튜디오 — 도심 주거)"><input data-cva="p" value="${esc(a.p)}" placeholder="2025.03 – 2025.06"></div><input data-cva="r" value="${esc(a.r)}" placeholder="역할 (예: 3인 팀 · 평면·단면·모형 담당)"><div class="cv-dwrap"><textarea data-cva="d" rows="2" placeholder="무엇을 어떻게, 결과는 숫자로 (예: 1:50 모형 2개 제작, 교내 우수작 선정)">${esc(a.d)}</textarea><button type="button" class="cv-ai" data-cvai="act:${i}">✦ 다듬기</button></div><button type="button" class="cv-del" data-cvdel="acts:${i}" aria-label="삭제">×</button></div>`; }
 function cvA4(){ const c=CV; const ph=cvPhoto(); const sw=c.sw.join(' · '); const acts=c.acts.filter(a=>a.n); const aw=c.awards.filter(a=>a.n); const edu2=(c.edu2||'').split('\n').filter(Boolean);
-  return `<div class="cv-doc ${c.tpl}"><header><div><h1>${esc(c.name)||'<span class="ph">이름</span>'}</h1><p class="t">${esc(c.title)||''}</p><p class="ct">${[c.email,c.phone,c.link].filter(Boolean).map(esc).join(' · ')}</p></div>${ph?`<img src="${ph}" alt="">`:'<div class="cv-phph"></div>'}</header>
+  return `<div class="cv-doc ${c.tpl}"><header><div><div class="cvn" role="heading" aria-level="2">${esc(c.name)||'<span class="ph">이름</span>'}</div><p class="t">${esc(c.title)||''}</p><p class="ct">${[c.email,c.phone,c.link].filter(Boolean).map(esc).join(' · ')}</p></div>${ph?`<img src="${ph}" alt="">`:'<div class="cv-phph"></div>'}</header>
    ${c.intro?`<p class="intro">${esc(c.intro).replace(/\n/g,'<br>')}</p>`:''}
    <section><h2>학력</h2><div class="r"><b>${esc(c.school)||'<span class="ph">학교</span>'} ${esc(c.major)}</b><span>${esc(c.period)}${c.gpa?` · ${esc(c.gpa)}`:''}</span></div>${edu2.map(x=>`<div class="r sub"><span>${esc(x)}</span></div>`).join('')}</section>
    ${acts.length?`<section><h2>프로젝트 · 활동 · 경력</h2>${acts.map(a=>`<div class="r"><b>${esc(a.n)}</b><span>${esc(a.p)}</span>${a.r?`<em>${esc(a.r)}</em>`:''}${a.d?`<p>${esc(a.d).replace(/\n/g,'<br>')}</p>`:''}</div>`).join('')}</section>`:''}
