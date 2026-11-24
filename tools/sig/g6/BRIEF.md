@@ -52,3 +52,10 @@ WebSearch/WebFetch(또는 web-fetch 에이전트)로 실제 자료를 찾아 치
 - 시간 제한: 전체 약 2시간 안에 끝낼 것. 4채 모두 완성 못 하면 완성한 것만 패치에 넣고 보고서에 남은 것을 적어라(반쯤 된 항목은 넣지 말 것).
 - 정면 +z, 건물 하나가 화면 중심. 주변 맥락(광장·도시 블록·숲·물)은 K.life에, 건물보다 튀지 않게.
 - 숫자로 시작하는 id는 없음. id는 아래 지정한 것 그대로(이미 BLD에 있는 id).
+
+## 7. G6(2/2) — Q23 (2026-11-25) 메모
+- 작업 폴더는 `/home/claude/work/g6b/<팀>/`, 패치 `/home/claude/work/g6b/<팀>.js`, 보고서 `/home/claude/work/g6b/<팀>_report.md` (위 3절의 g6 경로를 g6b로 바꿔 읽을 것).
+- 팀 A(유럽·중동 역사): durhamcath 더럼 대성당 · topkapi 톱카프 궁전 · umayyad 우마이야 모스크 · hephaestus 헤파이스토스 신전
+- 팀 B(현대 아이콘): barbican 바비컨 센터 · louisvuitton 루이비통 재단 · kunsthaus 쿤스트하우스 그라츠 · metropol 메트로폴 파라솔
+- 팀 C(일본·이스탄불): ryoanji 료안지 · sanjusangendo 산주산겐도 · galata 갈라타 탑
+- Q21 팀 보고서 `tools/sig/g6/{A,B,C}_report.md`에 공용 블록(common.js)·W/E 헬퍼·시점 요령이 있다. 참고 항목으로 Q21의 `amienscath:`·`kingscollegecam:`·`crownhall:`·`biosphere:`·`mezquita:`도 쓸 수 있다.
