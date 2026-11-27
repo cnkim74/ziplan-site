@@ -59,3 +59,11 @@ WebSearch/WebFetch(또는 web-fetch 에이전트)로 실제 자료를 찾아 치
 - 팀 B(현대 아이콘): barbican 바비컨 센터 · louisvuitton 루이비통 재단 · kunsthaus 쿤스트하우스 그라츠 · metropol 메트로폴 파라솔
 - 팀 C(일본·이스탄불): ryoanji 료안지 · sanjusangendo 산주산겐도 · galata 갈라타 탑
 - Q21 팀 보고서 `tools/sig/g6/{A,B,C}_report.md`에 공용 블록(common.js)·W/E 헬퍼·시점 요령이 있다. 참고 항목으로 Q21의 `amienscath:`·`kingscollegecam:`·`crownhall:`·`biosphere:`·`mezquita:`도 쓸 수 있다.
+
+## 8. G7 — Q26 (2026-11-28) 메모
+- 작업 폴더 `/home/claude/work/g7/<팀>/`, 패치 `/home/claude/work/g7/<팀>.js`, 보고서 `/home/claude/work/g7/<팀>_report.md` (3절 g6 경로를 g7로).
+- 팀 A(유럽 근대 초기): secession 빈 분리파 회관 · looshaus 로스 하우스 · einsteinturm 아인슈타인 탑 · casafascio 카사 델 파쇼
+- 팀 B(고층·미국): pirelli 피렐리 타워 · velasca 토레 벨라스카 · lakeshore 레이크 쇼어 드라이브 860-880(쌍둥이 동) · rothko 로스코 예배당
+- 팀 C(역사 목조·석조): borgund 보르군 스타브 교회 · kairouan 카이로우안 대모스크 · yakushiji 야쿠시지(동탑·서탑·금당) · toshodaiji 도쇼다이지(금당 중심)
+- 참고 항목: Q21·Q23·Q24의 최신 항목(`amienscath`·`crownhall`·`galata`·`sanjusangendo`·`umayyad`·`barbican` 등)과 보고서 `tools/sig/g6/`·`tools/sig/g6b/`·`tools/sig/k7/`.
+- 시간 예산 약 2시간. 렌더 서버 8861은 이미 떠 있음(PID 파일 /home/claude/work/srv.pid — 건드리지 말 것).
